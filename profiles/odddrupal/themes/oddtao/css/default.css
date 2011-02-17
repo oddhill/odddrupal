@@ -41,7 +41,8 @@ h4,
   line-height: 22px;
 }
 
-ul, ol,
+ul,
+ol,
 .prose ul,
 .prose ol {
   margin: 5px 0 15px;

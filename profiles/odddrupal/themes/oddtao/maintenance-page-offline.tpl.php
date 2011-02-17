@@ -25,37 +25,32 @@
   <script type="text/javascript" src="<?php print _oddtao_path(); ?>/js/center-plugin_1.0.1.js"></script>
 
   <script type="text/javascript">
-  jQuery(document).ready(function() {
-      
-      $('#page').center();
+  $(document).ready(function() {
+    $('#page').center();
   });
   </script>
   <!--[if IE 7]>
-  <style>
-  .in-maintenance #page {
-    width: 100%;
-  }
+  <style type="text/css">
+    .in-maintenance #page {
+      width: 100%;
+    }
   </style>
   <![endif]-->
 </head>
 <body class="<?php print $body_classes; ?>">
 
   <div id="page">
-      <div id="content"><div id="content-inner">
-          <div id="content-header">
-              <h1 class="title"><?php print t('Oj! Vad hände här?');?></h1>
-          </div> <!-- /#content-header -->
-        <div id="content-area">
-          <?php print t('Det finns ett problem med webbsajten. Ibland uppstår oväntade saker med hemsidor och då kan det bli på detta viset. Vi arbetar dock aktivt på att ordna det! ');?>
-        </div>
-      </div></div> <!-- /#content-inner, /#content -->
-      <div id="left"><div id="left-inner" class="clear-block">
-              <div id="site-name">
-                <a href="<?php print $base_path; ?>" title="<?php print t('Home'); ?>" rel="home">
-               / <?php print t('Teknisk support');?>
-                </a>
-              </div>
-      </div></div>
+    <div id="content"><div id="content-inner">
+      <div id="content-header">
+        <h1 class="title"><?php print t('Oj! Vad hände här?'); ?></h1>
+      </div> <!-- /#content-header -->
+      <div id="content-area">
+        <?php print t('Det finns ett problem med webbsajten. Ibland uppstår oväntade saker med hemsidor och då kan det bli på detta viset. Vi arbetar dock aktivt på att ordna det! ');?>
+      </div>
+    </div></div> <!-- /#content-inner, /#content -->
+    <div id="left"><div id="left-inner" class="clear-block">
+      <div id="site-name">/ <?php print t('Teknisk support'); ?></div>
+    </div></div>
   </div> <!-- /#page -->
 
 </body>

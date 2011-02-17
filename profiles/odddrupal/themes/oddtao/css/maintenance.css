@@ -38,20 +38,20 @@ body.in-maintenance {
 	background: -webkit-gradient(linear, left top, left bottom, 
 		color-stop(0.0, rgb(255,255,132)),
 		color-stop(0.5, rgb(255,255,132)),
-        color-stop(1.0, rgb(255,255,158))
-    );
-    background: -moz-linear-gradient(center top,
-			rgb(255,255,132) 0%,
+    color-stop(1.0, rgb(255,255,158))
+  );
+  background: -moz-linear-gradient(center top,
+		rgb(255,255,132) 0%,
 		rgb(255,255,132) 50%,
 		rgb(255,255,158) 100%
 	);
 	-webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.235);
-	   -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.235);
-	        box-shadow: 0 3px 6px rgba(0,0,0,0.235);
+  -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.235);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.235);
 	line-height: 30px;
   -webkit-transform: rotate(-2deg);
-     -moz-transform: rotate(-2deg);
-          transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  transform: rotate(-2deg);
 }
 
 .in-maintenance #content h1.title {

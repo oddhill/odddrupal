@@ -21,7 +21,9 @@ ul.links,
 div.page-links,
 div.box,
 div.picture,
-form { display:none; }
+form {
+  display:none;
+}
 
 ul.inline,
 ul.inline li,
@@ -96,9 +98,11 @@ div.print-header {
   padding: 0pt 0pt 10pt;
   margin: 0pt 0pt 10pt;
   line-height:20pt;
-  }
+}
 
-  div.print-header img.logo { display:block; height:20pt; }
+div.print-header img.logo {
+  display:block; height:20pt;
+}
 
 /**
  * FOOTER =============================================================
@@ -111,7 +115,7 @@ div.print-header {
   padding: 10pt 0pt 0pt;
   margin: 10pt 0pt 0pt;
   line-height:20pt;
-  }
+}
 
 /**
  * NODE ===============================================================
@@ -122,9 +126,11 @@ div.print-header {
   letter-spacing:-0.5pt;
   font-weight:normal;
   margin: 0pt 0pt 10pt;
-  }
+}
 
-  .node-title a { text-decoration:none; }
+.node-title a {
+  text-decoration:none;
+}
 
 div.node-submitted,
 div.comment-submitted {
@@ -132,34 +138,38 @@ div.comment-submitted {
   color:#666;
   font-family: Arial, sans-serif;
   font-size:7pt;
-  }
+}
 
 div.node .footer {
   margin:10pt 0pt;
   font-size:6pt;
-  }
+}
 
 div.comment {
   border-top:1pt solid #ccc;
   padding:10pt 0pt;
-  }
+}
 
 h6.comments-title {
   padding:10pt 0pt;
   font-size:9pt;
   font-family: Arial, sans-serif;
-  }
+}
 
 .comment-title {
   font-size:13pt;
   font-weight:normal;
-  }
+}
 
 /*
  * CCK ================================================================
  */
-.node .field-label { display:inline; }
-.node .field { margin:10pt 0pt; }
+.node .field-label {
+  display:inline; 
+}
+.node .field {
+  margin:10pt 0pt;
+}
 
 /**
  * TABLES =============================================================
@@ -167,18 +177,18 @@ h6.comments-title {
 table {
   border-collapse: collapse;
   width:100%;
-  }
+}
 
 table th {
   font-family: Arial, Helvetica, sans-serif;
-  }
+}
 
 table th,
 table td {
   font-size:9pt;
   padding: 5pt 10pt;
   border:1pt solid #ccc;
-  }
+}
 
 /**
  * Modifications for the screen to make the page a bit more reasonable
@@ -188,12 +198,12 @@ table td {
   body {
     background:#f8f8f8;
     padding:100px 0px;
-    }
+  }
 
   div.limiter {
     background:#fff;
     padding:.5in;
     width:7in;
     border:5pt solid #eee;
-    }
+  }
 }

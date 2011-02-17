@@ -21,7 +21,8 @@ div.form-item label {
 	color: #000;
 }
 
-.form-text.valid, .form-textarea.valid {
+.form-text.valid,
+.form-textarea.valid {
 	border: 1px solid #333;
 	background: #E6E6E6 url(../graphics/valid.png) no-repeat right top;
 	color: #000;
