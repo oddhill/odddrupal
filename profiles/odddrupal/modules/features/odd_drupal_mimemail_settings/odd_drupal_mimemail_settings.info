@@ -1,0 +1,8 @@
+core = "6.x"
+dependencies[] = "mimemail"
+dependencies[] = "strongarm"
+description = "Innehåller våra standardinställningar för HTML-email modulen Mime Mail."
+features[ctools][] = "strongarm:strongarm:1"
+features[variable][] = "mimemail_alter"
+name = "Odd-Drupal MimeMail settings"
+package = "Features"

@@ -1,0 +1,11 @@
+name=Seven Up
+description=add the sevenup script to suggest/force users to upgrage their browser to something other than IE 6
+core=6.x
+
+;$Id;
+; Information added by drupal.org packaging script on 2009-05-12
+version = "6.x-0.3"
+core = "6.x"
+project = "sevenup"
+datestamp = "1242113162"
+

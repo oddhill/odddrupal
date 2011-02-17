@@ -1,0 +1,11 @@
+$Id: CHANGELOG.txt,v 1.1.2.1 2010/07/27 15:10:08 yvmarques Exp $
+
+EPSA Crop 6.x-0.1-beta2, 2010-02-24
+-----------------------------------
+Fixed #665242 by valic: Multilingual site
+Fixed #603234 by yvmarques: Preview image not displayed
+Added by yvmarques: Various performances tweak 
+
+EPSA Crop 6.x-0.1-beta1, 2009-10-12
+-----------------------------------
+Initial release of epsacrop module.

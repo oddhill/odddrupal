@@ -1,0 +1,52 @@
+/*MESSAGES*/
+
+/* Important messages (status, warning, and error) for the user */
+div.messages,
+div.status,
+div.warning,
+div.error {
+  font-size: 16px;
+  font-style: italic;
+  min-height: 21px;
+  margin: 10px 0;
+  border: none;
+  padding: 15px 15px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 15px 15px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -pie-border-radius: 8px;
+}
+
+/* Normal priority messages */
+div.status,
+div.notice {
+  color: #006833;
+  border: 1px solid #006833;
+  background-color: #CCEDDC;
+  background-image: url(../graphics/messages-1.png);
+}
+
+/* Medium priority messages */
+div.warning,
+tr.warning {
+  color: #c68700; /* Drupal core uses #220 */
+  border: 1px solid #c68700;
+  background-color: #FFFCCC;
+  background-image: url(../graphics/messages-2.png);
+}
+
+/* High priority messages. See also the .error declaration below. */
+div.error,
+tr.error {
+  color: #a8141a;
+  border: 1px solid #a8141a;
+  background-image:  url(../graphics/messages-3.png);
+  background-color: #F6D1D2;
+}
+
+div.messages ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}

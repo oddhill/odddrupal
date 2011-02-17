@@ -1,0 +1,6 @@
+; $Id$
+name = "Wysiwyg alter"
+description = "Sets some hardcoded options to the ckeditor."
+core = 6.x
+package = Odd Hill
+dependencies[] = wysiwyg

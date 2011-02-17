@@ -1,0 +1,9 @@
+<?php
+/**
+* Implementation of hook_wysiwyg_editor_settings_alter().
+*/
+function wysiwyg_alter_wysiwyg_editor_settings_alter(&$settings, &$context) {
+  if($context['profile']->editor == 'ckeditor') {
+    $settings['forcePasteAsPlainText'] = TRUE;
+  }
+}

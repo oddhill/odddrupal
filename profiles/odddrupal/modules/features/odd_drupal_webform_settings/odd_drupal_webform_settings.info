@@ -1,0 +1,8 @@
+core = "6.x"
+dependencies[] = "strongarm"
+description = "Innehåller våra standardinställningar för modulen Webform"
+features[ctools][] = "strongarm:strongarm:1"
+features[variable][] = "webform_default_format"
+features[variable][] = "webform_format_override"
+name = "Odd-Drupal Webform settings"
+package = "Features"

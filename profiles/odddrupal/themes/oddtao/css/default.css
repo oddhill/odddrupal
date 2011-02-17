@@ -1,0 +1,70 @@
+/**
+ * Default
+ */
+ 
+body {
+  background: #FFF;
+  font: 14px/22px Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+p,
+.prose p {
+  margin: 5px 0 15px;
+}
+
+h1,
+.prose h1 {
+  font-size: 35px;
+  line-height: 40px;
+}
+
+h2,
+.prose h2 {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+h3,
+.prose h3 {
+  font-size: 22px;
+  line-height: 26px;
+}
+
+h4,
+.prose h4 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+ul, ol,
+.prose ul,
+.prose ol {
+  margin: 5px 0 15px;
+  padding: 0 0 0 15px;
+}
+
+li,
+.prose li {
+  list-style-type: disc;
+  margin: 5px 0;
+}
+
+div.unpublished {
+  margin: 5px 0;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0 1px 0 #FFF;
+  background: url(../graphics/unpublished_bg.png);
+  border: 1px solid #ece796;
+}
+
+div.unpublished-inner {
+  padding: 10px 10px 10px 42px;
+  background: url(../graphics/unpublished_icon.png) no-repeat;
+  background-position: 5px 5px;
+}
