@@ -45,6 +45,7 @@ function odddrupal_profile_modules() {
     'context', 'context_ui', 'context_layouts',
     'date_api', 'date_timezone',
     'features',
+    'diff',
     'imageapi', 'imageapi_gd', 'imagecache', 'imagecache_ui',
     'token',
     'transliteration',
