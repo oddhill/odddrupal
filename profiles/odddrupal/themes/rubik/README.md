@@ -110,5 +110,5 @@ Maintainer
 - yhahn (Young Hahn)
 
 
-[1]: http://code.developmentseed.org/tao
+[1]: http://drupal.org/project/tao
 [2]: http://api.drupal.org/api/function/drupal_render/6
