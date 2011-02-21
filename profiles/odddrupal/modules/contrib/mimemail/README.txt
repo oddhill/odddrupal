@@ -1,4 +1,4 @@
-$Id: README.txt,v 1.2 2010/09/12 17:58:46 sgabe Exp $
+$Id: README.txt,v 1.1.8.1 2010/10/30 18:00:24 sgabe Exp $
 
 INSTALLATION
   Hopefully, you know the drill by now :)

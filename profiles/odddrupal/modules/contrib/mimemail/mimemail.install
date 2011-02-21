@@ -1,4 +1,4 @@
-<?php /* $Id: mimemail.install,v 1.2 2010/07/01 17:44:31 sgabe Exp $ */
+<?php /* $Id: mimemail.install,v 1.1.2.1 2010/10/30 18:00:24 sgabe Exp $ */
 
 /**
  * Implementation of hook_disable().
@@ -20,6 +20,7 @@ function mimemail_uninstall() {
     'mimemail_incoming',
     'mimemail_key',
     'mimemail_textonly',
+    'mimemail_sitestyle',
   );
   foreach ($variables as $variable) {
     variable_del($variable);

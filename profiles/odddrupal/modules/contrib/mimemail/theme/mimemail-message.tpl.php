@@ -1,5 +1,5 @@
 <?php 
-// $Id: mimemail-message.tpl.php,v 1.3 2010/09/12 16:35:48 sgabe Exp $
+// $Id: mimemail-message.tpl.php,v 1.3.2.2 2010/10/30 18:00:24 sgabe Exp $
 
 /**
  * @file
