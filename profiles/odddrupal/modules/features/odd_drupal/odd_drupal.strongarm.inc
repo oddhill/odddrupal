@@ -36,15 +36,6 @@ function odd_drupal_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'theme_settings';
-  $strongarm->value = array(
-    'toggle_node_info_page' => FALSE,
-  );
-
-  $export['theme_settings'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'vertical_tabs_default';
   $strongarm->value = 0;
 
