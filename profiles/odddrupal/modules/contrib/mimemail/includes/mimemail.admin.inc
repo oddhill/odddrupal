@@ -1,4 +1,4 @@
-<?php /* $Id: mimemail.admin.inc,v 1.3 2010/09/12 15:57:20 sgabe Exp $ */
+<?php /* $Id: mimemail.admin.inc,v 1.1.2.3 2010/10/30 18:00:24 sgabe Exp $ */
 
 /**
  * @file
@@ -24,22 +24,46 @@ function mimemail_admin_settings() {
     variable_del('smtp_library');
   }
 
+  // Check for the existence of a mail.css file in the default theme folder.
+  $theme = variable_get('theme_default', NULL);
+  $mailstyle = drupal_get_path('theme', $theme) . '/mail.css';
+  // Disable site style sheets including option if found.
+  if (is_file($mailstyle)) {
+    variable_set('mimemail_sitestyle', 0);
+    $disable_sitestyle = TRUE;
+  }
+
   $engines = mimemail_get_engines();
 
   $form = array();
-  $form['site_mail'] = array(
+  $form['mimemail']['mimemail_name'] = array(
     '#type'          => 'textfield',
-    '#title'         => t('E-mail address'),
-    '#default_value' => variable_get('site_mail', ini_get('sendmail_from')),
+    '#title'         => t('Sender name'),
+    '#default_value' => variable_get('mimemail_name', variable_get('site_name', 'Drupal')),
     '#size'          => 60,
     '#maxlength'     => 128,
-    '#description'   => t('A valid e-mail address for this website, used by the auto-mailer during registration, new password requests, notifications, etc.')
+    '#description'   => t('The name that all site e-mails will be from when using default engine.'),
+  );
+  $form['mimemail']['mimemail_mail'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Sender e-mail address'),
+    '#default_value' => variable_get('mimemail_mail', variable_get('site_mail', ini_get('sendmail_from'))),
+    '#size'          => 60,
+    '#maxlength'     => 128,
+    '#description'   => t('The e-mail address that all site e-mails will be from when using default engine.'),
   );
   $form['mimemail']['mimemail_alter'] = array(
     '#type'          => 'checkbox',
     '#title'         => t('Use mime mail for all messages'),
     '#default_value' => variable_get('mimemail_alter', 0),
     '#description'   => t('Use the mime mail module to deliver all site messages.  With this option, system emails will have styles and formatting'),
+  );
+  $form['mimemail']['mimemail_sitestyle'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Include site style sheets'),
+    '#default_value' => variable_get('mimemail_sitestyle', 1),
+    '#description'   => t('Gather all style sheets when no mail.css found in the default theme directory.'),
+    '#disabled'      => $disable_sitestyle,
   );
 
   $filter_format = variable_get('mimemail_format', FILTER_FORMAT_DEFAULT);

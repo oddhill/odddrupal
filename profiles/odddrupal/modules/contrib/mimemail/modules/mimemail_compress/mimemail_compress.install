@@ -1,6 +1,6 @@
 <?php
 
-// $Id: mimemail_compress.install,v 1.1 2010/08/12 10:31:34 sgabe Exp $
+// $Id: mimemail_compress.install,v 1.1.2.2 2010/10/30 18:00:24 sgabe Exp $
 
 /**
  * Implementation of hook_requirements().

@@ -1,5 +1,5 @@
 <?php
-/* $Id: mimemail.inc,v 1.53 2010/09/12 15:57:20 sgabe Exp $ */
+/* $Id: mimemail.inc,v 1.31.2.5 2010/11/06 18:15:50 sgabe Exp $ */
 
 /**
  * @file
@@ -44,15 +44,15 @@ function mimemail_rfc_headers($headers) {
  * @param $headers An array of headers
  * @return header string.
  */
-function mimemail_headers($headers, $from = '') {
+function mimemail_headers($headers, $from = NULL) {
   // Note: This may not work. The MTA may rewrite the Return-Path, and Errors-To is deprecated.
-  if (!$from) {
-    $from = variable_get('site_mail', ini_get('sendmail_from'));
+
+  // Allow a mail to overwrite standard headers.
+  if (!is_null($from)) {
+    preg_match('/[a-z0-9\-\.]+@{1}[a-z0-9\-\.]+/i', $from, $matches);
+    $from_email = $matches[0];
+    $headers = array_merge($headers, array('From' => $from, 'Sender' => $from, 'Return-Path' => "<$from_email>", 'Errors-To' => $from));
   }
-  preg_match('/[a-z0-9\-\.]+@{1}[a-z0-9\-\.]+/i', $from, $matches);
-  $from_email = $matches[0];
-  // allow a mail to overwrite standard headers.
-  $headers = array_merge(array('Return-Path' => "<$from_email>", 'Errors-To' => $from, 'From' => $from, 'Content-Type' => 'text/plain; charset=utf-8; format=flowed'), $headers);
 
   // Run all headers through mime_header_encode() to convert non-ascii
   // characters to an rfc compliant string, similar to drupal_mail().
@@ -297,11 +297,11 @@ function _mimemail_expand_links($matches) {
  * image/attachment
  */
 function mimemail_html_body($body, $subject, $plaintext = FALSE, $text = NULL, $attachments = array()) {
-  if (is_null($text)) {
+  if (empty($text)) {
     // todo: remove this preg_replace once filter_xss() is properly handling
     // direct descendant css selectors '>' in inline CSS. For now this cleans
     // up our plain text part. See mimemail #364198, drupal #370903
-    $text = preg_replace('|<style.*</style>|mis', '', $body);
+    $text = preg_replace('|<style.*?</style>|mis', '', $body);
     $text = drupal_html_to_text($text);
   }
   if ($plaintext) {

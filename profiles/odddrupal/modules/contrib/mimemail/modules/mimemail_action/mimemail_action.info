@@ -1,0 +1,14 @@
+; $Id: mimemail_action.info,v 1.1.2.2 2010/10/30 18:00:24 sgabe Exp $
+name = "Mime Mail Action"
+description = "Provide actions for Mime Mail."
+package = Mail
+dependencies[] = mimemail
+dependencies[] = trigger
+core = 6.x
+
+; Information added by drupal.org packaging script on January 1, 1970 - 00:00
+version = "6.x-1.0-alpha7"
+core = "6.x"
+project = "mimemail"
+datestamp = "1296499015"
+
