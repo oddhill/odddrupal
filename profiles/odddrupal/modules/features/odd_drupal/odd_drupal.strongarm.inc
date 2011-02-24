@@ -36,27 +36,6 @@ function odd_drupal_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'vertical_tabs_default';
-  $strongarm->value = 0;
-
-  $export['vertical_tabs_default'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'vertical_tabs_minimum';
-  $strongarm->value = '1';
-
-  $export['vertical_tabs_minimum'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'vertical_tabs_node_type_settings';
-  $strongarm->value = 1;
-
-  $export['vertical_tabs_node_type_settings'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'views_no_hover_links';
   $strongarm->value = 1;
 
