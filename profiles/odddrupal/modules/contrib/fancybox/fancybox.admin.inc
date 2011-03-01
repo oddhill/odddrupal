@@ -1,5 +1,4 @@
 <?php
-// $Id: fancybox.admin.inc,v 1.1.2.5 2010/10/25 23:24:19 sbacelic Exp $
 
 /**
  * @file

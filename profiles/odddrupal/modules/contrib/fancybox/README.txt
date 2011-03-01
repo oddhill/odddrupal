@@ -47,4 +47,3 @@ Configuration
 
 Last update
 ----------- 
-$Id: README.txt,v 1.1.2.2 2010/03/15 22:38:51 sbacelic Exp $ 

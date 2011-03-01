@@ -1,4 +1,3 @@
-// $Id: fancybox.js,v 1.1.2.3 2010/10/25 22:25:39 sbacelic Exp $
 
 /**
  * Initiate Fancybox using selector and options from the module's settings.
