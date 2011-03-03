@@ -1,6 +1,7 @@
 .htaccess
-/sites/default/settings.php
+/sites/*/settings.php
 /sites/*/files/*
+/sites/*/tmp/*
 icon.png
 icon.gif
 icon.jpg
