@@ -32,6 +32,7 @@ function odddrupal_profile_modules() {
     'php',
     // Contrib modules
     'admin_menu', 
+    'boxes', 
     'backup_migrate', 
     'better_formats', 
     'content', 'fieldgroup', 'text', 'optionwidgets', 
