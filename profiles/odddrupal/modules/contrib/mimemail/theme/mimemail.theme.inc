@@ -1,4 +1,4 @@
-<?php // $Id: mimemail.theme.inc,v 1.11.2.3 2011/01/18 17:26:07 sgabe Exp $
+<?php // $Id$
 
 function mimemail_theme_theme() {
   $path = drupal_get_path('module', 'mimemail') .'/theme';

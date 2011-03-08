@@ -1,4 +1,4 @@
-<?php /* $Id: mimemail.admin.inc,v 1.1.2.3 2010/10/30 18:00:24 sgabe Exp $ */
+<?php /* $Id$ */
 
 /**
  * @file
@@ -16,11 +16,11 @@ function mimemail_admin_settings() {
   // override the smtp_library value if mimemail is chosen to handle all mail
   // this will cause drupal_mail to call mimemail()
   if (variable_get('mimemail_alter', 0)) {
-    if (strpos(variable_get('smtp_library', ''), 'mimemail') === FALSE) {
+    if (variable_get('smtp_library', '') != drupal_get_filename('module', 'mimemail')) {
       variable_set('smtp_library', drupal_get_filename('module', 'mimemail'));
     }
   }
-  elseif (strpos(variable_get('smtp_library', ''), 'mimemail') !== FALSE) {
+  elseif (variable_get('smtp_library', '') == drupal_get_filename('module', 'mimemail')) {
     variable_del('smtp_library');
   }
 
@@ -57,6 +57,12 @@ function mimemail_admin_settings() {
     '#title'         => t('Use mime mail for all messages'),
     '#default_value' => variable_get('mimemail_alter', 0),
     '#description'   => t('Use the mime mail module to deliver all site messages.  With this option, system emails will have styles and formatting'),
+  );
+  $form['mimemail']['mimemail_simple_address'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Use simple address format'),
+    '#default_value' => variable_get('mimemail_simple_address', 0),
+    '#description' => t('Use the simple format of user@example.com for all email addresses.'),
   );
   $form['mimemail']['mimemail_sitestyle'] = array(
     '#type'          => 'checkbox',

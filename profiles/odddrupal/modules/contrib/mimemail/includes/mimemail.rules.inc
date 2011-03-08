@@ -1,4 +1,4 @@
-<?php // $Id: mimemail.rules.inc,v 1.1.2.3 2010/11/03 21:18:42 sgabe Exp $
+<?php // $Id$
 
 /**
  * @file

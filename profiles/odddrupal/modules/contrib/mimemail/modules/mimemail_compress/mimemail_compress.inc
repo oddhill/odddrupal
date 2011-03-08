@@ -1,4 +1,4 @@
-<?php // $Id: mimemail_compress.inc,v 1.4.2.4 2011/01/18 15:09:45 sgabe Exp $
+<?php // $Id$
 
 /**
  * @file

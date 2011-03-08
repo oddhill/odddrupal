@@ -1,4 +1,4 @@
-<?php /* $Id: mimemail.incoming.inc,v 1.1.2.3 2010/10/30 18:00:24 sgabe Exp $ */
+<?php /* $Id$ */
 
 /**
  * @file

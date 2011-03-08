@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.1.8.1 2010/10/30 18:00:24 sgabe Exp $
 
 INSTALLATION
   Hopefully, you know the drill by now :)

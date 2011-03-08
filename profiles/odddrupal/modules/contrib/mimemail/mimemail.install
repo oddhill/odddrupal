@@ -1,4 +1,4 @@
-<?php /* $Id: mimemail.install,v 1.1.2.1 2010/10/30 18:00:24 sgabe Exp $ */
+<?php /* $Id$ */
 
 /**
  * Implementation of hook_disable().
