@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_ui.module,v 1.6.2.4 2011/01/09 09:15:33 mkalkbrenner Exp $
 
 /**
  * @file
@@ -138,9 +137,11 @@ function themekey_ui_author2theme($nid) {
 function themekey_ui_theme() {
   return array(
     'themekey_ui_table' => array(
+      'file' => 'themekey_ui_admin.inc',
       'arguments' => array('form' => NULL),
     ),
     'themekey_ui_theme_select_form' => array(
+      'file' => 'themekey_ui_admin.inc',
       'arguments' => array('form' => NULL),
     ),
   );
