@@ -61,7 +61,9 @@ function odddrupal_profile_modules() {
     'views', 'views_ui', 'views_customfield',
     'wysiwyg',
     'webform',
-    'reroute_email', 
+    'reroute_email',
+    'exportables',
+    'input_formats', 
     // Custom modules
     'wysiwyg_alter',
     // Custom Features, containing Odd Drupal general settings
@@ -73,7 +75,8 @@ function odddrupal_profile_modules() {
     'odd_drupal_sevenup_settings',
     'odd_drupal_themekey_settings',
     'odd_drupal_mimemail_settings',
-    'odd_drupal_webform_settings'
+    'odd_drupal_webform_settings',
+    'odd_drupal_input_formats'
   );
 
   return $modules;
