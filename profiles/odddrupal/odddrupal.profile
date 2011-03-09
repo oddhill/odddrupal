@@ -49,6 +49,8 @@ function odddrupal_profile_modules() {
     'diff',
     'imageapi', 'imageapi_gd', 'imagecache', 'imagecache_ui',
     'token',
+    'rules',
+    'rules_admin',
     'transliteration',
     'spamspan',
     'globalredirect',
