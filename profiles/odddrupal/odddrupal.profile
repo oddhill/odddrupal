@@ -31,6 +31,7 @@ function odddrupal_profile_modules() {
     'dblog',
     'php',
     // Contrib modules
+    'pathauto',
     'admin_menu', 
     'boxes', 
     'backup_migrate', 
