@@ -1,5 +1,4 @@
 <?php
-// $Id: epsacrop.install,v 1.1.2.1 2010/07/27 15:10:08 yvmarques Exp $
 /**
  * @file
  * install file for epsacrop.module
@@ -52,7 +51,7 @@ function epsacrop_requirements($phase) {
   else {
     // Required library wasn't found. Abort installation.
     $requirements['epsacrop']['value'] = $t('Not found');
-    $requirements['epsacrop']['description'] = $t('The <a href="@jcrop">Jcrop</a> plugin is missing. <a href="@download">Download</a> and extract it in your <em>epsacrop</em> module directory. Or <a href="@json2">json2.js</a> is missing, you can download it <a href="@downjson2">here</a> and put it in your <em>epsacrop/js</a> directory', array('@jcrop' => 'http://deepliquid.com/content/Jcrop.html', '@download' => 'http://code.google.com/p/jcrop/downloads/detail?name=jquery.Jcrop-0.9.8.zip&can=2', '@json2' => 'http://www.json.org/js.html', '@downjson2' => 'http://www.json.org/json2.js'));
+    $requirements['epsacrop']['description'] = $t('The <a href="@jcrop">Jcrop</a> plugin is missing. <a href="@download">Download</a> and extract it in your <em>epsacrop</em> module directory. Or <a href="@json2">json2.js</a> is missing, you can download it <a href="@downjson2">here</a> and put it in your <em>epsacrop/js</a> directory', array('@jcrop' => 'http://deepliquid.com/content/Jcrop.html', '@download' => 'http://code.google.com/p/jcrop/downloads/detail?name=jquery.Jcrop-0.9.8.zip&can=2', '@json2' => 'http://www.json.org/js.html', '@downjson2' => 'https://github.com/douglascrockford/JSON-js'));
     $requirements['epsacrop']['severity'] = REQUIREMENT_ERROR;
   }
   return $requirements;
