@@ -8,6 +8,16 @@ function odd_drupal_fancybox_settings_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'fancybox_files';
+  $strongarm->value = array(
+    'js' => 'jquery.fancybox-1.3.1.js',
+    'css' => 'jquery.fancybox-1.3.1.css',
+  );
+
+  $export['fancybox_files'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'fancybox_path';
   $strongarm->value = 'profiles/odddrupal/libraries/fancybox';
 
@@ -54,10 +64,7 @@ function odd_drupal_fancybox_settings_strongarm() {
     'activation' => array(
       'selector' => '',
       'activation_type' => 'exclude',
-      'activation_pages' => 'admin*
-img_assist*
-node/add/*
-node/*/edit',
+      'activation_pages' => '',
     ),
     'imagefield' => array(
       'grouping' => '1',
