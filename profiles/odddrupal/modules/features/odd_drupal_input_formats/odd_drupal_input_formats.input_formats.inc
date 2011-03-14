@@ -14,38 +14,26 @@ function odd_drupal_input_formats_input_formats() {
   $input_format->settings = array(
     // Settings for: filter module
     'filter' => array(
-      // Filter HTML tags
       'filter_html' => '1',
-      // Allowed HTML tags
       'allowed_html' => '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <h2> <h3> <br> <p>',
-      // Display HTML help
       'filter_html_help' => 1,
-      // Spam link deterrent
       'filter_html_nofollow' => 0,
     ),
     // Settings for: spamspan module
     'spamspan' => array(
-      // User name class
       'spamspan_usercla' => 'u',
-      // Domain part class
       'spamspan_domaincla' => 'd',
-      // Replacement for "@"
       'spamspan_' => ' [at] ',
-      // Use a graphical replacement for "@"
       'spamspan_use_graph' => 0,
     ),
   );
   $input_format->filters = array(
     'filter' => array(
-      // Delta => Weight for: URL filter
       '2' => '0',
-      // Delta => Weight for: HTML filter
       '0' => '1',
-      // Delta => Weight for: HTML corrector
       '3' => '10',
     ),
     'spamspan' => array(
-      // Delta => Weight for: Hide email addresses using the SpamSpan technique
       '0' => '10',
     ),
   );
@@ -60,25 +48,18 @@ function odd_drupal_input_formats_input_formats() {
   $input_format->settings = array(
     // Settings for: spamspan module
     'spamspan' => array(
-      // User name class
       'spamspan_usercla' => 'u',
-      // Domain part class
       'spamspan_domaincla' => 'd',
-      // Replacement for "@"
       'spamspan_' => ' [at] ',
-      // Use a graphical replacement for "@"
       'spamspan_use_graph' => 0,
     ),
   );
   $input_format->filters = array(
     'filter' => array(
-      // Delta => Weight for: URL filter
       '2' => '0',
-      // Delta => Weight for: HTML corrector
       '3' => '10',
     ),
     'spamspan' => array(
-      // Delta => Weight for: Hide email addresses using the SpamSpan technique
       '0' => '10',
     ),
   );
@@ -106,7 +87,6 @@ function odd_drupal_input_formats_input_formats() {
   );
   $input_format->filters = array(
     'php' => array(
-      // Delta => Weight for: PHP evaluator
       '0' => '0',
     ),
   );
@@ -124,40 +104,27 @@ function odd_drupal_input_formats_input_formats() {
   $input_format->settings = array(
     // Settings for: filter module
     'filter' => array(
-      // Filter HTML tags
       'filter_html' => '1',
-      // Allowed HTML tags
       'allowed_html' => '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd>',
-      // Display HTML help
       'filter_html_help' => 0,
-      // Spam link deterrent
       'filter_html_nofollow' => 0,
     ),
     // Settings for: spamspan module
     'spamspan' => array(
-      // User name class
       'spamspan_usercla' => 'u',
-      // Domain part class
       'spamspan_domaincla' => 'd',
-      // Replacement for "@"
       'spamspan_' => ' [at] ',
-      // Use a graphical replacement for "@"
       'spamspan_use_graph' => 0,
     ),
   );
   $input_format->filters = array(
     'filter' => array(
-      // Delta => Weight for: URL filter
       '2' => '0',
-      // Delta => Weight for: HTML filter
       '0' => '1',
-      // Delta => Weight for: Line break converter
       '1' => '2',
-      // Delta => Weight for: HTML corrector
       '3' => '10',
     ),
     'spamspan' => array(
-      // Delta => Weight for: Hide email addresses using the SpamSpan technique
       '0' => '10',
     ),
   );
