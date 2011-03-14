@@ -1,0 +1,5 @@
+; $Id$
+name = "Odd Drupal module"
+description = "Handles the updates for the Odd Drupal profile."
+core = 6.x
+package = Odd Hill

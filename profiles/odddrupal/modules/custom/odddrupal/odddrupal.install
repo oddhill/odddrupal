@@ -1,0 +1,34 @@
+<?php
+/**
+ * This file holds all the update instructions.
+ *
+ * There should be a new hook_update_N() for every update.
+ * An update could include installation of new modules,
+ * uninstallation of old modules etc.
+ */
+
+/**
+ * Enable modules that has been added since the first commit.
+ */
+function odddrupal_update_6001() {
+  $ret = array();
+  
+  $modules = array(
+    'diff',
+    'boxes',
+    'pathauto',
+    'tadaa',
+  );
+  module_enable($modules);
+  
+  foreach ($modules as $module) {
+    if (module_exists($module)) {
+      $ret[] = 'Enabled ' . $module . '.';
+    }
+    else {
+      $ret[] = 'Failed to enable ' . $module . '. Please enable it manually.';
+    }
+  }
+  
+  return $ret;
+}

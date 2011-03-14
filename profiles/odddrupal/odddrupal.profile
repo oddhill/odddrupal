@@ -69,6 +69,8 @@ function odddrupal_profile_modules() {
     'input_formats', 
     // Custom modules
     'wysiwyg_alter',
+    'tadaa',
+    'odddrupal',
     // Custom Features, containing Odd Drupal general settings
     'odd_drupal',
     'odd_drupal_simplemenu_settings',
