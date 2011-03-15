@@ -81,7 +81,6 @@ function odddrupal_profile_modules() {
     'odd_drupal_themekey_settings',
     'odd_drupal_mimemail_settings',
     'odd_drupal_webform_settings',
-    'odd_drupal_input_formats'
   );
 
   return $modules;
