@@ -2,6 +2,7 @@
 Drupal.tadaa = {};
 
 $(document).ready(function() {
+  
   // Refresh the current status.
   Drupal.tadaa.refresh_overview();
   
@@ -27,11 +28,18 @@ $(document).ready(function() {
   });
   
   // Update the email when the value changes.
+  $('#tadaa-mail').focus(function() {
+    $(this).parent('div').addClass('focused');  
+  });
+  $('#tadaa-mail').blur(function() {
+    $(this).parent('div').removeClass('focused');
+  });
   $('#tadaa-mail').change(function() {
     var mail = $(this).val();
     var expression = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (mail.match(expression)) {
-      $(this).attr('disabled', 'disabled').removeClass('invalid');
+      $(this).attr('disabled', 'disabled');
+      $(this).parent('div').removeClass('invalid');
       $.ajax({
         async: false,
         url: 'tadaa/mail/set/' + $(this).val(),
@@ -40,7 +48,7 @@ $(document).ready(function() {
       $(this).removeAttr('disabled');
     }
     else {
-      $(this).addClass('invalid');
+      $(this).parent('div').addClass('invalid');
     }
   });
   
@@ -66,8 +74,8 @@ $(document).ready(function() {
 
 Drupal.tadaa.refresh_overview = function() {
   if (Drupal.settings.tadaa.environment) {
-    // Set the default texts.
-    $('#tadaa-module-state a, #tadaa-variable-state a').text('Kollar...');
+    // Set the default class.
+    $('#tadaa-module-state a, #tadaa-variable-state a').attr('class', Drupal.settings.tadaa.classes.loading);
     
     // Show or hide the email field.
     if (Drupal.settings.tadaa.modules.reroute_email) {
@@ -79,10 +87,10 @@ Drupal.tadaa.refresh_overview = function() {
     
     // Update the state for the environment.
     $.getJSON(Drupal.settings.basePath + 'tadaa/environment/check', function(data) {
-      var modulesState = data.modules ? 'OK' : 'FEL';
-      $('#tadaa-module-state a').text(modulesState);
-      var variablesState = data.variables ? 'OK' : 'FEL';
-      $('#tadaa-variable-state a').text(variablesState);
+      var modulesClass = data.modules ? Drupal.settings.tadaa.classes.valid : Drupal.settings.tadaa.classes.invalid;
+      $('#tadaa-module-state a').attr('class', modulesClass);
+      var variablesClass = data.variables ? Drupal.settings.tadaa.classes.valid : Drupal.settings.tadaa.classes.invalid;
+      $('#tadaa-variable-state a').attr('class', variablesClass);
     });
   }
   else {

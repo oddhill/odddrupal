@@ -64,7 +64,13 @@ function tadaa_init() {
     $selected = variable_get('tadaa_environment', '');
     $modules = tadaa_get_modules();
     $variables = tadaa_get_variables();
-    drupal_add_js(array('tadaa' => array('environment' => $selected, 'modules' => $modules, 'variables' => $variables)), 'setting');
+    // An array of classes, depending on the current state.
+    $classes = array(
+      'loading' => 'loading',
+      'invalid' => 'error',
+      'valid' => 'ok',
+    );
+    drupal_add_js(array('tadaa' => array('environment' => $selected, 'modules' => $modules, 'variables' => $variables, 'classes' => $classes)), 'setting');
   }
 }
 
@@ -92,7 +98,7 @@ function tadaa_footer() {
       'mail' => variable_get('reroute_email_address', ''),
       'show' => module_exists('reroute_email'),
     );
-    $output = theme('tadaa_toolbar', $environments, 'Kollar...', $mail);
+    $output = theme('tadaa_toolbar', $environments, $mail);
     
     // Build the module table.
     $header = array(
@@ -126,7 +132,7 @@ function tadaa_footer() {
         ),
       );
     }
-    $output .= '<div id="tadaa-module-status-wrapper">' . theme('table', $header, $rows, array('id' => 'tadaa-module-status')) . '</div>';
+    $output .= '<div id="tadaa-module-status-wrapper">' . theme('table', $header, $rows, array('id' => 'tadaa-module-status', 'class' => 'table-status')) . '</div>';
     
     // Build the variable table.
     $header = array(
@@ -156,7 +162,7 @@ function tadaa_footer() {
         ),
       );
     }
-    $output .= '<div id="tadaa-variable-status-wrapper">' . theme('table', $header, $rows, array('id' => 'tadaa-variable-status')) . '</div>';
+    $output .= '<div id="tadaa-variable-status-wrapper"' . theme('table', $header, $rows, array('id' => 'tadaa-variable-status', 'class' => 'table-status')) . '</div>';
     return $output;
   }
 }
@@ -169,7 +175,6 @@ function tadaa_theme() {
     'tadaa_toolbar' => array(
       'arguments' => array(
         'environments' => NULL,
-        'status' => NULL,
         'mail' => NULL,
       ),
       'template' => 'tadaa-toolbar',
