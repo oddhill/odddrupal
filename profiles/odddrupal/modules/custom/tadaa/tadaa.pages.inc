@@ -35,6 +35,7 @@ function tadaa_set_environment($environment) {
     }
     
     variable_set('tadaa_environment', $environment);
+    drupal_flush_all_caches();
     return drupal_json(array('environment' => $environment, 'modules' => $modules, 'variables' => $variables));
   }
   

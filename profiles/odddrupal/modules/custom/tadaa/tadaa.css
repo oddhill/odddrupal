@@ -105,7 +105,8 @@ table.table-status tr.odd {
   display: block;
 }
 
-.tadaa-state-wrapper a{
+.tadaa-state-wrapper a,
+#tadaa-wrapper span.loading {
   width: 16px;
   height: 16px;
   display: block;
@@ -119,14 +120,14 @@ table.table-status tr.odd {
   text-transform: uppercase;
 }
 
-.tadaa-state-wrapper a.ok {
+.ok {
   background: url('graphics/ok.png') no-repeat center;
 }
 
-.tadaa-state-wrapper a.error {
+.error {
   background: url('graphics/not-ok.png') no-repeat center;
 }
 
-.tadaa-state-wrapper a.loading {
+.loading {
   background: url('graphics/loading.gif') no-repeat center;
 }

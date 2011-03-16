@@ -9,21 +9,24 @@ $(document).ready(function() {
   // Update the environment when the select changes.
   $('#tadaa-environments').change(function() {
     if ($(this).val() != '') {
-      $(this).attr('disabled', 'disabled');
+      // Replace everything with a trobber.
+      $('#tadaa-wrapper').html('<span class="loading"></span>');
       $.ajax({
         async: false,
         url: 'tadaa/environment/set/' + $(this).val(),
         dataType: 'json',
-        success: function(data) {
-          Drupal.settings.tadaa.environment = data.environment;
-          Drupal.settings.tadaa.modules = data.modules;
-          Drupal.settings.tadaa.variables = data.variables;
-          Drupal.tadaa.refresh_overview();
-          Drupal.tadaa.refresh_modules();
-          Drupal.tadaa.refresh_variables();
+        success: function(success) {
+          if (success) {
+            window.location.reload();
+          }
+          else {
+            alert('Ett oväntat fel uppstod. Ring en vän.');
+          }
         }
       });
-      $(this).removeAttr('disabled');
+    }
+    else {
+      alert('Du måste välja en miljö.');
     }
   });
   
