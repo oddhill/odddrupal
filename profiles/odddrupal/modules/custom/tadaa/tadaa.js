@@ -74,8 +74,13 @@ $(document).ready(function() {
 
 Drupal.tadaa.refresh_overview = function() {
   if (Drupal.settings.tadaa.environment) {
+    // Delete the null environment from the select list.
+    $('#tadaa-environments option[value=]').remove();
     // Set the default class.
     $('#tadaa-module-state a, #tadaa-variable-state a').attr('class', Drupal.settings.tadaa.classes.loading);
+    // Show the state areas.
+    $('.tadaa-state-wrapper').show();
+    $('.tadaa-mail-wrapper').show();
     
     // Show or hide the email field.
     if (Drupal.settings.tadaa.modules.reroute_email) {
@@ -94,9 +99,8 @@ Drupal.tadaa.refresh_overview = function() {
     });
   }
   else {
-    $('.tadaa-module-state-wrapper').hide();
-    $('.tadaa-variable-state-wrapper').hide();
-    $('.tadaa-mail-wraper').hide();
+    $('.tadaa-state-wrapper').hide();
+    $('.tadaa-mail-wrapper').hide();
   }
 }
 
