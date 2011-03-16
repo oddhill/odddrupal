@@ -1,0 +1,21 @@
+diff --git a/profiles/odddrupal/modules/contrib/jquery_update/replace/tabledrag.js b/profiles/odddrupal/modules/contrib/jquery_update/replace/tabledrag.js
+index a64b9a7..1824e93 100755
+--- a/profiles/odddrupal/modules/contrib/jquery_update/replace/tabledrag.js
++++ b/profiles/odddrupal/modules/contrib/jquery_update/replace/tabledrag.js
+@@ -110,14 +110,13 @@ Drupal.tableDrag.prototype.hideColumns = function(){
+     }
+ 
+     // Hide the column containing this field.
+-    if (hidden && cell[0] && cell.css('display') != 'none') {
++    if (hidden && cell[0]) {
+       // Add 1 to our indexes. The nth-child selector is 1 based, not 0 based.
+       var columnIndex = $('td', cell.parent()).index(cell.get(0)) + 1;
+-      var headerIndex = $('td:not(:hidden)', cell.parent()).index(cell.get(0)) + 1;
+       $('tr', this.table).each(function(){
+         var row = $(this);
+         var parentTag = row.parent().get(0).tagName.toLowerCase();
+-        var index = (parentTag == 'thead') ? headerIndex : columnIndex;
++        var index = columnIndex;
+ 
+         // Adjust the index to take into account colspans.
+         row.children().each(function(n) {
