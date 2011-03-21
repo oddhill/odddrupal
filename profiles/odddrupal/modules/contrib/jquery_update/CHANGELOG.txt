@@ -1,0 +1,7 @@
+// $Id: CHANGELOG.txt,v 1.7.2.2 2011/02/11 19:35:07 robloach Exp $
+
+jQuery Update 7.x-1.0, 2010-02-11
+---------------------------------
+#1046720 by Rob Loach: Updated to jQuery 1.5 and jQuery UI 1.8.9
+#701496 by Rob Loach: Moved to hook_library_alter()
+#771062 by quiptime: Fixed module administration path

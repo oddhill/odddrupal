@@ -1,0 +1,8 @@
+.htaccess
+/sites/*/settings.php
+/sites/*/files/*
+/sites/*/tmp/*
+icon.png
+icon.gif
+icon.jpg
+.DS_Store

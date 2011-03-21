@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Installation settings for Fancybox module.
+ */
+
+/**
+ * Implementation of hook_uninstall()
+ */
+function fancybox_uninstall() {
+  // Delete variables.
+  $variables = array('fancybox_path', 'fancybox_settings', 'fancybox_files');
+  foreach ($variables as $variable) {
+    variable_del($variable);
+  }
+}
