@@ -37,7 +37,7 @@
   </style>
   <![endif]-->
 </head>
-<body class="<?php print $body_classes; ?>">
+<body class="in-maintenance">
 
   <div id="page">
     <div id="content"><div id="content-inner">
@@ -45,11 +45,11 @@
         <h1 class="title"><?php print t('Oj! Vad hände här?'); ?></h1>
       </div> <!-- /#content-header -->
       <div id="content-area">
-        <?php print t('Det finns ett problem med webbsajten. Ibland uppstår oväntade saker med hemsidor och då kan det bli på detta viset. Vi arbetar dock aktivt på att ordna det! ');?>
+       Det finns ett problem med webbsajten. Ibland uppstår oväntade saker med hemsidor och då kan det bli på detta viset. Vi arbetar dock aktivt på att ordna det!
       </div>
     </div></div> <!-- /#content-inner, /#content -->
     <div id="left"><div id="left-inner" class="clear-block">
-      <div id="site-name">/ <?php print t('Teknisk support'); ?></div>
+      <div id="site-name">/ Teknisk Support</div>
     </div></div>
   </div> <!-- /#page -->
 

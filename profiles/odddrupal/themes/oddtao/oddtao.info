@@ -4,6 +4,7 @@ description = Odd Tao is a theme that is all about going against the flow.
 core       = 6.x
 base theme = tao
 screenshot = screenshot.png
+engine = phptemplate
 version = 6.x-1.0-beta
 
 
