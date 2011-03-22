@@ -213,7 +213,7 @@ ini_set('url_rewriter.tags',        '');
  * theme. It is located inside 'modules/system/maintenance-page.tpl.php'.
  * Note: This setting does not apply to installation and update pages.
  */
-   'maintenance_theme' => 'oddtao',
+   'maintenance_theme' => 'oddmaintenance',
 /**
  * reverse_proxy accepts a boolean value.
  *
