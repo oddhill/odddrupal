@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Update functions for Administration language.
+ */
+
+/**
+ * Changes the name of a permission to something a little more generic.
+ */
+function admin_language_update_6100() {
+  $ret = array();
+
+  $result = db_query('SELECT pid, perm FROM {permission}');
+  while ($perm = db_fetch_object($result)) {
+    $perm->perm = str_replace('display admin pages in english', 'display admin pages in another language', $perm->perm);
+    $ret[] = update_sql("UPDATE {permission} SET perm = '$perm->perm' WHERE pid = $perm->pid");
+  }
+
+  return $ret;
+}

@@ -1,0 +1,25 @@
+; $Id: l10n_update.info,v 1.1.2.1.2.1 2010/12/08 17:26:37 goba Exp $
+name = Locale updater
+description = Provides automatic downloads and updates for translations
+dependencies[] = locale
+core = 7.x
+package = Multilanguage
+
+files[] = l10n_update.admin.inc
+files[] = l10n_update.api.php
+files[] = l10n_update.batch.inc
+files[] = l10n_update.check.inc
+files[] = l10n_update.drush.inc
+files[] = l10n_update.inc
+files[] = l10n_update.install
+files[] = l10n_update.locale.inc
+files[] = l10n_update.module
+files[] = l10n_update.parser.inc
+files[] = l10n_update.project.inc
+
+; Information added by drupal.org packaging script on January 1, 1970 - 00:00
+version = "7.x-1.0-alpha3"
+core = "7.x"
+project = "l10n_update"
+datestamp = "1296665594"
+

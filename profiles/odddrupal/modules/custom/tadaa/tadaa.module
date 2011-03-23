@@ -1,0 +1,342 @@
+<?php
+/**
+ * Implements hook_permission().
+ */
+function tadaa_permission() {
+  return array('use tadaa' => array(
+    'title' => t('Use tadaa'),
+    'description' => t('Switch environments using the Tadaa toolbar'),
+    'restrict access' => TRUE,
+  ));
+}
+
+/**
+ * Implements hook_menu().
+ */
+function tadaa_menu() {
+  // Sets a new environment.
+  $items['tadaa/environment/set/%'] = array(
+    'page callback' => 'tadaa_set_environment',
+    'page arguments' => array(3),
+    'access arguments' => array('use tadaa'),
+    'file' => 'tadaa.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  // Checks the state for the selected environment.
+  $items['tadaa/environment/check'] = array(
+    'page callback' => 'tadaa_check_environment',
+    'access arguments' => array('use tadaa'),
+    'file' => 'tadaa.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  // Checks the state for individual modules.
+  $items['tadaa/module/%/check'] = array(
+    'page callback' => 'tadaa_check_module',
+    'page arguments' => array(2),
+    'access arguments' => array('use tadaa'),
+    'file' => 'tadaa.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  // Checks the state for individual variables.
+  $items['tadaa/variable/%/check'] = array(
+    'page callback' => 'tadaa_check_variable',
+    'page arguments' => array(2),
+    'access arguments' => array('use tadaa'),
+    'file' => 'tadaa.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  // Sets a new mail.
+  $items['tadaa/mail/set/%'] = array(
+    'page callback' => 'tadaa_set_mail',
+    'page arguments' => array(3),
+    'access arguments' => array('use tadaa'),
+    'file' => 'tadaa.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_library().
+ */
+function tadaa_library() {
+  // Javascript settings.
+  $settings['selected'] = variable_get('tadaa_environment');
+  $settings['modules'] = tadaa_get_modules();
+  $settings['variables'] = tadaa_get_variables();
+  $settings['classes'] = array(
+    'loading' => 'loading',
+    'invalid' => 'error',
+    'valid' => 'ok',
+  );
+  
+  $libraries['tadaa_main'] = array(
+    'title' => 'Javascript and CSS for the Tadaa! module',
+    'js' => array(
+      drupal_get_path('module', 'tadaa') . '/tadaa.js' => array('preprocess' => FALSE),
+      array('data' => array('tadaa' => $settings), 'type' => 'setting'),
+    ),
+    'css' => array(
+      drupal_get_path('module', 'tadaa') . '/tadaa.css' => array('preprocess' => FALSE),
+    ),
+  );
+  
+  return $libraries;
+}
+
+/**
+ * Implements hook_init().
+ */
+function tadaa_init() {
+  if (user_access('use tadaa')) {
+    // Only initiate if the user has user access.
+    drupal_add_library('tadaa', 'tadaa_main');
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function tadaa_page_alter(&$page) {
+  if (user_access('use tadaa')) {
+    $page['page_bottom']['tadaa'] = array(
+      '#type' => 'markup',
+      '#markup' => tadaa_output(),
+    );
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function tadaa_theme() {
+  return array(
+    'tadaa_toolbar' => array(
+      'arguments' => array(
+        'environments' => NULL,
+        'mail' => NULL,
+      ),
+      'template' => 'tadaa-toolbar',
+    ),
+  );
+}
+
+/**
+ * Generates the output for the toolbar.
+ */
+function tadaa_output() {
+  $output = '';
+  
+  // Build the toolbar.
+  $environments = tadaa_get_environments();
+  $selected = variable_get('tadaa_environment');
+  if ($selected) {
+    $environments[$selected]['attributes'] = array('selected' => 'selected');
+  }
+  else {
+    // Add an unselected option if an environment hasn't been chosen.
+    $environments[''] = array(
+      'name' => 'Ingen',
+      'attributes' => array('selected' => 'selected'),
+    );
+  }
+  $mail = array(
+    'mail' => variable_get('reroute_email_address'),
+    'show' => module_exists('reroute_email'),
+  );
+  $variables = array(
+    'environments' => $environments,
+    'mail' => $mail,
+  );
+  $output = theme('tadaa_toolbar', $variables);
+  
+  // Build the module table.
+  $header = array(
+    'Modul',
+    'Ska vara',
+    'Status'
+  );
+  $modules = tadaa_get_modules();
+  $rows = array();
+  foreach ($modules as $module => $configure) {
+    // Get the real module name.
+    $module_info = drupal_parse_info_file(drupal_get_path('module', $module) . '/' . $module . '.info');
+    // Set a human readable status text.
+  	$status = $configure ? 'Aktiverad' : 'Inaktiverad';
+  	// Build the row.
+    $rows[] = array(
+      'class' => array($module),
+      'data' => array(
+        array(
+          'class' => array('module-name'),
+          'data' => $module_info['name'],
+        ),
+        array(
+          'class' => array('config'),
+          'data' => 'Hämtar...',
+        ),
+        array(
+          'class' => array('state'),
+          'data' => 'Jämför...',
+        ), 
+      ),
+    );
+  }
+  $output .= '<div id="tadaa-module-status-wrapper">' . theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => 'tadaa-module-status', 'class' => array('table-status')), 'sticky' => FALSE)) . '</div>';
+  
+  // Build the variable table.
+  $header = array(
+    'Variabel',
+    'Ska vara',
+    'Status'
+  );
+  $variables = tadaa_get_variables();
+  $rows = array();
+  foreach ($variables as $variable => $value) {
+  	// Build the row.
+    $rows[] = array(
+      'class' => array($variable),
+      'data' => array(
+        array(
+          'class' => array('variable-name'),
+          'data' => $variable,
+        ),
+        array(
+          'class' => array('config'),
+          'data' => 'Hämtar...',
+        ),
+        array(
+          'class' => array('state'),
+          'data' => 'Jämför...',
+        ), 
+      ),
+    );
+  }
+  $output .= '<div id="tadaa-variable-status-wrapper">' . theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => 'tadaa-variable-status', 'class' => array('table-status')), 'sticky' => FALSE)) . '</div>';
+  return $output;
+}
+
+/**
+ * Gets the environment and the configurations.
+ */
+function tadaa_get_environments() {
+  // The array of avaliable environments.
+  $environments = array(
+    'dev' => array(
+      'name' => 'Development',
+      'modules' => array(
+        'context_ui',
+        'devel',
+        'devel_generate',
+        'devel_node_access',
+        'performance',
+        'reroute_email',
+        'rules_admin',
+        'themekey_ui',
+        'views_ui',
+      ),
+      'variables' => array(
+        'cache' => '0',
+        'preprocess_js' => '0',
+        'preprocess_css' => '0',
+        'jquery_update_compression_type' => 'none',
+      ),
+    ),
+    'staging' => array(
+      'name' => 'Staging',
+      'modules' => array(
+        'context_ui',
+        'reroute_email',
+        'rules_admin',
+        'themekey_ui',
+        'views_ui',
+      ),
+      'variables' => array(
+        'cache' => '1',
+        'preprocess_js' => '1',
+        'preprocess_css' => '1',
+        'jquery_update_compression_type' => 'min',
+      ),
+    ),
+    'prod' => array(
+      'name' => 'Production',
+      'modules' => array(
+        'backup_migrate',
+        'googleanalytics',
+      ),
+      'variables' => array(
+        'cache' => '1',
+        'preprocess_js' => '1',
+        'preprocess_css' => '1',
+        'jquery_update_compression_type' => 'min',
+      ),
+    ),
+  );
+
+  return $environments;
+}
+
+/**
+ * Gets the configured modules, and the current
+ * configuration.
+ */
+function tadaa_get_modules($selected = FALSE) {
+  $environments = tadaa_get_environments();
+  $modules = array();
+  // Set all of the configured module to be disabled. 
+  foreach ($environments as $environment) {
+    foreach ($environment['modules'] as $module) {
+      $modules[$module] = FALSE;
+    }
+  }
+  
+  // Get the chosen environment.
+  $selected = !$selected ? variable_get('tadaa_environment') : $selected;
+  if ($selected) {
+    // Set the selected environments modules to be enabled.
+    foreach ($environments[$selected]['modules'] as $module) {
+      $modules[$module] = TRUE;
+    }
+  }
+  else {
+    // No environment chosen, set every module to NULL.
+    foreach ($environments as $environment) {
+      foreach ($environment['modules'] as $module) {
+        $modules[$module] = NULL;
+      }
+    }
+  }
+  
+  ksort($modules);
+  return $modules;
+}
+
+/**
+ * Gets the configured variables, for the selected
+ * environment, if no environment is specified.
+ */
+function tadaa_get_variables($selected = FALSE) {
+  $environments = tadaa_get_environments();
+  $variables = array();
+  
+  // Get the chosen environment.
+  $selected = !$selected ? variable_get('tadaa_environment') : $selected;
+  if ($selected) {
+    // Get variables for the chosen environment.
+    foreach ($environments[$selected]['variables'] as $variable => $value) {
+      $variables[$variable] = $value;
+    }
+  }
+  else {
+    // Get all variables.
+    foreach ($environments as $environment) {
+      foreach ($environment['variables'] as $variable => $value) {
+        $variables[$variable] = $value;
+      }
+    }
+  }
+
+  ksort($variables);
+  return $variables;
+}

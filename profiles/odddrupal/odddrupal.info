@@ -1,10 +1,7 @@
-; $Id: standard.info,v 1.2 2010/10/25 15:48:41 webchick Exp $
 name = Odd Drupal
 description = Custom Drupal profile by Odd Hill.
-version = VERSION
 core = 7.x
 dependencies[] = block
-dependencies[] = color
 dependencies[] = contextual
 dependencies[] = help
 dependencies[] = image
@@ -22,12 +19,11 @@ dependencies[] = rdf
 dependencies[] = locale
 dependencies[] = php
 
-;Custom
+; Custom
+dependencies[] = admin_language
 dependencies[] = admin_menu
-dependencies[] = backup_migrate
 dependencies[] = boxes
 dependencies[] = context
-dependencies[] = context_ui
 dependencies[] = context_layouts
 dependencies[] = ctools
 dependencies[] = references
@@ -35,29 +31,28 @@ dependencies[] = node_reference
 dependencies[] = date
 dependencies[] = date_popup
 dependencies[] = date_views
-dependencies[] = devel
-dependencies[] = devel_generate
+dependencies[] = diff
 dependencies[] = extlink
 dependencies[] = fancybox
 dependencies[] = features
+dependencies[] = field_group
+dependencies[] = l10n_update
 dependencies[] = jquery_update
 dependencies[] = logintoboggan
 dependencies[] = mimemail
 dependencies[] = redirect
 dependencies[] = pathauto
-dependencies[] = reroute_email
 dependencies[] = rules
-dependencies[] = rules_admin
 dependencies[] = entity
 dependencies[] = spamspan
 dependencies[] = strongarm
+dependencies[] = tadaa
 dependencies[] = themekey
-dependencies[] = themekey_ui
 dependencies[] = token
 dependencies[] = transliteration
 dependencies[] = views
-dependencies[] = views_ui
 dependencies[] = webform
 dependencies[] = wysiwyg
+dependencies[] = wysiwyg_alter
 
 files[] = odddrupal.profile
