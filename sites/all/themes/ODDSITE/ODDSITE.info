@@ -1,0 +1,32 @@
+; The name and description of the theme used on the admin/build/themes page.
+name        = ODDSITE
+description = This is the theme for this particular site
+core       = 7.x
+base theme = oddhill
+screenshot = screenshot.png
+
+
+; Stylesheets.
+stylesheets[screen][]   = css/ODDSITE.css
+
+´
+; Set the conditional stylesheets that are processed by IE.
+conditional-stylesheets[if IE][all][]       = css/ie.css
+
+
+; Javascript files.
+scripts[] = js/ODDSITE.js
+
+
+; Regions.
+regions[header]         = Header
+regions[footer]         = Footer
+regions[page_closure]   = Page closure
+
+
+; <layout name> layout.
+;layouts[layout_name][name] = "Namnet på layouten"
+;layouts[layout_name][description] = "Beskrivning av layouten"
+;layouts[layout_name][template] = "page"
+;layouts[layout_name][stylesheet] = "css/layout_name.css"
+;layouts[layout_name][regions][] = "header"

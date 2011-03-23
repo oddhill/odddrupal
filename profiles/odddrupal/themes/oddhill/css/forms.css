@@ -1,0 +1,83 @@
+.form-text,
+.form-textarea {
+	border: 1px solid #333;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: #E6E6E6;
+	padding: 5px;
+	font-size: 13px;
+	color: #666;
+	clear: both;
+}
+
+div.form-item label {
+	font-size: 10px;
+}
+
+.form-text.focused,
+.form-textarea.focused {
+	border: 1px solid #000;
+	font-weight: bold;
+	color: #000;
+}
+
+.form-text.valid,
+.form-textarea.valid {
+	border: 1px solid #333;
+	background: #E6E6E6 url(../graphics/valid.png) no-repeat right top;
+	color: #000;
+}
+
+.form-item input.error,
+.form-item textarea.error {
+	color: #FF0000;
+	border: 1px solid #CC0000;
+	background: #E6E6E6 url(../graphics/invalid.png) no-repeat right top;
+}
+
+.form-submit {
+	border: 2px solid #DDD;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 6px;
+	color: #838383;
+	cursor: pointer;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#e6e6e6));
+	background: -moz-linear-gradient(top,  #f9f9f9,  #e6e6e6);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e6e6e6');
+	text-shadow: 0px 1px 0px #FFF;
+}
+
+form .form-submit:hover {
+	color: #333;
+	background: #f6f6f6;
+}
+
+.submit-throbber.inactive {
+  width: 32px;
+  height: 32px;
+  float: left;
+}
+
+.submit-throbber.active {
+  width: 32px;
+  height: 32px;
+  float: left;
+  background: url(../graphics/throbber.gif) no-repeat center;
+}
+
+fieldset {
+	background: rgba(0,0,0,0.1);
+ 	border: 0 none;
+ 	padding: 0 10px;
+ 	-moz-border-radius: 6px;
+ 	-webkit-border-radius: 6px;
+ 	overflow: hidden;
+ 	margin-bottom: 10px;
+}
+
+fieldset legend {
+	font-size: 12px;
+	font-weight: bold;
+ 	color: #000;
+}
