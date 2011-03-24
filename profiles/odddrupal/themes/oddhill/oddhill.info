@@ -24,5 +24,4 @@ conditional-stylesheets[if lte IE 6][all][] = css/ie6.css
 ; Javascript files
 scripts[] = js/jquery.form-focused.js
 scripts[] = js/jquery.validate.min.js
-scripts[] = js/jquery.form.js
 scripts[] = js/oddhill.js
