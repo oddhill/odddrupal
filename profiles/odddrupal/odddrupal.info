@@ -22,6 +22,7 @@ dependencies[] = php
 ; Custom
 dependencies[] = admin_language
 dependencies[] = admin_menu
+dependencies[] = blindfold
 dependencies[] = boxes
 dependencies[] = context
 dependencies[] = context_layouts
@@ -34,6 +35,7 @@ dependencies[] = date_views
 dependencies[] = diff
 dependencies[] = extlink
 dependencies[] = fancybox
+dependencies[] = fanta
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = l10n_update
@@ -53,6 +55,5 @@ dependencies[] = transliteration
 dependencies[] = views
 dependencies[] = webform
 dependencies[] = wysiwyg
-dependencies[] = wysiwyg_alter
 
 files[] = odddrupal.profile
