@@ -18,6 +18,9 @@ function fanta_library() {
       drupal_get_path('module', 'fanta') . '/fanta.js' => array(),
       array('data' => array('fanta' => array('ie6Path' => drupal_get_path('module', 'fanta') . '/ie6/')), 'type' => 'setting'),
     ),
+    'css' => array(
+      drupal_get_path('module', 'fanta') . '/fanta.css' => array(),
+    ),
   );
   
   return $libraries;

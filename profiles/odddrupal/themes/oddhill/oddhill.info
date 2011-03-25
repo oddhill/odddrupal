@@ -16,7 +16,6 @@ stylesheets[only screen and (max-device-width: 480px)][] = css/iphone.css
 
 ; Set the conditional stylesheets that are processed by IE.
 conditional-stylesheets[if IE][all][]       = css/ie.css
-conditional-stylesheets[if lte IE 6][all][] = css/ie6.css
 
 
 ; Javascript files
