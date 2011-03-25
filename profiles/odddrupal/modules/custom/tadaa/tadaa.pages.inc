@@ -25,6 +25,7 @@ function tadaa_set_environment($environment) {
         $disable[] = $module;
       }
     }
+
     module_enable($enable);
     module_disable($disable);
     
@@ -36,10 +37,11 @@ function tadaa_set_environment($environment) {
     
     variable_set('tadaa_environment', $environment);
     drupal_flush_all_caches();
-    return drupal_json_output(array('environment' => $environment, 'modules' => $modules, 'variables' => $variables));
+    drupal_json_output(array('environment' => $environment, 'modules' => $modules, 'variables' => $variables));
+    return;
   }
   
-  return drupal_json_output(FALSE);
+  drupal_json_output(FALSE);
 }
 
 /**
@@ -71,7 +73,7 @@ function tadaa_check_environment() {
     }
   }
   
-  return drupal_json_output($return);
+  drupal_json_output($return);
 }
 
 /**

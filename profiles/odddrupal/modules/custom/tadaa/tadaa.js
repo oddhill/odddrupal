@@ -3,98 +3,91 @@
 Drupal.tadaa = Drupal.tadaa || {};
 
 /**
- * Attatch the main behavior for the module.
+ * The main function that initiates everything.
  */
-Drupal.behaviors.tadaa = {
-  attach: function (context, settings) {
-    // Refresh the current status.
-    Drupal.tadaa.refreshOverview(settings);
-    
-    // Update the environment when the select changes.
-    $('#tadaa-environments').change(function() {
-      if ($(this).val() != '') {
-        // Replace everything with a trobber.
-        $('#tadaa-wrapper').html('<span class="loading"></span>');
-        $.ajax({
-          async: false,
-          url: 'tadaa/environment/set/' + $(this).val(),
-          dataType: 'json',
-          success: function(success) {
-            if (success) {
-              window.location.reload();
-            }
-            else {
-              alert('Ett oväntat fel uppstod. Ring en vän.');
-            }
-          }
-        });
-      }
-      else {
-        alert('Du måste välja en miljö.');
-      }
-    });
-    
-    // Update the email when the value changes.
-    $('#tadaa-mail').focus(function() {
-      $(this).parent('div').addClass('focused');  
-    });
-    $('#tadaa-mail').blur(function() {
-      $(this).parent('div').removeClass('focused');
-    });
-    $('#tadaa-mail').change(function() {
-      var mail = $(this).val();
-      var expression = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      if (mail.match(expression)) {
-        $(this).attr('disabled', 'disabled');
-        $(this).parent('div').removeClass('invalid');
-        $.ajax({
-          async: false,
-          url: 'tadaa/mail/set/' + $(this).val(),
-          dataType: 'json',
-        });
-        $(this).removeAttr('disabled');
-      }
-      else {
-        $(this).parent('div').addClass('invalid');
-      }
-    });
-    
-    // Disable the hashtag links.
-    $('#tadaa-module-state a, #tadaa-variable-state a').click(function() {
-      return false;
-    });
-    
-    // Open the module status table in a fancybox.
-    $('#tadaa-module-state a').fancybox({
-      onStart: function() {
-        Drupal.tadaa.refreshModules(settings);
-      }
-    });
-    
-    // Open the variable status table in a fancybox.
-    $('#tadaa-variable-state a').fancybox({
-      onStart: function() {
-        Drupal.tadaa.refreshVariables(settings);
-      }
-    });
-  }
-}
+$(document).ready(function() {
+  // Refresh the current status.
+  Drupal.tadaa.refreshOverview();
+  
+  // Update the environment when the select changes.
+  $('#tadaa-environments').change(function() {
+    if ($(this).val() != '') {
+      // Replace everything with a trobber.
+      $('#tadaa-wrapper').html('<span class="loading"></span>');
+      $.getJSON(Drupal.settings.basePath + 'tadaa/environment/set/' + $(this).val(), function(data, status) {
+        if (status == 'success') {
+          window.location.reload();
+        }
+        else {
+          alert('Ett oväntat fel uppstod. Ring en vän.');
+        }
+      });
+    }
+    else {
+      alert('Du måste välja en miljö.');
+    }
+  });
+  
+  // Update the email when the value changes.
+  $('#tadaa-mail').focus(function() {
+    $(this).parent('div').addClass('focused');  
+  });
+  $('#tadaa-mail').blur(function() {
+    $(this).parent('div').removeClass('focused');
+  });
+  $('#tadaa-mail').change(function() {
+    var mail = $(this).val();
+    var expression = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if (mail.match(expression)) {
+      $(this).attr('disabled', 'disabled');
+      $(this).parent('div').removeClass('invalid');
+      $.ajax({
+        async: false,
+        url: 'tadaa/mail/set/' + $(this).val(),
+        dataType: 'json',
+      });
+      $(this).removeAttr('disabled');
+    }
+    else {
+      $(this).parent('div').addClass('invalid');
+    }
+  });
+  
+  // Disable the hashtag links.
+  $('#tadaa-module-state a, #tadaa-variable-state a').click(function() {
+    return false;
+  });
+  
+  // Open the module status table in a fancybox.
+  $('#tadaa-module-state a').fancybox({
+    onStart: function() {
+      Drupal.tadaa.refreshModules();
+    }
+  });
+  
+  // Open the variable status table in a fancybox.
+  $('#tadaa-variable-state a').fancybox({
+    onStart: function() {
+      Drupal.tadaa.refreshVariables();
+    }
+  });
+});
 
 /**
  * Gets the current status for the selected environment.
  */
-Drupal.tadaa.refreshOverview = function(settings) {
-  if (settings.tadaa.selected) {
+Drupal.tadaa.refreshOverview = function() {
+  if (Drupal.settings.tadaa.selected) {
     // Delete the null environment from the select list.
     $('#tadaa-environments option[value=]').remove();
     // Set the default class.
-    $('#tadaa-module-state a, #tadaa-variable-state a').attr('class', settings.tadaa.classes.loading);
+    $('#tadaa-module-state a, #tadaa-variable-state a').attr('class', Drupal.settings.tadaa.classes.loading);
     // Show the state areas.
     $('.tadaa-state-wrapper').show();
     $('.tadaa-mail-wrapper').show();
     
     // Show or hide the email field.
-    if (settings.tadaa.modules.reroute_email) {
+    if (Drupal.settings.tadaa.modules.reroute_email) {
       $('.tadaa-mail-wrapper').show();
     }
     else {
@@ -102,10 +95,10 @@ Drupal.tadaa.refreshOverview = function(settings) {
     }
     
     // Update the state for the environment.
-    $.getJSON(settings.basePath + 'tadaa/environment/check', function(data) {
-      var modulesClass = data.modules ? settings.tadaa.classes.valid :settings.tadaa.classes.invalid;
+    $.getJSON(Drupal.settings.basePath + 'tadaa/environment/check', function(data) {
+      var modulesClass = data.modules ? Drupal.settings.tadaa.classes.valid :Drupal.settings.tadaa.classes.invalid;
       $('#tadaa-module-state a').attr('class', modulesClass);
-      var variablesClass = data.variables ? settings.tadaa.classes.valid : settings.tadaa.classes.invalid;
+      var variablesClass = data.variables ? Drupal.settings.tadaa.classes.valid : Drupal.settings.tadaa.classes.invalid;
       $('#tadaa-variable-state a').attr('class', variablesClass);
     });
     
@@ -119,15 +112,15 @@ Drupal.tadaa.refreshOverview = function(settings) {
 /**
  * Gets the state for every individual module.
  */
-Drupal.tadaa.refreshModules = function(settings) {
-  if (settings.tadaa.selected) {
+Drupal.tadaa.refreshModules = function() {
+  if (Drupal.settings.tadaa.selected) {
     // Set the default texts.
     $('#tadaa-module-status td.config').text('Hämtar...');
     $('#tadaa-module-status td.state').text('Jämför...');
 
     // Update the state for the modules.
-    for (var module in settings.tadaa.modules) {
-      $.getJSON(settings.basePath + 'tadaa/module/' + module + '/check', function(data) {
+    for (var module in Drupal.settings.tadaa.modules) {
+      $.getJSON(Drupal.settings.basePath + 'tadaa/module/' + module + '/check', function(data) {
         var config = data.config ? 'Aktiverad' : 'Inaktiverad';
         var state = data.state ? 'OK' : 'FEL';
         $('#tadaa-module-status tr.' + data.module + ' td.config').text(config);
@@ -143,15 +136,15 @@ Drupal.tadaa.refreshModules = function(settings) {
 /**
  * Gets the state for every individual variable.
  */
-Drupal.tadaa.refreshVariables = function(settings) {
-  if (settings.tadaa.selected) {
+Drupal.tadaa.refreshVariables = function() {
+  if (Drupal.settings.tadaa.selected) {
     // Set the default texts.
     $('#tadaa-variable-status td.config').text('Hämtar...');
     $('#tadaa-variable-status td.state').text('Jämför...');
 
     // Update the state for the modules.
-    for (var variable in settings.tadaa.variables) {
-      $.getJSON(settings.basePath + 'tadaa/variable/' + variable + '/check', function(data) {
+    for (var variable in Drupal.settings.tadaa.variables) {
+      $.getJSON(Drupal.settings.basePath + 'tadaa/variable/' + variable + '/check', function(data) {
         var state = data.state ? 'OK' : 'FEL';
         $('#tadaa-variable-status tr.' + data.variable + ' td.config').text(data.config);
         $('#tadaa-variable-status tr.' + data.variable + ' td.state').text(state);
