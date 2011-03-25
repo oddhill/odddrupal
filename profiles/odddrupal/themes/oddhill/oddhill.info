@@ -2,8 +2,6 @@
 name        = oddhill
 description = Odd Tao is a theme that is all about going against the flow.
 core       = 7.x
-screenshot = screenshot.png
-version = 7.x-1.0-beta
 
 
 ; Stylesheets
