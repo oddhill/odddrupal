@@ -8,7 +8,7 @@ Drupal.tadaa = Drupal.tadaa || {};
 Drupal.behaviors.tadaa = {
   attach: function (context, settings) {
     // Refresh the current status.
-    Drupal.tadaa.refreshOverview();
+    Drupal.tadaa.refreshOverview(settings);
     
     // Update the environment when the select changes.
     $('#tadaa-environments').change(function() {
@@ -67,14 +67,14 @@ Drupal.behaviors.tadaa = {
     // Open the module status table in a fancybox.
     $('#tadaa-module-state a').fancybox({
       onStart: function() {
-        Drupal.tadaa.refreshModules();
+        Drupal.tadaa.refreshModules(settings);
       }
     });
     
     // Open the variable status table in a fancybox.
     $('#tadaa-variable-state a').fancybox({
       onStart: function() {
-        Drupal.tadaa.refreshVariables();
+        Drupal.tadaa.refreshVariables(settings);
       }
     });
   }
@@ -83,18 +83,18 @@ Drupal.behaviors.tadaa = {
 /**
  * Gets the current status for the selected environment.
  */
-Drupal.tadaa.refreshOverview = function() {
-  if (Drupal.settings.tadaa.selected) {
+Drupal.tadaa.refreshOverview = function(settings) {
+  if (settings.tadaa.selected) {
     // Delete the null environment from the select list.
     $('#tadaa-environments option[value=]').remove();
     // Set the default class.
-    $('#tadaa-module-state a, #tadaa-variable-state a').attr('class', Drupal.settings.tadaa.classes.loading);
+    $('#tadaa-module-state a, #tadaa-variable-state a').attr('class', settings.tadaa.classes.loading);
     // Show the state areas.
     $('.tadaa-state-wrapper').show();
     $('.tadaa-mail-wrapper').show();
     
     // Show or hide the email field.
-    if (Drupal.settings.tadaa.modules.reroute_email) {
+    if (settings.tadaa.modules.reroute_email) {
       $('.tadaa-mail-wrapper').show();
     }
     else {
@@ -102,12 +102,13 @@ Drupal.tadaa.refreshOverview = function() {
     }
     
     // Update the state for the environment.
-    $.getJSON(Drupal.settings.basePath + 'tadaa/environment/check', function(data) {
-      var modulesClass = data.modules ? Drupal.settings.tadaa.classes.valid : Drupal.settings.tadaa.classes.invalid;
+    $.getJSON(settings.basePath + 'tadaa/environment/check', function(data) {
+      var modulesClass = data.modules ? settings.tadaa.classes.valid :settings.tadaa.classes.invalid;
       $('#tadaa-module-state a').attr('class', modulesClass);
-      var variablesClass = data.variables ? Drupal.settings.tadaa.classes.valid : Drupal.settings.tadaa.classes.invalid;
+      var variablesClass = data.variables ? settings.tadaa.classes.valid : settings.tadaa.classes.invalid;
       $('#tadaa-variable-state a').attr('class', variablesClass);
     });
+    
   }
   else {
     $('.tadaa-state-wrapper').hide();
@@ -118,15 +119,15 @@ Drupal.tadaa.refreshOverview = function() {
 /**
  * Gets the state for every individual module.
  */
-Drupal.tadaa.refreshModules = function() {
-  if (Drupal.settings.tadaa.selected) {
+Drupal.tadaa.refreshModules = function(settings) {
+  if (settings.tadaa.selected) {
     // Set the default texts.
     $('#tadaa-module-status td.config').text('Hämtar...');
     $('#tadaa-module-status td.state').text('Jämför...');
 
     // Update the state for the modules.
-    for (var module in Drupal.settings.tadaa.modules) {
-      $.getJSON(Drupal.settings.basePath + 'tadaa/module/' + module + '/check', function(data) {
+    for (var module in settings.tadaa.modules) {
+      $.getJSON(settings.basePath + 'tadaa/module/' + module + '/check', function(data) {
         var config = data.config ? 'Aktiverad' : 'Inaktiverad';
         var state = data.state ? 'OK' : 'FEL';
         $('#tadaa-module-status tr.' + data.module + ' td.config').text(config);
@@ -142,15 +143,15 @@ Drupal.tadaa.refreshModules = function() {
 /**
  * Gets the state for every individual variable.
  */
-Drupal.tadaa.refreshVariables = function() {
-  if (Drupal.settings.tadaa.selected) {
+Drupal.tadaa.refreshVariables = function(settings) {
+  if (settings.tadaa.selected) {
     // Set the default texts.
     $('#tadaa-variable-status td.config').text('Hämtar...');
     $('#tadaa-variable-status td.state').text('Jämför...');
 
     // Update the state for the modules.
-    for (var variable in Drupal.settings.tadaa.variables) {
-      $.getJSON(Drupal.settings.basePath + 'tadaa/variable/' + variable + '/check', function(data) {
+    for (var variable in settings.tadaa.variables) {
+      $.getJSON(settings.basePath + 'tadaa/variable/' + variable + '/check', function(data) {
         var state = data.state ? 'OK' : 'FEL';
         $('#tadaa-variable-status tr.' + data.variable + ' td.config').text(data.config);
         $('#tadaa-variable-status tr.' + data.variable + ' td.state').text(state);
