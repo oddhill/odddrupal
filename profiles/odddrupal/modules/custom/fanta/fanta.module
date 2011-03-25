@@ -1,0 +1,24 @@
+<?php
+/**
+ * Implements hook_init().
+ */
+function fanta_init() {
+  if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6.')) {
+    drupal_add_library('fanta', 'ie6-warning');
+  }
+}
+
+/**
+ * Implements hook_library().
+ */
+function fanta_library() {
+  $libraries['ie6-warning'] = array(
+    'js' => array(
+      drupal_get_path('module', 'fanta') . '/ie6/warning.js' => array(),
+      drupal_get_path('module', 'fanta') . '/fanta.js' => array(),
+      array('data' => array('fanta' => array('ie6Path' => drupal_get_path('module', 'fanta') . '/ie6/')), 'type' => 'setting'),
+    ),
+  );
+  
+  return $libraries;
+}

@@ -1,0 +1,5 @@
+; $Id$
+name = "Fanta"
+description = "Tells the user to upgrade to a later version of IE, or another browser."
+core = 7.x
+package = Odd Hill
