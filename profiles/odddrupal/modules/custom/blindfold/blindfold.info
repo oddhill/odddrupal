@@ -1,0 +1,6 @@
+; $Id$
+name = "Blindfold"
+description = "Alters the CKeditor, to strip everything from pasted text."
+core = 7.x
+package = Odd Hill
+dependencies[] = wysiwyg
