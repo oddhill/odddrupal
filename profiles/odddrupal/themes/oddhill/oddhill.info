@@ -1,21 +1,21 @@
 ; The name and description of the theme used on the admin/build/themes page.
-name        = oddhill
+name = oddhill
 description = Odd Tao is a theme that is all about going against the flow.
-core       = 7.x
+core = 7.x
 
 
 ; Stylesheets
-stylesheets[screen][]   = css/reset.css
-stylesheets[screen][]   = css/default.css
-stylesheets[screen][]   = css/messages.css
-stylesheets[screen][]   = css/forms.css
+stylesheets[screen][] = css/reset.css
+stylesheets[screen][] = css/default.css
+stylesheets[screen][] = css/messages.css
+stylesheets[screen][] = css/forms.css
 stylesheets[print][] = css/print.css
 stylesheets[handheld][] = css/mobile.css
 stylesheets[only screen and (max-device-width: 480px)][] = css/iphone.css
 
 
 ; Set the conditional stylesheets that are processed by IE.
-conditional-stylesheets[if IE][all][]       = css/ie.css
+conditional-stylesheets[if IE][all][] = css/ie.css
 
 
 ; Javascript files
