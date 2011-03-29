@@ -1,6 +1,6 @@
 (function($) {
 
-Drupal.behaviors.oddhill = {
+Drupal.behaviors.oddroots = {
   attach: function (context, settings) {
     // Put focused class on every form.
     $('form').focusedForm();

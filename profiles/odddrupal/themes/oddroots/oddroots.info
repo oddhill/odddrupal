@@ -1,6 +1,6 @@
 ; The name and description of the theme used on the admin/build/themes page.
-name = oddhill
-description = Odd Tao is a theme that is all about going against the flow.
+name = Odd Roots
+description = This is were babies come from.
 core = 7.x
 
 
@@ -22,4 +22,4 @@ conditional-stylesheets[if IE][all][] = css/ie.css
 scripts[] = js/jquery.form-focused.js
 scripts[] = js/jquery.validate.min.js
 scripts[] = js/additional-methods.min.js
-scripts[] = js/oddhill.js
+scripts[] = js/oddroots.js

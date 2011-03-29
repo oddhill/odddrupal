@@ -2,7 +2,7 @@
 name = ODDSITE
 description = This is the theme for this particular site
 core = 7.x
-base theme = oddhill
+base theme = oddroots
 
 
 ; Stylesheets.
