@@ -44,6 +44,7 @@ function odddrupal_install_tasks($install_state) {
     'function' => $swedish ? 'odddrupal_locale_settings_sv' : 'odddrupal_locale_settings_default',
   );
   $tasks['odddrupal_themekey_rules'] = array();
+  $tasks['odddrupal_roles'] = array();
   $tasks['odddrupal_set_variables'] = array();
   
   return $tasks;
@@ -65,6 +66,8 @@ function odddrupal_theme_form() {
   unset($options['test_theme']);
   unset($options['update_test_basetheme']);
   unset($options['update_test_subtheme']);
+  unset($options['oddmaintenance']);
+  unset($options['oddroots']);
 
   $form['odddrupal'] = array(
     '#type' => 'fieldset',
@@ -354,6 +357,45 @@ function odddrupal_themekey_rules() {
 }
 
 /**
+ * Set default roles and the permissons.
+ */
+function odddrupal_roles() {
+  global $language;
+
+  // Create editor role.
+  $editor_role->name = 'editor';
+  user_role_save($editor_role);
+  
+  // Set permissions for the editor role.
+  user_role_grant_permissions($editor_role->rid, array(
+    'access contextual links',
+    'access overlay',
+    'change own username',
+    'edit boxes',
+    'use text format filtered_html',
+    'view the administration theme',
+  ));
+  
+  // Create the editor account.
+  $editor_account['name'] = 'editor';
+  $editor_account['mail'] = variable_get('site_mail');
+  $editor_account['pass'] = 'karljohan12';
+  $editor_account['timezone'] = variable_get('date_default_timezone');
+  $editor_account['language'] = $language->language;
+  $editor_account['init'] = variable_get('site_mail');
+  $editor_account['status'] = 1;
+  $editor_account['roles'] = array(
+    2 => TRUE,
+    $editor_role->rid => $editor_role->rid
+  );
+  user_save(NULL, $editor_account);
+
+  // Access content for anonomyous and authenticated.
+  user_role_grant_permissions(1, array('access content'));
+  user_role_grant_permissions(2, array('access content'));
+}
+
+/**
  * Set various variables.
  */
 function odddrupal_set_variables() {
@@ -396,5 +438,9 @@ function odddrupal_set_variables() {
       'speedOut' => 0,
       'changeSpeed' => 0,
     ),
+  ));
+  variable_set('fancybox_files', array(
+    'js' => 'jquery.fancybox-1.3.1.js',
+    'css' => 'jquery.fancybox-1.3.1.css',
   ));
 }
