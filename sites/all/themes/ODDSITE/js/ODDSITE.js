@@ -1,7 +1,7 @@
 (function($) {
 
 Drupal.behaviors.ODDSITE = {
-  attatch: function (context, settings) {
+  attach: function (context, settings) {
   
   }
 }
