@@ -183,17 +183,29 @@ function mimemail_mailengine($op, $message = array()) {
  *   - 'plaintext':
  *      Optional plaintext portion of a multipart email.
  *   - 'attachments':
- *      An array of arrays which describe one or more attachments. The internal array
- *      consists of two parts: the file's path and the file's MIME type.
+ *      An array of arrays which describe one or more attachments.
+ *      Existing files can be added by path, dinamically-generated files
+ *      can be added by content. The internal array consists of two parts:
+ *      - 'filepath':
+ *        Relative Drupal path to an existing file (filecontent is NULL).
+ *      - 'filecontent':
+ *        The actual content of the file (filepath is NULL).
+ *      - 'filename':
+ *        The filename of the file.
+ *      - 'filemime':
+ *        The MIME type of the file.
  *      The array of arrays looks something like this:
  *      Array
  *      (
  *        [0] => Array
  *        (
- *          [filepath] => '/path/to/file.name',
- *         [filemime] => 'mime/type'
+ *         [filepath] => '/sites/default/files/attachment.txt'
+ *         [filecontent] => 'My attachment.'
+ *         [filename] => 'attachment.txt'
+ *         [filemime] => 'text/plain'
  *        )
  *      )
+ *
  * @return
  *   The $message array structure containing all details of the message.
  */
