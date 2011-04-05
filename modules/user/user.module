@@ -1,5 +1,4 @@
 <?php
-// $Id: user.module,v 1.1229 2010/12/28 21:46:23 webchick Exp $
 
 /**
  * @file
@@ -326,9 +325,10 @@ class UserController extends DrupalDefaultEntityController {
  * user. So to avoid confusion and to avoid clobbering the global $user object,
  * it is a good idea to assign the result of this function to a different local
  * variable, generally $account. If you actually do want to act as the user you
- * are loading, it is essential to call @code session_save_session(FALSE);
- * @endcode first. See @link http://drupal.org/node/218104 Safely impersonating
- * another user @endlink for more information.
+ * are loading, it is essential to call drupal_save_session(FALSE); first.
+ * See
+ * @link http://drupal.org/node/218104 Safely impersonating another user @endlink
+ * for more information.
  *
  * @param $uid
  *   Integer specifying the user ID to load.
@@ -404,8 +404,6 @@ function user_load_by_name($name) {
 function user_save($account, $edit = array(), $category = 'account') {
   $transaction = db_transaction();
   try {
-    $table = drupal_get_schema('users');
-
     if (!empty($edit['pass'])) {
       // Allow alternate password hashing schemes.
       require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');

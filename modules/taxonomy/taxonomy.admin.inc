@@ -1,5 +1,4 @@
 <?php
-// $Id: taxonomy.admin.inc,v 1.116 2010/11/20 06:49:47 webchick Exp $
 
 /**
  * @file

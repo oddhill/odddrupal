@@ -1,5 +1,4 @@
 <?php
-// $Id: user.api.php,v 1.27 2010/12/11 19:16:42 webchick Exp $
 
 /**
  * @file
@@ -34,9 +33,8 @@ function hook_user_load($users) {
 /**
  * Respond to user deletion.
  *
- * This hook is invoked from user_delete_multiple() after the account has been
- * removed from the user tables in the database, and before
- * field_attach_delete() is called.
+ * This hook is invoked from user_delete_multiple() before field_attach_delete()
+ * is called and before users are actually removed from the database.
  *
  * Modules should additionally implement hook_user_cancel() to process stored
  * user data for other account cancellation methods.

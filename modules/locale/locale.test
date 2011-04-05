@@ -1,9 +1,8 @@
 <?php
-// $Id: locale.test,v 1.88 2010/11/30 01:05:24 dries Exp $
 
 /**
  * @file
- * Tests for Locale module.
+ * Tests for locale.module.
  *
  * The test file includes:
  *  - a functional test for the language configuration forms;

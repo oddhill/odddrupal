@@ -1,5 +1,4 @@
 <?php
-// $Id: field.api.php,v 1.101 2010/12/14 19:50:05 dries Exp $
 
 /**
  * @ingroup field_fieldable_type
@@ -16,7 +15,7 @@
  *
  * Fieldable entities or modules that want to have their components supported
  * should expose them using this hook. The user-defined settings (weight,
- * visibility) are automatically applied on rendered forms and displayed
+ * visible) are automatically applied on rendered forms and displayed
  * entities in a #pre_render callback added by field_attach_form() and
  * field_attach_view().
  *
@@ -1271,7 +1270,7 @@ function hook_field_attach_delete_revision($entity_type, $entity) {
  */
 function hook_field_attach_purge($entity_type, $entity, $field, $instance) {
   // find the corresponding data in mymodule and purge it
-  if($entity_type == 'node' && $field->field_name == 'my_field_name') {
+  if ($entity_type == 'node' && $field->field_name == 'my_field_name') {
     mymodule_remove_mydata($entity->nid);
   }
 }
@@ -2205,7 +2204,7 @@ function hook_field_display_ENTITY_TYPE_alter(&$display, $context) {
  */
 function hook_field_extra_fields_display_alter(&$displays, $context) {
   if ($context['entity_type'] == 'taxonomy_term' && $context['view_mode'] == 'full') {
-    $displays['description']['visibility'] = FALSE;
+    $displays['description']['visible'] = FALSE;
   }
 }
 
@@ -2416,7 +2415,7 @@ function hook_field_delete_instance($instance) {
  * @param $field
  *   The field record just read from the database.
  */
-function hook_field_read_field(&$field) {
+function hook_field_read_field($field) {
   // @todo Needs function body.
 }
 

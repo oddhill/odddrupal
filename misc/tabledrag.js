@@ -1,4 +1,3 @@
-// $Id: tabledrag.js,v 1.42 2010/09/11 00:03:41 webchick Exp $
 (function ($) {
 
 /**

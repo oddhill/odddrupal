@@ -1,4 +1,3 @@
-// $Id: system.js,v 1.41 2010/10/13 13:43:21 dries Exp $
 (function ($) {
 
 /**

@@ -1,5 +1,4 @@
 <?php
-// $Id: content_types.inc,v 1.119 2010/10/13 13:43:21 dries Exp $
 
 /**
  * @file

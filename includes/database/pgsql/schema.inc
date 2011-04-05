@@ -1,5 +1,4 @@
 <?php
-// $Id: schema.inc,v 1.43 2010/12/29 04:03:42 webchick Exp $
 
 /**
  * @file

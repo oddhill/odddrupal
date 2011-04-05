@@ -1,5 +1,4 @@
 <?php
-// $Id: field.info.inc,v 1.58 2010/12/17 01:36:04 dries Exp $
 
 /**
  * @file
@@ -793,7 +792,7 @@ function field_info_max_weight($entity_type, $bundle, $context) {
     if ($context == 'form') {
       $weights[] = $instance['widget']['weight'];
     }
-    else {
+    elseif (isset($instance['display'][$context]['weight'])) {
       $weights[] = $instance['display'][$context]['weight'];
     }
   }

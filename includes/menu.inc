@@ -1,5 +1,4 @@
 <?php
-// $Id: menu.inc,v 1.431 2011/01/04 06:20:30 dries Exp $
 
 /**
  * @file
@@ -14,7 +13,10 @@
  * The Drupal menu system drives both the navigation system from a user
  * perspective and the callback system that Drupal uses to respond to URLs
  * passed from the browser. For this reason, a good understanding of the
- * menu system is fundamental to the creation of complex modules.
+ * menu system is fundamental to the creation of complex modules. As a note,
+ * this is related to, but separate from menu.module, which allows menus
+ * (which in this context are hierarchical lists of links) to be customized from
+ * the Drupal administrative interface.
  *
  * Drupal's menu system follows a simple hierarchy defined by paths.
  * Implementations of hook_menu() define menu items and assign them to
