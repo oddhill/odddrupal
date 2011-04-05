@@ -1,8 +1,6 @@
 .form-text,
 .form-textarea {
 	border: 1px solid #333;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 	background: #E6E6E6;
 	padding: 5px;
 	font-size: 13px;
@@ -31,7 +29,7 @@ div.form-item label {
 .form-item input.error,
 .form-item textarea.error {
 	color: #FF0000;
-	border: 1px solid #CC0000;
+	border: 1px solid #c90000;
 	background: #E6E6E6 url(../graphics/invalid.png) no-repeat right top;
 }
 
@@ -42,10 +40,6 @@ div.form-item label {
 	padding: 6px;
 	color: #838383;
 	cursor: pointer;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#e6e6e6));
-	background: -moz-linear-gradient(top,  #f9f9f9,  #e6e6e6);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e6e6e6');
-	text-shadow: 0px 1px 0px #FFF;
 }
 
 form .form-submit:hover {
@@ -67,11 +61,8 @@ form .form-submit:hover {
 }
 
 fieldset {
-	background: rgba(0,0,0,0.1);
  	border: 0 none;
  	padding: 0 10px;
- 	-moz-border-radius: 6px;
- 	-webkit-border-radius: 6px;
  	overflow: hidden;
  	margin-bottom: 10px;
 }
