@@ -1,4 +1,3 @@
-// $Id: README.txt,v 1.5.2.1 2011/02/11 19:35:07 robloach Exp $
 
 CONTENTS OF THIS FILE
 ---------------------
