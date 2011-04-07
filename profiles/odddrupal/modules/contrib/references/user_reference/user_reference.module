@@ -31,7 +31,7 @@ function user_reference_field_info() {
       'default_widget' => 'user_reference_autocomplete',
       'default_formatter' => 'user_reference_default',
       // Support hook_entity_property_info() from contrib "Entity API".
-      'property_type' => 'node',
+      'property_type' => 'user',
     ),
   );
 }
