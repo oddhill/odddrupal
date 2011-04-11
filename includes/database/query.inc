@@ -1,5 +1,4 @@
 <?php
-// $Id: query.inc,v 1.60 2010/12/31 20:43:43 webchick Exp $
 
 /**
  * @ingroup database

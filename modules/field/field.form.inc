@@ -1,5 +1,4 @@
 <?php
-// $Id: field.form.inc,v 1.54 2010/11/20 19:57:01 webchick Exp $
 
 /**
  * @file
@@ -414,7 +413,7 @@ function field_add_more_js($form, $form_state) {
     return;
   }
 
-  // Add a DIV around the delta receiving the AJAX effect.
+  // Add a DIV around the delta receiving the Ajax effect.
   $delta = $element['#max_delta'];
   $element[$delta]['#prefix'] = '<div class="ajax-new-content">' . (isset($element[$delta]['#prefix']) ? $element[$delta]['#prefix'] : '');
   $element[$delta]['#suffix'] = (isset($element[$delta]['#suffix']) ? $element[$delta]['#suffix'] : '') . '</div>';

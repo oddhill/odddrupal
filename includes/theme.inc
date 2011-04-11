@@ -1,5 +1,4 @@
 <?php
-// $Id: theme.inc,v 1.627 2011/01/03 08:02:11 webchick Exp $
 
 /**
  * @file
@@ -104,7 +103,7 @@ function drupal_theme_initialize() {
   drupal_static_reset('drupal_alter');
 
   // Provide the page with information about the theme that's used, so that a
-  // later AJAX request can be rendered using the same theme.
+  // later Ajax request can be rendered using the same theme.
   // @see ajax_base_page_theme()
   $setting['ajaxPageState'] = array(
     'theme' => $theme_key,
@@ -1263,8 +1262,6 @@ function theme_enable($theme_list) {
 
   // Invoke hook_themes_enabled after the themes have been enabled.
   module_invoke_all('themes_enabled', $theme_list);
-
-  return;
 }
 
 /**
@@ -1298,8 +1295,6 @@ function theme_disable($theme_list) {
 
   // Invoke hook_themes_enabled after the themes have been enabled.
   module_invoke_all('themes_disabled', $theme_list);
-
-  return;
 }
 
 /**
@@ -2042,6 +2037,9 @@ function _theme_table_cell($cell, $header = FALSE) {
  * Adds a default set of helper variables for variable processors and templates.
  * This comes in before any other preprocess function which makes it possible to
  * be used in default theme implementations (non-overridden theme functions).
+ *
+ * For more detailed information, see theme().
+ *
  */
 function template_preprocess(&$variables, $hook) {
   global $user;
@@ -2119,6 +2117,9 @@ function _template_preprocess_default_variables() {
 
 /**
  * A default process function used to alter variables as late as possible.
+ *
+ * For more detailed information, see theme().
+ *
  */
 function template_process(&$variables, $hook) {
   // Flatten out classes.

@@ -1,5 +1,4 @@
 <?php
-// $Id: update.report.inc,v 1.33 2010/10/03 22:43:16 dries Exp $
 
 /**
  * @file

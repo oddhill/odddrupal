@@ -1,5 +1,4 @@
 <?php
-// $Id: field.module,v 1.94 2011/01/02 17:26:39 webchick Exp $
 /**
  * @file
  * Attach custom data fields to Drupal entities.

@@ -1,9 +1,8 @@
 <?php
-// $Id: block.test,v 1.64 2010/11/29 06:38:51 webchick Exp $
 
 /**
  * @file
- * Tests for the block module
+ * Tests for block.module.
  */
 
 class BlockTestCase extends DrupalWebTestCase {

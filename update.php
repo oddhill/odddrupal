@@ -1,5 +1,4 @@
 <?php
-// $Id: update.php,v 1.328 2011/01/04 05:57:26 webchick Exp $
 
 /**
  * Root directory of Drupal installation.
@@ -349,8 +348,17 @@ require_once DRUPAL_ROOT . '/includes/entity.inc';
 require_once DRUPAL_ROOT . '/includes/unicode.inc';
 update_prepare_d7_bootstrap();
 
+// Temporarily disable configurable timezones so the upgrade process uses the
+// site-wide timezone. This prevents a PHP notice during session initlization
+// and before offsets have been converted in user_update_7002().
+$configurable_timezones = variable_get('configurable_timezones', 1);
+$conf['configurable_timezones'] = 0;
+
 // Determine if the current user has access to run update.php.
 drupal_bootstrap(DRUPAL_BOOTSTRAP_SESSION);
+
+// Reset configurable timezones.
+$conf['configurable_timezones'] = $configurable_timezones;
 
 // Only allow the requirements check to proceed if the current user has access
 // to run updates (since it may expose sensitive information about the site's

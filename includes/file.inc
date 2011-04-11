@@ -1,5 +1,4 @@
 <?php
-// $Id: file.inc,v 1.243 2010/12/15 03:39:41 webchick Exp $
 
 /**
  * @file
@@ -202,9 +201,8 @@ function file_stream_wrapper_get_class($scheme) {
  * @see file_uri_target()
  */
 function file_uri_scheme($uri) {
-  $data = explode('://', $uri, 2);
-
-  return count($data) == 2 ? $data[0] : FALSE;
+  $position = strpos($uri, '://');
+  return $position ? substr($uri, 0, $position) : FALSE;
 }
 
 /**

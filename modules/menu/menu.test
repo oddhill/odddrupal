@@ -1,9 +1,8 @@
 <?php
-// $Id: menu.test,v 1.42 2010/10/13 13:43:21 dries Exp $
 
 /**
  * @file
- * Tests file for the menu module.
+ * Tests for menu.module.
  */
 
 class MenuTestCase extends DrupalWebTestCase {

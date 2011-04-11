@@ -1,5 +1,4 @@
 <?php
-// $Id: simpletest.pages.inc,v 1.33 2010/10/20 01:31:07 dries Exp $
 
 /**
  * @file
