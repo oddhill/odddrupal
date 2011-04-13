@@ -4,12 +4,7 @@
 
 body {
   background: #FFF;
-  font: 14px/22px Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-
-#page-wrapper {
-  width: 960px;
-  margin: 0 auto;
+  font: 12px/20px Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 p {
