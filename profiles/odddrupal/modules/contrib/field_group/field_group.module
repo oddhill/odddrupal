@@ -123,6 +123,15 @@ function field_group_menu_load($group_name, $entity_type, $bundle_name, $bundle_
 }
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function field_group_ctools_plugin_api($owner, $api) {
+  if ($owner == 'field_group' && $api == 'field_group') {
+    return array('version' => 1);
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function field_group_theme() {
@@ -131,31 +140,6 @@ function field_group_theme() {
       'render element' => 'element',
     ),
   );
-}
-
-/**
- * Implements hook_features_export_options().
- *
- * Override of ctools default options list to make sure users
- * can choose from well formatted labels.
- * hook_features_api is implemented by Ctools. We could have used the
- * export name list callback too.
- * @see ctools_features_api()
- */
-function field_group_features_export_options() {
-  $options = array();
-  $field_group_instances = field_group_info_groups();
-  foreach ($field_group_instances as $entity_type => $bundles) {
-    foreach ($bundles as $bundle => $view_modes) {
-      foreach ($view_modes as $view_mode => $field_groups) {
-        foreach ($field_groups as $field_group) {
-          $identifier = "{$entity_type}-{$bundle}-{$view_mode}-{$field_group->group_name}";
-          $options[$identifier] = $identifier;
-        }
-      }
-    }
-  }
-  return $options;
 }
 
 /**
@@ -767,6 +751,7 @@ function field_group_field_group_is_empty($element, $groups) {
  * Implements hook_field_group_format_summary().
  */
 function field_group_field_group_format_summary($group) {
+
   $output = '';
   if (isset($group->format_settings['formatter'])) {
     $output .= '<strong>' . $group->format_type . '</strong> ' . $group->format_settings['formatter'] . '';
@@ -824,6 +809,17 @@ function field_group_library() {
   );
 
   return $libraries;
+}
+
+/**
+ * Implements hook_field_attach_rename_bundle().
+ */
+function field_group_field_attach_rename_bundle($entity_type, $bundle_old, $bundle_new) {
+  db_query('UPDATE {field_group} SET bundle = :bundle WHERE bundle = :old_bundle AND entity_type = :entity_type', array(
+    ':bundle' => $bundle_new,
+    ':old_bundle' => $bundle_old,
+    ':entity_type' => $entity_type,
+  ));
 }
 
 /**
@@ -962,17 +958,22 @@ function field_group_exists($group_name, $entity_type, $bundle, $mode) {
  *   Field group object.
  */
 function field_group_unpack($group) {
+
   // Extract unserialized data.
-  $data = $group->data;
-  unset($group->data);
-  $group->label = $data['label'];
-  $group->weight = $data['weight'];
-  $group->children = $data['children'];
-  $group->format_type = !empty($data['format_type']) ? $data['format_type'] : 'fieldset';
-  if (isset($data['format_settings'])) {
-    $group->format_settings = $data['format_settings'];
+  if (isset($group->data)) {
+    $data = $group->data;
+    unset($group->data);
+    $group->label = $data['label'];
+    $group->weight = $data['weight'];
+    $group->children = $data['children'];
+    $group->format_type = !empty($data['format_type']) ? $data['format_type'] : 'fieldset';
+    if (isset($data['format_settings'])) {
+      $group->format_settings = $data['format_settings'];
+    }
   }
+
   return $group;
+
 }
 
 /**
@@ -1153,21 +1154,24 @@ function field_group_build_pre_render($element) {
  */
 function field_group_fields_nest(&$element, &$root_element, $parent_name = NULL) {
 
-  $groups = $root_element['#groups'];
-  $group_fields = $root_element['#group_children'];
+  static $groups = array();
+  static $group_fields = array();
+  if (!isset($parent_name)) {
+    $groups = $root_element['#groups'];
+    $group_fields = $root_element['#group_children'];
+  }
 
   foreach ($groups as $name => $group) {
 
     // Add fieldgroups to the current element. But only if the parent is the current
     // group parent or if we are starting from the root.
-    if (!isset($parent_name) || (!empty($group->parent_name) && $parent_name == $group->parent_name)) {
+    if ((!isset($parent_name) && empty($group->parent_name)) || (!empty($group->parent_name) && $parent_name == $group->parent_name)) {
 
       // We first create a new element wrapper, and loop over the fields
       // to detect children. After this point, the fields are stashed
       // in the group element and removed from the root.
       $element[$name] = array();
       foreach ($group_fields as $groupfield => $groupname) {
-
         // Stash the field in the group.
         if ($groupname == $name && isset($root_element[$groupfield])) {
           // Block the denied fields (#access) before they are put in groups.
@@ -1177,20 +1181,24 @@ function field_group_fields_nest(&$element, &$root_element, $parent_name = NULL)
           }
           // We can not meet this field again!
           unset($root_element[$groupfield]);
+          unset($group_fields[$groupfield]);
           unset($root_element['#group_children'][$groupfield]);
         }
         // Or hey, is the field maybe a group, then prepare the array.
         if ($groupname == $name && isset($root_element['#groups'][$groupfield])) {
           $element[$name][$groupfield] = array();
         }
+
       }
       // Go deeper with the current group element and the parent $name.
       // @TODO check if the order of these two functions are correct.
       // Recently changed to fix unnested fieldgroups. Needs revision & testing.
       field_group_fields_nest($element[$name], $root_element, $name);
+
       // Bring extra element wrappers to achieve a grouping of fields.
       // This will mainly be prefix and suffix altering.
       field_group_pre_render($element[$name], $group, $root_element);
+
     }
   }
 }
