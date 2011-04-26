@@ -1,4 +1,3 @@
-// $Id: boxes.js,v 1.2.2.4.2.2 2010/10/01 16:38:56 jmiccolis Exp $
 (function ($) {
   Drupal.behaviors.boxes = { 
     attach: function(context, settings) {
@@ -49,6 +48,14 @@
           }
         });
       };
+      //If we have a contextual link to configure the block lets get rid of that and move our edit link
+      //to the contextual dropdown
+      $('.boxes-box-controls', context).each(function () {
+        if($(this).parents(".block").find(".block-configure").length > 0) {
+          $(this).parents(".block").find(".block-configure").after($(this).find("li.edit"));
+          $(this).parents(".block").find(".block-configure").detach();
+        }
+      });
     }
   
   };

@@ -1,5 +1,4 @@
 <?php
-// $Id: boxes.module,v 1.10.2.20.2.9 2010/12/16 21:01:40 yhahn Exp $
 
 /**
  * Implements hook_menu().
@@ -15,7 +14,7 @@ function boxes_menu() {
         'page callback' => 'drupal_get_form',
         'page arguments' => array('boxes_add_form', 4),
         'access arguments' => array('administer boxes'),
-        'type' => MENU_LOCAL_TASK,
+        'type' => MENU_LOCAL_ACTION,
         'file' => 'boxes.admin.inc',
       );
     }
@@ -78,17 +77,20 @@ function boxes_theme($existing, $type, $theme, $path) {
  * Implements hook_block_info().
  */
 function boxes_block_info() {
+  ctools_include('plugins');
+  $plugins = ctools_get_plugins('boxes', 'plugins');
+
   $boxes = boxes_box_load();
   $blocks = array();
   foreach ($boxes as $box) {
     $blocks[$box->delta]['info'] = $box->description;
+    // Let context group the instances together
+    $blocks[$box->delta]['context_group'] = t('Boxes for @plugin', array('@plugin' => $plugins[$box->plugin_key]['title']));
     // Not worth caching.
     $blocks[$box->delta]['cache'] = DRUPAL_CACHE_CUSTOM;
   }
 
   // 'Add' blocks for editing a page inline
-  ctools_include('plugins');
-  $plugins = ctools_get_plugins('boxes', 'plugins');
   foreach ($plugins as $key => $info) {
     if (isset($info['title'])) {
       $blocks["boxes_add__$key"]['info'] = t('Add custom !title', array('!title' => strtolower($info['title'])));
@@ -149,6 +151,7 @@ function boxes_block_view($delta) {
     // We need to explicitly set the form input as empty to avoid the form being
     // processed. The actual form submission is handled in the footer.
     $form_state['input'] = array();
+    $form_state['init_form'] = TRUE;
     $form = drupal_build_form('boxes_box_form', $form_state);
 
     $block['delta'] = $delta;
@@ -168,7 +171,7 @@ function boxes_block_view($delta) {
       $block['controls'] = theme('links', array(
         'links' => array(
           'edit' => array(
-            'title' => t('Edit'),
+            'title' => t('Edit Box'),
             'href' => $_GET['q'],
             'query' => array(
               'plugin_key' => '',
@@ -239,8 +242,9 @@ function boxes_footer() {
         );
       }
       $form = drupal_build_form('boxes_box_form', $form_state);
-
-      if (empty($form_state['submitted'])) {
+      
+      //  if we are comming from a init form and need to continue then lets render the form again
+      if (empty($form_state['submitted']) || isset($_GET['init_form_continue'])) {
         $output[] = ajax_command_html('#boxes-box-' . $delta, drupal_render($form));
       }
       else {
@@ -261,9 +265,8 @@ function boxes_footer() {
       $block['content'] = array('#markup' => $block['content']);
       $block = (object) $block;
 
-      $markup = drupal_render(_block_get_renderable_array(
-        _block_render_blocks(array('boxes_' . $_GET['boxes_delta'] => $block))
-      ));
+      $renderable = _block_get_renderable_array(_block_render_blocks(array('boxes_' . $_GET['boxes_delta'] => $block)));
+      $markup = drupal_render($renderable);
 
       $id = 'block-boxes-' . $_GET['boxes_delta'];
       // We cannot use drupal_html_id() here because it will increment the id on
@@ -365,12 +368,18 @@ function boxes_box_form($form, &$form_state) {
     '#default_value' => $box->title,
     '#weight' => -18,
   );
-  $form['options'] = $box->options_form();
+  $form['options'] = $box->options_form($form_state);
   $form['options']['#weight'] = -17;
 
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
+    '#attributes' => array('class' => array('boxes-ajax', 'use-ajax-submit')),
+  );
+  $form['cancel'] = array(
+    '#type' => 'submit',
+    '#value' => t('Cancel'),
+    '#limit_validation_errors' => array(),
     '#attributes' => array('class' => array('boxes-ajax', 'use-ajax-submit')),
   );
 
@@ -380,6 +389,20 @@ function boxes_box_form($form, &$form_state) {
         'plugin_key' => $form_state['plugin_key'],
       )));
   }
+  if(isset($form_state['init_form']) && $box->use_multistep_create()) {
+    unset($form['options']);
+    unset($form['cancel']);
+    $form['submit']['#value'] = t('Continue');
+    if (!empty($form_state['custom_action'])) {
+      $form['#action'] = url($_GET['q'], array(
+        'query' => array(
+          'boxes_delta' => $box->delta,
+          'init_form_continue' => TRUE,
+          'plugin_key' => $form_state['plugin_key'],
+        )
+      ));
+    }
+  }
 
   return $form;
 }
@@ -388,7 +411,15 @@ function boxes_box_form($form, &$form_state) {
  * Submit handler for the inline form.
  */
 function boxes_box_form_submit($form, $form_state) {
+  if ($form_state['clicked_button']['#value'] == 'Cancel') {
+    return;
+  }
   $box = boxes_factory($form_state['values']['plugin_key'], $form_state['values']);
+
+  // if options_submit is defined let the box process the submit
+  if (method_exists($box,'options_submit')) {
+    $box->options_submit($form, $form_state);
+  }
 
   if (module_exists('spaces') && $space = spaces_get_space()) {
     $space->controllers->boxes->set($box->delta, $box);

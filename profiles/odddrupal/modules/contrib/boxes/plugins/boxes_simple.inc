@@ -1,12 +1,11 @@
 <?php
-// $Id: boxes_simple.inc,v 1.2.2.1.2.1 2010/09/30 18:22:40 adrian Exp $
 
 /**
  * Simple custom text box.
  */
 class boxes_simple extends boxes_box {
   /**
-   * Implementation of boxes_content::options_defaults().
+   * Implementation of boxes_box::options_defaults().
    */
   public function options_defaults() {
     return array(
@@ -18,9 +17,9 @@ class boxes_simple extends boxes_box {
   }
 
   /**
-   * Implementation of boxes_content::options_form().
+   * Implementation of boxes_box::options_form().
    */
-  public function options_form() {
+  public function options_form(&$form_state) {
     $format = filter_format_load($this->options['body']['format']);
 
     if (filter_access($format)) {
@@ -39,7 +38,7 @@ class boxes_simple extends boxes_box {
   }
 
   /**
-   * Implementation of boxes_content::options_form().
+   * Implementation of boxes_box::render().
    */
   public function render() {
     $content = '';

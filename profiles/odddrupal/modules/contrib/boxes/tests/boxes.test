@@ -1,5 +1,4 @@
 <?php
-// $Id: boxes.test,v 1.1.2.12.2.3 2010/12/13 21:43:50 yhahn Exp $
 
 class BoxesTestCase extends DrupalWebTestCase {
   protected $profile = 'testing';
@@ -44,7 +43,7 @@ class BoxesTestCase extends DrupalWebTestCase {
       t('@description has been created.', array('@description' => $box['description'])),
       t('Box successfully created.'));
     $delta = db_query("select delta from {box} where delta = :delta", array('delta' => $box['delta']))->fetchField();
-    $this->assertnotnull($delta, t('box found in database'));
+    $this->assertNotNull($delta, t('box found in database'));
 
     // Delete the created box & verify that it's been deleted and no longer appearing on the page.
     $this->drupalPost('admin/structure/block/manage/boxes/' . $delta . '/delete/', array(), t('Delete'));
@@ -65,13 +64,17 @@ class BoxesAjaxTestCase extends DrupalWebTestCase {
   function parseJSON() {
     // Step one; undo the "HTML escaping" that drupal does.
     $json = str_replace(array('\x3c', '\x3e', '\x26'), array("<", ">", "&"), $this->content);
-
     // Step two; handle our escaped single quotes with extreme care,
     $json = str_replace(array("\'"), array("\x27"), $json);
-
     // Step three; parse!
     $json = json_decode($json);
-    if (json_last_error() == JSON_ERROR_NONE) {
+
+    // JSON_ERROR_NONE == 0 in PHP 5.3
+    $error = function_exists('json_last_error')
+                ? json_last_error()
+                : $json == NULL? 1 : 0;
+
+    if ($error === 0) {
       $this->pass("Parsed JSON response");
     }
     else {

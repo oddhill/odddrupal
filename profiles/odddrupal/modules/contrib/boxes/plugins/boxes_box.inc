@@ -1,5 +1,4 @@
 <?php
-// $Id: boxes_box.inc,v 1.1.2.5.2.1 2010/09/30 18:22:40 adrian Exp $
  
 /**
  * Abstract base class defining a box. A boxes content plugin provides a
@@ -122,6 +121,19 @@ abstract class boxes_box {
   }
 
   /**
+   * Declare if the box should use a multistep form for the create form.
+   *
+   * This might me necessary for forms that use ajax on the options form.
+   * Currently Context does not load this block correctly and the ajax in the 
+   * form will not work. Methinks Context UI Editor needs to be upgraded to
+   * D7 AJAX framework for this to not be required. That said the functionality
+   * is potentially useful even with proper functioning AJAX.
+   */
+  public function use_multistep_create() {
+    return FALSE;
+  }
+
+  /**
    * Declare default options.
    */
   abstract public function options_defaults();
@@ -129,7 +141,7 @@ abstract class boxes_box {
   /**
    * Provide options to configure content.
    */
-  abstract public function options_form();
+  abstract public function options_form(&$form_state);
 
   /**
    * Render a block. Must return an array with the keys
