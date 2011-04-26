@@ -330,8 +330,8 @@ function user_reference_autocomplete_value($element, $input = FALSE, $form_state
  * Validation callback for a user_reference autocomplete element.
  */
 function user_reference_autocomplete_validate($element, &$form_state, $form) {
-  $field = $form_state['field'][$element['#field_name']][$element['#language']]['field'];
-  $instance = $form_state['field'][$element['#field_name']][$element['#language']]['instance'];
+  $field = field_widget_field($element, $form_state);
+  $instance = field_widget_instance($element, $form_state);
 
   $value = $element['#value'];
   $uid = NULL;
