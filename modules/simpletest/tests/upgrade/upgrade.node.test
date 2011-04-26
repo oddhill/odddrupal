@@ -1,4 +1,5 @@
 <?php
+// $Id: upgrade.node.test,v 1.4 2010/12/18 02:04:36 dries Exp $
 
 /**
  * Upgrade test for node bodies.

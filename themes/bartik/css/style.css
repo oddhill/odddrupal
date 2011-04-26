@@ -1,3 +1,4 @@
+/* $Id: style.css,v 1.53 2011/01/04 06:23:29 dries Exp $ */
 
 /* ---------- Overall Specifications ---------- */
 
@@ -158,7 +159,7 @@ blockquote:after {
   line-height: 0.1em;
   vertical-align: -.45em;
 }
-blockquote > p:first-child {
+blockquote :first-child {
   display: inline;
 }
 a.feed-icon {
@@ -1135,7 +1136,7 @@ fieldset {
 .fieldset-wrapper {
   margin-top: 25px;
 }
-.vertical-tabs .fieldset-wrapper {
+.node-form .fieldset-wrapper {
   margin-top: 0;
 }
 .filter-wrapper {
@@ -1212,13 +1213,6 @@ fieldset legend a:active {
 fieldset .fieldset-wrapper {
   padding: 0 10px;
 }
-fieldset .fieldset-description {
-  margin-top: 5px;
-  margin-bottom: 1em;
-  line-height: 1.4;
-  color: #3c3c3c;
-  font-style: italic;
-}
 input {
   margin: 2px 0;
   padding: 4px;
@@ -1252,6 +1246,12 @@ input.form-submit:focus {
 }
 .form-item label {
   font-size: 0.929em;
+}
+fieldset .description {
+  margin-top: 5px;
+  line-height: 1.4;
+  color: #3c3c3c;
+  font-style: italic;
 }
 .form-type-radio label,
 .form-type-checkbox label {

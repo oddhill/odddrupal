@@ -1,4 +1,5 @@
 <?php
+// $Id: language.inc,v 1.30 2010/05/12 08:26:14 dries Exp $
 
 /**
  * @file

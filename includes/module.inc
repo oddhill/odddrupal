@@ -1,4 +1,5 @@
 <?php
+// $Id: module.inc,v 1.209 2010/11/27 20:41:38 dries Exp $
 
 /**
  * @file
@@ -126,9 +127,6 @@ function system_list($type) {
   // if not fetch only the required information to fire bootstrap hooks
   // in case we are going to serve the page from cache.
   if ($type == 'bootstrap') {
-    if (isset($lists['bootstrap'])) {
-      return $lists['bootstrap'];
-    }
     if ($cached = cache_get('bootstrap_modules', 'cache_bootstrap')) {
       $bootstrap_list = $cached->data;
     }
@@ -374,7 +372,7 @@ function module_enable($module_list, $enable_dependencies = TRUE) {
 
       // Add dependencies to the list, with a placeholder weight.
       // The new modules will be processed as the while loop continues.
-      foreach (array_keys($module_data[$module]->requires) as $dependency) {
+      foreach ($module_data[$module]->info['dependencies'] as $dependency) {
         if (!isset($module_list[$dependency])) {
           $module_list[$dependency] = 0;
         }

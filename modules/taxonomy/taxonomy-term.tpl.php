@@ -1,4 +1,5 @@
 <?php
+// $Id: taxonomy-term.tpl.php,v 1.1 2010/02/10 06:28:10 webchick Exp $
 
 /**
  * @file

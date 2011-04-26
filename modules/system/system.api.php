@@ -1,4 +1,5 @@
 <?php
+// $Id: system.api.php,v 1.225 2011/01/04 00:58:30 webchick Exp $
 
 /**
  * @file
@@ -75,7 +76,6 @@ function hook_hook_info_alter(&$hooks) {
  *     Leave blank to use the DrupalDefaultEntityController implementation.
  *   - base table: (used by DrupalDefaultEntityController) The name of the
  *     entity type's base table.
- *   - revision table: The name of the entity type's revision table (if any).
  *   - static cache: (used by DrupalDefaultEntityController) FALSE to disable
  *     static caching of entities during a page request. Defaults to TRUE.
  *   - field cache: (used by Field API loading and saving of field data) FALSE
@@ -97,8 +97,7 @@ function hook_hook_info_alter(&$hooks) {
  *     specify a callback function here, which will be called to determine the
  *     entity label. See also the entity_label() function, which implements this
  *     logic.
- *   - fieldable: Set to TRUE if you want your entity type to accept fields
- *     being attached to it.
+ *   - fieldable: Set to TRUE if you want your entity type to be fieldable.
  *   - translation: An associative array of modules registered as field
  *     translation handlers. Array keys are the module names, array values
  *     can be any data structure the module uses to provide field translation.
@@ -124,15 +123,12 @@ function hook_hook_info_alter(&$hooks) {
  *       build the label, a 'label callback' should be defined instead (see
  *       the 'label callback' section above for details).
  *   - bundle keys: An array describing how the Field API can extract the
- *     information it needs from the bundle objects for this type. This entry
- *     is required if the 'path' provided in the 'bundles'/'admin' section
- *     identifies the bundle using a named menu placeholder whose loader
- *     callback returns an object (e.g., $vocabulary for taxonomy terms, or
- *     $node_type for nodes). If the path does not include the bundle, or the
- *     bundle is just a string rather than an automatically loaded object, then
- *     this can be omitted. Elements:
- *     - bundle: The name of the property of the bundle object that contains
- *       the name of the bundle object.
+ *     information it needs from the bundle objects for this type (e.g
+ *     $vocabulary objects for terms; not applicable for nodes). This entry can
+ *     be omitted if this type's bundles do not exist as standalone objects.
+ *     Elements:
+ *     - bundle: The name of the property that contains the name of the bundle
+ *       object.
  *   - bundles: An array describing all bundles for this object type. Keys are
  *     bundles machine names, as found in the objects' 'bundle' property
  *     (defined in the 'entity keys' entry above). Elements:
@@ -146,9 +142,9 @@ function hook_hook_info_alter(&$hooks) {
  *       Elements:
  *       - path: the path of the bundle's main administration page, as defined
  *         in hook_menu(). If the path includes a placeholder for the bundle,
- *         the 'bundle argument' and 'real path' keys below are required.
- *       - bundle argument: The position of the bundle placeholder in 'path', if
- *         any.
+ *         the 'bundle argument', 'bundle helper' and 'real path' keys below
+ *         are required.
+ *       - bundle argument: The position of the placeholder in 'path', if any.
  *       - real path: The actual path (no placeholder) of the bundle's main
  *         administration page. This will be used to generate links.
  *       - access callback: As in hook_menu(). 'user_access' will be assumed if
@@ -516,6 +512,8 @@ function hook_entity_prepare_view($entities, $type) {
 /**
  * Perform periodic actions.
  *
+ * This hook will only be called if cron.php is run (e.g. by crontab).
+ *
  * Modules that require some commands to be executed periodically can
  * implement hook_cron(). The engine will then call the hook whenever a cron
  * run happens, as defined by the administrator. Typical tasks managed by
@@ -823,7 +821,7 @@ function hook_css_alter(&$css) {
 }
 
 /**
- * Alter the commands that are sent to the user through the Ajax framework.
+ * Alter the commands that are sent to the user through the AJAX framework.
  *
  * @param $commands
  *   An array of all commands that will be sent to the user.
@@ -924,7 +922,6 @@ function hook_menu_get_item_alter(&$router_item, $path, $original_map) {
  *     $items['abc/def'] = array(
  *       'page callback' => 'mymodule_abc_view',
  *     );
- *     return $items;
  *   }
  *
  *   function mymodule_abc_view($ghi = 0, $jkl = '') {
@@ -953,7 +950,6 @@ function hook_menu_get_item_alter(&$router_item, $path, $original_map) {
  *       'page callback' => 'mymodule_abc_view',
  *       'page arguments' => array(1, 'foo'),
  *     );
- *     return $items;
  *   }
  * @endcode
  * When path 'abc/def' is requested, the page callback function will get 'def'
@@ -1908,19 +1904,9 @@ function hook_system_info_alter(&$info, $file, $type) {
  *     have inherent security risks across a variety of potential use cases
  *     (for example, the "administer filters" and "bypass node access"
  *     permissions provided by Drupal core). When set to TRUE, a standard
- *     warning message defined in user_admin_permissions() and output via
- *     theme_user_permission_description() will be associated with the
- *     permission and displayed with it on the permission administration page.
- *     Defaults to FALSE.
- *   - warning: (optional) A translated warning message to display for this
- *     permission on the permission administration page. This warning overrides
- *     the automatic warning generated by 'restrict access' being set to TRUE.
- *     This should rarely be used, since it is important for all permissions to
- *     have a clear, consistent security warning that is the same across the
- *     site. Use the 'description' key instead to provide any information that
- *     is specific to the permission you are defining.
- *
- * @see theme_user_permission_description()
+ *     warning message defined in user_admin_permissions() will be associated
+ *     with the permission and displayed with it on the permission
+ *     administration page. Defaults to FALSE.
  */
 function hook_permission() {
   return array(
@@ -2428,8 +2414,8 @@ function hook_modules_disabled($modules) {
  * modules a chance to perform actions when a module is uninstalled, whereas
  * hook_uninstall() is only called on the module actually being uninstalled.
  *
- * It is recommended that you implement this hook if your module stores
- * data that may have been set by other modules.
+ * It is recommended that you implement this module if your module
+ * stores data that may have been set by other modules.
  *
  * @param $modules
  *   An array of the uninstalled modules.
@@ -2561,7 +2547,7 @@ function hook_file_load($files) {
  *
  * @see file_validate()
  */
-function hook_file_validate($file) {
+function hook_file_validate(&$file) {
   $errors = array();
 
   if (empty($file->filename)) {
@@ -3903,7 +3889,7 @@ function hook_date_formats_alter(&$formats) {
 function hook_page_delivery_callback_alter(&$callback) {
   // jQuery sets a HTTP_X_REQUESTED_WITH header of 'XMLHttpRequest'.
   // If a page would normally be delivered as an html page, and it is called
-  // from jQuery, deliver it instead as an Ajax response.
+  // from jQuery, deliver it instead as an AJAX response.
   if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $callback == 'drupal_deliver_html_page') {
     $callback = 'ajax_deliver';
   }

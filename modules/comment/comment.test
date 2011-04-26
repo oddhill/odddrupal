@@ -1,9 +1,5 @@
 <?php
-
-/**
- * @file 
- * Tests for comment.module.
- */
+// $Id: comment.test,v 1.98 2011/01/02 23:54:05 webchick Exp $
 
 class CommentHelperCase extends DrupalWebTestCase {
   protected $admin_user;
@@ -1698,7 +1694,7 @@ class CommentTokenReplaceTestCase extends CommentHelperCase {
 
     foreach ($tests as $input => $expected) {
       $output = token_replace($input, array('comment' => $comment), array('language' => $language));
-      $this->assertEqual($output, $expected, t('Sanitized comment token %token replaced.', array('%token' => $input)));
+      $this->assertFalse(strcmp($output, $expected), t('Sanitized comment token %token replaced.', array('%token' => $input)));
     }
 
     // Generate and test unsanitized tokens.
@@ -1714,7 +1710,7 @@ class CommentTokenReplaceTestCase extends CommentHelperCase {
 
     foreach ($tests as $input => $expected) {
       $output = token_replace($input, array('comment' => $comment), array('language' => $language, 'sanitize' => FALSE));
-      $this->assertEqual($output, $expected, t('Unsanitized comment token %token replaced.', array('%token' => $input)));
+      $this->assertFalse(strcmp($output, $expected), t('Unsanitized comment token %token replaced.', array('%token' => $input)));
     }
 
     // Load node so comment_count gets computed.
@@ -1727,7 +1723,7 @@ class CommentTokenReplaceTestCase extends CommentHelperCase {
 
     foreach ($tests as $input => $expected) {
       $output = token_replace($input, array('node' => $node), array('language' => $language));
-      $this->assertEqual($output, $expected, t('Node comment token %token replaced.', array('%token' => $input)));
+      $this->assertFalse(strcmp($output, $expected), t('Node comment token %token replaced.', array('%token' => $input)));
     }
   }
 }

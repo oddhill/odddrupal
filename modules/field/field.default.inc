@@ -1,4 +1,5 @@
 <?php
+// $Id: field.default.inc,v 1.41 2010/11/21 19:09:18 dries Exp $
 
 /**
  * @file
@@ -134,25 +135,21 @@ function field_default_insert($entity_type, $entity, $field, $instance, $langcod
  *   - the name of a view mode
  *   - or an array of display settings to use for display, as found in the
  *     'display' entry of $instance definitions.
- */
+*/
 function field_default_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $display) {
   // Group entities, instances and items by formatter module.
   $modules = array();
   foreach ($instances as $id => $instance) {
     if (is_string($display)) {
       $view_mode = $display;
-      $instance_display = field_get_display($instance, $view_mode, $entities[$id]);
+      $display = field_get_display($instance, $view_mode, $entities[$id]);
     }
-    else {
-      $instance_display = $display;
-    }
-
-    if ($instance_display['type'] !== 'hidden') {
-      $module = $instance_display['module'];
+    if ($display['type'] !== 'hidden') {
+      $module = $display['module'];
       $modules[$module] = $module;
       $grouped_entities[$module][$id] = $entities[$id];
       $grouped_instances[$module][$id] = $instance;
-      $grouped_displays[$module][$id] = $instance_display;
+      $grouped_displays[$module][$id] = $display;
       // hook_field_formatter_prepare_view() alters $items by reference.
       $grouped_items[$module][$id] = &$items[$id];
     }

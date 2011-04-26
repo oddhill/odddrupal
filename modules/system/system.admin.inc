@@ -1,4 +1,5 @@
 <?php
+// $Id: system.admin.inc,v 1.327 2011/01/04 04:02:29 webchick Exp $
 
 /**
  * @file
@@ -54,7 +55,6 @@ function system_admin_config_page() {
 
 /**
  * Provide a single block from the administration menu as a page.
- *
  * This function is often a destination for these blocks.
  * For example, 'admin/structure/types' needs to have a destination to be valid
  * in the Drupal menu system, but too much information there might be
@@ -158,6 +158,7 @@ function system_themes_page() {
           'alt' => t('Screenshot for !theme theme', array('!theme' => $theme->info['name'])),
           'title' => t('Screenshot for !theme theme', array('!theme' => $theme->info['name'])),
           'attributes' => array('class' => array('screenshot')),
+          'getsize' => FALSE,
         );
         break;
       }
@@ -1181,6 +1182,11 @@ function system_modules_submit($form, &$form_state) {
   }
 
   $form_state['redirect'] = 'admin/modules';
+
+  // Notify locale module about module changes, so translations can be
+  // imported. This might start a batch, and only return to the redirect
+  // path after that.
+  module_invoke('locale', 'system_update', $actions['install']);
 }
 
 /**

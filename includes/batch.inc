@@ -1,4 +1,5 @@
 <?php
+// $Id: batch.inc,v 1.54 2010/11/30 17:16:37 dries Exp $
 
 
 /**

@@ -1,4 +1,5 @@
 <?php
+// $Id: lock.inc,v 1.6 2011/01/02 17:26:39 webchick Exp $
 
 /**
  * @file

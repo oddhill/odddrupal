@@ -1,4 +1,5 @@
 <?php
+// $Id: install.inc,v 1.152 2011/01/02 17:23:20 webchick Exp $
 
 /**
  * Indicates that a module has not been installed yet.
@@ -198,7 +199,7 @@ function drupal_install_profile_distribution_name() {
   // At all other times, we load the profile via standard methods.
   else {
     $profile = drupal_get_profile();
-    $info = system_get_info('module', $profile);
+    $info = install_profile_info($profile);
     return $info['distribution_name'];
   }
 }
@@ -1197,10 +1198,6 @@ function drupal_check_module($module) {
  * - distribution_name: The name of the Drupal distribution that is being
  *   installed, to be shown throughout the installation process. Defaults to
  *   'Drupal'.
- *
- * Note that this function does an expensive file system scan to get info file
- * information for dependencies. If you only need information from the info
- * file itself, use system_get_info().
  *
  * Example of .info file:
  * @code

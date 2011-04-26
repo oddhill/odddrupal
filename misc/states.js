@@ -1,3 +1,4 @@
+// $Id: states.js,v 1.5 2010/12/06 16:10:29 webchick Exp $
 (function ($) {
 
 /**

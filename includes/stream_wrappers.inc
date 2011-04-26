@@ -1,4 +1,5 @@
 <?php
+// $Id: stream_wrappers.inc,v 1.22 2010/12/30 22:33:03 webchick Exp $
 
 /**
  * @file

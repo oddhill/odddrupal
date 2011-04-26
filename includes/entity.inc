@@ -1,4 +1,5 @@
 <?php
+// $Id: entity.inc,v 1.19 2010/11/30 19:31:46 dries Exp $
 
 /**
  * Interface for entity controller classes.

@@ -1,8 +1,9 @@
 <?php
+// $Id: field_ui.test,v 1.27 2010/10/27 18:29:17 dries Exp $
 
 /**
  * @file
- * Tests for field_ui.module.
+ * Unit test file for fields in core UI.
  */
 
 /**

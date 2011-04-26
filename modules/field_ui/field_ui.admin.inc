@@ -1,4 +1,5 @@
 <?php
+// $Id: field_ui.admin.inc,v 1.88 2010/12/15 04:13:48 webchick Exp $
 
 /**
  * @file
@@ -874,7 +875,7 @@ function field_ui_display_overview_form($form, &$form_state, $entity_type, $bund
       'class' => array('field-ui-overview'),
       'id' => 'field-display-overview',
     ),
-    // Add Ajax wrapper.
+    // Add AJAX wrapper.
     '#prefix' => '<div id="field-display-overview-wrapper">',
     '#suffix' => '</div>',
   );
@@ -1156,7 +1157,7 @@ function field_ui_display_overview_form($form, &$form_state, $entity_type, $bund
       'callback' => 'field_ui_display_overview_multistep_js',
       'wrapper' => 'field-display-overview-wrapper',
       'effect' => 'fade',
-      // The button stays hidden, so we hide the Ajax spinner too. Ad-hoc
+      // The button stays hidden, so we hide the AJAX spinner too. Ad-hoc
       // spinners will be added manually by the client-side script.
       'progress' => 'none',
     ),
@@ -1217,7 +1218,7 @@ function field_ui_display_overview_multistep_submit($form, &$form_state) {
 }
 
 /**
- * Ajax handler for multistep buttons on the 'Manage display' screen.
+ * AJAX handler for multistep buttons on the 'Manage display' screen.
  */
 function field_ui_display_overview_multistep_js($form, &$form_state) {
   $trigger = $form_state['triggering_element'];
@@ -1792,7 +1793,7 @@ function field_ui_field_edit_form($form, &$form_state, $instance) {
     '#default_value' => !empty($instance['description']) ? $instance['description'] : '',
     '#rows' => 5,
     '#description' => t('Instructions to present to the user below this field on the editing form.<br />Allowed HTML tags: @tags', array('@tags' => _field_filter_xss_display_allowed_tags())),
-    '#weight' => -5,
+    '#weight' => 0,
   );
 
   // Build the widget component of the instance.

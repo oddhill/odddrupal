@@ -1,4 +1,5 @@
 <?php
+// $Id: text.install,v 1.4 2010/10/20 15:57:42 webchick Exp $
 
 /**
  * @file
@@ -92,7 +93,7 @@ function text_update_7000() {
     'module' => 'text',
     'storage_type' => 'field_sql_storage',
   ));
-  foreach ($fields as $field) {
+  foreach ($fields as $field_name => $field) {
     if ($field['deleted']) {
       $table = "field_deleted_data_{$field['id']}";
       $revision_table = "field_deleted_revision_{$field['id']}";

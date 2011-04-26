@@ -1,8 +1,9 @@
 <?php
+// $Id: path.test,v 1.41 2010/10/09 17:38:41 webchick Exp $
 
 /**
  * @file
- * Tests for path.module.
+ * Tests for the path module
  */
 
 class PathTestCase extends DrupalWebTestCase {

@@ -1,4 +1,5 @@
 <?php
+// $Id: file.mimetypes.inc,v 1.5 2010/07/16 02:40:48 dries Exp $
 
 /**
  * @file

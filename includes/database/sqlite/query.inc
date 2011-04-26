@@ -1,4 +1,5 @@
 <?php
+// $Id: query.inc,v 1.15 2010/12/22 01:16:43 webchick Exp $
 
 /**
  * @file

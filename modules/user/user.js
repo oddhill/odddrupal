@@ -1,3 +1,4 @@
+// $Id: user.js,v 1.25 2010/11/30 23:55:11 webchick Exp $
 (function ($) {
 
 /**

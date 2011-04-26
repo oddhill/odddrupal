@@ -1,3 +1,4 @@
+// $Id: overlay-parent.js,v 1.57 2010/11/06 00:18:24 dries Exp $
 
 (function ($) {
 
@@ -677,7 +678,7 @@ Drupal.overlay.eventhandlerDispatchEvent = function (event) {
  * Make a regular admin link into a URL that will trigger the overlay to open.
  *
  * @param link
- *   A JavaScript Link object (i.e. an <a> element).
+ *   A Javascript Link object (i.e. an <a> element).
  * @param parentLocation
  *   (optional) URL to override the parent window's location with.
  *

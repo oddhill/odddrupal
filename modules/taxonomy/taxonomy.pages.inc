@@ -1,4 +1,5 @@
 <?php
+// $Id: taxonomy.pages.inc,v 1.57 2010/11/23 02:56:10 dries Exp $
 
 /**
  * @file

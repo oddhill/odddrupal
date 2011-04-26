@@ -1,4 +1,5 @@
 <?php
+// $Id: run-tests.sh,v 1.43 2010/11/13 13:54:58 dries Exp $
 /**
  * @file
  * This script runs Drupal tests from command line.

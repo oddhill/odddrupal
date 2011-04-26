@@ -1,9 +1,5 @@
 <?php
-
-/**
- * @file
- * Tests for translation.module
- */
+// $Id: translation.test,v 1.35 2010/12/31 20:45:25 webchick Exp $
 
 class TranslationTestCase extends DrupalWebTestCase {
   protected $book;

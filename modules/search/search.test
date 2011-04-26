@@ -1,9 +1,5 @@
 <?php
-
-/**
- * @file
- * Tests for search.module.
- */
+// $Id: search.test,v 1.86 2011/01/04 05:31:09 webchick Exp $
 
 // The search index can contain different types of content. Typically the type is 'node'.
 // Here we test with _test_ and _test2_ as the type.

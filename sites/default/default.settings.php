@@ -1,4 +1,5 @@
 <?php
+// $Id: default.settings.php,v 1.51 2010/10/11 23:49:48 dries Exp $
 
 /**
  * @file
@@ -281,11 +282,11 @@ ini_set('session.cookie_lifetime', 2000000);
 
 /**
  * Drupal automatically generates a unique session cookie name for each site
- * based on its full domain name. If you have multiple domains pointing at the
- * same Drupal site, you can either redirect them all to a single domain (see
- * comment in .htaccess), or uncomment the line below and specify their shared
- * base domain. Doing so assures that users remain logged in as they cross
- * between your various domains.
+ * based on on its full domain name. If you have multiple domains pointing at
+ * the same Drupal site, you can either redirect them all to a single domain
+ * (see comment in .htaccess), or uncomment the line below and specify their
+ * shared base domain. Doing so assures that users remain logged in as they
+ * cross between your various domains.
  */
 # $cookie_domain = 'example.com';
 

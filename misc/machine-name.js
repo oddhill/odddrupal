@@ -1,3 +1,4 @@
+// $Id: machine-name.js,v 1.2 2010/11/22 00:05:58 dries Exp $
 (function ($) {
 
 /**
