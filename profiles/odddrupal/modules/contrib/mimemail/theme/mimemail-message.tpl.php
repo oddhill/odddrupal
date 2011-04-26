@@ -9,6 +9,7 @@
  * specific mail.
  *
  * Available variables:
+ * - $recipient: The recipient of the message
  * - $subject: The message subject
  * - $body: The message body
  * - $css: Internal style sheets

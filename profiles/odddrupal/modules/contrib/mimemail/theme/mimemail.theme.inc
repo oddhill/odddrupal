@@ -10,7 +10,7 @@ function mimemail_theme_theme() {
 
   return array(
     'mimemail_message' => array(
-      'arguments' => array('key' => NULL, 'subject' => NULL, 'body' => NULL),
+      'arguments' => array('key' => NULL, 'recipient' => NULL, 'subject' => NULL, 'body' => NULL),
       'template' => 'mimemail-message',
       'pattern' => 'mimemail_message__',
       'file' => 'mimemail.theme.inc',
@@ -23,6 +23,7 @@ function mimemail_theme_theme() {
  * A preprocess function for theme('mimemail_message').
  *
  * The $variables array initially contains the following arguments:
+ * - $recipient: The recipient of the message
  * - $key:  The mailkey associated with the message
  * - $subject: The message subject
  * - $body:  The message body

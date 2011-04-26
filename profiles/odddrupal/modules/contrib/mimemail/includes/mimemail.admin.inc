@@ -38,12 +38,6 @@ function mimemail_admin_settings() {
     '#maxlength'     => 128,
     '#description'   => t('The email address that all site e-mails will be from when using default engine.'),
   );
-  $form['mimemail']['mimemail_alter'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Use as default mail system.'),
-    '#default_value' => variable_get('mimemail_alter', FALSE),
-    '#description' => t('Use mime mail system to deliver all site messages. With this option, all emails will have styles and formatting.'),
-  );
   $form['mimemail']['mimemail_simple_address'] = array(
     '#type'          => 'checkbox',
     '#title'         => t('Use simple address format'),
@@ -137,25 +131,5 @@ function mimemail_admin_settings() {
     drupal_set_message(t('Please choose a mail engine.'), 'error');
   }
 
-  $form['#submit'][] = 'mimemail_admin_settings_form_submit';
-
   return system_settings_form($form);
-}
-
-/**
- * Handle submission of the configuration form.
- */
-function mimemail_admin_settings_form_submit($form, &$form_state) {
-  $mail_system = variable_get('mail_system', array('default-system' => 'DefaultMailSystem'));
-  $default_system = $mail_system['default-system'];
-  $mimemail_alter = $form_state['values']['mimemail_alter'];
-  // Set as default mail system if Mime Mail is chosen to handle all mail.
-  if ($mimemail_alter && $default_system != 'MimeMailSystem') {
-    $default_system = 'MimeMailSystem';
-  }
-  elseif (!$mimemail_alter && $default_system == 'MimeMailSystem') {
-    $default_system = 'DefaultMailSystem';
-  }
-  $mail_system['default-system'] = $default_system;
-  variable_set('mail_system', $mail_system);
 }

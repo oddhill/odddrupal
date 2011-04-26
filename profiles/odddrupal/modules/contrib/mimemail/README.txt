@@ -1,5 +1,31 @@
 
-INSTALLATION
+-- SUMMARY --
+
+  This is a Mime Mail component module (for use by other modules).
+    * It permits users to recieve HTML email and can be used by other modules. The mail
+      functionality accepts an HTML message body, mime-endcodes it and sends it.
+    * If the HTML has embedded graphics, these graphics are MIME-encoded and included
+      as a message attachment.
+    * Adopts your site's style by automatically including your theme's stylesheet files in a
+      themeable HTML message format
+   *  If the recipient's preference is available and they prefer plaintext, the HTML will be
+      converted to plain text and sent as-is. Otherwise, the email will be sent in themeable
+      HTML with a plaintext alternative.
+
+  For a full description of the module, visit the project page:
+    http://drupal.org/project/mimemail
+
+  To submit bug reports and feature suggestions, or to track changes:
+    http://drupal.org/project/issues/mimemail
+
+
+-- REQUIREMENTS --
+
+  Mail System module - http://drupal.org/project/mailsystem
+
+
+-- INSTALLATION --
+
   Hopefully, you know the drill by now :)
   1. Download the module and extract the files.
   2. Upload the entire mimemail folder into your Drupal sites/all/modules/
@@ -11,7 +37,9 @@ INSTALLATION
   4. Adjust settings by navigating to:
      Administration > Configuration > Mime Mail
 
-USAGE
+
+-- USAGE --
+
   This module may be required by other modules, but in favor of the recently
   added system actions and Rules integration, it can be useful by itself too.
 
@@ -19,15 +47,13 @@ USAGE
   MimeMailSystem as the responsible mail system for a particular message
   or all mail sent by one module.
 
-  This is done by modifying the $mail_system variable like this: 
+  This can be done through the web by visiting admin/config/system/mailsystem
+  or in a program as follows:
 
-  array(
-    'default-system' => 'DefaultMailSystem',
+  mailsystem_set(array(
     '{$module}_{$key}' => 'MimeMailSystem', // Just messages with $key sent by $module.
     '{$module}' => 'MimeMailSystem', // All messages sent by $module.
-  );
-  
-  WARNING! Make sure to not overwrite the variable just append your mail to it!
+  ));
 
   You can use the following optional parameters to build the e-mail:
     'plain':
@@ -78,7 +104,8 @@ USAGE
   CSS definitions into tags within the HTML based on the CSS selectors. To use the
   Compressor, just enable it.
 
-CREDITS
+
+-- CREDITS --
 
   MAINTAINER: Allie Micka < allie at pajunas dot com >
 

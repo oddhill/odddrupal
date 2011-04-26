@@ -254,7 +254,7 @@ function mimemail_prepare_message($message) {
 
   $subject = str_replace("\n", '', trim(drupal_html_to_text($subject)));
   $key = str_replace('_', '-', $key);
-  $body = theme(array('mimemail_message__' . $key, 'mimemail_message'), array('key' => $key, 'subject' => $subject, 'body' => $body));
+  $body = theme(array('mimemail_message__' . $key, 'mimemail_message'), array('key' => $key, 'recipient' =>$to, 'subject' => $subject, 'body' => $body));
 
   foreach (module_implements('mail_post_process') as $module) {
     $function = $module . '_mail_post_process';
