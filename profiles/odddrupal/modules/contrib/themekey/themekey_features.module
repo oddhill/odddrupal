@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_features.module,v 1.1.4.5 2011/02/01 18:38:25 cspitzlay Exp $
 
 /**
  * Implements hook_features_api().

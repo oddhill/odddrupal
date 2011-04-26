@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey.node.inc,v 1.12.2.9 2011/01/30 18:12:42 mkalkbrenner Exp $
 
 /**
  * @file

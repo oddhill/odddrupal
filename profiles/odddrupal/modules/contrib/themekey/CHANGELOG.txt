@@ -1,4 +1,14 @@
-// $Id: CHANGELOG.txt,v 1.34.2.69 2011/02/11 22:55:50 mkalkbrenner Exp $
+
+ThemeKey 7.x-1.0-rc2, 2011-04-15
+--------------------------------
+[#1062966] mkalkbrenner: PHP 5.3 strict warning in themekey_help()
+[        ] mkalkbrenner: fixed fatal error in ThemekeyMultipleNodePropertiesTestCase
+[        ] mkalkbrenner: moved ThemeKey Example module to Development package
+[#1065878] mkalkbrenner: Error messages when activating all Themekey modules on a Standard English Drupal-7.0 installation
+[#1125920] mkalkbrenner: don't set $custom_theme to 'default'
+[#1096356] mkalkbrenner: taxonomy:tid and taxonomy:tid_and_childs change themes for term nodes but not for nodes referencing terms
+[#1074066] mkalkbrenner: Theme Key works for a nodes comments/reply, but not for comments/n/edit or comments/n/delete
+
 
 ThemeKey 7.x-1.0-rc1, 2011-02-11
 --------------------------------

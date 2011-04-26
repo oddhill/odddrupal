@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_ui_admin.inc,v 1.8.2.10 2011/02/01 17:25:26 mkalkbrenner Exp $
 
 /**
  * @file

@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_browser_detection.php,v 1.1.2.3 2011/01/09 21:21:07 mkalkbrenner Exp $
 
 /**
  * @file

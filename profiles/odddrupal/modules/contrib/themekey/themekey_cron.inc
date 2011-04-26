@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_cron.inc,v 1.3.2.5 2011/02/01 18:38:25 cspitzlay Exp $
 
 /**
  * @file

@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_ui.module,v 1.8.2.13 2011/02/01 18:38:25 cspitzlay Exp $
 
 /**
  * @file
@@ -96,7 +95,7 @@ function themekey_ui_nid2theme($nid) {
 
   themekey_ui_node_load(array($node->nid => $node), array($node->type));
 
-  if (!empty($node->themekey_ui_theme) && themekey_check_theme_enabled($node->themekey_ui_theme)) {
+  if (!empty($node->themekey_ui_theme) && 'default' != $node->themekey_ui_theme && themekey_check_theme_enabled($node->themekey_ui_theme)) {
     $custom_theme = $node->themekey_ui_theme;
     return 'static';
   }
@@ -129,7 +128,7 @@ function themekey_ui_author2theme($nid) {
   $query->join('themekey_ui_author_theme', 'tuat', 'n.uid = tuat.uid');
 
   if ($theme = $query->execute()->fetchField()) {
-    if ('default' != $theme) {
+    if ('default' != $theme && themekey_check_theme_enabled($theme)) {
       $custom_theme = $theme;
       return 'static';
     }

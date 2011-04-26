@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey.module,v 1.15.2.21 2011/02/05 16:40:35 mkalkbrenner Exp $
 
 /**
  * @file
@@ -192,24 +191,34 @@ function themekey_custom_theme() {
  * Implements hook_help().
  */
 function themekey_help($path, $arg) {
-  $text_1 = t('For every page request, Drupal steps through this Theme Switching Rule Chain until an activated rule matches or it reaches the end. If a rule matches, the theme associated with this rule will be applied to render the requested page.');
-
   switch ($path) {
     case 'admin/help#themekey':
       module_load_include('inc', 'themekey', 'themekey_help');
-      return '<p>' . t('ThemeKey allows you to define simple or sophisticated Theme Switching Rules. Using these rules, you can use a different theme depending on the current path, taxonomy terms, language, node type, and many, many other properties. It can also be easily extended to support additional properties, as exposed by other modules.') . '</p>' .
-        '<p>' . $text_1 . '</p>' .
-        drupal_render(drupal_get_form('themekey_help_tutorials_form', FALSE)) .
-        drupal_render(drupal_get_form('themekey_help_examples_form', FALSE)) .
-        drupal_render(drupal_get_form('themekey_help_properties_form', TRUE)) .
-        drupal_render(drupal_get_form('themekey_help_operators_form', TRUE));
-
+      $tutorials_form = drupal_get_form('themekey_help_tutorials_form', FALSE);
     case 'admin/config/user-interface/themekey':
-      module_load_include('inc', 'themekey', 'themekey_help');
-      return '<p>' . $text_1 . '<br />' . t('To get an idea how to get started, you might have a look at the !tutorials_link.', array('!tutorials_link' => l(t('tutorials'), 'admin/help/themekey'))) . '</p> ' .
-        drupal_render(drupal_get_form('themekey_help_examples_form', TRUE)) .
-        drupal_render(drupal_get_form('themekey_help_properties_form', TRUE)) .
-        drupal_render(drupal_get_form('themekey_help_operators_form', TRUE));
+      if (!function_exists('themekey_help_properties_form')) {
+        module_load_include('inc', 'themekey', 'themekey_help');
+      }
+      $examples_form = drupal_get_form('themekey_help_examples_form', TRUE);
+      $properties_form = drupal_get_form('themekey_help_properties_form', TRUE);
+      $operators_form = drupal_get_form('themekey_help_operators_form', TRUE);
+      $text_1 = t('For every page request, Drupal steps through this Theme Switching Rule Chain until an activated rule matches or it reaches the end. If a rule matches, the theme associated with this rule will be applied to render the requested page.');
+
+      switch ($path) {
+        case 'admin/help#themekey':
+          return '<p>' . t('ThemeKey allows you to define simple or sophisticated Theme Switching Rules. Using these rules, you can use a different theme depending on the current path, taxonomy terms, language, node type, and many, many other properties. It can also be easily extended to support additional properties, as exposed by other modules.') . '</p>' .
+            '<p>' . $text_1 . '</p>' .
+            drupal_render($tutorials_form) .
+            drupal_render($examples_form) .
+            drupal_render($properties_form) .
+            drupal_render($operators_form);
+
+        case 'admin/config/user-interface/themekey':
+          return '<p>' . $text_1 . '<br />' . t('To get an idea how to get started, you might have a look at the !tutorials_link.', array('!tutorials_link' => l(t('tutorials'), 'admin/help/themekey'))) . '</p> ' .
+            drupal_render($examples_form) .
+            drupal_render($properties_form) .
+            drupal_render($operators_form);
+      }
   }
 }
 

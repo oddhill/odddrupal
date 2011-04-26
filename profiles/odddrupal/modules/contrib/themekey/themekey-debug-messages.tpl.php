@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey-debug-messages.tpl.php,v 1.4.2.1 2010/10/16 17:22:46 mkalkbrenner Exp $
 
 /**
  * @file

@@ -1,6 +1,5 @@
 <?php
 
-// $Id: themekey_example_validators.inc,v 1.1.2.2 2011/02/04 16:58:49 mkalkbrenner Exp $
 
 /**
  * @file

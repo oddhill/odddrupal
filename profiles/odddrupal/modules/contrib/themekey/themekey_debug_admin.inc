@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_debug_admin.inc,v 1.2.4.2 2011/01/09 09:30:56 mkalkbrenner Exp $
 
 /**
  * @file

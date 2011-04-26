@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_validators.inc,v 1.2.4.7 2011/02/01 18:38:25 cspitzlay Exp $
 
 /**
  * @file

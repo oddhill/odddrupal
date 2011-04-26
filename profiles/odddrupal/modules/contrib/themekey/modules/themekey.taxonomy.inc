@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey.taxonomy.inc,v 1.15.2.7 2011/02/01 18:38:25 cspitzlay Exp $
 
 /**
  * @file
@@ -57,19 +56,9 @@ function themekey_taxonomy_themekey_properties() {
     'callback' => 'themekey_taxonomy_tid2tid_and_parents',
   );
   $maps[] = array(
-    'src' => 'node:vid',
-    'dst' => 'taxonomy:vid',
-    'callback' => 'themekey_taxonomy_vid2vid',
-  );
-  $maps[] = array(
-    'src' => 'node:vid',
+    'src' => 'node:nid',
     'dst' => 'taxonomy:tid',
-    'callback' => 'themekey_taxonomy_vid2tid',
-  );
-  $maps[] = array(
-    'src' => 'node:vid',
-    'dst' => 'taxonomy:tid_and_childs',
-    'callback' => 'themekey_taxonomy_vid2tid_and_parents',
+    'callback' => 'themekey_taxonomy_nid2tid',
   );
 
   return array('attributes' => $attributes, 'maps' => $maps);
@@ -129,171 +118,31 @@ function themekey_taxonomy_tid2vid($tids) {
  * ThemeKey property's value (destination)
  * with the aid of another ThemeKey property (source).
  *
- * src: node:vid
- * dst: taxonomy:vid
- *
- * @param $node_vid
- *   node version id
- *
- * @return
- *   array of taxonomy vocabulary ids
- *   or NULL if no value could be mapped
- */
-function themekey_taxonomy_vid2vid($node_vid) {
-  $vids = array();
-
-  // Use SQL instead taxonomy API because this code runs during hook_init() stage.
-  // Using taxonomy API will require to load the node using node_load() which is not allowed in this stage.
-
-  //  GET THE TAXONOMY VOCABULARIES
-  $taxonomy_vocabularies = taxonomy_get_vocabularies();
-
-  if (!empty($taxonomy_vocabularies)) {
-
-    $entities = array();
-
-    $query = db_select('node_revision', 'nr');          
-    $query->join('node', 'n', 'n.nid = nr.nid');          
-    $query->fields('n');          
-    $query->condition('nr.vid', $node_vid);
-    $result = $query->execute(); 
-          
-    if ($result->rowCount()) {
-      foreach ($result as $item) {
-        $item->vid = $node_vid;
-        $entities[$item->nid] = $item;
-        $nid = $item->nid;
-      }
-
-      if (!empty($entities)) {
-
-        field_attach_load_revision('node', $entities);
-
-        foreach ($taxonomy_vocabularies as $key => $vocabulary) {
-
-          $field_name = 'field_' . $vocabulary->machine_name;
-
-          if (!empty($entities[$nid]->$field_name)) {
-
-            $vids[$vocabulary->vid] = $vocabulary->vid;
-
-          }
-
-        }
-
-      }
-
-    }
-
-  }
-
-  return count($vids) ? $vids : NULL;
-}
-
-
-/**
- * ThemeKey mapping function to set a
- * ThemeKey property's value (destination)
- * with the aid of another ThemeKey property (source).
- *
- * src: node:vid
+ * src: node:nid
  * dst: taxonomy:tid
  *
- * @param $node_vid
- *   node version id
+ * @param $nid
+ *   node id
  *
  * @return
  *   array of taxonomy term ids
  *   or NULL if no value could be mapped
  */
-function themekey_taxonomy_vid2tid($node_vid) {
+function themekey_taxonomy_nid2tid($nid) {
   $tids = array();
 
-  // Use SQL instead taxonomy API because this code runs during hook_init() stage.
-  // Using taxonomy API will require loading the node using node_load() which is not allowed in this stage.
+  $query = db_select('taxonomy_index', 't');
+  $query->addField('t', 'tid');
+  $query->condition('t.nid', $nid);
+  $result = $query->execute();
 
-  //  GET THE TAXONOMY VOCABULARIES
-  $taxonomy_vocabularies = taxonomy_get_vocabularies();
-
-  if (!empty($taxonomy_vocabularies)) {
-
-    $entities = array();
-
-    $query = db_select('node_revision', 'nr');          
-    $query->join('node', 'n', 'n.nid = nr.nid');          
-    $query->fields('n');          
-    $query->condition('nr.vid', $node_vid);
-    $result = $query->execute(); 
-
-    if ($result->rowCount()) {
-      foreach ($result as $item) {
-        $item->vid = $node_vid;
-        $entities[$item->nid] = $item;
-        $nid = $item->nid;
-      }
-
-      if (!empty($entities)) {
-
-        field_attach_load_revision('node', $entities);
-
-        foreach ($taxonomy_vocabularies as $key => $vocabulary) {
-
-          $field_name = 'field_' . $vocabulary->machine_name;
-
-          if (!empty($entities[$nid]->$field_name)) {
-
-            $field_items = field_get_items('node', $entities[$nid], $field_name);
-
-            if (!empty($field_items)) {
-              foreach ($field_items as $key => $item_array) {
-                $tids[] = $item_array['tid'];
-              }
-            }
-
-          }
-
-        }
-
-      }
-
+  if ($result->rowCount()) {
+    foreach ($result as $item) {
+      $tids[] = $item->tid;
     }
-
   }
 
   return count($tids) ? $tids : NULL;
-}
-
-
-/**
- * ThemeKey mapping function to set a
- * ThemeKey property's value (destination)
- * with the aid of another ThemeKey property (source).
- *
- * src: node:vid
- * dst: taxonomy:tid_and_parents
- *
- * @param $node_vid
- *   node version id
- *
- * @return
- *   array of taxonomy term ids
- *   or NULL if no value could be mapped
- */
-function themekey_taxonomy_vid2tid_and_parents($node_vid) {
-
-  $node_tids = themekey_taxonomy_vid2tid($node_vid);
-  if (!is_array($node_tids)) {
-    return FALSE;
-  }
-  $tids = $node_tids;
-  foreach ($node_tids as $tid) {
-    $parent_terms = taxonomy_get_parents_all($tid);
-    foreach ($parent_terms as $parent_term) {
-      $tids[] = $parent_term->tid;
-    }
-  }
-
-  return count($tids) ? array_unique($tids) : NULL;
 }
 
 
@@ -325,3 +174,4 @@ function themekey_taxonomy_tid2tid_and_parents($tids) {
 
   return count($parents) ? array_unique($parents) : NULL;
 }
+

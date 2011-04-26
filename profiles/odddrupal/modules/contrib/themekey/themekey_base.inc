@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey_base.inc,v 1.18.2.15 2011/02/04 16:45:09 mkalkbrenner Exp $
 
 /**
  * @file

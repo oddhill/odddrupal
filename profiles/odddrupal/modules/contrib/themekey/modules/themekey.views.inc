@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey.views.inc,v 1.1.2.2 2011/01/29 16:36:35 carstenmueller Exp $
 
 /**
  * @file themekey.views.inc

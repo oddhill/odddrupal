@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey.install,v 1.11.2.10 2011/01/11 08:40:05 mkalkbrenner Exp $
 
 /**
  * @file
@@ -82,6 +81,20 @@ function themekey_schema() {
   );
 
   return $schema;
+}
+
+
+/**
+ * Implements hook_install().
+ */
+function themekey_install() {
+  // Define the page caching constants for installation.
+  // @see themekey_custom_theme()
+  if (!defined('THEMEKEY_PAGECACHE_UNSUPPORTED')) {
+    define('THEMEKEY_PAGECACHE_UNSUPPORTED', 0);
+    define('THEMEKEY_PAGECACHE_SUPPORTED', 1);
+    define('THEMEKEY_PAGECACHE_TIMEBASED', 2);
+  }
 }
 
 
@@ -511,6 +524,8 @@ function themekey_update_7100() {
  * Implements hook_update_N().
  */
 function themekey_update_7101() {
+  // Define the page caching constants for the update.
+  // @see themekey_custom_theme()
   if (!defined('THEMEKEY_PAGECACHE_UNSUPPORTED')) {
     define('THEMEKEY_PAGECACHE_UNSUPPORTED', 0);
     define('THEMEKEY_PAGECACHE_SUPPORTED', 1);

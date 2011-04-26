@@ -1,5 +1,4 @@
 <?php
-// $Id: themekey.locale.inc,v 1.6.2.3 2011/01/30 18:12:42 mkalkbrenner Exp $
 
 /**
  * @file

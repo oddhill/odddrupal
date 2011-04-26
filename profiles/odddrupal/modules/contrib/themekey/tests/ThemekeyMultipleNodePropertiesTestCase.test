@@ -1,6 +1,5 @@
 <?php
 
-// $Id: ThemekeyMultipleNodePropertiesTestCase.test,v 1.1.2.2 2011/01/30 15:09:25 carstenmueller Exp $
 
 /**
  * @file
@@ -54,7 +53,7 @@ class ThemekeyMultipleNodePropertiesTestCase extends ThemekeyWebTestCase {
       }
     }
 
-
+    module_load_include('inc', 'themekey', 'themekey_build');
     $rules = themekey_load_rules();
 
     if (!empty($rules)) {
