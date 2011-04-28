@@ -14,8 +14,8 @@ function fanta_init() {
 function fanta_library() {
   $libraries['ie6-warning'] = array(
     'js' => array(
-      drupal_get_path('module', 'fanta') . '/ie6/warning.js' => array(),
-      drupal_get_path('module', 'fanta') . '/fanta.js' => array(),
+      drupal_get_path('module', 'fanta') . '/ie6/warning.js' => array('cache' => FALSE, 'preprocess' => FALSE),
+      drupal_get_path('module', 'fanta') . '/fanta.js' => array('cache' => FALSE, 'preprocess' => FALSE),
       array('data' => array('fanta' => array('ie6Path' => drupal_get_path('module', 'fanta') . '/ie6/')), 'type' => 'setting'),
     ),
     'css' => array(
