@@ -41,10 +41,9 @@ function ctools_entity_field_content_type_content_types() {
           $types[$entity_type . ':' . $field_name] = array(
             'category' => t(ucfirst($entity_type)),
             'icon' => 'icon_field.png',
-            'title' => t('Field: @widget_label (@field_name) - @field_type', array(
+            'title' => t('Field: @widget_label (@field_name)', array(
               '@widget_label' => t($field['label']),
               '@field_name' => $field_name,
-              '@field_type' => t($field['widget']['type']),
             )),
             'description' => t('Field on the referenced entity.'),
             'edit form' => array(
@@ -69,6 +68,7 @@ function ctools_entity_field_content_type_content_types() {
     ));
     unset($context_types[$key]['types']);
   }
+
   return $types;
 }
 
@@ -94,11 +94,14 @@ function ctools_entity_field_content_type_render($subtype, $conf, $panel_args, $
   }
   $language = field_language($entity_type, $entity, $field_name);
 
+  // Get the field output, and the title.
+  $field_output = field_view_field($entity_type, $entity, $field_name, ($conf['formatter_settings'] ? array('type' => $conf['formatter'], 'settings' => $conf['formatter_settings']) : array('label' => 'hidden', 'type' => $conf['formatter'])), $language);
+
   // Build the content type block.
   $block = new stdClass();
   $block->module  = 'entity_field';
-  $block->title   = $field['label'];
-  $block->content = field_view_field($entity_type, $entity, $field_name, ($conf['formatter_settings'] ? array('label' => 'hidden', 'type' => $conf['formatter'], 'settings' => $conf['formatter_settings']) : array('label' => 'hidden', 'type' => $conf['formatter'])), $language);
+  $block->title   = $field_output['#title'];
+  $block->content = $field_output;
   $block->delta   = $ids[0];
 
   return $block;
@@ -159,7 +162,7 @@ function ctools_entity_field_content_type_formatter_styles_submit($form, &$form_
   foreach ($formatter_info as $info) {
     if (!empty($info['settings'])) {
       foreach ($info['settings'] as $field_name => $value) {
-        if (!empty($form_state['values'][$field_name])) {
+        if (isset($form_state['values'][$field_name])) {
           $form_state['conf']['formatter_settings'][$field_name] = $form_state['values'][$field_name];
         }
       }
@@ -171,5 +174,7 @@ function ctools_entity_field_content_type_formatter_styles_submit($form, &$form_
 * Returns the administrative title for a type.
 */
 function ctools_entity_field_content_type_admin_title($subtype, $conf, $context) {
-  return t('"@s" @field', array('@s' => $context->identifier, '@field' => $subtype));
+  list($bundle, $field_name) = explode(':', $subtype);
+  ctools_include('fields');
+  return t('"@s" @field', array('@s' => $context->identifier, '@field' => ctools_field_label($field_name)));
 }
