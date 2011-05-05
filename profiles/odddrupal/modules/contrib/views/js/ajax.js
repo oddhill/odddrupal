@@ -67,7 +67,7 @@
 
   Drupal.ajax.prototype.commands.viewsTriggerPreview = function (ajax, response, status) {
     if ($('input#edit-displays-live-preview').is(':checked')) {
-      $('#preview-submit').trigger('click');
+      $('#preview-submit').trigger('mousedown');
     }
   };
 
@@ -102,7 +102,10 @@
     attach: function (context) {
       $('input#edit-displays-live-preview', context).once('views-ajax-processed').click(function() {
         if ($(this).is(':checked')) {
-          $('#preview-submit').click();
+          $('#preview-submit').trigger('mousedown');
+        }
+        else {
+          $('#views-live-preview').empty();
         }
       });
     }
@@ -145,7 +148,7 @@
         'progress': { 'type': 'throbber' }
       };
       // Bind AJAX behaviors to all items showing the class.
-      $('a.views-ajax-link', context).once('views-ajax-processed').each(function () {
+      $('.views-ajax-link', context).once('views-ajax-processed').each(function () {
         var element_settings = base_element_settings;
         // Set the URL to go to the anchor.
         if ($(this).attr('href')) {
@@ -157,16 +160,13 @@
 
       $('div#views-live-preview a')
         .once('views-ajax-processed').each(function () {
-        // We don't bind to links without a URL.
-        if (!$(this).attr('href')) {
-          return true;
-        }
-
         var element_settings = base_element_settings;
         // Set the URL to go to the anchor.
-        element_settings.url = $(this).attr('href');
-        if (Drupal.Views.getPath(element_settings.url).substring(0, 21) != 'admin/structure/views') {
-          return true;
+        if ($(this).attr('href')) {
+          element_settings.url = $(this).attr('href');
+          if (element_settings.url.substring(0, 22) != '/admin/structure/views') {
+            return true;
+          }
         }
 
         element_settings.wrapper = 'views-live-preview';
@@ -183,7 +183,7 @@
         .once('views-ajax-processed').each(function () {
         $(this).click(function(event) {
           event.preventDefault();
-          $('#preview-submit').click();
+          $('#preview-submit').mousedown();
         });
       });
 

@@ -64,9 +64,8 @@
  * Describe table structure to Views.
  *
  * This hook should be placed in MODULENAME.views.inc and it will be auto-loaded.
- * MODULENAME.views.inc must be in the directory specified by the 'path' key
- * returned by MODULENAME_views_api(), or the same directory as the .module
- * file, if 'path' is unspecified.
+ * This must either be in the same directory as the .module file or in a subdirectory
+ * named 'includes'.
  *
  * The full documentation for this hook is in the advanced help.
  * @link http://views-help.doc.logrus.com/help/views/api-tables @endlink
@@ -212,9 +211,8 @@ function hook_views_data() {
  * You can add/edit/remove to existing tables defined by hook_views_data().
  *
  * This hook should be placed in MODULENAME.views.inc and it will be auto-loaded.
- * MODULENAME.views.inc must be in the directory specified by the 'path' key
- * returned by MODULENAME_views_api(), or the same directory as the .module
- * file, if 'path' is unspecified.
+ * This must either be in the same directory as the .module file or in a subdirectory
+ * named 'includes'.
  *
  * The full documentation for this hook is in the advanced help.
  * @link http://views-help.doc.logrus.com/help/views/api-tables @endlink
@@ -241,9 +239,8 @@ function hook_views_data_alter(&$data) {
  * The full documentation for this hook is now in the advanced help.
  *
  * This hook should be placed in MODULENAME.views.inc and it will be auto-loaded.
- * MODULENAME.views.inc must be in the directory specified by the 'path' key
- * returned by MODULENAME_views_api(), or the same directory as the .module
- * file, if 'path' is unspecified.
+ * This must either be in the same directory as the .module file or in a subdirectory
+ * named 'includes'.
  *
  * This is a stub list as a reminder that this needs to be doc'd and is not used
  * in views anywhere so might not be remembered when this is formally documented:
@@ -270,7 +267,8 @@ function hook_views_plugins_alter(&$plugins) {
  *   An array with the following possible keys:
  *   - api:  (required) The version of the Views API the module implements.
  *   - path: (optional) If includes are stored somewhere other than within
- *       the root module directory, specify its path here.
+ *       the root module directory or a subdirectory called includes, specify
+ *       its path here.
  *   - template path: (optional) A path where the module has stored it's views template files.
  *        When you have specificed this key views automatically uses the template files for the views.
  *        You can use the same naming conventions like for normal views template files.
@@ -287,9 +285,8 @@ function hook_views_api() {
  * as-is or as a "starter" for users to build from.
  *
  * This hook should be placed in MODULENAME.views_default.inc and it will be
- * auto-loaded. MODULENAME.views_default.inc must be in the directory specified
- * by the 'path' key returned by MODULENAME_views_api(), or the same directory
- * as the .module file, if 'path' is unspecified.
+ * auto-loaded. This must either be in the same directory as the .module file
+ * or in a subdirectory named 'includes'.
  *
  * The $view->disabled boolean flag indicates whether the View should be
  * enabled or disabled by default.
@@ -549,6 +546,17 @@ function hook_views_default_views_alter(&$views) {
 
 /**
  * Stub hook documentation
+ *
+ * This hook should be placed in MODULENAME.views_convert.inc and it will be auto-loaded.
+ * This must either be in the same directory as the .module file or in a subdirectory
+ * named 'includes'.
+ */
+function hook_views_convert() {
+  // example code here
+}
+
+/**
+ * Stub hook documentation
  */
 function hook_views_query_substitutions() {
   // example code here
@@ -656,9 +664,8 @@ function hook_views_post_render(&$view, &$output, &$cache) {
  * Stub hook documentation
  *
  * This hook should be placed in MODULENAME.views.inc and it will be auto-loaded.
- * MODULENAME.views.inc must be in the directory specified by the 'path' key
- * returned by MODULENAME_views_api(), or the same directory as the .module
- * file, if 'path' is unspecified.
+ * This must either be in the same directory as the .module file or in a subdirectory
+ * named 'includes'.
  *
  */
 function hook_views_query_alter(&$view, &$query) {
@@ -667,9 +674,8 @@ function hook_views_query_alter(&$view, &$query) {
 
 /**
  * This hook should be placed in MODULENAME.views.inc and it will be auto-loaded.
- * MODULENAME.views.inc must be in the directory specified by the 'path' key
- * returned by MODULENAME_views_api(), or the same directory as the .module
- * file, if 'path' is unspecified.
+ * This must either be in the same directory as the .module file or in a subdirectory
+ * named 'includes'.
  *
  * Alter the rows that appear with a view preview, which include query and
  * performance statistics. $rows is an associative array with two keys:

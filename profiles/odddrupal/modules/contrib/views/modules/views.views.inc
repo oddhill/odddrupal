@@ -73,7 +73,6 @@ function views_views_data() {
       'help' => t('Evaluates a mathematical expression and displays it.'),
       'field' => array(
         'handler' => 'views_handler_field_math',
-        'float' => TRUE,
       ),
     );
   }

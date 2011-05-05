@@ -8,10 +8,10 @@ class views_handler_field_node_link_translate extends views_handler_field_node_l
     $this->additional_fields['uid'] = 'uid';
     $this->additional_fields['type'] = 'type';
     $this->additional_fields['language'] = 'language';
-    $this->additional_fields['format'] = array('table' => 'node_revision', 'field' => 'format');
+    $this->additional_fields['format'] = array('table' => 'node_revisions', 'field' => 'format');
   }
 
-  function render_link($data, $values) {
+  function render($values) {
     // ensure user has access to edit this node.
     $node = new stdClass();
     $node->nid = $this->get_value($values, 'nid');
@@ -24,12 +24,8 @@ class views_handler_field_node_link_translate extends views_handler_field_node_l
       return;
     }
 
-    $this->options['alter']['make_link'] = TRUE;
-    $this->options['alter']['path'] = "node/$node->nid/translate";
-    $this->options['alter']['query'] = drupal_get_destination();
-
     $text = !empty($this->options['text']) ? $this->options['text'] : t('translate');
-    return $text;
+    return l($text, "node/$node->nid/translate", array('query' => drupal_get_destination()));
   }
 }
 

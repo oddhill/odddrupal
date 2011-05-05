@@ -22,12 +22,12 @@ function filter_views_data() {
   // no fields are defined here yet.
   $data['filter_formats']['moved to'] = 'filter_format';
   $data['filter_format']['table']['join'] = array(
-    'node_revision' => array(
+    'node_revisions' => array(
       'left_field' => 'format',
       'field' => 'format',
     ),
     'node' => array(
-      'left_table' => 'node_revision',
+      'left_table' => 'node_revisions',
       'left_field' => 'format',
       'field' => 'format',
     ),

@@ -205,14 +205,7 @@ function views_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__view__' . $vars['node']->view->name;
     if (!empty($vars['node']->view->current_display)) {
       $vars['theme_hook_suggestions'][] = 'node__view__' . $vars['node']->view->name . '__' . $vars['node']->view->current_display;
-
-      // If a node is being rendered in a view, and the view does not have a path,
-      // prevent drupal from accidentally setting the $page variable:
-      if ($vars['page'] && $vars['view_mode'] == 'full' && !$vars['view']->display_handler->has_path()) {
-        $vars['page'] = FALSE;
-      }
     }
-
   }
 }
 
@@ -258,7 +251,6 @@ function views_menu() {
   $items['views/ajax'] = array(
     'title' => 'Views',
     'page callback' => 'views_ajax',
-    'theme callback' => 'views_ajax_theme_callback',
     'delivery callback' => 'ajax_deliver',
     'access callback' => TRUE,
     'description' => 'Ajax callback for view loading.',
@@ -269,7 +261,6 @@ function views_menu() {
   // the generic ajax callback.
   $items['admin/views/ajax/autocomplete/user'] = array(
     'page callback' => 'views_ajax_autocomplete_user',
-    'theme callback' => 'views_ajax_theme_callback',
     'access callback' => 'user_access',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
@@ -279,25 +270,12 @@ function views_menu() {
   // does not support a vid a argument anymore
   $items['admin/views/ajax/autocomplete/taxonomy'] = array(
     'page callback' => 'views_ajax_autocomplete_taxonomy',
-    'theme callback' => 'views_ajax_theme_callback',
     'access callback' => 'user_access',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
     'file' => 'includes/ajax.inc',
   );
   return $items;
-}
-
-/**
- * Menu theme callback.
- *
- * This simply ensures that Views' ajax calls are rendered in the same
- * theme as the original page to prevent .css file confusion.
- */
-function views_ajax_theme_callback() {
-  if (!empty($_POST['ajax_page_state']['theme'])) {
-    return $_POST['ajax_page_state']['theme'];
-  }
 }
 
 /**
@@ -704,10 +682,10 @@ function views_add_contextual_links(&$render_element, $location, $view, $display
     // contextual links that are intended to be displayed in the requested
     // location.
     $plugin = views_fetch_plugin_data('display', $view->display[$display_id]->display_plugin);
-    // If contextual links locations are not set, provide a sane default. (To
-    // avoid displaying any contextual links at all, a display plugin can still
-    // set 'contextual links locations' to, e.g., an empty array.)
-    $plugin += array('contextual links locations' => array('view'));
+    // If contextual links locations are empty provide a sane default.
+    if (empty($plugin['contextual links locations'])) {
+      $plugin['contextual links locations'] = array('view');
+    }
     $has_links = !empty($plugin['contextual links']) && !empty($plugin['contextual links locations']);
     if ($has_links && in_array($location, $plugin['contextual links locations'])) {
       foreach ($plugin['contextual links'] as $module => $link) {
@@ -905,7 +883,7 @@ function &views_get_current_view() {
  * Include views .inc files as necessary.
  */
 function views_include($file) {
-  ctools_include($file, 'views');
+  module_load_include('inc', 'views', "includes/$file");
 }
 
 /**
@@ -1556,7 +1534,7 @@ function views_exposed_form_submit(&$form, &$form_state) {
   $form_state['view']->exposed_raw_input = array();
 
 
-  $exclude = array('q', 'submit', 'form_build_id', 'form_id', 'form_token', 'exposed_form_plugin', '', 'reset');
+  $exclude = array('q', 'submit', 'form_build_id', 'form_id', 'form_token', 'exposed_form_plugin', '');
   $exposed_form_plugin = $form_state['exposed_form_plugin'];
   $exposed_form_plugin->exposed_form_submit($form, $form_state, $exclude);
 
@@ -1786,39 +1764,6 @@ function views_var_export($var, $prefix = '', $init = TRUE) {
   }
 
   return $output;
-}
-
-/**
- * Prepare a string for use as a valid CSS identifier (element, class or ID name).
- * This function is similar to a core version but with more sane filter values.
- *
- * http://www.w3.org/TR/CSS21/syndata.html#characters shows the syntax for valid
- * CSS identifiers (including element names, classes, and IDs in selectors.)
- *
- * @param $identifier
- *   The identifier to clean.
- * @param $filter
- *   An array of string replacements to use on the identifier.
- * @return
- *   The cleaned identifier.
- *
- * @see drupal_clean_css_identifier
- */
-function views_clean_css_identifier($identifier, $filter = array(' ' => '-', '/' => '-', '[' => '-', ']' => '')) {
-  // By default, we filter using Drupal's coding standards.
-  $identifier = strtr($identifier, $filter);
-
-  // Valid characters in a CSS identifier are:
-  // - the hyphen (U+002D)
-  // - a-z (U+0030 - U+0039)
-  // - A-Z (U+0041 - U+005A)
-  // - the underscore (U+005F)
-  // - 0-9 (U+0061 - U+007A)
-  // - ISO 10646 characters U+00A1 and higher
-  // We strip out any character not in the above list.
-  $identifier = preg_replace('/[^\x{002D}\x{0030}-\x{0039}\x{0041}-\x{005A}\x{005F}\x{0061}-\x{007A}\x{00A1}-\x{FFFF}]/u', '', $identifier);
-
-  return $identifier;
 }
 
 /**

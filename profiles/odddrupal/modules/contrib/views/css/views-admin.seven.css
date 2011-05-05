@@ -60,13 +60,8 @@ fieldset.fieldset-no-legend {
   padding-top: 2.5em;
 }
 
-.views-admin .form-item label.option,
-#views-ui-preview-form .form-item label.option {
+.views-admin .form-item label.option {
   font-size: 1em;
-}
-
-#views-ui-preview-form .form-submit {
-  margin-top: 3px;
 }
 
 .views-admin input.form-submit,
@@ -166,15 +161,8 @@ fieldset.fieldset-no-legend {
   clear: none;
 }
 
-.views-displays ul.secondary li a,
-.views-displays ul.secondary li.active a,
-.views-displays ul.secondary li.active a.active {
+.views-displays ul.secondary li a {
   padding: 2px 7px 3px;
-}
-
-.views-displays ul.secondary li.active a,
-.views-displays ul.secondary li.active a.active {
-  border: 1px solid transparent;
 }
 
 .views-admin .links li {
@@ -192,25 +180,24 @@ fieldset.fieldset-no-legend {
 
 .views-display-top ul.secondary {
   background-color: transparent;
-  margin-right: 18em;
 }
 
 /* @end */
 
 /* @group Buttons */
 
-.ctools-button-processed ul {
+.ctools-button ul {
   margin: 0;
 }
 
 /* Override for input elements that are themed like ctools-buttons */
-.ctools-button-processed input.form-submit:hover {
+.ctools-button input.form-submit:hover {
   background-image: none;
   color: #0074BD;
   text-shadow: none;
 }
 
-.ctools-button-processed input.form-submit:active {
+.ctools-button input.form-submit:active {
   background: none;
   border: medium none;
   color: #0074BD;
@@ -248,7 +235,7 @@ table th {
 .views-displays .secondary > li:first-child {
  padding-left: 0;
 }
-
+ 
 .views-admin .icon.add {
   background-position: center 3px;
 }
@@ -421,7 +408,7 @@ table th {
 
 /* @group Buttons */
 
-.ctools-button-processed {
+.ctools-button {
   background-image:
     -moz-linear-gradient(
       -90deg,
@@ -450,7 +437,7 @@ table th {
   border-radius: 11px 11px 11px 11px;
 }
 
-.ctools-button-processed:hover {
+.ctools-button:hover {
   background-image:
     -moz-linear-gradient(
       -90deg,
@@ -476,7 +463,7 @@ table th {
       #f1f1f1 100%);
 }
 
-.ctools-dropbutton-processed.open:hover {
+.ctools-dropbutton.open:hover {
   background-image:
     -moz-linear-gradient(
       -90deg,
@@ -502,7 +489,7 @@ table th {
       #f9f9f9 100%);
 }
 
-.ctools-dropbutton-processed.open {
+.ctools-dropbutton.open {
   -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
   -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
@@ -536,7 +523,7 @@ table th {
   color: #008BCB;
 }
 
-.views-ui-display-tab-actions .ctools-button-processed input {
+.views-ui-display-tab-actions .ctools-button input {
   color: #0074BD;
 }
 

@@ -312,7 +312,7 @@ class views_handler_filter_in_operator extends views_handler_filter {
           if ($values !== '') {
             $values .= ', ';
           }
-          if (drupal_strlen($values) > 8) {
+          if (strlen($values) > 8) {
             $values .= '...';
             break;
           }

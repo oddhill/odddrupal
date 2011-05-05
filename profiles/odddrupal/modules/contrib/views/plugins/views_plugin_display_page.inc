@@ -54,15 +54,14 @@ class views_plugin_display_page extends views_plugin_display {
 
     $bits = explode('/', $this->get_option('path'));
     $page_arguments = array($this->view->name, $this->display->id);
-    $this->view->init_handlers();
-    $view_arguments = $this->view->argument;
+    $view_arguments = $this->get_option('arguments');
 
     // Replace % with %views_arg for menu autoloading and add to the
     // page arguments so the argument actually comes through.
-    foreach ($bits as $pos => $bit) {
+    foreach($bits as $pos => $bit) {
       if ($bit == '%') {
         $argument = array_shift($view_arguments);
-        if (!empty($argument->options['specify_validation']) && $argument->options['validate']['type'] != 'none') {
+        if (isset($argument['validate_type']) && $argument['validate_type'] != 'none') {
           $bits[$pos] = '%views_arg';
         }
         $page_arguments[] = $pos;
@@ -236,15 +235,19 @@ class views_plugin_display_page extends views_plugin_display {
       ),
     );
 
-    $path = strip_tags('/' . $this->get_option('path'));
+    $path = strip_tags($this->get_option('path'));
     if (empty($path)) {
       $path = t('None');
+    }
+
+    if (strlen($path) > 16) {
+      $path = substr($path, 0, 16) . '...';
     }
 
     $options['path'] = array(
       'category' => 'page',
       'title' => t('Path'),
-      'value' => views_ui_truncate($path, 24),
+      'value' => $path,
     );
 
     $menu = $this->get_option('menu');
@@ -265,10 +268,14 @@ class views_plugin_display_page extends views_plugin_display {
         break;
     }
 
+    if (strlen($menu_str) > 16) {
+      $menu_str = substr($menu_str, 0, 16) . '...';
+    }
+
     $options['menu'] = array(
       'category' => 'page',
       'title' => t('Menu'),
-      'value' => views_ui_truncate($menu_str, 24),
+      'value' => $menu_str,
     );
 
     // This adds a 'Settings' link to the style_options setting if the style has options.

@@ -50,14 +50,8 @@ class views_handler_field_numeric extends views_handler_field {
       );
     }
     $form['separator'] = array(
-      '#type' => 'select',
-      '#title' => t('Thousands marker'),
-      '#options' => array(
-        '' => t('- None -'),
-        ',' => t('Comma'),
-        ' ' => t('Space'),
-        '.' => t('Decimal'),
-      ),
+      '#type' => 'textfield',
+      '#title' => t('Thousands separator'),
       '#default_value' => $this->options['separator'],
       '#description' => t('What single character to use as the thousands separator.'),
       '#size' => 2,

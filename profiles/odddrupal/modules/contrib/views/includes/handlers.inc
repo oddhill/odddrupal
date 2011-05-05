@@ -264,6 +264,21 @@ class views_handler extends views_object {
   }
 
   /**
+   * Get the value that's supposed to be rendered.
+   *
+   * @param $values
+   *   An object containing all retrieved values.
+   * @param $field
+   *   Optional name of the field where the value is stored.
+   */
+  function get_value($values, $field = NULL) {
+    $alias = isset($field) ? $this->aliases[$field] : $this->field_alias;
+    if (isset($values->{$alias})) {
+      return $values->{$alias};
+    }
+  }
+
+  /**
    * Sanitize the value for output.
    *
    * @param $value
@@ -492,15 +507,6 @@ class views_handler extends views_object {
   function pre_query() { }
 
   /**
-   * Run after the view is executed, before the result is cached.
-   *
-   * This gives all the handlers some time to modify values. This is primarily
-   * used so that handlers that pull up secondary data can put it in the
-   * $values so that the raw data can be utilized externally.
-   */
-  function post_execute(&$values) { }
-
-  /**
    * Provides a unique placeholders for handlers.
    */
   function placeholder() {
@@ -543,10 +549,7 @@ class views_handler extends views_object {
    */
   function ensure_my_table() {
     if (!isset($this->table_alias)) {
-      if (!method_exists($this->query, 'ensure_table')) {
-        vpr(t('Ensure my table called but query has no ensure_table method.'));
-        return;
-      }
+      if (!method_exists($this->query, 'ensure_table')) { vpr_trace(); exit; }
       $this->table_alias = $this->query->ensure_table($this->table, $this->relationship);
     }
     return $this->table_alias;
@@ -656,7 +659,6 @@ class views_many_to_one_helper {
       '#title' => t('Reduce duplicates'),
       '#description' => t('This filter can cause items that have more than one of the selected options to appear as duplicate results. If this filter causes duplicate results to occur, this checkbox can reduce those duplicates; however, the more terms it has to search for, the less performant the query will be, so use this with caution. Shouldn\'t be set on single-value fields, as it may cause values to disappear from display, if used on an incompatible field.'),
       '#default_value' => !empty($this->handler->options['reduce_duplicates']),
-      '#weight' => 4,
     );
   }
 
@@ -884,9 +886,11 @@ class views_many_to_one_helper {
     if (empty($options['group'])) {
       $options['group'] = 0;
     }
+    else {
+      $value = $this->handler->value;
+      $operator = 'IN';
+    }
 
-    // add_condition determines whether a single expression is enough(FALSE) or the
-    // conditions should be added via an db_or()/db_and() (TRUE).
     $add_condition = TRUE;
     if ($operator == 'not') {
       $value = NULL;
@@ -894,11 +898,12 @@ class views_many_to_one_helper {
       $add_condition = FALSE;
     }
     elseif ($operator == 'or' && empty($options['reduce_duplicates'])) {
-      if (count($value) > 1) {
+      if (count($this->handler->value) > 1) {
+        $value = $this->handler->value;
         $operator = 'IN';
       }
       else {
-        $value = is_array($value) ? array_pop($value) : $value;
+        $value = is_array($this->handler->value) ? array_pop($this->handler->value) : $this->handler->value;
         $operator = '=';
       }
       $add_condition = FALSE;
@@ -1095,9 +1100,11 @@ function views_date_sql_field($field, $field_type = 'int', $set_offset = NULL) {
   $db_type = db_driver();
   $offset = $set_offset !== NULL ? $set_offset : views_get_timezone();
   if (isset($offset) && !is_numeric($offset)) {
-    $dtz = new DateTimeZone($offset);
-    $dt = new DateTime("now", $dtz);
-    $offset_seconds = $dtz->getOffset($dt);
+    $tz = date_default_timezone_get();
+    $current = time('Z');
+    date_default_timezone_set($offset);
+    $offset_seconds = $current - time('Z');
+    date_default_timezone_set($tz);
   }
 
   switch ($db_type) {
@@ -1305,8 +1312,7 @@ function views_date_sql_extract($extract_type, $field, $field_type = 'int', $set
  *   - left_table: The table we join to
  *   - left_field: The field we join to
  *   - type: either LEFT (default) or INNER
- *   - extra: An array of extra conditions on the join. Each condition is
- *     either a string that's directly added, or an array of items:
+ *   - extra: Either a string that's directly added, or an array of items:
  *   - - table: if not set, current table; if NULL, no table. This field can't
  *       be set in the cached definition because it can't know aliases; this field
  *       can only be used by realtime joins.

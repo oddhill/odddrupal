@@ -28,23 +28,15 @@ class views_handler_field_markup extends views_handler_field {
 
   function render($values) {
     $value = $this->get_value($values);
-    if (is_array($this->format)) {
-      $format = $this->get_value($values, 'format');
-    }
-    else {
-      $format = $this->format;
-    }
+    $format = $this->get_value($values, 'format');
+    $format = is_numeric($this->format) ? $this->format : $format;
     if ($value) {
       $value = str_replace('<!--break-->', '', $value);
       return check_markup($value, $format, '');
     }
   }
 
-  function element_type($none_supported = FALSE, $default_empty = FALSE, $inline = FALSE) {
-    if ($inline) {
-      return 'span';
-    }
-
+  function element_type($none_supported = FALSE, $default_empty = FALSE) {
     if (isset($this->definition['element type'])) {
       return $this->definition['element type'];
     }
