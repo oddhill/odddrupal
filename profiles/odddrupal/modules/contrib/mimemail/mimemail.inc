@@ -546,7 +546,9 @@ function _mimemail_url($url, $embed_file = NULL) {
   }
 
   // If we have not yet returned, then let's clean things up and leave.
-  $url = url($path, array('query' => $query, 'fragment' => $fragment, 'absolute' => TRUE));
+  $options = array('query' => array(), 'fragment' => $fragment, 'absolute' => TRUE);
+  parse_str($query, $options['query']);
+  $url = url($path, $options);
 
 
   // If url() added a ?q= where there should not be one, remove it.
