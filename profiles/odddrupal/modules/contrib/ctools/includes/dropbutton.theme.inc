@@ -86,8 +86,7 @@ function theme_links__ctools_dropbutton($vars) {
     $id++;
 
     // Wrapping div
-    $class = 'ctools-no-js';
-    $class .= ($is_drop_button) ? ' ctools-dropbutton' : '';
+    $class = ($is_drop_button) ? 'ctools-dropbutton-no-js ctools-dropbutton' : '';
     $class .= ' ctools-button';
     if (!empty($vars['class'])) {
       $class .= ($vars['class']) ? (' ' . implode(' ', $vars['class'])) : '';
@@ -99,14 +98,14 @@ function theme_links__ctools_dropbutton($vars) {
 
     // Add a twisty if this is a dropbutton
     if ($is_drop_button) {
-      $vars['title'] = ($vars['title'] ? check_plain($vars['title']) : t('open'));
+      $vars['title'] = ($vars['title'] ? $vars['title'] : t('open'));
 
       $output .= '<div class="ctools-link">';
       if ($vars['image']) {
         $output .= '<a href="#" class="ctools-twisty ctools-image">' . $vars['title'] . '</a>';
       }
       else {
-        $output .= '<a href="#" class="ctools-twisty ctools-text">' . $vars['title'] . '</a>';
+        $output .= '<a href="#" class="ctools-twisty ctools-text">' . check_plain($vars['title']) . '</a>';
       }
       $output .= '</div>'; // ctools-link
     }

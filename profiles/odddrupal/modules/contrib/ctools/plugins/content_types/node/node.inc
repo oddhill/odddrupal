@@ -50,7 +50,7 @@ function ctools_node_content_type_render($subtype, $conf, $panel_args) {
   // Support node translation
   if (module_exists('translation')) {
     if ($translations = module_invoke('translation', 'node_get_translations', $nid)) {
-      if (isset($translations[$GLOBALS['language']->language]))  {
+  	  if ($translations[$GLOBALS['language']->language])  {
         $nid = $translations[$GLOBALS['language']->language]->nid;
       }
     }
@@ -64,10 +64,6 @@ function ctools_node_content_type_render($subtype, $conf, $panel_args) {
   if (!node_access('view', $node)) {
     return;
   }
-
-  // Don't store viewed node data on the node, this can mess up other
-  // views of the node.
-  $node = clone($node);
 
   $block->module = 'node';
   $block->delta = $node->nid;
@@ -93,12 +89,6 @@ function ctools_node_content_type_render($subtype, $conf, $panel_args) {
   }
 
   $block->content = node_view($node, $conf['build_mode']);
-
-  // Hide links if they've been suppressed.
-  if (empty($conf['links'])) {
-    $block->content['links']['#access'] = FALSE;
-  }
-
   return $block;
 }
 
@@ -196,10 +186,10 @@ function  ctools_node_content_type_edit_form_validate(&$form, &$form_state) {
     $nid = $preg_matches[1];
   }
   if (is_numeric($nid)) {
-    $node = db_query('SELECT nid, status FROM {node} WHERE nid = :nid', array(':nid' => $nid))->fetchObject();
+    $node = db_query('SELECT nid FROM {node} WHERE nid = :nid', array(':nid' => $nid))->fetchObject();
   }
   else {
-    $node = db_query('SELECT nid, status FROM {node} WHERE LOWER(title) = LOWER(:title)', array(':title' => $nid))->fetchObject();
+    $node = db_query('SELECT nid FROM {node} WHERE LOWER(title) = LOWER(:title)', array(':title' => $nid))->fetchObject();
   }
   if ($node) {
     $form_state['values']['nid'] = $node->nid;
@@ -231,7 +221,7 @@ function ctools_node_content_type_admin_title($subtype, $conf) {
 
   $node = node_load($conf['nid']);
   if ($node) {
-    if (!empty($node->status) || user_access('administer nodes')) {
+    if (!empty($data->status) || user_access('administer nodes')) {
       return check_plain($node->title);
     }
     else {

@@ -86,7 +86,10 @@ function _views_content_panes_content_type($view, $display) {
     return;
   }
 
-  $title = views_content_get_display_title($view, $display->id);
+  $title = $display->handler->get_option('pane_title');
+  if (!$title) {
+    $title = t('@view: @display', array('@view' => $view->name, '@display' => $display->display_title));
+  }
 
   $description = $display->handler->get_option('pane_description');
   if (!$description) {
@@ -168,7 +171,7 @@ function views_content_views_panes_content_type_render($subtype, $conf, $panel_a
         break;
 
       case 'panel':
-        $args[] = isset($panel_args[$argument['panel']]) ? $panel_args[$argument['panel']] : NULL;
+        $args[] = $panel_args[$argument['panel']];
         break;
 
       case 'user':
@@ -210,7 +213,7 @@ function views_content_views_panes_content_type_render($subtype, $conf, $panel_a
 
   $block = new stdClass();
   $block->module = 'views';
-  $block->delta  = $view->name . '-' . $display;
+  $block->delta  = $view->name . $display;
 
   if (($allow['link_to_view'] && !empty($conf['link_to_view'])) ||
       (!$allow['link_to_view'] && $view->display_handler->get_option('link_to_view'))) {
@@ -344,18 +347,11 @@ function views_content_views_panes_content_type_edit_form($form, &$form_state) {
   $view = views_get_view($name);
 
   if (empty($view)) {
-    $form['markup'] = array('#markup' => t('Broken/missing/deleted view.'));
-    return $form;
+    $form['markup'] = array('#value' => t('Broken/missing/deleted view.'));
+    return;
   }
 
   $view->set_display($display_id);
-
-  // If it couldn't set the display and we got the default display instead,
-  // fail.
-  if ($view->current_display == 'default') {
-    $form['markup'] = array('#markup' => t('Broken/missing/deleted view display.'));
-    return $form;
-  }
 
   $allow = $view->display_handler->get_option('allow');
 
@@ -567,9 +563,8 @@ function views_content_views_panes_content_type_admin_title($subtype, $conf, $co
   $view->set_display($display);
   views_content_views_panes_add_defaults($conf, $view);
 
-  $title = views_content_get_display_title($view, $display);
-
-  return check_plain($title);
+  $title = $view->display_handler->get_option('pane_title');
+  return check_plain($title ? $title : $view->name);
 }
 
 /**

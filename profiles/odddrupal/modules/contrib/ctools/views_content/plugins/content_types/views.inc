@@ -79,7 +79,7 @@ function views_content_views_content_type_content_type($subtype, $plugin) {
  * Create the content type info array to give back to ctools for a given display.
  */
 function _views_content_views_content_type($view) {
-  $title = $view->get_human_name();
+  $title = $view->name;
 
   $icon = 'icon_views_page_legacy.png';
 
@@ -237,7 +237,7 @@ function views_content_views_select_display($form, &$form_state) {
   foreach ($view->display as $id => $display) {
     // Content pane views should never be used this way.
     if ($display->display_plugin != 'panel_pane') {
-      $displays[$id] = views_content_get_display_label($view, $id);
+      $displays[$id] = $display->display_title;
     }
   }
 
@@ -272,7 +272,7 @@ function views_content_views_content_type_edit_form($form, &$form_state) {
     return;
   }
 
-  $form_state['title'] = t('Configure view @view (@display)', array('@view' => $view->get_human_name(), '@display' => views_content_get_display_label($view, $view->current_display)));
+  $form_state['title'] = t('Configure view @view (@display)', array('@view' => $view->name, '@display' => $view->display[$conf['display']]->display_title));
 
   // @todo
   // If using the older format, just a context is listed. We should go through
@@ -335,6 +335,7 @@ function views_content_views_content_type_edit_form($form, &$form_state) {
     '#title' => t('Use pager'),
     '#default_value' => $conf['use_pager'],
     '#id' => 'use-pager-checkbox',
+    '#process' => array('ctools_dependent_process'),
     '#dependency' => array('override-pager-checkbox' => array(1)),
   );
   $form['pager_settings']['pager_id'] = array(
@@ -343,6 +344,7 @@ function views_content_views_content_type_edit_form($form, &$form_state) {
     '#title' => t('Pager ID'),
     '#size' => 4,
     '#id' => 'use-pager-textfield',
+    '#process' => array('ctools_dependent_process'),
     '#dependency' => array('override-pager-checkbox' => array(1), 'use-pager-checkbox' => array(1)),
     '#dependency_count' => 2,
     '#suffix' => '</div>',
@@ -353,6 +355,7 @@ function views_content_views_content_type_edit_form($form, &$form_state) {
     '#default_value' => $conf['nodes_per_page'],
     '#size' => 4,
     '#title' => t('Num posts'),
+    '#process' => array('ctools_dependent_process'),
     '#dependency' => array('override-pager-checkbox' => array(1)),
   );
 
@@ -362,6 +365,7 @@ function views_content_views_content_type_edit_form($form, &$form_state) {
     '#title' => t('Offset'),
     '#size' => 4,
     '#description' => t('The number of items to skip and not display.'),
+    '#process' => array('ctools_dependent_process'),
     '#dependency' => array('override-pager-checkbox' => array(1)),
   );
 
@@ -412,8 +416,8 @@ function views_content_views_content_type_admin_title($subtype, $conf) {
     return t('Deleted/missing view @view', array('@view' => $view));
   }
 
-  $title = views_content_get_display_label($view, $view->current_display);
-  return t('View: @name', array('@name' => $view->get_human_name() . ': ' . $title));
+  $title = $view->display[$view->current_display]->display_title;
+  return t('View: @name', array('@name' => $view->name . '-' . $title));
 }
 
 /**
@@ -430,7 +434,7 @@ function views_content_views_content_type_admin_info($subtype, $conf, $contexts)
   $block->title = t('View information');
 
   $block->content = '<ul>';
-  $block->content .= '<li>' . t('Using display @display.', array('@display' => views_content_get_display_label($view, $display))) . '</li>';
+  $block->content .= '<li>' . t('Using display @display.', array('@display' => $view->display[$display]->display_title)) . '</li>';
 
   if (!empty($conf['context']) && $arguments = $view->display_handler->get_handlers('argument')) {
     $argument = reset($arguments);

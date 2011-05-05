@@ -37,17 +37,6 @@ class ctools_export_ui {
     return $title;
   }
 
-  /**
-   * Called by ctools_export_ui_load to load the item.
-   *
-   * This can be overridden for modules that want to be able to export
-   * items currently being edited, for example.
-   */
-  function load_item($item_name) {
-    $item = ctools_export_crud_load($this->plugin['schema'], $item_name);
-    return empty($item) ? FALSE : $item;
-  }
-
   // ------------------------------------------------------------------------
   // Menu item manipulation
 
@@ -337,7 +326,6 @@ class ctools_export_ui {
   function list_form_submit(&$form, &$form_state) {
     // Filter and re-sort the pages.
     $plugin = $this->plugin;
-    $schema = ctools_export_get_schema($this->plugin['schema']);
 
     $prefix = ctools_export_ui_plugin_base_path($plugin);
 
@@ -353,10 +341,10 @@ class ctools_export_ui {
       $allowed_operations = drupal_map_assoc(array_keys($plugin['allowed operations']));
       $not_allowed_operations = array('import');
 
-      if ($item->{$schema['export']['export type string']} == t('Normal')) {
+      if ($item->type == t('Normal')) {
         $not_allowed_operations[] = 'revert';
       }
-      elseif ($item->{$schema['export']['export type string']} == t('Overridden')) {
+      elseif ($item->type == t('Overridden')) {
         $not_allowed_operations[] = 'delete';
       }
       else {
@@ -418,8 +406,7 @@ class ctools_export_ui {
    *   TRUE if the item should be excluded.
    */
   function list_filter($form_state, $item) {
-    $schema = ctools_export_get_schema($this->plugin['schema']);
-    if ($form_state['values']['storage'] != 'all' && $form_state['values']['storage'] != $item->{$schema['export']['export type string']}) {
+    if ($form_state['values']['storage'] != 'all' && $form_state['values']['storage'] != $item->type) {
       return TRUE;
     }
 
@@ -508,9 +495,8 @@ class ctools_export_ui {
   function list_build_row($item, &$form_state, $operations) {
     // Set up sorting
     $name = $item->{$this->plugin['export']['key']};
-    $schema = ctools_export_get_schema($this->plugin['schema']);
 
-    // Note: $item->{$schema['export']['export type string']} should have already been set up by export.inc so
+    // Note: $item->type should have already been set up by export.inc so
     // we can use it safely.
     switch ($form_state['values']['order']) {
       case 'disabled':
@@ -523,7 +509,7 @@ class ctools_export_ui {
         $this->sorts[$name] = $name;
         break;
       case 'storage':
-        $this->sorts[$name] = $item->{$schema['export']['export type string']} . $name;
+        $this->sorts[$name] = $item->type . $name;
         break;
     }
 
@@ -535,11 +521,8 @@ class ctools_export_ui {
       $this->rows[$name]['data'][] = array('data' => check_plain($item->{$this->plugin['export']['admin_title']}), 'class' => array('ctools-export-ui-title'));
     }
     $this->rows[$name]['data'][] = array('data' => check_plain($name), 'class' => array('ctools-export-ui-name'));
-    $this->rows[$name]['data'][] = array('data' => check_plain($item->{$schema['export']['export type string']}), 'class' => array('ctools-export-ui-storage'));
-
-    $ops = theme('links__ctools_dropbutton', array('links' => $operations, 'attributes' => array('class' => array('links', 'inline'))));
-
-    $this->rows[$name]['data'][] = array('data' => $ops, 'class' => array('ctools-export-ui-operations'));
+    $this->rows[$name]['data'][] = array('data' => check_plain($item->type), 'class' => array('ctools-export-ui-storage'));
+    $this->rows[$name]['data'][] = array('data' => theme('links', array('links' => $operations)), 'class' => array('ctools-export-ui-operations'));
 
     // Add an automatic mouseover of the description if one exists.
     if (!empty($this->plugin['export']['admin_description'])) {
@@ -580,7 +563,6 @@ class ctools_export_ui {
       'header' => $this->list_table_header(),
       'rows' => $this->rows,
       'attributes' => array('id' => 'ctools-export-ui-list-items'),
-      'empty' => $this->plugin['strings']['message']['no items'],
     );
     return theme('table', $table);
   }
@@ -1135,7 +1117,7 @@ class ctools_export_ui {
    * as though the filter form had been executed.
    */
   function set_item_state($state, $js, $input, $item) {
-    ctools_export_crud_set_status($this->plugin['schema'], $item, $state);
+    ctools_export_set_object_status($item, $state);
 
     if (!$js) {
       drupal_goto(ctools_export_ui_plugin_base_path($this->plugin));

@@ -122,7 +122,7 @@ function page_manager_node_add($type) {
     'uid' => $user->uid,
     'name' => (isset($user->name) ? $user->name : ''),
     'type' => $type,
-    'language' => LANGUAGE_NONE,
+    'language' => '',
   );
 
   drupal_set_title(t('Create @name', array('@name' => $types[$type]->name)));

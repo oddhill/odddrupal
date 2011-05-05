@@ -21,10 +21,8 @@ $plugin = array(
   'convert list' => 'ctools_context_user_convert_list',
   'convert' => 'ctools_context_user_convert',
   'convert default' => 'name',
-
-  // This context is deprecated and should not be usable in the UI.
+  'js' => array('misc/autocomplete.js'),
   'no ui' => TRUE,
-  'no required context ui' => TRUE,
 );
 
 /**
@@ -32,7 +30,7 @@ $plugin = array(
  * are not always created from the UI.
  */
 function ctools_context_create_user($empty, $data = NULL, $conf = FALSE) {
-  $context = new ctools_context(array('entity:user', 'entity', 'user'));
+  $context = new ctools_context('user');
   $context->plugin = 'user';
 
   if ($empty) {
@@ -48,11 +46,6 @@ function ctools_context_create_user($empty, $data = NULL, $conf = FALSE) {
     else {
       $data = user_load($data['uid']);
     }
-  }
-  // Load entity if the data provided is a numeric value. This kind of data is
-  // passed by some relationships.
-  if (is_numeric($data)) {
-    $data = user_load($data);
   }
 
   if (!empty($data)) {
@@ -82,6 +75,7 @@ function ctools_context_user_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#maxlength' => 512,
     '#autocomplete_path' => 'user/autocomplete',
+    '#process' => array('ctools_dependent_process'),
     '#dependency' => array('radio:type' => array('select')),
   );
 
@@ -102,6 +96,7 @@ function ctools_context_user_settings_form($form, &$form_state) {
     '#default_value' => FALSE,
     '#title' => t('Reset identifier to username'),
     '#description' => t('If checked, the identifier will be reset to the user name of the selected user.'),
+    '#process' => array('ctools_dependent_process'),
     '#dependency' => array('radio:context[context_settings][type]' => array('select')),
   );
 

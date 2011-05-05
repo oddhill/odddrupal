@@ -11,10 +11,13 @@ $plugin = array(
   'icon' => 'icon_views_page.png',
   'description' => t('Display the view feed icon if there are no results.'),
   'required context' => new ctools_context_required(t('View'), 'view'),
+  'defaults' => array(
+    'which' => array(),
+  ),
 );
 
 /**
- * Render the views feed content type.
+ * Render the node_terms content type.
  */
 function views_content_views_feed_content_type_render($subtype, $conf, $panel_args, $context) {
   if (empty($context) || empty($context->data)) {
@@ -35,8 +38,6 @@ function views_content_views_feed_content_type_render($subtype, $conf, $panel_ar
 }
 
 function views_content_views_feed_content_type_edit_form($form, &$form_state) {
-  // This form does nothing; it exists to let the main form select the view context.
-  return $form;
 }
 
 function views_content_views_feed_content_type_edit_form_submit(&$form, &$form_state) {

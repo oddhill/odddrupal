@@ -15,7 +15,6 @@ $plugin = array(
   'description' => t('Creates the author of a node as a user context.'),
   'required context' => new ctools_context_required(t('Node'), 'node'),
   'context' => 'ctools_user_from_node_context',
-  'no ui' => TRUE,
 );
 
 /**

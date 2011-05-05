@@ -20,6 +20,7 @@ $plugin = array(
   'settings form' => 'ctools_term_settings_form',
   'placeholder form' => 'ctools_term_ctools_argument_placeholder',
   'breadcrumb' => 'ctools_term_breadcrumb',
+  'no ui' => TRUE,
 );
 
 /**
@@ -28,7 +29,7 @@ $plugin = array(
 function ctools_term_context($arg = NULL, $conf = NULL, $empty = FALSE) {
   // If unset it wants a generic, unfilled context.
   if ($empty) {
-    return ctools_context_create_empty('entity:taxonomy_term');
+    return ctools_context_create_empty('term');
   }
 
   switch ($conf['input_form']) {
@@ -67,7 +68,7 @@ function ctools_term_context($arg = NULL, $conf = NULL, $empty = FALSE) {
     return NULL;
   }
 
-  $context = ctools_context_create('entity:taxonomy_term', $term);
+  $context = ctools_context_create('term', $term);
   $context->original_argument = $arg;
   return $context;
 }
@@ -75,7 +76,7 @@ function ctools_term_context($arg = NULL, $conf = NULL, $empty = FALSE) {
 /**
  * Settings form for the argument
  */
-function ctools_term_settings_form(&$form, &$form_state, $conf) {
+function ctools_term_settings_form($form, &$form_state, $conf) {
   // @todo allow synonym use like Views does.
   $form['settings']['input_form'] = array(
     '#title' => t('Argument type'),
@@ -105,7 +106,7 @@ function ctools_term_settings_form(&$form, &$form_state, $conf) {
     '#default_value' => !empty($conf['breadcrumb']),
     '#description' => t('If checked, taxonomy term parents will appear in the breadcrumb trail.'),
   );
-//  return $form;
+  return $form;
 }
 
 /**
