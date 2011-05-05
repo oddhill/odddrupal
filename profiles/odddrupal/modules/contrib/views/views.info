@@ -82,6 +82,7 @@ files[] = modules/comment/views_handler_field_last_comment_timestamp.inc
 files[] = modules/comment/views_handler_filter_comment_user_uid.inc
 files[] = modules/comment/views_handler_filter_ncs_last_updated.inc
 files[] = modules/comment/views_handler_filter_node_comment.inc
+files[] = modules/comment/views_handler_filter_node_uid_revision.inc
 files[] = modules/comment/views_handler_sort_comment_thread.inc
 files[] = modules/comment/views_handler_sort_ncs_last_comment_name.inc
 files[] = modules/comment/views_handler_sort_ncs_last_updated.inc
@@ -104,6 +105,7 @@ files[] = modules/node/views_handler_argument_node_language.inc
 files[] = modules/node/views_handler_argument_node_nid.inc
 files[] = modules/node/views_handler_argument_node_type.inc
 files[] = modules/node/views_handler_argument_node_vid.inc
+files[] = modules/node/views_handler_argument_node_uid_revision.inc
 files[] = modules/node/views_handler_field_history_user_timestamp.inc
 files[] = modules/node/views_handler_field_node.inc
 files[] = modules/node/views_handler_field_node_link.inc
@@ -272,9 +274,9 @@ files[] = tests/views_cache.test
 files[] = tests/views_view.test
 files[] = tests/views_ui.test
 
-; Information added by drupal.org packaging script on 2011-03-28
-version = "7.x-3.0-beta3"
+; Information added by drupal.org packaging script on 2011-05-05
+version = "7.x-3.x-dev"
 core = "7.x"
 project = "views"
-datestamp = "1301301970"
+datestamp = "1304556096"
 
