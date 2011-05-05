@@ -6,15 +6,16 @@
  */
 
 /**
- * Implements hook_boot().
+ * Implements hook_init().
  *
  * Caches the list of MailSystemInteface classes, and removes classes
  * from the mail_system variable which are no longer available.
  *
  * @see mailsystem_get_classes()
  */
-function mailsystem_boot() {
+function mailsystem_init() {
   mailsystem_get_classes();
+  // @todo Remove this when issue #299138 gets resolved.
   if (!function_exists('mailsystem_html_to_text')) {
     module_load_include('inc','mailsystem','html_to_text');
   }
@@ -101,8 +102,10 @@ function mailsystem_get() {
 function mailsystem_default_methods() {
   $mail_system = mailsystem_get();
   $default_class = $mail_system[mailsystem_default_id()];
-  return array_fill_keys(
-    get_class_methods('MailSystemInterface'), $default_class
+  $methods = get_class_methods('MailSystemInterface');
+  return array_combine(
+    $methods,
+    array_fill(0, count($methods), $default_class)
   );
 }
 
@@ -250,7 +253,11 @@ function &mailsystem_get_classes() {
   if (!isset($mailsystem_classes)) {
     $mailsystem_classes = array();
     // @todo Is there a better way to find all mail-related classes?
-    $all_classes = array_fill_keys(get_declared_classes(), 0);
+    $declared_classes = get_declared_classes();
+    $all_classes = array_combine(
+      $declared_classes,
+      array_fill(0, count($declared_classes), 0)
+    );
     $mail_classes = db_select('registry', 'registry')
       ->distinct()
       ->fields('registry', array('name', 'filename'))
