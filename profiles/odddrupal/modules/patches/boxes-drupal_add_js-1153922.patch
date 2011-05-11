@@ -1,0 +1,19 @@
+diff --git boxes.module boxes.module
+index 7b39ff6..a676b4b 100644
+--- boxes.module
++++ boxes.module
+@@ -663,10 +663,10 @@ function boxes_add_js() {
+     return;
+   }
+   $added = TRUE;
+-  drupal_add_js('misc/jquery.form.js', array('group' => JS_LIBRARY));
+-  drupal_add_js('misc/form.js', array('group' => JS_LIBRARY));
+-  drupal_add_js('misc/progress.js', array('group' => JS_LIBRARY));
+-  drupal_add_js('misc/ajax.js', array('group' => JS_LIBRARY));
++  drupal_add_library('system', 'jquery.form', TRUE);
++  drupal_add_library('system', 'drupal.form', TRUE);
++  drupal_add_library('system', 'drupal.progress', TRUE);
++  drupal_add_library('system', 'drupal.ajax', TRUE);
+ 
+   drupal_add_js(drupal_get_path('module', 'boxes') . '/boxes.js');
+   drupal_add_css(drupal_get_path('module', 'boxes') . '/boxes.css');
