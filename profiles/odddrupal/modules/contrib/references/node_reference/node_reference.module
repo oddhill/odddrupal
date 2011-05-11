@@ -9,13 +9,11 @@
  * Implements hook_menu().
  */
 function node_reference_menu() {
-  $items = array();
-  $items['node_reference/autocomplete/%/%'] = array(
-    'title' => 'node_reference autocomplete',
+  $items['node_reference/autocomplete/%/%/%'] = array(
     'page callback' => 'node_reference_autocomplete',
-    'page arguments' => array(2, 3),
-    'access callback' => 'node_reference_autocomplete_access',
-    'access arguments' => array(2, 3),
+    'page arguments' => array(2, 3, 4),
+    'access callback' => 'reference_autocomplete_access',
+    'access arguments' => array(2, 3, 4),
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -157,8 +155,11 @@ function _node_reference_view_settings_validate($element, &$form_state, $form) {
     $display = '';
   }
 
-  // Explode the 'args' string into an actual array.
-  $args = array_map('trim', explode(',', $element['args']['#value']));
+  // Explode the 'args' string into an actual array. Beware, explode() turns an
+  // empty string into an array with one empty string array. We'll need an empty
+  // array instead.
+  $args_string = trim($element['args']['#value']);
+  $args = ($args_string === '') ? array() : array_map('trim', explode(',', $args_string));
 
   $value = array('view_name' => $view, 'display_name' => $display, 'args' => $args);
   form_set_value($element, $value, $form_state);
@@ -535,7 +536,7 @@ function node_reference_field_widget_form(&$form, &$form_state, $field, $instanc
       $element += array(
         '#type' => 'textfield',
         '#default_value' => isset($items[$delta]['nid']) ? $items[$delta]['nid'] : NULL,
-        '#autocomplete_path' => $instance['widget']['settings']['autocomplete_path'] . '/' . $instance['entity_type'] . '/' . $field['field_name'],
+        '#autocomplete_path' => $instance['widget']['settings']['autocomplete_path'] . '/' . $instance['entity_type'] . '/' . $instance['bundle'] . '/' . $field['field_name'],
         '#size' => $instance['widget']['settings']['size'],
         '#maxlength' => 255,
         '#element_validate' => array('node_reference_autocomplete_validate'),
@@ -798,25 +799,15 @@ function _node_reference_potential_references_standard($field, $options) {
 }
 
 /**
- * Menu access callback for the autocomplete path.
- *
- * Check for both 'edit' and 'view' access in the unlikely event
- * a user has edit but not view access.
- */
-function node_reference_autocomplete_access($entity_type, $field_name) {
-  return user_access('access content') && ($field = field_info_field($field_name)) && field_access('view', $field, $entity_type) && field_access('edit', $field, $entity_type);
-}
-
-/**
  * Menu callback for the autocomplete results.
  */
-function node_reference_autocomplete($entity_type, $field_name, $string = '') {
+function node_reference_autocomplete($entity_type, $bundle, $field_name, $string = '') {
   $field = field_info_field($field_name);
+  $instance = field_info_instance($entity_type, $field_name, $bundle);
 
   $options = array(
     'string' => $string,
-    // @todo broken - this is in $field['widget']['settings']['autocomplete_match'] - we'd need the $instance.
-    'match' => isset($field['widget']['autocomplete_match']) ? $field['widget']['autocomplete_match'] : 'contains',
+    'match' => $instance['widget']['settings']['autocomplete_match'],
     'limit' => 10,
   );
   $references = _node_reference_potential_references($field, $options);

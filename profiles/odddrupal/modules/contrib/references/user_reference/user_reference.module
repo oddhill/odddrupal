@@ -9,12 +9,12 @@
  * Implements hook_menu().
  */
 function user_reference_menu() {
-  $items = array();
-  $items['user_reference/autocomplete'] = array(
-    'title' => 'user_reference autocomplete',
+  $items['user_reference/autocomplete/%/%/%'] = array(
     'page callback' => 'user_reference_autocomplete',
-    'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK
+    'page arguments' => array(2, 3, 4),
+    'access callback' => 'reference_autocomplete_access',
+    'access arguments' => array(2, 3, 4),
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
@@ -163,8 +163,11 @@ function _user_reference_view_settings_validate($element, &$form_state, $form) {
     $display = '';
   }
 
-  // Explode the 'args' string into an actual array.
-  $args = array_map('trim', explode(',', $element['args']['#value']));
+  // Explode the 'args' string into an actual array. Beware, explode() turns an
+  // empty string into an array with one empty string array. We'll need an empty
+  // array instead.
+  $args_string = trim($element['args']['#value']);
+  $args = ($args_string === '') ? array() : array_map('trim', explode(',', $args_string));
 
   $value = array('view_name' => $view, 'display_name' => $display, 'args' => $args);
   form_set_value($element, $value, $form_state);
@@ -379,7 +382,7 @@ function user_reference_field_widget_form(&$form, &$form_state, $field, $instanc
       $element += array(
         '#type' => 'textfield',
         '#default_value' => isset($items[$delta]['uid']) ? $items[$delta]['uid'] : NULL,
-        '#autocomplete_path' => $instance['widget']['settings']['autocomplete_path'] . '/' . $field['field_name'],
+        '#autocomplete_path' => $instance['widget']['settings']['autocomplete_path'] . '/' . $instance['entity_type'] . '/' . $instance['bundle'] . '/' . $field['field_name'],
         '#size' => $instance['widget']['settings']['size'],
         '#element_validate' => array('user_reference_autocomplete_validate'),
         '#value_callback' => 'user_reference_autocomplete_value',
@@ -644,13 +647,13 @@ function _user_reference_potential_references_standard($field, $options) {
 /**
  * Menu callback; Retrieve a pipe delimited string of autocomplete suggestions for existing users
  */
-function user_reference_autocomplete($field_name, $string = '') {
+function user_reference_autocomplete($entity_type, $bundle, $field_name, $string = '') {
   $field = field_info_field($field_name);
+  $instance = field_info_instance($entity_type, $field_name, $bundle);
 
   $options = array(
     'string' => $string,
-    // @todo broken - this is in $field['widget']['settings']['autocomplete_match'] - we'd need the $instance.
-    'match' => isset($field['widget']['autocomplete_match']) ? $field['widget']['autocomplete_match'] : 'contains',
+    'match' => $instance['widget']['settings']['autocomplete_match'],
     'limit' => 10,
   );
   $references = _user_reference_potential_references($field, $options);

@@ -6,6 +6,20 @@
  */
 
 /**
+ * Menu access callback for reference autocomplete paths.
+ *
+ * Check for both 'edit' and 'view' access in the unlikely event
+ * a user has edit but not view access.
+ */
+function reference_autocomplete_access($entity_type, $bundle, $field_name, $entity = NULL, $account = NULL) {
+  return user_access('access content', $account)
+      && ($field = field_info_field($field_name))
+      && field_info_instance($entity_type, $field_name, $bundle)
+      && field_access('view', $field, $entity_type, $entity, $account)
+      && field_access('edit', $field, $entity_type, $entity, $account);
+}
+
+/**
  * Implements hook_views_api().
  */
 function references_views_api() {
