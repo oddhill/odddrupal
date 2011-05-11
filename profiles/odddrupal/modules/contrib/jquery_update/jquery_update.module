@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Updates Drupal to use the latest versions of jQuery and jQuery UI.
+ * Updates Drupal to use the latest version of jQuery.
  */
 
 /**
@@ -48,9 +48,9 @@ function jquery_update_library() {
 }
 
 /**
- * Implements hook_library_alter().
+ * Implementation of hook_js_alter().
  */
-function jquery_update_library_alter(&$libraries, $module) {
+function jquery_update_library_alter(&$javascript, $module) {
 
   // We are updating just the system module. For all other cases we return.
   if ($module != 'system') {
@@ -64,26 +64,26 @@ function jquery_update_library_alter(&$libraries, $module) {
   $cdn = variable_get('jquery_update_jquery_cdn', 'none');
 
   // Replace jQuery.
-  jquery_update_jquery_replace($libraries, $cdn, $path, $min); 
-  $libraries['jquery']['version'] = '1.5.2';
+  jquery_update_jquery_replace($javascript, $cdn, $path, $min); 
+  $javascript['jquery']['version'] = '1.5.1';
 
   // Replace jQuery UI with CDN or local files. If from a CDN include all of jQuery UI.
-  jquery_update_jqueryui_replace($libraries, $cdn, $path, $min);
+  jquery_update_jqueryui_replace($javascript, $cdn, $path, $min);
 
   // Replace the jQuery Cookie plugin.
-  $libraries['jquery.cookie']['js']['misc/jquery.cookie.js']['data'] = $path . '/replace/ui/external/jquery.cookie.js';
+  $javascript['cookie']['js']['misc/jquery.cookie.js']['data'] = $path . '/replace/ui/external/jquery.cookie.js';
   // Noting the version based on git commit as no version number is available.
-  $libraries['jquery.cookie']['version'] = '67fb34f6a866c40d0570';
+  $javascript['cookie']['version'] = '67fb34f6a866c40d0570';
 
   // Replace jQuery Form plugin.
-  $libraries['jquery.form']['js']['misc/jquery.form.js']['data'] = $path . '/replace/misc/jquery.form.js';
-  $libraries['jquery.form']['version'] = '2.67';
+  $javascript['jquery.form']['js']['misc/jquery.form.js']['data'] = $path . '/replace/misc/jquery.form' . $min . '.js';
+  $javascript['jquery.form']['version'] = '2.69';
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implementation of hook_form_FORM_ID_alter().
  */
-function jquery_update_form_system_performance_settings_alter(&$form, &$form_state, $form_id) {
+function jquery_update_form_system_performance_settings_alter(&$form, &$form_state) {
   $form['bandwidth_optimization']['jquery_update_compression_type'] = array(
     '#type' => 'radios',
     '#title' => t('jQuery compression level'),
@@ -109,7 +109,7 @@ function jquery_update_form_system_performance_settings_alter(&$form, &$form_sta
 /**
  * Update jQuery to the CDN or local path.
  *
- * @param array $libraries
+ * @param array $javascript
  *   The library definition array as seen in hook_library_alter().
  * @param string $cdn
  *   The name of the CDN option to use. Possible options are:
@@ -117,20 +117,20 @@ function jquery_update_form_system_performance_settings_alter(&$form, &$form_sta
  *   - google
  *   - microsoft
  */
-function jquery_update_jquery_replace(&$libraries, $cdn, $path, $min) {
+function jquery_update_jquery_replace(&$javascript, $cdn, $path, $min) {
   switch($cdn) {
     case 'google':
-      $libraries['jquery']['js']['misc/jquery.js']['data'] = 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery' . $min . '.js';
-      $libraries['jquery']['js']['misc/jquery.js']['type'] = 'external';
-      jquery_update_jquery_backup($libraries, $path, $min);
+      $javascript['jquery']['js']['misc/jquery.js']['data'] = 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery' . $min . '.js';
+      $javascript['jquery']['js']['misc/jquery.js']['type'] = 'external';
+      jquery_update_jquery_backup($javascript, $path, $min);
       break;
     case 'microsoft':
-      $libraries['jquery']['js']['misc/jquery.js']['data'] = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2' . $min . '.js';
-      $libraries['jquery']['js']['misc/jquery.js']['type'] = 'external';
-      jquery_update_jquery_backup($libraries, $path, $min);
+      $javascript['jquery']['js']['misc/jquery.js']['data'] = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1' . $min . '.js';
+      $javascript['jquery']['js']['misc/jquery.js']['type'] = 'external';
+      jquery_update_jquery_backup($javascript, $path, $min);
       break;
     case 'none':
-      $libraries['jquery']['js']['misc/jquery.js']['data'] = $path . '/replace/jquery/jquery' . $min . '.js';
+      $javascript['jquery']['js']['misc/jquery.js']['data'] = $path . '/replace/jquery/jquery' . $min . '.js';
       break;
   }
 }
@@ -138,15 +138,15 @@ function jquery_update_jquery_replace(&$libraries, $cdn, $path, $min) {
 /**
  * Add the local fallback in case jQuery from the CDN is unavailable.
  *
- * @param array $libraries
+ * @param array $javascript
  *   The $libraries array as seen in hook_library_alter()
  * @param string $path
  *   The path to the module where replacements can be found.
  * @param string $min
  *   The '.min' to include in the file name if we are requesting a minified version.
  */
-function jquery_update_jquery_backup(&$libraries, $path, $min) {
-  $libraries['jquery']['js'][] = array(
+function jquery_update_jquery_backup(&$javascript, $path, $min) {
+  $javascript['jquery']['js'][] = array(
     'data' => 'window.jQuery || document.write("<script src=\'' . base_path() . $path . '/replace/jquery/jquery' . $min . '.js\'>\x3C/script>")',
     'type' => 'inline',
     'group' => JS_LIBRARY,
@@ -157,7 +157,7 @@ function jquery_update_jquery_backup(&$libraries, $path, $min) {
 /**
  * Update jQuery UI to the CDN or local path.
  *
- * @param array $libraries
+ * @param array $javascript
  *   The library definition array as seen in hook_library_alter().
  * @param string $cdn
  *   The name of the CDN option to use. Possible options are:
@@ -165,7 +165,7 @@ function jquery_update_jquery_backup(&$libraries, $path, $min) {
  *   - google
  *   - microsoft
  */
-function jquery_update_jqueryui_replace(&$libraries, $cdn, $path, $min) {
+function jquery_update_jqueryui_replace(&$javascript, $cdn, $path, $min) {
   // Replace all CSS files.
   $names = drupal_map_assoc(array(
     'ui.accordion', 'ui.autocomplete', 'ui.button', 'ui.datepicker',
@@ -175,10 +175,10 @@ function jquery_update_jqueryui_replace(&$libraries, $cdn, $path, $min) {
   $names['ui'] = 'ui.core';
   $csspath = $path . '/replace/ui/themes/base/' . (($min == '.min') ? 'minified/' : '');
   foreach ($names as $name => $file) {
-    $libraries[$name]['css']["misc/ui/jquery.$file.css"]['data'] = $csspath . 'jquery.' . $file . $min . '.css';
+    $javascript[$name]['css']["misc/ui/jquery.$file.css"]['data'] = $csspath . 'jquery.' . $file . $min . '.css';
   }
   // Make sure ui.theme is replaced as well.
-  $libraries['ui']['css']['misc/ui/jquery.ui.theme.css']['data'] = $csspath . 'jquery.ui.theme' . $min . '.css';
+  $javascript['ui']['css']['misc/ui/jquery.ui.theme.css']['data'] = $csspath . 'jquery.ui.theme' . $min . '.css';
 
   // Replace jQuery UI's JavaScript, beginning by defining the mapping.
   $names = drupal_map_assoc(array(
@@ -196,16 +196,16 @@ function jquery_update_jqueryui_replace(&$libraries, $cdn, $path, $min) {
   switch($cdn) {
     case 'google':
       $cdn = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui' . $min . '.js';
-      jquery_update_jqueryui_cdn($cdn, $libraries, $path, $min, $names);
-      jquery_update_jqueryui_backup($libraries, $path, $min);
+      jquery_update_jqueryui_cdn($cdn, $javascript, $path, $min, $names);
+      jquery_update_jqueryui_backup($javascript, $path, $min);
       break;
     case 'microsoft':
       $cdn = 'http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.11/jquery-ui' . $min . '.js';
-      jquery_update_jqueryui_cdn($cdn, $libraries, $path, $min, $names);
-      jquery_update_jqueryui_backup($libraries, $path, $min);
+      jquery_update_jqueryui_cdn($cdn, $javascript, $path, $min, $names);
+      jquery_update_jqueryui_backup($javascript, $path, $min);
       break;
     case 'none':
-      jquery_update_jqueryui_local($libraries, $path, $min, $names);
+      jquery_update_jqueryui_local($javascript, $path, $min, $names);
       break;
   }
 }
@@ -213,16 +213,16 @@ function jquery_update_jqueryui_replace(&$libraries, $cdn, $path, $min) {
 /**
  * Add the local fallback in case jQuery UI from the CDN is unavailable.
  *
- * @param array $libraries
+ * @param array $javascript
  *   The $libraries array as seen in hook_library_alter()
  * @param string $path
  *   The path to the module where replacements can be found.
  * @param string $min
  *   The '.min' to include in the file name if we are requesting a minified version.
  */
-function jquery_update_jqueryui_backup(&$libraries, $path, $min) {
+function jquery_update_jqueryui_backup(&$javascript, $path, $min) {
   $js_path = ($min == '.min') ? '/replace/ui/ui/minified/jquery-ui.min.js' : '/replace/ui/ui/jquery-ui.js';
-  $libraries['ui']['js'][] = array(
+  $javascript['ui']['js'][] = array(
     'data' => 'window.jQuery.ui || document.write("<script src=\'' . base_path() . $path . $js_path . '\'>\x3C/script>")',
     'type' => 'inline',
     'group' => JS_LIBRARY,
@@ -233,7 +233,7 @@ function jquery_update_jqueryui_backup(&$libraries, $path, $min) {
 /**
  * Handle when jQuery UI is updated to the cdn version.
  *
- * @param array $libraries
+ * @param array $javascript
  *   The $libraries array as seen in hook_library_alter()
  * @param string $path
  *   The path to the module where replacements can be found.
@@ -242,19 +242,19 @@ function jquery_update_jqueryui_backup(&$libraries, $path, $min) {
  * @param array $names
  *   An array mapping jquery ui parts to their file names.
  */
-function jquery_update_jqueryui_cdn($cdn, &$libraries, $path, $min, $names) {
+function jquery_update_jqueryui_cdn($cdn, &$javascript, $path, $min, $names) {
 
   // Construct the jQuery UI path and replace the JavaScript.
   $jspath = $path . '/replace/ui/ui/' . ($min == '.min' ? 'minified/' : '');
   foreach ($names as $name => $file) {
     $corefile = 'misc/ui/jquery.' . $file . '.min.js';
     // Remove the core files.
-    unset($libraries[$name]['js'][$corefile]);
-    $libraries[$name]['version'] = '1.8.11';
+    unset($javascript[$name]['js'][$corefile]);
+    $javascript[$name]['version'] = '1.8.11';
   }
 
   // UI is used by all of UI. Add the js cdn here.
-  $libraries['ui']['js'][$cdn] = array(
+  $javascript['ui']['js'][$cdn] = array(
     'data' => $cdn,
     'type' => 'external',
     'group' => JS_LIBRARY,
@@ -265,7 +265,7 @@ function jquery_update_jqueryui_cdn($cdn, &$libraries, $path, $min, $names) {
 /**
  * Handle when jQuery UI is updated to the local version.
  *
- * @param array $libraries
+ * @param array $javascript
  *   The $libraries array as seen in hook_library_alter()
  * @param string $path
  *   The path to the module where replacements can be found.
@@ -274,13 +274,13 @@ function jquery_update_jqueryui_cdn($cdn, &$libraries, $path, $min, $names) {
  * @param array $names
  *   An array mapping jquery ui parts to their file names.
  */
-function jquery_update_jqueryui_local(&$libraries, $path, $min, $names) {
+function jquery_update_jqueryui_local(&$javascript, $path, $min, $names) {
 
   // Construct the jQuery UI path and replace the JavaScript.
   $jspath = $path . '/replace/ui/ui/' . ($min == '.min' ? 'minified/' : '');
   foreach ($names as $name => $file) {
     $corefile = 'misc/ui/jquery.' . $file . '.min.js';
-    $libraries[$name]['js'][$corefile]['data'] = $jspath . 'jquery.' . $file . $min . '.js';
-    $libraries[$name]['version'] = '1.8.11';
+    $javascript[$name]['js'][$corefile]['data'] = $jspath . 'jquery.' . $file . $min . '.js';
+    $javascript[$name]['version'] = '1.8.11';
   }
 }
