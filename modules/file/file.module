@@ -145,7 +145,7 @@ function file_file_download($uri, $field_type = 'file') {
 
   // If there are no references, stop processing, to avoid returning headers
   // for files controlled by other modules.
-  if (empty($references)) {
+  if (empty($references) && $file->status == FILE_STATUS_PERMANENT) {
     return;
   }
 
