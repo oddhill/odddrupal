@@ -17,8 +17,32 @@
  *
  * Provides additional properties for module ThemeKey:
  * - system:host
+ * - system:query_param
+ * - system:query_string
+ * - system:cookie
+ * - system:server_ip
+ * - system:server_port
+ * - system:server_name
+ * - system:https
+ * - system:remote_ip
+ * - system:referer
+ * - system:user_agent
+ * - system:user_browser
+ * - system:user_browser_simplified
+ * - system:user_os
+ * - system:user_os_simplified
+ * - system:date_time
+ * - system:date
+ * - system:time
+ * - system:day_of_week
+ * - system:dummy
+ * - system:session
+ * - system:random
  * - drupal:path
  * - drupal:path:wildcard
+ * - drupal:get_q
+ * - drupal:base_path
+ * - drupal:is_front_page
  *
  * @return
  *   array of themekey properties and mapping functions
@@ -45,6 +69,11 @@ function themekey_system_themekey_properties() {
 
   $attributes['system:cookie'] = array(
     'description' => t("System: Cookie - Every single cookie and its value if present will be formatted like 'COOKIE_NAME=COOKIE_VALUE'"),
+    'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
+  );
+
+  $attributes['system:post'] = array(
+    'description' => t("System: POST - Every single POST value formatted like 'POST_VARIABLE_NAME=POST_VARIABLE_VALUE'. Example: form_id=node_form"),
     'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
   );
 
@@ -229,6 +258,9 @@ foo
                   'dst'       => 'system:cookie',
                   'callback'  => 'themekey_dummy2cookie');
   $maps[] = array('src'       => 'system:dummy',
+                  'dst'       => 'system:post',
+                  'callback'  => 'themekey_dummy2post');
+  $maps[] = array('src'       => 'system:dummy',
                   'dst'       => 'system:query_string',
                   'callback'  => 'themekey_dummy2query_string');
   $maps[] = array('src'       => 'system:dummy',
@@ -338,6 +370,30 @@ function themekey_dummy2cookie($dummy) {
     $filtered_cookies[] = $key . (!empty($value) ? '=' . $value : '');
   }
   return count($filtered_cookies) ? array_unique($filtered_cookies) : NULL;
+}
+
+
+/**
+ * ThemeKey mapping function to set a
+ * ThemeKey property's value (destination)
+ * with the aid of another ThemeKey property (source).
+ *
+ * src: system:dummy
+ * dst: system:post
+ *
+ * @param $dummy
+ *   string containing current value of ThemeKey property system:dummy
+ *
+ * @return
+ *   array of system:post values
+ *   or NULL if no value could be mapped
+ */
+function themekey_dummy2post($dummy) {
+  $filtered_post = array();
+  foreach ($_POST as $key => $value) {
+    $filtered_post[] = $key . (!empty($value) ? '=' . $value : '');
+  }
+  return count($filtered_post) ? array_unique($filtered_post) : NULL;
 }
 
 

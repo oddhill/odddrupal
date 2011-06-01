@@ -1,3 +1,16 @@
+ThemeKey 7.x-1.0, 2011-05-23
+----------------------------
+[        ] mkalkbrenner: fixed some debug informations
+[        ] mkalkbrenner: fixed php notice when saving rule chain with disabled elements
+[        ] mkalkbrenner: enabled theme switching on block configuration and disabled it on block demos
+[        ] mkalkbrenner: introduced additional arguments for mapping callback functions
+[        ] mkalkbrenner: introduced experimental module ThemeKey Compatibility
+[        ] mkalkbrenner: integrated Print module's paths to detect node ids
+[#1142402] mkalkbrenner: new property for POST variables: system:post
+[#1165324] TommyChris: use constant for watchdog error level
+[#1159326] mkalkbrenner: drupal:path does not respect operator
+[        ] mkalkbrenner: use full module names in ThemeKey Compatibility admin section
+
 
 ThemeKey 7.x-1.0-rc2, 2011-04-15
 --------------------------------

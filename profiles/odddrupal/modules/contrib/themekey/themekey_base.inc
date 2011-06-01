@@ -327,7 +327,13 @@ function themekey_match_condition($condition, &$parameters) {
     }
 
     if ('drupal:path' == $condition->property) {
-      return themekey_match_path($condition, $parameters);
+      $match_path = themekey_match_path($condition, $parameters);
+      if ($condition->operator == '=') {
+        return $match_path;
+      }
+      // only '=' and '!' are allowed
+      // @see themekey_validator_drupal_path()
+      return !$match_path;
     }
 
     $value = themekey_property_value($parameters, $condition->property);
@@ -439,12 +445,14 @@ function themekey_property_value(&$parameters, $property) {
             isset($map['path']) ? $map['path'] : '');
         }
 
+        $arguments = isset($map['args']) ? $map['args'] : array();
+
         if (function_exists($map_func)) {
-          $parameters[$property] = $map_func($parameters[$map['src']], $parameters);
+          $parameters[$property] = $map_func($parameters[$map['src']], $arguments);
         }
         else {
           themekey_set_debug_message('Map function %map_function does not exists', array('%map_function' => $map_func));
-          watchdog('php', 'ThemeKey map function %map_function does not exists', array('%map_function' => $map_func), 'error');
+          watchdog('php', 'ThemeKey map function %map_function does not exists', array('%map_function' => $map_func), WATCHDOG_ERROR);
         }
         break;
       }

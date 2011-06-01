@@ -174,7 +174,7 @@ function themekey_rule_chain_form($form, &$form_state) {
 
     $form['old_items'][$item['id']]['enabled'] = array(
       '#type' => 'checkbox',
-      '#default_value' => $item['enabled'],
+      '#default_value' => isset($item['enabled']) ? $item['enabled'] : FALSE,
     );
 
     $form['old_items'][$item['id']]['weight'] = array(
@@ -712,7 +712,7 @@ function theme_themekey_rule_chain_form($variables) {
  * Detects if there's an active administration theme and displays a warning
  */
 function themekey_admin_theme_warning() {
-  if (variable_get('admin_theme', '0')) {
+  if (!in_array('system', variable_get('themekey_compat_modules_enabled', array())) && variable_get('admin_theme', '0')) {
     drupal_set_message(filter_xss(t('%admin_theme is configured as administration theme at !link. This setting is more powerful than a corresponding ThemeKey rule.',
       array('%admin_theme' => variable_get('admin_theme', '0'), '!link' => l(t('!path', array('!path' => 'admin/appearance')), 'admin/appearance')))), 'warning');
     if (variable_get('node_admin_theme', '0')) {

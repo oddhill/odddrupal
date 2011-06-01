@@ -99,14 +99,18 @@ function themekey_debug_theme() {
  */
 function themekey_debug_init() {
   if (variable_get('themekey_debug_trace_rule_switching', FALSE)) {
-    if (path_is_admin($_GET['q']) && variable_get('admin_theme', '0')) {
+    if (!in_array('system', variable_get('themekey_compat_modules_enabled', array())) && path_is_admin($_GET['q']) && variable_get('admin_theme', '0')) {
       themekey_set_debug_message('"%admin_theme" is configured as administration theme at !link. This setting is more powerful than a corresponding ThemeKey rule.',
         array('%admin_theme' => variable_get('admin_theme', '0'), '!link' => l(t('!path', array('!path' => 'admin/appearance')), 'admin/appearance')), TRUE, TRUE);
     }
 
     $custom_theme_called = &drupal_static('themekey_custom_theme_called', FALSE);
+
     if (!$custom_theme_called) {
-      themekey_set_debug_message('Skipped rule checking because another module already initialized the theme engine. Theme has been set to "%theme".<br />This seems to be a bug. Visit !link and help us improving other modules.', array('%theme' => $theme, '!link' => l('drupal.org/node/754970', 'http://drupal.org/node/754970')), TRUE, TRUE);
+      themekey_set_debug_message("Consider to activate the module ThemeKey Compatibility to integrate a different theme switching module into ThemeKey's theme switching rule chain",
+        array(), TRUE, TRUE);
+      themekey_set_debug_message('Skipped rule checking because another module already initialized the theme engine.',
+        array(), TRUE, TRUE);
     }
     else {
       global $theme;

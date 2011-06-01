@@ -73,9 +73,10 @@ HOOK_themekey_properties()
     Value:  array()
             - src       => Source property path (required)
             - dst       => Destination property path (required)
-            - callback  => Mapping callback (required)
+            - callback  => Mapping callback function (required)
             - file      => File that provides the callback function (optional)
             - path      => Alternative path relative to dupal's doc root to load the file (optional)
+            - args      => array of additional arguments to be passed to the callback function (optional)
 
 HOOK_themekey_global()
   Global properties

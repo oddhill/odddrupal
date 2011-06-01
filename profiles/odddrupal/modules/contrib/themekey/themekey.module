@@ -115,17 +115,17 @@ function themekey_custom_theme() {
     define('THEMEKEY_PAGECACHE_TIMEBASED', 2);
   }
 
-  $custom_theme_called = &drupal_static('themekey_custom_theme_called', FALSE);
-  $custom_theme_called = TRUE;
-
   $custom_theme = &drupal_static('themekey_custom_theme', '');
 
   // don't change theme when ...
-  if (!(variable_get('admin_theme', '0') && path_is_admin($_GET['q'])) // ... admin area and admin theme set
-    && strpos($_GET['q'], 'admin/structure/block') !== 0 // ... administer blocks
+  if ((in_array('system', variable_get('themekey_compat_modules_enabled', array())) || !(variable_get('admin_theme', '0') && path_is_admin($_GET['q']))) // ... admin area and admin theme set
+    && strpos($_GET['q'], 'admin/structure/block/demo') !== 0 // ... blocks demo
     && strpos($_SERVER['SCRIPT_FILENAME'], 'cron.php') === FALSE // ... during cron run executed by cron.php
     && strpos($_SERVER['SCRIPT_FILENAME'], 'drush.php') === FALSE // ... during cron run executed by drush
     ) {
+
+    $custom_theme_called = &drupal_static('themekey_custom_theme_called', FALSE);
+    $custom_theme_called = TRUE;
 
     if (!$custom_theme) {
       require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'themekey') . '/themekey_base.inc';
@@ -170,8 +170,8 @@ function themekey_custom_theme() {
     }
   }
   elseif (variable_get('themekey_debug_trace_rule_switching', FALSE)) {
-    if (strpos($_GET['q'], 'admin/structure/block') !== 0) {
-      themekey_set_debug_message('Rule checking disabled on block configuration.');
+    if (strpos($_GET['q'], 'admin/structure/block/demo') === 0) {
+      themekey_set_debug_message('Rule checking disabled on block demo.');
     }
   }
 

@@ -28,6 +28,7 @@
  *
  * Provides additional properties for the ThemeKey module:
  *   themekey_ui:node_triggers_theme
+ *   themekey_ui:node_author_triggers_theme
  *
  * @return
  *   array of themekey properties

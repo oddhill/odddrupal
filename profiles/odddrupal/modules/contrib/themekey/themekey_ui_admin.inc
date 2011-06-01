@@ -105,8 +105,7 @@ function themekey_ui_settings_form() {
 function themekey_ui_settings_form_submit($form, &$form_state) {
   //
   foreach ($form_state['values'] as $key => $value) {
-    $pos = strpos($key, 'themekey_ui_');
-    if ($pos !== FALSE && $pos == 0) {
+    if (0 === strpos($key, 'themekey_ui_')) {
       variable_set($key, $value);
     }
   }
