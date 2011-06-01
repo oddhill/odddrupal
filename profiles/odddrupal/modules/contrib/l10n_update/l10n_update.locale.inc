@@ -1,5 +1,4 @@
 <?php
-// $Id: l10n_update.locale.inc,v 1.2.2.4.2.1 2010/12/09 11:24:40 goba Exp $
 
 /**
  * @file

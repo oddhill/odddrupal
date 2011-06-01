@@ -1,4 +1,3 @@
-// $Id: README.txt,v 1.1.2.2.2.1 2011/01/10 20:59:26 goba Exp $
 
 Localization Update
 -------------------

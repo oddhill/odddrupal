@@ -1,5 +1,4 @@
 <?php
-// $Id: l10n_update.check.inc,v 1.3.2.7.2.4 2011/02/02 16:38:17 goba Exp $
 
 /**
  * @file
@@ -284,8 +283,8 @@ function l10n_update_source_check_file($source, $directory = 'translations') {
   if ($files = drupal_system_listing($filename, $directory, 'name', 0)) {
     $file = current($files);
     $source->type = 'localfile';
-    $source->uri = $file->filename;
-    $source->timestamp = filemtime($file->filename);
+    $source->uri = $file->uri;
+    $source->timestamp = filemtime($file->uri);
     return $file;
   }
 }

@@ -1,5 +1,4 @@
 <?php
-// $Id: l10n_update.parser.inc,v 1.4.2.2.2.1 2010/12/08 17:26:37 goba Exp $
 
 /**
  * @file

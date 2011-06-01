@@ -1,5 +1,4 @@
 <?php
-// $Id: l10n_update.batch.inc,v 1.6.2.3.2.1 2010/12/09 11:24:40 goba Exp $
 
 /**
  * @file

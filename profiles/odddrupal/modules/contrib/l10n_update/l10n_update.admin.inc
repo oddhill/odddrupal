@@ -1,5 +1,4 @@
 <?php
-// $Id: l10n_update.admin.inc,v 1.10.2.6.2.4 2010/12/09 11:24:40 goba Exp $
 
 /**
  * @file
@@ -202,7 +201,10 @@ function l10n_update_admin_settings_form($form, &$form_state) {
 function l10n_update_admin_settings_form_validate($form, &$form_state) {
   $form_values = $form_state['values'];
   if (!empty($form_values['l10n_update_download_store'])) {
-    file_prepare_directory($form_values['l10n_update_download_store'], FILE_CREATE_DIRECTORY, 'l10n_update_download_store');
+    if (!file_prepare_directory($form_values['l10n_update_download_store'], FILE_CREATE_DIRECTORY, 'l10n_update_download_store')) {
+      form_set_error('l10n_update_download_store', t('The directory %directory does not exist or is not writable.', array('%directory' => $form_values['l10n_update_download_store'])));
+      watchdog('file system', 'The directory %directory does not exist or is not writable.', array('%directory' => $form_values['l10n_update_download_store']), WATCHDOG_ERROR);
+    }
   }
 }
 
