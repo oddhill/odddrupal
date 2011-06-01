@@ -4,10 +4,11 @@ description = "Provides a user interface for per-module and site-wide mail_syste
 php = 5.0
 core = 7.x
 configure = admin/config/system/mailsystem
+dependencies[] = filter
 
-; Information added by drupal.org packaging script on 2011-05-04
-version = "7.x-2.10"
+; Information added by drupal.org packaging script on 2011-05-31
+version = "7.x-2.18"
 core = "7.x"
 project = "mailsystem"
-datestamp = "1304525217"
+datestamp = "1306870616"
 
