@@ -156,8 +156,8 @@ function _node_reference_view_settings_validate($element, &$form_state, $form) {
   }
 
   // Explode the 'args' string into an actual array. Beware, explode() turns an
-  // empty string into an array with one empty string array. We'll need an empty
-  // array instead.
+  // empty string into an array with one empty string. We'll need an empty array
+  // instead.
   $args_string = trim($element['args']['#value']);
   $args = ($args_string === '') ? array() : array_map('trim', explode(',', $args_string));
 
@@ -195,7 +195,7 @@ function node_reference_field_validate($entity_type, $entity, $field, $instance,
     $options = array(
       'ids' => $ids,
     );
-    $refs = _node_reference_potential_references($field, $options);
+    $refs = node_reference_potential_references($field, $options);
     foreach ($items as $delta => $item) {
       if (is_array($item)) {
         if (!empty($item['nid']) && !isset($refs[$item['nid']])) {
@@ -609,7 +609,7 @@ function node_reference_autocomplete_validate($element, &$form_state, $form) {
         'match' => 'equals',
         'limit' => 1,
       );
-      $references = _node_reference_potential_references($field, $options);
+      $references = node_reference_potential_references($field, $options);
       if ($references) {
         // @todo The best thing would be to present the user with an
         // additional form, allowing the user to choose between valid
@@ -649,7 +649,7 @@ function node_reference_field_widget_error($element, $error, $form, &$form_state
  *   An array of referenceable node titles, keyed by node id.
  */
 function _node_reference_options($field) {
-  $references = _node_reference_potential_references($field);
+  $references = node_reference_potential_references($field);
 
   $options = array();
   foreach ($references as $key => $value) {
@@ -693,7 +693,7 @@ function _node_reference_options($field) {
  *     ...
  *   )
  */
-function _node_reference_potential_references($field, $options = array()) {
+function node_reference_potential_references($field, $options = array()) {
   // Fill in default options.
   $options += array(
     'string' => '',
@@ -726,7 +726,7 @@ function _node_reference_potential_references($field, $options = array()) {
 }
 
 /**
- * Helper function for _node_reference_potential_references().
+ * Helper function for node_reference_potential_references().
  *
  * Case of Views-defined referenceable nodes.
  */
@@ -737,7 +737,7 @@ function _node_reference_potential_references_views($field, $options) {
 }
 
 /**
- * Helper function for _node_reference_potential_references().
+ * Helper function for node_reference_potential_references().
  *
  * List of referenceable nodes defined by content types.
  */
@@ -810,7 +810,7 @@ function node_reference_autocomplete($entity_type, $bundle, $field_name, $string
     'match' => $instance['widget']['settings']['autocomplete_match'],
     'limit' => 10,
   );
-  $references = _node_reference_potential_references($field, $options);
+  $references = node_reference_potential_references($field, $options);
 
   $matches = array();
   foreach ($references as $id => $row) {

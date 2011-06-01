@@ -110,15 +110,15 @@ function references_get_views_options($entity_type) {
  * @param $options
  *   Array of options to limit the scope of the returned list. This parameter
  *   is similar to the $options parameter for
- *   _node_reference_potential_references(). An additional key is required:
+ *   node_reference_potential_references(). An additional key is required:
  *   - title_field: the name of the column holding entities 'titles' within the
  *     entity base table.
  *
  * @return
  *   An array of entities, in the format expected by
- *   _node_reference_potential_references().
+ *   node_reference_potential_references().
  *
- * @see _node_reference_potential_references()
+ * @see node_reference_potential_references()
  * @see _node_reference_potential_references_views()
  */
 function references_potential_references_view($entity_type, $view_name, $display_name, $args, $options) {
