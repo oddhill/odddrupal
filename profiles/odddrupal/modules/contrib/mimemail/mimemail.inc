@@ -303,11 +303,11 @@ function _mimemail_expand_links($matches) {
  */
 function mimemail_html_body($body, $subject, $plain = FALSE, $plaintext = NULL, $attachments = array()) {
   if (empty($plaintext)) {
-    // todo: remove this preg_replace once filter_xss() is properly handling
-    // direct descendant css selectors '>' in inline CSS. For now this cleans
-    // up our plain text part. See mimemail #364198, drupal #370903
-    $plaintext = preg_replace('|<style.*?</style>|mis', '', $body);
-    $plaintext = drupal_html_to_text($plaintext);
+    // @todo Remove once filter_xss() can handle direct descendant selectors in inline CSS.
+    // @see http://drupal.org/node/1116930 and http://drupal.org/node/370903
+    // Pull out the message body.
+    preg_match('|<body.*?</body>|mis', $body, $matches);
+    $plaintext = drupal_html_to_text($matches[0]);
   }
   if ($plain) {
     // Plain mail without attachment.
