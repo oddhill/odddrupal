@@ -26,6 +26,12 @@ function epsacrop_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'vid' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
     ),
     'primary key' => array('fid'),
   );
@@ -35,24 +41,38 @@ function epsacrop_schema() {
 function epsacrop_requirements($phase) {
   $requirements = array();
   $t = get_t();
-  $jcrop_version = 0;
   if ($phase == 'install') {
     // The epsacrop_jcrop_get_version() function is in the .module file, which isn't
     // loaded yet.
     include_once dirname(__FILE__) .'/epsacrop.module';
   }
-  $requirements['epsacrop']['title'] = $t('EPSA Crop');
-  if ($version = epsacrop_jcrop_get_version() && file_exists(dirname(__FILE__) .'/js/json2.js')) {
+  $requirements['epsacrop_jcrop']['title'] = $t('EPSA Crop : Jcrop');
+  $requirements['epsacrop_json2']['title'] = $t('EPSA Crop : json2.js');
+  if ($version = epsacrop_jcrop_get_version() || _epsacrop_is_json2_exists()) {
     $version = epsacrop_jcrop_get_version();
     // Everything looks good; display the current Jcrop version.
-    $requirements['epsacrop']['value'] = 'Jcrop version : '. $version .' and JSON file (json2.js) OK';
-    $requirements['epsacrop']['severity'] = REQUIREMENT_OK;
+    if ($version) {
+      $requirements['epsacrop_jcrop']['value'] = 'Jcrop version : '. $version;
+      $requirements['epsacrop_jcrop']['severity'] = REQUIREMENT_OK;
+    }
+    
+    if (_epsacrop_is_json2_exists()) {
+      $requirements['epsacrop_json2']['value'] = 'JSON file (json2.js) OK';
+      $requirements['epsacrop_json2']['severity'] = REQUIREMENT_OK;
+    }
   }
   else {
-    // Required library wasn't found. Abort installation.
-    $requirements['epsacrop']['value'] = $t('Not found');
-    $requirements['epsacrop']['description'] = $t('The <a href="@jcrop">Jcrop</a> plugin is missing. <a href="@download">Download</a> and extract it in your <em>epsacrop</em> module directory. Or <a href="@json2">json2.js</a> is missing, you can download it <a href="@downjson2">here</a> and put it in your <em>epsacrop/js</a> directory', array('@jcrop' => 'http://deepliquid.com/content/Jcrop.html', '@download' => 'http://code.google.com/p/jcrop/downloads/detail?name=jquery.Jcrop-0.9.8.zip&can=2', '@json2' => 'http://www.json.org/js.html', '@downjson2' => 'https://github.com/douglascrockford/JSON-js'));
-    $requirements['epsacrop']['severity'] = REQUIREMENT_ERROR;
+    // Required libraies wasn't found. Abort installation.
+    if (!epsacrop_jcrop_get_version()) {
+      $requirements['epsacrop_jcrop']['value'] = $t('Not found');
+      $requirements['epsacrop_jcrop']['description'] = $t('The <a href="@jcrop">Jcrop</a> plugin is missing. <a href="@download">Download</a> and extract it in your <em>sites/all/libraries</em> directory.', array('@jcrop' => 'http://deepliquid.com/content/Jcrop.html', '@download' => 'http://code.google.com/p/jcrop/downloads/detail?name=jquery.Jcrop-0.9.8.zip&can=2'));
+      $requirements['epsacrop_jcrop']['severity'] = REQUIREMENT_ERROR;
+    }
+    if (!_epsacrop_is_json2_exists()) {
+      $requirements['epsacrop_json2']['value'] = $t('Not found');
+      $requirements['epsacrop_json2']['description'] = $t("The <a href='@json2'>json2.js</a> file is missing, you can download it <a href='@downjson2'>here</a> and put it in your <em>sites/all/libraries</em> directory. Don't forget rename the downloaded folder into json2. At the end, you should have something like this sites/all/libraries/json2", array('@json2' => 'http://www.json.org/js.html', '@downjson2' => 'https://github.com/douglascrockford/JSON-js'));
+      $requirements['epsacrop_json2']['severity'] = REQUIREMENT_ERROR;
+    }
   }
   return $requirements;
 }

@@ -16,17 +16,20 @@ EPSACrop depends on these modules
  - jQuery UI (dialog)
 
 And need to install these external libraries
- - JCrop (http://deepliquid.com/content/Jcrop.html) in epsacrop root directory (ex: sites/all/modules/epsacrop)
- - json2.js (http://www.json.org/json2.js) in epsacrop/js directory (ex: sites/all/modules/epsacrop/js)
+JCrop (http://deepliquid.com/content/Jcrop.html)
+   If the Libraries module is installed, you may install the files into your libraries folder (ex.: sites/all/libraries). Otherwise, place them into the epsacrop module folder (ex.: sites/all/modules/epsacrop).
 
-For json2.js you can minified, but conserve the same name (json2.js)
+json2 (https://github.com/douglascrockford/JSON-js)
+  Rename the downloaded folder into json2 and place it into either libraries (only if the module Libraries is enabled) folder (ex.: sites/all/libraries), or the epsacrop folder (ex.: sites/all/modules/epsacrop/json2). 
+  You may use the minified version, but be sure to conserve the file name (json2.js).
 
 -- INSTALLATION --
 
 1. Extract epsacrop on your module directory (ex. sites/all/modules)
-2. Download JCrop librarie and install this on epsacrop directory (ex. sites/all/modules/epsacrop) or sites/all/libraries
-  2.1 You would get, for example, sites/all/modules/epsacrop/Jcrop
-3. Download json2.js and copy file in epsacrop/js directory
+2. Download the JCrop library and install it into either the libraries folder (ex.: sites/all/libraries), or the epsacrop module folder (ex.: sites/all/modules/epsacrop)
+  2.1 You would get, for example, sites/all/libraries/Jcrop or sites/all/modules/epsacrop/Jcrop
+3. Download the json2 library and install it into either the libraries folder (ex.: sites/all/libraries), or the epsacrop module folder (ex.: sites/all/modules/epsacrop)
+  3.1 You would get, for example, sites/all/libraries/json2 or sites/all/modules/epsacrop/json2
 4. Go to admin/build/modules and enable EPSA Crop
 
 -- CONFIGURATION --

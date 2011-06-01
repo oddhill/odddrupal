@@ -1,14 +1,14 @@
 name = Epsa Crop
 description = Allow an user to choose coordinates for different presets on an image.
-version = 6.x-0.1-beta2
+version = 6.x-1.2
 core = 6.x
 dependencies[] = jquery_ui
 dependencies[] = imagefield
 dependencies[] = imagecache
 
-; Information added by drupal.org packaging script on 2011-02-25
-version = "6.x-1.x-dev"
+; Information added by drupal.org packaging script on 2011-05-17
+version = "6.x-1.2"
 core = "6.x"
 project = "epsacrop"
-datestamp = "1298619199"
+datestamp = "1305628615"
 

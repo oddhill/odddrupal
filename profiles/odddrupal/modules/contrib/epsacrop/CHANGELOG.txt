@@ -1,3 +1,12 @@
+EPSA Crop 6.x-1.2, 2011-04-18
+-----------------------------
+by yvmarques: Delete jQuery UI theme from EPSACrop folder.
+Issue #910398 by dboulet: Document Libraries Module support
+Issue #910382 by dboulet: Fixed Text in dialog is not translatable
+Issue #910520 by dboulet: Fixed Javascript code cleanup
+Issue #921674, by kvantomme: writing px in settings
+Issue #1100808 by pkej: Separate the install requirements information
+Issue #1109360 by SkidNCrashwell: em tag not closed on message when the module cannot find the required libraries on install
 
 EPSA Crop 6.x-1.1, 2011-01-08
 -----------------------------
