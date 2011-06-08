@@ -1,19 +1,19 @@
-                                 [1]Mail System
+[1]Mail System
 
    Provides an Administrative UI and Developers API for safely updating
    the [2]mail_system configuration variable.
 
-Administrative UI
+  Administrative UI
 
    The administrative interface is at admin/config/system/mailsystem. A
    [3]screenshot is available.
 
-Used by;
+  Used by;
 
      * [4]HTML Mail
      * [5]Postmark
 
-Developers API
+  Developers API
 
    A module example with a [6]MailSystemInterface implementation called
    ExampleMailSystem should add the following in its example.install file:
@@ -77,7 +77,7 @@ function example_disable() {
 }
 
 
-  (New in 2.x branch)
+    (New in 2.x branch)
 
    To change the site-wide defaults to use the FooMailSystem for
    formatting messages and the BarMailSystem for sending them:
@@ -103,7 +103,7 @@ mailsystem_set(
 );
 
 
-References
+  References
 
    [7]drupal_mail_system() API documentation:
           [8]api.drupal.org/api/drupal/includes--mail.inc/function/drupal_

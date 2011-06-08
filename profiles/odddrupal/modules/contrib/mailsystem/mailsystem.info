@@ -1,14 +1,14 @@
 package = Mail
 name = Mail System
-description = "Provides a user interface for per-module and site-wide mail_system selection."
+description = Provides a user interface for per-module and site-wide mail_system selection.
 php = 5.0
 core = 7.x
 configure = admin/config/system/mailsystem
 dependencies[] = filter
 
-; Information added by drupal.org packaging script on 2011-05-31
-version = "7.x-2.18"
+; Information added by drupal.org packaging script on 2011-06-06
+version = "7.x-2.25"
 core = "7.x"
 project = "mailsystem"
-datestamp = "1306870616"
+datestamp = "1307375518"
 

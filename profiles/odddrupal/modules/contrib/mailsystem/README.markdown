@@ -1,20 +1,20 @@
-# [Mail System](http://drupal.org/project/mailsystem)
+## [Mail System](http://drupal.org/project/mailsystem)
 
 Provides an Administrative UI and Developers API for safely updating the
 [mail_system](http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7)
 configuration variable.
 
-## Administrative UI
+### Administrative UI
 
 The administrative interface is at <u>admin/config/system/mailsystem</u>.
 A [screenshot](http://drupal.org/node/1134044) is available.
 
-## Used by;
+### Used by;
 
 * [HTML Mail](http://drupal.org/project/htmlmail)
 * [Postmark](http://drupal.org/project/postmark)
 
-## Developers API
+### Developers API
 
 A module `example` with a
 [`MailSystemInterface`](http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7)
@@ -82,7 +82,7 @@ of `examail`, then the `example.install` code should look like this:
       mailsystem_clear(array('example_examail' =\> ''));
     }
  
-### *(New in 2.x branch)*
+#### *(New in 2.x branch)*
 
 To change the site-wide defaults to use the `FooMailSystem` for formatting messages and the `BarMailSystem` for sending them:
 
@@ -106,7 +106,7 @@ To change the site-wide defaults to use the `FooMailSystem` for sending messages
     );
 
 
-## References
+### References
 
 **[drupal_mail_system() API documentation](http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7)**:
 :    [api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7](http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7)
