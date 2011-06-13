@@ -17,6 +17,13 @@
  * hook_entity_info(). That way modules are able to override your defaults
  * by altering the hook_entity_info() callbacks, while $entity->label() and
  * $entity->uri() reflect this changes as well.
+ *
+ * Defaults for entity properties can be easily defined by adding class
+ * properties, e.g.:
+ * @code
+ *   public $name = '';
+ *   public $count = 0;
+ * @endcode
  */
 class Entity {
 
@@ -98,7 +105,7 @@ class Entity {
     if (isset($this->entityInfo['label callback']) && $this->entityInfo['label callback'] == 'entity_class_label') {
       return $this->defaultLabel();
     }
-    return entity_label($entity_type, $entity);
+    return entity_label($this->entityType, $this);
   }
 
   /**
