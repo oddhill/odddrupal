@@ -6,13 +6,14 @@ configuration variable.
 
 ### Administrative UI
 
-The administrative interface is at <u>admin/config/system/mailsystem</u>.
+The administrative interface is at [`admin/config/system/mailsystem`]().
 A [screenshot](http://drupal.org/node/1134044) is available.
 
 ### Used by;
 
 * [HTML Mail](http://drupal.org/project/htmlmail)
-* [Postmark](http://drupal.org/project/postmark)
+* [Mime Mail 7.x-1.x-dev](http://drupal.org/project/mimemail)
+* [Postmark 7.x-1.x](http://drupal.org/project/postmark)
 
 ### Developers API
 

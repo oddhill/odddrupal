@@ -515,7 +515,7 @@ function _mailsystem_html_to_text_table(DOMNode $node, $allowed_tags = NULL, arr
         continue 2;
       }
       $current = $current->parentNode;
-    } while (!$current->isSameNode($node));
+    } while ($current && !$current->isSameNode($node));
     break;
   }
   // Merge the thead, tbody, and tfoot sections together.

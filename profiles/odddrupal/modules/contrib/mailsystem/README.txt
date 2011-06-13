@@ -5,17 +5,18 @@
 
   Administrative UI
 
-   The administrative interface is at admin/config/system/mailsystem. A
-   [3]screenshot is available.
+   The administrative interface is at [3]admin/config/system/mailsystem. A
+   [4]screenshot is available.
 
   Used by;
 
-     * [4]HTML Mail
-     * [5]Postmark
+     * [5]HTML Mail
+     * [6]Mime Mail 7.x-1.x-dev
+     * [7]Postmark 7.x-1.x
 
   Developers API
 
-   A module example with a [6]MailSystemInterface implementation called
+   A module example with a [8]MailSystemInterface implementation called
    ExampleMailSystem should add the following in its example.install file:
 /**
  * Implements hook_enable().
@@ -105,28 +106,30 @@ mailsystem_set(
 
   References
 
-   [7]drupal_mail_system() API documentation:
-          [8]api.drupal.org/api/drupal/includes--mail.inc/function/drupal_
-          mail_system/7
+   [9]drupal_mail_system() API documentation:
+          [10]api.drupal.org/api/drupal/includes--mail.inc/function/drupal
+          _mail_system/7
 
-   [9]MailSystemInterface API documentation:
-          [10]api.drupal.org/api/drupal/includes--mail.inc/interface/MailS
+   [11]MailSystemInterface API documentation:
+          [12]api.drupal.org/api/drupal/includes--mail.inc/interface/MailS
           ystemInterface/7
 
-   [11]Creating HTML formatted mails in Drupal 7
-          [12]drupal.org/node/900794
+   [13]Creating HTML formatted mails in Drupal 7
+          [14]drupal.org/node/900794
 
 References
 
    1. http://drupal.org/project/mailsystem
    2. http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7
-   3. http://drupal.org/node/1134044
-   4. http://drupal.org/project/htmlmail
-   5. http://drupal.org/project/postmark
-   6. http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7
-   7. http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7
-   8. http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7
-   9. http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7
-  10. http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7
-  11. http://drupal.org/node/900794
-  12. http://drupal.org/node/900794
+   3. file://localhost/home/bobvin/www/d7/sites/all/modules/mailsystem/README.html
+   4. http://drupal.org/node/1134044
+   5. http://drupal.org/project/htmlmail
+   6. http://drupal.org/project/mimemail
+   7. http://drupal.org/project/postmark
+   8. http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7
+   9. http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7
+  10. http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7
+  11. http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7
+  12. http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7
+  13. http://drupal.org/node/900794
+  14. http://drupal.org/node/900794
