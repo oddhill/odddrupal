@@ -263,7 +263,6 @@ function mimemail_prepare_message($message) {
 
   $plain = $plain || variable_get('mimemail_textonly', 0);
   $from = mimemail_address($from);
-  $subject = mime_header_encode($subject);
   $mail = mimemail_html_body($body, $subject, $plain, $plaintext, $attachments);
   $headers = array_merge($message['headers'], $headers, $mail['headers']);
 

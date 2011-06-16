@@ -413,13 +413,13 @@ function mimemail_parse($message) {
     $mail['text'] = drupal_html_to_text($mail['text']);
   }
   elseif (isset($mail['text']) && !isset($mail['html'])) {
-    $mail['html'] = check_markup($mail['text'], variable_get('mimemail_format'));
+    $mail['html'] = check_markup($mail['text'], variable_get('mimemail_format', filter_fallback_format()));
   }
 
   // Last ditch attempt - use the body as-is
   if (!isset($mail['text'])) {
     $mail['text'] = mimemail_parse_content($mail);
-    $mail['html'] = check_markup($mail['text'], variable_get('mimemail_format'));
+    $mail['html'] = check_markup($mail['text'], variable_get('mimemail_format', filter_fallback_format()));
   }
 
   return $mail;

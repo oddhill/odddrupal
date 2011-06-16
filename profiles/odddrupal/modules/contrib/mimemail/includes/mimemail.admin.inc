@@ -67,7 +67,7 @@ function mimemail_admin_settings() {
     '#type' => 'select',
     '#title' => t('E-mail format'),
     '#options' => $format_options,
-    '#default_value' => variable_get('mimemail_format'),
+    '#default_value' => variable_get('mimemail_format', filter_fallback_format()),
     '#access' => count($formats) > 1,
     '#attributes' => array('class' => array('filter-list')),
   );

@@ -25,7 +25,7 @@ class MimeMailSystem implements MailSystemInterface {
     }
 
     if (preg_match('/plain/', $message['headers']['Content-Type'])) {
-      $message['body'] = check_markup($message['body'], variable_get('mimemail_format'));
+      $message['body'] = check_markup($message['body'], variable_get('mimemail_format', filter_fallback_format()));
     }
 
     $engine = variable_get('mimemail_engine', 'mimemail');
