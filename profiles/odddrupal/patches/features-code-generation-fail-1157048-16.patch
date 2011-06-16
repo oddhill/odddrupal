@@ -1,0 +1,13 @@
+diff --git a/includes/features.ctools.inc b/includes/features.ctools.inc
+index 164f02c..a0b6ef1 100644
+--- a/includes/features.ctools.inc
++++ b/includes/features.ctools.inc
+@@ -77,7 +77,7 @@ function ctools_features_export_render($module, $data) {
+     if ($info = _ctools_features_get_info($component)) {
+ 
+       $code[] = '  if ($module == "'. $info['module'] .'" && $api == "'. $info['api'] .'") {';
+-      $code[] = '    return array("version" => '. $info['current_version'] .');';
++      $code[] = '    return array("version" => "'. $info['current_version'] .'");';
+       $code[] = '  }';
+     }
+ 
