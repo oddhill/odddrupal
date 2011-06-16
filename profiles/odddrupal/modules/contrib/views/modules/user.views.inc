@@ -28,18 +28,14 @@ function user_views_data() {
     'access query tag' => 'user_access',
   );
 
-  $data['users']['table']['join'] = array(
+  $data['users']['table']['default_relationship'] = array(
     'node' => array(
-      'left_field' => 'uid',
+      'table' => 'node',
       'field' => 'uid',
-      'type' => 'INNER', // all nodes have an author.
     ),
-    // This goes to the node so that we have consistent authorship.
-    'node_revisions' => array(
-      'left_table' => 'node',
-      'left_field' => 'uid',
+    'node_revision' => array(
+      'table' => 'node_revision',
       'field' => 'uid',
-      'type' => 'INNER', // all nodes have an author.
     ),
   );
 
@@ -232,7 +228,7 @@ function user_views_data() {
       'field' => 'timestamp',
       'handler' => 'views_handler_argument_node_created_week',
     ),
-  );  
+  );
 
   // access field
   $data['users']['access'] = array(
@@ -339,7 +335,7 @@ function user_views_data() {
       'left_field' => 'uid',
       'field' => 'uid',
     ),
-    'node_revisions' => array(
+    'node_revision' => array(
       'left_table' => 'node',
       'left_field' => 'uid',
       'field' => 'uid',
@@ -387,7 +383,7 @@ function user_views_data() {
       'left_field' => 'rid',
       'field' => 'rid',
     ),
-    'node_revisions' => array(
+    'node_revision' => array(
       'left_table' => 'users_roles',
       'left_field' => 'rid',
       'field' => 'rid',
