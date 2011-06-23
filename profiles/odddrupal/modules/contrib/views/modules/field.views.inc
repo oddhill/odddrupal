@@ -80,7 +80,7 @@ function field_views_field_label($field_name) {
     }
   }
   if (empty($label_counter)) {
-    return $field_name;
+    return array($field_name, $all_labels);
   }
   // Sort the field lables by it most used label and return the most used one.
   arsort($label_counter);
@@ -217,7 +217,7 @@ function field_views_field_default_views_data($field) {
           $also_known[] = t('@group: @field', array('@group' => $groups[$entity_name], '@field' => $label_name));
         }
         else {
-          if ($group_name != $groups[$entity_name] && $label != $label_name) {
+          if ($group_name != $groups[$entity_name] && $label != $label_name && isset($revision_tables[$entity_name])) {
             $aliases[] = array(
               'base' => $revision_tables[$entity_name],
               'group' => t('@group (historical data)', array('@group' => $groups[$entity_name])),

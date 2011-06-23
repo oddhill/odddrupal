@@ -167,6 +167,7 @@ function views_theme($existing, $type, $theme, $path) {
  * @see drupal_find_theme_templates
  */
 function _views_find_module_templates($cache, $path) {
+  $templates = array();
   $regex = '/' . '\.tpl\.php' . '$' . '/';
 
   // Because drupal_system_listing works the way it does, we check for real
@@ -468,6 +469,11 @@ function views_page_alter(&$page) {
   // next to the page title.
   $view = views_get_page_view();
   if (!empty($view)) {
+    // If a module is still putting in the display like we used to, catch that.
+    if (is_subclass_of($view, 'views_plugin_display')) {
+      $view = $view->view;
+    }
+
     views_add_contextual_links($page, 'page', $view, $view->current_display);
   }
 }
