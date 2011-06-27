@@ -1,3 +1,11 @@
+ThemeKey 7.x-1.1, 2011-06-27
+----------------------------
+[        ] mkalkbrenner: fixed debug messages in themekey_compat
+[        ] mkalkbrenner: fixed javascript tooltip exchange on property change
+[        ] mkalkbrenner: Call to undefined function themekey_update_static_rule()
+[#1199750] mkalkbrenner: rename css files
+
+
 ThemeKey 7.x-1.0, 2011-05-23
 ----------------------------
 [        ] mkalkbrenner: fixed some debug informations
@@ -46,7 +54,7 @@ ThemeKey 7.x-1.0-beta2, 2011-02-01
 [        ] mkalkbrenner: fixed fatal error when disabling module ThemeKey UI
 [        ] mkalkbrenner: fixed coding style
 [#1046214] mkalkbrenner: Selection of theme for user - Replacement for D6 Core feature that has been removed in D7 Core
- 
+
 
 ThemeKey 7.x-1.0-beta1, 2011-01-31
 ----------------------------------
@@ -82,9 +90,9 @@ ThemeKey 7.x-1.0-alpha1, 2010-10-17
 [       ] carstenmueller: upgraded themekey_ui.install to Drupal 7
 [       ] carstenmueller: added files[] in themekey.info for upgreading to Drupal 7
 [       ] carstenmueller: improved themekey_ui_update_6200()
-[       ] carstenmueller: fixed db_fetch_array() calls in updates in themekey.install 
+[       ] carstenmueller: fixed db_fetch_array() calls in updates in themekey.install
 [       ] mkalkbrenner: adjusted database code turned condition into object in themekey_match_rule_childs and themekey_match_condition
-[       ] carstenmueller: fixed db_fetch_array() calls in updates in themekey_ui_helper.ui 
+[       ] carstenmueller: fixed db_fetch_array() calls in updates in themekey_ui_helper.ui
 [       ] cspitzlay: moved examples and validators over from the themekey_properties module (which will be merged into themekey)
 [       ] carstenmueller: fixed db_fetch_array() calls
 [       ] mkalkbrenner: adjusted database code in themekey_load_rules and turned parameter into object in themekey_complete_path
@@ -333,8 +341,8 @@ ThemeKey 6.x-2.0-alpha2, 2009-11-25
 ThemeKey 6.x-2.0-alpha1, 2009-11-24
 -----------------------------------
 [       ] mkalkbrenner: API: hook_themekey_properties(): removed attributes 'multiple' and 'weight'
-[       ] mkalkbrenner: API: removed themekey custom path concept. Themekey custom paths became properties using drupal:path 
-[       ] mkalkbrenner: API: removed requirement to turn properties on or off 
+[       ] mkalkbrenner: API: removed themekey custom path concept. Themekey custom paths became properties using drupal:path
+[       ] mkalkbrenner: API: removed requirement to turn properties on or off
 [#625176] mkalkbrenner: Let admin adjust path and property weight
 [#591200] mkalkbrenner: Performance: Some property callbacks get called multiple times
 [#639808] mkalkbrenner: Conditions always return TRUE if property is NULL
@@ -377,7 +385,7 @@ ThemeKey 6.x-1.2-beta3, 2009-11-05
 
 ThemeKey 6.x-1.2-beta2, 2009-10-30
 ----------------------------------
-[#616946] mkalkbrenner: Temporally deactivated Taxonomy Menu custom path support because code is outdated since a long time 
+[#616946] mkalkbrenner: Temporally deactivated Taxonomy Menu custom path support because code is outdated since a long time
 [#617990] FVANtom, mkalkbrenner: Themekey disables themes after configuration
 [#442188] kratib, mkalkbrenner: Supporting regex
 [#615720] mkalkbrenner: Condition operators don't work on properties based on array values

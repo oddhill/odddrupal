@@ -701,8 +701,8 @@ function theme_themekey_rule_chain_form($variables) {
 
   $output .= drupal_render_children($form);
 
-  drupal_add_css(drupal_get_path('module', 'themekey') . '/themekey_properties.css');
-  drupal_add_js(drupal_get_path('module', 'themekey') . '/themekey_properties.js');
+  drupal_add_css(drupal_get_path('module', 'themekey') . '/themekey_rule_chain.admin.css');
+  drupal_add_js(drupal_get_path('module', 'themekey') . '/themekey_rule_chain.admin.js');
 
   return $output;
 }

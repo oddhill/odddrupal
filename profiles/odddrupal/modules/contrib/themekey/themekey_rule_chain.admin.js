@@ -54,7 +54,7 @@
         if (0 < ThemeKey.oldParentId) {
           ThemeKey.adjustChildCounter(ThemeKey.oldParentId, -1);
         }
-        
+
         if (0 < newParentId) {
           var parentEnabledElement = $('.themekey-property-enabled', $('#themekey-properties-row-' + newParentId));
           if (parentEnabledElement.attr('checked')) {
@@ -106,15 +106,20 @@
           else {
             wildcardElement.css('display', 'none');
           }
-          
+
           var propertyName = $(this).val().replace(':', '-').replace(':', '-').replace('_', '-').replace('_', '-');
-          
+
           var pageCacheIconElement = $('#' + $(this).attr('id').replace('property', 'page-cache-icon'));
           pageCacheIconElement.empty();
           pageCacheIconElement.append($('#themekey-page-cache-' + propertyName).html());
-          
+
           var valueHelpElement = $('#' + $(this).attr('id').replace('property', 'value-help'));
-          valueHelpElement.attr('title', $('#themekey-value-help-' + propertyName).html());
+          var helpText = $('#themekey-value-help-' + propertyName).html();
+          valueHelpElement.attr('title', helpText);
+          while (helpText.match("'")) {
+            helpText = helpText.replace("'", '"');
+          }
+          valueHelpElement.attr('onClick', "alert('" + helpText + "')");
         }
       );
 

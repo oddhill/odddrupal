@@ -88,8 +88,9 @@ function themekey_compat_dummy2theme($dummy, $args) {
 
     if ($custom_theme &&
       (!in_array($args['module'], variable_get('themekey_compat_modules_enabled', array())) || variable_get('theme_default', 'bartik') != $custom_theme)) {
-
-      themekey_set_debug_message('Theme set to %theme by module %module.', array('%theme' => $custom_theme, '%module' => $args['module']));
+      if (variable_get('themekey_debug_trace_rule_switching', FALSE)) {
+        themekey_set_debug_message('Theme set to %theme by module %module.', array('%theme' => $custom_theme, '%module' => $args['module']));
+      }
       return 'static';
     }
   }
@@ -102,6 +103,8 @@ function themekey_compat_dummy2theme($dummy, $args) {
  * Implements hook_modules_disabled().
  */
 function themekey_compat_modules_disabled($modules) {
+  require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'themekey') . '/themekey_build.inc';
+
   variable_set('themekey_compat_modules_enabled',
     array_diff(variable_get('themekey_compat_modules_enabled', array()), $modules));
 
