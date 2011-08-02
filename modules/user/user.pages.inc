@@ -72,9 +72,11 @@ function user_pass_validate($form, &$form_state) {
 }
 
 function user_pass_submit($form, &$form_state) {
+  global $language;
+
   $account = $form_state['values']['account'];
   // Mail one time login URL and instructions using current language.
-  _user_mail_notify('password_reset', $account);
+  _user_mail_notify('password_reset', $account, $language);
   watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
   drupal_set_message(t('Further instructions have been sent to your e-mail address.'));
 
