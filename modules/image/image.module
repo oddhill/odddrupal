@@ -812,6 +812,36 @@ function image_style_create_derivative($style, $source, $destination) {
 }
 
 /**
+ * Determines the dimensions of the styled image.
+ *
+ * Applies all image effects defined in $style['effects'] to $dimensions.
+ *
+ * @param $style
+ *   An image style array.
+ * @param $dimensions
+ *   Dimensions to be modified - an array with components width and height, in
+ *   pixels.
+ *
+ * @see image_style_load()
+ */
+function image_style_transform_dimensions(array $style, array &$dimensions) {
+  module_load_include('inc', 'image', 'image.effects');
+
+  foreach ($style['effects'] as $effect) {
+    if (isset($effect['dimensions passthrough'])) {
+      continue;
+    }
+
+    if (isset($effect['dimensions callback'])) {
+      $effect['dimensions callback']($dimensions, $effect['data']);
+    }
+    else {
+      unset($dimensions['width'], $dimensions['height']);
+    }
+  }
+}
+
+/**
  * Flush cached media for a style.
  *
  * @param $style
@@ -1145,6 +1175,11 @@ function image_effect_apply($image, $effect) {
  * @ingroup themeable
  */
 function theme_image_style($variables) {
+  // Determine the dimensions of the styled image.
+  $style = image_style_load($variables['style_name']);
+  image_style_transform_dimensions($style, $variables);
+
+  // Determine the url for the styled image.
   $variables['path'] = image_style_url($variables['style_name'], $variables['path']);
   return theme('image', $variables);
 }

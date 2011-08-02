@@ -1,0 +1,944 @@
+ includes/image.inc                           |   77 +++++++---
+ modules/image/image.api.php                  |    8 +-
+ modules/image/image.effects.inc              |   79 +++++++++-
+ modules/image/image.field.inc                |   52 ++++++-
+ modules/image/image.install                  |  132 +++++++++++++++
+ modules/image/image.module                   |   35 ++++
+ modules/image/image.test                     |  228 ++++++++++++++++++++++++++
+ modules/image/tests/image_module_test.module |   28 +++
+ 8 files changed, 614 insertions(+), 25 deletions(-)
+
+diff --git a/includes/image.inc b/includes/image.inc
+index b04943b..8dc36b9 100644
+--- a/includes/image.inc
++++ b/includes/image.inc
+@@ -160,7 +160,7 @@ function image_get_info($filepath, $toolkit = FALSE) {
+  *   The target height, in pixels.
+  *
+  * @return
+- *   TRUE or FALSE, based on success.
++ *   TRUE on success, FALSE on failure.
+  *
+  * @see image_load()
+  * @see image_resize()
+@@ -178,12 +178,13 @@ function image_scale_and_crop(stdClass $image, $width, $height) {
+ }
+ 
+ /**
+- * Scales an image to the given width and height while maintaining aspect ratio.
++ * Scales image dimensions while maintaining aspect ratio.
+  *
+- * The resulting image can be smaller for one or both target dimensions.
++ * The resulting dimensions can be smaller for one or both target dimensions.
+  *
+- * @param $image
+- *   An image object returned by image_load().
++ * @param $dimensions
++ *   Dimensions to be modified - an array with components width and height, in
++ *   pixels.
+  * @param $width
+  *   The target width, in pixels. This value is omitted then the scaling will
+  *   based only on the height value.
+@@ -195,13 +196,12 @@ function image_scale_and_crop(stdClass $image, $width, $height) {
+  *   up. This generally results in a low quality image.
+  *
+  * @return
+- *   TRUE or FALSE, based on success.
++ *   TRUE if $dimensions was modified, FALSE otherwise.
+  *
+- * @see image_load()
+- * @see image_scale_and_crop()
++ * @see image_scale()
+  */
+-function image_scale(stdClass $image, $width = NULL, $height = NULL, $upscale = FALSE) {
+-  $aspect = $image->info['height'] / $image->info['width'];
++function image_dimensions_scale(array &$dimensions, $width = NULL, $height = NULL, $upscale = FALSE) {
++  $aspect = $dimensions['height'] / $dimensions['width'];
+ 
+   if ($upscale) {
+     // Set width/height according to aspect ratio if either is empty.
+@@ -214,19 +214,56 @@ function image_scale(stdClass $image, $width = NULL, $height = NULL, $upscale =
+     $height = !empty($height) ? $height : 9999999;
+ 
+     // Don't scale up.
+-    if (round($width) >= $image->info['width'] && round($height) >= $image->info['height']) {
+-      return TRUE;
++    if (round($width) >= $dimensions['width'] && round($height) >= $dimensions['height']) {
++      return FALSE;
+     }
+   }
+ 
+   if ($aspect < $height / $width) {
+-    $height = $width * $aspect;
++    $dimensions['width'] = $width;
++    $dimensions['height'] = (int) round($width * $aspect);
+   }
+   else {
+-    $width = $height / $aspect;
++    $dimensions['width'] = (int) round($height / $aspect);
++    $dimensions['height'] = $height;
++  }
++
++  return TRUE;
++}
++
++/**
++ * Scales an image while maintaining aspect ratio.
++ *
++ * The resulting image can be smaller for one or both target dimensions.
++ *
++ * @param $image
++ *   An image object returned by image_load().
++ * @param $width
++ *   The target width, in pixels. This value is omitted then the scaling will
++ *   based only on the height value.
++ * @param $height
++ *   The target height, in pixels. This value is omitted then the scaling will
++ *   based only on the width value.
++ * @param $upscale
++ *   Boolean indicating that files smaller than the dimensions will be scaled
++ *   up. This generally results in a low quality image.
++ *
++ * @return
++ *   TRUE on success, FALSE on failure.
++ *
++ * @see image_dimensions_scale()
++ * @see image_load()
++ * @see image_scale_and_crop()
++ */
++function image_scale(stdClass $image, $width = NULL, $height = NULL, $upscale = FALSE) {
++  $dimensions = $image->info;
++
++  // Scale the dimensions - if they don't change then just return success.
++  if (!image_dimensions_scale($dimensions, $width, $height, $upscale)) {
++    return TRUE;
+   }
+ 
+-  return image_resize($image, $width, $height);
++  return image_resize($image, $dimensions['width'], $dimensions['height']);
+ }
+ 
+ /**
+@@ -240,7 +277,7 @@ function image_scale(stdClass $image, $width = NULL, $height = NULL, $upscale =
+  *   The target height, in pixels.
+  *
+  * @return
+- *   TRUE or FALSE, based on success.
++ *   TRUE on success, FALSE on failure.
+  *
+  * @see image_load()
+  * @see image_gd_resize()
+@@ -267,7 +304,7 @@ function image_resize(stdClass $image, $width, $height) {
+  *   be white.
+  *
+  * @return
+- *   TRUE or FALSE, based on success.
++ *   TRUE on success, FALSE on failure.
+  *
+  * @see image_load()
+  * @see image_gd_rotate()
+@@ -291,7 +328,7 @@ function image_rotate(stdClass $image, $degrees, $background = NULL) {
+  *   The target height, in pixels.
+  *
+  * @return
+- *   TRUE or FALSE, based on success.
++ *   TRUE on success, FALSE on failure.
+  *
+  * @see image_load()
+  * @see image_scale_and_crop()
+@@ -315,7 +352,7 @@ function image_crop(stdClass $image, $x, $y, $width, $height) {
+  *   An image object returned by image_load().
+  *
+  * @return
+- *   TRUE or FALSE, based on success.
++ *   TRUE on success, FALSE on failure.
+  *
+  * @see image_load()
+  * @see image_gd_desaturate()
+@@ -379,7 +416,7 @@ function image_load($file, $toolkit = FALSE) {
+  *   original image file will be overwritten.
+  *
+  * @return
+- *   TRUE or FALSE, based on success.
++ *   TRUE on success, FALSE on failure.
+  *
+  * @see image_load()
+  * @see image_gd_save()
+diff --git a/modules/image/image.api.php b/modules/image/image.api.php
+index acb3f9c..1cb2b0d 100644
+--- a/modules/image/image.api.php
++++ b/modules/image/image.api.php
+@@ -22,6 +22,10 @@
+  *   following items:
+  *   - "label": The human-readable name of the effect.
+  *   - "effect callback": The function to call to perform this image effect.
++ *   - "dimensions passthrough": (optional) Set this item if the effect doesn't
++ *     change the dimensions of the image.
++ *   - "dimensions callback": (optional) The function to call to transform
++ *     dimensions for this effect.
+  *   - "help": (optional) A brief description of the effect that will be shown
+  *     when adding or configuring this image effect.
+  *   - "form callback": (optional) The name of a function that will return a
+@@ -37,7 +41,8 @@ function hook_image_effect_info() {
+   $effects['mymodule_resize'] = array(
+     'label' => t('Resize'),
+     'help' => t('Resize an image to an exact set of dimensions, ignoring aspect ratio.'),
+-    'effect callback' => 'mymodule_resize_image',
++    'effect callback' => 'mymodule_resize_effect',
++    'dimensions callback' => 'mymodule_resize_dimensions',
+     'form callback' => 'mymodule_resize_form',
+     'summary theme' => 'mymodule_resize_summary',
+   );
+@@ -56,6 +61,7 @@ function hook_image_effect_info() {
+ function hook_image_effect_info_alter(&$effects) {
+   // Override the Image module's crop effect with more options.
+   $effects['image_crop']['effect callback'] = 'mymodule_crop_effect';
++  $effects['image_crop']['dimensions callback'] = 'mymodule_crop_dimensions';
+   $effects['image_crop']['form callback'] = 'mymodule_crop_form';
+ }
+ 
+diff --git a/modules/image/image.effects.inc b/modules/image/image.effects.inc
+index 122af6c..6c9fed0 100644
+--- a/modules/image/image.effects.inc
++++ b/modules/image/image.effects.inc
+@@ -14,6 +14,7 @@ function image_image_effect_info() {
+       'label' => t('Resize'),
+       'help' => t('Resizing will make images an exact set of dimensions. This may cause images to be stretched or shrunk disproportionately.'),
+       'effect callback' => 'image_resize_effect',
++      'dimensions callback' => 'image_resize_dimensions',
+       'form callback' => 'image_resize_form',
+       'summary theme' => 'image_resize_summary',
+     ),
+@@ -21,6 +22,7 @@ function image_image_effect_info() {
+       'label' => t('Scale'),
+       'help' => t('Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.'),
+       'effect callback' => 'image_scale_effect',
++      'dimensions callback' => 'image_scale_dimensions',
+       'form callback' => 'image_scale_form',
+       'summary theme' => 'image_scale_summary',
+     ),
+@@ -28,6 +30,7 @@ function image_image_effect_info() {
+       'label' => t('Scale and crop'),
+       'help' => t('Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.'),
+       'effect callback' => 'image_scale_and_crop_effect',
++      'dimensions callback' => 'image_resize_dimensions',
+       'form callback' => 'image_resize_form',
+       'summary theme' => 'image_resize_summary',
+     ),
+@@ -35,6 +38,7 @@ function image_image_effect_info() {
+       'label' => t('Crop'),
+       'help' => t('Cropping will remove portions of an image to make it the specified dimensions.'),
+       'effect callback' => 'image_crop_effect',
++      'dimensions callback' => 'image_resize_dimensions',
+       'form callback' => 'image_crop_form',
+       'summary theme' => 'image_crop_summary',
+     ),
+@@ -42,11 +46,13 @@ function image_image_effect_info() {
+       'label' => t('Desaturate'),
+       'help' => t('Desaturate converts an image to grayscale.'),
+       'effect callback' => 'image_desaturate_effect',
++      'dimensions passthrough' => TRUE,
+     ),
+     'image_rotate' => array(
+       'label' => t('Rotate'),
+       'help' => t('Rotating an image may cause the dimensions of an image to increase to fit the diagonal.'),
+       'effect callback' => 'image_rotate_effect',
++      'dimensions callback' => 'image_rotate_dimensions',
+       'form callback' => 'image_rotate_form',
+       'summary theme' => 'image_rotate_summary',
+     ),
+@@ -80,6 +86,24 @@ function image_resize_effect(&$image, $data) {
+ }
+ 
+ /**
++ * Image dimensions callback; Resize.
++ *
++ * @param $dimensions
++ *   Dimensions to be modified - an array with components width and height, in
++ *   pixels.
++ * @param $data
++ *   An array of attributes to use when performing the resize effect with the
++ *   following items:
++ *   - "width": An integer representing the desired width in pixels.
++ *   - "height": An integer representing the desired height in pixels.
++ */
++function image_resize_dimensions(array &$dimensions, array $data) {
++  // The new image will have the exact dimensions defined for the effect.
++  $dimensions['width'] = $data['width'];
++  $dimensions['height'] = $data['height'];
++}
++
++/**
+  * Image effect callback; Scale an image resource.
+  *
+  * @param $image
+@@ -89,8 +113,8 @@ function image_resize_effect(&$image, $data) {
+  *   following items:
+  *   - "width": An integer representing the desired width in pixels.
+  *   - "height": An integer representing the desired height in pixels.
+- *   - "upscale": A Boolean indicating that the image should be upscalled if
+- *     the dimensions are larger than the original image.
++ *   - "upscale": A boolean indicating that the image should be upscaled if the
++ *     dimensions are larger than the original image.
+  *
+  * @return
+  *   TRUE on success. FALSE on failure to scale image.
+@@ -115,6 +139,26 @@ function image_scale_effect(&$image, $data) {
+ }
+ 
+ /**
++ * Image dimensions callback; Scale.
++ *
++ * @param $dimensions
++ *   Dimensions to be modified - an array with components width and height, in
++ *   pixels.
++ * @param $data
++ *   An array of attributes to use when performing the scale effect with the
++ *   following items:
++ *   - "width": An integer representing the desired width in pixels.
++ *   - "height": An integer representing the desired height in pixels.
++ *   - "upscale": A boolean indicating that the image should be upscaled if the
++ *     dimensions are larger than the original image.
++ */
++function image_scale_dimensions(array &$dimensions, array $data) {
++  if (isset($dimensions['width']) && isset($dimensions['height'])) {
++    image_dimensions_scale($dimensions, $data['width'], $data['height'], $data['upscale']);
++  }
++}
++
++/**
+  * Image effect callback; Crop an image resource.
+  *
+  * @param $image
+@@ -198,7 +242,7 @@ function image_desaturate_effect(&$image, $data) {
+  *   An array of attributes to use when performing the rotate effect containing
+  *   the following items:
+  *   - "degrees": The number of (clockwise) degrees to rotate the image.
+- *   - "random": A Boolean indicating that a random rotation angle should be
++ *   - "random": A boolean indicating that a random rotation angle should be
+  *     used for this image. The angle specified in "degrees" is used as a
+  *     positive and negative maximum.
+  *   - "bgcolor": The background color to use for exposed areas of the image.
+@@ -241,3 +285,32 @@ function image_rotate_effect(&$image, $data) {
+   }
+   return TRUE;
+ }
++
++/**
++ * Image dimensions callback; Rotate.
++ *
++ * @param $dimensions
++ *   Dimensions to be modified - an array with components width and height, in
++ *   pixels.
++ * @param $data
++ *   An array of attributes to use when performing the rotate effect containing
++ *   the following items:
++ *   - "degrees": The number of (clockwise) degrees to rotate the image.
++ *   - "random": A boolean indicating that a random rotation angle should be
++ *     used for this image. The angle specified in "degrees" is used as a
++ *     positive and negative maximum.
++ */
++function image_rotate_dimensions(array &$dimensions, array $data) {
++  // If the rotate is not random and the angle is a multiple of 90 degrees,
++  // then the new dimensions can be determined.
++  if (!$data['random'] && ((int) ($data['degrees']) == $data['degrees']) && ($data['degrees'] % 90 == 0)) {
++    if ($data['degrees'] % 180 != 0) {
++      $temp = $dimensions['width'];
++      $dimensions['width'] = $dimensions['height'];
++      $dimensions['height'] = $temp;
++    }
++  }
++  else {
++    unset($dimensions['width'], $dimensions['height']);
++  }
++}
+diff --git a/modules/image/image.field.inc b/modules/image/image.field.inc
+index 43e118a..39e7e7d 100644
+--- a/modules/image/image.field.inc
++++ b/modules/image/image.field.inc
+@@ -208,6 +208,18 @@ function image_field_prepare_view($entity_type, $entities, $field, $instances, $
+  */
+ function image_field_presave($entity_type, $entity, $field, $instance, $langcode, &$items) {
+   file_field_presave($entity_type, $entity, $field, $instance, $langcode, $items);
++
++  // Determine the dimensions if necessary.
++  foreach ($items as &$item) {
++    if (!isset($item['width']) || !isset($item['height'])) {
++      $info = image_get_info(file_load($item['fid'])->uri);
++
++      if (is_array($info)) {
++        $item['width'] = $info['width'];
++        $item['height'] = $info['height'];
++      }
++    }
++  }
+ }
+ 
+ /**
+@@ -346,10 +358,42 @@ function image_field_widget_process($element, &$form_state, $form) {
+ 
+   // Add the image preview.
+   if ($element['#file'] && $widget_settings['preview_image_style']) {
++    $variables = array(
++      'style_name' => $widget_settings['preview_image_style'],
++      'path' => $element['#file']->uri,
++    );
++
++    // Determine image dimensions.
++    if (isset($element['#value']['width']) && isset($element['#value']['height'])) {
++      $variables['width'] = $element['#value']['width'];
++      $variables['height'] = $element['#value']['height'];
++    }
++    else {
++      $info = image_get_info($element['#file']->uri);
++
++      if (is_array($info)) {
++        $variables['width'] = $info['width'];
++        $variables['height'] = $info['height'];
++      }
++    }
++
+     $element['preview'] = array(
+       '#type' => 'markup',
+-      '#markup' => theme('image_style', array('style_name' => $widget_settings['preview_image_style'], 'path' => $element['#file']->uri)),
++      '#markup' => theme('image_style', $variables),
+     );
++
++    // Store the dimensions in the form so the file doesn't have to be accessed
++    // again. This is important for remote streamwrappers.
++    if (isset($variables['width']) && isset($variables['height'])) {
++      $element['width'] = array(
++        '#type' => 'value',
++        '#value' => $variables['width'],
++      );
++      $element['height'] = array(
++        '#type' => 'value',
++        '#value' => $variables['height'],
++      );
++    }
+   }
+ 
+   // Add the additional alt and title fields.
+@@ -534,6 +578,12 @@ function theme_image_formatter($variables) {
+     'path' => $item['uri'],
+     'alt' => $item['alt'],
+   );
++
++  if (isset($item['width']) && isset($item['height'])) {
++    $image['width'] = $item['width'];
++    $image['height'] = $item['height'];
++  }
++
+   // Do not output an empty 'title' attribute.
+   if (drupal_strlen($item['title']) > 0) {
+     $image['title'] = $item['title'];
+diff --git a/modules/image/image.install b/modules/image/image.install
+index 5f096cc..0dd88b0 100644
+--- a/modules/image/image.install
++++ b/modules/image/image.install
+@@ -130,6 +130,16 @@ function image_field_schema($field) {
+         'length' => 128,
+         'not null' => FALSE,
+       ),
++      'width' => array(
++        'description' => 'The width of the image in pixels.',
++        'type' => 'int',
++        'unsigned' => TRUE,
++      ),
++      'height' => array(
++        'description' => 'The height of the image in pixels.',
++        'type' => 'int',
++        'unsigned' => TRUE,
++      ),
+     ),
+     'indexes' => array(
+       'fid' => array('fid'),
+@@ -244,6 +254,128 @@ function image_update_7001() {
+ }
+ 
+ /**
++ * Add width and height columns to a specific table.
++ *
++ * @param $table
++ *   The name of the database table to be updated.
++ * @param $columns
++ *   Keyed array of columns this table is supposed to have.
++ */
++function _image_update_7002_add_columns($table, $field_name) {
++  $spec = array(
++    'type' => 'int',
++    'unsigned' => TRUE,
++  );
++
++  $spec['description'] = 'The width of the image in pixels.';
++  db_add_field($table, $field_name . '_width', $spec);
++
++  $spec['description'] = 'The height of the image in pixels.';
++  db_add_field($table, $field_name . '_height', $spec);
++}
++
++/**
++ * Number of images to process per update pass.
++ */
++define('IMAGE_UPDATE_7002_IMAGES_PER_PASS', 100);
++
++/**
++ * Populate image dimensions in a specific table.
++ *
++ * @param $table
++ *   The name of the database table to be updated.
++ * @param $columns
++ *   Keyed array of columns this table is supposed to have.
++ * @param $last_fid
++ *   The fid of the last image to have been processed.
++ *
++ * @return
++ *   The number of images that were processed.
++ */
++function _image_update_7002_populate_dimensions($table, $field_name, &$last_fid) {
++  // Query the database for fid / URI pairs.
++  $query = db_select($table, NULL, array('fetch' => PDO::FETCH_ASSOC));
++  $query->join('file_managed', NULL, $table . '.' . $field_name . '_fid = file_managed.fid');
++
++  if ($last_fid) {
++    $query->condition('file_managed.fid', $last_fid, '>');
++  }
++
++  $result = $query->fields('file_managed', array('fid', 'uri'))
++    ->orderBy('file_managed.fid')
++    ->range(0, IMAGE_UPDATE_7002_IMAGES_PER_PASS)
++    ->execute();
++
++  $count = 0;
++  foreach ($result as $file) {
++    $count++;
++    $info = image_get_info($file['uri']);
++
++    if (is_array($info)) {
++      db_update($table)
++        ->fields(array(
++          $field_name . '_width' => $info['width'],
++          $field_name . '_height' => $info['height'],
++        ))
++        ->condition($field_name . '_fid', $file['fid'])
++        ->execute();
++    }
++  }
++
++  // If less than the requested number of rows were returned then this table
++  // has been fully processed.
++  $last_fid = ($count < IMAGE_UPDATE_7002_IMAGES_PER_PASS) ? NULL : $file['fid'];
++  return $count;
++}
++
++/**
++ * Add width and height columns to image field schema and populate.
++ */
++function image_update_7002(array &$sandbox) {
++  if (empty($sandbox)) {
++    $fields = _update_7000_field_read_fields(array(
++      'module' => 'image',
++      'storage_type' => 'field_sql_storage',
++      'deleted' => 0,
++    ));
++
++    if (empty($fields)) {
++      return;
++    }
++
++    // Setup the sandbox.
++    $sandbox = array(
++      'tables' => array(),
++      'total' => 0,
++      'processed' => 0,
++      'last_fid' => NULL,
++    );
++
++    foreach ($fields as $field) {
++      foreach ($field['storage']['details']['sql'] as $tables) {
++        $table = reset(array_keys($tables));
++        $sandbox['tables'][$table] = $field['field_name'];
++        $sandbox['total'] += db_select($table)->countQuery()->execute()->fetchField();
++
++        // Add the width and height columns to the table.
++        _image_update_7002_add_columns($table, $field['field_name']);
++      }
++    }
++  }
++
++  // Process the table at the top of the list.
++  $table = reset(array_keys($sandbox['tables']));
++  $sandbox['processed'] += _image_update_7002_populate_dimensions($table, $sandbox['tables'][$table], $sandbox['last_fid']);
++
++  // Has the table been fully processed?
++  if (!$sandbox['last_fid']) {
++    unset($sandbox['tables'][$table]);
++  }
++
++  $sandbox['#finished'] = count($sandbox['tables']) ? ($sandbox['processed'] / $sandbox['total']) : 1;
++}
++
++/**
+  * Implements hook_requirements() to check the PHP GD Library.
+  *
+  * @param $phase
+diff --git a/modules/image/image.module b/modules/image/image.module
+index 008a365..933999b 100644
+--- a/modules/image/image.module
++++ b/modules/image/image.module
+@@ -812,6 +812,36 @@ function image_style_create_derivative($style, $source, $destination) {
+ }
+ 
+ /**
++ * Determines the dimensions of the styled image.
++ *
++ * Applies all image effects defined in $style['effects'] to $dimensions.
++ *
++ * @param $style
++ *   An image style array.
++ * @param $dimensions
++ *   Dimensions to be modified - an array with components width and height, in
++ *   pixels.
++ *
++ * @see image_style_load()
++ */
++function image_style_transform_dimensions(array $style, array &$dimensions) {
++  module_load_include('inc', 'image', 'image.effects');
++
++  foreach ($style['effects'] as $effect) {
++    if (isset($effect['dimensions passthrough'])) {
++      continue;
++    }
++
++    if (isset($effect['dimensions callback'])) {
++      $effect['dimensions callback']($dimensions, $effect['data']);
++    }
++    else {
++      unset($dimensions['width'], $dimensions['height']);
++    }
++  }
++}
++
++/**
+  * Flush cached media for a style.
+  *
+  * @param $style
+@@ -1145,6 +1175,11 @@ function image_effect_apply($image, $effect) {
+  * @ingroup themeable
+  */
+ function theme_image_style($variables) {
++  // Determine the dimensions of the styled image.
++  $style = image_style_load($variables['style_name']);
++  image_style_transform_dimensions($style, $variables);
++
++  // Determine the url for the styled image.
+   $variables['path'] = image_style_url($variables['style_name'], $variables['path']);
+   return theme('image', $variables);
+ }
+diff --git a/modules/image/image.test b/modules/image/image.test
+index 8596d66..a29b4f3 100644
+--- a/modules/image/image.test
++++ b/modules/image/image.test
+@@ -667,6 +667,8 @@ class ImageFieldDisplayTestCase extends ImageFieldTestCase {
+     $image_uri = $node->{$field_name}[LANGUAGE_NONE][0]['uri'];
+     $image_info = array(
+       'path' => $image_uri,
++      'width' => 40,
++      'height' => 20,
+     );
+     $default_output = theme('image', $image_info);
+     $this->assertRaw($default_output, t('Default formatter displaying correctly on full node view.'));
+@@ -712,6 +714,8 @@ class ImageFieldDisplayTestCase extends ImageFieldTestCase {
+     // image style callback paths.
+     $this->drupalGet(image_style_url('thumbnail', $image_uri));
+     $image_info['path'] = image_style_path('thumbnail', $image_uri);
++    $image_info['width'] = 100;
++    $image_info['height'] = 50;
+     $default_output = theme('image', $image_info);
+     $this->drupalGet('node/' . $nid);
+     $this->assertRaw($default_output, t('Image style thumbnail formatter displaying correctly on full node view.'));
+@@ -761,6 +765,8 @@ class ImageFieldDisplayTestCase extends ImageFieldTestCase {
+     $node = node_load($nid, NULL, TRUE);
+     $image_info = array(
+       'path' => image_style_url('medium', $node->{$field_name}[LANGUAGE_NONE][0]['uri']),
++      'width' => 220,
++      'height' => 110,
+     );
+     $default_output = theme('image', $image_info);
+     $this->assertRaw($default_output, t("Preview image is displayed using 'medium' style."));
+@@ -770,6 +776,8 @@ class ImageFieldDisplayTestCase extends ImageFieldTestCase {
+       'path' => $node->{$field_name}[LANGUAGE_NONE][0]['uri'],
+       'alt' => $this->randomName(),
+       'title' => $this->randomName(),
++      'width' => 40,
++      'height' => 20,
+     );
+     $edit = array(
+       $field_name . '[' . LANGUAGE_NONE . '][0][alt]' => $image_info['alt'],
+@@ -817,6 +825,8 @@ class ImageFieldDisplayTestCase extends ImageFieldTestCase {
+     $node = node_load($nid, NULL, TRUE);
+     $image_info = array(
+       'path' => $node->{$field_name}[LANGUAGE_NONE][0]['uri'],
++      'width' => 40,
++      'height' => 20,
+     );
+     $image_output = theme('image', $image_info);
+     $this->drupalGet('node/' . $nid);
+@@ -901,3 +911,221 @@ class ImageFieldValidateTestCase extends ImageFieldTestCase {
+     $this->assertText(t('The image was resized to fit within the maximum allowed dimensions of 100x100 pixels.'), t('Image exceeding max resolution was properly resized.'));
+   }
+ }
++
++/**
++ * Tests that images have correct dimensions when styled.
++ */
++class ImageDimensionsUnitTest extends DrupalWebTestCase {
++
++  public static function getInfo() {
++    return array(
++      'name' => 'Image dimensions',
++      'description' => 'Tests that images have correct dimensions when styled.',
++      'group' => 'Image',
++    );
++  }
++
++  function setUp() {
++    parent::setUp('image_module_test');
++  }
++
++  /**
++   * Test styled image dimensions cumulatively.
++   */
++  function testImageDimensions() {
++    // Create a working copy of the file.
++    $files = $this->drupalGetTestFiles('image');
++    $file = reset($files);
++    $original_uri = file_unmanaged_copy($file->uri, 'public://', FILE_EXISTS_RENAME);
++
++    // Create a style.
++    $style = image_style_save(array('name' => 'test'));
++    $generated_uri = 'public://styles/test/public/'. basename($original_uri);
++    $url = image_style_url('test', $original_uri);
++
++    $variables = array(
++      'style_name' => 'test',
++      'path' => $original_uri,
++      'width' => 40,
++      'height' => 20,
++    );
++
++    // Scale an image that is wider than it is high.
++    $effect = array(
++      'name' => 'image_scale',
++      'data' => array(
++        'width' => 120,
++        'height' => 90,
++        'upscale' => TRUE,
++      ),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" width="120" height="60" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++    $image_info = image_get_info($generated_uri);
++    $this->assertEqual($image_info['width'], 120, t('Expected width was found.'));
++    $this->assertEqual($image_info['height'], 60, t('Expected height was found.'));
++
++    // Rotate 90 degrees anticlockwise.
++    $effect = array(
++      'name' => 'image_rotate',
++      'data' => array(
++        'degrees' => -90,
++        'random' => FALSE,
++      ),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" width="60" height="120" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++    $image_info = image_get_info($generated_uri);
++    $this->assertEqual($image_info['width'], 60, t('Expected width was found.'));
++    $this->assertEqual($image_info['height'], 120, t('Expected height was found.'));
++
++    // Scale an image that is higher than it is wide (rotated by previous effect).
++    $effect = array(
++      'name' => 'image_scale',
++      'data' => array(
++        'width' => 120,
++        'height' => 90,
++        'upscale' => TRUE,
++      ),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" width="45" height="90" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++    $image_info = image_get_info($generated_uri);
++    $this->assertEqual($image_info['width'], 45, t('Expected width was found.'));
++    $this->assertEqual($image_info['height'], 90, t('Expected height was found.'));
++
++    // Test upscale disabled.
++    $effect = array(
++      'name' => 'image_scale',
++      'data' => array(
++        'width' => 400,
++        'height' => 200,
++        'upscale' => FALSE,
++      ),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" width="45" height="90" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++    $image_info = image_get_info($generated_uri);
++    $this->assertEqual($image_info['width'], 45, t('Expected width was found.'));
++    $this->assertEqual($image_info['height'], 90, t('Expected height was found.'));
++
++    // Add a desaturate effect.
++    $effect = array(
++      'name' => 'image_desaturate',
++      'data' => array(),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" width="45" height="90" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++    $image_info = image_get_info($generated_uri);
++    $this->assertEqual($image_info['width'], 45, t('Expected width was found.'));
++    $this->assertEqual($image_info['height'], 90, t('Expected height was found.'));
++
++    // Add a random rotate effect.
++    $effect = array(
++      'name' => 'image_rotate',
++      'data' => array(
++        'degrees' => 180,
++        'random' => TRUE,
++      ),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++
++
++    // Add a crop effect.
++    $effect = array(
++      'name' => 'image_crop',
++      'data' => array(
++        'width' => 30,
++        'height' => 30,
++        'anchor' => 'center-center',
++      ),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" width="30" height="30" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++    $image_info = image_get_info($generated_uri);
++    $this->assertEqual($image_info['width'], 30, t('Expected width was found.'));
++    $this->assertEqual($image_info['height'], 30, t('Expected height was found.'));
++
++    // Rotate to a non-multiple of 90 degrees.
++    $effect = array(
++      'name' => 'image_rotate',
++      'data' => array(
++        'degrees' => 57,
++        'random' => FALSE,
++      ),
++      'isid' => $style['isid'],
++    );
++
++    $effect = image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" alt="" />', t('Expected img tag was found.'));
++    $this->assertFalse(file_exists($generated_uri), t('Generated file does not exist.'));
++    $this->drupalGet($url);
++    $this->assertResponse(200, t('Image was generated at the URL.'));
++    $this->assertTrue(file_exists($generated_uri), t('Generated file does exist after we accessed it.'));
++
++    image_effect_delete($effect);
++
++    // Ensure that an effect with no dimensions callback unsets the dimensions.
++    // This ensures compatibility with 7.0 contrib modules.
++    $effect = array(
++      'name' => 'image_module_test_null',
++      'data' => array(),
++      'isid' => $style['isid'],
++    );
++
++    image_effect_save($effect);
++    $img_tag = theme_image_style($variables);
++    $this->assertEqual($img_tag, '<img typeof="foaf:Image" src="' . $url . '" alt="" />', t('Expected img tag was found.'));
++  }
++}
+diff --git a/modules/image/tests/image_module_test.module b/modules/image/tests/image_module_test.module
+index 038bd15..766a9d9 100644
+--- a/modules/image/tests/image_module_test.module
++++ b/modules/image/tests/image_module_test.module
+@@ -11,3 +11,31 @@ function image_module_test_file_download($uri) {
+   }
+   return -1;
+ }
++
++/**
++ * Implements hook_image_effect_info().
++ */
++function image_module_test_image_effect_info() {
++  $effects = array(
++    'image_module_test_null' => array(
++    'effect callback' => 'image_module_test_null_effect',
++    ),
++  );
++
++  return $effects;
++}
++
++/**
++ * Image effect callback; Null.
++ *
++ * @param $image
++ *   An image object returned by image_load().
++ * @param $data
++ *   An array with no attributes.
++ *
++ * @return
++ *   TRUE
++ */
++function image_module_test_null_effect(array &$image, array $data) {
++  return TRUE;
++}
