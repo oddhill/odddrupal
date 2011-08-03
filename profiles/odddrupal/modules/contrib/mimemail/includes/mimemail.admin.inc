@@ -100,13 +100,13 @@ function mimemail_admin_settings() {
   // Hide the settings if only 1 engine is available.
   if (count($engines) == 1) {
     variable_set('mimemail_engine', key($engines));
-    $form['mimemail']['engine'] = array(
+    $form['mimemail']['mimemail_engine'] = array(
       '#type' => 'hidden',
       '#value' => variable_get('mimemail_engine', 'mimemail'),
     );
   }
   else {
-    $form['mimemail']['engine'] = array(
+    $form['mimemail']['mimemail_engine'] = array(
       '#type' => 'select',
       '#title' => t('E-mail engine'),
       '#default_value' => variable_get('mimemail_engine', 'mimemail'),

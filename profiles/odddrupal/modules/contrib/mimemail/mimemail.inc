@@ -46,7 +46,7 @@ function mimemail_headers($headers, $from = NULL) {
   // Note: This may not work. The MTA may rewrite the Return-Path, and Errors-To is deprecated.
 
   // Allow a mail to overwrite standard headers.
-  if (!is_null($from)) {
+  if (!empty($from)) {
     preg_match('/[a-z0-9\-\.]+@{1}[a-z0-9\-\.]+/i', $from, $matches);
     $from_email = $matches[0];
     $headers = array_merge($headers, array('From' => $from, 'Sender' => $from, 'Return-Path' => "<$from_email>", 'Errors-To' => $from));
@@ -349,12 +349,14 @@ function mimemail_html_body($body, $subject, $plain = FALSE, $plaintext = NULL, 
     }
   }
 
-  foreach ($attachments as $a) {
-    $a = (object) $a;
-    $name = isset($a->filename) ? $a->filename : 'attachment.dat';
-    $type = isset($a->filemime) ? $a->filemime : 'application/octet-stream';
-    _mimemail_file($a->filepath, $a->filecontent, $a->filename, $a->filemime, 'attachment');
-    $parts = array_merge($parts, _mimemail_file());
+  if (is_array($attachments) && !empty($attachments)) {
+    foreach ($attachments as $a) {
+      $a = (object) $a;
+      $name = isset($a->filename) ? $a->filename : 'attachment.dat';
+      $type = isset($a->filemime) ? $a->filemime : 'application/octet-stream';
+      _mimemail_file($a->filepath, $a->filecontent, $a->filename, $a->filemime, 'attachment');
+      $parts = array_merge($parts, _mimemail_file());
+    }
   }
 
   return mimemail_multipart_body($parts, $content_type);

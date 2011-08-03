@@ -58,11 +58,10 @@ function template_preprocess_mimemail_message(&$variables) {
   elseif ($sitestyle) {
     $css_all = drupal_add_css();
     $css_files = array();
-    foreach ($css_all as $media => $types) {
-      foreach ($types as $type => $file) {
-        if ($type == 'theme' && ($media == 'all' || $media == 'screen')) {
-          $css_files[$media][$type] = $file;
-        }
+    foreach ($css_all as $key => $options) {
+      if ($options['group'] == CSS_THEME && $options['type'] == 'file' &&
+         ($options['media'] == 'all' || $options['media'] == 'screen')) {
+        $css_files[$key] = $options;
       }
     }
     // Grab local.css if it exists (support for Fusion based themes).
@@ -70,8 +69,19 @@ function template_preprocess_mimemail_message(&$variables) {
     if (@file_exists($local)) {
       $css_files['all']['theme'][$local] = TRUE;
     }
-    $styles = preg_replace('|<link.*href="' . base_path()
-                         . '([^"?]*)[?"].*|', '\1', drupal_get_css($css_files));
+    if (variable_get('preprocess_css', FALSE)) {
+      $pattern = '|<link.*href="' . $GLOBALS['base_url'] . '/([^"?]*)[?"].*|';
+      $replacement = '\1';
+    }
+    else {
+      $pattern = array(
+        '/<([^<>]*)>/', // Remove the style tag.
+        '/@import\s+url\("([^"]+)"\);+/', // Remove the import directive.
+        '|'. $GLOBALS['base_url'] .'/([^"?]*)[?"].*|' // Remove the base URL.
+      );
+      $replacement = array('', '\1', '\1');
+    }
+    $styles = preg_replace($pattern, $replacement, drupal_get_css($css_files));
   }
 
   // Process each style sheet.
