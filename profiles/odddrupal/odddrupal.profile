@@ -471,4 +471,6 @@ function odddrupal_set_variables() {
     'js' => 'jquery.fancybox-1.3.1.js',
     'css' => 'jquery.fancybox-1.3.1.css',
   ));
+  variable_set('admin_menu_tweak_modules', 1);
+  variable_set('pathauto_transliterate', 1);
 }
