@@ -3,23 +3,23 @@
  * Implements hook_init().
  */
 function fanta_init() {
-  if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6.')) {
-    drupal_add_library('fanta', 'ie6-warning');
-  }
+  drupal_add_library('fanta', 'ie6-warning');
 }
 
 /**
  * Implements hook_library().
  */
 function fanta_library() {
+  global $base_path;
+  
   $libraries['ie6-warning'] = array(
     'js' => array(
-      drupal_get_path('module', 'fanta') . '/ie6/warning.js' => array('cache' => FALSE, 'preprocess' => FALSE),
-      drupal_get_path('module', 'fanta') . '/fanta.js' => array('cache' => FALSE, 'preprocess' => FALSE),
-      array('data' => array('fanta' => array('ie6Path' => drupal_get_path('module', 'fanta') . '/ie6/')), 'type' => 'setting'),
+      drupal_get_path('module', 'fanta') . '/ie6/warning.js' => array('every_page' => TRUE),
+      drupal_get_path('module', 'fanta') . '/fanta.js' => array('every_page' => TRUE),
+      array('data' => array('fanta' => array('ie6Path' => $base_path . drupal_get_path('module', 'fanta') . '/ie6/')), 'type' => 'setting'),
     ),
     'css' => array(
-      drupal_get_path('module', 'fanta') . '/fanta.css' => array(),
+      drupal_get_path('module', 'fanta') . '/fanta.css' => array('every_page' => TRUE),
     ),
   );
   
