@@ -36,14 +36,14 @@ $(document).ready(function() {
     $(this).parent('div').removeClass('focused');
   });
   $('#tadaa-mail').change(function() {
-    var mail = $(this).val();
+    var mail = $(this).val().length > 0 ? $(this).val() : 'reset';
     var expression = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (mail.match(expression)) {
+    if (mail.match(expression) || mail == 'reset') {
       $(this).attr('disabled', 'disabled');
       $(this).parent('div').removeClass('invalid');
       $.ajax({
         async: false,
-        url: 'tadaa/mail/set/' + $(this).val(),
+        url: 'tadaa/mail/set/' + mail,
         dataType: 'json',
       });
       $(this).removeAttr('disabled');

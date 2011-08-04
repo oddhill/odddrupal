@@ -110,5 +110,10 @@ function tadaa_check_variable($variable) {
  * Configure reroute email to use a new address.
  */
 function tadaa_set_mail($mail) {
-  variable_set('reroute_email_address', $mail);
+  if ($mail != 'reset') {
+    variable_set('reroute_email_address', $mail);
+  }
+  else {
+    variable_del('reroute_email_address');
+  }
 }
