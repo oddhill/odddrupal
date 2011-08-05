@@ -57,8 +57,7 @@ function tadaa_check_environment() {
   
   // Check the modules.
   foreach ($modules as $module => $config) {
-    $state = $config === module_exists($module);
-    if (!$state) {
+    if ($config != module_exists($module)) {
       $return['modules'] = FALSE;
       break;
     }
@@ -66,8 +65,7 @@ function tadaa_check_environment() {
   
   // Check the variables.
   foreach ($variables as $variable => $value) {
-    $state = $value === variable_get($variable);
-    if (!$state) {
+    if ($value != variable_get($variable)) {
       $return['variables'] = FALSE;
       break;
     }
@@ -85,7 +83,7 @@ function tadaa_check_module($module) {
   $status = array(
     'module' => $module,
     'config' => $modules[$module],
-    'state' => $modules[$module] === module_exists($module),
+    'state' => $modules[$module] == module_exists($module),
   );
   
   drupal_json_output($status);
@@ -100,7 +98,7 @@ function tadaa_check_variable($variable) {
   $status = array(
     'variable' => $variable,
     'config' => $variables[$variable],
-    'state' => $variables[$variable] === variable_get($variable, FALSE),
+    'state' => $variables[$variable] == variable_get($variable, FALSE),
   );
   
   drupal_json_output($status);
