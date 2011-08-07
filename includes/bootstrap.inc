@@ -762,7 +762,7 @@ function drupal_page_cache_header($cache) {
 
   // The following headers force validation of cache:
   header("Expires: Sun, 19 Nov 1978 05:00:00 GMT");
-  header("Cache-Control: must-revalidate");
+  header("Cache-Control: no-store, no-cache, must-revalidate");
 
   if (variable_get('page_compression', TRUE) && extension_loaded('zlib')) {
     // Determine if the browser accepts gzipped data.
