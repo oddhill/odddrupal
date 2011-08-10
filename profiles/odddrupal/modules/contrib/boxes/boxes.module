@@ -1,6 +1,12 @@
 <?php
 
 /**
+ *  Edit locations.
+ */
+define('BOXES_EDIT_IN_PLACE', 1);
+define('BOXES_EDIT_SEPARATE_PAGE', 2);
+
+/**
  * Implements hook_menu().
  */
 function boxes_menu() {
@@ -25,6 +31,13 @@ function boxes_menu() {
     'page arguments' => array('boxes_delete_form', 5),
     'access arguments' => array('administer boxes'),
     'type' => MENU_CALLBACK,
+    'file' => 'boxes.admin.inc',
+  );
+  $items['admin/config/user-interface/boxes'] = array(
+    'title' => 'Boxes',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('boxes_settings'),
+    'access arguments' => array('administer boxes'),
     'file' => 'boxes.admin.inc',
   );
   return $items;
@@ -106,8 +119,8 @@ function boxes_block_info() {
 function boxes_block_configure($delta) {
   if ($delta && strpos($delta, 'boxes_add__') !== 0) {
     if ($box = boxes_box_load($delta)) {
-      if ($box->options_form()) {
-        $form_state = array('box' => $box);
+      $form_state = array('box' => $box);
+      if ($box->options_form($form_state)) {
         $form = boxes_box_form(array(), $form_state);
         unset($form['submit']);
         return $form;
@@ -168,17 +181,28 @@ function boxes_block_view($delta) {
     // permissions.
     $block = $box->render();
     if (boxes_access_edit()) {
+      if (variable_get('boxes_edit_location', BOXES_EDIT_IN_PLACE) == BOXES_EDIT_IN_PLACE) {
+        $edit_link = array(
+          'title' => t('Edit Box'),
+          'href' => $_GET['q'],
+          'query' => array(
+            'plugin_key' => '',
+            'boxes_delta' => $block['delta'],
+          ),
+          'attributes' => array('class' => array('use-ajax')),
+        );
+      }
+      else {
+        $edit_link = array(
+          'title' => t('Edit Box'),
+          'href' => 'admin/structure/block/manage/boxes/' . $block['delta'] . '/configure',
+          'query' => drupal_get_destination(),
+        );
+
+      }
       $block['controls'] = theme('links', array(
         'links' => array(
-          'edit' => array(
-            'title' => t('Edit Box'),
-            'href' => $_GET['q'],
-            'query' => array(
-              'plugin_key' => '',
-              'boxes_delta' => $block['delta'],
-            ),
-            'attributes' => array('class' => array('use-ajax')),
-          ),
+          'edit' => $edit_link,
           'cancel' => array(
             'title' => t('Cancel'),
             'href' => $_GET['q'],
@@ -242,9 +266,14 @@ function boxes_footer() {
         );
       }
       $form = drupal_build_form('boxes_box_form', $form_state);
-      
+      $errors = form_set_error();
+
+      if (!empty($errors)) { /* validation error */
+        $msg_and_form = theme('status_messages') . drupal_render($form);
+        $output[] = ajax_command_html('#boxes-box-' . $delta, $msg_and_form);
+      }
       //  if we are comming from a init form and need to continue then lets render the form again
-      if (empty($form_state['submitted']) || isset($_GET['init_form_continue'])) {
+      else if (empty($form_state['submitted']) || isset($_GET['init_form_continue'])) {
         $output[] = ajax_command_html('#boxes-box-' . $delta, drupal_render($form));
       }
       else {
@@ -253,7 +282,7 @@ function boxes_footer() {
           'command' => 'getBlock',
           'method' => 'replaceWith',
           'delta' => $delta,
-          'url' => url($_GET['q'], array('absolute' => true)),
+          'url' => url($_GET['q'], array('absolute' => TRUE)),
         );
 
       }
@@ -389,7 +418,7 @@ function boxes_box_form($form, &$form_state) {
         'plugin_key' => $form_state['plugin_key'],
       )));
   }
-  if(isset($form_state['init_form']) && $box->use_multistep_create()) {
+  if (isset($form_state['init_form']) && $box->use_multistep_create()) {
     unset($form['options']);
     unset($form['cancel']);
     $form['submit']['#value'] = t('Continue');
@@ -411,13 +440,13 @@ function boxes_box_form($form, &$form_state) {
  * Submit handler for the inline form.
  */
 function boxes_box_form_submit($form, $form_state) {
-  if ($form_state['clicked_button']['#value'] == 'Cancel') {
+  if ($form_state['clicked_button']['#value'] == t('Cancel')) {
     return;
   }
   $box = boxes_factory($form_state['values']['plugin_key'], $form_state['values']);
 
   // if options_submit is defined let the box process the submit
-  if (method_exists($box,'options_submit')) {
+  if (method_exists($box, 'options_submit')) {
     $box->options_submit($form, $form_state);
   }
 
@@ -579,7 +608,7 @@ function boxes_spaces_dashboard_block_access_alter(&$access) {
         $access[$bid] = boxes_access_admin();
       }
       // If this box is specific to the current space, allow access.
-      else if (module_exists('spaces') && $space = spaces_get_space()) {
+      elseif (module_exists('spaces') && $space = spaces_get_space()) {
         $in_space = $space->controllers->boxes->get($delta, 'space');
         $access[$bid] = $access[$bid] || !empty($in_space);
       }
@@ -659,7 +688,7 @@ function boxes_features_pipe_block_alter(&$more, $data, $export) {
  */
 function boxes_add_js() {
   static $added = FALSE;
-  if ($added) {
+  if ($added || !boxes_access_admin()) {
     return;
   }
   $added = TRUE;

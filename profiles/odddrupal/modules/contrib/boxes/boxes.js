@@ -20,6 +20,10 @@
       $('div.boxes-box-controls a:not(.boxes-processed)')
         .addClass('boxes-processed')
         .click(function() {
+          // If we are not using edit-in-place, bail.
+          if (this.href.indexOf('/admin/structure/block/manage/boxes/') != -1) {
+            return;
+          }
           var box = $(this).parents('.boxes-box');
           if (box.is('.boxes-box-editing')) {
             box.removeClass('boxes-box-editing').find('.box-editor').remove().end().find('.boxes-box-content').show();
@@ -54,6 +58,19 @@
         if($(this).parents(".block").find(".block-configure").length > 0) {
           $(this).parents(".block").find(".block-configure").after($(this).find("li.edit"));
           $(this).parents(".block").find(".block-configure").detach();
+        }
+      });
+      
+      // Submit box form if Enter is pressed
+      $('#boxes-box-form input').keydown(function (e) {
+        if (!e) {
+          e = window.event;
+        }
+        // Enter
+        if (e.keyCode == 13) {
+          e.preventDefault();
+          // Save is always the first button (see boxes.module)
+          $('.boxes-ajax.use-ajax-submit.form-submit:first').click();
         }
       });
     }

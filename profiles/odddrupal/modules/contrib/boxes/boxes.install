@@ -63,6 +63,13 @@ function boxes_schema() {
 }
 
 /**
+ * Implements hook_uninstall().
+ */
+function boxes_uninstall() {
+  variable_del('boxes_edit_location');
+}
+
+/**
  * Make boxes content pluggable, move body/format into a serialized options
  * array, add plugin key field.
  */
@@ -126,7 +133,7 @@ function boxes_update_6101() {
       drupal_write_record('spaces_overrides', $row, array('type', 'id', 'object_type', 'object_id'));
     }
     $ret[] = array(
-      'success' => true,
+      'success' => TRUE,
       'query' => 'Updated Spaces overrides',
     );
   }
@@ -177,7 +184,7 @@ function boxes_update_6103() {
       drupal_write_record('spaces_overrides', $row, array('type', 'id', 'object_type', 'object_id'));
     }
     $ret[] = array(
-      'success' => true,
+      'success' => TRUE,
       'query' => 'Updated Spaces overrides',
     );
   }
@@ -186,3 +193,4 @@ function boxes_update_6103() {
   // See http://drupal.org/node/224333#update_sql.
   return t('TODO Add a descriptive string here to show in the UI.') /* $ret */;
 }
+

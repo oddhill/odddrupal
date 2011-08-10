@@ -90,7 +90,7 @@ class BoxesAjaxTestCase extends DrupalWebTestCase {
   function ajaxLoadBoxesBlock($delta, $path = 'node') {
     $this->drupalGet($path, array('query' => array('boxes_delta' => $delta)));
     $response = $this->parseJSON();
-    $block = null;
+    $block = NULL;
     foreach ($response as $command) {
       if (($command->command == 'insert') && ($command->method == 'replaceWith')) {
         $block = $command->data;
@@ -147,7 +147,7 @@ class BoxesBasicAjaxTestCase extends BoxesAjaxTestCase {
     );
     $this->drupalPost(NULL, $edit, t('Save'), array('query' => array('boxes_delta' => 'boxes_add__simple')));
     $response = $this->parseJSON();
-    $delta = null;
+    $delta = NULL;
     foreach ($response as $command) {
       if ($command->command == 'getBlock') {
         $delta = $command->delta;

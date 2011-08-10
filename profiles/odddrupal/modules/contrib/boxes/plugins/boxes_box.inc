@@ -19,13 +19,13 @@ abstract class boxes_box {
   /**
    * Load existing box by its unique identifier $delta.
    */
-  public static function load($delta, $reset = false) {
+  public static function load($delta, $reset = FALSE) {
     if (!isset(self::$boxes[$delta]) || $reset) {
       ctools_include('export');
       $box = ctools_export_load_object('box', 'names', array($delta));
       if (!empty($box) && $values = array_pop($box)) {
         self::$boxes[$delta] = self::factory($values->plugin_key, $values);
-        self::$boxes[$delta]->new = false;
+        self::$boxes[$delta]->new = FALSE;
       }
     }
     return isset(self::$boxes[$delta]) ? self::$boxes[$delta] : NULL;
@@ -65,7 +65,7 @@ abstract class boxes_box {
       }
       return $box;
     }
-    return false;
+    return FALSE;
   }
 
   /**

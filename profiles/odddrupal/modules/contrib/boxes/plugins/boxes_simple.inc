@@ -45,7 +45,7 @@ class boxes_simple extends boxes_box {
     if (!empty($this->options['body']['value']) && isset($this->options['body']['format'])) {
       $content = check_markup($this->options['body']['value'], $this->options['body']['format'], $langcode = '' /* TODO Set this variable. */, FALSE);
     }
-    $title = isset($this->title) ? check_plain($this->title) : NULL;
+    $title = isset($this->title) ? $this->title : NULL;
     return array(
       'delta' => $this->delta, // Crucial.
       'title' => $title,

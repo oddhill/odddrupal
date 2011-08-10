@@ -10,7 +10,7 @@ function boxes_add_form($form, $form_state, $plugin_key) {
     '#type' => 'textfield',
     '#title' => t('Machine name'),
     '#description' => t('Lowercase letters, numbers and underscores only'),
-    '#required' => true,
+    '#required' => TRUE,
     '#element_validate' => array('boxes_validate_delta'),
     '#size' => 32,
     '#maxlength' => 32,
@@ -85,4 +85,21 @@ function theme_boxes_box($variables) {
   }
   $output .= '</div>';
   return $output;
+}
+
+/**
+ * Menu callback for settings form.
+ */
+function boxes_settings($form, $form_state) {
+  $form['boxes_edit_location'] = array(
+    '#title' => t('Edit location'),
+    '#type' => 'radios',
+    '#options' => array(
+      BOXES_EDIT_SEPARATE_PAGE => t('Separate page'),
+      BOXES_EDIT_IN_PLACE => t('Edit in place'),
+    ),
+    '#default_value' => variable_get('boxes_edit_location', BOXES_EDIT_IN_PLACE),
+    '#description' => t('Boxes can either be edited directly where they are displayed, or on a separate page.')
+  );
+  return system_settings_form($form);
 }
