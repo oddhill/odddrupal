@@ -1,14 +1,12 @@
-name = Administration Language
-description = Makes sure all admin pages are displayed in the preferred language of the administrator.
-core = 7.x
+name = Administration language
+description = Makes sure all administration pages are displayed in the preferred language of the administrator.
 dependencies[] = locale
-files[] = admin_language.install
-files[] = admin_language.module
-package = Administration
+package = Multilanguage
+core = 7.x
 
-; Information added by drupal.org packaging script on 2011-02-25
+; Information added by drupal.org packaging script on 2011-08-06
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "admin_language"
-datestamp = "1298618801"
+datestamp = "1312588943"
 
