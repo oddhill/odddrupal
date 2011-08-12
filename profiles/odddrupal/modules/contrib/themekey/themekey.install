@@ -539,3 +539,11 @@ function themekey_update_7101() {
   return t('Update of Themekey ran successfully');
 }
 
+/**
+ * Implements hook_update_N().
+ */
+function themekey_update_7102() {
+  variable_del('themekey_override_custom_theme');
+
+  return t('Update of Themekey ran successfully');
+}

@@ -129,14 +129,17 @@ function themekey_rebuild() {
  *
  * @see themekey_rebuild()
  * @see themekey_invoke_modules()
+ *
+ * @param $blacklist
+ *   array of module names that should not be included
  */
-function themekey_scan_modules() {
+function themekey_scan_modules($blacklist = array()) {
   $modules = array();
-  $files = file_scan_directory(dirname(__FILE__) . '/modules', '/^themekey.[a-z]+.inc$/');
+  $files = file_scan_directory(dirname(__FILE__) . '/modules', '/^themekey\.[a-z]+\.inc$/');
   foreach ($files as $file) {
     list( , $module) = explode('.', $file->name);
-    if (module_exists($module)) {
-      $modules[] = $file->name;
+    if (!in_array($module, $blacklist) && module_exists($module)) {
+      $modules[] = $module;
     }
   }
 

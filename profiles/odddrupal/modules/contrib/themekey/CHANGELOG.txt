@@ -1,3 +1,13 @@
+ThemeKey 7.x-1.2, 2011-08-11
+----------------------------
+[#1215656] mkalkbrenner: Avoid errors if a third party module gets deactivated
+[        ] mkalkbrenner: disable theme switching during drupal installation or update
+[        ] mkalkbrenner: Removed obsolete option 'Force custom theme overriding'
+                         which has never been finally ported from ThemeKey 6 to 7.
+                         Improved feature is provided bey themekey_compat module now.
+[#1236886] mkalkbrenner: show current theme using ThemeKey Debug
+
+
 ThemeKey 7.x-1.1, 2011-06-27
 ----------------------------
 [        ] mkalkbrenner: fixed debug messages in themekey_compat

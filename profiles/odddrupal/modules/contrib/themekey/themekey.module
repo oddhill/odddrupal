@@ -122,6 +122,7 @@ function themekey_custom_theme() {
     && strpos($_GET['q'], 'admin/structure/block/demo') !== 0 // ... blocks demo
     && strpos($_SERVER['SCRIPT_FILENAME'], 'cron.php') === FALSE // ... during cron run executed by cron.php
     && strpos($_SERVER['SCRIPT_FILENAME'], 'drush.php') === FALSE // ... during cron run executed by drush
+    && (!defined('MAINTENANCE_MODE') || (MAINTENANCE_MODE != 'install' && MAINTENANCE_MODE != 'update')) // ... during drupal installation or update
     ) {
 
     $custom_theme_called = &drupal_static('themekey_custom_theme_called', FALSE);
@@ -177,10 +178,6 @@ function themekey_custom_theme() {
 
   if (variable_get('themekey_debug_show_property_values', FALSE) && module_exists('themekey_debug')) {
     themekey_debug_properties();
-  }
-
-  if ($custom_theme && variable_get('themekey_override_custom_theme', 0)) {
-    // TODO initialize theme right here
   }
 
   return $custom_theme;
@@ -286,4 +283,43 @@ function themekey_cron() {
     module_load_include('inc', 'themekey', 'themekey_cron');
     themekey_cron_clear_page_cache();
   }
+}
+
+
+/**
+ * Implements hook_modules_disabled().
+ */
+function themekey_modules_disabled($modules) {
+  require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'themekey') . '/themekey_build.inc';
+
+  // Don't call themekey_rebuild() because the callbacks of disabled modules are still available at this point.
+  // Simply turn off the properties provided for these modules at this point.
+  themekey_scan_modules($modules);
+}
+
+
+/**
+* Implements hook_modules_enabled().
+*/
+function themekey_modules_enabled($modules) {
+  require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'themekey') . '/themekey_build.inc';
+
+  // Search for new properties provided by a new module
+  themekey_rebuild();
+}
+
+
+/**
+ * Implements hook_flush_caches().
+ *
+ * ThemeKey hijacks this hook to act if a module get updated.
+ */
+function themekey_flush_caches() {
+  require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'themekey') . '/themekey_build.inc';
+
+  // Search for new properties provided by a new module
+  themekey_rebuild();
+
+  // Don't add a cache table name.
+  return array();
 }

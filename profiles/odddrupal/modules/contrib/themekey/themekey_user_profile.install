@@ -11,17 +11,6 @@
 
 
 /**
- * implements hook_install()
- * @return void
- */
-function themekey_user_profile_install() {
-  // rebuild themekey properties
-  module_load_include('inc', 'themekey', 'themekey_build');
-  themekey_rebuild();
-}
-
-
-/**
  * Implements hook_disable().
  */
 function themekey_user_profile_disable() {

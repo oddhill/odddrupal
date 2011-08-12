@@ -24,13 +24,19 @@
  */
 function themekey_invoke_modules($hook) {
   $return = array();
-  foreach (variable_get('themekey_modules', array('themekey.node')) as $module) {
-    if (is_readable(drupal_get_path('module', 'themekey') . '/modules/' . $module . '.inc')) {
-      require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'themekey') . '/modules/' . $module . '.inc';
+  foreach (variable_get('themekey_modules', array('node')) as $module) {
+    if (module_exists($module) && is_readable(drupal_get_path('module', 'themekey') .'/modules/themekey.' . $module .'.inc')) {
+      require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'themekey') . '/modules/themekey.' . $module . '.inc';
+
+      $function = 'themekey_' . $module . '_' . $hook;
+      if (function_exists($function)) {
+        $return = array_merge_recursive($return, $function());
+      }
     }
-    $function = str_replace('.', '_', $module) . '_' . $hook;
-    if (function_exists($function)) {
-      $return = array_merge_recursive($return, $function());
+    else {
+      // seems like a module has been deactivated => update variable 'themekey_modules'
+      module_load_include('inc', 'themekey', 'themekey_build');
+      themekey_scan_modules();
     }
   }
 
