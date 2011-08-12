@@ -43,7 +43,7 @@ $(document).ready(function() {
       $(this).parent('div').removeClass('invalid');
       $.ajax({
         async: false,
-        url: 'tadaa/mail/set/' + mail,
+        url: Drupal.settings.basePath + 'tadaa/mail/set/' + mail,
         dataType: 'json',
       });
       $(this).removeAttr('disabled');
