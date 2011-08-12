@@ -246,7 +246,6 @@ function tadaa_get_environments() {
       'name' => 'Staging',
       'modules' => array(
         'context_ui',
-        'overlay',
         'reroute_email',
         'rules_admin',
         'themekey_ui',
@@ -264,7 +263,6 @@ function tadaa_get_environments() {
       'modules' => array(
         'backup_migrate',
         'googleanalytics',
-        'overlay',
       ),
       'variables' => array(
         'cache' => 1,

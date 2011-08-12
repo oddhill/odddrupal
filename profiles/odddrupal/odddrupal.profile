@@ -37,6 +37,8 @@ function odddrupal_install_tasks($install_state) {
   );
   $tasks['odddrupal_themekey_rules'] = array();
   $tasks['odddrupal_roles'] = array();
+  $tasks['odddrupal_permissions'] = array();
+  $tasks['odddrupal_users'] = array();
   $tasks['odddrupal_set_variables'] = array();
   
   return $tasks;
@@ -385,17 +387,25 @@ function odddrupal_themekey_rules() {
 }
 
 /**
- * Set default roles and the permissons.
+ * Create default roles.
  */
 function odddrupal_roles() {
-  global $language;
+  // Editor.
+  $role->name = 'editor';
+  user_role_save($role);
+}
 
-  // Create editor role.
-  $editor_role->name = 'editor';
-  user_role_save($editor_role);
-  
-  // Set permissions for the editor role.
-  user_role_grant_permissions($editor_role->rid, array(
+/**
+ * Set default permissions.
+ */
+function odddrupal_permissions() {
+  // Access content for anonomyous and authenticated.
+  user_role_grant_permissions(1, array('access content'));
+  user_role_grant_permissions(2, array('access content'));
+
+  // Editor role.
+  $role = user_role_load_by_name('editor');
+  user_role_grant_permissions($role->rid, array(
     'access contextual links',
     'access overlay',
     'change own username',
@@ -403,24 +413,32 @@ function odddrupal_roles() {
     'use text format filtered_html',
     'view the administration theme',
   ));
-  
-  // Create the editor account.
-  $editor_account['name'] = 'editor';
-  $editor_account['mail'] = variable_get('site_mail');
-  $editor_account['pass'] = 'karljohan12';
-  $editor_account['timezone'] = variable_get('date_default_timezone');
-  $editor_account['language'] = $language->language;
-  $editor_account['init'] = variable_get('site_mail');
-  $editor_account['status'] = 1;
-  $editor_account['roles'] = array(
-    2 => TRUE,
-    $editor_role->rid => $editor_role->rid
-  );
-  user_save(NULL, $editor_account);
+}
 
-  // Access content for anonomyous and authenticated.
-  user_role_grant_permissions(1, array('access content'));
-  user_role_grant_permissions(2, array('access content'));
+/**
+ * Create and configure default users.
+ */
+function odddrupal_users() {
+  global $language;
+
+  // Create the editor account.
+  $role = user_role_load_by_name('editor');
+  $user['name'] = 'editor';
+  $user['mail'] = variable_get('site_mail');
+  $user['pass'] = 'karljohan12';
+  $user['timezone'] = variable_get('date_default_timezone');
+  $user['language'] = $language->language;
+  $user['init'] = variable_get('site_mail');
+  $user['status'] = 1;
+  $user['roles'] = array(
+    2 => TRUE,
+    $role->rid => $role->rid
+  );
+  user_save(NULL, $user);
+
+  // Disable the overlay for user 1.
+  $user = user_load(1);
+  user_save($user, array('data' => array('overlay' => 0)));
 }
 
 /**
