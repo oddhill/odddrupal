@@ -178,7 +178,7 @@ function rules_action_entity_createfetch_access(RulesAbstractPlugin $element) {
  */
 function rules_action_entity_fetch_validate($element) {
   if (!isset($element->settings['type'])) {
-    throw new RulesException('Invalid type specified.', array(), array($element, 'parameter', 'type'));
+    throw new RulesEvaluationException('Invalid type specified.', array(), array($element, 'parameter', 'type'));
   }
 }
 
@@ -187,10 +187,10 @@ function rules_action_entity_fetch_validate($element) {
  */
 function rules_action_entity_query_validate($element) {
   if (!isset($element->settings['type'])) {
-    throw new RulesException('Invalid type specified.', array(), array($element, 'parameter', 'type'));
+    throw new RulesEvaluationException('Invalid type specified.', array(), array($element, 'parameter', 'type'));
   }
   if (!isset($element->settings['property'])) {
-    throw new RulesException('Invalid property specified.', array(), array($element, 'parameter', 'property'));
+    throw new RulesEvaluationException('Invalid property specified.', array(), array($element, 'parameter', 'property'));
   }
 }
 
@@ -410,20 +410,6 @@ function rules_condition_entity_has_field_assertions($element) {
 function rules_condition_entity_is_of_type_assertions($element) {
   if ($type = $element->settings['type']) {
     return array('entity' => array('type' => $type));
-  }
-}
-
-/**
- * Gets all view modes of an entity for an entity_view event.
- */
-function rules_get_entity_view_modes($type, $name) {
-  if ($type == 'event') {
-    $entity_type = substr($name, 0, -5);
-    $info = entity_get_info($entity_type);
-    foreach ($info['view modes'] as $mode => $mode_info) {
-      $modes[$mode] = $mode_info['label'];
-    }
-    return $modes;
   }
 }
 

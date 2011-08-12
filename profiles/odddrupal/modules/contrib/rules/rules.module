@@ -385,12 +385,11 @@ function rules_unwrap_data(array $data, $info = array()) {
       try {
         $data[$key] = $entry->value($options);
       }
-      catch (Exception $e) {
-        // Getting the data value failed.
-        throw new RulesException($e->getMessage());
+      catch (EntityMetadataWrapperException $e) {
+        throw new RulesEvaluationException('Unable to get the data value for the variable or parameter %name. Error: !error', array('%name' => $key, '!error' => $e->getMessage()));
       }
       if (!isset($data[$key]) && empty($info[$key]['allow null'])) {
-        throw new RulesException('The variable or parameter %name is empty.', array('%name' => $key));
+        throw new RulesEvaluationException('The variable or parameter %name is empty.', array('%name' => $key));
       }
     }
   }
@@ -649,20 +648,6 @@ function rules_get_components($label = FALSE, $type = NULL, $conditions = array(
 }
 
 /**
- * Implement hook_query_TAG_alter().
- */
-function rules_query_rules_config_load_multiple_alter(QueryAlterableInterface $query) {
-  // Support using 'event' => $name as condition.
-  $conditions =& $query->conditions();
-  foreach ($conditions as &$condition) {
-    if ($condition['field'] == 'base.event') {
-      $query->join('rules_trigger', 'tr', "base.id = tr.id");
-      $condition['field'] = 'tr.event';
-    }
-  }
-}
-
-/**
  * Delete rule configurations from database.
  *
  * @param $ids
@@ -670,45 +655,6 @@ function rules_query_rules_config_load_multiple_alter(QueryAlterableInterface $q
  */
 function rules_config_delete(array $ids) {
   return entity_get_controller('rules_config')->delete($ids);
-}
-
-
-/**
- * Implement hook_rules_config_insert().
- */
-function rules_rules_config_insert($rule_config) {
-  // If it's an reactive rule write entries in trigger table.
-  if ($rule_config instanceof RulesTriggerableInterface) {
-    foreach ($rule_config->events() as $event) {
-      db_insert('rules_trigger')
-        ->fields(array(
-        'id' => $rule_config->id,
-        'event' => $event,
-      ))
-      ->execute();
-    }
-  }
-}
-
-/**
- * Implement hook_rules_config_update().
- */
-function rules_rules_config_update($rule_config) {
-  if ($rule_config instanceof RulesTriggerableInterface) {
-    rules_rules_config_delete($rule_config);
-    rules_rules_config_insert($rule_config);
-  }
-}
-
-/**
- * Implement hook_rules_config_delete().
- */
-function rules_rules_config_delete($rule_config) {
-  if ($rule_config instanceof RulesTriggerableInterface) {
-    db_delete('rules_trigger')
-      ->condition('id', $rule_config->id)
-      ->execute();
-  }
 }
 
 /**
@@ -930,6 +876,10 @@ function rules_theme() {
       'render element' => 'element',
       'file' => 'ui/ui.theme.inc',
     ),
+    'rules_debug_element' => array(
+      'render element' => 'element',
+      'file' => 'ui/ui.theme.inc',
+    ),
   );
 }
 
@@ -940,6 +890,14 @@ function rules_permission() {
   return array(
     'administer rules' => array(
       'title' => t('Administer rule configurations'),
+    ),
+    'bypass rules access' => array(
+      'title' => t('Bypass Rules access control'),
+      'description' => t('Use any data property, Rules action or input evaluation system regardless of permission restrictions.'),
+      'restrict access' => TRUE,
+    ),
+    'access rules debug' => array(
+      'title' => t('Access the Rules debug log'),
     ),
   );
 }
@@ -986,6 +944,16 @@ function rules_menu_add_element_title($array) {
 }
 
 /**
+ * Returns the current region for the debug log.
+ */
+function rules_debug_log_region() {
+  // If there is no setting for the current theme use the default theme setting.
+  global $theme_key;
+  $theme_default = variable_get('theme_default', 'bartik');
+  return variable_get('rules_debug_region_' . $theme_key, variable_get('rules_debug_region_' . $theme_default, 'help'));
+}
+
+/**
  * Implements hook_page_build() to add the rules debug log to the page bottom.
  */
 function rules_page_build(&$page) {
@@ -997,7 +965,7 @@ function rules_page_build(&$page) {
   }
 
   if (isset($_SESSION['rules_debug'])) {
-    $region = variable_get('rules_debug_region', 'help');
+    $region = rules_debug_log_region();
     foreach ($_SESSION['rules_debug'] as $log) {
       $page[$region]['rules_debug'][] = array(
         '#markup' => $log,
@@ -1006,17 +974,25 @@ function rules_page_build(&$page) {
     }
     unset($_SESSION['rules_debug']);
   }
+
   if (rules_show_debug_output()) {
-    $logger = RulesLog::logger();
-    $region = variable_get('rules_debug_region', 'help');
-    if ($log = $logger->render()) {
-      $page[$region]['rules_debug'][] = array(
-        '#markup' => $log,
-      );
-      $page[$region]['rules_debug']['#theme_wrappers'] = array('rules_log');
-      $logger->clear();
-    }
+    $region = rules_debug_log_region();
+    $page[$region]['rules_debug']['#pre_render'] = array('rules_debug_log_pre_render');
   }
+}
+
+/**
+ * Pre-render callback for the debug log, which renders and then clears it.
+ */
+function rules_debug_log_pre_render($elements) {
+  $logger = RulesLog::logger();
+  if ($log = $logger->render()) {
+    $logger = RulesLog::logger();
+    $logger->clear();
+    $elements[] = array('#markup' => $log);
+    $elements['#theme_wrappers'] = array('rules_log');
+  }
+  return $elements;
 }
 
 /**
@@ -1043,8 +1019,11 @@ function rules_drupal_goto_alter(&$path, &$options, &$http_response_code) {
  * Returns whether the debug log should be shown.
  */
 function rules_show_debug_output() {
+  if (variable_get('rules_debug', FALSE) && user_access('access rules debug')) {
+    return TRUE;
+  }
   // For performance avoid unnecessary auto-loading of the RulesLog class.
-  return variable_get('rules_debug', FALSE) || (class_exists('RulesLog', FALSE) && RulesLog::logger()->hasErrors() && user_access('administer rules'));
+  return (class_exists('RulesLog', FALSE) && RulesLog::logger()->hasErrors() && user_access('administer rules'));
 }
 
 /**
@@ -1126,6 +1105,14 @@ function rules_menu() {
     'access arguments' => array('administer rules'),
     'file' => 'includes/rules.upgrade.inc',
     'file path' => drupal_get_path('module', 'rules'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/config/workflow/rules/autocomplete_tags'] = array(
+    'title' => 'Rules tags autocomplete',
+    'page callback' => 'rules_autocomplete_tags',
+    'page arguments' => array(5),
+    'access arguments' => array('administer rules'),
+    'file' => 'ui/ui.forms.inc',
     'type' => MENU_CALLBACK,
   );
   return $items;

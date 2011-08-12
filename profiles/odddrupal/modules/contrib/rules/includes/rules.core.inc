@@ -24,6 +24,12 @@ class RulesEntityController extends EntityAPIControllerExportable {
         $entity->$field = $record->$field;
       }
       unset($entity->data, $entity->plugin);
+      // Load possible tags.
+      $entity->tags = db_select('rules_tags')
+        ->fields('rules_tags', array('tag'))
+        ->condition('id', $entity->id)
+        ->execute()
+        ->fetchCol('tag');
       $entities[$entity->id] = $entity;
     }
     $queried_entities = $entities;
@@ -31,7 +37,7 @@ class RulesEntityController extends EntityAPIControllerExportable {
   }
 
   /**
-   * Override to support having an event as condition.
+   * Override to support having events and tags as conditions.
    * @see EntityAPIController::applyConditions($entities, $conditions)
    * @see rules_query_rules_config_load_multiple_alter()
    */
@@ -49,6 +55,17 @@ class RulesEntityController extends EntityAPIControllerExportable {
         }
       }
       unset($conditions['event'], $conditions['plugin']);
+    }
+    if (!empty($conditions['tags'])) {
+      foreach ($entities as $key => $entity) {
+        foreach ($conditions['tags'] as $tag) {
+          if (in_array($tag, $entity->tags)) {
+            continue 2;
+          }
+        }
+        unset($entities[$key]);
+      }
+      unset($conditions['tags']);
     }
     return parent::applyConditions($entities, $conditions);
   }
@@ -75,7 +92,7 @@ class RulesEntityController extends EntityAPIControllerExportable {
     // Create an empty configuration, re-set basic keys and import.
     $config = rules_plugin_factory($export['PLUGIN']);
     $config->name = $name;
-    foreach (array('label', 'active', 'weight') as $key) {
+    foreach (array('label', 'active', 'weight', 'tags') as $key) {
       if (isset($export[strtoupper($key)])) {
         $config->$key = $export[strtoupper($key)];
       }
@@ -90,6 +107,93 @@ class RulesEntityController extends EntityAPIControllerExportable {
     }
     $config->import($export);
     return $config;
+  }
+
+  public function save($rules_config, DatabaseTransaction $transaction = NULL) {
+    $transaction = isset($transaction) ? $transaction : db_transaction();
+
+    $return = parent::save($rules_config, $transaction);
+    $this->storeTags($rules_config);
+    if ($rules_config instanceof RulesTriggerableInterface) {
+      $this->storeEvents($rules_config);
+    }
+    return $return;
+  }
+
+  /**
+   * Save tagging information to the rules_tags table.
+   */
+  protected function storeTags($rules_config) {
+    db_delete('rules_tags')
+      ->condition('id', $rules_config->id)
+      ->execute();
+    if (!empty($rules_config->tags)) {
+      foreach ($rules_config->tags as $tag) {
+        db_insert('rules_tags')
+          ->fields(array('id', 'tag'), array($rules_config->id, $tag))
+          ->execute();
+      }
+    }
+  }
+
+  /**
+   * Save event information to the rules_trigger table.
+   */
+  protected function storeEvents(RulesTriggerableInterface $rules_config) {
+    db_delete('rules_trigger')
+      ->condition('id', $rules_config->id)
+      ->execute();
+    foreach ($rules_config->events() as $event) {
+      db_insert('rules_trigger')
+        ->fields(array(
+        'id' => $rules_config->id,
+        'event' => $event,
+      ))
+      ->execute();
+    }
+  }
+
+  /**
+   * Overridden to support tags and events in $conditions.
+   * @see EntityAPIControllerExportable::buildQuery()
+   */
+  protected function buildQuery($ids, $conditions = array(), $revision_id = FALSE) {
+    $query = parent::buildQuery($ids, $conditions, $revision_id);
+    $query_conditions =& $query->conditions();
+    foreach ($query_conditions as &$condition) {
+      // Support using 'tags' => array('tag1', 'tag2') as condition.
+      if ($condition['field'] == 'base.tags') {
+        $query->join('rules_tags', 'rt', 'base.id = rt.id');
+        $condition['field'] = 'rt.tag';
+      }
+      // Support using 'event' => $name as condition.
+      if ($condition['field'] == 'base.event') {
+        $query->join('rules_trigger', 'tr', "base.id = tr.id");
+        $condition['field'] = 'tr.event';
+      }
+    }
+    return $query;
+  }
+
+  /**
+   * Overridden to also delete tags and events.
+   * @see EntityAPIControllerExportable::delete()
+   */
+  public function delete($ids, DatabaseTransaction $transaction = NULL) {
+    $transaction = isset($transaction) ? $transaction : db_transaction();
+    // Use entity-load as ids may be the names as well as the ids.
+    $configs = $ids ? entity_load('rules_config', $ids) : array();
+    if ($configs) {
+      foreach ($configs as $config) {
+        db_delete('rules_trigger')
+          ->condition('id', $config->id)
+          ->execute();
+        db_delete('rules_tags')
+          ->condition('id', $config->id)
+          ->execute();
+      }
+    }
+    return parent::delete($ids, $transaction);
   }
 }
 
@@ -256,7 +360,7 @@ abstract class RulesPlugin extends RulesExtendable {
       $parent->children[] = $this;
     }
     else {
-      throw new RulesException('The given container is incompatible with this element.', array(), $this);
+      throw new RulesEvaluationException('The given container is incompatible with this element.', array(), $this);
     }
   }
 
@@ -431,10 +535,11 @@ abstract class RulesPlugin extends RulesExtendable {
       try {
         $vars[$name] = $this->getArgument($name, $info, $state);
       }
-      catch (RulesException $e) {
+      catch (RulesEvaluationException $e) {
         // Ignore not existing variables.
         $vars[$name] = NULL;
       }
+      $var_info[$name] += array('allow null' => TRUE);
     }
     return isset($vars) ? array_values(rules_unwrap_data($vars, $var_info)) : array();
   }
@@ -466,7 +571,7 @@ abstract class RulesPlugin extends RulesExtendable {
         $state->addVariable($name, $args[$name], $info);
       }
       elseif (empty($info['optional']) && $info['type'] != 'hidden') {
-        throw new RulesException('Argument %name is missing.', array('%name' => $name), $this);
+        throw new RulesEvaluationException('Argument %name is missing.', array('%name' => $name), $this, RulesLog::ERROR);
       }
     }
     return $state;
@@ -577,6 +682,11 @@ abstract class RulesPlugin extends RulesExtendable {
    * are available in the element's scope and dependent modules are enabled.
    *
    * @return RulesPlugin
+   *   Returns $this to support chained usage.
+   *
+   * @throws RulesIntegrityException
+   *   In case of a failed integraty check, a RulesIntegrityException exception
+   *   is thrown.
    */
   public function integrityCheck() {
     // First process the settings if not done yet.
@@ -584,7 +694,7 @@ abstract class RulesPlugin extends RulesExtendable {
     // Check dependencies.
     foreach ($this->dependencies() as $module) {
       if (!module_exists($module)) {
-        throw new RulesException('Missing required module %name.', array('%name' => $module), $this);
+        throw new RulesDependencyException(t('Missing required module %name.', array('%name' => $module)));
       }
     }
     // Check the parameter settings.
@@ -600,7 +710,7 @@ abstract class RulesPlugin extends RulesExtendable {
 
   protected function checkVarName($name) {
     if (!preg_match('/^[0-9a-zA-Z_]*$/', $name)) {
-      throw new RulesException('%plugin: The variable name %name contains not allowed characters.', array('%plugin' => $this->getPluginName(), '%name' => $name), $this);
+      throw new RulesIntegrityException(t('%plugin: The variable name %name contains not allowed characters.', array('%plugin' => $this->getPluginName(), '%name' => $name)), $this);
     }
   }
 
@@ -610,19 +720,19 @@ abstract class RulesPlugin extends RulesExtendable {
   protected function checkParameterSettings() {
     foreach ($this->pluginParameterInfo() as $name => $info) {
       if (isset($info['restriction']) && $info['restriction'] == 'selector' && isset($this->settings[$name])) {
-        throw new RulesException("%plugin: The parameter %name may only be configured using a selector.", array('%plugin' => $this->getPluginName(), '%name' => $name), array($this, 'parameter', $name));
+        throw new RulesIntegrityException(t("%plugin: The parameter %name may only be configured using a selector.", array('%plugin' => $this->getPluginName(), '%name' => $name)), array($this, 'parameter', $name));
       }
       elseif (isset($info['restriction']) && $info['restriction'] == 'input' && isset($this->settings[$name . ':select'])) {
-        throw new RulesException("%plugin: The parameter %name may not be configured using a selector.", array('%plugin' => $this->getPluginName(), '%name' => $name), array($this, 'parameter', $name));
+        throw new RulesIntegrityException(t("%plugin: The parameter %name may not be configured using a selector.", array('%plugin' => $this->getPluginName(), '%name' => $name)), array($this, 'parameter', $name));
       }
       if ($arg_info = $this->getArgumentInfo($name)) {
         // If we have enough metadata, check whether the types match.
         if (!RulesData::typesMatch($arg_info, $info)) {
-          throw new RulesException("%plugin: The data type of the configured argument does not match the parameter's %name requirement.", array('%plugin' => $this->getPluginName(), '%name' => $name), array($this, 'parameter', $name));
+          throw new RulesIntegrityException(t("%plugin: The data type of the configured argument does not match the parameter's %name requirement.", array('%plugin' => $this->getPluginName(), '%name' => $name)), array($this, 'parameter', $name));
         }
       }
       elseif (!$this->isRoot() && !isset($this->settings[$name]) && empty($info['optional']) && $info['type'] != 'hidden') {
-        throw new RulesException('%plugin: Missing configuration for parameter %name.', array('%plugin' => $this->getPluginName(), '%name' => $name), array($this, 'parameter', $name));
+        throw new RulesIntegrityException(t('%plugin: Missing configuration for parameter %name.', array('%plugin' => $this->getPluginName(), '%name' => $name)), array($this, 'parameter', $name));
       }
       //TODO: Make sure used values are allowed. (key/value pairs + allowed values)
     }
@@ -632,7 +742,7 @@ abstract class RulesPlugin extends RulesExtendable {
    * Returns the argument as configured in the element settings for the
    * parameter $name described with $info.
    *
-   * @throws RulesException
+   * @throws RulesEvaluationException
    *   In case the argument cannot be retrieved an exception is thrown.
    */
   protected function getArgument($name, $info, RulesState $state) {
@@ -648,7 +758,7 @@ abstract class RulesPlugin extends RulesExtendable {
       $arg = $state->get($name);
     }
     elseif (empty($info['optional']) && $info['type'] != 'hidden') {
-      throw new RulesException('Required parameter %name is missing.', array('%name' => $name), $this);
+      throw new RulesEvaluationException('Required parameter %name is missing.', array('%name' => $name), $this);
     }
     else {
       $arg = isset($info['default value']) ? $info['default value'] : NULL;
@@ -657,7 +767,7 @@ abstract class RulesPlugin extends RulesExtendable {
     }
     // Make sure the given value is set if required (default).
     if (!isset($arg) && empty($info['allow null'])) {
-      throw new RulesException('The provided argument for parameter %name is empty.', array('%name' => $name), $this);
+      throw new RulesEvaluationException('The provided argument for parameter %name is empty.', array('%name' => $name), $this);
     }
 
     // Apply any configured data processors.
@@ -671,6 +781,25 @@ abstract class RulesPlugin extends RulesExtendable {
       return check_plain((string) $arg);
     }
     return $arg;
+  }
+
+  /**
+   * Gets the right arguments for executing the element.
+   *
+   * @throws RulesEvaluationException
+   *   If case an argument cannot be retrieved an exception is thrown.
+   */
+  protected function getExecutionArguments(RulesState $state) {
+    $param_info = $this->pluginParameterInfo();
+    foreach ($param_info as $name => $info) {
+      $args[$name] = $this->getArgument($name, $info, $state);
+    }
+    // Append the settings and the execution state. Faces will append $this.
+    $args['settings'] = $this->settings;
+    $args['state'] = $state;
+    // Make the wrapped variables for the arguments available in the state.
+    $state->currentArguments = $args;
+    return rules_unwrap_data($args, $param_info);
   }
 
   /**
@@ -779,7 +908,7 @@ abstract class RulesPlugin extends RulesExtendable {
     // Keep the id always as we need it for the recursion prevention.
     $array = drupal_map_assoc(array('parent', 'id', 'elementId', 'weight', 'settings'));
     // Keep properties related to configurations if they are there.
-    foreach (array('name', 'module', 'status', 'label', 'recursion') as $key) {
+    foreach (array('name', 'module', 'status', 'label', 'recursion', 'tags') as $key) {
       if (isset($this->$key)) {
         $array[$key] = $key;
       }
@@ -968,7 +1097,7 @@ abstract class RulesPlugin extends RulesExtendable {
    *
    * @see rules_import()
    */
-  public function export($prefix = '',$php = FALSE) {
+  public function export($prefix = '', $php = FALSE) {
     $export = $this->exportToArray();
     return $this->isRoot() ? $this->returnExport($export, $prefix, $php) : $export;
   }
@@ -1028,6 +1157,9 @@ abstract class RulesPlugin extends RulesExtendable {
     }
     if (isset($this->active) && !$this->active) {
       $export_cfg[$this->name]['ACTIVE'] = FALSE;
+    }
+    if (!empty($this->tags)) {
+      $export_cfg[$this->name]['TAGS'] = $this->tags;
     }
     if ($modules = $this->dependencies()) {
       $export_cfg[$this->name]['REQUIRES'] = $modules;
@@ -1255,26 +1387,16 @@ abstract class RulesAbstractPlugin extends RulesPlugin {
       // Get vars as needed for execute and call it.
       return $this->executeCallback($this->getExecutionArguments($state), $state);
     }
-    catch (RulesException $e) {
+    catch (RulesEvaluationException $e) {
       rules_log($e->msg, $e->args, $e->severity);
-      rules_log('Unable to execute %name.', array('%name' => $this->getPluginName()));
+      rules_log('Unable to evaluate %name.', array('%name' => $this->getPluginName()), RulesLog::WARN);
     }
-  }
-
-  /**
-   * Gets the right arguments for executing this.
-   */
-  protected function getExecutionArguments(RulesState $state) {
-    $param_info = $this->pluginParameterInfo();
-    foreach ($param_info as $name => $info) {
-      $args[$name] = $this->getArgument($name, $info, $state);
+    // Catch wrapper exceptions that might occur due to failures loading an
+    // entity or similar.
+    catch (EntityMetadataWrapperException $e) {
+      rules_log('Unable to get a data value. Error: !error', array('!error' => $e->getMessage()), RulesLog::WARN);
+      rules_log('Unable to evaluate %name.', array('%name' => $this->getPluginName()), RulesLog::WARN);
     }
-    // Append the settings and the execution state. Faces will append $this.
-    $args['settings'] = $this->settings;
-    $args['state'] = $state;
-    // Make the wrapped variables for the arguments available in the state.
-    $state->currentArguments = $args;
-    return rules_unwrap_data($args, $param_info);
   }
 
   public function __sleep() {
@@ -1401,8 +1523,12 @@ abstract class RulesAbstractPlugin extends RulesPlugin {
  * Interface for objects that can be used as action.
  */
 interface RulesActionInterface {
+
   /**
    * @return As specified.
+   *
+   * @throws RulesEvaluationException
+   *   Throws an exception if not all necessary arguments have been provided.
    */
   public function execute();
 }
@@ -1414,6 +1540,9 @@ interface RulesConditionInterface {
 
   /**
    * @return Boolean.
+   *
+   * @throws RulesEvaluationException
+   *   Throws an exception if not all necessary arguments have been provided.
    */
   public function execute();
 
@@ -1458,8 +1587,8 @@ interface RulesPluginImplInterface {
   /**
    * Validates $settings independent from a form submission.
    *
-   * @throws RulesException
-   *   In case of validation errors, RulesExceptions are thrown.
+   * @throws RulesIntegrityException
+   *   In case of validation errors, RulesIntegrityExceptions are thrown.
    */
   public function validate();
 
@@ -1538,7 +1667,7 @@ interface RulesOptimizationInterface {
 class RulesAbstractPluginDefaults extends FacesExtender implements RulesPluginImplInterface {
 
   public function execute() {
-    throw new RulesException($this->object->getPluginName() .": Execution implementation is missing.");
+    throw new RulesEvaluationException($this->object->getPluginName() .": Execution implementation is missing.");
   }
 
   /**
@@ -1611,7 +1740,7 @@ abstract class RulesContainerPlugin extends RulesPlugin implements IteratorAggre
    */
   public function integrityCheck() {
     if (!empty($this->info['variables']) && !$this->isRoot()) {
-      throw new RulesException('%plugin: Specifying state variables is not possible for child elements.', array('%plugin' => $this->getPluginName()), $this);
+      throw new RulesIntegrityException(t('%plugin: Specifying state variables is not possible for child elements.', array('%plugin' => $this->getPluginName())), $this);
     }
     parent::integrityCheck();
     foreach ($this->children as $child) {
@@ -1634,6 +1763,10 @@ abstract class RulesContainerPlugin extends RulesPlugin implements IteratorAggre
       foreach ($this->info['variables'] as $name => $var_info) {
         if (empty($var_info['handler']) && (!isset($var_info['parameter']) || $var_info['parameter'])) {
           $params[$name] = $var_info;
+          // For lists allow empty variables by default.
+          if (entity_property_list_extract_type($var_info['type'])) {
+            $params[$name] += array('allow null' => TRUE);
+          }
         }
       }
     }
@@ -2089,7 +2222,9 @@ class RulesLog {
     $line = 0;
     $output = array();
     while (isset($this->log[$line])) {
-      $output[] = $this->renderHelper($line);
+      $vars['head'] = t($this->log[$line][0], $this->log[$line][1]);
+      $vars['log'] = $this->renderHelper($line);
+      $output[] = theme('rules_debug_element', $vars);
       $line++;
     }
     return implode('', $output);
@@ -2103,19 +2238,23 @@ class RulesLog {
     $output = array();
     while ($line < count($this->log)) {
       if ($output && !empty($this->log[$line][4])) {
-        // The next entry stems from another evaluated set, add in its log messages here
-        $output[] = $this->renderHelper($line);
+        // The next entry stems from another evaluated set, add in its log
+        // messages here.
+        $vars['head'] = t($this->log[$line][0], $this->log[$line][1]);
+        $vars['log'] = $this->renderHelper($line);
+        $output[] = theme('rules_debug_element', $vars);
       }
       else {
         $formatted_diff = round(($this->log[$line][3] - $startTime) * 1000, 3) .' ms';
         $msg = $formatted_diff .' '. t($this->log[$line][0], $this->log[$line][1]);
         if ($this->log[$line][2] >= RulesLog::WARN) {
-          $msg = '<strong>'. $msg .'</strong>';
+          $level = $this->log[$line][2] == RulesLog::WARN ? 'warn' : 'error';
+          $msg = '<span class="rules-debug-' . $level . '">'. $msg .'</span>';
         }
         $output[] = $msg;
 
         if (isset($this->log[$line][4]) && !$this->log[$line][4]) {
-          // This was the last log entry of this set
+          // This was the last log entry of this set.
           return theme('item_list', array('items' => $output));
         }
       }
@@ -2133,9 +2272,20 @@ class RulesLog {
 }
 
 /**
- * An exception for Rules.
+ * A common exception for Rules.
+ *
+ * This class can be used to catch all exceptions thrown by Rules.
  */
-class RulesException extends Exception {
+abstract class RulesException extends Exception {}
+
+/**
+ * An exception that is thrown during evaluation.
+ *
+ * Messages are prepared to be logged to the watchdog, thus not yet translated.
+ *
+ * @see watchdog()
+ */
+class RulesEvaluationException extends RulesException {
 
   public $msg, $args, $severity, $element, $keys = array();
 
@@ -2157,9 +2307,41 @@ class RulesException extends Exception {
     $this->msg = $msg;
     $this->args = $args;
     $this->severity = $severity;
+    // @todo fix _drupal_decode_exception() to use __toString() and override it.
     $this->message = t($this->msg, $this->args);
   }
+
 }
+
+/**
+ * An exception that is thrown for Rules configurations that fail the integrity check.
+ *
+ * @see RulesPlugin::integrityCheck()
+ */
+class RulesIntegrityException extends RulesException {
+
+  public $msg, $element, $keys = array();
+
+  /**
+   * @param string $msg
+   *   The exception message, already translated.
+   * @param $element
+   *   The element of a configuration causing the exception or an array
+   *   consisting of the element and keys specifying a parameter or provided
+   *   variable causing the exception, e.g.
+   *   @code array($element, 'parameter', 'node') @endcode.
+   */
+  function __construct($msg, $element = NULL) {
+    $this->element = is_array($element) ? array_shift($element) : $element;
+    $this->keys = is_array($element) ? $element : array();
+    parent::__construct($msg);
+  }
+}
+
+/**
+ * An exception that is thrown for missing module dependencies.
+ */
+class RulesDependencyException extends RulesIntegrityException {}
 
 /**
  * Determines the plugin to be used for importing a child element.

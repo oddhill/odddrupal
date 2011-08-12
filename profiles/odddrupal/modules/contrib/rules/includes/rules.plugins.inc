@@ -23,27 +23,30 @@ class RulesAction extends RulesAbstractPlugin implements RulesActionInterface {
 
     if (is_array($return)) {
       foreach ($return as $name => $data) {
-        // Update the data value using the wrapper.
-        if (isset($args[$name]) && $args[$name] instanceof EntityMetadataWrapper) {
-          try {
-            $args[$name]->set($data);
-          }
-          catch (EntityMetadataWrapperException $e) {
-            throw new RulesException('Unable to update the argument for parameter %name: %error', array('%name' => $name, '%error' => $e->getMessage()), $this);
-          }
-        }
-        elseif (array_key_exists($name, $args)) {
-          // Map back to the source variable name and update it.
-          $var_name = !empty($this->settings[$name . ':select']) ? str_replace('-', '_', $this->settings[$name . ':select']) : $name;
-          $state->variables[$var_name] = $data;
-        }
         // Add provided variables.
-        elseif (!$state->varInfo($name) && isset($this->info['provides'][$name])) {
+        if (!$state->varInfo($name) && isset($this->info['provides'][$name])) {
           $var_name = isset($this->settings[$name . ':var']) ? $this->settings[$name . ':var'] : $name;
           $state->addVariable($var_name, $data, $this->info['provides'][$name]);
           rules_log('Added the provided variable %name of type %type', array('%name' => $var_name, '%type' => $this->info['provides'][$name]['type']));
           if (!empty($this->info['provides'][$name]['save']) && $state->variables[$var_name] instanceof EntityMetadataWrapper) {
             $state->saveChanges($var_name, $state->variables[$var_name]);
+          }
+        }
+        // Support updating variables by returning the values.
+        elseif (!isset($this->info['provides'][$name])) {
+          // Update the data value using the wrapper.
+          if (isset($args[$name]) && $args[$name] instanceof EntityMetadataWrapper) {
+            try {
+              $args[$name]->set($data);
+            }
+            catch (EntityMetadataWrapperException $e) {
+              throw new RulesEvaluationException('Unable to update the argument for parameter %name: %error', array('%name' => $name, '%error' => $e->getMessage()), $this);
+            }
+          }
+          elseif (array_key_exists($name, $args)) {
+            // Map back to the source variable name and update it.
+            $var_name = !empty($this->settings[$name . ':select']) ? str_replace('-', '_', $this->settings[$name . ':select']) : $name;
+            $state->variables[$var_name] = $data;
           }
         }
       }
@@ -205,9 +208,11 @@ class Rule extends RulesActionContainer {
   }
 
   public function evaluate(RulesState $state) {
-    rules_log('Evaluating rule %label.', array('%label' => $this->label));
+    rules_log('Evaluating conditions of rule %label.', array('%label' => $this->label));
     if ($this->conditions->evaluate($state)) {
+      rules_log('Rule %label fires.', array('%label' => $this->label), RulesLog::INFO, TRUE);
       parent::evaluate($state);
+      rules_log('Rule %label has fired.', array('%label' => $this->label), RulesLog::INFO, FALSE);
     }
   }
 
@@ -560,28 +565,34 @@ class RulesLoop extends RulesActionContainer {
   }
 
   public function evaluate(RulesState $state) {
-    $param_info = $this->pluginParameterInfo();
-    $list = $this->getArgument('list', $param_info['list'], $state);
-    $item_var_info = $this->listItemInfo();
-    $item_var_name = $this->settings['item:var'];
+    try {
+      $param_info = $this->pluginParameterInfo();
+      $list = $this->getArgument('list', $param_info['list'], $state);
+      $item_var_info = $this->listItemInfo();
+      $item_var_name = $this->settings['item:var'];
 
-    if (isset($this->settings['list:select'])) {
-      rules_log('Looping over the list items of %selector', array('%selector' => $this->settings['list:select']));
-    }
+      if (isset($this->settings['list:select'])) {
+        rules_log('Looping over the list items of %selector', array('%selector' => $this->settings['list:select']));
+      }
 
-    // Loop over the list and evaluate the children for each list item.
-    foreach ($list as $key => $item) {
-      // Use a separate state so variables are available in the loop only.
-      $state2 = clone $state;
-      $state2->addVariable($item_var_name, $list[$key], $item_var_info);
-      parent::evaluate($state2);
+      // Loop over the list and evaluate the children for each list item.
+      foreach ($list as $key => $item) {
+        // Use a separate state so variables are available in the loop only.
+        $state2 = clone $state;
+        $state2->addVariable($item_var_name, $list[$key], $item_var_info);
+        parent::evaluate($state2);
 
-      // Update variables from parent scope.
-      foreach ($state->variables as $var_key => &$var_value) {
-        if (array_key_exists($var_key, $state2->variables)) {
-          $var_value = $state2->variables[$var_key];
+        // Update variables from parent scope.
+        foreach ($state->variables as $var_key => &$var_value) {
+          if (array_key_exists($var_key, $state2->variables)) {
+            $var_value = $state2->variables[$var_key];
+          }
         }
       }
+    }
+    catch (RulesEvaluationException $e) {
+      rules_log($e->msg, $e->args, $e->severity);
+      rules_log('Unable to evaluate %name.', array('%name' => $this->getPluginName()), RulesLog::WARN);
     }
   }
 

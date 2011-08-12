@@ -30,6 +30,7 @@ function rules_element_invoke_component($arguments, RulesPlugin $element) {
     module_invoke_all('rules_config_execute', $component);
 
     // Manually create a new evaluation state and evaluate the component.
+    $args = array_intersect_key($wrapped_args, $component->parameterInfo());
     $new_state = $component->setUpState($wrapped_args);
     $return = $component->evaluate($new_state);
 
@@ -51,7 +52,7 @@ function rules_element_invoke_component($arguments, RulesPlugin $element) {
     return $return;
   }
   else {
-    throw new RulesException('Unable to get the component %name', array('%name' => $info['#config_name']), $element);
+    throw new RulesEvaluationException('Unable to get the component %name', array('%name' => $info['#config_name']), $element);
   }
 }
 
@@ -116,7 +117,7 @@ class RulesURIInputEvaluator extends RulesDataInputEvaluator {
     elseif (valid_url($uri)) {
       return $uri;
     }
-    throw new RulesException('Input evaluation generated an invalid URI.', array(), NULL, RulesLog::WARN);
+    throw new RulesEvaluationException('Input evaluation generated an invalid URI.', array(), NULL, RulesLog::WARN);
   }
 }
 

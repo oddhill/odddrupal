@@ -321,13 +321,13 @@ class RulesPluginUI extends FacesExtender implements RulesPluginUIInterface {
 
     // Make sure the current user really has access to configure this element
     // as well as the used input evaluators and data processors.
-    if (!$this->element->access()) {
-      form_set_error('', t('Access violation!'));
+    if (!user_access('bypass rules access') && !$this->element->access()) {
+      form_set_error('', t('Access violation! You have insufficient access permissions to edit this configuration.'));
     }
     try {
       $this->element->integrityCheck();
     }
-    catch (RulesException $e) {
+    catch (RulesIntegrityException $e) {
       form_set_error(implode('][', $e->keys), t('The integrity check failed with the following error message: "!message"', array('!message' => $e->getMessage())));
     }
     if (!empty($form['settings'])) {
@@ -364,7 +364,6 @@ class RulesPluginUI extends FacesExtender implements RulesPluginUIInterface {
       $this->settingsFormSubmit($form, $form_state);
     }
     $this->element->save();
-    drupal_set_message(t('Your changes have been saved.'));
   }
 
   /**
@@ -396,7 +395,7 @@ class RulesPluginUI extends FacesExtender implements RulesPluginUIInterface {
     $form['settings']['name'] = array(
       '#type' => 'machine_name',
       '#default_value' => isset($machine_name) ? $machine_name : '',
-      '#maxlength' => 32,
+      '#maxlength' => 64,
       '#disabled' => entity_has_status('rules_config', $this->element, ENTITY_IN_CODE) && !(isset($form_state['op']) && $form_state['op'] == 'clone'),
       '#machine_name' => array(
         'exists' => 'rules_config_load',
@@ -404,6 +403,13 @@ class RulesPluginUI extends FacesExtender implements RulesPluginUIInterface {
       ),
       '#required' => TRUE,
       '#description' => t('The machine-readable name of this configuration is used by rules internally to identify the configuration. This name must contain only lowercase letters, numbers, and underscores and must be unique.'),
+    );
+    $form['settings']['tags'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Tags'),
+      '#default_value' => isset($this->element->tags) ? drupal_implode_tags($this->element->tags) : '',
+      '#autocomplete_path' => 'admin/config/workflow/rules/autocomplete_tags',
+      '#description' => t('Tags associated with this configuration. Enter a comma-separated list of words.'),
     );
 
     // Show a form for editing variables for components.
@@ -442,7 +448,7 @@ class RulesPluginUI extends FacesExtender implements RulesPluginUIInterface {
       );
     }
 
-    // TODO: Attach field form thus description and tags.
+    // TODO: Attach field form thus description.
   }
 
   public function settingsFormExtractValues($form, &$form_state) {
@@ -455,6 +461,7 @@ class RulesPluginUI extends FacesExtender implements RulesPluginUIInterface {
       $this->element->name = $module . '_' . $form_state['values']['name'];
       $form_state['redirect'] = RulesPluginUI::path($this->element->name);
     }
+    $this->element->tags = empty($form_state['values']['tags']) ? array() : drupal_explode_tags($form_state['values']['tags']);
 
     if (isset($form_state['values']['vars']['items'])) {
       $vars = &$this->element->componentVariables();
@@ -722,6 +729,16 @@ class RulesPluginUI extends FacesExtender implements RulesPluginUIInterface {
       $form['#after_build'][] = 'rules_form_after_build_restore_base_path';
     }
   }
+
+  public static function getTags() {
+    $result = db_select('rules_tags')
+      ->distinct()
+      ->fields('rules_tags', array('tag'))
+      ->groupBy('tag')
+      ->execute()
+      ->fetchCol('tag');
+    return drupal_map_assoc($result);
+  }
 }
 
 /**
@@ -887,6 +904,14 @@ class RulesContainerPluginUI extends RulesPluginUI {
           '#markup' => t('Weight: ') . $this->element->weight,
         ),
       );
+      if (!empty($this->element->tags)) {
+        $content['description']['tags'] = array(
+          '#theme' => 'rules_content_group',
+          'tags' => array(
+            '#markup' => t('Tags: ') . implode(', ', $this->element->tags),
+          ),
+        );
+      }
       if ($vars = $this->element->componentVariables()) {
         $content['description']['variables'] = array(
           '#caption' => t('Parameter'),

@@ -35,7 +35,7 @@ function rules_schema() {
       ),
       'name' => array(
         'type' => 'varchar',
-        'length' => '255',
+        'length' => '64',
         'not null' => TRUE,
         'description' => 'The name of the configuration.',
       ),
@@ -92,6 +92,9 @@ function rules_schema() {
     'unique keys' => array(
       'name' => array('name'),
     ),
+    'indexes' => array(
+      'plugin' => array('plugin'),
+    ),
   );
   $schema['rules_trigger'] = array(
     'fields' => array(
@@ -110,6 +113,26 @@ function rules_schema() {
       ),
     ),
     'primary key' => array('id', 'event'),
+    'foreign keys' => array(
+      'id' => array('rules_config' => 'id'),
+    ),
+  );
+  $schema['rules_tags'] = array(
+    'fields' => array(
+      'id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary identifier of the configuration.',
+      ),
+      'tag' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+        'description' => 'The tag string associated with this configuration',
+      ),
+    ),
+    'primary key' => array('id', 'tag'),
     'foreign keys' => array(
       'id' => array('rules_config' => 'id'),
     ),
@@ -243,5 +266,59 @@ function rules_update_7201() {
       'description' => 'The exportable status of the entity.',
     ));
     // The module column did already exist before.
+  }
+}
+
+/**
+ * Add an index for the rules configuration plugin column.
+ */
+function rules_update_7202() {
+  db_add_index('rules_config', 'plugin', array('plugin'));
+}
+
+/**
+ * Fix the length of the rules_config.name column.
+ */
+function rules_update_7203() {
+  db_drop_unique_key('rules_config', 'name');
+  $keys = array(
+    'unique keys' => array(
+      'name' => array('name'),
+    ),
+  );
+  db_change_field('rules_config', 'name', 'name', array(
+    'type' => 'varchar',
+    'length' => '64',
+    'not null' => TRUE,
+    'description' => 'The name of the configuration.',
+  ), $keys);
+}
+
+/**
+ * Add a table for rules-config tags.
+ */
+function rules_update_7204() {
+  if (!db_table_exists('rules_tags')) {
+    $schema['rules_tags'] = array(
+      'fields' => array(
+        'id' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'The primary identifier of the configuration.',
+        ),
+        'tag' => array(
+          'type' => 'varchar',
+          'length' => '255',
+          'not null' => TRUE,
+          'description' => 'The tag string associated with this configuration',
+        ),
+      ),
+      'primary key' => array('id', 'tag'),
+      'foreign keys' => array(
+        'id' => array('rules_config' => 'id'),
+      ),
+    );
+    db_create_table('rules_tags', $schema['rules_tags']);
   }
 }
