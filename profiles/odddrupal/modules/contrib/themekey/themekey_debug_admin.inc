@@ -41,7 +41,7 @@ function themekey_debug_settings_form() {
 
   $form['themekey_debug']['themekey_debug_non_admin_users'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Show debug information to non-admin users'),
+    '#title' => t('Show debug information to all users'),
     '#default_value' => variable_get('themekey_debug_non_admin_users', FALSE),
     '#description' => t('All debug output will be shown to all users, including anonymous users. Be careful in production environments and turn off page caching first!'),
   );

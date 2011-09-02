@@ -89,12 +89,7 @@ function themekey_schema() {
  */
 function themekey_install() {
   // Define the page caching constants for installation.
-  // @see themekey_custom_theme()
-  if (!defined('THEMEKEY_PAGECACHE_UNSUPPORTED')) {
-    define('THEMEKEY_PAGECACHE_UNSUPPORTED', 0);
-    define('THEMEKEY_PAGECACHE_SUPPORTED', 1);
-    define('THEMEKEY_PAGECACHE_TIMEBASED', 2);
-  }
+  themekey_define_constants();
 }
 
 
@@ -525,12 +520,7 @@ function themekey_update_7100() {
  */
 function themekey_update_7101() {
   // Define the page caching constants for the update.
-  // @see themekey_custom_theme()
-  if (!defined('THEMEKEY_PAGECACHE_UNSUPPORTED')) {
-    define('THEMEKEY_PAGECACHE_UNSUPPORTED', 0);
-    define('THEMEKEY_PAGECACHE_SUPPORTED', 1);
-    define('THEMEKEY_PAGECACHE_TIMEBASED', 2);
-  }
+  themekey_define_constants();
 
   module_load_include('inc', 'themekey', 'themekey_base');
   module_load_include('inc', 'themekey', 'themekey_build');
@@ -547,3 +537,4 @@ function themekey_update_7102() {
 
   return t('Update of Themekey ran successfully');
 }
+

@@ -148,6 +148,12 @@ function themekey_system_themekey_properties() {
     'page cache' => THEMEKEY_PAGECACHE_TIMEBASED,
   );
 
+  $attributes['system:month'] = array(
+    'description' => t("System: Month - Current month formatted as 'Jan' through 'Dec'"),
+    'validator' => 'themekey_validator_month',
+    'page cache' => THEMEKEY_PAGECACHE_TIMEBASED,
+  );
+
   $attributes['system:time'] = array(
     'description' => t("System: Time - Current time formatted as H:i:s (example: 18:30:10)"),
     'validator' => 'themekey_validator_time',
@@ -157,6 +163,12 @@ function themekey_system_themekey_properties() {
   $attributes['system:day_of_week'] = array(
     'description' => t("System: Day of Week - Current day of the week formatted as three letters 'Mon' through 'Sun'"),
     'validator' => 'themekey_validator_day_of_week',
+    'page cache' => THEMEKEY_PAGECACHE_TIMEBASED,
+  );
+
+  $attributes['system:day_of_month'] = array(
+    'description' => t("System: Day of Month - Current day of the month formatted as 1 - 31"),
+    'validator' => 'themekey_validator_day_of_month',
     'page cache' => THEMEKEY_PAGECACHE_TIMEBASED,
   );
 
@@ -270,11 +282,17 @@ foo
                   'dst'       => 'system:date',
                   'callback'  => 'themekey_dummy2date');
   $maps[] = array('src'       => 'system:dummy',
+                  'dst'       => 'system:month',
+                  'callback'  => 'themekey_dummy2month');
+  $maps[] = array('src'       => 'system:dummy',
                   'dst'       => 'system:time',
                   'callback'  => 'themekey_dummy2time');
   $maps[] = array('src'       => 'system:dummy',
                   'dst'       => 'system:day_of_week',
                   'callback'  => 'themekey_dummy2day_of_week');
+  $maps[] = array('src'       => 'system:dummy',
+                  'dst'       => 'system:day_of_month',
+                  'callback'  => 'themekey_dummy2day_of_month');
   $maps[] = array('src'       => 'system:dummy',
                   'dst'       => 'system:user_browser',
                   'callback'  => 'themekey_dummy2user_browser');
@@ -468,6 +486,25 @@ function themekey_dummy2date($dummy) {
  * with the aid of another ThemeKey property (source).
  *
  * src: system:dummy
+ * dst: system:month
+ *
+ * @param $dummy
+ *   string containing current value of ThemeKey property system:dummy
+ *
+ * @return
+ *   current date as string formatted like "2009-12-24"
+ */
+function themekey_dummy2month($dummy) {
+  return format_date(time(), 'custom', 'M', variable_get('date_default_timezone', 0));
+}
+
+
+/**
+ * ThemeKey mapping function to set a
+ * ThemeKey property's value (destination)
+ * with the aid of another ThemeKey property (source).
+ *
+ * src: system:dummy
  * dst: system:time
  *
  * @param $dummy
@@ -607,6 +644,25 @@ function themekey_dummy2session($dummy) {
  */
 function themekey_dummy2day_of_week($dummy) {
   return format_date(time(), 'custom', 'D', variable_get('date_default_timezone', 0));
+}
+
+
+/**
+* ThemeKey mapping function to set a
+* ThemeKey property's value (destination)
+* with the aid of another ThemeKey property (source).
+*
+* src: system:dummy
+* dst: system:day_of_month
+*
+* @param $dummy
+*   string containing current value of ThemeKey property system:dummy
+*
+* @return
+*   current day of the week as three letters from "Mon" through "Sun"
+*/
+function themekey_dummy2day_of_month($dummy) {
+  return format_date(time(), 'custom', 'j', variable_get('date_default_timezone', 0));
 }
 
 

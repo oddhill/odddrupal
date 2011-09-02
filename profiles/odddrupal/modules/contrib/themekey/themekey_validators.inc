@@ -9,7 +9,7 @@
  * @author Markus Kalkbrenner | Cocomore AG
  *   @see http://drupal.org/user/124705
  *
- * @author Carsten MÃ¼ller | Cocomore AG
+ * @author Carsten MŸller | Cocomore AG
  *   @see http://drupal.org/user/124707
  */
 
@@ -24,7 +24,7 @@
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -68,7 +68,7 @@ function themekey_validator_string_boolean($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -111,7 +111,7 @@ function themekey_validator_nummeric_boolean($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -155,7 +155,7 @@ function themekey_validator_ctype_digit($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -203,7 +203,7 @@ function themekey_validator_language($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g. "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -255,7 +255,7 @@ function themekey_validator_date_time($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -308,7 +308,7 @@ function themekey_validator_date($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -361,7 +361,7 @@ function themekey_validator_time($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -414,7 +414,7 @@ function themekey_validator_node_type($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -456,7 +456,7 @@ function themekey_validator_http_host($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -492,7 +492,7 @@ function themekey_validator_no_whitespace($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -533,7 +533,7 @@ function themekey_validator_wildcard($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -588,7 +588,7 @@ function themekey_validator_regex($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -642,7 +642,7 @@ function themekey_validator_drupal_path($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -700,7 +700,7 @@ function themekey_validator_ip_address($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -760,7 +760,7 @@ function themekey_validator_role($rule) {
  *   A Theme Switching Rule as associative array:
  *   - property: ThemeKey property as string (e.g., "drupal:path")
  *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
- *   - operator: ThemeKey operator as string ("=", "!", "<". "<=", ">", ">=", "~")
+ *   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
  *   - value: ThemeKey property value as string
  *
  * @return
@@ -798,3 +798,101 @@ function themekey_validator_day_of_week($rule) {
 }
 
 
+/**
+* Validates a Theme Switching Rule.
+* Allowed Operators: "=", "!"
+* Allowed values:
+* - a three letter day string if operator is "=" or "!"
+*
+*
+* @param $rule
+*   A Theme Switching Rule as associative array:
+*   - property: ThemeKey property as string (e.g., "drupal:path")
+*   - wildcard: optional string, only used if property is "drupal:path:wildcard"
+*   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
+*   - value: ThemeKey property value as string
+*
+* @return
+*   An associative array of errors:
+*   - property: translated error message as string
+*     describing a problem with the property
+*   - wildcard: translated error message as string
+*     describing a problem with the wildcard
+*   - operator: translated error message as string
+*     describing a problem with the operator
+*   - value: translated error message as string
+*     describing a problem with the value
+*   If no errors detected the array is empty.
+*/
+function themekey_validator_month($rule) {
+  static $months = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+
+  $errors = array();
+
+  switch ($rule['operator']) {
+    case '=':
+    case '!':
+      if (!in_array($rule['value'], $months)) {
+        $errors['value'] = t('The month %value is not valid. Possible months are "%months".', array('%value' => $rule['value'], '%months' => implode('", "', $months)));
+      }
+      break;
+
+    default:
+      $errors['operator'] = t('Possible operators are "=" and "!"');
+    break;
+
+  }
+
+  return $errors;
+}
+
+
+/**
+* Validates a Theme Switching Rule.
+* Allowed Operators: "=", "!", "<", "<=", ">", ">="
+* Allowed values:
+* - a three letter month string if operator is "=" or "!"
+*
+*
+* @param $rule
+*   A Theme Switching Rule as associative array:
+*   - property: ThemeKey property as string (e.g., "drupal:path")
+*   - wildcard: optional string, only used if property is "drupal:path:wildcard"
+*   - operator: ThemeKey operator as string ("=", "!", "<", "<=", ">", ">=", "~")
+*   - value: ThemeKey property value as string
+*
+* @return
+*   An associative array of errors:
+*   - property: translated error message as string
+*     describing a problem with the property
+*   - wildcard: translated error message as string
+*     describing a problem with the wildcard
+*   - operator: translated error message as string
+*     describing a problem with the operator
+*   - value: translated error message as string
+*     describing a problem with the value
+*   If no errors detected the array is empty.
+*/
+function themekey_validator_day_of_month($rule) {
+  $errors = array();
+
+  switch ($rule['operator']) {
+    case '=':
+    case '!':
+    case '<':
+    case '<=':
+    case '>':
+    case '>=':
+      if (!ctype_digit($rule['value']) || ((string)((int) $rule['value'])) !== ((string) $rule['value'])) {
+        $errors['value'] = t('Value must be a number between 1 and 31');
+      }
+      break;
+
+    default:
+      $errors['operator'] = t('Possible operators are "=", "!", "<", "<=", ">", ">="');
+    break;
+
+  }
+
+  return $errors;
+}

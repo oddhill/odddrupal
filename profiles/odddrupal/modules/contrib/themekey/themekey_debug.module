@@ -11,14 +11,26 @@
 
 
 /**
+ * Implements hook_permission().
+ */
+function themekey_debug_permission() {
+  return array(
+    'themekey_debug_see_messages' => array(
+      'title' => t('See ThemeKey debug messages'),
+      'description' => t('Using this permission debug messages will be displayed to users in that role.'),
+    ),
+  );
+}
+
+
+/**
  * Iterates over all ThemeKey Properties and prints
  * out their current values.
  */
 function themekey_debug_properties() {
   global $user;
 
-  // FIXME use admin role
-  if (1 == $user->uid || variable_get('themekey_debug_non_admin_users', FALSE)) {
+  if (1 == $user->uid || user_access('themekey_debug_see_messages', $user) || variable_get('themekey_debug_non_admin_users', FALSE)) {
     module_load_include('inc', 'themekey', 'themekey_base');
 
     $properties = variable_get('themekey_properties', array());
@@ -188,10 +200,12 @@ function themekey_debug_set_debug_message($msg, $placeholder = array(), $transla
   static $msg_stack = array();
   global $user, $theme;
 
-  // FIXME use admin role
-  if (1 == $user->uid || variable_get('themekey_debug_non_admin_users', FALSE)) {
+  if (1 == $user->uid || user_access('themekey_debug_see_messages', $user) || variable_get('themekey_debug_non_admin_users', FALSE)) {
     if ('flush' == $msg) {
-      $messages = array(t('Current theme: %theme', array('%theme' => $theme)));
+      $messages = array();
+      if (variable_get('themekey_debug_trace_rule_switching', FALSE)) {
+        $messages[] = t('Current theme: %theme', array('%theme' => $theme));
+      }
       foreach ($msg_stack as $key => $msg) {
         $messages[] = filter_xss($msg['translate'] ? t($msg['msg'], $msg['placeholder']) : $msg['msg'], array('a', 'b', 'br', 'li', 'ul'));
         unset($msg_stack[$key]);
