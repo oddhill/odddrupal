@@ -134,6 +134,15 @@ abstract class boxes_box {
   }
 
   /**
+   * Returns the block cache settings for this box. Subclasses can override this
+   * to perform more intricate operations around deciding the cache settings of
+   * the specific box instance.
+   */
+  public function cache_setting() {
+    return DRUPAL_CACHE_CUSTOM;
+  }
+
+  /**
    * Declare default options.
    */
   abstract public function options_defaults();

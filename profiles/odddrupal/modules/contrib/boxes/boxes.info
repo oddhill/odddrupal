@@ -6,9 +6,9 @@ dependencies[] = "ctools"
 files[] = boxes.module
 files[] = tests/boxes.test
 
-; Information added by drupal.org packaging script on 2011-08-05
-version = "7.x-1.0-beta4"
+; Information added by drupal.org packaging script on 2011-08-26
+version = "7.x-1.0-beta5"
 core = "7.x"
 project = "boxes"
-datestamp = "1312577214"
+datestamp = "1314364316"
 
