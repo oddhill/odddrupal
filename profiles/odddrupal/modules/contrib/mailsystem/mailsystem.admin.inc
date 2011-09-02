@@ -59,7 +59,7 @@ function mailsystem_admin_settings() {
       $module = implode('_', explode('_', $module, -1));
     }
     // Set $title to the human-readable module name.
-    list($title) = array_slice(explode(' » ', $descriptions[$module]), -1, 1);
+    $title = preg_replace('/^.* » /', '', $descriptions[$module]);
     if ($key = substr($id, strlen($module) + 1)) {
       $title .= " ($key key)";
     }
