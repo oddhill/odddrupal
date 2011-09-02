@@ -179,17 +179,17 @@ function admin_language_form_alter(&$form, $form_state, $form_id) {
 
   if ('user_profile_form' == $form_id) {
     if ('account' == $form['#user_category'] && user_access('display admin pages in another language')) {
-      $form['#after_build'][] = '_admin_language_user_form_add_language_select';
+      _admin_language_user_form_add_language_select($form);
     }
 
-    if (variable_get('admin_language_hide_user', 0) && !user_access('use all enabled languages')) {
+    if (variable_get('admin_language_hide_user', 0) && !user_access('administer site configuration')) {
       $form['#after_build'][] = '_admin_language_user_form_remove_admin_language';
     }
   }
 
   if ('user_register_form' == $form_id) {
     if (user_access('administer users')) {
-      $form['#after_build'][] = '_admin_language_user_form_add_language_select';
+      _admin_language_user_form_add_language_select($form);
     }
   }
 }
@@ -534,10 +534,10 @@ function _admin_language_switch_language() {
 }
 
 /**
- * After build callback which adds the administration language select widget
+ * Form alter callback which adds the administration language select widget
  * to the user profile and user registration forms.
  */
-function _admin_language_user_form_add_language_select($form) {
+function _admin_language_user_form_add_language_select(&$form) {
   global $user;
 
   $languages = language_list('enabled');
@@ -559,21 +559,24 @@ function _admin_language_user_form_add_language_select($form) {
     'admin' => t('Default administration language, currently !language', array('!language' => $admin_language_name)),
     'default' => t('Default site language, currently !language', array('!language' => t($default->name) . ($default->native != t($default->name) ? ' (' . $default->native . ')' : ''))),
   );
-  foreach ($languages as $langcode => $item) {
-    $name = t($item->name);
-    $names[$langcode] = $name . ($item->native != $name ? ' (' . $item->native . ')' : '');
+  if (user_access('use all enabled languages')) {
+    foreach ($languages as $langcode => $item) {
+      $name = t($item->name);
+      $names[$langcode] = $name . ($item->native != $name ? ' (' . $item->native . ')' : '');
+    }
   }
 
-  $form['locale']['admin_language'] = array(
-    '#type' => (count($names) <= 5 ? 'radios' : 'select'),
+  $form['admin_language'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Administration language'),
+  );
+  $form['admin_language']['admin_language'] = array(
+    '#type' => count($names) <= 5 ? 'radios' : 'select',
     '#title' => t('Default administration language'),
     '#default_value' => admin_language_preferred($user),
     '#options' => $names,
     '#description' => t('Select the default language to use for all administration pages. See the !settings-url for a list of affected pages.', array('!settings-url' => l(t('administration language settings'), 'admin/settings/language/admin_language'))),
-    '#weight' => 10,
   );
-
-  return $form;
 }
 
 /**
@@ -603,7 +606,7 @@ function _admin_language_user_form_remove_admin_language($form) {
   }
 
   // if that leaves us with only one language, we replace the select element
-  // with a value element
+  // with a value element and hide the language fieldset
   if (count($languages) == 1) {
     $default_language = array_shift($languages);
 
@@ -611,6 +614,7 @@ function _admin_language_user_form_remove_admin_language($form) {
       '#type' => 'value',
       '#value' => $default_language,
     );
+    $form['locale']['#access'] = FALSE;
   }
 
   return $form;
