@@ -255,7 +255,7 @@ function rules_ui_add_element($form, &$form_state, $rules_config, $plugin_name, 
     $form['element_name'] = array(
       '#type' => 'select',
       '#title' => t('Select the %element to add', array('%element' => $plugin_name)),
-      '#options' => RulesPluginUI::getOptions($plugin_name . '_info'),
+      '#options' => RulesPluginUI::getOptions($plugin_name),
       '#ajax' => rules_ui_form_default_ajax() + array(
         'trigger_as' => array('name' => 'continue'),
       ),
@@ -395,7 +395,7 @@ function rules_ui_add_event($form, &$form_state, RulesReactionRule $rules_config
   $form['event'] = array(
     '#type' => 'select',
     '#title' => t('React on event'),
-    '#options' => RulesPluginUI::getOptions($events),
+    '#options' => RulesPluginUI::getOptions('event', $events),
     '#description' => t('Whenever the event occurrs, rule evaluation is triggered.'),
   );
   $form['submit'] = array(
@@ -563,10 +563,6 @@ function rules_ui_import_form_submit($form, &$form_state) {
  */
 function rules_data_selection_process($element, &$form_state, $form) {
   $element['#autocomplete_path'] .= '/' . $form['#build_id'];
-  // Workaround for problems with jquery css in seven theme.
-  if ($GLOBALS['theme'] == 'seven') {
-    drupal_add_css(drupal_get_path('module', 'rules') . '/ui/rules.ui.seven.css');
-  }
   $form_state['cache'] = TRUE;
   return $element;
 }
