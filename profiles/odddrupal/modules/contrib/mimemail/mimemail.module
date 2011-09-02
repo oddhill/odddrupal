@@ -136,37 +136,49 @@ function mimemail_mailengine($op, $message = array()) {
       // Default values.
       $default = array('to' => '', 'subject' => '', 'body' => '', 'from' => '', 'headers' => '');
       $message = array_merge($default, $message);
+
       // If 'Return-Path' isn't already set in php.ini, we pass it separately
       // as an additional parameter instead of in the header.
       // However, if PHP's 'safe_mode' is on, this is not allowed.
       if (isset($message['headers']['Return-Path']) && !ini_get('safe_mode')) {
         $return_path_set = strpos(ini_get('sendmail_path'), ' -f');
         if (!$return_path_set) {
-          $message['Return-Path'] = $message['headers']['Return-Path'];
+          $return_path = trim($message['headers']['Return-Path'], '<>');
           unset($message['headers']['Return-Path']);
         }
       }
 
       $recipients = (!is_array($message['to'])) ? array($message['to']) : $message['to'];
       $subject = mime_header_encode($message['subject']);
+      $body = $message['body'];
       $headers = mimemail_rfc_headers($message['headers']);
 
+      $result = TRUE;
       foreach ($recipients as $to) {
-        if (isset($message['Return-Path']) && !ini_get('safe_mode')) {
-          $mail_result = mail($to, $subject, $message['body'], $headers,
-            // Pass the Return-Path via sendmail's -f command.
-            '-f ' . $message['Return-Path']
-          );
+        if (isset($return_path)) {
+          if (isset($_SERVER['WINDIR']) || strpos($_SERVER['SERVER_SOFTWARE'], 'Win32') !== FALSE) {
+            // On Windows, PHP will use the value of sendmail_from for the
+            // Return-Path header.
+            $old_from = ini_get('sendmail_from');
+            ini_set('sendmail_from', $return_path);
+            $result = @mail($to, $subject, $body, $headers) && $result;
+            ini_set('sendmail_from', $old_from);
+          }
+          else {
+            // On most non-Windows systems, the "-f" option to the sendmail command
+            // is used to set the Return-Path.
+            $result = @mail($to, $subject, $body, $headers, '-f' . $return_path) && $result;
+          }
         }
         else {
           // The optional $additional_parameters argument to mail() is not allowed
           // if safe_mode is enabled. Passing any value throws a PHP warning and
           // makes mail() return FALSE.
-          $mail_result = mail($to, $subject, $message['body'], $headers);
+          $result = @mail($to, $subject, $body, $headers) && $result;
         }
       }
 
-      return $mail_result;
+      return $result;
   }
 
   return FALSE;
@@ -229,9 +241,11 @@ function mimemail_prepare_message($message) {
   // Override site mails default sender when using default engine.
   if ((empty($from) || $from == $site_mail)
       && variable_get('mimemail_engine', 'mimemail') == 'mimemail') {
+    $mimemail_name = variable_get('mimemail_name', $site_name);
+    $mimemail_mail = variable_get('mimemail_mail', $site_mail);
     $from = array(
-      'name' => variable_get('mimemail_name', $site_name),
-      'mail' => variable_get('mimemail_mail', $site_mail),
+      'name' => !empty($mimemail_name) ? $mimemail_name : $site_name,
+      'mail' => !empty($mimemail_mail) ? $mimemail_mail : $site_mail,
     );
   }
 
