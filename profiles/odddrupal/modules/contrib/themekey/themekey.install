@@ -88,8 +88,6 @@ function themekey_schema() {
  * Implements hook_install().
  */
 function themekey_install() {
-  // Define the page caching constants for installation.
-  themekey_define_constants();
 }
 
 
@@ -519,9 +517,6 @@ function themekey_update_7100() {
  * Implements hook_update_N().
  */
 function themekey_update_7101() {
-  // Define the page caching constants for the update.
-  themekey_define_constants();
-
   module_load_include('inc', 'themekey', 'themekey_base');
   module_load_include('inc', 'themekey', 'themekey_build');
   themekey_rebuild();

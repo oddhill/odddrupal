@@ -152,7 +152,7 @@ function themekey_match_path_parts($path_parts, $condition_parts) {
       return FALSE;
     }
 
-    if ($part == $path_parts[$key]) {
+    if ($part == $path_parts[$key] || $part == urldecode($path_parts[$key]) || $part == rawurldecode($path_parts[$key])) {
       continue;
     }
 

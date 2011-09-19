@@ -1,3 +1,10 @@
+ThemeKey 7.x-1.5, 2011-09-19
+----------------------------
+[#1254144] mkalkbrenner: integration / support of Revisioning module
+[#1264310] tungscit, mkalkbrenner: Themekey path doesn't support special chars
+[#1252846] mkalkbrenner: removed function themekey_define_constants(), fixed use of undefined constants when running install.php
+
+
 ThemeKey 7.x-1.4, 2011-08-17
 ----------------------------
 [        ] mkalkbrenner: added new properties sytem:month and system_day_of_month
