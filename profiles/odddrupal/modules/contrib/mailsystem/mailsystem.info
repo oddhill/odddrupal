@@ -6,9 +6,9 @@ core = 7.x
 configure = admin/config/system/mailsystem
 dependencies[] = filter
 
-; Information added by drupal.org packaging script on 2011-08-31
-version = "7.x-2.29"
+; Information added by drupal.org packaging script on 2011-09-10
+version = "7.x-2.30"
 core = "7.x"
 project = "mailsystem"
-datestamp = "1314826323"
+datestamp = "1315679510"
 

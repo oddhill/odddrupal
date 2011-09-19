@@ -1,14 +1,14 @@
-<h2><a href="http://drupal.org/project/mailsystem">Mail System</a></h2>
+<h2 id="mail-system"><a href="http://drupal.org/project/mailsystem">Mail System</a></h2>
 <p>Provides an Administrative UI and Developers API for safely updating the <a href="http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7">mail_system</a> configuration variable.</p>
-<h3>Administrative UI</h3>
-<p>The administrative interface is at <a href=""><code>admin/config/system/mailsystem</code></a>. A <a href="http://drupal.org/node/1134044">screenshot</a> is available.</p>
-<h3>Used by;</h3>
+<h3 id="administrative-ui">Administrative UI</h3>
+<p>The administrative interface is at <code>admin/config/system/mailsystem</code>. A <a href="http://drupal.org/node/1134044">screenshot</a> is available.</p>
+<h3 id="used-by">Used by:</h3>
 <ul>
   <li><a href="http://drupal.org/project/htmlmail">HTML Mail</a></li>
   <li><a href="http://drupal.org/project/mimemail">Mime Mail 7.x-1.x-dev</a></li>
   <li><a href="http://drupal.org/project/postmark">Postmark 7.x-1.x</a></li>
 </ul>
-<h3>Developers API</h3>
+<h3 id="developers-api">Developers API</h3>
 <p>A module <code>example</code> with a <a href="http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7"><code>MailSystemInterface</code></a> implementation called <code>ExampleMailSystem</code> should add the following in its <code>example.install</code> file:</p>
 <pre>
 <code>/**
@@ -72,7 +72,7 @@ function example_disable() {
 }
 </code>
 </pre>
-<h4><em>(New in 2.x branch)</em></h4>
+<h4 id="new-in-2.x-branch"><em>(New in 2.x branch)</em></h4>
 <p>To change the site-wide defaults to use the <code>FooMailSystem</code> for formatting messages and the <code>BarMailSystem</code> for sending them:</p>
 <pre>
 <code>mailsystem_set(
@@ -96,7 +96,7 @@ function example_disable() {
 );
 </code>
 </pre>
-<h3>References</h3>
+<h3 id="references">References</h3>
 <dl>
   <dt><strong><a href="http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7">drupal_mail_system() API documentation</a></strong>:</dt>
   <dd>

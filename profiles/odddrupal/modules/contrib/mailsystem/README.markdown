@@ -6,10 +6,10 @@ configuration variable.
 
 ### Administrative UI
 
-The administrative interface is at [`admin/config/system/mailsystem`]().
+The administrative interface is at `admin/config/system/mailsystem`.
 A [screenshot](http://drupal.org/node/1134044) is available.
 
-### Used by;
+### Used by:
 
 * [HTML Mail](http://drupal.org/project/htmlmail)
 * [Mime Mail 7.x-1.x-dev](http://drupal.org/project/mimemail)
@@ -82,7 +82,7 @@ of `examail`, then the `example.install` code should look like this:
     function example_disable() {
       mailsystem_clear(array('example_examail' =\> ''));
     }
- 
+
 #### *(New in 2.x branch)*
 
 To change the site-wide defaults to use the `FooMailSystem` for formatting messages and the `BarMailSystem` for sending them:
@@ -105,7 +105,6 @@ To change the site-wide defaults to use the `FooMailSystem` for sending messages
         ),
       )
     );
-
 
 ### References
 

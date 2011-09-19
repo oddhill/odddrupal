@@ -58,6 +58,13 @@ function mailsystem_admin_settings() {
       // Remove a key from the end
       $module = implode('_', explode('_', $module, -1));
     }
+    // If an array key of the $mail_system variable is neither "default-system"
+    // nor begins with a module name, then it should be unset.
+    if (empty($module)) {
+      watchdog('mailsystem', "Removing bogus mail_system key %id.", array('%id' => $id), WATCHDOG_WARNING);
+      unset($mail_system[$id]);
+      continue;
+    }
     // Set $title to the human-readable module name.
     $title = preg_replace('/^.* » /', '', $descriptions[$module]);
     if ($key = substr($id, strlen($module) + 1)) {
@@ -104,7 +111,6 @@ function mailsystem_admin_settings() {
       array(
         '%module' => 'module',
         '%key' => 'key',
-
       )
     ),
     '#collapsible' => TRUE,
