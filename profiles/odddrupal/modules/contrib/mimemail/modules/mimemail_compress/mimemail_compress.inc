@@ -64,13 +64,10 @@ class mimemail_compress {
     $err = error_reporting(0);
     $doc = new DOMDocument;
 
-    // Try to detect and set character encoding.
-    if (function_exists('mb_detect_encoding') && function_exists('mb_convert_encoding')) {
-      $encoding = mb_detect_encoding($body);
-      if ($encoding) {
-        $body = mb_convert_encoding($body, 'HTML-ENTITIES', $encoding);
-        $doc->encoding = $encoding;
-      }
+    // Try to set character encoding.
+    if (function_exists('mb_convert_encoding')) {
+        $body = mb_convert_encoding($body, 'HTML-ENTITIES', "UTF-8");
+        $doc->encoding= "UTF-8";
     }
 
     $doc->strictErrorChecking = FALSE;
@@ -113,7 +110,7 @@ class mimemail_compress {
     $nodes = @$xpath->query('//*[@style]');
     if ($nodes->length > 0) {
       foreach ($nodes as $node) {
-        $style = preg_replace('/[A-z\-]+(?=\:)/Se', "strtolower('\\0')", $node->getAttribute('style'));
+        $style = preg_replace_callback('/[A-z\-]+(?=\:)/S', create_function('$matches', 'return strtolower($matches[0]);'), $node->getAttribute('style'));
         $all_selectors[] = array(
           'selector' => $this->calculateXPath($node),
           'attributes' => $style,

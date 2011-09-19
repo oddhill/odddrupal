@@ -43,13 +43,13 @@ function mimemail_rfc_headers($headers) {
  * @return header string.
  */
 function mimemail_headers($headers, $from = NULL) {
-  // Note: This may not work. The MTA may rewrite the Return-Path, and Errors-To is deprecated.
+  // Note: This may not work. The MTA may rewrite the Return-Path.
 
   // Allow a mail to overwrite standard headers.
   if (!empty($from)) {
     preg_match('/[a-z0-9\-\.]+@{1}[a-z0-9\-\.]+/i', $from, $matches);
     $from_email = $matches[0];
-    $headers = array_merge($headers, array('From' => $from, 'Sender' => $from, 'Return-Path' => "<$from_email>", 'Errors-To' => $from));
+    $headers = array_merge($headers, array('From' => $from, 'Sender' => $from, 'Return-Path' => "<$from_email>"));
   }
 
   // Run all headers through mime_header_encode() to convert non-ascii
@@ -107,7 +107,7 @@ function _mimemail_replace_files($matches) {
  * Helper function to extract local files.
  *
  * @param $url
- *   The URL of the file.
+ *   The URI or the absolute URL to the file.
  * @param $content
  *   The actual file content.
  *
@@ -126,12 +126,13 @@ function _mimemail_file($url = NULL, $content = NULL, $name = '', $type = '', $d
     else {
       $url = _mimemail_url($url, 'TRUE');
       // The $url is absolute, we're done here.
-      if (strpos($url, '://') !== FALSE || preg_match('!mailto:!', $url)) {
+      $scheme = file_uri_scheme($url);
+      if ($scheme == 'http' || $scheme == 'https' || preg_match('!mailto:!', $url)) {
         return $url;
       }
-      // The $url is a relative file path, continue processing.
+      // The $url is a non-local URI that needs to be converted to a URL.
       else {
-        $file = drupal_realpath($url);
+        $file = (drupal_realpath($url)) ? drupal_realpath($url) : file_create_url($url);
       }
     }
   }
@@ -140,14 +141,14 @@ function _mimemail_file($url = NULL, $content = NULL, $name = '', $type = '', $d
     $file = $content;
   }
 
-  if (isset($file) && @is_file($file)) {
+  if (isset($file) && (@is_file($file) || $content)) {
 
     if (!$name) $name = (@is_file($file)) ? basename($file) : 'attachment.dat';
     if (!$type) $type = ($name) ? file_get_mimetype($name) : file_get_mimetype($file);
 
     // Prevent duplicate items.
-    if (isset($filenames[$file])) return 'cid:' . $filenames[$file];
-    $content_id = md5($file) . '@' . $_SERVER['HTTP_HOST'];
+    if (isset($filenames[$name])) return 'cid:' . $filenames[$name];
+    $content_id = md5($name) . '@' . $_SERVER['HTTP_HOST'];
 
     $new_file = array(
       'name' => $name,
@@ -158,7 +159,7 @@ function _mimemail_file($url = NULL, $content = NULL, $name = '', $type = '', $d
     );
 
     $files[] = $new_file;
-    $filenames[$file] = $content_id;
+    $filenames[$name] = $content_id;
 
     return 'cid:' . $content_id;
   }
@@ -229,7 +230,7 @@ function mimemail_multipart_body($parts, $content_type = 'multipart/mixed; chars
     if (isset($part['Content-Disposition'])) {
       $part_headers['Content-Disposition'] = $part['Content-Disposition'];
     }
-    else {
+    elseif (strpos($part['Content-Type'], 'multipart/alternative') === FALSE) {
       $part_headers['Content-Disposition'] = 'inline';
     }
 
@@ -352,9 +353,10 @@ function mimemail_html_body($body, $subject, $plain = FALSE, $plaintext = NULL, 
   if (is_array($attachments) && !empty($attachments)) {
     foreach ($attachments as $a) {
       $a = (object) $a;
+      $content = isset($a->filecontent) ? $a->filecontent : NULL;
       $name = isset($a->filename) ? $a->filename : 'attachment.dat';
       $type = isset($a->filemime) ? $a->filemime : 'application/octet-stream';
-      _mimemail_file($a->filepath, $a->filecontent, $a->filename, $a->filemime, 'attachment');
+      _mimemail_file($a->uri, $content, $name, $type, 'attachment');
       $parts = array_merge($parts, _mimemail_file());
     }
   }

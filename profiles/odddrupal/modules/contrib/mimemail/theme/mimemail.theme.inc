@@ -47,7 +47,7 @@ function template_preprocess_mimemail_message(&$variables) {
   $themepath = drupal_get_path('theme', $theme);
 
   $sitestyle = variable_get('mimemail_sitestyle', 1);
-  $mailstyle = $themepath .'/mail.css';
+  $mailstyle = $themepath . '/mail.css';
 
   // Check for the existence of a mail.css file in the current theme folder.
   if (@file_exists($mailstyle)) {
@@ -77,7 +77,7 @@ function template_preprocess_mimemail_message(&$variables) {
       $pattern = array(
         '/<([^<>]*)>/', // Remove the style tag.
         '/@import\s+url\("([^"]+)"\);+/', // Remove the import directive.
-        '|'. $GLOBALS['base_url'] .'/([^"?]*)[?"].*|' // Remove the base URL.
+        '|' . $GLOBALS['base_url'] . '/([^"?]*)[?"].*|' // Remove the base URL.
       );
       $replacement = array('', '\1', '\1');
     }

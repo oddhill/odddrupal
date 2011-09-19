@@ -76,21 +76,55 @@ function mimemail_theme() {
 }
 
 /**
+ * Implements   hook_rules_file_info().
+ */
+function mimemail_rules_file_info() {
+  return array('includes/mimemail.rules');
+}
+
+/**
  * Implements hook_mail().
  */
 function mimemail_mail($key, &$message, $params) {
   $context = $params['context'];
 
-  $subject = token_replace($context['subject'], $context);
-  $body = token_replace($context['body'], $context);
-
-  if (isset($params['plaintext']) && !empty($params['plaintext'])) {
-    $plaintext = token_replace($params['plaintext'], $context);
-    $message['params']['plaintext'] = drupal_html_to_text($plaintext);
+  // Prepare the array of the attachments.
+  $attachments = array();
+  $attachments_string = trim($params['attachments']);
+  if (!empty($attachments_string)) {
+    $attachment_lines = array_filter(explode("\n", trim($attachments_string)));
+    foreach ($attachment_lines as $key => $attachment_line) {
+      $attachment = explode(':', trim($attachment_line), 2);
+      $attachments[] = array(
+        'uri' => $attachment[1],
+        'filemime' => $attachment[0],
+      );
+    }
   }
 
-  $message['subject'] .= str_replace(array("\r", "\n"), '', $subject);
-  $message['body'][] = $body;
+  // We also handle CC and BCC if it's set.
+  $params['cc'] = empty($params['cc']) ? array() : explode(',', $params['cc']);
+  $params['bcc'] = empty($params['bcc']) ? array() : explode(',', $params['bcc']);
+
+  if (!empty($params['cc'])) {
+    foreach ($params['cc'] as $key => $address) {
+      $params['cc'][$key] = token_replace($address, $context);
+    }
+    $message['headers']['Cc'] = implode(',', $params['cc']);
+  }
+
+  if (!empty($params['bcc'])) {
+    foreach ($params['bcc'] as $key => $address) {
+      $params['bcc'][$key] = token_replace($address, $context);
+    }
+    $message['headers']['Bcc'] = implode(',', $params['bcc']);
+  }
+
+  $message['to'] = token_replace($message['to'], $context);
+  $message['subject'] = token_replace($context['subject'], $context);
+  $message['body'] = token_replace($context['body'], $context);
+  $message['params']['plaintext'] = token_replace($params['plaintext'], $context);
+  $message['params']['attachments'] = $attachments;
 }
 
 /**
@@ -268,7 +302,7 @@ function mimemail_prepare_message($message) {
 
   $subject = str_replace("\n", '', trim(drupal_html_to_text($subject)));
   $key = str_replace('_', '-', $key);
-  $body = theme(array('mimemail_message__' . $key, 'mimemail_message'), array('key' => $key, 'recipient' =>$to, 'subject' => $subject, 'body' => $body));
+  $body = theme(array('mimemail_message__' . $key, 'mimemail_message'), array('key' => $key, 'recipient' => $to, 'subject' => $subject, 'body' => $body));
 
   foreach (module_implements('mail_post_process') as $module) {
     $function = $module . '_mail_post_process';

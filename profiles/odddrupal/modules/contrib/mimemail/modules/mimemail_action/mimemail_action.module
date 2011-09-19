@@ -27,55 +27,38 @@ function mimemail_send_email_action($entity, $context) {
     $context['node'] = $entity;
   }
 
-  $recipient = token_replace($context['to'], $context);
+  $to = token_replace($context['to'], $context);
 
   // If the recipient is a registered user with a language preference, use
   // the recipient's preferred language. Otherwise, use the system default
   // language.
-  $recipient_account = user_load_by_mail($recipient);
-  if ($recipient_account) {
-    $language = user_preferred_language($recipient_account);
+  $account = user_load_by_mail($to);
+  if ($account) {
+    $language = user_preferred_language($account);
   }
   else {
     $language = language_default();
   }
 
-  // Prepare the array of the attachments.
-  $attachments_string = trim($context['attachments']);
-  if (!empty($attachments_string)) {
-    $attachments = array();
-    $attachment_lines = array_filter(preg_split("/\n/", trim($attachments_string)));
-    foreach ($attachment_lines as $key => $attachment_line) {
-      $attachment = explode(':', trim($attachment_line), 2);
-      $attachments[] = array(
-        'filepath' => $attachment[1],
-        'filemime' =>$attachment[0],
-      );
-    }
-  }
-
   $params = array(
-    'context' => $context,
+    'context' => array(
+      'subject' => $context['subject'],
+      'body' => $context['body'],
+    ),
+    'cc' => $context['cc'],
+    'bcc' => $context['bcc'],
     'plaintext' => $context['plaintext'],
-    'attachments' => $attachments,
+    'attachments' => $context['attachments'],
   );
 
-  if ($context['cc']) $params['headers']['Cc'] = token_replace($context['cc'], $context);
-  if ($context['bcc']) $params['headers']['Bcc'] = token_replace($context['bcc'], $context);
-
-  if (drupal_mail('mimemail', 'action_send_email', $recipient, $language, $params)) {
-    watchdog('action', 'Sent HTML email to %recipient', array('%recipient' => $recipient));
-  }
-  else {
-    watchdog('error', 'Unable to send HTML email to %recipient', array('%recipient' => $recipient));
-  }
+  drupal_mail('mimemail', 'action_send_email', $to, $language, $params);
 }
 
 /**
  * Form for configurable Drupal action to send an HTML mail.
  */
 function mimemail_send_email_action_form($context) {
-  $context += array('to' => '', 'cc' => '', 'bcc' => '', 'subject' => '', 'body' => '', 'plaintext' => '', 'attachments' => '');
+  $context += array('to' => '', 'cc' => '', 'bcc' => '', 'subject' => '', 'body' => '', 'format' => filter_fallback_format(), 'plaintext' => '', 'attachments' => '');
 
   $form['to'] = array(
     '#type' => 'textfield',
@@ -107,9 +90,10 @@ function mimemail_send_email_action_form($context) {
     '#description' => t("The subject of the message."),
   );
   $form['body'] = array(
-    '#type' => 'textarea',
+    '#type' => 'text_format',
     '#title' => t('Body'),
     '#default_value' => $context['body'],
+    '#format' => $context['format'],
     '#description' => t('The HTML message that should be sent. You may include placeholders like [node:title], [user:name], and [comment:body] to represent data that will be different each time message is sent. Not all placeholders will be available in all contexts.'),
   );
   $form['plaintext'] = array(
@@ -165,7 +149,8 @@ function mimemail_send_email_action_submit($form, $form_state) {
     'cc' => $form_values['cc'],
     'bcc' => $form_values['bcc'],
     'subject' => $form_values['subject'],
-    'body' => $form_values['body'],
+    'body' => $form_values['body']['value'],
+    'format' => $form_values['body']['format'],
     'plaintext' => $form_values['plaintext'],
     'attachments' => $form_values['attachments'],
   );

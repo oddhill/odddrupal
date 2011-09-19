@@ -34,10 +34,16 @@ function mimemail_rules_action_info() {
           'description' => t("The mail's blind carbon copy address. You may separate multiple addresses with comma."),
           'optional' => TRUE,
         ),
-        'from' => array(
+        'from_name' => array(
           'type' => 'text',
-          'label' => t('From'),
-          'description' => t("The mail's from address. Leave it empty to use the site-wide configured address."),
+          'label' => t('Sender name'),
+          'description' => t("The sender's name. Leave it empty to use the site-wide configured name."),
+          'optional' => TRUE,
+        ),
+        'from_mail' => array(
+          'type' => 'text',
+          'label' => t('Sender e-mail address'),
+          'description' => t("The sender's address. Leave it empty to use the site-wide configured address."),
           'optional' => TRUE,
         ),
         'subject' => array(
@@ -46,7 +52,7 @@ function mimemail_rules_action_info() {
           'description' => t("The mail's subject."),
         ),
         'body' => array(
-          'type' => 'text',
+          'type' => 'text_formatted',
           'label' => t('Body'),
           'description' => t("The mail's message HTML body."),
         ),
@@ -59,7 +65,7 @@ function mimemail_rules_action_info() {
         'attachments' => array(
           'type' => 'text',
           'label' => t('Attachments'),
-          'description' => t("The mail's attachments, one file per line like [mimetype]:[path] e.g. \"image/png:/files/images/mypic.png\"."),
+          'description' => t("The mail's attachments, one file per line like [mimetype]:[uri] e.g. \"image/png:/files/images/mypic.png\"."),
           'optional' => TRUE,
         ),
       ),
@@ -76,10 +82,16 @@ function mimemail_rules_action_info() {
           'options list' => 'entity_metadata_user_roles',
           'description' => t('Select the roles whose users should receive the mail.'),
         ),
-        'from' => array(
+        'from_name' => array(
           'type' => 'text',
-          'label' => t('From'),
-          'description' => t("The mail's from address. Leave it empty to use the site-wide configured address."),
+          'label' => t('Sender name'),
+          'description' => t("The sender's name. Leave it empty to use the site-wide configured name."),
+          'optional' => TRUE,
+        ),
+        'from_mail' => array(
+          'type' => 'text',
+          'label' => t('Sender e-mail address'),
+          'description' => t("The sender's address. Leave it empty to use the site-wide configured address."),
           'optional' => TRUE,
         ),
         'subject' => array(
@@ -88,7 +100,7 @@ function mimemail_rules_action_info() {
           'description' => t("The mail's subject."),
         ),
         'body' => array(
-          'type' => 'text',
+          'type' => 'text_formatted',
           'label' => t('Body'),
           'description' => t("The mail's message HTML body."),
         ),
@@ -100,7 +112,7 @@ function mimemail_rules_action_info() {
         'attachments' => array(
           'type' => 'text',
           'label' => t('Attachments'),
-          'description' => t("The mail's attachments, one file per line like [mimetype]:[path] e.g. \"image/png:/files/images/mypic.png\"."),
+          'description' => t("The mail's attachments, one file per line like [mimetype]:[uri] e.g. \"image/png:/files/images/mypic.png\"."),
           'optional' => TRUE,
         ),
       ),
@@ -113,47 +125,47 @@ function mimemail_rules_action_info() {
 /**
  * Action Implementation: Send HTML mail.
  */
-function rules_action_mimemail($to, $cc = NULL, $bcc = NULL, $from = NULL, $subject, $body, $plaintext = NULL, $attachments = array(), $settings, RulesState $state, RulesPlugin $element) {
-  $to = str_replace(array("\r", "\n"), '', $to);
-  $cc = str_replace(array("\r", "\n"), '', $cc);
-  $bcc = str_replace(array("\r", "\n"), '', $bcc);
-  $from = !empty($from) ? str_replace(array("\r", "\n"), '', $from) : NULL;
+function rules_action_mimemail($to, $cc = NULL, $bcc = NULL, $from_name = NULL, $from_mail = NULL, $subject, $body, $plaintext = NULL, $attachments = array(), $settings, RulesState $state, RulesPlugin $element) {
+  // Set the sender name and from address.
+  if (empty($from_mail)) {
+    $from = NULL;
+  }
+  else {
+    $from = array(
+      'name' => $from_name,
+      'mail' => $from_mail,
+    );
+  }
 
-  $attachments_string = trim($attachments);
-  if (!empty($attachments_string)) {
-    $attachments = array();
-    $attachment_lines = array_filter(preg_split("/\n/", trim($attachments_string)));
-    foreach ($attachment_lines as $key => $attachment_line) {
-      $attachment = explode(":", trim($attachment_line), 2);
-      $attachments[] = array(
-        'filepath' => $attachment[1],
-        'filemime' => $attachment[0],
-      );
-    }
+  // If the recipient is a registered user with a language preference, use
+  // the recipient's preferred language. Otherwise, use the system default
+  // language.
+  $account = user_load_by_mail($to);
+  if ($account) {
+    $language = user_preferred_language($account);
+  }
+  else {
+    $language = language_default();
   }
 
   $params = array(
     'context' => array(
       'subject' => $subject,
-      'body' => $body,
+      'body' => $body['value'],
       'action' => $element,
       'state' => $state,
     ),
+    'cc' => $cc,
+    'bcc' => $bcc,
     'plaintext' => $plaintext,
     'attachments' => $attachments,
   );
-
-  if ($cc) $params['headers']['Cc'] = $cc;
-  if ($bcc) $params['headers']['Bcc'] = $bcc;
 
   // Set a unique key for this mail.
   $name = isset($element->root()->name) ? $element->root()->name : 'unnamed';
   $key = 'rules_action_mimemail_' . $name . '_' . $element->elementId();
 
-  $message = drupal_mail('mimemail', $key, $to, language_default(), $params, $from);
-  if ($message['result']) {
-    watchdog('rules', 'Successfully sent HTML email to %recipient', array('%recipient' => $to));
-  }
+  drupal_mail('mimemail', $key, $to, $language, $params, $from);
 }
 
 /**
