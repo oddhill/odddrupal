@@ -409,7 +409,6 @@ function odddrupal_permissions() {
     'access contextual links',
     'access overlay',
     'change own username',
-    'edit boxes',
     'use text format filtered_html',
     'view the administration theme',
   ));
@@ -491,4 +490,5 @@ function odddrupal_set_variables() {
   ));
   variable_set('admin_menu_tweak_modules', 1);
   variable_set('pathauto_transliterate', 1);
+  variable_set('dblog_row_limit', '0');
 }
