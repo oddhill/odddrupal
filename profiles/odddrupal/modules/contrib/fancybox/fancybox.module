@@ -502,6 +502,22 @@ function fancybox_field_formatter_view($entity_type, $entity, $field, $instance,
   elseif (strpos($display['type'], 'image_link_file') === 0) {
     $link_file = TRUE;
   }
+  
+  // Check if grouping is activated.
+  if (isset($settings['imagefield']['grouping'])){
+    switch($settings['imagefield']['grouping']){
+      case 1:
+        $rel = $field['field_name'];
+        break;
+          
+      case 2:
+        $rel = 'all-images';
+        break;
+            
+      default:
+        $rel = '';       
+    }
+  }
 
   foreach ($items as $delta => $item) {
     if (isset($link_file)) {
@@ -535,6 +551,7 @@ function fancybox_field_formatter_view($entity_type, $entity, $field, $instance,
         'options' => array(
           'attributes' => array(
             'class' => array('imagefield-fancybox'),
+            'rel' => $rel,
           ),
         ),
       ),
