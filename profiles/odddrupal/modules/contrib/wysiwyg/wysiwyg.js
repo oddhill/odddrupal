@@ -79,6 +79,13 @@ Drupal.behaviors.attachWysiwyg = {
         Drupal.wysiwygDetach(context, params[format]);
       });
     });
+  },
+  detach: function(context, settings) {
+    $('.wysiwyg-processed', context).each(function (index, element) {
+      $(element).removeClass('wysiwyg-processed');
+      var params = Drupal.settings.wysiwyg.triggers[element.id];
+      Drupal.wysiwygDetach(context, params);
+    });
   }
 };
 
