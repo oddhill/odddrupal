@@ -210,6 +210,10 @@ function boxes_block_view($delta) {
         ),
       ));
     }
+    // Add additional_classes
+    if (!empty($box->options['additional_classes'])) {
+      $block['additional_classes'] = $box->options['additional_classes'];
+    }
     $block['content'] = theme('boxes_box', array('block' => $block));
     $block['boxes_plugin'] = $box->plugin_key;
     return $block;
@@ -400,6 +404,18 @@ function boxes_box_form($form, &$form_state) {
   $form['options'] = $box->options_form($form_state);
   $form['options']['#weight'] = -17;
 
+  $form['boxes_adv'] = array(
+    '#type'=> 'fieldset',
+    '#collapsed' => TRUE,
+    '#collapsible' => TRUE,
+    '#title' => t('Advanced Settings'),
+  );
+  $form['boxes_adv']['additional_classes'] = array(
+    '#title' => t('Additional CSS classes'),
+    '#description' => t('Optional CSS classes that will be added to the top-level div container for this box. Separate them with spaces.'),
+    '#type' => 'textfield',
+    '#default_value' => isset($box->options['additional_classes']) ? $box->options['additional_classes'] : '',
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -449,7 +465,11 @@ function boxes_box_form_submit($form, $form_state) {
   if (method_exists($box, 'options_submit')) {
     $box->options_submit($form, $form_state);
   }
-
+  // Let's set the additional_classes as an option
+  $box->options['additional_classes'] = $form_state['values']['additional_classes'];
+  $box->options['additional_classes'] = isset($form_state['values']['additional_classes']) ?
+    $form_state['values']['additional_classes'] : array();
+    
   if (module_exists('spaces') && $space = spaces_get_space()) {
     $space->controllers->boxes->set($box->delta, $box);
   }
@@ -688,7 +708,7 @@ function boxes_features_pipe_block_alter(&$more, $data, $export) {
  */
 function boxes_add_js() {
   static $added = FALSE;
-  if ($added || !boxes_access_admin()) {
+  if ($added || (!boxes_access_admin() && !boxes_access_edit())) {
     return;
   }
   $added = TRUE;
@@ -719,7 +739,13 @@ function boxes_create_hash($identifier) {
  * Preprocessor for theme('block').
  */
 function boxes_preprocess_block(&$vars) {
+  $vars['classes_array'] = isset($vars['classes_array']) ? $vars['classes_array'] : array();
+  if ($vars['block']->module === 'boxes') {
+  }
   if ($vars['block']->module === 'boxes' && isset($vars['block']->boxes_plugin)) {
     $vars['classes_array'][] = 'block-boxes-' . $vars['block']->boxes_plugin;
+  }
+  if ($vars['block']->module === 'boxes' && isset($vars['block']->additional_classes)) {
+    $vars['classes_array'] = array_merge($vars['classes_array'], explode(' ', $vars['block']->additional_classes));
   }
 }
