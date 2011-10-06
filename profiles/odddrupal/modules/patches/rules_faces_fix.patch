@@ -1,0 +1,75 @@
+commit c378ec8d13cfd55c6ac9ce85c80e1a983777316a
+Author: fago <nuppla@zites.net>
+Date:   Wed Sep 21 16:25:22 2011 +0200
+
+     #1257580 move faces.inc inclusion to the registry. Conflicts with the deprecated faces module - disable it in case you have it enabled.
+
+diff --git a/includes/rules.core.inc b/includes/rules.core.inc
+index cf1eb95..831de0f 100644
+--- a/includes/rules.core.inc
++++ b/includes/rules.core.inc
+@@ -5,6 +5,12 @@
+  * Rules base classes and interfaces needed for any rule evaluation.
+  */
+ 
++// This is not necessary as the classes are autoloaded via the registry. However
++// it saves some possible update headaches until the registry is rebuilt.
++// @todo
++//   Remove for a future release.
++require_once dirname(__FILE__) . '/faces.inc';
++
+ /**
+  * Make sure loaded rule configs are instantiated right.
+  */
+diff --git a/rules.info b/rules.info
+index 829a5e6..bf59c5c 100644
+--- a/rules.info
++++ b/rules.info
+@@ -4,6 +4,7 @@ package = Rules
+ core = 7.x
+ files[] = rules.features.inc
+ files[] = tests/rules.test
++files[] = includes/faces.inc
+ files[] = includes/rules.core.inc
+ files[] = includes/rules.processor.inc
+ files[] = includes/rules.plugins.inc
+diff --git a/rules.install b/rules.install
+index 762710f..5d24561 100644
+--- a/rules.install
++++ b/rules.install
+@@ -392,3 +392,10 @@ function rules_update_7205() {
+     ));
+   }
+ }
++
++/**
++ * Flush all caches.
++ */
++function rules_update_7206() {
++  // The update system is going to flush all caches anyway, so nothing to do.
++}
+diff --git a/rules.module b/rules.module
+index 5807b7e..0379c26 100644
+--- a/rules.module
++++ b/rules.module
+@@ -4,20 +4,6 @@
+  * @file Rules engine module
+  */
+ 
+-// Add the rules autoloader, which cares about auto-loading the faces include.
+-// @see http://drupal.org/project/faces
+-spl_autoload_register('rules_autoload');
+-
+-/**
+- * Autoload API includes. Note that the code registry autoload is used only
+- * by the providing API module.
+- */
+-function rules_autoload($class) {
+-  if (stripos($class, 'faces') === 0) {
+-    module_load_include('inc', 'rules', 'includes/faces');
+-  }
+-}
+-
+ /**
+  * Implements hook_init().
+  */
