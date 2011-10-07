@@ -492,3 +492,12 @@ function odddrupal_set_variables() {
   variable_set('pathauto_transliterate', 1);
   variable_set('dblog_row_limit', '0');
 }
+
+/**
+ * Enable the new custom module, Seducing mail.
+ */
+function odddrupal_update_7101() {
+  if (!module_exists('seducing_mail')) {
+    module_enable(array('seducing_mail'));
+  }
+}
