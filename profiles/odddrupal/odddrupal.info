@@ -47,6 +47,7 @@ dependencies[] = pathauto
 dependencies[] = redirect
 dependencies[] = references
 dependencies[] = rules
+dependencies[] = seducing_mail
 dependencies[] = spamspan
 dependencies[] = strongarm
 dependencies[] = tadaa

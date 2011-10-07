@@ -1,0 +1,65 @@
+<?php
+/**
+ * @file
+ *
+ * The code for this functionality is available at
+ * http://drupal.org/node/374222#comment-3587178
+ */
+ 
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function seducing_mail_theme_registry_alter(&$theme_registry) {
+  seducing_mail_theme_reroute_hook($theme_registry, 'mimemail_message');
+  seducing_mail_theme_reroute_hook($theme_registry, 'htmlmail');
+}
+
+/**
+ * Reroute a hook to be output through a template belonging to another theme.
+ */
+function seducing_mail_theme_reroute_hook(&$theme_registry, $hook, $source_theme = NULL, $target_theme = NULL) {
+  global $theme;
+  
+  if (empty($source_theme)) {
+    $source_theme = variable_get('admin_theme', '');
+  }
+
+  if (empty($target_theme)) {
+    $target_theme = variable_get('theme_default', '');
+  }
+
+  if ($source_theme != $target_theme && $theme == $source_theme) {
+    $themes = list_themes();
+    $target_theme = $themes[$target_theme];
+
+    $target_path = dirname($target_theme->filename);
+    $existing = array($hook => array());
+    $engine_callback = "{$target_theme->engine}_theme";
+    $templates = $engine_callback($existing, 'theme', $target_theme->name, $target_path);
+
+    // @todo consider subthemes.
+    if (!empty($templates)) {
+      $path = $templates[$hook]['path'];
+      $theme_registry[$hook]['template'] = basename($theme_registry[$hook]['template']);
+      $theme_registry[$hook]['path'] = $path;
+      $theme_registry[$hook]['theme path'] = $target_path;
+      $theme_registry[$hook]['theme paths'][] = $path;
+      $include_file = $target_path .'/template.php';
+      $preprocess = FALSE;
+
+      @include_once $include_file;
+      foreach (array($target_theme->engine, $target_theme->name) as $prefix) {
+        $function = $prefix .'_preprocess_'. $hook;
+        if (function_exists($function)) {
+          $preprocess = TRUE;
+          $theme_registry[$hook]['preprocess functions'][] = $function;
+        }
+      }
+
+      if ($preprocess) {
+        $theme_registry[$hook]['include files'][] = $include_file;
+        $theme_registry[$hook]['preprocess functions'] = array_unique($theme_registry[$hook]['preprocess functions']);
+      }
+    }
+  }
+}
