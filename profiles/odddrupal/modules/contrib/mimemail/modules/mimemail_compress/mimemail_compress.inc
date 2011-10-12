@@ -13,12 +13,14 @@
 function mimemail_compress_clean_message($message) {
   $parts = array();
   preg_match('|(<style[^>]+)>(.*)</style>|mis', $message, $matches);
-  $css = str_replace('<!--', '', $matches[2]);
-  $css = str_replace('-->', '', $css);
-  $css = preg_replace('|\{|', "\n{\n", $css);
-  $css = preg_replace('|\}|', "\n}\n", $css);
-  $html = str_replace($matches[0], '', $message);
-  $parts = array('html' => $html, 'css' => $css);
+  if (isset($matches[0]) && isset($matches[2])) {
+    $css = str_replace('<!--', '', $matches[2]);
+    $css = str_replace('-->', '', $css);
+    $css = preg_replace('|\{|', "\n{\n", $css);
+    $css = preg_replace('|\}|', "\n}\n", $css);
+    $html = str_replace($matches[0], '', $message);
+    $parts = array('html' => $html, 'css' => $css);
+  }
   return $parts;
 }
 

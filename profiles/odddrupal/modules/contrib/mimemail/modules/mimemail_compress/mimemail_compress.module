@@ -13,7 +13,9 @@ function mimemail_compress_mail_post_process(&$message, $mailkey) {
   // Separate CSS from HTML for processing
   $parts = mimemail_compress_clean_message($message);
   // Compress HTML and CSS into combined message
-  $output = new mimemail_compress($parts['html'], $parts['css']);
-  $output = $output->compress();
-  $message = $output;
+  if (!empty($parts)) {
+    $output = new mimemail_compress($parts['html'], $parts['css']);
+    $output = $output->compress();
+    $message = $output;
+  }
 }

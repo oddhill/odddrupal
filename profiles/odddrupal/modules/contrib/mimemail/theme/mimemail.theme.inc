@@ -84,36 +84,40 @@ function template_preprocess_mimemail_message(&$variables) {
     $styles = preg_replace($pattern, $replacement, drupal_get_css($css_files));
   }
 
-  // Process each style sheet.
   $css = '';
-  foreach (explode("\n", $styles) as $style) {
-    if (!empty($style) && @file_exists($style)) {
-      $css .= @file_get_contents($style);
+  if (isset($styles)) {
+    // Process each style sheet.
+    foreach (explode("\n", $styles) as $style) {
+      if (!empty($style) && @file_exists($style)) {
+        $css .= @file_get_contents($style);
+      }
     }
+
+    // Regexp to match comment blocks.
+    $comment = '/\*[^*]*\*+(?:[^/*][^*]*\*+)*/';
+    // Regexp to match double quoted strings.
+    $double_quot = '"[^"\\\\]*(?:\\\\.[^"\\\\]*)*"';
+    // Regexp to match single quoted strings.
+    $single_quot = "'[^'\\\\]*(?:\\\\.[^'\\\\]*)*'";
+
+    // Perform some safe CSS optimizations (derived from core CSS aggregation).
+    $css = preg_replace_callback(
+      "<$double_quot|$single_quot|$comment>Sus",  // Match all comment blocks along
+      "_mimemail_process_comment",                // with double/single quoted strings
+      $css);                                      // and feed them to _mimemail_process_comment().
+    $css = preg_replace(
+      '<\s*([@{}:;,]|\)\s|\s\()\s*[^\n\S]>S',  // Remove whitespace around separators,
+      '\1',                                    // but keep space around parentheses
+      $css);                                   // and new lines between definitions.
+
+    // End the file with a new line.
+    $css .= "\n";
+
+    // Wordwrap to adhere to RFC821
+    $css = wordwrap($css, 700);
   }
 
-  // Regexp to match comment blocks.
-  $comment     = '/\*[^*]*\*+(?:[^/*][^*]*\*+)*/';
-  // Regexp to match double quoted strings.
-  $double_quot = '"[^"\\\\]*(?:\\\\.[^"\\\\]*)*"';
-  // Regexp to match single quoted strings.
-  $single_quot = "'[^'\\\\]*(?:\\\\.[^'\\\\]*)*'";
-
-  // Perform some safe CSS optimizations (derived from core CSS aggregation).
-  $css = preg_replace_callback(
-    "<$double_quot|$single_quot|$comment>Sus",  // Match all comment blocks along
-    "_mimemail_process_comment",                // with double/single quoted strings
-    $css);                                      // and feed them to _mimemail_process_comment().
-  $css = preg_replace(
-    '<\s*([@{}:;,]|\)\s|\s\()\s*[^\n\S]>S',  // Remove whitespace around separators,
-    '\1',                                    // but keep space around parentheses
-    $css);                                   // and new lines between definitions.
-
-  // End the file with a new line.
-  $css .= "\n";
-
-  // Wordwrap to adhere to RFC821
-  $css = wordwrap($css, 700);
+  // Set styles for the message.
   $variables['css'] = $css;
 
    // Process key to be a proper CSS class.
