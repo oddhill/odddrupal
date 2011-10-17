@@ -42,6 +42,7 @@ dependencies[] = l10n_update
 dependencies[] = logintoboggan
 dependencies[] = mailsystem
 dependencies[] = mimemail
+dependencies[] = module_filter
 dependencies[] = node_reference
 dependencies[] = pathauto
 dependencies[] = redirect
