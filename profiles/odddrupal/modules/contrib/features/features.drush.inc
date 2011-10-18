@@ -111,6 +111,10 @@ function features_drush_help($section) {
  * Get a list of all feature modules.
  */
 function drush_features_list() {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   module_load_include('inc', 'features', 'features.export');
   $rows = array(array(dt('Name'), dt('Feature'), dt('Status'), dt('State')));
   foreach (features_get_features(NULL, TRUE) as $k => $m) {
@@ -140,6 +144,10 @@ function drush_features_list() {
  * Create a feature module based on a list of components.
  */
 function drush_features_export() {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   $args = func_get_args();
 
   if (count($args) == 1) {
@@ -184,6 +192,10 @@ function drush_features_export() {
  * Update an existing feature module.
  */
 function drush_features_update() {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   if ($args = func_get_args()) {
     foreach ($args as $module) {
       if (($feature = feature_load($module, TRUE)) && module_exists($module)) {
@@ -212,6 +224,10 @@ function drush_features_update() {
  * exclude from being updated.
  */
 function drush_features_update_all() {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   $features_to_update = array();
   $features_to_exclude = func_get_args();
   foreach (features_get_features() as $module) {
@@ -239,6 +255,10 @@ function drush_features_update_all() {
  *  Optional. The name for the exported module.
  */
 function _drush_features_export($stub, $dependencies, $module_name = NULL, $directory = NULL) {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   $root = drush_get_option(array('r', 'root'), drush_locate_root());
   if ($root) {
     $destination = drush_get_option(array('destination'), 'sites/all/modules');
@@ -281,6 +301,10 @@ function _drush_features_export($stub, $dependencies, $module_name = NULL, $dire
  * Revert a feature to it's code definition.
  */
 function drush_features_revert() {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   if ($args = func_get_args()) {
     module_load_include('inc', 'features', 'features.export');
     features_include();
@@ -343,6 +367,10 @@ function drush_features_revert() {
  * a list of features to exclude from being reverted.
  */
 function drush_features_revert_all() {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   $features_to_revert = array();
   $features_to_exclude = func_get_args();
   $force = drush_get_option('force');
@@ -366,6 +394,10 @@ function drush_features_revert_all() {
  * Show the diff of a feature module.
  */
 function drush_features_diff() {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   if (!$args = func_get_args()) {
     drush_features_list();
     return;

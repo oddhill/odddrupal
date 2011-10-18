@@ -827,6 +827,17 @@ function features_enable_feature($module) {
 }
 
 /**
+ * Switch system language temporary to English
+ */
+function _features_set_original_language() {
+  global $language;
+  if ($language->language != 'en') {
+    $languages = language_list();
+    $language = $languages['en'];
+  }
+}
+
+/**
  * Utility functions ==================================================
  */
 

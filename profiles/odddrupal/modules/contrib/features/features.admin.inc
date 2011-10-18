@@ -179,6 +179,10 @@ function features_export_form_validate_field($element, &$form_state) {
  * Submit handler for features_export_form_build().
  */
 function features_export_build_form_submit($form, &$form_state) {
+
+  // Set language temporarily to English
+  _features_set_original_language();
+
   module_load_include('inc', 'features', 'features.export');
   features_include();
 
