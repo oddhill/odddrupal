@@ -501,3 +501,12 @@ function odddrupal_update_7101() {
     module_enable(array('seducing_mail'));
   }
 }
+
+/**
+ * Enable the new custom module, Module Filter.
+ */
+function odddrupal_update_7102() {
+  if (!module_exists('module_filter')) {
+    module_enable(array('module_filter'));
+  }
+}
