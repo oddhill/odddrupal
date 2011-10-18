@@ -503,7 +503,7 @@ function odddrupal_update_7101() {
 }
 
 /**
- * Enable the new custom module, Module Filter.
+ * Enable the new contrib module, Module Filter.
  */
 function odddrupal_update_7102() {
   if (!module_exists('module_filter')) {
