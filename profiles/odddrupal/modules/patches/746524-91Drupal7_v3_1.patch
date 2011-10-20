@@ -1,0 +1,90 @@
+From 551f108bb01c40ffcd0c40fb92b42f79fab47f50 Wed, 22 Jun 2011 15:41:56 -0500
+From: Jessica Straatmann <jastraat@105111.no-reply.drupal.org>
+Date: Tue, 21 Jun 2011 12:35:10 -0500
+Subject: [PATCH] re-roll for Drupal 7
+
+diff --git a/editors/ckeditor.inc b/editors/ckeditor.inc
+index 0a56fe0..25bbd7a 100644
+--- a/editors/ckeditor.inc
++++ b/editors/ckeditor.inc
+@@ -180,6 +180,12 @@
+     }
+   }
+ 
++  if (!empty($config['css_classes'])) {
++    $styles = wysiwyg_ckeditor_get_styles_set($config['css_classes']);
++    if (!empty($styles)) {
++      $settings['stylesSet'] = $styles;
++    }
++  }
+   if (isset($config['language'])) {
+     $settings['language'] = $config['language'];
+   }
+@@ -331,3 +337,35 @@
+   return $plugins;
+ }
+ 
++/**
++ * Converts the CSS classes string to an array of js settings.
++ *
++ * The CSS classes are edited in element CSS Classes, fieldset CSS
++ * of page admin/config/content/wysiwyg/profile/{filter}/edit.
++ *
++ * Note: only checking for correct format of each line. No error
++ * logging/hinting, as that should be done on the settings form.
++ *
++ * @param string $css_classes
++ *   A list of classes to add to the style drop down.
++ * @return array
++ */
++function wysiwyg_ckeditor_get_styles_set($css_classes) {
++  $css_styles = array();
++  $lines = explode("\n", $css_classes);
++  foreach ($lines as $line) {
++    if (!empty($line)) {
++      $l = explode('=', $line);
++      if (count($l) === 2) {
++        $lc = explode('.', $l[1]);
++        if (count($lc) === 2) {
++          $style['name'] = trim($l[0]);
++          $style['element'] = trim($lc[0]);
++          $style['attributes']['class'] = trim($lc[1]);
++          $css_styles[] = $style;
++        }
++      }
++    }
++  }
++  return $css_styles;
++}
+diff --git a/editors/js/ckeditor-3.0.js b/editors/js/ckeditor-3.0.js
+index d2cf300..4601121 100644
+--- a/editors/js/ckeditor-3.0.js
++++ b/editors/js/ckeditor-3.0.js
+@@ -23,6 +23,10 @@
+         }
+       }
+     }
++    // Register Font styles (versions 3.2.1 and above).
++    if (CKEDITOR.stylesSet && Drupal.settings.wysiwyg.configs.ckeditor[format].stylesSet) {
++      CKEDITOR.stylesSet.add(format, Drupal.settings.wysiwyg.configs.ckeditor[format].stylesSet);
++    }
+   }
+ };
+ 
+diff --git a/wysiwyg.admin.inc b/wysiwyg.admin.inc
+index 510e1e3..06e3cbb 100644
+--- a/wysiwyg.admin.inc
++++ b/wysiwyg.admin.inc
+@@ -286,7 +286,11 @@
+     '#type' => 'textarea',
+     '#title' => t('CSS classes'),
+     '#default_value' => $profile->settings['css_classes'],
+-    '#description' => t('Optionally define CSS classes for the "Font style" dropdown list.<br />Enter one class on each line in the format: !format. Example: !example<br />If left blank, CSS classes are automatically imported from all loaded stylesheet(s).', array('!format' => '<code>[title]=[class]</code>', '!example' => 'My heading=header1')),
++    '#description' => t('Optionally define CSS classes for the "Font style" dropdown list.<br />Enter one class on each line in the format: !format. Example: !example<br />If left blank, CSS classes are automatically imported from all loaded stylesheet(s).',
++      $editor['title'] == 'CKEditor' && version_compare($editor['installed version'], '3.2.1', '>=')
++      ? array('!format' => '<code>[title]=[element].[class]</code>', '!example' => 'My heading=h1.header1')
++      : array('!format' => '<code>[title]=[class]</code>', '!example' => 'My heading=header1')
++    ),
+   );
+ 
+   $form['submit'] = array(

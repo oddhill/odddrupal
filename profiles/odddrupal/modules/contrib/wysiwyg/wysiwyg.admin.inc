@@ -286,7 +286,11 @@ function wysiwyg_profile_form($form, &$form_state, $profile) {
     '#type' => 'textarea',
     '#title' => t('CSS classes'),
     '#default_value' => $profile->settings['css_classes'],
-    '#description' => t('Optionally define CSS classes for the "Font style" dropdown list.<br />Enter one class on each line in the format: !format. Example: !example<br />If left blank, CSS classes are automatically imported from all loaded stylesheet(s).', array('!format' => '<code>[title]=[class]</code>', '!example' => 'My heading=header1')),
+    '#description' => t('Optionally define CSS classes for the "Font style" dropdown list.<br />Enter one class on each line in the format: !format. Example: !example<br />If left blank, CSS classes are automatically imported from all loaded stylesheet(s).',
+      $editor['title'] == 'CKEditor' && version_compare($editor['installed version'], '3.2.1', '>=')
+      ? array('!format' => '<code>[title]=[element].[class]</code>', '!example' => 'My heading=h1.header1')
+      : array('!format' => '<code>[title]=[class]</code>', '!example' => 'My heading=header1')
+    ),
   );
 
   $form['submit'] = array(

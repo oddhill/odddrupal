@@ -180,6 +180,12 @@ function wysiwyg_ckeditor_settings($editor, $config, $theme) {
     }
   }
 
+  if (!empty($config['css_classes'])) {
+    $styles = wysiwyg_ckeditor_get_styles_set($config['css_classes']);
+    if (!empty($styles)) {
+      $settings['stylesSet'] = $styles;
+    }
+  }
   if (isset($config['language'])) {
     $settings['language'] = $config['language'];
   }
@@ -331,3 +337,35 @@ function wysiwyg_ckeditor_plugins($editor) {
   return $plugins;
 }
 
+/**
+ * Converts the CSS classes string to an array of js settings.
+ *
+ * The CSS classes are edited in element CSS Classes, fieldset CSS
+ * of page admin/config/content/wysiwyg/profile/{filter}/edit.
+ *
+ * Note: only checking for correct format of each line. No error
+ * logging/hinting, as that should be done on the settings form.
+ *
+ * @param string $css_classes
+ *   A list of classes to add to the style drop down.
+ * @return array
+ */
+function wysiwyg_ckeditor_get_styles_set($css_classes) {
+  $css_styles = array();
+  $lines = explode("\n", $css_classes);
+  foreach ($lines as $line) {
+    if (!empty($line)) {
+      $l = explode('=', $line);
+      if (count($l) === 2) {
+        $lc = explode('.', $l[1]);
+        if (count($lc) === 2) {
+          $style['name'] = trim($l[0]);
+          $style['element'] = trim($lc[0]);
+          $style['attributes']['class'] = trim($lc[1]);
+          $css_styles[] = $style;
+        }
+      }
+    }
+  }
+  return $css_styles;
+}

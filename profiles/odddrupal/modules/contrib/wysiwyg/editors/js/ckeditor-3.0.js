@@ -23,6 +23,10 @@ Drupal.wysiwyg.editor.init.ckeditor = function(settings) {
         }
       }
     }
+    // Register Font styles (versions 3.2.1 and above).
+    if (CKEDITOR.stylesSet && Drupal.settings.wysiwyg.configs.ckeditor[format].stylesSet) {
+      CKEDITOR.stylesSet.add(format, Drupal.settings.wysiwyg.configs.ckeditor[format].stylesSet);
+    }
   }
 };
 
