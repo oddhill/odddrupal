@@ -283,6 +283,8 @@ class EntityAPIRulesIntegrationTestCase extends DrupalWebTestCase {
 
   function setUp() {
     parent::setUp('entity', 'entity_test', 'rules');
+    // Make sure the logger is enabled so the debug log is saved.
+    variable_set('rules_debug_log', 1);
   }
 
   /**
@@ -677,13 +679,9 @@ class EntityMetadataTestCase extends DrupalWebTestCase {
     $s = serialize($wrapper2);
     node_delete($node->nid);
     $this->assertFalse(node_load($node->nid), 'Node deleted.');
-    try {
-      unserialize($s)->value();
-      $this->fail("Loading hasn't created an exception.");
-    }
-    catch (EntityMetadataWrapperException $e) {
-      $this->pass("Exception was thrown: ". $e->getMessage());
-    }
+
+    $value = unserialize($s)->value();
+    $this->assertNull($value, 'Tried to load not existing node.');
   }
 }
 

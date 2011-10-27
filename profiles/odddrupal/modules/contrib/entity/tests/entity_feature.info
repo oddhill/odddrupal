@@ -6,9 +6,9 @@ files[] = entity_feature.module
 dependencies[] = entity_test
 hidden = TRUE
 
-; Information added by drupal.org packaging script on 2011-08-05
-version = "7.x-1.x-dev"
+; Information added by drupal.org packaging script on 2011-10-25
+version = "7.x-1.0-beta11"
 core = "7.x"
 project = "entity"
-datestamp = "1312503142"
+datestamp = "1319558131"
 
