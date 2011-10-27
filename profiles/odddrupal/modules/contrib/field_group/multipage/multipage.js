@@ -1,7 +1,7 @@
 (function ($) {
 
 /**
- * This script transforms a set of fieldsets into a stack of multipage pages. 
+ * This script transforms a set of wrappers into a stack of multipage pages. 
  * Another pane can be entered by clicking next/previous.
  *
  */
@@ -12,8 +12,9 @@ Drupal.behaviors.MultiPage = {
       var focusID = $(':hidden.multipage-active-control', this).val();
       var paneWithFocus;
 
-      // Check if there are some fieldsets that can be converted to multipages.
-      var $panes = $('> fieldset.multipage', this);
+      // Check if there are some wrappers that can be converted to multipages.
+      var $panes = $('> div.field-group-multipage', this);
+      var $form = $panes.parents('form');
       if ($panes.length == 0) {
         return;
       }
@@ -21,35 +22,35 @@ Drupal.behaviors.MultiPage = {
       // Create the next/previous controls.
       var $controls;
 
-      // Transform each fieldset into a multipage with controls.
+      // Transform each div.multipage-pane into a multipage with controls.
       $panes.each(function () {
         
         $controls = $('<div class="multipage-controls-list"></div>');
         $(this).append('<div class="multipage-controls clearfix"></div>').append($controls);
         
+        // Check if the submit button needs to move to the latest pane.
+        if (Drupal.settings.field_group.multipage_move_submit && $('.form-actions').length) {
+          $('.form-actions', $form).remove().appendTo($($controls, $panes.last()));
+        }
+        
         var multipageControl = new Drupal.multipageControl({
-          title: $('> legend', this).text(),
-          fieldset: $(this),
+          title: $('> .multipage-pane-title', this).text(),
+          wrapper: $(this),
           has_next: $(this).next().length,
           has_previous: $(this).prev().length
         });
         
         $controls.append(multipageControl.item);
         $(this)
-          .removeClass('collapsible collapsed')
           .addClass('multipage-pane')
           .data('multipageControl', multipageControl);
 
         if (this.id == focusID) {
           paneWithFocus = $(this);
         }
+        
       });
       
-      // Check if the submit button needs to move to the latest pane.
-      if (Drupal.settings.multipage_move_submit && $('.form-actions').length) {
-        $('.form-actions').remove().appendTo($panes.last());
-      }
-
       if (!paneWithFocus) {
         // If the current URL has a fragment and one of the tabs contains an
         // element that matches the URL fragment, activate that tab.
@@ -68,12 +69,12 @@ Drupal.behaviors.MultiPage = {
 };
 
 /**
- * The multipagePane object represents a single fieldset a page.
+ * The multipagePane object represents a single div as a page.
  *
  * @param settings
  *   An object with the following keys:
  *   - title: The name of the tab.
- *   - fieldset: The jQuery object of the fieldset that is the tab pane.
+ *   - wrapper: The jQuery object of the <div> that is the tab pane.
  */
 Drupal.multipageControl = function (settings) {
   var self = this;
@@ -95,18 +96,18 @@ Drupal.multipageControl = function (settings) {
   this.nextLink.keydown(function(event) {
     if (event.keyCode == 13) {
       self.focus();
-      // Set focus on the first input field of the visible fieldset/tab pane.
-      $("fieldset.horizontal-tabs-pane :input:visible:enabled:first").focus();
+      // Set focus on the first input field of the visible wrapper/tab pane.
+      $("div.multipage-pane :input:visible:enabled:first").focus();
       return false;
     }
   });
 
   // Pressing the Enter key lets you leave the tab again.
-  this.fieldset.keydown(function(event) {
+  this.wrapper.keydown(function(event) {
     // Enter key should not trigger inside <textarea> to allow for multi-line entries.
     if (event.keyCode == 13 && event.target.nodeName != "TEXTAREA") {
       // Set focus on the selected tab button again.
-      $(".horizontal-tab-button.selected a").focus();
+      $(".multipage-tab-button.selected a").focus();
       return false;
     }
   });
@@ -119,16 +120,16 @@ Drupal.multipageControl.prototype = {
    * Displays the tab's content pane.
    */
   focus: function () {
-    this.fieldset
+    this.wrapper
       .show()
-      .siblings('fieldset.multipage-pane')
+      .siblings('div.multipage-pane')
         .each(function () {
           var tab = $(this).data('multipageControl');
-          tab.fieldset.hide();
+          tab.wrapper.hide();
         })
         .end()
       .siblings(':hidden.multipage-active-control')
-        .val(this.fieldset.attr('id'));
+        .val(this.wrapper.attr('id'));
     // Mark the active control for screen readers.
     $('#active-multipage-control').remove();
     this.nextLink.append('<span id="active-multipage-control" class="element-invisible">' + Drupal.t('(active page)') + '</span>');
@@ -138,14 +139,14 @@ Drupal.multipageControl.prototype = {
    * Continues to the next page or step in the form.
    */
   nextPage: function () {
-    this.fieldset.next().data('multipageControl').focus();
+    this.wrapper.next().data('multipageControl').focus();
   },
   
   /**
    * Returns to the previous page or step in the form.
    */
   previousPage: function () {
-    this.fieldset.prev().data('multipageControl').focus();
+    this.wrapper.prev().data('multipageControl').focus();
   },
 
   /**
@@ -159,8 +160,8 @@ Drupal.multipageControl.prototype = {
     // method.
     this.item.parent().children('.multipage-control').removeClass('first')
       .filter(':visible:first').addClass('first');
-    // Display the fieldset.
-    this.fieldset.removeClass('multipage-control-hidden').show();
+    // Display the wrapper.
+    this.wrapper.removeClass('multipage-control-hidden').show();
     // Focus this tab.
     this.focus();
     return this;
@@ -177,10 +178,10 @@ Drupal.multipageControl.prototype = {
     // method.
     this.item.parent().children('.multipage-control').removeClass('first')
       .filter(':visible:first').addClass('first');
-    // Hide the fieldset.
-    this.fieldset.addClass('horizontal-tab-hidden').hide();
+    // Hide the wrapper.
+    this.wrapper.addClass('horizontal-tab-hidden').hide();
     // Focus the first visible tab (if there is one).
-    var $firstTab = this.fieldset.siblings('.multipage-pane:not(.multipage-control-hidden):first');
+    var $firstTab = this.wrapper.siblings('.multipage-pane:not(.multipage-control-hidden):first');
     if ($firstTab.length) {
       $firstTab.data('multipageControl').focus();
     }
@@ -205,7 +206,7 @@ Drupal.multipageControl.prototype = {
 Drupal.theme.prototype.multipage = function (settings) {
   var controls = {};
   controls.item = $('<span class="multipage-button"></span>');
-  controls.item.append(controls.nextLink = $('<input type="button" class="form-submit multipage-link-next" value="" />').val(controls.nextTitle = Drupal.t('Next')));
+  controls.item.append(controls.nextLink = $('<input type="button" class="form-submit multipage-link-next" value="" />').val(controls.nextTitle = Drupal.t('Next page')));
   controls.item.append(controls.previousLink = $('<a class="multipage-link-previous" href="#"></a>'));
   if (!settings.has_next) {
     controls.nextLink.hide();
@@ -227,7 +228,7 @@ Drupal.FieldGroup.Effects.processMultipage = {
   execute: function (context, settings, type) {
     if (type == 'form') {
       // Add required fields mark to any element containing required fields
-      $('fieldset.multipage-pane').each(function(i){
+      $('div.multipage-pane').each(function(i){
         if ($('.error', $(this)).length) {
           Drupal.FieldGroup.setGroupWithfocus($(this));
           $(this).data('multipageControl').focus();
