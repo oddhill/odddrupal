@@ -7,9 +7,9 @@ core = 7.x
 
 files[] = mimemail_action.module
 
-; Information added by drupal.org packaging script on 2011-10-10
+; Information added by drupal.org packaging script on 2011-10-17
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "mimemail"
-datestamp = "1318248837"
+datestamp = "1318853523"
 

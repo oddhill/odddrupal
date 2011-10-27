@@ -353,10 +353,11 @@ function mimemail_html_body($body, $subject, $plain = FALSE, $plaintext = NULL, 
   if (is_array($attachments) && !empty($attachments)) {
     foreach ($attachments as $a) {
       $a = (object) $a;
+      $path = isset($a->uri) ? $a->uri : isset($a->filepath) ? $a->filepath : NULL;
       $content = isset($a->filecontent) ? $a->filecontent : NULL;
-      $name = isset($a->filename) ? $a->filename : 'attachment.dat';
-      $type = isset($a->filemime) ? $a->filemime : 'application/octet-stream';
-      _mimemail_file($a->uri, $content, $name, $type, 'attachment');
+      $name = isset($a->filename) ? $a->filename : NULL;
+      $type = isset($a->filemime) ? $a->filemime : NULL;
+      _mimemail_file($path, $content, $name, $type, 'attachment');
       $parts = array_merge($parts, _mimemail_file());
     }
   }

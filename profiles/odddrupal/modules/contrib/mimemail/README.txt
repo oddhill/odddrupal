@@ -61,7 +61,7 @@
     'plaintext':
       Plaintext portion of a multipart e-mail (optional).
     'attachments':
-      Array of arrays with the path, name and MIME type of the file (optional).
+      Array of arrays with the path or content, name and MIME type of the file (optional).
     'headers':
       A keyed array with headers (optional). 
 
@@ -75,7 +75,8 @@
   user@example.com for all email addresses' option on the configuration settings page.
 
   This module creates a user preference for receiving plaintext-only messages.
-  This preference will be honored by all messages if the format is not explicitly set.
+  This preference will be honored by all messages if the format is not explicitly set
+  and the user has access to edit this preference (allowed by default).
 
   Email messages are formatted using the mimemail-message.tpl.php template.
   This includes a CSS style sheet and uses an HTML version of the text.
