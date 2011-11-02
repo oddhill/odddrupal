@@ -57,6 +57,12 @@ function mimemail_admin_settings() {
     '#default_value' => variable_get('mimemail_textonly', FALSE),
     '#description' => t('This option disables the use of email messages with graphics and styles. All messages will be converted to plain text.'),
   );
+  $form['mimemail']['mimemail_linkonly'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Link images only'),
+    '#default_value' => variable_get('mimemail_linkonly', 0),
+    '#description'   => t('This option disables the embedding of images. All image will be available as external content. This can make email messages much smaller.'),
+  );
 
   // Get a list of all formats.
   $formats = filter_formats();

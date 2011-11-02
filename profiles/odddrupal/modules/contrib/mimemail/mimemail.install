@@ -49,6 +49,7 @@ function mimemail_uninstall() {
     'mimemail_mail',
     'mimemail_format',
     'mimemail_simple_address',
+    'mimemail_linkonly',
   );
   foreach ($variables as $variable) {
     variable_del($variable);

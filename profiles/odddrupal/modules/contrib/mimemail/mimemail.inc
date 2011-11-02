@@ -43,13 +43,26 @@ function mimemail_rfc_headers($headers) {
  * @return header string.
  */
 function mimemail_headers($headers, $from = NULL) {
-  // Note: This may not work. The MTA may rewrite the Return-Path.
+  $default_from = variable_get('site_mail', ini_get('sendmail_from'));
 
-  // Allow a mail to overwrite standard headers.
-  if (!empty($from)) {
-    preg_match('/[a-z0-9\-\.]+@{1}[a-z0-9\-\.]+/i', $from, $matches);
-    $from_email = $matches[0];
-    $headers = array_merge($headers, array('From' => $from, 'Sender' => $from, 'Return-Path' => "<$from_email>"));
+  // Overwrite standard headers.
+  if ($from) {
+    if ($headers['From'] == $default_from) {
+      $headers['From'] = $from;
+    }
+    if ($headers['Sender'] == $default_from) {
+      $headers['Sender'] = $from;
+    }
+    // This may not work. The MTA may rewrite the Return-Path.
+    if ($headers['Return-Path'] == $default_from) {
+      preg_match('/[a-z0-9\-\.]+@{1}[a-z0-9\-\.]+/i', $from, $matches);
+      $headers['Return-Path'] = "<$matches[0]>";
+    }
+  }
+
+  // Convert From header if it is an array.
+  if (is_array($headers['From'])) {
+    $headers['From'] = mimemail_address($headers['From']);
   }
 
   // Run all headers through mime_header_encode() to convert non-ascii
@@ -528,6 +541,12 @@ function _mimemail_url($url, $embed_file = NULL) {
 
   // If the URL is absolute or a mailto, return it as-is.
   if (strpos($url, '://') !== FALSE || preg_match('!mailto:!', $url)) {
+    $url = str_replace(' ', '%20', $url);
+    return $url;
+  }
+  // If the image embedding is disabled, return the absolute URL for the image.
+  elseif (variable_get('mimemail_linkonly', 0) && preg_match('!\.(png|gif|jpg|jpeg)$!i', $url)) {
+    $url = $base_url . $url;
     $url = str_replace(' ', '%20', $url);
     return $url;
   }
