@@ -1,1 +1,70 @@
 <?php
+/**
+ * @file
+ *  Installation and update instructions for sites using Odd Drupal.
+ */
+
+/**
+ * Implements hook_instal().
+ */
+function odddrupal_install() {
+  require_once DRUPAL_ROOT . '/profiles/odddrupal/install.inc';
+  
+  // Configure text formats and Wysiwyg settings.
+  odddrupal_text_formats();
+
+  // Configure the global locale settings.
+  odddrupal_locale_settings_global();
+  // Try to find specific locale settings for the chosen language, and set them
+  // as well.
+  $function = 'odddrupal_locale_settings_' . $_GET['locale'];
+  if (function_exists($function)) {
+    $function();
+  }
+  
+  // Configure Themekey rules.
+  odddrupal_themekey_rules();
+  
+  // Set up the roles and permissions.
+  odddrupal_roles();
+  
+  // Set various variables.
+  odddrupal_set_variables();
+}
+
+/**
+ * Enable the new custom module, Seducing mail.
+ */
+function odddrupal_update_7101() {
+  if (!module_exists('seducing_mail')) {
+    module_enable(array('seducing_mail'));
+  }
+}
+
+/**
+ * Enable the new contrib module, Module Filter.
+ */
+function odddrupal_update_7102() {
+  if (!module_exists('module_filter')) {
+    module_enable(array('module_filter'));
+  }
+}
+
+/**
+ * Disable Administration language.
+ */
+function odddrupal_update_7103() {
+  if (module_exists('admin_language')) {
+    module_disable(array('admin_language'));
+    admin_language_uninstall();
+  }
+}
+
+/**
+ * Enable Update status module.
+ */
+function odddrupal_update_7104() {
+  if (!module_exists('update')) {
+    module_enable(array('update'));
+  }
+}

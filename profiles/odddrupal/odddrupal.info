@@ -1,28 +1,29 @@
 name = Odd Drupal
 description = Custom Drupal profile by Odd Hill.
 core = 7.x
+
+; Core modules
 dependencies[] = block
 dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = field_ui
+dependencies[] = file
 dependencies[] = help
 dependencies[] = image
 dependencies[] = list
+dependencies[] = locale
 dependencies[] = menu
 dependencies[] = number
 dependencies[] = options
-dependencies[] = path
-dependencies[] = taxonomy
-dependencies[] = dblog
 dependencies[] = overlay
-dependencies[] = field_ui
-dependencies[] = file
-dependencies[] = rdf
-dependencies[] = locale
+dependencies[] = path
 dependencies[] = php
+dependencies[] = taxonomy
+dependencies[] = update
 
-; Custom
+; Contrib modules
 dependencies[] = admin_language
 dependencies[] = admin_menu
-dependencies[] = blindfold
 dependencies[] = boxes
 dependencies[] = context
 dependencies[] = context_layouts
@@ -34,7 +35,6 @@ dependencies[] = diff
 dependencies[] = entity
 dependencies[] = extlink
 dependencies[] = fancybox
-dependencies[] = fanta
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = jquery_update
@@ -48,7 +48,6 @@ dependencies[] = pathauto
 dependencies[] = redirect
 dependencies[] = references
 dependencies[] = rules
-dependencies[] = seducing_mail
 dependencies[] = spamspan
 dependencies[] = strongarm
 dependencies[] = tadaa
@@ -59,4 +58,7 @@ dependencies[] = views
 dependencies[] = webform
 dependencies[] = wysiwyg
 
-files[] = odddrupal.profile
+; Custom modules
+dependencies[] = blindfold
+dependencies[] = fanta
+dependencies[] = seducing_mail
