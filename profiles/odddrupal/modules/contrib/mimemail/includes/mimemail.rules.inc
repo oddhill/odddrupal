@@ -37,7 +37,7 @@ function rules_action_mimemail($to, $cc = NULL, $bcc = NULL, $from_name = NULL, 
   $params = array(
     'context' => array(
       'subject' => $subject,
-      'body' => $body['value'],
+      'body' => $body,
       'action' => $element,
       'state' => $state,
     ),
@@ -82,7 +82,7 @@ function rules_action_mimemail_to_users_of_role($roles, $from_name = NULL, $from
   $params = array(
     'context' => array(
       'subject' => $subject,
-      'body' => $body['value'],
+      'body' => $body,
       'action' => $element,
       'state' => $state,
     ),

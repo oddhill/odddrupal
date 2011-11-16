@@ -139,7 +139,7 @@ function mimemail_rules_action_info() {
           'description' => t("The mail's subject."),
         ),
         'body' => array(
-          'type' => 'text_formatted',
+          'type' => 'text',
           'label' => t('Body'),
           'description' => t("The mail's message HTML body."),
         ),
