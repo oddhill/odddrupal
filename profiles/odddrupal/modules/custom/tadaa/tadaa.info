@@ -1,5 +1,0 @@
-; $Id$
-name = "Tadaa!"
-description = "Provides a simple mechanism to switch between development, staging, and production environment."
-core = 7.x
-package = Odd Hill
