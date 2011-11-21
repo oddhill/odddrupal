@@ -117,6 +117,9 @@ function odddrupal_text_formats() {
  * been set as the default.
  */
 function odddrupal_locale_settings_global() {
+  // Make sure the required files are loaded.
+  require_once DRUPAL_ROOT . '/includes/language.inc';
+
   // Setup the negotiation settings.
   $providers = array(
     'language' => array(
@@ -212,6 +215,9 @@ function odddrupal_locale_settings_sv() {
  * This will basically set the admin theme for some extra paths.
  */
 function odddrupal_themekey_rules() {
+  // Make sure the required files are loaded.
+  module_load_include('inc', 'themekey', 'themekey_build');
+
 	$rules = array(
 	  array(
 	    'property' => 'drupal:path',
