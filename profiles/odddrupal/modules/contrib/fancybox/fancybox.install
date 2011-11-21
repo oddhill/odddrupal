@@ -6,6 +6,13 @@
  */
 
 /**
+ * Implementation of hook_install()
+ */
+function fancybox_install() {
+  _set_fancybox_files();
+}
+
+/**
  * Implementation of hook_uninstall()
  */
 function fancybox_uninstall() {

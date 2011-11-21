@@ -11,20 +11,21 @@
 function fancybox_admin_settings_form($form_state) {
   $form = array();
 
-  // Fancybox path:
-  $form['fancybox_path'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Path to Fancybox jQuery plugin'),
-    '#default_value' => variable_get('fancybox_path', FANCYBOX_DEFAULT_PATH),
-    '#description' => t('Enter the location of the <a href="!url" target="_blank">Fancybox jQuery Plugin</a>. It is recommended to use %path.', array('!url' => 'http://fancybox.net/', '%path' => FANCYBOX_DEFAULT_PATH)),
-  );
-
   if ($files = variable_get('fancybox_files', NULL)) {
+    // Check if detected files changed
+    $detected_files = _detect_fancybox_files();
+    if ($files['js'] != $detected_files['js'] || $files['css'] != $detected_files['css']) {
+      _set_fancybox_files();
+    }
+
     $form['fancybox_files'] = array(
       '#prefix' => '<div class="messages status">',
       '#suffix' => '</div>',
-      '#markup' => t('Plugin detected, using @js_file and @css_file', array('@js_file' => $files['js'], '@css_file' => $files['css']))
+      '#markup' => t('Plugin detected, using @js_file and @css_file', array('@js_file' => $detected_files['js'], '@css_file' => $detected_files['css']))
     );
+  }
+  else {
+    _set_fancybox_files();
   }
 
   $settings = variable_get('fancybox_settings', array());
@@ -37,9 +38,7 @@ function fancybox_admin_settings_form($form_state) {
     '#title' => t('Options'),
     '#tree' => TRUE,
   );
-  if (isset($settings['options'])) {
-  	$data['options'] += fancybox_options($settings['options']);
-  }
+	$data['options'] += fancybox_options((!empty($settings['options']) ? $settings['options'] : array()));
 
   // Activation:
   $data['activation'] = array(
@@ -80,24 +79,11 @@ function fancybox_admin_settings_form($form_state) {
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
     );
-
     $data['imagefield']['grouping'] = array(
       '#type' => 'radios',
       '#title' => t('Grouping'),
       '#options' => array(1 => t('Group per field'), 2 => t('Group all fields on page'), 0 => t('No grouping')),
       '#default_value' => isset($settings['imagefield']['grouping']) ? $settings['imagefield']['grouping'] : 1,
-    );
-
-    $options = array(0 => t('Original image (no preset)'));
-    foreach (image_styles() as $preset) {
-      $options[$preset['name']] = $preset['name'];
-    }
-    $data['imagefield']['imagecache_preset'] = array(
-      '#type' => 'select',
-      '#title' => t('ImageCache preset'),
-      '#options' => $options,
-      '#default_value' => isset($settings['imagefield']['imagecache_preset']) ? $settings['imagefield']['imagecache_preset'] : 0,
-      '#description' => t('The ImageCache preset to be use when displaying ImageField images in Fancybox.'),
     );
   }
 
@@ -117,37 +103,13 @@ function fancybox_admin_settings_form($form_state) {
   return $form;
 }
 
-/** 
- * Fetect needed script and stylesheet in specified path
- */
-function _detect_fancybox_files($path) {
-  $js_files = glob(getcwd() . DIRECTORY_SEPARATOR . $path .  DIRECTORY_SEPARATOR . 'jquery.fancybox-*.js');
-  $css_files = glob(getcwd() . DIRECTORY_SEPARATOR . $path .  DIRECTORY_SEPARATOR . 'jquery.*.css');
-  
-  $files = array(
-    'js' => basename(array_shift($js_files)),
-    'css' => basename(array_shift($css_files)),
-  );
-  
-  return $files;
-}
-
 /**
  * Validation handler for the Fancybox settings form.
  */
 function fancybox_admin_settings_form_validate($form, &$form_state) {
-
   $op = isset($form_state['values']['op']) ? $form_state['values']['op'] : '';
   if ($op == t('Reset to defaults')) {
     return; // Skip validation if Reseting to defaults
-  }
-
-  // Check fancybox_path for .js files.
-  $path =  rtrim($form_state['values']['fancybox_path'], '/ ');
-  $files = _detect_fancybox_files($path);
-
-  if (empty($files['js']) || empty($files['css'])) {
-    form_set_error('fancybox_path', t('No Fancybox plugin found in @path',array('@path' => $path)));
   }
 }
 
@@ -158,20 +120,11 @@ function fancybox_admin_settings_form_submit($form, &$form_state) {
   $op = isset($form_state['values']['op']) ? $form_state['values']['op'] : '';
   if ($op == t('Reset to defaults')) {
     variable_del('fancybox_settings');
-    variable_del('fancybox_path');
     variable_del('fancybox_files');
     drupal_set_message(t('The configuration options have been reset to their default values.'));
   }
   else {
-
-    // Remove trailing slash from path
-    $path =  rtrim($form_state['values']['fancybox_path'], '/ ');
-    
-    variable_set('fancybox_path', $path);
-    variable_set('fancybox_files', _detect_fancybox_files($path));
-  
     _save_fancybox_settings($form_state);
-    
     drupal_set_message(t('The configuration options have been saved.'));
   }
 }
@@ -180,20 +133,19 @@ function fancybox_admin_settings_form_submit($form, &$form_state) {
  * Save settings into 'fancybox_settings' variable
  */
 function _save_fancybox_settings($form_state) {
+  // Cast strings to integers for properties that need strings
+  $props_to_cast = array('width', 'height', 'margin', 'padding');
+  foreach ($props_to_cast as $prop) {
+    $form_state['values']['data']['options']['appearance'][$prop] = (int)$form_state['values']['data']['options']['appearance'][$prop];  
+  }
+  
+  $props_to_cast = array('speedIn', 'speedOut', 'changeSpeed');
+  foreach ($props_to_cast as $prop) {
+    $form_state['values']['data']['options']['effects'][$prop] = (int)$form_state['values']['data']['options']['effects'][$prop];  
+  }
 
-    // Cast strings to integers for properties that need strings
-    $props_to_cast = array('margin', 'padding');
-    foreach ($props_to_cast as $prop) {
-      $form_state['values']['data']['options']['appearance'][$prop] = (int)$form_state['values']['data']['options']['appearance'][$prop];  
-    }
-    
-    $props_to_cast = array('speedIn', 'speedOut', 'changeSpeed');
-    foreach ($props_to_cast as $prop) {
-      $form_state['values']['data']['options']['effects'][$prop] = (int)$form_state['values']['data']['options']['effects'][$prop];  
-    }
-
-    $form_state['values']['data']['options'] = fancybox_array_flatten($form_state['values']['data']['options']);
-    variable_set('fancybox_settings', $form_state['values']['data']);  
+  $form_state['values']['data']['options'] = fancybox_array_flatten($form_state['values']['data']['options']);
+  variable_set('fancybox_settings', $form_state['values']['data']);  
 }
 
 

@@ -68,3 +68,12 @@ function odddrupal_update_7104() {
     module_enable(array('update'));
   }
 }
+
+/**
+ * Enable Libraries API module.
+ */
+function odddrupal_update_7105() {
+  if (!module_exists('libraries')) {
+    module_enable(array('libraries'));
+  }
+}

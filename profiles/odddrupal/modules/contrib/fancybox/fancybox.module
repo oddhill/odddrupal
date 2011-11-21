@@ -6,8 +6,6 @@
  * multimedia in an elegant box.
  */
 
-define('FANCYBOX_DEFAULT_PATH', 'sites/all/libraries/fancybox');
-
 /**
  * Implementation of hook_init().
  */
@@ -17,40 +15,6 @@ function fancybox_init() {
     fancybox_activate($settings);
   }
 }
-
-/**
- * Include the Fancybox JS.
- */
-function fancybox_activate($settings = NULL) {
-  static $active = FALSE;
-  
-  if (!$active) {
-    if ($settings == NULL) {
-      $settings = variable_get('fancybox_settings', array());
-    }
-    
-    // Add Fancybox files.
-    $path = variable_get('fancybox_path', FANCYBOX_DEFAULT_PATH) . '/';
-    $files = variable_get('fancybox_files', array());
-
-    // TODO: add easing
-    //drupal_add_js($path .'jquery.easing-1.3.pack.js');
-  
-    drupal_add_css($path .  $files['css']);
-    drupal_add_js($path . $files['js']);
-
-    // Expose settings to the DOM.
-    $exposed_settings['options'] = $settings['options'];
-    $exposed_settings['selector'] = $settings['activation']['selector'];
-    drupal_add_js(array('fancybox' => $exposed_settings), 'setting');
-
-    // Initialize Fancybox.
-    drupal_add_js(drupal_get_path('module', 'fancybox') . '/js/fancybox.js');
-    
-    $active = TRUE;
-  }
-}
-
 
 /**
  * Implementation of hook_permission().
@@ -108,6 +72,51 @@ function fancybox_active($settings) {
   }
   else {
     return $page_match;
+  }
+}
+
+/**
+ * Include the Fancybox JS.
+ */
+function fancybox_activate($settings = NULL) {
+  static $active = FALSE;
+  
+  if (!$active) {
+    if ($settings == NULL) {
+      $settings = variable_get('fancybox_settings', array());
+    }
+    
+    // Add Fancybox files.
+    $path = libraries_get_path('fancybox') . DIRECTORY_SEPARATOR;
+    $files = variable_get('fancybox_files', array());
+
+    // TODO: add easing
+    //drupal_add_js($path .'jquery.easing-1.3.pack.js');
+  
+    drupal_add_css($path . $files['css']);
+    drupal_add_js($path . $files['js']);
+
+    // Check for empty settings
+    if (empty($settings['options'])) {
+      $settings['options'] = array();
+    }
+    if (empty($settings['activation']['selector'])) {
+      $settings['activation'] = array();
+      $settings['activation']['selector'] = '';
+    }
+
+    // prep settings for exposure (by removing empty options)
+    $settings['options'] = array_filter($settings['options'], 'strlen');
+
+    // Expose settings to the DOM.
+    $exposed_settings['options'] = $settings['options'];
+    $exposed_settings['selector'] = $settings['activation']['selector'];
+    drupal_add_js(array('fancybox' => $exposed_settings), 'setting');
+
+    // Initialize Fancybox.
+    drupal_add_js(drupal_get_path('module', 'fancybox') . '/js/fancybox.js');
+    
+    $active = TRUE;
   }
 }
 
@@ -293,14 +302,14 @@ function fancybox_options($values = array()) {
     '#type' => 'checkbox',
     '#title' => t('Close on overlay click'),
     '#description' => t('If checked, clicking the overlay closes FancyBox'),
-    '#default_value' => isset($values['hideOnOverlayClick']) ? $values['hideOnOverlayClick'] : FALSE,
+    '#default_value' => isset($values['hideOnOverlayClick']) ? $values['hideOnOverlayClick'] : TRUE,
   );
 
   $options['appearance']['hideOnContentClick'] = array(
     '#type' => 'checkbox',
     '#title' => t('Close on content click'),
     '#description' => t('If checked, clicking the content closes FancyBox'),
-    '#default_value' => isset($values['hideOnContentClick']) ? $values['hideOnContentClick'] : TRUE,
+    '#default_value' => isset($values['hideOnContentClick']) ? $values['hideOnContentClick'] : FALSE,
   );
 
   $options['appearance']['enableEscapeButton'] = array(
@@ -450,108 +459,135 @@ function fancybox_options($values = array()) {
   return $options;
 }
 
-
-/*****************************************************************************
- * INTEGRATION WITH THIRD PARTY MODULES
- *****************************************************************************/
-
 /**
- * Implementation of hook_field_formatter_info().
- *
- * Add Fancybox and Image formatters to image fields if Image module is enabled.
+ * Implements hook_field_formatter_info().
  */
 function fancybox_field_formatter_info() {
-  $formatters = array();
-
-  if (module_exists('image')) {
-    $presets = array();
-
-    foreach (image_styles() as $preset) {
-      $presets[$preset['name'] .'_fancybox'] = array(
-        'label' => t('Fancybox: @preset image', array('@preset' => $preset['name'])),
-        'field types' => array('image'),
-      );
-    }
-
-    if (is_array($presets)) {
-      $formatters = array_merge($presets);
-    }
-  }
+  $formatters = array(
+    'fancybox_image' => array(
+      'label' => t('Fancybox image'),
+      'field types' => array('image'),
+      'settings' => array('image_style' => '', 'image_link_style' => ''),
+    ),
+  );
 
   return $formatters;
 }
 
 /**
- * Implementation of hook_field_formatter_view().
+ * Implements hook_field_formatter_settings_form().
+ */
+function fancybox_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $image_styles = image_style_options(FALSE);
+  $element['image_style'] = array(
+    '#title' => t('Image style'),
+    '#type' => 'select',
+    '#default_value' => $settings['image_style'],
+    '#empty_option' => t('None (original image)'),
+    '#options' => $image_styles,
+  );
+
+  $element['image_link_style'] = array(
+    '#title' => t('Linked image style'),
+    '#type' => 'select',
+    '#default_value' => $settings['image_link_style'],
+    '#empty_option' => t('None (original image)'),
+    '#options' => $image_styles,
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function fancybox_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $summary = array();
+
+  $image_styles = image_style_options(FALSE);
+  // Unset possible 'No defined styles' option.
+  unset($image_styles['']);
+  // Styles could be lost because of enabled/disabled modules that defines
+  // their styles in code.
+  if (isset($image_styles[$settings['image_style']])) {
+    $summary[] = t('Image style: @style', array('@style' => $image_styles[$settings['image_style']]));
+  }
+  else {
+    $summary[] = t('Original image');
+  }
+
+  if (isset($image_styles[$settings['image_link_style']])) {
+    $summary[] = t('Linked image style: @style', array('@style' => $image_styles[$settings['image_link_style']]));
+  }
+  else {
+    $summary[] = t('Linked image style: Original image');
+  }
+
+  return implode('<br />', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_view().
  */
 function fancybox_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $settings = variable_get('fancybox_settings', array());
-
   $element = array();
+  $settings = variable_get('fancybox_settings', array());
+  fancybox_activate($settings);
 
-  // Check if the formatter involves a particular image style.
-  $matches = array();
-  if (preg_match('/([a-z0-9_]+)_fancybox/', $display['type'], $matches)) {
-    $image_style = $matches[1];
-  }
-
-  // Check if the formatter involves a link.
-  if (strpos($display['type'], 'image_link_content') === 0) {
-    $uri = entity_uri($entity_type, $entity);
-  }
-  elseif (strpos($display['type'], 'image_link_file') === 0) {
-    $link_file = TRUE;
-  }
-  
-  // Check if grouping is activated.
-  if (isset($settings['imagefield']['grouping'])){
+  // Get grouping settings
+  $rel = '';
+  if(!empty($settings['imagefield']['grouping'])){
     switch($settings['imagefield']['grouping']){
       case 1:
         $rel = $field['field_name'];
         break;
-          
       case 2:
         $rel = 'all-images';
         break;
-            
       default:
-        $rel = '';       
+        $rel = '';      
     }
   }
 
   foreach ($items as $delta => $item) {
-    if (isset($link_file)) {
-      $uri = array(
-        'path' => file_create_url($item['uri']),
-        'options' => array(),
-      );
-    }
-
-    //$href_uri = 'public://styles/fancybox/' . $item['filename'];
-    $style_name = isset($settings['imagefield']['imagecache_preset']) ? $settings['imagefield']['imagecache_preset'] : 0;
+    $style_name = isset($display['settings']['image_link_style']) ? $display['settings']['image_link_style'] : 0;
     if ($style_name) {
       $style_path = image_style_path($style_name, $item['uri']);
       if (!file_exists($style_path)) {
         $style_path = image_style_url($style_name, $item['uri']);
       }
-      $variables['path'] = file_create_url($style_path);
     }
     else {
       $style_path = file_create_url($item['uri']);
     }
     $href = file_create_url($style_path);
 
+    // Image caption.
+    if (!empty($settings['imagefield']['use_node_title'])) {
+      $image_title = $entity->title;
+    }
+    else {
+      $image_title = (!empty($item['title']) ? $item['title'] : '');
+      $image_title = (!empty($image_title) ? $image_title : $item['alt']);
+    }
+
     $element[$delta] = array(
       '#theme' => 'image_formatter',
       '#item' => $item,
-      '#image_style' => isset($image_style) ? $image_style : '',
-      //'#path' => isset($uri) ? $uri : '',
+      '#image_style' => $display['settings']['image_style'],
       '#path' => array(
         'path' => $href,
         'options' => array(
           'attributes' => array(
             'class' => array('imagefield-fancybox'),
             'rel' => $rel,
+            'title' => $image_title,
           ),
         ),
       ),
@@ -559,4 +595,34 @@ function fancybox_field_formatter_view($entity_type, $entity, $field, $instance,
   }
 
   return $element;
+}
+
+/** 
+ * Detect needed script and stylesheet in specified path
+ */
+function _detect_fancybox_files() {
+  $path = libraries_get_path('fancybox');
+
+  $js_files = glob(getcwd() . DIRECTORY_SEPARATOR . $path . DIRECTORY_SEPARATOR . 'jquery.fancybox-*.js');
+  $css_files = glob(getcwd() . DIRECTORY_SEPARATOR . $path . DIRECTORY_SEPARATOR . 'jquery.*.css');
+  
+  $files = array(
+    'js' => basename(array_shift($js_files)),
+    'css' => basename(array_shift($css_files)),
+  );
+  
+  return $files;
+}
+
+function _set_fancybox_files() {
+  $files = _detect_fancybox_files();
+
+  if (empty($files['js']) || empty($files['css'])) {
+    drupal_set_message(t('No Fancybox plugin found in @path, install the Fancybox plugin and go to the Fancybox settings page for the files to be found', array('@path' => $path)), 'warning');
+  }
+  else {
+    variable_set('fancybox_files', $files);
+  }
+
+  return $files;
 }
