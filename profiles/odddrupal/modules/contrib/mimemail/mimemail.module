@@ -89,6 +89,14 @@ function mimemail_theme() {
 }
 
 /**
+ * Implements hook_theme_registry_alter().
+ */
+function mimemail_theme_registry_alter(&$theme_registry) {
+  module_load_include('inc', 'mimemail', 'theme/mimemail.theme');
+  return mimemail_theme_theme_registry_alter($theme_registry);
+}
+
+/**
  * Implements hook_rules_file_info().
  */
 function mimemail_rules_file_info() {

@@ -569,11 +569,34 @@ function _mimemail_url($url, $embed_file = NULL) {
     return '#' . $fragment;
   }
 
-  // If we have not yet returned, then let's clean things up and leave.
-  $options = array('query' => array(), 'fragment' => $fragment, 'absolute' => TRUE);
-  parse_str($query, $options['query']);
-  $url = url($path, $options);
+  // Get a list of enabled languages.
+  $languages = language_list('enabled');
+  $languages = $languages[1];
 
+  // Default language settings.
+  $prefix = '';
+  $language = language_default();
+
+  // Check for language prefix.
+  $args = explode('/', $path);
+  foreach ($languages as $lang) {
+    if ($args[0] == $lang->prefix) {
+      $prefix = array_shift($args);
+      $language = $lang;
+      $path = implode('/', $args);
+      break;
+    }
+  }
+
+  $options = array(
+    'query' => ($query) ? drupal_get_query_array($query) : array(),
+    'fragment' => $fragment,
+    'absolute' => TRUE,
+    'language' => $language,
+    'prefix' => $prefix,
+  );
+
+  $url = url($path, $options);
 
   // If url() added a ?q= where there should not be one, remove it.
   if (isset($strip_clean) && $strip_clean) $url = preg_replace('!\?q=!', '', $url);

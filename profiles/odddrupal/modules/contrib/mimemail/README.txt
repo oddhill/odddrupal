@@ -89,8 +89,13 @@
   by-mailkey theming can be performed:
     mimemail-message.tpl.php (for all messages)
     mimemail-message--[mailkey].tpl.php (for messages with a specific mailkey)
-  Note that if you are using a different administration theme than your default theme,
-  you should place the same template files into that theme folder too.
+
+  Messages can be rendered using different themes. You can choose the following
+  settings to render the e-mail:
+    'current': Theme currently used by the user who runs drupal_mail().
+    'default': Default theme, obtained via variable theme_default.
+    'domain': Theme obtained via Domain Theme module.
+  or any other active theme.
 
   Images with absolute URL will be available as remote content. To embed images
   into emails you have to use a relative URL or an internal path.
