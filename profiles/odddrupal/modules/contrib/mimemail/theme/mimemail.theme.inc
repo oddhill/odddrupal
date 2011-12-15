@@ -92,11 +92,13 @@ function template_preprocess_mimemail_message(&$variables) {
   $themepath = drupal_get_path('theme', $theme);
 
   $sitestyle = variable_get('mimemail_sitestyle', 1);
-  $mailstyle = $themepath . '/mail.css';
+  $mailstyles = file_scan_directory($themepath, '^mail\.css*$');
 
-  // Check for the existence of a mail.css file in the current theme folder.
-  if (@file_exists($mailstyle)) {
-    $styles = $mailstyle;
+  // Check recursively for the existence of a mail.css file in the theme folder.
+  if (!empty($mailstyles)) {
+    foreach ($mailstyles as $mailstyle) {
+      $styles = $mailstyle->filename;
+    }
   }
   // If no mail.css was found and the site style sheets including is enabled,
   // gather all style sheets and embed a version of all style definitions.
