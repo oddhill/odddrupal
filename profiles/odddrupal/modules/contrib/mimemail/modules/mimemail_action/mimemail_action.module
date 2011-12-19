@@ -106,7 +106,7 @@ function mimemail_send_email_action_form($context) {
     '#type' => 'textarea',
     '#title' => t('Attachments'),
     '#default_value' => $context['attachments'],
-    '#description' => t('A list of attachments, one file per line like [mimetype]:[path] e.g. "image/png:/files/images/mypic.png".'),
+    '#description' => t('A list of attachments, one file per line e.g. "files/images/mypic.png\".'),
   );
 
   return $form;

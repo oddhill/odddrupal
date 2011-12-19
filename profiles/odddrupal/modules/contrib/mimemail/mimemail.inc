@@ -280,7 +280,8 @@ function mimemail_multipart_body($parts, $content_type = 'multipart/mixed; chars
 
       if (isset($part['file'])) {
         $file = (is_file($part['file'])) ? file_get_contents($part['file']) : $part['file'];
-        $part_body = chunk_split(base64_encode($file));
+        $part_body = chunk_split(base64_encode($file), 76, variable_get('mimemail_crlf', "\n"));
+        
       }
     }
 

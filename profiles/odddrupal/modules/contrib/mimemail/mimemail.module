@@ -50,6 +50,46 @@ function mimemail_incoming_access() {
 }
 
 /**
+ * Implements hook_field_extra_fields().
+ */
+function mimemail_field_extra_fields() {
+  $extra['user']['user'] = array(
+    'form' => array(
+      'mimemail' => array(
+        'label' => t('Email'),
+        'description' => t('Mime Mail module settings form elements.'),
+        'weight' => 0,
+      ),
+    ),
+    'display' => array(
+      'mimemail' => array(
+        'label' => t('Email'),
+        'description' => t('Mime Mail module settings form elements.'),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $extra;
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function mimemail_user_view($account, $view_mode, $langcode) {
+  $account->content['mimemail'] = array(
+    '#type' => 'user_profile_category',
+    '#title' => t('Email'),
+  );
+
+  $account->content['mimemail']['textonly'] = array(
+    '#type' => 'user_profile_item',
+    '#title' => t('Plaintext email only'),
+    '#markup' => empty($account->data['mimemail_textonly']) ? t('No') : t('Yes'),
+  );
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  *
  * Adds the Mime Mail settings on the user settings page.
@@ -160,7 +200,7 @@ function mimemail_rules_action_info() {
         'attachments' => array(
           'type' => 'text',
           'label' => t('Attachments'),
-          'description' => t("The mail's attachments, one file per line like [mimetype]:[uri] e.g. \"image/png:/files/images/mypic.png\"."),
+          'description' => t("The mail's attachments, one file per line e.g. \"files/images/mypic.png\"."),
           'optional' => TRUE,
         ),
       ),
@@ -207,7 +247,7 @@ function mimemail_rules_action_info() {
         'attachments' => array(
           'type' => 'text',
           'label' => t('Attachments'),
-          'description' => t("The mail's attachments, one file per line like [mimetype]:[uri] e.g. \"image/png:/files/images/mypic.png\"."),
+          'description' => t("The mail's attachments, one file per line e.g. \"files/images/mypic.png\"."),
           'optional' => TRUE,
         ),
       ),
@@ -228,11 +268,9 @@ function mimemail_mail($key, &$message, $params) {
   $attachments_string = trim($params['attachments']);
   if (!empty($attachments_string)) {
     $attachment_lines = array_filter(explode("\n", trim($attachments_string)));
-    foreach ($attachment_lines as $key => $attachment_line) {
-      $attachment = explode(':', trim($attachment_line), 2);
+    foreach ($attachment_lines as $filepath) {
       $attachments[] = array(
-        'filepath' => $attachment[1],
-        'filemime' => $attachment[0],
+        'filepath' => trim($filepath),
       );
     }
   }
