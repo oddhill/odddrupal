@@ -22,7 +22,6 @@ dependencies[] = taxonomy
 dependencies[] = update
 
 ; Contrib modules
-dependencies[] = admin_language
 dependencies[] = admin_menu
 dependencies[] = boxes
 dependencies[] = context
