@@ -337,4 +337,5 @@ function odddrupal_set_variables() {
   variable_set('dblog_row_limit', '0');
   variable_set('update_check_disabled', 1);
   variable_set('clean_url', 1);
+  variable_set('globalredirect_settings', array('language_redirect' => TRUE));
 }

@@ -36,6 +36,7 @@ dependencies[] = extlink
 dependencies[] = fancybox
 dependencies[] = features
 dependencies[] = field_group
+dependencies[] = globalredirect
 dependencies[] = jquery_update
 dependencies[] = l10n_update
 dependencies[] = logintoboggan

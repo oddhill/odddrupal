@@ -77,3 +77,14 @@ function odddrupal_update_7105() {
     module_enable(array('libraries'));
   }
 }
+
+/**
+ * Enable Global Redirect module, and configure it's settings.
+ */
+function odddrupal_update_7106() {
+  if (!module_exists('globalredirect')) {
+    module_enable(array('globalredirect'));
+  }
+  
+  variable_set('globalredirect_settings', array('language_redirect' => TRUE));
+}
