@@ -67,7 +67,7 @@ function features_export_form($form, $form_state, $feature = NULL) {
 
   // User-selected feature source components.
   $components = features_get_components();
-  ksort($components);
+  uasort($components, 'features_compare_component_name');
 
   $form['export'] = array(
     '#type' => 'fieldset',
@@ -179,10 +179,6 @@ function features_export_form_validate_field($element, &$form_state) {
  * Submit handler for features_export_form_build().
  */
 function features_export_build_form_submit($form, &$form_state) {
-
-  // Set language temporarily to English
-  _features_set_original_language();
-
   module_load_include('inc', 'features', 'features.export');
   features_include();
 
@@ -797,6 +793,13 @@ function features_feature_diff($feature, $component = NULL) {
   }
   $output = array('page' => array('#markup' => "<div class='features-comparison'>{$output}</div>"));
   return $output;
+}
+
+/**
+ * Compare the component names. Used to sort alphabetically.
+ */
+function features_compare_component_name($a, $b) {
+  return strcasecmp($a['name'], $b['name']);
 }
 
 /**
