@@ -88,3 +88,12 @@ function odddrupal_update_7106() {
   
   variable_set('globalredirect_settings', array('language_redirect' => TRUE));
 }
+
+/**
+ * Enable Poolbar module.
+ */
+function odddrupal_update_7107() {
+  if (!module_exists('poolbar')) {
+    module_enable(array('poolbar'));
+  }
+}
