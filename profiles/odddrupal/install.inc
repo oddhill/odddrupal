@@ -281,6 +281,7 @@ function odddrupal_roles() {
   user_role_grant_permissions($editor_role->rid, array(
     'access contextual links',
     'access overlay',
+    'access toolbar',
     'change own username',
     'use text format filtered_html',
     'view the administration theme',
