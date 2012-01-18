@@ -18,6 +18,7 @@ dependencies[] = options
 dependencies[] = overlay
 dependencies[] = path
 dependencies[] = php
+dependencies[] = rabbit_hole
 dependencies[] = shortcut
 dependencies[] = taxonomy
 dependencies[] = toolbar
