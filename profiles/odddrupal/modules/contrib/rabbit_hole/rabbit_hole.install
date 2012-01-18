@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for Rabbit Hole.
+ */
+
+/**
+ * Implements hook_schema_alter().
+ */
+function rabbit_hole_schema_alter(&$schema) {
+  $schema['node']['fields']['rabbit_hole_action'] = array(
+    'description' => 'Specifies which action that Rabbit Hole should take.',
+    'type' => 'int',
+    'default' => NULL,
+  );
+  $schema['node']['fields']['rabbit_hole_redirect'] = array(
+    'description' => 'The path to where the user should get redirected to.',
+    'type' => 'varchar',
+    'default' => NULL,
+    'length' => 255,
+  );
+  $schema['node']['fields']['rabbit_hole_redirect_response'] = array(
+    'description' => 'Specifies the HTTP response code that should be used when perform a redirect.',
+    'type' => 'int',
+    'default' => NULL,
+  );
+}
+
+/**
+ * Implements hook_install().
+ */
+function rabbit_hole_install() {
+  // Add our fields to the {node} table.
+  $schema['node'] = array();
+  rabbit_hole_schema_alter($schema);
+  foreach ($schema['node']['fields'] as $name => $spec) {
+    db_add_field('node', $name, $spec);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function rabbit_hole_uninstall() {
+  // Remove variables.
+  $node_types = array_keys(node_type_get_types());
+  foreach ($node_types as $node_type) {
+    variable_del('rabbit_hole_action_' . $node_type);
+    variable_del('rabbit_hole_redirect_' . $node_type);
+    variable_del('rabbit_hole_redirect_response_' . $node_type);
+  }
+  
+  // Drop our fields from the {node} table.
+  $schema['node'] = array();
+  rabbit_hole_schema_alter($schema);
+  foreach ($schema['node']['fields'] as $name => $spec) {
+    db_drop_field('node', $name);
+  }
+}

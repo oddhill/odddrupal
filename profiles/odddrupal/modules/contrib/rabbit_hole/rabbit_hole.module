@@ -1,0 +1,212 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Rabbit Hole.
+ *
+ * This is a module that will prevent users from viewing the full node. This is
+ * configurable per content type or node.
+ */
+
+define('RABBIT_HOLE_DISPLAY_CONTENT', 0);
+define('RABBIT_HOLE_ACCESS_DENIED', 1);
+define('RABBIT_HOLE_PAGE_NOT_FOUND', 2);
+define('RABBIT_HOLE_PAGE_REDIRECT', 3);
+define('RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT', 301);
+
+/**
+ * Implements hook_permission().
+ */
+function rabbit_hole_permission() {
+  return array(
+    'administer rabbit hole' => array(
+      'title' => t('Administer Rabbit Hole'), 
+      'description' => t('Configure Rabbit Hole per content type and node.'),
+    ),
+    'bypass rabbit hole' => array(
+      'title' => t('Bypass Rabbit Hole'), 
+      'description' => t('Ignore the Rabbit Hole configuration and view any node in a regular way.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * This will add Rabbit Hole options to the node type form. These settings will
+ * be used as default for every node of this node type.
+ */
+function rabbit_hole_form_node_type_form_alter(&$form, $form_state) {
+  if (!user_access('administer rabbit hole')) {
+    // The user doesn't have access.
+    return;
+  }
+  
+  if (isset($form['type'])) {
+    $form['rabbit_hole'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Rabbit Hole settings'),
+      '#collapsed' => TRUE,
+      '#collapsible' => TRUE,
+      '#group' => 'additional_settings',
+      '#attached' => array(
+        'js' => array(
+          drupal_get_path('module', 'rabbit_hole') . '/rabbit-hole.js',
+          array('data' => array('rabbitHole' => array('redirectValue' => RABBIT_HOLE_PAGE_REDIRECT)), 'type' => 'setting'),
+        ),
+      ),
+    );
+    $form['rabbit_hole']['rabbit_hole_action'] = array(
+      '#type' => 'radios',
+      '#title' => t('Behavior'),
+      '#options' => array(
+        RABBIT_HOLE_DISPLAY_CONTENT => t('Display the content (regular behavior)'),
+        RABBIT_HOLE_ACCESS_DENIED => t('Access denied'),
+        RABBIT_HOLE_PAGE_NOT_FOUND => t('Page not found'),
+        RABBIT_HOLE_PAGE_REDIRECT => t('Page redirect'),
+      ),
+      '#default_value' => variable_get('rabbit_hole_action_' . $form['#node_type']->type, RABBIT_HOLE_DISPLAY_CONTENT),
+      '#description' => t('What should happen when someone tries to visit the node page?'),
+    );
+    $form['rabbit_hole']['redirect'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Redirect settings'),
+      '#attributes' => array('class' => array('rabbit-hole-redirect-options')),
+    );
+    $form['rabbit_hole']['redirect']['rabbit_hole_redirect'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Redirect path'),
+      '#size' => 40,
+      '#default_value' => variable_get('rabbit_hole_redirect_' . $form['#node_type']->type, ''),
+      '#description' => t('The relative path to were the user should be redirected. Leave this empty, or use %front to redirect to the front page.', array('%front' => '<front>')),
+    );
+    $form['rabbit_hole']['redirect']['rabbit_hole_redirect_response'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Response code'),
+      '#size' => 40,
+      '#default_value' => variable_get('rabbit_hole_redirect_response_' . $form['#node_type']->type, RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT),
+      '#description' => t('The response code that should be sent to the users browser, e.g. 301. Follow !link for more information on response codes.', array('!link' => l(t('this link'), 'http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_goto/7'))),
+    );
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * This will add Rabbit Hole options to the node form. The user will be able to
+ * override the default Rabbit Hole options.
+ */
+function rabbit_hole_form_node_form_alter(&$form, $form_state) {
+  if (!user_access('administer rabbit hole')) {
+    // The user doesn't have access.
+    return;
+  }
+  
+  $node = $form['#node'];
+
+  $form['rabbit_hole'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Rabbit Hole settings'),
+    '#collapsed' => TRUE,
+    '#collapsible' => TRUE,
+    '#group' => 'additional_settings',
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'rabbit_hole') . '/rabbit-hole.js',
+        array('data' => array('rabbitHole' => array('redirectValue' => RABBIT_HOLE_PAGE_REDIRECT)), 'type' => 'setting'),
+      ),
+    ),
+  );
+  $form['rabbit_hole']['rabbit_hole_action'] = array(
+    '#type' => 'radios',
+    '#title' => t('Behavior'),
+    '#options' => array(
+      RABBIT_HOLE_DISPLAY_CONTENT => t('Display the content (regular behavior)'),
+      RABBIT_HOLE_ACCESS_DENIED => t('Access denied'),
+      RABBIT_HOLE_PAGE_NOT_FOUND => t('Page not found'),
+      RABBIT_HOLE_PAGE_REDIRECT => t('Page redirect'),
+    ),
+    '#default_value' => isset($node->rabbit_hole_action) ? $node->rabbit_hole_action : variable_get('rabbit_hole_action_' . $node->type, RABBIT_HOLE_DISPLAY_CONTENT),
+    '#description' => t('What should happen when someone tries to visit the node page?'),
+  );
+  $form['rabbit_hole']['redirect'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Redirect settings'),
+    '#attributes' => array('class' => array('rabbit-hole-redirect-options')),
+  );
+  $form['rabbit_hole']['redirect']['rabbit_hole_redirect'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Redirect path'),
+    '#size' => 40,
+    '#default_value' => isset($node->rabbit_hole_redirect) ? $node->rabbit_hole_redirect : variable_get('rabbit_hole_redirect_' . $node->type, ''),
+    '#description' => t('The relative path to were the user should be redirected. Leave this empty, or use %front to redirect to the front page.', array('%front' => '<front>')),
+  );
+  $form['rabbit_hole']['redirect']['rabbit_hole_redirect_response'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Response code'),
+    '#size' => 40,
+    '#default_value' => isset($node->rabbit_hole_redirect_response) ? $node->rabbit_hole_redirect_response : variable_get('rabbit_hole_redirect_response_' . $node->type, RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT),
+    '#description' => t('The response code that should be sent to the users browser, e.g. 301. Follow !link for more information on response codes.', array('!link' => l(t('this link'), 'http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_goto/7'))),
+  );
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function rabbit_hole_node_view($node, $view_mode, $langcode) {
+  if (($view_mode != 'full' || !preg_match('/node\/' . $node->nid . '(\/view|)$/', current_path())) || user_access('bypass rabbit hole')) {
+    // The node is not being viewed at it's own page, or the user is able to
+    // bypass Rabbit Hole, exit early.
+    return;
+  }
+  
+  // Get the action. Use the one specified for this node, or fallback to the
+  // default value for the content type.
+  $action = isset($node->rabbit_hole_action) ? $node->rabbit_hole_action : variable_get('rabbit_hole_action_' . $node->type);
+
+  // Get the redirect path and response in the same manner.
+  $redirect_path = isset($node->rabbit_hole_redirect) ? $node->rabbit_hole_redirect : variable_get('rabbit_hole_redirect_' . $node->type, '<front>');
+  $redirect_response = isset($node->rabbit_hole_redirect_response) ? $node->rabbit_hole_redirect_response : variable_get('rabbit_hole_redirect_response_' . $node->type, RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT);
+  
+  // Now, let's see what we should do.
+  switch ($action) {
+    case RABBIT_HOLE_ACCESS_DENIED:
+      // TODO: Is this the proper way to deliver an access denied page?
+      drupal_access_denied();
+      exit();
+      
+    case RABBIT_HOLE_PAGE_NOT_FOUND:
+      // TODO: Is this the proper way to deliver a not found page?
+      drupal_not_found();
+      exit();
+      
+    case RABBIT_HOLE_PAGE_REDIRECT:
+      // Redirect the user to the specified path.
+      drupal_goto($redirect_path, array(), $redirect_response);
+  }
+
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function rabbit_hole_menu_alter(&$items) {
+  // Custom callback for the node view callback. This will be used because we'd
+  // like to get rid of the View tab if the content shouldn't be viewed.
+  $items['node/%node/view']['access callback'] = 'rabbit_hole_node_view_access';
+  $items['node/%node/view']['access arguments'] = array(1);
+}
+
+/**
+ * Access callback for node/%node/view.
+ */
+function rabbit_hole_node_view_access($node) {
+  $action = isset($node->rabbit_hole_action) ? $node->rabbit_hole_action : variable_get('rabbit_hole_action_' . $node->type);
+  if ($action != RABBIT_HOLE_DISPLAY_CONTENT && !user_access('bypass rabbit hole')) {
+    // Rabbit Hole is active for this node, disable this url.
+    return FALSE;
+  }
+  
+  // Fallback to the default access callback.
+  return node_access('view', $node);
+}
