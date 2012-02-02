@@ -656,6 +656,17 @@ function field_group_validate_css_class($element, &$form_state) {
 }
 
 /**
+ * Validate the entered css class from the submitted format settings.
+ * @param Array $element The validated element
+ * @param Array $form_state The state of the form.
+ */
+function field_group_validate_id($element, &$form_state) {
+  if (!empty($form_state['values']['fields'][$form_state['formatter_settings_edit']]['format_settings']['settings']['instance_settings']['id']) && !preg_match('!^[A-Za-z0-9-_]+$!', $form_state['values']['fields'][$form_state['formatter_settings_edit']]['format_settings']['settings']['instance_settings']['id'])) {
+    form_error($element, t('The css class must include only letters, numbers, underscores and dashes.'));
+  }
+}
+
+/**
  * Implements hook_field_info_max_weight().
  */
 function field_group_field_info_max_weight($entity_type, $bundle, $context) {
