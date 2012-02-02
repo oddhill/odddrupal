@@ -314,3 +314,40 @@ function &mailsystem_get_classes() {
   }
   return $mailsystem_classes;
 }
+
+/**
+* Implements hook_theme_registry_alter().
+*/
+function mailsystem_theme_registry_alter(&$theme_registry) {
+  module_load_include('inc', 'mailsystem', 'mailsystem.theme');
+  return mailsystem_theme_theme_registry_alter($theme_registry);
+}
+
+/**
+* Retrieves the key of the theme used to render the emails.
+*
+* @todo Add some kind of hook to let other modules alter this behavior.
+*/
+function mailsystem_get_mail_theme() {
+  global $theme_key;
+  $theme = variable_get('mailsystem_theme', 'current');
+  switch ($theme) {
+    case 'default':
+      $theme = variable_get('theme_default', NULL);
+      break;
+    case 'current':
+      $theme = $theme_key;
+      break;
+    case 'domain':
+      // Fetch the theme for the current domain.
+      if (module_exists('domain_theme')) {
+        // Assign the selected theme, based on the active domain.
+        global $_domain;
+        $domain_theme = domain_theme_lookup($_domain['domain_id']);
+        // The above returns -1 on failure.
+        $theme = ($domain_theme != -1) ? $domain_theme['theme'] : $theme_key;
+      }
+      break;
+  }
+  return $theme;
+}

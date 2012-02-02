@@ -108,11 +108,11 @@ To change the site-wide defaults to use the `FooMailSystem` for sending messages
 
 ### References
 
-**[drupal_mail_system() API documentation](http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7)**:
+**[`drupal_mail_system()` API documentation](http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7)**:
 :    [api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7](http://api.drupal.org/api/drupal/includes--mail.inc/function/drupal_mail_system/7)
 
-**[MailSystemInterface API documentation](http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7)**:
+**[`MailSystemInterface` API documentation](http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7)**:
 :    [api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7](http://api.drupal.org/api/drupal/includes--mail.inc/interface/MailSystemInterface/7)
 
-**[Creating HTML formatted mails in Drupal 7](http://drupal.org/node/900794)**
+**[Creating HTML formatted mails in Drupal 7](http://drupal.org/node/900794)**:
 :    [drupal.org/node/900794](http://drupal.org/node/900794)

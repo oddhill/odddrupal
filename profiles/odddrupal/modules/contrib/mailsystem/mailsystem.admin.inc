@@ -79,6 +79,25 @@ function mailsystem_admin_settings() {
     );
     unset($descriptions[$module]);
   }
+  // Generate a list of themes which may used to render emails.
+  $theme_options = array('current' => t('Current'), 'default' => t('Default'));
+  if (module_exists('domain_theme')) {
+    $theme_options['domain'] = t('Domain Theme');
+  }
+  // Get a list of all themes.
+  $themes = list_themes();
+  foreach ($themes as $name => $theme) {
+    if ($theme->status == 1) {
+      $theme_options[$name] = $theme->info['name'];
+    }
+  }
+  $form['mailsystem']['mailsystem_theme'] = array(
+      '#type' => 'select',
+      '#title' => t('Theme to render the emails'),
+      '#description' => t('Select the theme that will be used to render the emails. This can be either the current theme, the default theme, the domain theme or any active theme.'),
+      '#options' => $theme_options,
+      '#default_value' => variable_get('mailsystem_theme', 'current'),
+  );
   $form['class'] = array(
     '#type' => 'fieldset',
     '#title' => t('New Class'),
@@ -139,6 +158,11 @@ function mailsystem_admin_settings() {
  * Processes mailsystem_admin_settings form.
  */
 function mailsystem_admin_settings_submit($form, &$form_state) {
+  variable_set('mailsystem_theme', $form_state['values']['mailsystem']['mailsystem_theme']);
+  // Rebuild the theme registry to make changes needed by theme rendering.
+  drupal_theme_rebuild();
+  unset($form_state['values']['mailsystem']['mailsystem_theme']);
+
   $default_id = mailsystem_default_id();
   $mail_system = array(
     $default_id => (
@@ -175,4 +199,5 @@ function mailsystem_admin_settings_submit($form, &$form_state) {
   }
   unset($form_state['values']['identifier']);
   variable_set('mail_system', $mail_system);
+  drupal_set_message(t('The configuration options have been saved.'));
 }

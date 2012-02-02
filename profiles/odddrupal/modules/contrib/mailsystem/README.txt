@@ -114,7 +114,7 @@ mailsystem_set(
           [11]api.drupal.org/api/drupal/includes--mail.inc/interface/MailS
           ystemInterface/7
 
-   [12]Creating HTML formatted mails in Drupal 7
+   [12]Creating HTML formatted mails in Drupal 7:
           [13]drupal.org/node/900794
 
 References
