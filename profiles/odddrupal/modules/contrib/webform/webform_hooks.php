@@ -311,6 +311,12 @@ function hook_webform_component_info() {
       // Add content to CSV downloads. Defaults to TRUE.
       'csv' => TRUE,
 
+      // This component supports default values. Defaults to TRUE.
+      'default_value' => FALSE,
+
+      // This component supports a description field. Defaults to TRUE.
+      'description' => FALSE,
+
       // Show this component in e-mailed submissions. Defaults to TRUE.
       'email' => TRUE,
 
@@ -324,6 +330,9 @@ function hook_webform_component_info() {
 
       // This component may be toggled as required or not. Defaults to TRUE.
       'required' => TRUE,
+
+      // This component supports a title attribute. Defaults to TRUE.
+      'title' => FALSE,
 
       // This component has a title that can be toggled as displayed or not.
       'title_display' => TRUE,
@@ -367,6 +376,36 @@ function hook_webform_component_info_alter(&$components) {
 
   // Change the name of a component.
   $components['textarea']['label'] = t('Text box');
+}
+
+/**
+ * Return an array of files associated with the component.
+ *
+ * The output of this function will be used to attach files to e-mail messages.
+ *
+ * @param $component
+ *   A Webform component array.
+ * @param $value
+ *   An array of information containing the submission result, directly
+ *   correlating to the webform_submitted_data database schema.
+ * @return
+ *   An array of files, each file is an array with following keys:
+ *     - filepath: The relative path to the file.
+ *     - filename: The name of the file including the extension.
+ *     - filemime: The mimetype of the file.
+ *   This will result in an array looking something like this:
+ *   @code
+ *   array[0] => array(
+ *     'filepath' => '/sites/default/files/attachment.txt',
+ *     'filename' => 'attachment.txt',
+ *     'filemime' => 'text/plain',
+ *   );
+ *   @endcode
+ */
+function _webform_attachments_component($component, $value) {
+  $files = array();
+  $files[] = (array) file_load($value[0]);
+  return $files;
 }
 
 /**
