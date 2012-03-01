@@ -1,11 +1,10 @@
 name = "Rabbit Hole"
 description = "Will redirect the user to a different place when viewing a full node."
 core = 7.x
-package = Odd Hill
 
-; Information added by drupal.org packaging script on 2012-01-18
-version = "7.x-1.0-beta1"
+; Information added by drupal.org packaging script on 2012-02-21
+version = "7.x-1.1"
 core = "7.x"
 project = "rabbit_hole"
-datestamp = "1326884745"
+datestamp = "1329832248"
 
