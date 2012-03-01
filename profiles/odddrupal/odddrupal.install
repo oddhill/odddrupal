@@ -112,7 +112,7 @@ function odddrupal_update_7107() {
 /**
  * Enable Admin menu toolbar, and configure the settings.
  */
-function odddrupal_update_7107() {
+function odddrupal_update_7108() {
   if (!module_exists('admin_menu_toolbar')) {
     module_enable(array('admin_menu_toolbar'));
   }
