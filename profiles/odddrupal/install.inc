@@ -338,4 +338,13 @@ function odddrupal_set_variables() {
   variable_set('dblog_row_limit', '0');
   variable_set('update_check_disabled', 1);
   variable_set('clean_url', 1);
+  variable_set('views_show_additional_queries', 0);
+  variable_set('views_ui_always_live_preview', 0);
+  variable_set('views_ui_show_advanced_column', 1);
+  variable_set('views_ui_show_advanced_help_warning', 0);
+  variable_set('views_ui_show_listing_filters', 1);
+  variable_set('views_ui_show_master_display', 1);
+  variable_set('views_ui_show_performance_statistics', 0);
+  variable_set('views_ui_show_preview_information', 0);
+  variable_set('views_ui_show_sql_query', 0);
 }
