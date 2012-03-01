@@ -1,0 +1,5 @@
+name = "Sushi"
+description = "Adds additional formatters to the Text, Long text and Long text and summary field types."
+core = 7.x
+package = Odd Hill
+dependencies[] = text
