@@ -108,3 +108,15 @@ function odddrupal_update_7107() {
   variable_set('views_ui_show_preview_information', 0);
   variable_set('views_ui_show_sql_query', 0);
 }
+
+/**
+ * Enable Admin menu toolbar, and configure the settings.
+ */
+function odddrupal_update_7107() {
+  if (!module_exists('admin_menu_toolbar')) {
+    module_enable(array('admin_menu_toolbar'));
+  }
+  
+  variable_set('admin_menu_position_fixed', 1);
+  variable_set('admin_menu_tweak_permissions', 1);
+}
