@@ -48,7 +48,7 @@ function jquery_update_library() {
 }
 
 /**
- * Implementation of hook_js_alter().
+ * Implementation of hook_library_alter().
  */
 function jquery_update_library_alter(&$javascript, $module) {
 
@@ -63,9 +63,9 @@ function jquery_update_library_alter(&$javascript, $module) {
   $min = variable_get('jquery_update_compression_type', 'min') == 'none' ? '' : '.min';
   $cdn = variable_get('jquery_update_jquery_cdn', 'none');
 
-  // Replace jQuery.
-  jquery_update_jquery_replace($javascript, $cdn, $path, $min); 
-  $javascript['jquery']['version'] = '1.5.1';
+  // Replace jQuery with the latest version.
+  $version = variable_get('jquery_update_jquery_version', '1.5');
+  jquery_update_jquery_replace($javascript, $cdn, $path, $min, $version);
 
   // Replace jQuery UI with CDN or local files. If from a CDN include all of jQuery UI.
   jquery_update_jqueryui_replace($javascript, $cdn, $path, $min);
@@ -84,6 +84,16 @@ function jquery_update_library_alter(&$javascript, $module) {
  * Implementation of hook_form_FORM_ID_alter().
  */
 function jquery_update_form_system_performance_settings_alter(&$form, &$form_state) {
+  $form['bandwidth_optimization']['jquery_update_jquery_version'] = array(
+    '#type' => 'select',
+    '#title' => t('jQuery Version'),
+    '#options' => array(
+      '1.5' => '1.5',
+      '1.7' => '1.7',
+    ),
+    '#default_value' => variable_get('jquery_update_jquery_version', '1.5'),
+    '#description' => t('Select which jQuery version branch to use.'),
+  );
   $form['bandwidth_optimization']['jquery_update_compression_type'] = array(
     '#type' => 'radios',
     '#title' => t('jQuery compression level'),
@@ -94,12 +104,13 @@ function jquery_update_form_system_performance_settings_alter(&$form, &$form_sta
     '#default_value' => variable_get('jquery_update_compression_type', 'min'),
   );
   $form['bandwidth_optimization']['jquery_update_jquery_cdn'] = array(
-    '#type' => 'radios',
+    '#type' => 'select',
     '#title' => t('jQuery and jQuery UI CDN'),
     '#options' => array(
       'none' => t('None'),
       'google' => t('Google'),
       'microsoft' => t('Microsoft'),
+      'jquery' => t('jQuery'),
     ),
     '#default_value' => variable_get('jquery_update_jquery_cdn', 'none'),
     '#description' => t('Use jQuery and jQuery UI from a CDN. If the CDN is not available the local version of jQuery and jQuery UI will be used.'),
@@ -116,21 +127,42 @@ function jquery_update_form_system_performance_settings_alter(&$form, &$form_sta
  *   - none
  *   - google
  *   - microsoft
+ * @param string $version
+ *   The version of jQuery to use.
  */
-function jquery_update_jquery_replace(&$javascript, $cdn, $path, $min) {
+function jquery_update_jquery_replace(&$javascript, $cdn, $path, $min, $version) {
+  // Make sure to use the latest version in given branch.
+  $trueversion = NULL;
+  switch ($version) {
+    case '1.5':
+      $trueversion = '1.5.2';
+      break;
+    case '1.7':
+      $trueversion = '1.7.1';
+      break;
+  }
+  $javascript['jquery']['version'] = $trueversion;
+
+  // Check for CDN support.
   switch($cdn) {
     case 'google':
-      $javascript['jquery']['js']['misc/jquery.js']['data'] = 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery' . $min . '.js';
+      $javascript['jquery']['js']['misc/jquery.js']['data'] = 'https://ajax.googleapis.com/ajax/libs/jquery/'. $trueversion . '/jquery' . $min . '.js';
       $javascript['jquery']['js']['misc/jquery.js']['type'] = 'external';
-      jquery_update_jquery_backup($javascript, $path, $min);
+      jquery_update_jquery_backup($javascript, $path, $min, $version);
       break;
     case 'microsoft':
-      $javascript['jquery']['js']['misc/jquery.js']['data'] = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1' . $min . '.js';
+      $javascript['jquery']['js']['misc/jquery.js']['data'] = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-'. $trueversion . $min . '.js';
       $javascript['jquery']['js']['misc/jquery.js']['type'] = 'external';
-      jquery_update_jquery_backup($javascript, $path, $min);
+      jquery_update_jquery_backup($javascript, $path, $min, $version);
+      break;
+    case 'jquery':
+      $javascript['jquery']['js']['misc/jquery.js']['data'] = 'http://code.jquery.com/jquery-'. $trueversion . $min . '.js';
+      $javascript['jquery']['js']['misc/jquery.js']['type'] = 'external';
+      jquery_update_jquery_backup($javascript, $path, $min, $version);
       break;
     case 'none':
-      $javascript['jquery']['js']['misc/jquery.js']['data'] = $path . '/replace/jquery/jquery' . $min . '.js';
+    default:
+      $javascript['jquery']['js']['misc/jquery.js']['data'] = $path . '/replace/jquery/'. $version . '/jquery' . $min . '.js';
       break;
   }
 }
@@ -144,10 +176,12 @@ function jquery_update_jquery_replace(&$javascript, $cdn, $path, $min) {
  *   The path to the module where replacements can be found.
  * @param string $min
  *   The '.min' to include in the file name if we are requesting a minified version.
+ * @param string $version
+ *   The verison of jQuery to use.
  */
-function jquery_update_jquery_backup(&$javascript, $path, $min) {
+function jquery_update_jquery_backup(&$javascript, $path, $min, $version) {
   $javascript['jquery']['js'][] = array(
-    'data' => 'window.jQuery || document.write("<script src=\'' . base_path() . $path . '/replace/jquery/jquery' . $min . '.js\'>\x3C/script>")',
+    'data' => 'window.jQuery || document.write("<script src=\'' . base_path() . $path . '/replace/jquery/'. $version . '/jquery' . $min . '.js\'>\x3C/script>")',
     'type' => 'inline',
     'group' => JS_LIBRARY,
     'weight' => -19.999999999,

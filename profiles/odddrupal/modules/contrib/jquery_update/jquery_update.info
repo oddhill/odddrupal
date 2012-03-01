@@ -1,5 +1,5 @@
 name = jQuery Update
-description = Updates jQuery to jQuery 1.5.1 and jQuery UI 1.8.11.
+description = Update jQuery and jQuery UI to a more recent version.
 package = User interface
 core = 7.x
 files[] = jquery_update.module
@@ -7,9 +7,9 @@ files[] = jquery_update.install
 
 configure = admin/config/development/performance
 
-; Information added by drupal.org packaging script on 2011-04-13
-version = "7.x-2.x-dev"
+; Information added by drupal.org packaging script on 2012-01-18
+version = "7.x-2.1+7-dev"
 core = "7.x"
 project = "jquery_update"
-datestamp = "1302654062"
+datestamp = "1326888728"
 
