@@ -42,26 +42,18 @@ function l10n_update_admin_overview() {
   // For now we get package information provided by modules.
   $projects = l10n_update_get_projects();
   $languages = l10n_update_language_list('name');
-
-  $build = array();
-  if ($languages) {
+  $output = array();
+  if ($projects && $languages) {
     $history = l10n_update_get_history();
     $available = l10n_update_available_releases();
     $updates = l10n_update_build_updates($history, $available);
-    $build['project_status'] = array(
-      '#theme' => 'l10n_update_project_status',
-      '#projects' => $projects,
-      '#languages' => $languages,
-      '#history' => $history,
-      '#available' => $available,
-      '#updates' => $updates,
-    );
-    $build['admin_import_form'] = drupal_get_form('l10n_update_admin_import_form', $projects, $updates);
+    $output[] = array('#markup' => theme('l10n_update_project_status', array('projects' => $projects, 'languages' => $languages, 'history' => $history, 'available' => $available, 'updates' => $updates)));
+    $output[] = drupal_get_form('l10n_update_admin_import_form', $projects, $updates);
   }
   else {
-    $build['no_projects'] = array('#markup' => t('No projects or languages to update.'));
+    $output[] = array('#markup' => t('No projects or languages to update.'));
   }
-  return $build;
+  return $output;
 }
 
 /**
@@ -84,19 +76,11 @@ function l10n_update_admin_import_form($form, $form_state, $projects, $updates) 
   $projects = l10n_update_get_projects();
   $languages = l10n_update_language_list('name');
 
-  // Absence of projects is an error and only occurs if the database table
-  // was truncated. In this case we rebuild the project data.
-  if (!$projects) {
-    l10n_update_build_projects();
-    $projects = l10n_update_get_projects();
-  }
-
   if ($projects && $languages) {
     $form['updates'] = array(
       '#type' => 'value',
       '#value' => $updates,
     );
-    // @todo Only show this language fieldset if we have more than 1 language.
     $form['lang'] = array(
       '#type' => 'fieldset',
       '#title' => t('Languages'),
@@ -107,6 +91,7 @@ function l10n_update_admin_import_form($form, $form_state, $projects, $updates) 
     $form['lang']['languages'] = array(
       '#type' => 'checkboxes',
       '#options' => $languages,
+      '#default_value' => array(language_default('language')),
     );
     $form['mode'] = array(
       '#type' => 'radios',
@@ -118,11 +103,14 @@ function l10n_update_admin_import_form($form, $form_state, $projects, $updates) 
       '#type' => 'submit',
       '#value' => t('Update translations'),
     );
+    $form['buttons']['refresh'] = array(
+      '#type' => 'submit',
+      '#value' => t('Refresh information'),
+    );
   }
-  $form['buttons']['refresh'] = array(
-    '#type' => 'submit',
-    '#value' => t('Refresh information'),
-  );
+  else {
+    $form['warning'] = array('#value' => t('No projects or languages to update.'));
+  }
   return $form;
 }
 
@@ -152,12 +140,8 @@ function l10n_update_admin_import_form_submit($form, $form_state) {
     }
   }
   elseif ($op == t('Refresh information')) {
-    // Get current version of projects.
     l10n_update_build_projects();
-
-    // Get available translation updates and update file history.
     if ($available = l10n_update_available_releases(TRUE)) {
-      l10n_update_flag_history($available);
       drupal_set_message(t('Fetched information about available updates from the server'));
     }
     else {
@@ -194,10 +178,11 @@ function l10n_update_admin_settings_form($form, &$form_state) {
     '#description' => t('Select how frequently you want to automatically check for updated translations for installed modules and themes.'),
   );
   $form['l10n_update_check_disabled'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Check for updates of disabled modules and themes'),
+    '#type' => 'radios',
+    '#title' => t('Update disabled modules'),
+    '#options' => array(t('Disabled'), t('Enabled')),
     '#default_value' => variable_get('l10n_update_check_disabled', 0),
-    '#description' => t('Note that this comes with a performance penalty, so it is not recommended.'),
+    '#description' => t('Enable if you want translations for disabled modules to be updated too. This comes with an important performance penalty so it is not recommended.'),
   );
   $form['l10n_update_download_store'] = array(
     '#title' => t('Store downloaded files'),
@@ -235,8 +220,7 @@ function l10n_update_admin_settings_form_validate($form, &$form_state) {
 function _l10n_update_admin_import_options() {
   return array(
     LOCALE_IMPORT_OVERWRITE => t('Translation updates replace existing ones, new ones are added'),
-    LOCALE_UPDATE_OVERRIDE_DEFAULT => t('Edited translations are kept, only previously imported ones are overwritten and new translations are added'),
-    LOCALE_IMPORT_KEEP => t('All existing translations are kept, only new translations are added.'),
+    LOCALE_IMPORT_KEEP => t('Edited translations are kept, only default ones (previously imported) are overwritten and new translations are added'),
   );
 }
 
@@ -257,294 +241,150 @@ function _l10n_update_admin_check_options() {
 /**
  * Format project update status.
  *
- * @param $variables
- *   An associative array containing:
- *    - projects: An array containing all enabled projects.
- *    - languages: An array of all enabled languages.
- *    - history: An array of the current translations per project.
- *    - available: An array of translation sources per project.
- *    - updates: An array of available translation updates per project.
- *      Only recommended translations are listed.
+ * @params array $projects
+ *   Projects listed.
+ * @params array $languages
+ *   Languages listed.
+ * @params array $history
+ *   Project translation history.
+ * @params array $available
+ *   Available translation releases.
+ * @params array $updates
+ *   Applicable translation updates.
  *
  * @return string
  *   HTML output.
  */
-function theme_l10n_update_project_status($variables) {
+function theme_l10n_update_project_status($vars) {
+  
+  // We use the core update module CSS
+  drupal_add_css(drupal_get_path('module', 'update') . '/update.css');
+  $output = '';
+  //$header = array(t('Project'), t('Current version'), t('Available update'), '');
   $header = $rows = array();
 
-  // Get module and theme data for the project title.
-  $projects = system_rebuild_module_data();
-  $projects += system_rebuild_theme_data();
-
-  foreach ($variables['projects'] as $name => $project) {
-    if (isset($variables['history'][$name])) {
-      if (isset($variables['updates'][$name])) {
-        $project_status = 'updatable';
-        $project_class = 'warning';
-      }
-      else {
-        $project_status = 'uptodate';
-        $project_class = 'ok';
-      }
+  foreach ($vars['projects'] as $name => $project) {
+    $row = '<div class="version-status">';
+    if (empty($vars['available'][$name])) {
+      // Remote information not checked
+      $class = 'unknown';
+      $status = 'unknown';
     }
-    elseif (isset($variables['available'][$name])) {
-      $project_status = 'available';
-      $project_class = 'warning';
+    elseif (empty($vars['updates'][$name])) {
+      // No updates available
+      $class = 'ok';
+      $status = 'ok';
     }
     else {
-      // Remote information not checked
-      $project_status = 'unknown';
-      $project_class = 'unknown';
+      // Update available
+      $status = 'update';
+      $class = 'messages warning';
     }
 
-    // Get the project title and module version.
-    $project->title = isset($projects[$name]->info['name']) ? $projects[$name]->info['name'] : '';
-    $project->module_version = isset($projects[$name]->info['version']) ? $projects[$name]->info['version'] : $project->version;
+    $row = theme('l10n_update_version_status', array('status' => $status));
 
-    // Project with related language states.
-    $row = theme('l10n_update_single_project_wrapper', array(
-      'project' => $project,
-      'project_status' => $project_status,
-      'languages' => $variables['languages'],
-      'available' => $variables['available'],
-      'history' => $variables['history'],
-      'updates' => $variables['updates'],
-    ));
-
-    $rows[$project->project_type][] = array(
-      'data' => array(
-        array(
-          'data' => $row,
-          'class' => 'l10n-update-wrapper collapsed',
-        ),
-      ),
-      'class' => array($project_class),
-    );
-  }
-
-  // Build tables of update states grouped by project type. Similar to the
-  // status report by the Update module.
-  $output = '';
-  $project_types = array(
-    'core' => t('Drupal core'),
-    'module' => t('Modules'),
-    'theme' => t('Themes'),
-    'module-disabled' => t('Disabled modules'),
-    'theme-disabled' => t('Disabled themes'),
-  );
-  foreach ($project_types as $type_name => $type_label) {
-    if (!empty($rows[$type_name])) {
-      ksort($rows[$type_name]);
-      $output .= "\n<h3>" . $type_label . "</h3>\n";
-      $output .= theme('table', array('header' => $header, 'rows' => $rows[$type_name], 'attributes' => array('class' => array('update l10n-update'))));
+    $row .= "<div class=\"project $class\">";
+    $title = isset($project->title) ? $project->title : $project->name;
+    $row .= check_plain($title);
+    $row .= ' ' . check_plain($project->version);
+    if ($server = l10n_update_server($project->l10n_server)) {
+      $row .= ' ' . l($server['name'], $server['link']);
     }
-  }
+    $row .= "</div>\n";
 
-  // We use the core update module CSS to re-use the color definitions.
-  // Plus add our own css and js.
-  drupal_add_css(drupal_get_path('module', 'update') . '/update.css');
-  drupal_add_css(drupal_get_path('module', 'l10n_update') . '/css/l10n_update.admin.css');
-  drupal_add_js(drupal_get_path('module', 'l10n_update') . '/js/l10n_update.js');
-
-  return $output;
-}
-
-/**
- * Format project translation state with states per language.
- *
- * @param $variables
- *   An associative array containing:
- *   - project: Project data object
- *   - project_status: Project status
- *   - languages: Available languages.
- *  @return string
- *    HTML output.
- */
-function theme_l10n_update_single_project_wrapper($variables) {
-  $project = $variables['project'];
-  $name = $project->name;
-  $project_status = $variables['project_status'];
-  $languages = $variables['languages'];
-  $history = $variables['history'];
-  $updates = $variables['updates'];
-  $availables = $variables['available'];
-
-  // Output project title and project summary status.
-  $output = theme('l10n_update_single_project_status', array(
-    'project' => $project,
-    'server' => l10n_update_server($project->l10n_server),
-    'status' => $project_status,
-  ));
-
-  // Translation status per language is displayed in a table, one language per row.
-  // For each language the current translation is listed. And optionally the
-  // most recent update.
-  $rows = array();
-  foreach ($languages as $lang => $language) {
-    // Determine current translation status and update status.
-    $installed = isset($history[$name][$lang]) ? $history[$name][$lang] : NULL;
-    $update = isset($updates[$name][$lang]) ? $updates[$name][$lang] : NULL;
-    $available = isset($availables[$name][$lang]) ? $availables[$name][$lang] : NULL;
-    if ($installed) {
+    $row .= "<div class=\"versions\">\n";
+    $versions = array();
+    foreach ($vars['languages'] as $lang => $language) {
+      $current = isset($vars['history'][$name][$lang]) ? $vars['history'][$name][$lang] : NULL;
+      $update = isset($vars['updates'][$name][$lang]) ? $vars['updates'][$name][$lang] : NULL;
       if ($update) {
-        $status = 'updatable';
+        $status = 'update';
         $class = 'messages warning';
       }
-      else {
-        $status = 'uptodate';
-        $class = 'ok';
+      elseif ($current) {
+        $status = $class = 'ok';
       }
+      else {
+        $status = $class = 'unknown';
+      }
+      $version = array(
+        array(
+          'data' => $language,
+          'class' => 'version-title',
+        ),
+        $current ? theme('l10n_update_release', array('release' => $current)) : '',
+        $update ? theme('l10n_update_release', array('release' => $update)) : '',
+        theme('l10n_update_version_status', array('status' => $status, 'type' => $update ? $update->type : NULL)),
+      );
+      $versions[] = array(
+        'data' => $version,
+        'class' => array($class),
+      );
     }
-    elseif ($available) {
-      $status = 'available';
-      $class = 'warning';
-    }
-    else {
-      $status = 'unknown';
-      $class = 'unknown';
-    }
-
-    // The current translation version.
-    $row = theme('l10n_update_current_release', array('language' => $language, 'release' => $installed, 'status' => $status));
-
-    // If an update is available, add it.
-    if ($update) {
-      $row .= theme('l10n_update_available_release', array('release' => $update));
-    }
-
-    $rows[] = array(
-      'data' => array($row),
-      'class' => array($class),
-    );
+    $row .= theme('table', array('header' => array(), 'rows' => $versions));
+    $row .= "</div>\n";
+    $rows[] = array($row);
   }
-
-  // Output tables with translation status per language.
-  $output .= '<div class="fieldset-wrapper">' . "\n";
-  $output .= theme('table', array('header' => array(), 'rows' => $rows));
-  $output .= "</div>\n";
-
+  $output .= theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('class' => array('update'))));
   return $output;
 }
 
 /**
- * Format a single project translation state.
- *
- * @param $variables
- *   An associative array containing:
- *   - project: project data object.
- *   - server: (optional) remote server data object.
- *   - status: project summary status.
- *  @return string
- *    HTML output.
- */
-function theme_l10n_update_single_project_status($variables) {
-  $project = $variables['project'];
-  $server = $variables['server'];
-  $title = $project->title ? $project->title : $project->name;
-
-  $output = '<div class="project">';
-  $output .= '<span class="project-title">' . check_plain($title) . '</span>' . ' ' . check_plain($project->module_version) ;
-  if ($server = l10n_update_server($project->l10n_server)) {
-    $output .= '<span class="project-server">' . t('(translation source: !server)', array('!server' => l($server['name'], $server['link']))) . '</span>';
-  }
-  $output .= theme('l10n_update_version_status', array('status' => $variables['status']));
-  $output .= "</div>\n";
-
-  return $output;
-}
-
-/**
- * Format current translation version.
- *
- * @param $variables
- *   An associative array containing:
- *   - language: Language name.
- *   - release: Current file data.
- *   - status: Release status.
- * @return string
- *   HTML output.
- */
-function theme_l10n_update_current_release($variables) {
-  if (isset($variables['release'])) {
-    $date = $variables['release']->timestamp;
-    $version = $variables['release']->version;
-    $text = t('@language: @version (!date)', array('@language' => $variables['language'], '@version' => $version, '!date' => format_date($date, 'custom', 'Y-M-d')));
-  }
-  else {
-    $text = t('@language: <em>No installed translation</em>', array('@language' => $variables['language']));
-  }
-
-  $output = '<div class="language">';
-  $output .= $text;
-  $output .= theme('l10n_update_version_status', $variables);
-  $output .= "</div>\n";
-
-  return $output;
-}
-
-/**
- * Format current translation version.
+ * Format tag and release date.
  *
  * @param object $release
- *   Update file data.
+ *   Source file data.
  * @return string
  *   HTML output.
  */
-function theme_l10n_update_available_release($variables) {
-  $date = $variables['release']->timestamp;
-  $version = $variables['release']->version;
-  if (!empty($variables['release']->fileurl)) {
+function theme_l10n_update_release($vars) {
+  $name = $vars['release']->filename;
+  $date = $vars['release']->timestamp;
+  if (!empty($vars['release']->fileurl)) {
     // Remote file, straight link
-    $link = l(t('Download'), $variables['release']->fileurl);
+    $link = l($name, $vars['release']->fileurl);
   }
-  elseif (!empty($variables['release']->uri)) {
+  elseif (!empty($vars['release']->uri)) {
     // Local file, try something
-    $link = l(t('Download'), $variables['release']->uri, array('absolute' => TRUE));
+    $link = l($name, $vars['release']->uri, array('absolute' => TRUE));
   }
-
-  $output = '<div class="version version-recommended">';
-  $output .=  t('Recommended version: @version (!date)', array('@version' => $version, '!date' => format_date($date, 'custom', 'Y-M-d')));
-  $output .= '<span class="version-links">' . $link . '</span>';
-  $output .= "</div>\n";
-  return $output;
+  else {
+    // No link
+    $link = "<strong>$name</strong>";
+  }
+  return $link . '<br /><small><span class="version-date">' . format_date($date, 'short') . '</span></small>';
 }
 
 /**
  * Format version status with icon.
  *
  * @param string $status
- *   Version status: 'uptodate', 'updatable', 'available', 'unknown'.
+ *   Version status: 'ok', 'update', 'unknown'.
  * @param string $type
  *   Update type: 'download', 'localfile'.
  *
  * @return sting
  *   HTML output.
  */
-function theme_l10n_update_version_status($variables) {
-  $icon = '';
-  $msg = '';
-
-  switch ($variables['status']) {
-    case 'uptodate':
+function theme_l10n_update_version_status($vars) {
+  $output = '<div class="version-status">';
+  switch ($vars['status']) {
+    case 'ok':
       $icon = theme('image', array('path' => 'misc/watchdog-ok.png', 'alt' => t('ok'), 'title' => t('ok')));
       $msg = '<span class="current">' . t('Up to date') . '</span>';
       break;
-    case 'updatable':
+    case 'update':
       $icon = theme('image', array('path' => 'misc/watchdog-warning.png', 'alt' => t('warning'), 'title' => t('warning')));
-      $msg = '<span class="not-current">' . t('Update available') . '</span>';
-      break;
-    case 'available':
-      $icon = theme('image', array('path' => 'misc/watchdog-warning.png', 'alt' => t('warning'), 'title' => t('warning')));
-      $msg = '<span class="not-current">' . t('Uninstalled translation available') . '</span>';
+      $txt = (isset($vars['type']) && ($vars['type'] == 'download')) ? t('Remote update available') : t('Local update available');
+      $msg = '<span class="not-current">' . $txt . '</span>';
       break;
     case 'unknown':
       $icon = theme('image', array('path' => 'misc/watchdog-warning.png', 'alt' => t('warning'), 'title' => t('warning')));
-      $msg = '<span class="not-supported">' . t('No available translations found') . '</span>';
+      $msg = '<span class="not-supported">' . t('No information') . '</span>';
       break;
   }
-  $output = '<div class="version-status">';
   $output .= $msg;
   $output .= '<span class="icon">' . $icon . '</span>';
-  $output .= "</div>\n";
+  $output .= "</div>";
   return $output;
 }
