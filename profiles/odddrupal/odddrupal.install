@@ -32,7 +32,7 @@ function odddrupal_install() {
   odddrupal_set_variables();
   
   // Delete the Webform content type.
-  node_type_delete(node_type_load('webform'));
+  node_type_delete('webform');
 }
 
 /**
