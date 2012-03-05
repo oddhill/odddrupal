@@ -6,8 +6,7 @@
  */
 
 define('TADAA_ENVIRONMENT', variable_get('tadaa_environment'));
-define('TADAA_BASE_PATH', drupal_get_path('module', 'tadaa'));
-define('TADAA_THEME_PATH', drupal_get_path('module', 'tadaa') . '/theme');
+
 
 /**
  * Implements hook_permission().
@@ -26,54 +25,165 @@ function tadaa_permission() {
 function tadaa_menu() {
   // Included files.
   $callback_file = 'tadaa.callbacks.inc';
-  $page_file = 'tadaa.pages.inc';
+  $status_page_file = 'tadaa.status.pages.inc';
+  $config_page_file = 'tadaa.config.pages.inc';
 
-  // Checks the state for the selected environment.
-  $items['tadaa/environment/check'] = array(
-    'page callback' => 'tadaa_check_environment',
+  // Autocomplete for variable names.
+  $items['tadaa/variable/autocomplete'] = array(
+    'page callback' => 'tadaa_variable_autocomplete',
     'access arguments' => array('use tadaa'),
     'file' => $callback_file,
     'type' => MENU_CALLBACK,
   );
-  // Checks the state for individual modules.
-  $items['tadaa/module/%/check'] = array(
-    'page callback' => 'tadaa_check_module',
+  // Fix a module configuration.
+  $items['tadaa/module/%/fix'] = array(
+    'page callback' => 'tadaa_module_fix',
     'page arguments' => array(2),
     'access arguments' => array('use tadaa'),
     'file' => $callback_file,
     'type' => MENU_CALLBACK,
   );
-  // Checks the state for individual variables.
-  $items['tadaa/variable/%/check'] = array(
-    'page callback' => 'tadaa_check_variable',
+  // Fix a variable configuration.
+  $items['tadaa/variable/%/fix'] = array(
+    'page callback' => 'tadaa_variable_fix',
     'page arguments' => array(2),
     'access arguments' => array('use tadaa'),
     'file' => $callback_file,
     'type' => MENU_CALLBACK,
   );
-  
-  // Checks the state for the selected environment.
+
+  // Module status page.
   $items['admin/config/development/tadaa'] = array(
     'title' => 'Tadaa!',
-    'description' => 'View the status for the current environment.',
+    'description' => 'Configure Tadaa! and see the current status.',
     'page callback' => 'tadaa_module_status_page',
     'access arguments' => array('use tadaa'),
-    'file' => $page_file,
+    'file' => $status_page_file,
   );
-  // Checks the state for individual modules.
-  $items['admin/config/development/tadaa/modules'] = array(
+  $items['admin/config/development/tadaa/status'] = array(
+    'title' => 'Status',
+    'access arguments' => array('use tadaa'),
+    'file' => $status_page_file,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => 0,
+  );
+  $items['admin/config/development/tadaa/status/modules'] = array(
     'title' => 'Modules',
     'access arguments' => array('use tadaa'),
-    'file' => $page_file,
+    'file' => $status_page_file,
     'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => 0,
   );
-  // Checks the state for individual variables.
-  $items['admin/config/development/tadaa/variables'] = array(
+  // Variable status page.
+  $items['admin/config/development/tadaa/status/variables'] = array(
     'title' => 'Variables',
     'page callback' => 'tadaa_variable_status_page',
     'access arguments' => array('use tadaa'),
-    'file' => $page_file,
+    'file' => $status_page_file,
     'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+  // Environment status page.
+  $items['admin/config/development/tadaa/status/environments'] = array(
+    'title' => 'Change environment',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_environment_status_form'),
+    'access arguments' => array('use tadaa'),
+    'file' => $status_page_file,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+  );
+  
+  // Module configuration.
+  $items['admin/config/development/tadaa/configure'] = array(
+    'title' => 'Configure',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_module_configuration_form'),
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+  $items['admin/config/development/tadaa/configure/modules'] = array(
+    'title' => 'Modules',
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => 0,
+  );
+  
+  // Variables configuration.
+  $items['admin/config/development/tadaa/configure/variables'] = array(
+    'title' => 'Variables',
+    'page callback' => 'tadaa_variable_configuration_page',
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+  // Add variable.
+  $items['admin/config/development/tadaa/configure/variables/add/%'] = array(
+    'title' => 'Add variable',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_variable_form', 7),
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_CALLBACK,
+  );
+  // Edit variable.
+  $items['admin/config/development/tadaa/configure/variables/%/edit/%'] = array(
+    'title' => 'Edit variable',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_variable_form', 6, 8),
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_CALLBACK,
+  );
+  // Delete variable.
+  $items['admin/config/development/tadaa/configure/variables/%/delete/%'] = array(
+    'title' => 'Delete variable',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadda_variable_delete_confirm', 6, 8),
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_CALLBACK,
+  );
+
+  // Environment configurations.
+  $items['admin/config/development/tadaa/configure/environments'] = array(
+    'title' => 'Environments',
+    'page callback' => 'tadaa_environment_configuration_page',
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+  );
+  // Add environment.
+  $items['admin/config/development/tadaa/configure/environments/add'] = array(
+    'title' => 'Add environment',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_environment_form'),
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_LOCAL_ACTION,
+  );
+  // Edit environment.
+  $items['admin/config/development/tadaa/configure/environments/%/edit'] = array(
+    'title' => 'Edit environment',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_environment_form', 6),
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_CALLBACK,
+  );
+  // Delete environment.
+  $items['admin/config/development/tadaa/configure/environments/%/delete'] = array(
+    'title' => 'Delete environment',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadda_environment_delete_confirm', 6),
+    'access arguments' => array('use tadaa'),
+    'file' => $config_page_file,
+    'type' => MENU_CALLBACK,
   );
 
   return $items;
@@ -84,314 +194,29 @@ function tadaa_menu() {
  */
 function tadaa_theme($existing, $type, $theme, $path) {
   return array(
-    'tadaa_toolbar' => array(
-      'template' => 'tadaa-toolbar',
-      'variables' => array(
-        'environments_form' => NULL,
-        'email_form' => NULL,
-      ),
-      'path' => TADAA_THEME_PATH,
+    'tadaa_module_fieldset' => array(
+      'render element' => 'form',
+      'path' => drupal_get_path('module', 'tadaa') . '/theme',
+      'file' => 'tadaa.theme.inc',
     ),
   );
-}
-
-/**
- * Implements hook_init().
- */
-function tadaa_init() {
-  if (!user_access('use tadaa')) {
-    // The user doesn't have access, exit early.
-    return;
-  }
-  
-  // Add some javascript settings.
-  $settings['selectedEnvironment'] = TADAA_ENVIRONMENT;
-  $settings['modules'] = tadaa_get_modules();
-  $settings['variables'] = tadaa_get_variables();
-  drupal_add_js(array('tadaa' => $settings), 'setting');
-  
-  // Add our JS and CSS file.
-  drupal_add_js(TADAA_BASE_PATH . '/tadaa.js');
-  drupal_add_css(TADAA_THEME_PATH . '/tadaa.css');
-}
-
-/**
- * Implements hook_page_alter().
- */
-function tadaa_page_alter(&$page) {
-  if (!user_access('use tadaa')) {
-    // The user doesn't have access, exit early.
-    return;
-  }
-  
-  // Include the file with our callbacks.
-  require TADAA_BASE_PATH . '/tadaa.callbacks.inc';
-  
-  // Get the environments form.
-  $variables['environments_form'] = drupal_get_form('tadaa_environment_form');
-
-  // Get the email form, if Reroute email is enabled.
-  $variables['email_form'] = module_exists('reroute_email') ? drupal_get_form('tadaa_email_form') : FALSE;
-  
-  // Add the toolbar to the bottom region.
-  $page['page_bottom']['tadaa'] = array(
-    '#type' => 'markup',
-    '#markup' => theme('tadaa_toolbar', $variables),
-  );
-}
-
-/**
- * Implements hook_form().
- *
- * This is the form that's used for switching environments. It's added to the
- * toolbar.
- */
-function tadaa_environment_form($form, &$form_state) {
-  // Create a select list.
-  $form['environment'] = array(
-    '#type' => 'select',
-    '#title' => t('Current environment'),
-    '#ajax' => array(
-      'callback' => 'tadaa_set_environment',
-      'progress' => array(
-        'type' => 'throbber',
-        'message' => '',
-      ),
-    ),
-  );
-  
-  if (TADAA_ENVIRONMENT) {
-    // Set the current environment as the default.
-    $form['environment']['#default_value'] = TADAA_ENVIRONMENT;
-  }
-  else {
-    // No environment has been chosen, add an option that clearly shows that no
-    // environment has been chosen.
-    $form['environment']['#options'][''] = t('- None -');
-    $form['environment']['#default_value'] = '';
-  }
-  
-  // Add each environment as an option to the select list.
-  $environments = tadaa_get_environments();
-  foreach ($environments as $environment => $configuration) {
-    $form['environment']['#options'][$environment] = $configuration['name'];
-  }
-
-  return $form;
-}
-
-/**
- * AJAX callback that sets a new environment.
- *
- * This will activate the modules for the specified environment, and set it's
- * variables to there configured values.
- */
-function tadaa_set_environment($form, &$form_state) {
-  // The selected environment.
-  $environment = $form_state['values']['environment'];
-
-  if (!$environment) {
-    // No environment specified, exit early.
-    return;
-  }
-
-  // Get every module. The modules for this environment will be marked as
-  // enabled.
-  $modules = tadaa_get_modules($environment);
-
-  // Build one array for the modules that should be enabled, and one for the
-  // ones that should be disabled.
-  $enable = array();
-  $disable = array();
-  foreach ($modules as $module => $status) {
-    if ($status) {
-      // Enabled module.
-      $enable[] = $module;
-    }
-    else {
-      // Disabled module.
-      $disable[] = $module;
-    }
-  }
-
-  // Enable and disable the modules.
-  $test = module_enable($enable);
-  module_disable($disable);
-
-  // Get the variables for this environment, and set their values.
-  $variables = tadaa_get_variables($environment);
-  foreach ($variables as $variable => $value) {
-    variable_set($variable, $value);
-  }
-  
-  // Set the specified environment as the currently active one and flush all
-  // caches.
-  variable_set('tadaa_environment', $environment);
-  drupal_flush_all_caches();
-}
-
-/**
- * Implements hook_form().
- *
- * This is the form that's used for setting an email address for Reroute email.
- * It's added to the toolbar if Reroute email is enabled.
- */
-function tadaa_email_form($form, &$form_state) {
-  // Create a textarea.
-  $form['email'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Reroute emails to'),
-    '#default_value' => variable_get('reroute_email_address', ''),
-    '#ajax' => array(
-      'callback' => 'tadaa_set_email',
-      'progress' => array(
-        'type' => 'throbber',
-        'message' => '',
-      ),
-    ),
-  );
-
-  return $form;
-}
-
-/**
- * AJAX callback that sets the Reroute email address.
- *
- * @see http://drupal.org/project/reroute_email
- */
-function tadaa_set_email($form, &$form_state) {
-  $email = $form_state['values']['email'];
-  if ($email) {
-    variable_set('reroute_email_address', $email);
-  }
-  else {
-    variable_del('reroute_email_address');
-  }
-}
-
-/**
- * Gets the environments and the configurations.
- *
- * The modules will only be affected if they actually exists. This is handled
- * when they are enabled/disabled.
- *
- * TODO: Make this configurable through the UI. I belive the best approache is
- * to enable users to create custom environments, and configure them as needed.
- *
- * @return
- *  An associative array, where each element is an environment, and the key is
- *  used to identify the environment.
- *  - name: The human readable name of the environment.
- *  - modules: An array of modules that should be enabled only when this
- *    environment is in use.
- *  - variables: An array of variables, where the key is the name of the
- *    variable, and the value is the value of the variable that should be set
- *    when this environment is in use.
- */
-function tadaa_get_environments() {
-  $environments = array(
-    'dev' => array(
-      'name' => t('Development'),
-      'modules' => array(
-        'context_ui',
-        'devel',
-        'devel_generate',
-        'devel_node_access',
-        'reroute_email',
-        'rules_admin',
-        'themekey_ui',
-        'views_ui',
-      ),
-      'variables' => array(
-        'cache' => 0,
-        'preprocess_js' => 0,
-        'preprocess_css' => 0,
-        'jquery_update_compression_type' => 'none',
-      ),
-    ),
-    'staging' => array(
-      'name' => t('Staging'),
-      'modules' => array(
-        'context_ui',
-        'reroute_email',
-        'rules_admin',
-        'themekey_ui',
-        'views_ui',
-      ),
-      'variables' => array(
-        'cache' => 1,
-        'preprocess_js' => 1,
-        'preprocess_css' => 1,
-        'jquery_update_compression_type' => 'min',
-      ),
-    ),
-    'prod' => array(
-      'name' => t('Production'),
-      'modules' => array(
-        'backup_migrate',
-        'googleanalytics',
-      ),
-      'variables' => array(
-        'cache' => 1,
-        'preprocess_js' => 1,
-        'preprocess_css' => 1,
-        'jquery_update_compression_type' => 'min',
-      ),
-    ),
-  );
-
-  return $environments;
 }
 
 /**
  * Gets every configured module and their state.
  *
- * @param $active_environment
- *  A string indicating which environment we are considiring the active
- *  environment. If left empty, modules will be returned with the state set to
- *  FALSE.
+ * @param $environment
+ *  A string indicating which environment we'd like to get the configuration
+ *  for.
  *
  * @return
  *  An associative array where each key is the name of the module, and the value
  *  is the state of the module, according to the $environment param.
  */
-function tadaa_get_modules($active_environment = NULL) {
-  // Build an array of every configured module. Consider every module to be
-  // disabled for now.
-  $environments = tadaa_get_environments();
-  foreach ($environments as $environment) {
-    foreach ($environment['modules'] as $module) {
-      $modules[$module] = FALSE;
-    }
-  }
-  
-  // If we have an active environment, set each module of this environment to be
-  // active.
-  if ($active_environment) {
-    foreach ($environments[$active_environment]['modules'] as $module) {
-      $modules[$module] = TRUE;
-    }
-  }
-  
-  // Remove modules that doesn't exist at all.
-  foreach ($modules as $module => $configuration) {
-    // Scan these directories.
-    $directories = array(
-      DRUPAL_ROOT . '/sites',
-      DRUPAL_ROOT . '/modules',
-      DRUPAL_ROOT . '/profiles',
-    );
-    foreach ($directories as $directory) {
-      $file = file_scan_directory($directory, '/^' . $module . '\.module$/');
-      if (count($file)) {
-        // The module was found, stop searching.
-        continue 2;
-      }
-    }
-    // The module wasn't found, remove it from the array.
-    unset($modules[$module]);
-  }
-  
+function tadaa_get_modules($environment) {
+  // Load the configuration for the specified environment.
+  $modules = variable_get('tadaa_' . $environment . '_modules', array());
+
   // Sort the modules by their name before return the array.
   ksort($modules);
   return $modules;
@@ -401,28 +226,166 @@ function tadaa_get_modules($active_environment = NULL) {
  * Gets the configured variables for a specific environment.
  *
  * @param $active_environment
- *  A string indicating which environment we are considiring the active
- *  environment. If left empty, every configured variable will be returned.
+ *  A string indicating which environment we'd like to get the configuration
+ *  for.
+ *
+ * @return
+ *  An associative array where each key is the name of the variable, and the value
+ *  is the value for the variable, according to the $environment param.
  */
-function tadaa_get_variables($environment = NULL) {
-  $environments = tadaa_get_environments();
-  if ($environment) {
-    // An environment has been specified, get the variables for that
-    // environment.
-    foreach ($environments[$environment]['variables'] as $variable => $value) {
-      $variables[$variable] = $value;
-    }
-  }
-  else {
-    // No environment has been specified, return every configured variable.
-    foreach ($environments as $environment) {
-      foreach ($environment['variables'] as $variable => $value) {
-        $variables[$variable] = $value;
-      }
-    }
-  }
+function tadaa_get_variables($environment) {
+  // Load the configuration for the specified environment.
+  $variables = variable_get('tadaa_' . $environment . '_variables', array());
 
   // Sort the variables by their name before returning them.
   ksort($variables);
   return $variables;
+}
+
+/**
+ * Batch callback that disables a list of modules.
+ *
+ * The modules will be disabled one by one in order to keep track of what's
+ * happening, and to prevent a huge amount of modules to be disabled at the same
+ * time
+ */
+function tadaa_batch_disable_modules($modules, &$context) {
+  // Set up the initial sandbox variables.
+  if (empty($context['sandbox'])) {
+    $context['sandbox']['current_module'] = 0;
+    $context['sandbox']['total_modules'] = count($modules);
+  }
+
+  // Only disable the module if it's currently enabled.
+  if (module_exists($modules[$context['sandbox']['current_module']])) {
+    module_disable(array($modules[$context['sandbox']['current_module']]));
+    
+    // Get the real module name, and set the message.
+    $module_info = drupal_parse_info_file(drupal_get_path('module', $modules[$context['sandbox']['current_module']]) . '/' . $modules[$context['sandbox']['current_module']] . '.info');
+    $context['message'] = t('Successfully disabled %module', array('%module' => $module_info['name']));
+    $context['results']['disabled'][] = $module_info['name'];
+  }
+  
+  // Move on to the next module.
+  $context['sandbox']['current_module']++;
+  $context['finished'] = $context['sandbox']['current_module'] / $context['sandbox']['total_modules'];
+}
+
+/**
+ * Batch callback that enables a list of modules.
+ *
+ * The modules will be enabled one by one in order to keep track of what's
+ * happening, and to prevent a huge amount of modules to be enabled at the same
+ * time
+ */
+function tadaa_batch_enable_modules($modules, &$context) {
+  // Set up the initial sandbox variables.
+  if (empty($context['sandbox'])) {
+    $context['sandbox']['current_module'] = 0;
+    $context['sandbox']['total_modules'] = count($modules);
+  }
+
+  // Only enable the module if it's currently disabled.
+  if (!module_exists($modules[$context['sandbox']['current_module']])) {
+    $result = module_enable(array($modules[$context['sandbox']['current_module']]));
+    
+    // Get the real module name, and set the message.
+    $module_info = drupal_parse_info_file(drupal_get_path('module', $modules[$context['sandbox']['current_module']]) . '/' . $modules[$context['sandbox']['current_module']] . '.info');
+    if ($result) {
+      $context['message'] = t('Successfully enabled %module', array('%module' => $module_info['name']));
+      $context['results']['enabled']['successfully'][] = $module_info['name'];
+    }
+    else {
+      $context['message'] = t('Failed to enable %module!', array('%module' => $module_info['name']));
+      $context['results']['enabled']['failed'][] = $module_info['name'];
+    }
+  }
+  
+  // Move on to the next module.
+  $context['sandbox']['current_module']++;
+  $context['finished'] = $context['sandbox']['current_module'] / $context['sandbox']['total_modules'];
+}
+
+/**
+ * Batch callback that sets a list of variables.
+ *
+ * The variables will be set one by one in order to keep track of what's
+ * happening.
+ */
+function tadaa_batch_set_variables($variables, &$context) {
+  // Set up the initial sandbox variables.
+  if (empty($context['sandbox'])) {
+    $context['sandbox']['current_variable'] = 0;
+    $context['sandbox']['total_variables'] = count($variables);
+  }
+
+  // Get the current variable from the array.
+  $current_variable = array_slice($variables, $context['sandbox']['current_variable'], 1);
+  $variable = key($current_variable);
+  $value = current($current_variable);
+  
+  // Only change the variables value if it's different from the current value.
+  if (variable_get($variable) != $value) {
+    variable_set($variable, $value);
+    
+    // Set a message and keep the result.
+    $context['message'] = t('Altered %variable', array('%variable' => key($current_variable)));
+    $context['results']['variables'][] = key($current_variable);
+  }
+  
+  // Move on to the next variable.
+  $context['sandbox']['current_variable']++;
+  $context['finished'] = $context['sandbox']['current_variable'] / $context['sandbox']['total_variables'];
+}
+
+/**
+ * Batch callback when switching environment.
+ *
+ * This is the last step, and will simply update the current environment
+ * variable.
+ */
+function tadaa_batch_finish($new_environment, &$context) {
+  variable_set('tadaa_environment', $new_environment);
+}
+
+/**
+ * Batch callback that's fired when the switch batch has finished.
+ *
+ * This will check the result, and print messages to the user so that he will
+ * know exactly what has been changed.
+ */
+function finished_test($success, $results, $operations) {
+  if ($success) {
+    // Nothing has changed.
+    if (empty($results)) {
+      drupal_set_message(t('Nothing has been done.'));
+    }
+  
+    // At least one module has been disabled.
+    if (!empty($results['disabled'])) {
+      drupal_set_message(t('The following modules has been disabled: !modules', array('!modules' => '<br />' . implode('<br />', $results['disabled']))));
+    }
+
+    // At least one module has tried to be enabled.
+    if (!empty($results['enabled'])) {
+      // At least one module has been successfully enabled.
+      if (!empty($results['enabled']['successfully'])) {
+        drupal_set_message(t('The following modules has been enabled: !modules', array('!modules' => '<br />' . implode('<br />', $results['enabled']['successfully']))));
+      }
+      // At least one module couldn't be enabled.
+      if (!empty($results['enabled']['failed'])) {
+        drupal_set_message(t('Failed to enable the following modules: !modules', array('!modules' => '<br />' . implode('</li><li>', $results['enabled']['failed']))), 'error');
+      }
+    }
+    
+    // At least one variable has been changed.
+    if (!empty($results['variables'])) {
+      drupal_set_message(t('Altered the following variables: !variables', array('!variables' => '<br />' . implode('<br />', $results['variables']))));
+    }
+  }
+  else {
+    // The batch process didn't succeed. This is probably caused by a PHP error
+    // of some sort.
+    drupal_set_message(t('An error occurred while switching environments. Please review the latest log entries, and try again.'), 'error');
+  }
 }

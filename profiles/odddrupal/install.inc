@@ -349,4 +349,68 @@ function odddrupal_set_variables() {
   variable_set('views_ui_show_sql_query', 0);
   variable_set('admin_menu_position_fixed', 1);
   variable_set('admin_menu_tweak_permissions', 1);
+  variable_set('tadaa_environment', 'development');
+  variable_set('tadaa_environments', array(
+    'development' => 'Development',
+    'staging' => 'Staging',
+    'production' => 'Production',
+  ));
+  variable_set('tadaa_development_modules', array(
+    'context_ui' => 1,
+    'devel' => 1,
+    'devel_generate' => 1,
+    'reroute_email' => 1,
+    'rules_admin' => 1,
+    'googleanalytics' => 0,
+    'themekey_ui' => 1,
+    'views_ui' => 1,
+  ));
+  variable_set('tadaa_development_variables', array(
+    'block_cache' => 0,
+    'cache' => 0,
+    'jquery_update_compression_type' => 'none',
+    'preprocess_css' => 0,
+    'preprocess_js' => 0,
+  ));
+  variable_set('tadaa_staging_modules', array(
+    'context_ui' => 1,
+    'devel' => 0,
+    'devel_generate' => 0,
+    'reroute_email' => 1,
+    'rules_admin' => 1,
+    'googleanalytics' => 0,
+    'themekey_ui' => 1,
+    'views_ui' => 1,
+  ));
+  variable_set('tadaa_staging_variables', array(
+    'block_cache' => 1,
+    'cache' => 1,
+    'jquery_update_compression_type' => 'min',
+    'preprocess_css' => 1,
+    'preprocess_js' => 1,
+  ));
+  variable_set('tadaa_production_modules', array(
+    'context_ui' => 0,
+    'devel' => 0,
+    'devel_generate' => 0,
+    'reroute_email' => 0,
+    'rules_admin' => 0,
+    'googleanalytics' => 1,
+    'themekey_ui' => 0,
+    'views_ui' => 0,
+  ));
+  variable_set('tadaa_production_variables', array(
+    'block_cache' => 1,
+    'cache' => 1,
+    'jquery_update_compression_type' => 'min',
+    'preprocess_css' => 1,
+    'preprocess_js' => 1,
+  ));
+  variable_set('block_cache', 0);
+  variable_set('cache', 0);
+  variable_set('jquery_update_compression_type', 'none');
+  variable_set('preprocess_css', 0);
+  variable_set('preprocess_js', 0);
+  variable_set('reroute_email_enable', 1);
+  variable_set('reroute_email_enable_message', 0);
 }
