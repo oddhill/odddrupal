@@ -120,3 +120,16 @@ function odddrupal_update_7108() {
   variable_set('admin_menu_position_fixed', 1);
   variable_set('admin_menu_tweak_permissions', 1);
 }
+
+/**
+ * Enable DS and DS Extras.
+ */
+function odddrupal_update_7109() {
+  if (!module_exists('ds')) {
+    module_enable(array('ds'));
+  }
+  
+  if (!module_exists('ds_extras')) {
+    module_enable(array('ds_extras'));
+  }
+}
