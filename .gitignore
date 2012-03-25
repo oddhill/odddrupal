@@ -1,7 +1,12 @@
+# Server specifics, so we don't include them
 .htaccess
 /sites/*/settings.local.php
+
+# User generated content should not be in the repository
 /sites/*/files/*
 /sites/*/tmp/*
+
+# Exlude various other files
 icon.png
 icon.gif
 icon.jpg
