@@ -190,11 +190,13 @@ function field_group_theme_registry_alter(&$theme_registry) {
   }
 
   foreach ($entities as $entity) {
-    $theme_registry[$entity]['preprocess functions'][] = 'field_group_build_entity_groups';
-    // DS support, make sure it comes after field_group.
-    if ($key = array_search('ds_entity_variables', $theme_registry[$entity]['preprocess functions'])) {
-      unset($theme_registry[$entity]['preprocess functions'][$key]);
-      $theme_registry[$entity]['preprocess functions'][] = 'ds_entity_variables';
+    if (isset($theme_registry[$entity])) {
+      $theme_registry[$entity]['preprocess functions'][] = 'field_group_build_entity_groups';
+      // DS support, make sure it comes after field_group.
+      if ($key = array_search('ds_entity_variables', $theme_registry[$entity]['preprocess functions'])) {
+        unset($theme_registry[$entity]['preprocess functions'][$key]);
+        $theme_registry[$entity]['preprocess functions'][] = 'ds_entity_variables';
+      }
     }
   }
 
@@ -273,14 +275,19 @@ function field_group_field_group_formatter_info() {
     'form' => array(
       'div' => array(
         'label' => t('Div'),
-        'description' => t('This fieldgroup renders the inner content in a simple div with the titel as legend.'),
+        'description' => t('This fieldgroup renders the inner content in a simple div with the title as legend.'),
         'format_types' => array('open', 'collapsible', 'collapsed'),
         'instance_settings' => array('description' => '', 'show_label' => 1, 'label_element' => 'h3', 'effect' => 'none', 'speed' => 'fast', 'classes' => '', 'required_fields' => 1, 'id' => ''),
         'default_formatter' => 'open',
       ),
+      'html5' => array(
+        'label' => t('HTML5'),
+        'description' => t('This fieldgroup renders the inner content in a semantic HTML5 wrapper'),
+        'instance_settings' => array('wrapper' => '', 'classes' => ''),
+      ),
       'fieldset' => array(
         'label' => t('Fieldset'),
-        'description' => t('This fieldgroup renders the inner content in a fieldset with the titel as legend.'),
+        'description' => t('This fieldgroup renders the inner content in a fieldset with the title as legend.'),
         'format_types' => array('open', 'collapsible', 'collapsed'),
         'instance_settings' => array('description' => '', 'classes' => '', 'required_fields' => 1),
         'default_formatter' => 'collapsible',
@@ -325,14 +332,19 @@ function field_group_field_group_formatter_info() {
     'display' => array(
       'div' => array(
         'label' => t('Div'),
-        'description' => t('This fieldgroup renders the inner content in a simple div with the titel as legend.'),
+        'description' => t('This fieldgroup renders the inner content in a simple div with the title as legend.'),
         'format_types' => array('open', 'collapsible', 'collapsed'),
         'instance_settings' => array('description' => '', 'show_label' => 1, 'label_element' => 'h3', 'effect' => 'none', 'speed' => 'fast', 'classes' => ''),
         'default_formatter' => 'collapsible',
       ),
+      'html5' => array(
+        'label' => t('HTML5'),
+        'description' => t('This fieldgroup renders the inner content in a semantic HTML5 wrapper'),
+        'instance_settings' => array('wrapper' => '', 'classes' => ''),
+      ),
       'fieldset' => array(
         'label' => t('Fieldset'),
-        'description' => t('This fieldgroup renders the inner content in a fieldset with the titel as legend.'),
+        'description' => t('This fieldgroup renders the inner content in a fieldset with the title as legend.'),
         'format_types' => array('open', 'collapsible', 'collapsed'),
         'instance_settings' => array('description' => '', 'classes' => ''),
         'default_formatter' => 'collapsible',
@@ -494,6 +506,14 @@ function field_group_field_group_format_settings($group) {
         '#options' => array('none' => t('None'), 'slow' => t('Slow'), 'fast' => t('Fast')),
         '#default_value' => isset($group->format_settings['instance_settings']['speed']) ? $group->format_settings['instance_settings']['speed'] : $formatter['instance_settings']['speed'],
         '#weight' => 3,
+      );
+      break;
+    case 'html5':
+      $form['instance_settings']['wrapper'] = array(
+        '#title' => t('HTML5 wrapper'),
+        '#type' => 'select',
+        '#options' => array('section' => t('Section'), 'article' => t('Article'), 'header' => t('Header'), 'footer' => t('footer'), 'aside' => t('Aside')),
+        '#default_value' => isset($group->format_settings['instance_settings']['wrapper']) ? $group->format_settings['instance_settings']['wrapper'] : 'section',
       );
       break;
     case 'fieldset':
@@ -689,6 +709,22 @@ function field_group_pre_render_div(&$element, $group, &$form) {
     drupal_add_library('system', 'effects.blind');
   }
 
+}
+
+/**
+ * Implements field_group_pre_render_<format-type>.
+ * Format type: HTML5.
+ *
+ * @param $element The field group form element.
+ * @param $group The Field group object prepared for pre_render.
+ * @param $form The root element or form.
+ */
+function field_group_pre_render_html5(&$element, $group, &$form) {
+  $element += array(
+    '#type' => 'markup',
+    '#prefix' => '<' . $group->format_settings['instance_settings']['wrapper'] . ' id="' . $element['#id'] . '" class="field-group-format ' . $group->classes . '">',
+    '#suffix' => '</' . $group->format_settings['instance_settings']['wrapper'] . '>',
+  );
 }
 
 /**
@@ -1622,7 +1658,8 @@ function field_group_build_entity_groups(&$vars, $type) {
     $nest_vars = &$vars;
   }
 
-  if (!isset($element['#groups'])) {
+  // No groups on the entity.
+  if (empty($element['#groups'])) {
     return $element;
   }
 
