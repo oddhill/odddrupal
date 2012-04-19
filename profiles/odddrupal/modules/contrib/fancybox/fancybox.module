@@ -55,7 +55,12 @@ function fancybox_menu() {
 function fancybox_active($settings) {
   // If PHP is selected, evaluate it.
   if ($settings['activation']['activation_type'] == 'php') {
-    return drupal_eval($settings['activation']['activation_pages']);
+    if (module_exists('php')) {
+      return php_eval($settings['activation']['activation_pages']);
+    }
+    else {
+      return FALSE;
+    }
   }
 
   // Compare defined paths with the current path.
@@ -87,7 +92,7 @@ function fancybox_activate($settings = NULL) {
     }
     
     // Add Fancybox files.
-    $path = libraries_get_path('fancybox') . DIRECTORY_SEPARATOR;
+    $path = libraries_get_path('fancybox') . '/' . 'fancybox' . '/';
     $files = variable_get('fancybox_files', array());
 
     // TODO: add easing
@@ -616,6 +621,7 @@ function _detect_fancybox_files() {
 
 function _set_fancybox_files() {
   $files = _detect_fancybox_files();
+  $path = libraries_get_path('fancybox');
 
   if (empty($files['js']) || empty($files['css'])) {
     drupal_set_message(t('No Fancybox plugin found in @path, install the Fancybox plugin and go to the Fancybox settings page for the files to be found', array('@path' => $path)), 'warning');

@@ -20,11 +20,11 @@ Fancybox 1.3+ - download latest version from <http://code.google.com/p/fancybox/
 Installation
 ------------
 
-1. Extract the plugin archive and copy folder with plugin files (containing jquery.fancybox-[version].js file) 
+1. Extract the plugin archive and rename the folder to "fancybox." 
    in the following (recommended) location: sites/all/libraries
 
    So the actual plugin can be found at:
-   sites/all/libraries/fancybox/jquery.fancybox-[version].js
+   sites/all/libraries/fancybox/fancybox/jquery.fancybox-[version].js
 
 2. Go to "Modules" and enable the module.
 
