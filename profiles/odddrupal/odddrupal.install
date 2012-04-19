@@ -140,3 +140,12 @@ function odddrupal_update_7109() {
 function odddrupal_update_7110() {
   variable_set('admin_menu_tweak_permissions', 0);
 }
+
+/**
+ * Enable the Field Word Boundary module.
+ */
+function odddrupal_update_7111() {
+  if (!module_exists('field_word_boundary')) {
+    module_enable(array('field_word_boundary'));
+  }
+}
