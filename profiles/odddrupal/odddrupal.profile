@@ -198,6 +198,20 @@ function odddrupal_install_configure_form_submit($form, $form_state) {
   );
   user_save(NULL, $user);
   
+  // Create the support account.
+  $user['name'] = 'support';
+  $user['mail'] = 'support@oddhill.se';
+  $user['pass'] = 'karljohan12';
+  $user['timezone'] = $form_state['values']['date_default_timezone'];
+  $user['language'] = $_GET['locale'];
+  $user['init'] = $form_state['values']['site_mail'];
+  $user['status'] = 1;
+  $user['roles'] = array(
+    2 => TRUE,
+    $editor_role->rid => $editor_role->rid
+  );
+  user_save(NULL, $user);
+  
   // Disable the overlay for user 1, and set the language to english.
   $user = user_load(1);
   $user->language = 'en';
