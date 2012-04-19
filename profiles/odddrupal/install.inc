@@ -348,7 +348,6 @@ function odddrupal_set_variables() {
   variable_set('views_ui_show_preview_information', 0);
   variable_set('views_ui_show_sql_query', 0);
   variable_set('admin_menu_position_fixed', 1);
-  variable_set('admin_menu_tweak_permissions', 1);
   variable_set('tadaa_environment', 'development');
   variable_set('tadaa_environments', array(
     'development' => 'Development',

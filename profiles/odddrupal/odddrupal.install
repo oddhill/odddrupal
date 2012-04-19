@@ -133,3 +133,10 @@ function odddrupal_update_7109() {
     module_enable(array('ds_extras'));
   }
 }
+
+/**
+ * Disable the collapsed permission page.
+ */
+function odddrupal_update_7110() {
+  variable_set('admin_menu_tweak_permissions', 0);
+}
