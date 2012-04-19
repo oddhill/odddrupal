@@ -296,8 +296,10 @@ class EntityReference_SelectionHandler_Generic_user extends EntityReference_Sele
       // match the anonymous user, that doesn't actually have a name in the
       // database.
       $conditions = &$query->conditions();
-      foreach ($conditions as $key => $condition) {
-        if ($condition['field'] == 'users.name') {
+      // Make sure to only iterate once on every condition.
+      foreach (array_keys($conditions) as $key) {
+        $condition = &$conditions[$key];
+        if (is_array($condition) && is_string($condition['field']) && $condition['field'] == 'users.name') {
           // Remove the condition.
           unset($conditions[$key]);
 
@@ -353,8 +355,10 @@ class EntityReference_SelectionHandler_Generic_comment extends EntityReference_S
     // in the database. We have to alter the query ourself to go fetch the
     // bundle.
     $conditions = &$query->conditions();
-    foreach ($conditions as $id => &$condition) {
-      if (is_array($condition) && $condition['field'] == 'node_type') {
+    // Make sure to only iterate once on every condition.
+    foreach (array_keys($conditions) as $key) {
+      $condition = &$conditions[$key];
+      if (is_array($condition) && is_string($condition['field']) && in_array($condition['field'], array('node_type', 'node.node_type'))) {
         $condition['field'] = $node_alias . '.type';
         foreach ($condition['value'] as &$value) {
           if (substr($value, 0, 13) == 'comment_node_') {
@@ -420,8 +424,10 @@ class EntityReference_SelectionHandler_Generic_taxonomy_term extends EntityRefer
     // column in the database. We have to alter the query ourself to go fetch
     // the bundle.
     $conditions = &$query->conditions();
-    foreach ($conditions as $id => &$condition) {
-      if (is_array($condition) && $condition['field'] == 'vocabulary_machine_name') {
+    // Make sure to only iterate once on every condition.
+    foreach (array_keys($conditions) as $key) {
+      $condition = &$conditions[$key];
+      if (is_array($condition) && is_string($condition['field']) && in_array($condition['field'], array('vocabulary_machine_name', 'taxonomy_term.vocabulary_machine_name'))) {
         $condition['field'] = $vocabulary_alias . '.machine_name';
         break;
       }
