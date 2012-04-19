@@ -43,7 +43,6 @@ dependencies[] = ds_extras
 dependencies[] = entity
 dependencies[] = entityreference
 dependencies[] = extlink
-dependencies[] = fancybox
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = field_word_boundary
