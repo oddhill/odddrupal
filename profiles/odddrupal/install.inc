@@ -370,6 +370,8 @@ function odddrupal_set_variables() {
     'jquery_update_compression_type' => 'none',
     'preprocess_css' => 0,
     'preprocess_js' => 0,
+    'reroute_email_enable' => 1,
+    'reroute_email_enable_message' => 1,
   ));
   variable_set('tadaa_staging_modules', array(
     'context_ui' => 1,
@@ -387,6 +389,8 @@ function odddrupal_set_variables() {
     'jquery_update_compression_type' => 'min',
     'preprocess_css' => 1,
     'preprocess_js' => 1,
+    'reroute_email_enable' => 1,
+    'reroute_email_enable_message' => 0,
   ));
   variable_set('tadaa_production_modules', array(
     'context_ui' => 0,
@@ -404,6 +408,8 @@ function odddrupal_set_variables() {
     'jquery_update_compression_type' => 'min',
     'preprocess_css' => 1,
     'preprocess_js' => 1,
+    'reroute_email_enable' => 0,
+    'reroute_email_enable_message' => 0,
   ));
   variable_set('block_cache', 0);
   variable_set('cache', 0);
@@ -411,5 +417,5 @@ function odddrupal_set_variables() {
   variable_set('preprocess_css', 0);
   variable_set('preprocess_js', 0);
   variable_set('reroute_email_enable', 1);
-  variable_set('reroute_email_enable_message', 0);
+  variable_set('reroute_email_enable_message', 1);
 }
