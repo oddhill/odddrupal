@@ -33,6 +33,9 @@ function odddrupal_install() {
   
   // Delete the Webform content type.
   node_type_delete('webform');
+  
+  // Delete log messages that was created during the installation.
+  db_delete('watchdog')->execute();
 }
 
 /**
