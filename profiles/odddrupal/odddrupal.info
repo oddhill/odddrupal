@@ -51,7 +51,6 @@ dependencies[] = logintoboggan
 dependencies[] = mailsystem
 dependencies[] = mimemail
 dependencies[] = module_filter
-dependencies[] = node_reference
 dependencies[] = pathauto
 dependencies[] = rabbit_hole
 dependencies[] = redirect
