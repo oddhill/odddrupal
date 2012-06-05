@@ -411,4 +411,15 @@ function odddrupal_set_variables() {
   variable_set('preprocess_js', 0);
   variable_set('reroute_email_enable', 1);
   variable_set('reroute_email_enable_message', 1);
+  variable_set('blockify_blocks', array(
+    'blockify-logo' => 'blockify-logo',
+    'blockify-site-name' => 'blockify-site-name',
+    'blockify-site-slogan' => 'blockify-site-slogan',
+    'blockify-page-title' => 'blockify-page-title',
+    'blockify-breadcrumb' => 'blockify-breadcrumb',
+    'blockify-tab' => 'blockify-tab',
+    'blockify-messages' => 'blockify-messages',
+    'blockify-actions' => 'blockify-actions',
+    'blockify-feed-icons' => 'blockify-feed-icons',
+  ));
 }
