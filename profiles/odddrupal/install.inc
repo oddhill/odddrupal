@@ -422,4 +422,5 @@ function odddrupal_set_variables() {
     'blockify-actions' => 'blockify-actions',
     'blockify-feed-icons' => 'blockify-feed-icons',
   ));
+  variable_set('features_tools_disable_features_page_js', 1);
 }
