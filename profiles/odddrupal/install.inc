@@ -255,11 +255,19 @@ function odddrupal_roles() {
   $editor_role->name = 'editor';
   user_role_save($editor_role);
 
-   // Access content for anonomyous and authenticated.
-  user_role_grant_permissions(1, array('access content'));
-  user_role_grant_permissions(2, array('access content'));
+  // Permissions for the anonymous role.
+  user_role_grant_permissions(1, array(
+    'access content',
+    'access devel information',
+  ));
 
-  // Permissions for the editor.
+  // Permissions for the authenticated role.
+  user_role_grant_permissions(1, array(
+    'access content',
+    'access devel information',
+  ));
+
+  // Permissions for the editor role.
   user_role_grant_permissions($editor_role->rid, array(
     'access contextual links',
     'access overlay',
