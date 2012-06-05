@@ -262,7 +262,7 @@ function odddrupal_roles() {
   ));
 
   // Permissions for the authenticated role.
-  user_role_grant_permissions(1, array(
+  user_role_grant_permissions(2, array(
     'access content',
     'access devel information',
   ));
@@ -417,7 +417,7 @@ function odddrupal_set_variables() {
     'blockify-site-slogan' => 'blockify-site-slogan',
     'blockify-page-title' => 'blockify-page-title',
     'blockify-breadcrumb' => 'blockify-breadcrumb',
-    'blockify-tab' => 'blockify-tab',
+    'blockify-tabs' => 'blockify-tabs',
     'blockify-messages' => 'blockify-messages',
     'blockify-actions' => 'blockify-actions',
     'blockify-feed-icons' => 'blockify-feed-icons',
