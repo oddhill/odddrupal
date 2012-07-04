@@ -230,7 +230,7 @@ function tadaa_environment_status_form_submit($form, &$form_state) {
   $batch = array(
     'title' => t('Switching to %environment', array('%environment' => $environments[$form_state['values']['environment']])),
     'operations' => $operations,
-    'finished' => 'finished_test',
+    'finished' => 'tadaa_batch_finished',
   );
   batch_set($batch);
 }

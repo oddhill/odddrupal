@@ -342,10 +342,11 @@ function tadaa_batch_set_variables($variables, &$context) {
  * Batch callback when switching environment.
  *
  * This is the last step, and will simply update the current environment
- * variable.
+ * variable, and clear the cache.
  */
 function tadaa_batch_finish($new_environment, &$context) {
   variable_set('tadaa_environment', $new_environment);
+  cache_clear_all();
 }
 
 /**
@@ -354,7 +355,7 @@ function tadaa_batch_finish($new_environment, &$context) {
  * This will check the result, and print messages to the user so that he will
  * know exactly what has been changed.
  */
-function finished_test($success, $results, $operations) {
+function tadaa_batch_finished($success, $results, $operations) {
   if ($success) {
     // Nothing has changed.
     if (empty($results)) {
@@ -363,14 +364,14 @@ function finished_test($success, $results, $operations) {
   
     // At least one module has been disabled.
     if (!empty($results['disabled'])) {
-      drupal_set_message(t('The following modules has been disabled: !modules', array('!modules' => '<br />' . implode('<br />', $results['disabled']))));
+      drupal_set_message(t('The following modules have been disabled: !modules', array('!modules' => '<br />' . implode('<br />', $results['disabled']))));
     }
 
     // At least one module has tried to be enabled.
     if (!empty($results['enabled'])) {
       // At least one module has been successfully enabled.
       if (!empty($results['enabled']['successfully'])) {
-        drupal_set_message(t('The following modules has been enabled: !modules', array('!modules' => '<br />' . implode('<br />', $results['enabled']['successfully']))));
+        drupal_set_message(t('The following modules have been enabled: !modules', array('!modules' => '<br />' . implode('<br />', $results['enabled']['successfully']))));
       }
       // At least one module couldn't be enabled.
       if (!empty($results['enabled']['failed'])) {
