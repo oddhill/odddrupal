@@ -168,10 +168,12 @@ function odddrupal_update_7112() {
  * Allow anonymous and authenticated users to access devel information.
  */
 function odddrupal_update_7113() {
-  user_role_grant_permissions(1, array(
-    'access devel information',
-  ));
-  user_role_grant_permissions(2, array(
-    'access devel information',
-  ));
+  if (module_exists('devel')) {
+    user_role_grant_permissions(1, array(
+      'access devel information',
+    ));
+    user_role_grant_permissions(2, array(
+      'access devel information',
+    ));
+  }
 }
