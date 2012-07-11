@@ -358,6 +358,8 @@ function odddrupal_set_variables() {
   variable_set('tadaa_development_variables', array(
     'block_cache' => 0,
     'cache' => 0,
+    'dblog_row_limit' => '100',
+    'error_level' => '2',
     'jquery_update_compression_type' => 'none',
     'preprocess_css' => 0,
     'preprocess_js' => 0,
@@ -378,6 +380,8 @@ function odddrupal_set_variables() {
   variable_set('tadaa_staging_variables', array(
     'block_cache' => 1,
     'cache' => 1,
+    'dblog_row_limit' => '100',
+    'error_level' => '2',
     'jquery_update_compression_type' => 'min',
     'preprocess_css' => 1,
     'preprocess_js' => 1,
@@ -398,6 +402,8 @@ function odddrupal_set_variables() {
   variable_set('tadaa_production_variables', array(
     'block_cache' => 1,
     'cache' => 1,
+    'dblog_row_limit' => '0',
+    'error_level' => '0',
     'jquery_update_compression_type' => 'min',
     'preprocess_css' => 1,
     'preprocess_js' => 1,
