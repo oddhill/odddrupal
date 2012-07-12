@@ -20,6 +20,10 @@ function field_word_boundary_field_formatter_info_alter(&$info) {
 function field_word_boundary_field_formatter_settings_form_alter(&$settings_form, $context) {
   $display = $context['instance']['display'][$context['view_mode']];
   $settings = $display['settings'];
+  
+  // Normalize the settings.
+  $settings['word_boundary'] = isset($settings['word_boundary']) ? $settings['word_boundary'] : FALSE;
+  $settings['ellipsis'] = isset($settings['ellipsis']) ? $settings['ellipsis'] : FALSE;
 
   if (in_array($display['type'], array('text_trimmed', 'text_summary_or_trimmed'))) {
     $settings_form['word_boundary'] = array(
@@ -44,6 +48,10 @@ function field_word_boundary_field_formatter_settings_form_alter(&$settings_form
 function field_word_boundary_field_formatter_settings_summary_alter(&$summary, $context) {
   $display = $context['instance']['display'][$context['view_mode']];
   $settings = $display['settings'];
+  
+  // Normalize the settings.
+  $settings['word_boundary'] = isset($settings['word_boundary']) ? $settings['word_boundary'] : FALSE;
+  $settings['ellipsis'] = isset($settings['ellipsis']) ? $settings['ellipsis'] : FALSE;
 
   if (in_array($display['type'], array('text_trimmed', 'text_summary_or_trimmed'))) {
     $summary .= '<br />' . t('Word boundary') . ': ' . ($settings['word_boundary'] ? t('Yes') : t('No'));
@@ -61,8 +69,12 @@ function field_word_boundary_field_attach_view_alter(&$output, $context) {
     if (in_array($output[$field_name]['#formatter'], array('text_trimmed', 'text_summary_or_trimmed'))) {
       $element = &$output[$field_name];
       $instance = field_info_instance($element['#entity_type'], $field_name, $element['#bundle']);
-      $display = $instance['display'][$context['view_mode']];
+      $display = isset($instance['display'][$context['view_mode']]) ? $instance['display'][$context['view_mode']] : $instance['display']['default'];
       $settings = $display['settings'];
+      
+      // Normalize the settings.
+      $settings['word_boundary'] = isset($settings['word_boundary']) ? $settings['word_boundary'] : FALSE;
+      $settings['ellipsis'] = isset($settings['ellipsis']) ? $settings['ellipsis'] : FALSE;
 
       // If the word boundary option isn't selected for this field, we shouldn't
       // do anything. Continue to the next field.
