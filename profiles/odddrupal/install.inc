@@ -351,6 +351,7 @@ function odddrupal_set_variables() {
     'help' => 1,
     'reroute_email' => 1,
     'rules_admin' => 1,
+    'speedy' => 0,
     'googleanalytics' => 0,
     'themekey_ui' => 1,
     'views_ui' => 1,
@@ -373,6 +374,7 @@ function odddrupal_set_variables() {
     'help' => 0,
     'reroute_email' => 1,
     'rules_admin' => 1,
+    'speedy' => 1,
     'googleanalytics' => 0,
     'themekey_ui' => 1,
     'views_ui' => 1,
@@ -387,6 +389,7 @@ function odddrupal_set_variables() {
     'preprocess_js' => 1,
     'reroute_email_enable' => 1,
     'reroute_email_enable_message' => 0,
+    'speedy_js_production' => 1,
   ));
   variable_set('tadaa_production_modules', array(
     'context_ui' => 0,
@@ -395,6 +398,7 @@ function odddrupal_set_variables() {
     'help' => 0,
     'reroute_email' => 0,
     'rules_admin' => 0,
+    'speedy' => 1,
     'googleanalytics' => 1,
     'themekey_ui' => 0,
     'views_ui' => 0,
@@ -409,6 +413,7 @@ function odddrupal_set_variables() {
     'preprocess_js' => 1,
     'reroute_email_enable' => 0,
     'reroute_email_enable_message' => 0,
+    'speedy_js_production' => 1,
   ));
   variable_set('block_cache', 0);
   variable_set('cache', 0);
