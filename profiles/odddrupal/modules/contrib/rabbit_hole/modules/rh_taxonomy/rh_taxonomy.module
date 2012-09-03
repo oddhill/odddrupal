@@ -1,0 +1,121 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Rabbit Hole taxonomy terms module.
+ *
+ * This module will add the Rabbit Hole functionality to taxonomy terms.
+ */
+
+/**
+ * Implements hook_rabbit_hole().
+ */
+function rh_taxonomy_rabbit_hole() {
+  return array(
+    'rh_taxonomy' => array(
+      'entity type' => 'taxonomy_term',
+      'view path' => 'taxonomy/term/%/view',
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * This will add Rabbit Hole options to the vocabulary form. These settings will
+ * be used as default for every term of this vocabulary.
+ */
+function rh_taxonomy_form_taxonomy_form_vocabulary_alter(&$form, $form_state) {
+  if (!user_access('administer rh_taxonomy')) {
+    // The user doesn't have access.
+    return;
+  }
+
+  // Load the Rabbit Hole form.
+  $rabbit_hole_form = rabbit_hole_form('taxonomy_term', $form['#vocabulary']->machine_name);
+
+  // Add the Rabbit Hole form to the main form array.
+  $form += $rabbit_hole_form;
+  
+  // Add a custom submit function that allows our settings to get saved.
+  $form['#submit'][] = 'rh_taxonomy_form_vocabulary_submit';
+}
+
+/**
+ * Submit callback for the vocabulary form.
+ *
+ * This will set the value of the variables, and update the name of the
+ * variables if the machine name of the vocabulary has changed.
+ */
+function rh_taxonomy_form_vocabulary_submit($form, $form_state) {
+  $values = $form_state['values'];
+
+  // Set the values of the variables.
+  variable_set('rh_taxonomy_term_action_' . $values['machine_name'], $values['rh_taxonomy_term_action']);
+  variable_set('rh_taxonomy_term_redirect_' . $values['machine_name'], $values['rh_taxonomy_term_redirect']);
+  variable_set('rh_taxonomy_term_redirect_response_' . $values['machine_name'], $values['rh_taxonomy_term_redirect_response']);
+  
+  // Delete old variables if the machine name has changed.
+  if ($values['machine_name'] != $values['old_machine_name']) {
+    rabbit_hole_delete_variables('taxonomy_term', $values['old_machine_name']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * This will add Rabbit Hole options to the taxonomy term form. The user will
+ * be able to override the default Rabbit Hole options.
+ */
+function rh_taxonomy_form_taxonomy_form_term_alter(&$form, $form_state) {
+  if (!user_access('administer rh_taxonomy')) {
+    // The user doesn't have access.
+    return;
+  }
+
+  // Load the Rabbit Hole form.
+  $rabbit_hole_form = rabbit_hole_form('taxonomy_term', $form['#bundle'], (object) $form['#term']);
+
+  // Add the Rabbit Hole form to the main form array.
+  $form += $rabbit_hole_form;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function rh_taxonomy_menu_alter(&$items) {
+  // Alter the page callback for the regular taxonomy term page. This is done,
+  // because there isn't an appropriate hook that lets us know when a term is
+  // being viewed.
+  $items['taxonomy/term/%taxonomy_term']['page arguments'][] = $items['taxonomy/term/%taxonomy_term']['page callback'];
+  $items['taxonomy/term/%taxonomy_term']['page callback'] = 'rh_taxonomy_term_page';
+}
+
+/**
+ * Page callback for the taxonomy term page at taxonomy/term/123.
+ *
+ * This callback will check the Rabbit Hole behavior. If there is an action set,
+ * it will be executed rather than displaying the term. If there is no action
+ * set, the default page callback will get executed.
+ */
+function rh_taxonomy_term_page($term, $callback) {
+  if (user_access('bypass rh_taxonomy')) {
+    // The node is not being viewed at it's own page, or the user is able to
+    // bypass Rabbit Hole, exit early.
+    return $callback($term);
+  }
+
+  if (!rabbit_hole_execute('taxonomy_term', $term)) {
+    // There wasn't anything that Rabbit Hole had to do, display the regular
+    // taxonomy term page.
+    return $callback($term);
+  }
+}
+
+/**
+ * Implements hook_taxonomy_vocabulary_delete().
+ */
+function rh_taxonomy_taxonomy_vocabulary_delete($vocabulary) {
+  // Delete variables connected to this vocabulary.
+  rabbit_hole_delete_variables('taxonomy_term', $vocabulary->machine_name);
+}

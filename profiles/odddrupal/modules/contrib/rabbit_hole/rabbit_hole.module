@@ -4,8 +4,9 @@
  * @file
  * Main module file for Rabbit Hole.
  *
- * This is a module that will prevent users from viewing the full node. This is
- * configurable per content type or node.
+ * This is a module that will prevent users from viewing an entity page. This
+ * module won't handle any behavior by itself, but will add the base
+ * functionality required by other modules.
  */
 
 define('RABBIT_HOLE_USE_DEFAULT', -1);
@@ -13,120 +14,59 @@ define('RABBIT_HOLE_DISPLAY_CONTENT', 0);
 define('RABBIT_HOLE_ACCESS_DENIED', 1);
 define('RABBIT_HOLE_PAGE_NOT_FOUND', 2);
 define('RABBIT_HOLE_PAGE_REDIRECT', 3);
+define('RABBIT_HOLE_PAGE_REDIRECT_DEFAULT', '');
 define('RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT', 301);
 
 /**
  * Implements hook_permission().
  */
 function rabbit_hole_permission() {
-  return array(
-    'administer rabbit hole' => array(
-      'title' => t('Administer Rabbit Hole'),
-      'description' => t('Configure Rabbit Hole per content type and node.'),
-    ),
-    'bypass rabbit hole' => array(
-      'title' => t('Bypass Rabbit Hole'),
-      'description' => t('Ignore the Rabbit Hole configuration and view any node in a regular way.'),
-    ),
-  );
+  $permissions = array();
+  
+  // Load information from any module that implements hook_rabbit_hole().
+  $modules = module_invoke_all('rabbit_hole');
+  foreach ($modules as $module => $info) {
+    // Get information about the entity.
+    $entity_info = entity_get_info($info['entity type']);
+    $entity_label = strtolower(isset($entity_info['plural label']) ? $entity_info['plural label'] : $entity_info['label']);
+    
+    // Add an administer permission.
+    $permissions['administer ' . $module] = array(
+      'title' => t('Administer Rabbit Hole settings for @entity_type', array('@entity_type' => $entity_label)),
+    );
+    
+    // Add a bypass permission.
+    $permissions['bypass ' . $module] = array(
+      'title' => t('Bypass Rabbit Hole action for @entity_type', array('@entity_type' => $entity_label)),
+      'description' => t('Allows user to bypass the action that has been configured for @entity_type.', array('@entity_type' => $entity_label)),
+      'restrict access' => TRUE,
+    );
+  }
+
+  return $permissions;
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Form structure for the Rabbit Hole configuration.
  *
- * This will add Rabbit Hole options to the node type form. These settings will
- * be used as default for every node of this node type.
- */
-function rabbit_hole_form_node_type_form_alter(&$form, $form_state) {
-  if (!user_access('administer rabbit hole')) {
-    // The user doesn't have access.
-    return;
-  }
-
-  if (isset($form['type'])) {
-    $form['rabbit_hole'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Rabbit Hole settings'),
-      '#collapsed' => TRUE,
-      '#collapsible' => TRUE,
-      '#group' => 'additional_settings',
-      '#attributes' => array('class' => array('rabbit-hole-settings-form')),
-      '#attached' => array(
-        'js' => array(
-          drupal_get_path('module', 'rabbit_hole') . '/rabbit-hole.js',
-          array('data' => array('rabbitHole' => array('redirectValue' => RABBIT_HOLE_PAGE_REDIRECT)), 'type' => 'setting'),
-        ),
-      ),
-    );
-    $form['rabbit_hole']['rabbit_hole_action'] = array(
-      '#type' => 'radios',
-      '#title' => t('Behavior'),
-      '#options' => array(
-        RABBIT_HOLE_DISPLAY_CONTENT => t('Display the content (regular behavior)'),
-        RABBIT_HOLE_ACCESS_DENIED => t('Access denied'),
-        RABBIT_HOLE_PAGE_NOT_FOUND => t('Page not found'),
-        RABBIT_HOLE_PAGE_REDIRECT => t('Page redirect'),
-      ),
-      '#default_value' => variable_get('rabbit_hole_action_' . $form['#node_type']->type, RABBIT_HOLE_DISPLAY_CONTENT),
-      '#description' => t('What should happen when someone tries to visit the node page?'),
-    );
-    $form['rabbit_hole']['redirect'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Redirect settings'),
-      '#attributes' => array('class' => array('rabbit-hole-redirect-options')),
-    );
-    $form['rabbit_hole']['redirect']['rabbit_hole_redirect'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Redirect path'),
-      '#size' => 40,
-      '#default_value' => variable_get('rabbit_hole_redirect_' . $form['#node_type']->type, ''),
-      '#description' => t('The relative path to were the user should be redirected. Leave this empty, or use %front to redirect to the front page. You may enter tokens in this field.', array('%front' => '<front>')),
-    );
-    // Display a list of tokens if the Token module is enabled.
-    if (module_exists('token')) {
-      $form['rabbit_hole']['redirect']['token_info'] = array(
-        '#theme' => 'token_tree',
-        '#token_types' => array('node'),
-      );
-    }
-    $form['rabbit_hole']['redirect']['rabbit_hole_redirect_response'] = array(
-      '#type' => 'select',
-      '#title' => t('Response code'),
-      '#options' => array(
-        301 => t('301 (Moved Permanently)'),
-        302 => t('302 (Found)'),
-        303 => t('303 (See other)'),
-        304 => t('304 (Not modified)'),
-        305 => t('305 (Use proxy)'),
-        307 => t('307 (Temporary redirect)'),
-      ),
-      '#default_value' => variable_get('rabbit_hole_redirect_response_' . $form['#node_type']->type, RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT),
-      '#description' => t('The response code that should be sent to the users browser. Follow !link for more information on response codes.', array('!link' => l(t('this link'), 'http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_goto/7'))),
-    );
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
+ * This should be used by other modules that wish to implement the Rabbit Hole
+ * configurations in any form.
  *
- * This will add Rabbit Hole options to the node form. The user will be able to
- * override the default Rabbit Hole options.
+ * @param $entity_type
+ *  The entity type that we're adding the form for, e.g. 'node'.
+ * @param $bundle
+ *  The bundle that we're adding the form to, e.g. the content type for nodes.
+ *  This might be an empty string if we're creating a new bundle.
+ * @param $entity
+ *  The entity that we're adding the form to, e.g. a node. This might be NULL if
+ *  we're about to create the entity.
+ *
+ * @return
+ *  A renderable form array.
  */
-function rabbit_hole_form_node_form_alter(&$form, $form_state) {
-  if (!user_access('administer rabbit hole')) {
-    // The user doesn't have access.
-    return;
-  }
-
-  $node = $form['#node'];
-
-  $form['rabbit_hole'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Rabbit Hole settings'),
-    '#collapsed' => TRUE,
-    '#collapsible' => TRUE,
-    '#group' => 'additional_settings',
-    '#attributes' => array('class' => array('rabbit-hole-settings-form')),
+function rabbit_hole_form($entity_type, $bundle, $entity = NULL) {
+  // Attach the basic javascript.
+  $form = array(
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'rabbit_hole') . '/rabbit-hole.js',
@@ -134,39 +74,72 @@ function rabbit_hole_form_node_form_alter(&$form, $form_state) {
       ),
     ),
   );
-  $form['rabbit_hole']['rabbit_hole_action'] = array(
+
+  // Wrap everything in a fieldset.
+  $form['rabbit_hole'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Rabbit Hole settings'),
+    '#collapsed' => FALSE,
+    '#collapsible' => TRUE,
+    '#group' => 'additional_settings',
+    '#attributes' => array('class' => array('rabbit-hole-settings-form')),
+  );
+  
+  // Build the options for the action setting.
+  $action_options = array(
+    RABBIT_HOLE_DISPLAY_CONTENT => t('Display the page'),
+    RABBIT_HOLE_ACCESS_DENIED => t('Access denied'),
+    RABBIT_HOLE_PAGE_NOT_FOUND => t('Page not found'),
+    RABBIT_HOLE_PAGE_REDIRECT => t('Page redirect'),
+  );
+  if (isset($entity)) {
+    // Add an option if we are editing an entity. This will allow us to use the
+    // configuration for the bundle.
+    $action_options = array(
+      RABBIT_HOLE_USE_DEFAULT => t('Bundle default'),
+    ) + $action_options;
+  }
+
+  // Add action setting.
+  $action_setting_name = isset($entity) ? 'rh_action' : 'rh_' . $entity_type . '_action';
+  $form['rabbit_hole'][$action_setting_name] = array(
     '#type' => 'radios',
     '#title' => t('Behavior'),
-    '#options' => array(
-      RABBIT_HOLE_USE_DEFAULT => t('Content type default'),
-      RABBIT_HOLE_DISPLAY_CONTENT => t('Display the content (regular behavior)'),
-      RABBIT_HOLE_ACCESS_DENIED => t('Access denied'),
-      RABBIT_HOLE_PAGE_NOT_FOUND => t('Page not found'),
-      RABBIT_HOLE_PAGE_REDIRECT => t('Page redirect'),
-    ),
-    '#default_value' => isset($node->rabbit_hole_action) ? $node->rabbit_hole_action : RABBIT_HOLE_USE_DEFAULT,
-    '#description' => t('What should happen when someone tries to visit the node page?'),
+    '#options' => $action_options,
+    '#default_value' => isset($entity) ? rabbit_hole_get_action_entity($entity_type, $entity) : (!empty($bundle) ? rabbit_hole_get_action_bundle($entity_type, $bundle) : RABBIT_HOLE_DISPLAY_CONTENT),
+    '#description' => t('What should happen when someone tries to visit the entity page?'),
+    '#attributes' => array('class' => array('rabbit-hole-action-setting')),
   );
+
+  // Wrap the redirect settings in a fieldset.
   $form['rabbit_hole']['redirect'] = array(
     '#type' => 'fieldset',
     '#title' => t('Redirect settings'),
     '#attributes' => array('class' => array('rabbit-hole-redirect-options')),
   );
-  $form['rabbit_hole']['redirect']['rabbit_hole_redirect'] = array(
+  
+  // Add the redirect path setting.
+  $redirect_setting_name = isset($entity) ? 'rh_redirect' : 'rh_' . $entity_type . '_redirect';
+  $form['rabbit_hole']['redirect'][$redirect_setting_name] = array(
     '#type' => 'textfield',
     '#title' => t('Redirect path'),
     '#size' => 40,
-    '#default_value' => isset($node->rabbit_hole_redirect) ? $node->rabbit_hole_redirect : variable_get('rabbit_hole_redirect_' . $node->type, ''),
-    '#description' => t('The relative path to were the user should be redirected. Leave this empty, or use %front to redirect to the front page.', array('%front' => '<front>')),
+    '#default_value' => isset($entity) ? rabbit_hole_get_redirect_entity($entity_type, $entity) : (!empty($bundle) ? rabbit_hole_get_redirect_bundle($entity_type, $bundle) : RABBIT_HOLE_PAGE_REDIRECT_DEFAULT),
+    '#description' => t('The relative path to were the user should be redirected. Leave this empty, or use %front to redirect to the front page. You may enter tokens in this field.', array('%front' => '<front>')),
+    '#attributes' => array('class' => array('rabbit-hole-redirect-setting')),
   );
   // Display a list of tokens if the Token module is enabled.
   if (module_exists('token')) {
+    $entity_info = entity_get_info($entity_type);
     $form['rabbit_hole']['redirect']['token_info'] = array(
       '#theme' => 'token_tree',
-      '#token_types' => array('node'),
+      '#token_types' => array($entity_info['token type']),
     );
   }
-  $form['rabbit_hole']['redirect']['rabbit_hole_redirect_response'] = array(
+
+  // Add the redirect respons setting.
+  $redirect_response_setting_name = isset($entity) ? 'rh_redirect_response' : 'rh_' . $entity_type . '_redirect_response';
+  $form['rabbit_hole']['redirect'][$redirect_response_setting_name] = array(
     '#type' => 'select',
     '#title' => t('Response code'),
     '#options' => array(
@@ -177,65 +150,50 @@ function rabbit_hole_form_node_form_alter(&$form, $form_state) {
       305 => t('305 (Use proxy)'),
       307 => t('307 (Temporary redirect)'),
     ),
-    '#default_value' => isset($node->rabbit_hole_redirect_response) ? $node->rabbit_hole_redirect_response : variable_get('rabbit_hole_redirect_response_' . $node->type, RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT),
-    '#description' => t('The response code that should be sent to the users browser, e.g. 301. Follow !link for more information on response codes.', array('!link' => l(t('this link'), 'http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_goto/7'))),
+    '#default_value' => isset($entity) ? rabbit_hole_get_redirect_response_entity($entity_type, $entity) : (!empty($bundle) ? rabbit_hole_get_redirect_response_bundle($entity_type, $bundle) : RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT),
+    '#description' => t('The response code that should be sent to the users browser. Follow !link for more information on response codes.', array('!link' => l(t('this link'), 'http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_goto/7'))),
+    '#attributes' => array('class' => array('rabbit-hole-redirect-response-setting')),
   );
 
-  // Add a custom submit function. This is used to disable the redirect to
-  // node/123 if Rabbit Hole is enabled.
-  $form['actions']['submit']['#submit'][] = 'rabbit_hole_node_form_submit';
+  return $form;
 }
 
 /**
- * Custom submit function for the node form.
+ * Determines the action that should be executed.
  *
- * This will fire after the regular submit function, and it's purpose is to make
- * sure that the user doesn't get redirected to node/123 after saving the node,
- * if any Rabbit Hole action is enabled. This works by redirecting the user to
- * node/123/edit, if a destination parameter hasn't been set.
+ * This will actually execute the action, and should be used when the entity
+ * is being viewed.
  *
- * @see node_form_submit().
+ * @param $entity_type
+ *  The entity type that's being viewed, e.g. 'node'.
+ * @param $entity
+ *  The entity that is being viewed.
+ *
+ * @return
+ *  This will only return FALSE, which means that nothing was done. If something
+ *  was done, this function will redirect the user immediately.
  */
-function rabbit_hole_node_form_submit($form, &$form_state) {
-  // Get the action. Either the one specified for this node, or the default
-  // value for the content type.
-  $action = $form_state['values']['rabbit_hole_action'] != RABBIT_HOLE_USE_DEFAULT ? $form_state['values']['rabbit_hole_action'] : variable_get('rabbit_hole_action_' . $form_state['values']['type']);
-
-  // If the action says anything else than to display the content, make sure
-  // the user lands on the edit page. For some reason, setting the redirect to
-  // FALSE doesn't work. The user won't be able to edit the node straight away
-  // after the page has reloaded. But redirecting to /edit will work.
-  if ($action != RABBIT_HOLE_DISPLAY_CONTENT) {
-    $form_state['redirect'] = 'node/' . $form_state['values']['nid'] . '/edit';
-  }
-}
-
-/**
- * Implements hook_node_view().
- */
-function rabbit_hole_node_view($node, $view_mode, $langcode) {
-  if (($view_mode != 'full' || !preg_match('/node\/' . $node->nid . '(\/view|)$/', current_path())) || user_access('bypass rabbit hole')) {
-    // The node is not being viewed at it's own page, or the user is able to
-    // bypass Rabbit Hole, exit early.
-    return;
-  }
-
-  // Get the action. Use the one specified for this node, or fallback to the
-  // default value for the content type.
-  $action = isset($node->rabbit_hole_action) ? ($node->rabbit_hole_action != RABBIT_HOLE_USE_DEFAULT ? $node->rabbit_hole_action : variable_get('rabbit_hole_action_' . $node->type)) : variable_get('rabbit_hole_action_' . $node->type);
+function rabbit_hole_execute($entity_type, $entity) {
+  // Get the action.
+  $action = rabbit_hole_get_action($entity_type, $entity);
 
   // If we should perform a redirect, we will also get the path and response.
   if ($action == RABBIT_HOLE_PAGE_REDIRECT) {
-    if (isset($node->rabbit_hole_action) && $node->rabbit_hole_action != RABBIT_HOLE_USE_DEFAULT) {
+    if (rabbit_hole_get_action_entity($entity_type, $entity) != RABBIT_HOLE_USE_DEFAULT) {
       // Get the redirect path and response from the node.
-      $redirect_path = token_replace($node->rabbit_hole_redirect, array('node' => $node));
-      $redirect_response = $node->rabbit_hole_redirect_response;
+      $redirect_path = rabbit_hole_get_redirect_entity($entity_type, $entity);
+      $redirect_response = rabbit_hole_get_redirect_response_entity($entity_type, $entity);
     }
     else {
       // Get the redirect path and response from the content type.
-      $redirect_path = token_replace(variable_get('rabbit_hole_redirect_' . $node->type, '<front>'), array('node' => $node));
-      $redirect_response = variable_get('rabbit_hole_redirect_response_' . $node->type, RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT);
+      $bundle = rabbit_hole_entity_get_bundle($entity_type, $entity);
+      $redirect_path = rabbit_hole_get_redirect_bundle($entity_type, $bundle);
+      $redirect_response = rabbit_hole_get_redirect_response_bundle($entity_type, $bundle);
     }
+    
+    // Replace any tokens with real values.
+    $entity_info = entity_get_info($entity_type);
+    $redirect_path = token_replace($redirect_path, array($entity_info['token type'] => $entity));
   }
 
   // Now, let's see what we should do.
@@ -253,18 +211,11 @@ function rabbit_hole_node_view($node, $view_mode, $langcode) {
     case RABBIT_HOLE_PAGE_REDIRECT:
       // Redirect the user to the specified path.
       drupal_goto($redirect_path, array(), $redirect_response);
+    
+    default:
+      // There's nothing to do.
+      return FALSE;
   }
-
-}
-
-/**
- * Implements hook_node_type_delete().
- */
-function rabbit_hole_node_type_delete($info) {
-  // Delete variables connected to this content type.
-  variable_del('rabbit_hole_action_' . $info->type);
-  variable_del('rabbit_hole_redirect_' . $info->type);
-  variable_del('rabbit_hole_redirect_response_' . $info->type);
 }
 
 /**
@@ -278,15 +229,24 @@ function rabbit_hole_menu_local_tasks_alter(&$data, $router_item, $root_path) {
     return;
   }
 
-  // Iterate through the primary tabs, and look for the View tab for nodes.
+  // Get the modules that implements hook_rabbit_hole().
+  $modules = module_invoke_all('rabbit_hole');
+
+  // Iterate through the primary tabs, and look for the View tab for any entity
+  // that is handled by Rabbit Hole.
   foreach ($primary['output'] as $delta => $element) {
-    if ($element['#link']['path'] == 'node/%/view') {
-      // Found the View tab, get the Rabbit Hole action for this node, and
-      // remove the tab if any Rabbit Hole action has been set.
-      $node = menu_get_object('node', 1, $router_item['tab_root_href']);
-      $action = isset($node->rabbit_hole_action) ? ($node->rabbit_hole_action != RABBIT_HOLE_USE_DEFAULT ? $node->rabbit_hole_action : variable_get('rabbit_hole_action_' . $node->type)) : variable_get('rabbit_hole_action_' . $node->type);
-        if ($action != RABBIT_HOLE_DISPLAY_CONTENT && !user_access('bypass rabbit hole')) {
-        unset($primary['output'][$delta]);
+    foreach ($modules as $module => $info) {
+      if ($element['#link']['path'] == $info['view path']) {
+        // Found the View tab, get the Rabbit Hole action for this entity, and
+        // remove the tab if any Rabbit Hole action has been set.
+        $entity_position = array_search('%', explode('/', $info['view path']));
+        $entity = menu_get_object($info['entity type'], $entity_position, $router_item['tab_root_href']);
+        if (isset($entity)) {
+          $bundle = rabbit_hole_entity_get_bundle($info['entity type'], $entity);
+          if (rabbit_hole_get_action($info['entity type'], $entity) != RABBIT_HOLE_DISPLAY_CONTENT && !user_access('bypass ' . $module)) {
+            unset($primary['output'][$delta]);
+          }
+        }
       }
     }
   }
@@ -297,33 +257,247 @@ function rabbit_hole_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 }
 
 /**
- * Implements template_preprocess_search_results().
+ * Determines the actual action for an entity.
  *
- * TODO: Alter the search results in another way. If there is another way.
+ * This will check the action for an entity, and if it's set to the bundle
+ * default, it will check the bundle action.
+ *
+ * @param $entity_type
+ *  The entity type that we're checking.
+ * @param $entity
+ *  The entity that we're checking.
+ *
+ * @return
+ *  The Rabbit Hole action that should be performed.
  */
-function rabbit_hole_preprocess_search_results(&$variables) {
-  $results = &$variables['results'];
+function rabbit_hole_get_action($entity_type, $entity) {
+  $bundle = rabbit_hole_entity_get_bundle($entity_type, $entity);
+  return isset($entity) && isset($entity->rh_action) ? ($entity->rh_action != RABBIT_HOLE_USE_DEFAULT ? $entity->rh_action : rabbit_hole_get_action_bundle($entity_type, $bundle)) : rabbit_hole_get_action_bundle($entity_type, $bundle);
+}
+
+/**
+ * Gets the action for a bundle.
+ *
+ * @param $entity_type
+ *  The entity type of the bundle.
+ * @param $bundle
+ *  The bundle that we're checking.
+ *
+ * @return
+ *  The Rabbit Hole action set for the bundle.
+ */
+function rabbit_hole_get_action_bundle($entity_type, $bundle) {
+  return variable_get('rh_' . $entity_type . '_action_' . $bundle, RABBIT_HOLE_DISPLAY_CONTENT);
+}
+
+/**
+ * Gets the redirect path for a bundle.
+ *
+ * @param $entity_type
+ *  The entity type of the bundle.
+ * @param $bundle
+ *  The bundle that we're checking.
+ *
+ * @return
+ *  The redirect path set for the bundle.
+ */
+function rabbit_hole_get_redirect_bundle($entity_type, $bundle) {
+  return variable_get('rh_' . $entity_type . '_redirect_' . $bundle, RABBIT_HOLE_PAGE_REDIRECT_DEFAULT);
+}
+
+/**
+ * Gets the redirect response for a bundle.
+ *
+ * @param $entity_type
+ *  The entity type of the bundle.
+ * @param $bundle
+ *  The bundle that we're checking.
+ *
+ * @return
+ *  The redirect response set for the bundle.
+ */
+function rabbit_hole_get_redirect_response_bundle($entity_type, $bundle) {
+  return variable_get('rh_' . $entity_type . '_redirect_response_' . $bundle, RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT);
+}
+
+/**
+ * Gets the action for an entity.
+ *
+ * @param $entity_type
+ *  The entity type of the entity.
+ * @param $entity
+ *  The entity that we're checking.
+ *
+ * @return
+ *  The Rabbit Hole action set for the entity.
+ */
+function rabbit_hole_get_action_entity($entity_type, $entity) {
+  return isset($entity->rh_action) ? $entity->rh_action : RABBIT_HOLE_USE_DEFAULT;
+}
+
+/**
+ * Gets the redirect path for an entity.
+ *
+ * @param $entity_type
+ *  The entity type of the bundle.
+ * @param $entity
+ *  The entity that we're checking.
+ *
+ * @return
+ *  The redirect path set for the entity.
+ */
+function rabbit_hole_get_redirect_entity($entity_type, $entity) {
+  return isset($entity->rh_redirect) ? $entity->rh_redirect : RABBIT_HOLE_PAGE_REDIRECT_DEFAULT;
+}
+
+/**
+ * Gets the redirect response for an entity.
+ *
+ * @param $entity_type
+ *  The entity type of the bundle.
+ * @param $entity
+ *  The entity that we're checking.
+ *
+ * @return
+ *  The redirect response set for the entity.
+ */
+function rabbit_hole_get_redirect_response_entity($entity_type, $entity) {
+  return isset($entity->rh_redirect_response) ? $entity->rh_redirect_response : RABBIT_HOLE_PAGE_REDIRECT_RESPONSE_DEFAULT;
+}
+
+/**
+ * Deletes variables associated with an entity type and bundle.
+ *
+ * This should be executed when a module in uninstalled or a bundle is deleted.
+ */
+function rabbit_hole_delete_variables($entity_type, $bundle) {
+  variable_del('rh_' . $entity_type . '_action_' . $bundle);
+  variable_del('rh_' . $entity_type . '_redirect_' . $bundle);
+  variable_del('rh_' . $entity_type . '_redirect_response_' . $bundle);
+}
+
+/**
+ * Gets the bundle of an entity.
+ *
+ * @param $entity_type
+ *  The entity type for the entity.
+ * @param $entity
+ *  The entity that we're checking.
+ *
+ * @return
+ *  The machine name for the bundle.
+ */
+function rabbit_hole_entity_get_bundle($entity_type, $entity) {
+  $entity_info = entity_get_info($entity_type);
   
-  // Iterate through the search results, and remove the nodes where Rabbit Hole
-  // is activated.
-  foreach ($results as $delta => $item) {
-    if (isset($item['node'])) {
-      $node = $item['node'];
-      $action = isset($node->rabbit_hole_action) ? ($node->rabbit_hole_action != RABBIT_HOLE_USE_DEFAULT ? $node->rabbit_hole_action : variable_get('rabbit_hole_action_' . $node->type)) : variable_get('rabbit_hole_action_' . $node->type);
-      if ($action != RABBIT_HOLE_DISPLAY_CONTENT) {
-        // This node shouldn't be displayed, remove it from the resuts.
-        unset($results[$delta]);
+  // Use the bundle key to get the bundle for this entity if the bundle key has
+  // been defined. If it hasn't, it means that this entity only provides one
+  // bundle, and that bundle will always have the same name as the entoty type.
+  // E.g, the user entity is built by one bundle, and that bundle is also called
+  // user.
+  //
+  // @see hook_entity_info().
+  return !empty($entity_info['entity keys']['bundle']) ? $entity->{$entity_info['entity keys']['bundle']} : $entity_type;
+}
+
+/**
+ * Implements hook_schema_alter().
+ */
+function rabbit_hole_schema_alter(&$schema) {
+  // Get the Rabbit Hole fields.
+  $fields = rabbit_hole_schema_fields();
+  
+  // Get the modules that are implementing hook_rabbit_hole(), and add the
+  // fields to the base table of that entity.
+  $modules = module_invoke_all('rabbit_hole');
+  foreach ($modules as $module => $info) {
+    $entity_info = entity_get_info($info['entity type']);
+    $schema[$entity_info['base table']]['fields'] += $fields;
+  }
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+function rabbit_hole_modules_installed($modules) {
+  foreach ($modules as $module) {
+    // If this module implements hook_rabbit_hole(), we should add the Rabbit
+    // Hole fields to the base table of the entity type that this module is
+    // altering.
+    $function = $module . '_rabbit_hole';
+    if (function_exists($function)) {
+      // Gather info about the module, entity and get the Rabbit Hole fields.
+      $rabbit_hole_info = $function();
+      $entity_info = entity_get_info($rabbit_hole_info[$module]['entity type']);
+      $fields = rabbit_hole_schema_fields();
+      
+      // Add each field to the base table for the entity.
+      foreach ($fields as $name => $spec) {
+        if (!db_field_exists($entity_info['base table'], $name)) {
+          db_add_field($entity_info['base table'], $name, $spec);
+        }
       }
     }
   }
+}
+
+/**
+ * Implements hook_modules_uninstalled().
+ */
+function rabbit_hole_modules_uninstalled($modules) {
+  foreach ($modules as $module) {
+    // If this module implements hook_rabbit_hole(), we should remove the Rabbit
+    // Hole fields from the base table of the entity type that this module is
+    // altering. We need to include the .module file manually, since the module
+    // hsa been uninstalled and therefore, isn't reachable the normal way.
+    require_once DRUPAL_ROOT . '/' . drupal_get_path('module', $module) . '/' . $module . '.module';
+    $function = $module . '_rabbit_hole';
+    if (function_exists($function)) {
+      // Gather info about the module, entity and get the Rabbit Hole fields.
+      $rabbit_hole_info = $function();
+      $entity_info = entity_get_info($rabbit_hole_info[$module]['entity type']);
+      $fields = rabbit_hole_schema_fields();
+      
+      // Remove each field from the base table for the entity.
+      foreach ($fields as $name => $spec) {
+        if (db_field_exists($entity_info['base table'], $name)) {
+          db_drop_field($entity_info['base table'], $name);
+        }
+      }
+      
+      // Delete any variables that is set the this entity.
+      foreach ($entity_info['bundles'] as $bundle => $info) {
+        rabbit_hole_delete_variables($rabbit_hole_info[$module]['entity type'], $bundle);
+      }
+    }
+  }
+}
+
+/**
+ * Helper function that defines the Rabbit Hole database fields.
+ *
+ * @return
+ *  An array with the field specifications, keyed by the field name.
+ */
+function rabbit_hole_schema_fields() {
+  $fields = array(
+    'rh_action' => array(
+      'description' => 'Specifies which action that Rabbit Hole should take.',
+      'type' => 'int',
+      'default' => NULL,
+    ),
+    'rh_redirect' => array(
+      'description' => 'The path to where the user should get redirected to.',
+      'type' => 'varchar',
+      'default' => NULL,
+      'length' => 255,
+    ),
+    'rh_redirect_response' => array(
+      'description' => 'Specifies the HTTP response code that should be used when perform a redirect.',
+      'type' => 'int',
+      'default' => NULL,
+    ),
+  );
   
-  // Reset the keys for the results.
-  $results = array_values($results);
-  
-  // Pass the variables through template_preprocess_search_results() once again.
-  // This is done because the Search module needs to process the new results
-  // array. This is not the ideal solution, since this could interfere with
-  // other modules also implementing template_preprocess_search_results().
-  $variables['theme_hook_suggestions'] = array();
-  template_preprocess_search_results($variables);
+  return $fields;
 }

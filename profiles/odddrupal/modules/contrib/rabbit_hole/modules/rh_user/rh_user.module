@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Rabbit Hole users module.
+ *
+ * This module will add the Rabbit Hole functionality to users.
+ */
+
+/**
+ * Implements hook_rabbit_hole().
+ */
+function rh_user_rabbit_hole() {
+  return array(
+    'rh_user' => array(
+      'entity type' => 'user',
+      'view path' => 'user/%/view',
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * This will add Rabbit Hole options to the account settings form. These
+ * settings will be used as default for every user.
+ */
+function rh_user_form_user_admin_settings_alter(&$form, $form_state) {
+  if (!user_access('administer rh_user')) {
+    // The user doesn't have access.
+    return;
+  }
+
+  // Load the Rabbit Hole form.
+  $rabbit_hole_form = rabbit_hole_form('user', 'user');
+
+  // Add the Rabbit Hole form to the main form array.
+  $form += $rabbit_hole_form;
+  
+  // Add a custom submit function that allows our settings to get saved.
+  $form['#submit'][] = 'rh_user_form_user_admin_settings_submit';
+}
+
+/**
+ * Submit callback for the account settings form.
+ *
+ * This will set the values of the variables. Drupal will save these settings by
+ * default, but the name of those variables won't match our naming conventions,
+ * so we'll have to delete those after our variables has been saved.
+ */
+function rh_user_form_user_admin_settings_submit($form, $form_state) {
+  $values = $form_state['values'];
+
+  // Set the values of the variables.
+  variable_set('rh_user_action_user', $values['rh_user_action']);
+  variable_set('rh_user_redirect_user', $values['rh_user_redirect']);
+  variable_set('rh_user_redirect_response_user', $values['rh_user_redirect_response']);
+  
+  // Delete the ones that are automatically saved by Drupal.
+  variable_del('rh_user_action');
+  variable_del('rh_user_redirect');
+  variable_del('rh_user_redirect_response');
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function rh_user_form_alter(&$form, &$form_state, $form_id) {
+  if (!user_access('administer rh_user') || !in_array($form_id, array('user_register_form', 'user_profile_form'))) {
+    // The user doesn't have access, or we're not on the user profile or
+    // register form.
+    return;
+  }
+
+  // Load the Rabbit Hole form.
+  $rabbit_hole_form = rabbit_hole_form('user', 'user', $form['#user']);
+
+  // Add the Rabbit Hole form to the main form array.
+  $form += $rabbit_hole_form;
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function rh_user_user_view($account, $view_mode, $langcode) {
+  if (($view_mode != 'full' || !preg_match('/user\/' . $account->uid . '(\/view|)$/', current_path())) || user_access('bypass rh_user')) {
+    // The user is not being viewed at it's own page, or the user is able to
+    // bypass Rabbit Hole, exit early.
+    return;
+  }
+
+  rabbit_hole_execute('user', $account);
+}
