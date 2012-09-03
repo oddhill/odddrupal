@@ -44,7 +44,7 @@ function hook_field_formatter_settings_form_alter(array &$settings_form, array $
  *
  * @see hook_field_formatter_settings_summary()
  */
-function hook_field_formatter_settings_summary_alter(&$sumary, array $context) {
+function hook_field_formatter_settings_summary_alter(&$summary, array $context) {
 
 }
 

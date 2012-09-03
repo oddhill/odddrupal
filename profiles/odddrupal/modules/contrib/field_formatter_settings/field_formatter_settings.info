@@ -4,9 +4,9 @@ core = 7.x
 dependencies[] = field_ui
 files[] = field_formatter_settings.module
 
-; Information added by drupal.org packaging script on 2010-12-03
-version = "7.x-1.0-beta1"
+; Information added by drupal.org packaging script on 2012-08-21
+version = "7.x-1.0"
 core = "7.x"
 project = "field_formatter_settings"
-datestamp = "1291403467"
+datestamp = "1345588632"
 
