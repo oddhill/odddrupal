@@ -1017,6 +1017,11 @@ function redirect_redirect($redirect = NULL) {
 
   // Continue if the redirect has not been disabled by hook_redirect_alter().
   if (isset($redirect->redirect) && isset($redirect->callback) && $redirect->redirect !== FALSE && function_exists($redirect->callback)) {
+
+    // Prevent circular redirects.
+    if (url(current_path(), array('query' => drupal_get_query_parameters(), 'absolute' => TRUE)) == url($redirect->redirect, array('absolute' => TRUE) + $redirect->redirect_options)) {
+      return FALSE;
+    }
     // Perform the actual redirect.
     $callback = $redirect->callback;
     $callback($redirect);

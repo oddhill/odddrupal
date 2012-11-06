@@ -234,10 +234,14 @@ class RedirectFunctionalTest extends RedirectTestHelper {
     //$this->assertRedirect($redirect);
 
     $this->drupalPost("node/{$node->nid}/edit", array('path[alias]' => 'first-alias'), 'Save');
+    $this->assertResponse(200,'Changing node\'s alias back to \'first-alias\' does not break page load with a circular redirect.');
+    $this->assertNoText('Oops, looks like this request tried to create an infinite loop. We do not allow such things here. We are a professional website!', 'Changing node\'s alias back to \'first-alias\' does not trigger Circular Redirect detection.');
     //$redirect = redirect_load_by_source('second-alias');
     //$this->assertRedirect($redirect);
 
     $this->drupalPost("node/{$node->nid}/edit", array('path[alias]' => 'second-alias'), 'Save');
+    $this->assertResponse(200,'Changing node\'s alias back to \'second-alias\' does not break page load with a circular redirect.');
+    $this->assertNoText('Oops, looks like this request tried to create an infinite loop. We do not allow such things here. We are a professional website!', 'Changing node\'s alias back to \'second-alias\' does not trigger Circular Redirect detection.');
     //$redirect = redirect_load_by_source('first-alias');
     //$this->assertRedirect($redirect);
   }

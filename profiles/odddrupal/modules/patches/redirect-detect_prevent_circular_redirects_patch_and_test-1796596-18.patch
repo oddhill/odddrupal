@@ -1,0 +1,35 @@
+diff --git a/redirect.module b/redirect.module
+index a99bd9b..9d806fe 100644
+--- a/redirect.module
++++ b/redirect.module
+@@ -1017,6 +1017,11 @@ function redirect_redirect($redirect = NULL) {
+ 
+   // Continue if the redirect has not been disabled by hook_redirect_alter().
+   if (isset($redirect->redirect) && isset($redirect->callback) && $redirect->redirect !== FALSE && function_exists($redirect->callback)) {
++
++    // Prevent circular redirects.
++    if (url(current_path(), array('query' => drupal_get_query_parameters(), 'absolute' => TRUE)) == url($redirect->redirect, array('absolute' => TRUE) + $redirect->redirect_options)) {
++      return FALSE;
++    }
+     // Perform the actual redirect.
+     $callback = $redirect->callback;
+     $callback($redirect);
+diff --git a/redirect.test b/redirect.test
+index 1c237f8..5bfdb3b 100644
+--- a/redirect.test
++++ b/redirect.test
+@@ -234,10 +234,14 @@ class RedirectFunctionalTest extends RedirectTestHelper {
+     //$this->assertRedirect($redirect);
+ 
+     $this->drupalPost("node/{$node->nid}/edit", array('path[alias]' => 'first-alias'), 'Save');
++    $this->assertResponse(200,'Changing node\'s alias back to \'first-alias\' does not break page load with a circular redirect.');
++    $this->assertNoText('Oops, looks like this request tried to create an infinite loop. We do not allow such things here. We are a professional website!', 'Changing node\'s alias back to \'first-alias\' does not trigger Circular Redirect detection.');
+     //$redirect = redirect_load_by_source('second-alias');
+     //$this->assertRedirect($redirect);
+ 
+     $this->drupalPost("node/{$node->nid}/edit", array('path[alias]' => 'second-alias'), 'Save');
++    $this->assertResponse(200,'Changing node\'s alias back to \'second-alias\' does not break page load with a circular redirect.');
++    $this->assertNoText('Oops, looks like this request tried to create an infinite loop. We do not allow such things here. We are a professional website!', 'Changing node\'s alias back to \'second-alias\' does not trigger Circular Redirect detection.');
+     //$redirect = redirect_load_by_source('first-alias');
+     //$this->assertRedirect($redirect);
+   }
