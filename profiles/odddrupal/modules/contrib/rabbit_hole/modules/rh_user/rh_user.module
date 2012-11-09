@@ -83,11 +83,14 @@ function rh_user_form_alter(&$form, &$form_state, $form_id) {
  * Implements hook_user_view().
  */
 function rh_user_user_view($account, $view_mode, $langcode) {
-  if (($view_mode != 'full' || !preg_match('/user\/' . $account->uid . '(\/view|)$/', current_path())) || user_access('bypass rh_user')) {
-    // The user is not being viewed at it's own page, or the user is able to
-    // bypass Rabbit Hole, exit early.
-    return;
-  }
+  // Copy the behavior from the node_is_page() function to determine if the user
+  // is being viewed at its own page.
+  $page_user = menu_get_object('user');
+  $user_is_page = (!empty($page_user) ? $page_user->uid == $account->uid : FALSE);
 
-  rabbit_hole_execute('user', $account);
+  // Execute Rabbit Hole, if the user is being viewed at its own page, and the
+  // current user isn't able to override Rabbit Hole.
+  if ($user_is_page && !user_access('bypass rh_user')) {
+    rabbit_hole_execute('user', $account);
+  }
 }
