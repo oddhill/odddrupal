@@ -177,3 +177,15 @@ function odddrupal_update_7113() {
     ));
   }
 }
+
+/**
+ * Features Tools has changed name from features_tools to ftools. Enable the
+ * new module and set its variables.
+ */
+function odddrupal_update_7114() {
+  if (!module_exists('ftools')) {
+    module_enable(array('ftools'));
+    variable_set('ftools_disable_features_page_js', variable_get('features_tools_disable_features_page_js', 1));
+    variable_del('features_tools_disable_features_page_js');
+  }
+}
