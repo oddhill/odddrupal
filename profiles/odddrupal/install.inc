@@ -300,30 +300,6 @@ function odddrupal_set_variables() {
   variable_set('site_403', 'toboggan/denied');
   variable_set('cron_safe_threshold', 3600);
   variable_set('error_level', '1');
-  variable_set('fancybox_path', 'profiles/odddrupal/libraries/fancybox');
-  variable_set('fancybox_settings', array(
-    'activation' => array(
-      'selector' => '',
-      'activation_type' => 'exclude',
-      'activation_pages' => '',
-    ),
-    'imagefield' => array(
-      'grouping' => '1',
-      'imagecache_preset' => '0',
-      'use_node_title' => 0,
-    ),
-    'options' => array(
-      'margin' => 0,
-      'padding' => 0,
-      'speedIn' => 0,
-      'speedOut' => 0,
-      'changeSpeed' => 0,
-    ),
-  ));
-  variable_set('fancybox_files', array(
-    'js' => 'jquery.fancybox-1.3.1.js',
-    'css' => 'jquery.fancybox-1.3.1.css',
-  ));
   variable_set('pathauto_transliterate', 1);
   variable_set('dblog_row_limit', '0');
   variable_set('update_check_disabled', 1);
