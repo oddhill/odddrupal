@@ -231,15 +231,6 @@ function odddrupal_themekey_rules() {
 	  array(
 	    'property' => 'drupal:path',
 	    'operator' => '=',
-	    'value' => 'node/%/translate',
-	    'theme' => 'ThemeKeyAdminTheme',
-	    'enabled' => 1,
-	    'parent' => 0,
-	    'weight' => 0,
-	  ),
-	  array(
-	    'property' => 'drupal:path',
-	    'operator' => '=',
 	    'value' => 'user',
 	    'theme' => 'ThemeKeyAdminTheme',
 	    'enabled' => 1,
