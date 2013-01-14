@@ -18,26 +18,26 @@ function odddrupal_text_formats() {
     'name' => 'Filtered HTML',
     'weight' => 0,
     'filters' => array(
-      // Spamspan filter.
-      'spamspan' => array(
-        'weight' => 0,
-        'status' => 1,
-        'settings' => array(
-          'spamspan_at' => ' [at] ',
-          'spamspan_use_graphic' => 0,
-        ),
-      ),
       // URL filter.
       'filter_url' => array(
-        'weight' => 1,
+        'weight' => 0,
         'status' => 1,
       ),
       // HTML filter.
       'filter_html' => array(
-        'weight' => 2,
+        'weight' => 1,
         'status' => 1,
 		    'settings' => array(
           'allowed_html' => '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <h2> <h3> <h4> <br> <p>',
+        ),
+      ),
+      // Spamspan filter.
+      'spamspan' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(
+          'spamspan_at' => ' [at] ',
+          'spamspan_use_graphic' => 0,
         ),
       ),
       // HTML corrector filter.
