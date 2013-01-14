@@ -35,6 +35,12 @@ function rabbit_hole_permission() {
       'title' => t('Administer Rabbit Hole settings for @entity_type', array('@entity_type' => $entity_label)),
     );
     
+    // Add an PHP evaluation permission.
+    $permissions['php redirect ' . $module] = array(
+      'title' => t('Allow PHP redirect evaluation for @entity_type', array('@entity_type' => $entity_label)),
+      'restrict access' => TRUE,
+    );
+    
     // Add a bypass permission.
     $permissions['bypass ' . $module] = array(
       'title' => t('Bypass Rabbit Hole action for @entity_type', array('@entity_type' => $entity_label)),
@@ -52,11 +58,15 @@ function rabbit_hole_permission() {
  * This should be used by other modules that wish to implement the Rabbit Hole
  * configurations in any form.
  *
+ * @param $attach
+ *  The form that the Rabbit Hole form should be attached to.
  * @param $entity_type
  *  The entity type that we're adding the form for, e.g. 'node'.
  * @param $bundle
  *  The bundle that we're adding the form to, e.g. the content type for nodes.
  *  This might be an empty string if we're creating a new bundle.
+ * @param $module
+ *  The name of the module that invokes this function.
  * @param $entity
  *  The entity that we're adding the form to, e.g. a node. This might be NULL if
  *  we're about to create the entity.
@@ -64,7 +74,7 @@ function rabbit_hole_permission() {
  * @return
  *  A renderable form array.
  */
-function rabbit_hole_form($entity_type, $bundle, $entity = NULL) {
+function rabbit_hole_form(&$attach, $entity_type, $bundle, $module, $entity = NULL) {
   // Attach the basic javascript.
   $form = array(
     '#attached' => array(
@@ -83,6 +93,12 @@ function rabbit_hole_form($entity_type, $bundle, $entity = NULL) {
     '#collapsible' => TRUE,
     '#group' => 'additional_settings',
     '#attributes' => array('class' => array('rabbit-hole-settings-form')),
+  );
+  
+  // Add the invoking module to the internal values.
+  $form['rabbit_hole']['rh_module'] = array(
+    '#type' => 'value',
+    '#value' => $module,
   );
   
   // Build the options for the action setting.
@@ -118,14 +134,31 @@ function rabbit_hole_form($entity_type, $bundle, $entity = NULL) {
     '#attributes' => array('class' => array('rabbit-hole-redirect-options')),
   );
   
+  // Get the default value for the redirect path.
+  $redirect_default_value = isset($entity) ? rabbit_hole_get_redirect_entity($entity_type, $entity) : (!empty($bundle) ? rabbit_hole_get_redirect_bundle($entity_type, $bundle) : RABBIT_HOLE_PAGE_REDIRECT_DEFAULT);
+  
+  // Build the descriptive text. Add some help text for PHP, if the user has the
+  // permission to use PHP for evaluation.
+  $description = array();
+  $description[] = t('Enter the relative path or the full URL that the user should get redirected to. Query strings and fragments are supported, such as %example.', array('%example' => 'http://www.example.com/?query=value#fragment'));
+  if (user_access('php redirect ' . $module)) {
+    $description[] = t('You are able to evaluate PHP to determine the redirect. Surround your code by !surround. The returned string will replace the PHP part. However, you are able to return !abort if the user shouldn\'t get redirected. The !variable variable is available for use.', array('!surround' => '<code>&lt;?php</code> and <code>?&gt;</code>', '!abort' => '<code>FALSE</code>', '!variable' => '<code>$entity</code>'));
+  }
+  $description[] = t('You may enter tokens in this field.');
+  
   // Add the redirect path setting.
   $redirect_setting_name = isset($entity) ? 'rh_redirect' : 'rh_' . $entity_type . '_redirect';
+  $form['rabbit_hole']['redirect']['redirect_setting_name'] = array(
+    '#type' => 'value',
+    '#value' => $redirect_setting_name,
+  );
   $form['rabbit_hole']['redirect'][$redirect_setting_name] = array(
-    '#type' => 'textfield',
+    '#type' => user_access('php redirect ' . $module) ? 'textarea' : 'textfield',
     '#title' => t('Redirect path'),
-    '#default_value' => isset($entity) ? rabbit_hole_get_redirect_entity($entity_type, $entity) : (!empty($bundle) ? rabbit_hole_get_redirect_bundle($entity_type, $bundle) : RABBIT_HOLE_PAGE_REDIRECT_DEFAULT),
-    '#description' => t('The relative path to were the user should be redirected. Leave this empty, or use %front to redirect to the front page. You are able to add a URL fragment after the path, e.g. %fragment. In the same manner, you are able to provide a query string. Tokens are available anywhere you like in this field.', array('%front' => '<front>', '%fragment' => 'the-path#the-fragment')),
+    '#default_value' => $redirect_default_value,
+    '#description' => '<p>' . implode('</p><p>', $description) . '</p>',
     '#attributes' => array('class' => array('rabbit-hole-redirect-setting')),
+    '#rows' => substr_count($redirect_default_value, "\r\n") + 2,
   );
   // Display a list of tokens if the Token module is enabled.
   if (module_exists('token')) {
@@ -136,7 +169,7 @@ function rabbit_hole_form($entity_type, $bundle, $entity = NULL) {
       '#dialog' => TRUE,
     );
   }
-
+  
   // Add the redirect respons setting.
   $redirect_response_setting_name = isset($entity) ? 'rh_redirect_response' : 'rh_' . $entity_type . '_redirect_response';
   $form['rabbit_hole']['redirect'][$redirect_response_setting_name] = array(
@@ -154,8 +187,33 @@ function rabbit_hole_form($entity_type, $bundle, $entity = NULL) {
     '#description' => t('The response code that should be sent to the users browser. Follow !link for more information on response codes.', array('!link' => l(t('this link'), 'http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_goto/7'))),
     '#attributes' => array('class' => array('rabbit-hole-redirect-response-setting')),
   );
+  
+  // If the redirect path contains PHP, and the user doesn't have permission to
+  // use PHP for evaluation, we'll disable access to the path setting, and print
+  // some helpful information about what's going on.
+  if (rabbit_hole_contains_php($redirect_default_value) && !user_access('php redirect ' . $module)) {
+    $form['rabbit_hole']['redirect']['#description'] = t("You're not able to edit the redirect path since it contain's PHP, and you're not allowed to evaluate PHP for this redirect.");
+    $form['rabbit_hole']['redirect'][$redirect_setting_name]['#access'] = FALSE;
+    if (isset($form['rabbit_hole']['redirect']['token_info'])) {
+      $form['rabbit_hole']['redirect']['token_info']['#access'] = FALSE;
+    }
+  }
 
-  return $form;
+  // Attach the Rabbit Hole form to the main form, and add a custom validation
+  // callback.
+  $attach += $form;
+  $attach['#validate'][] = 'rabbit_hole_form_validate';
+}
+
+/**
+ * Validation callback for the Rabbit Hole form.
+ */
+function rabbit_hole_form_validate($form, &$form_state) {
+  // If there is PHP in the redirect path, make sure that the user has the
+  // permission to evaluate PHP.
+  if (rabbit_hole_contains_php($form_state['values'][$form_state['values']['redirect_setting_name']]) && !user_access('php redirect ' . $form_state['values']['rh_module'])) {
+    form_set_error($form_state['values']['redirect_setting_name'], t("You don't have permission to evaluate PHP in the redirect path."));
+  }
 }
 
 /**
@@ -174,30 +232,7 @@ function rabbit_hole_form($entity_type, $bundle, $entity = NULL) {
  *  was done, this function will redirect the user immediately.
  */
 function rabbit_hole_execute($entity_type, $entity) {
-  // Get the action.
-  $action = rabbit_hole_get_action($entity_type, $entity);
-
-  // If we should perform a redirect, we will also get the path and response.
-  if ($action == RABBIT_HOLE_PAGE_REDIRECT) {
-    if (rabbit_hole_get_action_entity($entity_type, $entity) != RABBIT_HOLE_USE_DEFAULT) {
-      // Get the redirect path and response from the node.
-      $redirect = rabbit_hole_get_redirect_entity($entity_type, $entity);
-      $redirect_response = rabbit_hole_get_redirect_response_entity($entity_type, $entity);
-    }
-    else {
-      // Get the redirect path and response from the content type.
-      $bundle = rabbit_hole_entity_get_bundle($entity_type, $entity);
-      $redirect = rabbit_hole_get_redirect_bundle($entity_type, $bundle);
-      $redirect_response = rabbit_hole_get_redirect_response_bundle($entity_type, $bundle);
-    }
-    
-    // Replace any tokens with real values.
-    $entity_info = entity_get_info($entity_type);
-    $redirect = token_replace($redirect, array($entity_info['token type'] => $entity));
-  }
-
-  // Now, let's see what we should do.
-  switch ($action) {
+  switch (rabbit_hole_get_action($entity_type, $entity)) {
     case RABBIT_HOLE_ACCESS_DENIED:
       // TODO: Is this the proper way to deliver an access denied page?
       drupal_access_denied();
@@ -209,40 +244,115 @@ function rabbit_hole_execute($entity_type, $entity) {
       exit();
 
     case RABBIT_HOLE_PAGE_REDIRECT:
-      // Parse the supplied redirect path in order to get any query string and
-      // fragment.
-      $redirect = parse_url($redirect);
-      
-      // Get the path.
-      $path = $redirect['path'] ? $redirect['path'] : '<front>';
-      
-      // Get any query string and fragment. If the user has supplied the
-      // fragment before the queyr string, the fragment and query string will
-      // be parsed as an entire fragment by parse_url(). If we have a fragment,
-      // but not a query, we'll lock for a query in the fragment, to make sure
-      // that we'll avoid any unexpected behavior.
-      if (isset($redirect['fragment']) && !isset($redirect['query'])) {
-        // Split the fragment by the ?, and get the fragment, and the query
-        // string if it did exist.
-        $fragment = explode('?', $redirect['fragment']);
-        $query = isset($fragment[1]) ? $fragment[1] : '';
-        $fragment = $fragment[0];
+      // Determine the source of the redirect. This will be the entity itself,
+      // or the default settings from the bundle.
+      if (rabbit_hole_get_action_entity($entity_type, $entity) != RABBIT_HOLE_USE_DEFAULT) {
+        // Get the redirect path and response from the entity.
+        $redirect = rabbit_hole_get_redirect_entity($entity_type, $entity);
+        $redirect_response = rabbit_hole_get_redirect_response_entity($entity_type, $entity);
       }
       else {
-        // The user has supplied the query string before the fragment, which
-        // means that we don't have to do anything special since parse_url()
-        // will handle that correctly.
-        $query = isset($redirect['query']) ? $redirect['query'] : '';
-        $fragment = isset($redirect['fragment']) ? $redirect['fragment'] : '';
+        // Get the redirect path and response from the bundle.
+        $bundle = rabbit_hole_entity_get_bundle($entity_type, $entity);
+        $redirect = rabbit_hole_get_redirect_bundle($entity_type, $bundle);
+        $redirect_response = rabbit_hole_get_redirect_response_bundle($entity_type, $bundle);
+      }
+      
+      // Process the PHP code, if it has been provided.
+      if (rabbit_hole_contains_php($redirect)) {
+        // Retrieve the PHP code.
+        $php = preg_replace('/(.*(?=\<\?php)|(?<=\?\>).*)/uis', '', $redirect);
+
+        // Evaluate the PHP code.
+        $result = rabbit_hole_eval($php, $entity);
+
+        // If the code returned FALSE, we'll exit since the user shouldn't get
+        // redirected.
+        if ($result === FALSE) {
+          return FALSE;
+        }
+        
+        // Replace the PHP part with the evaluation result. If the result isn't
+        // a string, we'll remove the PHP part altogether.
+        $result = is_string($result) ? $result : '';
+        $redirect = str_replace($php, $result, $redirect);
+      }
+      
+      // Remove any line breaks and strip whitespaces from the beginning and the
+      // end of the string.
+      $redirect = trim(str_replace(array("\r", "\n"), '', $redirect));
+    
+      // Replace any tokens with real values.
+      $entity_info = entity_get_info($entity_type);
+      $redirect = token_replace($redirect, array($entity_info['token type'] => $entity));
+
+      // Parse the supplied redirect path in order to get the details.
+      $redirect_data = parse_url($redirect);
+      
+      // Start building the redirect url.
+      $redirect = '';
+
+      // If a host has been provided, we'll make sure that the URL starts with
+      // a scheme, followed by the host and the path. Otherwise, we'll start
+      // with the path, since this is an internal url.
+      if (isset($redirect_data['host'])) {
+        $redirect .= isset($redirect_data['scheme']) ? $redirect_data['scheme'] . '://' : '//';
+        $redirect .= $redirect_data['host'];
+        $redirect .= isset($redirect_data['path']) ? $redirect_data['path'] : '/';
+      }
+      else {
+        $redirect .= $redirect_data['path'];
       }
 
+      // Normalize the query and fragment, to make sure that they're suitable
+      // for drupal_goto().
+      $query = isset($redirect_data['query']) ? drupal_get_query_array($redirect_data['query']) : array();
+      $fragment = isset($redirect_data['fragment']) ? $redirect_data['fragment'] : '';
+
       // Perform the redirect.
-      drupal_goto($path, array('query' => drupal_get_query_array($query), 'fragment' => $fragment), $redirect_response);
+      drupal_goto($redirect, array('query' => $query, 'fragment' => $fragment), $redirect_response);
     
     default:
       // There's nothing to do.
       return FALSE;
   }
+}
+
+/**
+ * Determines if the provided string contains any PHP code or not.
+ *
+ * @param $code
+ *  The code that we should search for PHP opening and closure tags.
+ *
+ * @return
+ *  TRUE or FALSE depending on wether or not the code contains both the opening
+ *  and closure tags.
+ */
+function rabbit_hole_contains_php($code) {
+  return strpos($code, '<?php') !== FALSE && strpos($code, '?>') !== FALSE;
+}
+
+/**
+ * Evaluates php code and passes the $entity object into it.
+ *
+ * This is a simple call to eval() wrapped in a function to prevent the user
+ * from overwriting variables. We don't want to use output buffering to capture
+ * the printed values from the code, since we're only interested in the return
+ * value.
+ *
+ * @param $code
+ *  The PHP code that should get evaluated.
+ * @param $entity
+ *  The entity object.
+ *
+ * @return
+ *  The return value from the evaluation.
+ */
+function rabbit_hole_eval($code, $entity) {
+  // Remove the opening and closure tags before evaluating.
+  $code = trim(str_replace(array('<?php', '?>'), '', $code));
+
+  return eval($code);
 }
 
 /**
@@ -438,8 +548,7 @@ function rabbit_hole_schema_alter(&$schema) {
   // fields to the base table of that entity.
   $modules = module_invoke_all('rabbit_hole');
   foreach ($modules as $module => $info) {
-    $entity_info = entity_get_info($info['entity type']);
-    $schema[$entity_info['base table']]['fields'] += $fields;
+    $schema[$info['base table']]['fields'] += $fields;
   }
 }
 
@@ -515,9 +624,9 @@ function rabbit_hole_schema_fields() {
     ),
     'rh_redirect' => array(
       'description' => 'The path to where the user should get redirected to.',
-      'type' => 'varchar',
+      'type' => 'text',
       'default' => NULL,
-      'length' => 255,
+      'size' => 'big',
     ),
     'rh_redirect_response' => array(
       'description' => 'Specifies the HTTP response code that should be used when perform a redirect.',

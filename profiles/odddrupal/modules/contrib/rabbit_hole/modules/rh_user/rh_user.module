@@ -14,6 +14,7 @@ function rh_user_rabbit_hole() {
   return array(
     'rh_user' => array(
       'entity type' => 'user',
+      'base table' => 'users',
       'view path' => 'user/%/view',
     ),
   );
@@ -31,12 +32,9 @@ function rh_user_form_user_admin_settings_alter(&$form, $form_state) {
     return;
   }
 
-  // Load the Rabbit Hole form.
-  $rabbit_hole_form = rabbit_hole_form('user', 'user');
+  // Add the Rabbit Hole form.
+  rabbit_hole_form($form, 'user', 'user', 'rh_user');
 
-  // Add the Rabbit Hole form to the main form array.
-  $form += $rabbit_hole_form;
-  
   // Add a custom submit function that allows our settings to get saved.
   $form['#submit'][] = 'rh_user_form_user_admin_settings_submit';
 }
@@ -72,11 +70,8 @@ function rh_user_form_alter(&$form, &$form_state, $form_id) {
     return;
   }
 
-  // Load the Rabbit Hole form.
-  $rabbit_hole_form = rabbit_hole_form('user', 'user', $form['#user']);
-
-  // Add the Rabbit Hole form to the main form array.
-  $form += $rabbit_hole_form;
+  // Add the Rabbit Hole form.
+  rabbit_hole_form($form, 'user', 'user', 'rh_user', $form['#user']);
 }
 
 /**

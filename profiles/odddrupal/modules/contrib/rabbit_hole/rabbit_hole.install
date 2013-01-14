@@ -85,3 +85,18 @@ function rabbit_hole_update_7001() {
     }
   }
 }
+
+/**
+ * Change the rh_redirect field from varchar to text.
+ */
+function rabbit_hole_update_7002() {
+  // Get the Rabbit Hole fields.
+  $fields = rabbit_hole_schema_fields();
+  
+  // Get the modules that are implementing hook_rabbit_hole(), and change the
+  // rh_redirect field.
+  $modules = module_invoke_all('rabbit_hole');
+  foreach ($modules as $module => $info) {
+    db_change_field($info['base table'], 'rh_redirect', 'rh_redirect', $fields['rh_redirect']);
+  }
+}

@@ -14,6 +14,7 @@ function rh_node_rabbit_hole() {
   return array(
     'rh_node' => array(
       'entity type' => 'node',
+      'base table' => 'node',
       'view path' => 'node/%/view',
     ),
   );
@@ -31,13 +32,10 @@ function rh_node_form_node_type_form_alter(&$form, $form_state) {
     return;
   }
   
-  // Load the Rabbit Hole form, and add an extra javascript file that's needed
+  // Add the Rabbit Hole form, and add an extra javascript file that's needed
   // for the fieldset summary.
-  $rabbit_hole_form = rabbit_hole_form('node', $form['#node_type']->type);
-  $rabbit_hole_form['#attached']['js'][] = drupal_get_path('module', 'rh_node') . '/rh-node.js';
-  
-  // Add the Rabbit Hole form to the main form array.
-  $form += $rabbit_hole_form;
+  rabbit_hole_form($form, 'node', $form['#node_type']->type, 'rh_node');
+  $form['#attached']['js'][] = drupal_get_path('module', 'rh_node') . '/rh-node.js';
 }
 
 /**
@@ -52,13 +50,10 @@ function rh_node_form_node_form_alter(&$form, $form_state) {
     return;
   }
 
-  // Load the Rabbit Hole form, and add an extra javascript file that's needed
+  // Add the Rabbit Hole form, and add an extra javascript file that's needed
   // for the fieldset summary.
-  $rabbit_hole_form = rabbit_hole_form('node', $form['#node']->type, $form['#node']);
-  $rabbit_hole_form['#attached']['js'][] = drupal_get_path('module', 'rh_node') . '/rh-node.js';
-
-  // Add the Rabbit Hole form to the main form array.
-  $form += $rabbit_hole_form;
+  rabbit_hole_form($form, 'node', $form['#node']->type, 'rh_node', $form['#node']);
+  $form['#attached']['js'][] = drupal_get_path('module', 'rh_node') . '/rh-node.js';
 
   // Add a custom submit function. This is used to disable the redirect to
   // node/123 if Rabbit Hole is enabled.
