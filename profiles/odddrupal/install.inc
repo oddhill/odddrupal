@@ -75,7 +75,7 @@ function odddrupal_text_formats() {
   );
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
-  
+
   $wysiwyg_settings = array(
     'default' => 1,
     'user_choose' => 0,
@@ -110,7 +110,7 @@ function odddrupal_text_formats() {
     'css_path' => '',
     'css_classes' => '',
   );
-  
+
   // Set CKEditor as the default editor for Filtered HTML.
   db_merge('wysiwyg')
     ->key(array('format' => 'filtered_html'))
@@ -194,7 +194,7 @@ function odddrupal_locale_settings_global() {
   // Set first day of week, and ISO-8601.
   variable_set('date_api_use_iso8601', 1);
   variable_set('date_first_day', 1);
-  
+
   // Set the default displays.
   variable_set('date_format_long', 'l, j F, Y - H:i');
   variable_set('date_format_medium', 'D, Y-m-d H:i');
@@ -400,7 +400,6 @@ function odddrupal_set_variables() {
   variable_set('reroute_email_enable_message', 1);
   variable_set('blockify_blocks', array(
     'blockify-logo' => 'blockify-logo',
-    'blockify-site-name' => 'blockify-site-name',
     'blockify-site-slogan' => 'blockify-site-slogan',
     'blockify-page-title' => 'blockify-page-title',
     'blockify-breadcrumb' => 'blockify-breadcrumb',
