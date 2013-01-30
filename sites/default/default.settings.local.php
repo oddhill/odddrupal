@@ -4,7 +4,7 @@
  * @file
  * This file contains site-specific configurations.
  */
- 
+
 /**
  * Database settings.
  *
@@ -15,6 +15,6 @@ $databases['default']['default'] = array(
   'driver' => 'mysql',
   'database' => 'database',
   'username' => 'root',
-  'password' => 'password',
-  'host' => '127.0.0.1',
+  'password' => '',
+  'host' => 'dev',
 );
