@@ -29,6 +29,7 @@ dependencies[] = admin_menu_toolbar
 dependencies[] = blockify
 dependencies[] = boxes
 dependencies[] = context
+dependencies[] = context_condition_theme
 dependencies[] = context_layouts
 dependencies[] = context_ui
 dependencies[] = ctools
