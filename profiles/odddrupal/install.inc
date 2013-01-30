@@ -282,8 +282,9 @@ function odddrupal_roles() {
  * Set various variables.
  */
 function odddrupal_set_variables() {
-  variable_set('extlink_exclude', 'addthis.com/bookmark.php');
   variable_set('extlink_target', '_blank');
+  variable_set('extlink_class', 0);
+  variable_set('extlink_mailto_class', 0);
   variable_set('mimemail_alter', 1);
   variable_set('mimemail_format', 'plain_text');
   variable_set('mimemail_incoming', 0);
