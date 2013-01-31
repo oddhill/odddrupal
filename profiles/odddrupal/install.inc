@@ -294,13 +294,11 @@ function odddrupal_set_variables() {
   variable_set('user_cancel_method', 'user_cancel_delete');
   variable_set('user_register', '0');
   variable_set('file_public_path', 'sites/all/files');
-  variable_set('maintenance_mode_message', variable_get('site_name', 'Sajten') . ' är tillfälligt nere för underhåll, men kommer strax tillbaka!');
+  variable_set('maintenance_mode_message', st("!site is currently down for maintenance, but will return shortly!", array('!site' => variable_get('site_name', st('The site')))));
   variable_set('logintoboggan_login_with_email', '1');
   variable_set('site_403', 'toboggan/denied');
   variable_set('cron_safe_threshold', 3600);
-  variable_set('error_level', '1');
   variable_set('pathauto_transliterate', 1);
-  variable_set('dblog_row_limit', '0');
   variable_set('update_check_disabled', 1);
   variable_set('clean_url', 1);
   variable_set('views_show_additional_queries', 0);
@@ -392,6 +390,8 @@ function odddrupal_set_variables() {
   ));
   variable_set('block_cache', 0);
   variable_set('cache', 0);
+  variable_set('dblog_row_limit', '100');
+  variable_set('error_level', '2');
   variable_set('jquery_update_compression_type', 'none');
   variable_set('jquery_update_jquery_cdn', 'google');
   variable_set('jquery_update_jquery_version', '1.5');
@@ -410,5 +410,4 @@ function odddrupal_set_variables() {
     'blockify-feed-icons' => 'blockify-feed-icons',
   ));
   variable_set('ftools_disable_features_page_js', 1);
-  variable_set('error_level', '2');
 }
