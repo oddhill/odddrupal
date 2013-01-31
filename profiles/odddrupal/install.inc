@@ -126,70 +126,37 @@ function odddrupal_text_formats() {
  * been set as the default.
  */
 function odddrupal_locale_settings_global() {
-  // Make sure the required files are loaded.
+  // Include the required files.
   require_once DRUPAL_ROOT . '/includes/language.inc';
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
 
-  // Setup the negotiation settings.
-  $providers = array(
-    'language' => array(
-      'locale-user' => array(
-        'callbacks' => array(
-          'language' => 'locale_language_from_user',
-        ),
-        'file' => 'includes/locale.inc',
-      ),
-      'language-default' => array(
-        'callbacks' => array(
-          'language' => 'language_from_default',
-        ),
-      ),
-    ),
-    'language_content' => array(
-      'locale-interface' => array(
-        'callbacks' => array(
-          'language' => 'locale_language_from_interface',
-        ),
-        'file' => 'includes/locale.inc',
-      ),
-    ),
-    'language_url' => array(
-      'locale-url' => array(
-        'callbacks' => array(
-          'language' => 'locale_language_from_url',
-          'switcher' => 'locale_language_switcher_url',
-          'url_rewrite' => 'locale_language_url_rewrite_url',
-        ),
-        'file' => 'includes/locale.inc',
-      ),
-      'locale-url-fallback' => array(
-        'callbacks' => array(
-          'language' => 'locale_language_url_fallback',
-        ),
-        'file' => 'includes/locale.inc',
-      ),
-    ),
+  // Set up the enabled negotiation providers and their weight.
+  $enabled = array(
+    LOCALE_LANGUAGE_NEGOTIATION_USER => -10,
+    LOCALE_LANGUAGE_NEGOTIATION_URL => -9,
+    LANGUAGE_NEGOTIATION_DEFAULT => 10,
   );
-  // Save the negotiation types.
-  foreach ($providers as $type => $negotiation) {
-    language_negotiation_set($type, $negotiation);
+
+  // Iterate through every available provider, so that we can get the required
+  // info and set the weights.
+  $providers = language_negotiation_info();
+  $weight = $enabled;
+  foreach ($providers as $provider => &$data) {
+    if (isset($enabled[$provider])) {
+      // This provider is provided in the enabled array, set the weight that we
+      // have provided.
+      $data['weight'] = $enabled[$provider];
+    }
+    else {
+      // This provider shouldn't be enabled, remove it and set its weight to 0.
+      $weight[$provider] = 0;
+      unset($providers[$provider]);
+    }
   }
-  // Set the negotiation weight.
-  $weight = array(
-    'locale-url' => -10,
-    'locale-user' => -9,
-    'locale-session' => -8,
-    'language-default' => -7,
-    'locale-browser' => -6,
-  );
-  variable_set('locale_language_providers_weight_language', $weight);
-  // Save language types.
-  $language_types = array(
-    'language' => TRUE,
-    'language_content' => FALSE,
-    'language_url' => FALSE,
-  );
-  variable_set('language_types', $language_types);
-  variable_set('locale_language_negotiation_url_part', '0');
+
+  // Set the negotiation settings and the weights.
+  language_negotiation_set(LANGUAGE_TYPE_INTERFACE, $providers);
+  variable_set('locale_language_providers_weight_' . LANGUAGE_TYPE_INTERFACE, $weight);
 
   // Set first day of week, and ISO-8601.
   variable_set('date_api_use_iso8601', 1);
@@ -208,6 +175,10 @@ function odddrupal_locale_settings_global() {
  * the profile installation.
  */
 function odddrupal_locale_settings_sv() {
+  // Include the required files.
+  require_once DRUPAL_ROOT . '/includes/language.inc';
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+
   // Alter the weight for english.
   db_update('languages')
     ->fields(array(
@@ -216,6 +187,33 @@ function odddrupal_locale_settings_sv() {
     ))
     ->condition('language',  'en')
     ->execute();
+
+  // Set up the enabled negotiation providers and their weight.
+  $enabled = array(
+    LOCALE_LANGUAGE_NEGOTIATION_USER => -10,
+    LANGUAGE_NEGOTIATION_DEFAULT => 10,
+  );
+
+  // Iterate through every available provider, so that we can get the required
+  // info and set the weights.
+  $providers = language_negotiation_info();
+  $weight = $enabled;
+  foreach ($providers as $provider => &$data) {
+    if (isset($enabled[$provider])) {
+      // This provider is provided in the enabled array, set the weight that we
+      // have provided.
+      $data['weight'] = $enabled[$provider];
+    }
+    else {
+      // This provider shouldn't be enabled, remove it and set its weight to 0.
+      $weight[$provider] = 0;
+      unset($providers[$provider]);
+    }
+  }
+
+  // Set the negotiation settings and the weights.
+  language_negotiation_set(LANGUAGE_TYPE_INTERFACE, $providers);
+  variable_set('locale_language_providers_weight_' . LANGUAGE_TYPE_INTERFACE, $weight);
 }
 
 /**
