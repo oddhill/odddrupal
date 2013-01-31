@@ -26,19 +26,30 @@ function odddrupal_install_tasks($install_state) {
  */
 function odddrupal_theme_form() {
   drupal_set_title(st('Default theme'));
-  
+
   // Set an array of avaliable themes.
   $themes = list_themes(TRUE);
   foreach ($themes as $theme => $data) {
     $options[$theme] = $data->info['name'];
   }
-  
+
   // Remove unwanted themes from the options.
   unset($options['test_theme']);
   unset($options['update_test_basetheme']);
   unset($options['update_test_subtheme']);
   unset($options['oddmaintenance']);
   unset($options['oddroots']);
+
+  // Get the assumed theme for this site. This will be the last one in the
+  // options array.
+  $default_name = end($options);
+  $default_key = key($options);
+
+  // If the name of the default theme is "Origin", we'll issue a warning since
+  // the user probably has forgotten to rename the theme before installing.
+  if ($default_key == 'origin') {
+    drupal_set_message(st("It seems that you've forgotten to rename the %default theme to a more suitable name, like %name. If you want to rename the theme, you should do that right now, refresh this page, and then submit the form.", array('%default' => 'Origin', '%name' => variable_get('site_name', preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST'])))), 'warning');
+  }
 
   // Create the form.
   $form['odddrupal'] = array(
@@ -49,6 +60,7 @@ function odddrupal_theme_form() {
   $form['odddrupal']['default_theme'] = array(
     '#type' => 'radios',
     '#options' => $options,
+    '#default_value' => $default_key,
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -77,10 +89,10 @@ function odddrupal_theme_form_validate($form, $form_state) {
  */
 function odddrupal_theme_form_submit($form, $form_state) {
   $default_theme = $form_state['values']['default_theme'];
-  
+
   // Get all themes.
   $themes = list_themes(TRUE);
-  
+
   // Add the selected theme and Seven to the enabled themes.
   $enabled[] = 'seven';
   $enabled[] = $default_theme;
@@ -102,7 +114,7 @@ function odddrupal_theme_form_submit($form, $form_state) {
   // Enable and disable themes.
   theme_enable($enabled);
   theme_disable($disabled);
-  
+
   // Set admin and default theme.
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
@@ -116,9 +128,12 @@ function odddrupal_theme_form_submit($form, $form_state) {
  * when the installation process has finished.
  */
 function odddrupal_form_install_configure_form_alter(&$form, $form_state) {
-  // Add the standard prefix for the site mail.
-  $form['site_information']['site_mail']['#default_value'] = 'info@';
-  
+  // Add a default value to the site name.
+  $form['site_information']['site_name']['#default_value'] = preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST']);
+
+  // Set the site mail based on the site name and site language.
+  $form['site_information']['site_mail']['#default_value'] = 'info@' . $form['site_information']['site_name']['#default_value'] . ($_GET['locale'] == 'sv' ? '.se' : '.com');
+
   // Remove the entire admin account fieldset, and set the defailt values.
   unset($form['admin_account']);
   $form['account'] = array(
@@ -155,7 +170,7 @@ function odddrupal_form_install_configure_form_alter(&$form, $form_state) {
     '#type' => 'hidden',
     '#value' => FALSE,
   );
-  
+
   // Add an option to set the address for Reroute email.
   $form['tadaa'] = array(
     '#type' => 'fieldset',
@@ -197,7 +212,7 @@ function odddrupal_install_configure_form_submit($form, $form_state) {
     $editor_role->rid => $editor_role->rid
   );
   user_save(NULL, $user);
-  
+
   // Create the support account.
   $user['name'] = 'support';
   $user['mail'] = 'support@oddhill.se';
@@ -211,12 +226,12 @@ function odddrupal_install_configure_form_submit($form, $form_state) {
     $editor_role->rid => $editor_role->rid
   );
   user_save(NULL, $user);
-  
+
   // Disable the overlay for user 1, and set the language to english.
   $user = user_load(1);
   $user->language = 'en';
   user_save($user, array('data' => array('overlay' => 0)));
-  
+
   // Set the reroute email address.
   variable_set('reroute_email_address', $form_state['values']['reroute_email']);
 }
