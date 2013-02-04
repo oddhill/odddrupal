@@ -9,7 +9,7 @@
  */
 function odddrupal_install() {
   require_once DRUPAL_ROOT . '/profiles/odddrupal/install.inc';
-  
+
   // Configure text formats and Wysiwyg settings.
   odddrupal_text_formats();
 
@@ -21,19 +21,19 @@ function odddrupal_install() {
   if (function_exists($function)) {
     $function();
   }
-  
+
   // Configure Themekey rules.
   odddrupal_themekey_rules();
-  
+
   // Set up the roles and permissions.
   odddrupal_roles();
-  
+
   // Set various variables.
   odddrupal_set_variables();
-  
+
   // Delete the Webform content type.
   node_type_delete('webform');
-  
+
   // Delete log messages that was created during the installation.
   db_delete('watchdog')->execute();
 }
@@ -100,7 +100,7 @@ function odddrupal_update_7107() {
   if (!module_exists('sushi')) {
     module_enable(array('sushi'));
   }
-  
+
   variable_set('views_show_additional_queries', 0);
   variable_set('views_ui_always_live_preview', 0);
   variable_set('views_ui_show_advanced_column', 1);
@@ -119,7 +119,7 @@ function odddrupal_update_7108() {
   if (!module_exists('admin_menu_toolbar')) {
     module_enable(array('admin_menu_toolbar'));
   }
-  
+
   variable_set('admin_menu_position_fixed', 1);
   variable_set('admin_menu_tweak_permissions', 1);
 }
@@ -131,7 +131,7 @@ function odddrupal_update_7109() {
   if (!module_exists('ds')) {
     module_enable(array('ds'));
   }
-  
+
   if (!module_exists('ds_extras')) {
     module_enable(array('ds_extras'));
   }
@@ -160,7 +160,7 @@ function odddrupal_update_7112() {
   if (!module_exists('features_tools')) {
     module_enable(array('features_tools'));
   }
-  
+
   variable_set('features_tools_disable_features_page_js', 1);
 }
 
@@ -187,5 +187,23 @@ function odddrupal_update_7114() {
     module_enable(array('ftools'));
     variable_set('ftools_disable_features_page_js', variable_get('features_tools_disable_features_page_js', 1));
     variable_del('features_tools_disable_features_page_js');
+  }
+}
+
+/**
+ * Enable the Context Condition Theme module.
+ */
+function odddrupal_update_7115() {
+  if (!module_exists('context_condition_theme')) {
+    module_enable(array('context_condition_theme'));
+  }
+}
+
+/**
+ * Enable the Tower of Babel module.
+ */
+function odddrupal_update_7116() {
+  if (!module_exists('tower_of_babel')) {
+    module_enable(array('tower_of_babel'));
   }
 }
