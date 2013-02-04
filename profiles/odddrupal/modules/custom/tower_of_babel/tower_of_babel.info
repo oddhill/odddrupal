@@ -1,0 +1,4 @@
+name = "Tower of Babel"
+description = "A tower with its top in the heavens, that gets Drush and user 1 to communicate in the same language."
+core = 7.x
+package = Odd Hill

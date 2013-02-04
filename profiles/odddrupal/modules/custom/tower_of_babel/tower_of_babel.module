@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Main module file for the Tower of Babel module.
+ */
+
+/**
+ * Implements hook_init().
+ */
+function tower_of_babel_init() {
+  if (drupal_is_cli()) {
+    // Load user 1, and all the available languages.
+    $user1 = user_load(1);
+    $languages = language_list();
+
+    // Get the language of user 1, fallback to en if it hasn't been set.
+    $language = $user1->language ? $user1->language : 'en';
+
+    // Change the language if the language exists.
+    if (isset($languages[$language])) {
+      $GLOBALS['language'] = $languages[$language];
+    }
+  }
+}
