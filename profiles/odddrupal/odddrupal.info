@@ -18,7 +18,6 @@ dependencies[] = options
 dependencies[] = overlay
 dependencies[] = path
 dependencies[] = php
-dependencies[] = shortcut
 dependencies[] = taxonomy
 dependencies[] = toolbar
 dependencies[] = update
