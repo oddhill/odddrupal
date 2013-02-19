@@ -207,3 +207,18 @@ function odddrupal_update_7116() {
     module_enable(array('tower_of_babel'));
   }
 }
+
+/**
+ * Add the cron interval setting to the development environment for Tadaa!, and
+ * set its initial value if the current environment is development.
+ */
+function odddrupal_update_7116() {
+  $variables = variable_get('tadaa_development_variables', array());
+  if (!$variables['cron_safe_threshold']) {
+    $variables['cron_safe_threshold'] = '0';
+    variable_set('tadaa_development_variables', $variables);
+    if (variable_get('tadaa_environment') == 'development') {
+      variable_set('cron_safe_threshold', '0');
+    }
+  }
+}

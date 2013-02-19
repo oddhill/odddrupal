@@ -301,7 +301,6 @@ function odddrupal_set_variables() {
   variable_set('maintenance_mode_message', st("!site is currently down for maintenance, but will return shortly!", array('!site' => variable_get('site_name', st('The site')))));
   variable_set('logintoboggan_login_with_email', '1');
   variable_set('site_403', 'toboggan/denied');
-  variable_set('cron_safe_threshold', 3600);
   variable_set('pathauto_transliterate', 1);
   variable_set('update_check_disabled', 1);
   variable_set('clean_url', 1);
@@ -336,6 +335,7 @@ function odddrupal_set_variables() {
   variable_set('tadaa_development_variables', array(
     'block_cache' => 0,
     'cache' => 0,
+    'cron_safe_threshold' => '0',
     'dblog_row_limit' => '100',
     'error_level' => '2',
     'jquery_update_compression_type' => 'none',
@@ -359,6 +359,7 @@ function odddrupal_set_variables() {
   variable_set('tadaa_staging_variables', array(
     'block_cache' => 1,
     'cache' => 1,
+    'cron_safe_threshold' => '43200',
     'dblog_row_limit' => '100',
     'error_level' => '2',
     'jquery_update_compression_type' => 'min',
@@ -383,6 +384,7 @@ function odddrupal_set_variables() {
   variable_set('tadaa_production_variables', array(
     'block_cache' => 1,
     'cache' => 1,
+    'cron_safe_threshold' => '3600',
     'dblog_row_limit' => '0',
     'error_level' => '0',
     'jquery_update_compression_type' => 'min',
