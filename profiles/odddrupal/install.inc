@@ -170,6 +170,9 @@ function odddrupal_locale_settings_global() {
   variable_set('date_format_long', 'l, j F, Y - H:i');
   variable_set('date_format_medium', 'D, Y-m-d H:i');
   variable_set('date_format_short', 'Y-m-d H:i');
+
+  // Set the source language for string translations.
+  variable_set('i18n_string_source_language', 'en');
 }
 
 /**
