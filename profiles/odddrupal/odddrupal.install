@@ -212,7 +212,7 @@ function odddrupal_update_7116() {
  * Add the cron interval setting to the development environment for Tadaa!, and
  * set its initial value if the current environment is development.
  */
-function odddrupal_update_7116() {
+function odddrupal_update_7117() {
   $variables = variable_get('tadaa_development_variables', array());
   if (!$variables['cron_safe_threshold']) {
     $variables['cron_safe_threshold'] = '0';
