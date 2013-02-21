@@ -1,0 +1,5 @@
+name = Eight
+description = Default administration theme that extends Seven.
+core = 7.x
+base theme = seven
+stylesheets[screen][] = eight.css

@@ -1,0 +1,8 @@
+form.administration-filters .fieldset-wrapper .form-item {
+  float: left;
+  padding-right: 1em;
+}
+
+form.administration-filters .fieldset-wrapper .ajax-progress {
+  margin-top: 28px;
+}

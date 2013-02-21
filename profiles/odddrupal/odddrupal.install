@@ -249,3 +249,12 @@ function odddrupal_update_7118() {
     module_enable(array('devel_themer'));
   }
 }
+
+/**
+ * Sets Eight as the default administration theme.
+ */
+function odddrupal_update_7119() {
+  if (variable_get('admin_theme') == 'seven') {
+    variable_set('admin_theme', 'eight');
+  }
+}
