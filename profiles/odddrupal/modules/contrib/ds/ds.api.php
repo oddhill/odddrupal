@@ -441,6 +441,25 @@ function hook_ds_layout_region_alter($context, &$region_info) {
 }
 
 /**
+ * Alter the region layout before the regions are rendered.
+ *
+ * This hook is invoked in ds_entity_variables().
+ *
+ * @param $layout
+ *   The region layout.
+ * @param $entity
+ *   The entity which is being processed for rendering.
+ */
+function hook_ds_regions_alter(&$layout, $entity) {
+  // Move the first element of the footer region into the header region on the
+  // front page.
+  if ($entity->type == 'blog' && drupal_is_front_page()) {
+    $element = array_shift($layout['settings']['regions']['footer']);
+    $layout['settings']['regions']['header'][] = $element;
+  }
+}
+
+/**
  * Alter the field label options. Note that you will either
  * update the preprocess functions or the field.tpl.php file when
  * adding new options.

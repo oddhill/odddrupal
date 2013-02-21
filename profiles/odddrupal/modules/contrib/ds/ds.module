@@ -521,6 +521,7 @@ function ds_get_layout($entity_type, $bundle, $view_mode, $fallback = TRUE) {
  *   Collection of fields.
  */
 function ds_get_fields($entity_type, $cache = TRUE) {
+  global $language;
 
   static $static_fields, $fields_cached = array();
   static $loaded = FALSE;
@@ -528,7 +529,7 @@ function ds_get_fields($entity_type, $cache = TRUE) {
   // Get fields from cache.
   if (!$loaded) {
     $loaded = TRUE;
-    if ($cache && $cached_fields = cache_get('ds_fields:' . $GLOBALS[LANGUAGE_TYPE_CONTENT]->language)) {
+    if ($cache && $cached_fields = cache_get('ds_fields:' . $language->language)) {
       $fields_cached = $static_fields = $cached_fields->data;
     }
   }
@@ -563,7 +564,7 @@ function ds_get_fields($entity_type, $cache = TRUE) {
 
       // Cache the fields.
       if ($cache) {
-        cache_set('ds_fields:' . $GLOBALS[LANGUAGE_TYPE_CONTENT]->language, $fields_cached, 'cache');
+        cache_set('ds_fields:' . $language->language, $fields_cached, 'cache');
       }
     }
     else {
@@ -867,6 +868,9 @@ function ds_entity_variables(&$vars) {
       $vars['theme_hook_suggestions'][] = $layout['layout'] . '__' . $vars['elements']['#entity_type'] . '_' . $vars['elements']['#bundle'];
       $vars['theme_hook_suggestions'][] = $layout['layout'] . '__' . $vars['elements']['#entity_type'] . '_' . $vars['elements']['#bundle'] . '_' . $vars['elements']['#view_mode'];
     }
+
+    // Allow modules to alter the region layout before it is rendered.
+    drupal_alter('ds_regions', $layout, $vars[$object]);
 
     // Create region variables based on the layout settings.
     foreach ($layout['regions'] as $region_name => $region) {
@@ -1216,7 +1220,7 @@ function ds_render_author_field($field) {
   }
 
   if ($field['formatter'] == 'author') {
-    return $field['entity']->name;
+    return check_plain($field['entity']->name);
   }
 
   if ($field['formatter'] == 'author_linked') {
@@ -1242,9 +1246,7 @@ function ds_return_picture($entity) {
 
   // Gravatar support.
   if (module_exists('gravatar')) {
-    if (!isset($entity->mail)) {
-      $entity = _gravatar_load_account($entity);
-    }
+    $entity = _gravatar_load_account($entity);
     $entity->picture = _gravatar_get_account_user_picture($entity);
   }
 
@@ -1329,7 +1331,15 @@ function ds_field_formatter_view($entity_type, $entity, $field, $instance, $lang
   $element = array();
   $view_mode = (substr($display['type'], 0, 9) == 'taxonomy_') ? substr($display['type'], 9) : $display['type'];
   foreach ($items as $delta => $item) {
-    $build = taxonomy_term_view(taxonomy_term_load($item['tid']), $view_mode, $langcode);
+    if ($item['tid'] == 'autocreate') {
+      // We don't necessarily have a link when this is
+      // an autocreated term, usually in preview.
+      // So just send the term as check plained markup.
+      $build['#markup'] = check_plain($item['name']);
+    }
+    else {
+      $build = taxonomy_term_view(taxonomy_term_load($item['tid']), $view_mode, $langcode);
+    }
     $element[$delta] = $build;
   }
   return $element;

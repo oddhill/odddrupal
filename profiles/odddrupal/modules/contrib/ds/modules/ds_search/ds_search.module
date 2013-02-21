@@ -519,13 +519,25 @@ function ds_search_form_search_form_alter(&$form, $form_state) {
   // Apache Solr.
   if (variable_get('ds_search_type', 'node') == 'apachesolr_search' && $form['module']['#value'] == 'ds_search') {
     if (variable_get('ds_search_apachesolr_form_alter', FALSE)) {
-      $form['module']['#value'] = 'apachesolr_search';
-      apachesolr_search_form_search_form_alter($form, $form_state);
-      if (variable_get('ds_search_apachesolr_hide_current_filters', FALSE)) {
-        $form['basic']['apachesolr_search']['retain-filters']['#type'] = 'value';
-        $form['basic']['apachesolr_search']['retain-filters']['#value'] = variable_get('ds_search_apachesolr_current_filters_default', FALSE);
+      if (function_exists('apachesolr_search_form_search_form_alter')) {
+        $form['module']['#value'] = 'apachesolr_search';
+        apachesolr_search_form_search_form_alter($form, $form_state);
+        if (variable_get('ds_search_apachesolr_hide_current_filters', FALSE)) {
+          $form['basic']['apachesolr_search']['retain-filters']['#type'] = 'value';
+          $form['basic']['apachesolr_search']['retain-filters']['#value'] = variable_get('ds_search_apachesolr_current_filters_default', FALSE);
+        }
       }
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function ds_search_form_apachesolr_search_custom_page_search_form_alter(&$form, $form_state) {
+  if (variable_get('ds_search_apachesolr_hide_current_filters', FALSE)) {
+    $form['basic']['retain-filters']['#type'] = 'value';
+    $form['basic']['retain-filters']['#value'] = variable_get('ds_search_apachesolr_current_filters_default', FALSE);
   }
 }
 
