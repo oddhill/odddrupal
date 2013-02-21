@@ -258,3 +258,12 @@ function odddrupal_update_7119() {
     variable_set('admin_theme', 'eight');
   }
 }
+
+/**
+ * Enable the Views Bulk Operations module.
+ */
+function odddrupal_update_7120() {
+  if (!module_exists('views_bulk_operations')) {
+    module_enable(array('views_bulk_operations'));
+  }
+}
