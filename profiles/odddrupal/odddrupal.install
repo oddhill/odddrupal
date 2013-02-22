@@ -303,3 +303,30 @@ function odddrupal_update_7121() {
     module_enable(array('backup_migrate', 'treadmill'));
   }
 }
+
+/**
+ * Activate Stage file proxy and configure it with Tadaa!
+ */
+function odddrupal_update_7122() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (!$modules['stage_file_proxy']) {
+    $modules['stage_file_proxy'] = 1;
+    variable_set('tadaa_development_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (!$modules['stage_file_proxy']) {
+    $modules['stage_file_proxy'] = 1;
+    variable_set('tadaa_staging_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (!$modules['stage_file_proxy']) {
+    $modules['stage_file_proxy'] = 0;
+    variable_set('tadaa_production_modules', $modules);
+  }
+
+  if (in_array(variable_get('tadaa_environment'), array('development', 'staging') && !module_exists('stage_file_proxy'))) {
+    module_enable(array('stage_file_proxy'));
+  }
+}
