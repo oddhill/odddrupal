@@ -1,0 +1,20 @@
+diff --git a/backup_migrate.module b/backup_migrate.module
+index 5e10a56..cda53f9 100644
+--- a/backup_migrate.module
++++ b/backup_migrate.module
+@@ -659,6 +659,7 @@ function backup_migrate_ui_export_form($form, &$form_state, $item) {
+  */
+ function backup_migrate_perform_backup(&$settings) {
+   backup_migrate_include('destinations', 'files', 'filters');
++  module_invoke_all('backup_migrate_prebackup', $settings);
+   timer_start('backup_migrate_backup');
+ 
+   // If not in 'safe mode', increase the maximum execution time:
+@@ -713,6 +714,7 @@ function backup_migrate_perform_backup(&$settings) {
+   }
+ 
+   backup_migrate_backup_succeed($message, $params, $settings);
++  module_invoke_all('backup_migrate_postbackup', $settings);
+   return $file;
+ }
+ 
