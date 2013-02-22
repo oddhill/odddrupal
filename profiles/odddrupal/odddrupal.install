@@ -299,7 +299,7 @@ function odddrupal_update_7121() {
   }
   variable_set('tadaa_production_modules', $modules);
 
-  if (variable_get('tadaa_environment') == 'production' && (!module_exists('backup_migrate') || !module_exists('treadmill')) {
+  if (variable_get('tadaa_environment') == 'production' && (!module_exists('backup_migrate') || !module_exists('treadmill'))) {
     module_enable(array('backup_migrate', 'treadmill'));
   }
 }
