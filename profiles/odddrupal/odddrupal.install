@@ -267,3 +267,39 @@ function odddrupal_update_7120() {
     module_enable(array('views_bulk_operations'));
   }
 }
+
+/**
+ * Activate Backup and Migrate and Treadmill and configure it with Tadaa!
+ */
+function odddrupal_update_7121() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (!$modules['backup_migrate']) {
+    $modules['backup_migrate'] = 0;
+  }
+  if (!$modules['treadmill']) {
+    $modules['treadmill'] = 0;
+  }
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (!$modules['backup_migrate']) {
+    $modules['backup_migrate'] = 0;
+  }
+  if (!$modules['treadmill']) {
+    $modules['treadmill'] = 0;
+  }
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (!$modules['backup_migrate']) {
+    $modules['backup_migrate'] = 1;
+  }
+  if (!$modules['treadmill']) {
+    $modules['treadmill'] = 1;
+  }
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'production' && (!module_exists('backup_migrate') || !module_exists('treadmill')) {
+    module_enable(array('backup_migrate', 'treadmill'));
+  }
+}
