@@ -9,7 +9,7 @@
  */
 function theme_tadaa_module_fieldset($variables) {
   $form = $variables['form'];
-  
+
   // Build the rows.
   $rows = array();
   foreach (element_children($form) as $module) {
@@ -19,7 +19,7 @@ function theme_tadaa_module_fieldset($variables) {
     }
     $rows[] = $row;
   }
-  
+
   // Add the table.
   return theme('table', array('header' => $form['#header'], 'rows' => $rows));
 }

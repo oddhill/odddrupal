@@ -28,7 +28,7 @@ function tadaa_environment_configuration_page() {
       'colspan' => 2,
     ),
   );
-  
+
   // Build one row per environment.
   $rows = array();
   $environments = variable_get('tadaa_environments', array());
@@ -40,7 +40,7 @@ function tadaa_environment_configuration_page() {
       l(t('delete'), 'admin/config/development/tadaa/configure/environments/' . $name . '/delete'),
     );
   }
-  
+
   // Return a renderable table array.
   $table = array(
     '#type' => 'table',
@@ -48,7 +48,7 @@ function tadaa_environment_configuration_page() {
     '#header' => $header,
     '#rows' => $rows,
   );
-  
+
   return $table;
 }
 
@@ -57,7 +57,7 @@ function tadaa_environment_configuration_page() {
  */
 function tadaa_environment_form($form, &$form_state, $environment_name = NULL) {
   module_load_include('inc', 'tadaa', 'tadaa.callbacks');
-  
+
   if (isset($environment_name)) {
     // We're editing an environment, load the title.
     $environments = variable_get('tadaa_environments', array());
@@ -71,7 +71,7 @@ function tadaa_environment_form($form, &$form_state, $environment_name = NULL) {
     }
     $environment_title = $environments[$environment_name];
   }
-  
+
   // Set the page title.
   if (isset($environment_title)) {
     drupal_set_title(t('Edit @title', array('@title' => $environment_title)));
@@ -79,13 +79,13 @@ function tadaa_environment_form($form, &$form_state, $environment_name = NULL) {
   else {
     drupal_set_title(t('Add environment'));
   }
-  
+
   // Add a value element that indicates if we're editing or not.
   $form['editing'] = array(
     '#type' => 'value',
     '#value' => isset($environment_name),
   );
-  
+
   // Add a textfield for the title.
   $form['environment_title'] = array(
     '#type' => 'textfield',
@@ -94,7 +94,7 @@ function tadaa_environment_form($form, &$form_state, $environment_name = NULL) {
     '#default_value' => isset($environment_title) ? $environment_title : '',
     '#description' => t('Enter a name that describes the environment, e.g. Development or Production.'),
   );
-  
+
   // The machinreadable name.
   $form['environment_name'] = array(
     '#type' => 'machine_name',
@@ -106,7 +106,7 @@ function tadaa_environment_form($form, &$form_state, $environment_name = NULL) {
     '#default_value' => $environment_name,
     '#disabled' => isset($environment_name),
   );
-  
+
   // Action buttons.
   $form['actions']['submit'] = array(
     '#type' => 'submit',
@@ -120,7 +120,7 @@ function tadaa_environment_form($form, &$form_state, $environment_name = NULL) {
       '#limit_validation_errors' => array(),
     );
   }
-  
+
   return $form;
 }
 
@@ -136,7 +136,7 @@ function tadaa_environment_form_validate($form, &$form_state) {
   }
   $title = $form_state['values']['environment_title'];
   $existing = variable_get('tadaa_environments', array());
-  
+
   // Remove this environment from the environments we're comparing against.
   unset($existing[$form_state['values']['environment_name']]);
 
@@ -156,7 +156,7 @@ function tadaa_environment_form_submit($form, &$form_state) {
   // Get the submitted values.
   $title = $form_state['values']['environment_title'];
   $machine_name = $form_state['values']['environment_name'];
-  
+
   $environments = $environments = variable_get('tadaa_environments', array());
   if ($form_state['values']['editing']) {
     // Update this environment.
@@ -171,7 +171,7 @@ function tadaa_environment_form_submit($form, &$form_state) {
 
   // Save the environments.
   variable_set('tadaa_environments', $environments);
-  
+
   // Send a message to the user, and redirect to the environments overview.
   if ($form_state['values']['editing']) {
     drupal_set_message(t('%title has been updated.', array('%title' => $title)));
@@ -190,7 +190,7 @@ function tadaa_environment_form_submit($form, &$form_state) {
 function tadaa_environment_form_delete($form, &$form_state) {
   // Get the environment name.
   $environment_name = $form['environment_name']['#value'];
-  
+
   // Redirect to the delete page.
   $form_state['redirect'] = 'admin/config/development/tadaa/configure/environments/' . $environment_name . '/delete';
 }
@@ -210,17 +210,17 @@ function tadda_environment_delete_confirm($form, &$form_state, $environment_name
     die();
   }
   $environment_title = $environments[$environment_name];
-  
+
   // Add this environment name to the form.
   $form['environment_name'] = array(
     '#type' => 'value',
     '#value' => $environment_name,
   );
-  return confirm_form($form, 
-    t('Are you sure you want to delete %title?', array('%title' => $environment_title)), 
-    'admin/config/development/tadaa/configure/environments', 
-    t('This action cannot be undone.'), 
-    t('Delete'), 
+  return confirm_form($form,
+    t('Are you sure you want to delete %title?', array('%title' => $environment_title)),
+    'admin/config/development/tadaa/configure/environments',
+    t('This action cannot be undone.'),
+    t('Delete'),
     t('Cancel')
   );
 }
@@ -236,7 +236,7 @@ function tadda_environment_delete_confirm_submit($form, &$form_state) {
   $environments = variable_get('tadaa_environments', array());
   $environment_title = $environments[$form_state['values']['environment_name']];
   unset($environments[$form_state['values']['environment_name']]);
-  
+
   // Save the environments.
   variable_set('tadaa_environments', $environments);
 
@@ -264,10 +264,10 @@ function tadaa_module_configuration_form($form, $form_state) {
     $form['#prefix'] = t('No environments has been added. Go to !page to add an environment.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/configure/environments/add')));
     return $form;
   }
-  
+
   // Load the environments.
   $environments = variable_get('tadaa_environments', array());
-  
+
   // The header for the table.
   $header = array(
     t('Module'),
@@ -276,7 +276,7 @@ function tadaa_module_configuration_form($form, $form_state) {
   foreach ($environments as $name => $title) {
     $header[] = $title;
   }
-  
+
   // Load every available module.
   $modules = array();
   $result = db_query("SELECT name FROM system WHERE type = 'module' AND name <> 'tadaa' ORDER BY name ASC");
@@ -295,7 +295,7 @@ function tadaa_module_configuration_form($form, $form_state) {
   $form['modules'] = array(
     '#tree' => TRUE,
   );
-  
+
   // Build one row per module.
   $rows = array();
   foreach ($modules as $package => $modules) {
@@ -306,10 +306,10 @@ function tadaa_module_configuration_form($form, $form_state) {
       '#collapsed' => TRUE,
       '#theme' => 'tadaa_module_fieldset',
       '#header' => $header,
-      // Ensure that the "Core" package fieldset comes first. 
+      // Ensure that the "Core" package fieldset comes first.
       '#weight' => $package == 'Core' ? -10 : NULL,
     );
-    
+
     foreach ($modules as $module => $title) {
       $form['modules'][$package][$module] = array(
         'title' => array(
@@ -326,7 +326,7 @@ function tadaa_module_configuration_form($form, $form_state) {
           '#type' => 'checkbox',
           '#default_value' => $active,
         );
-        
+
         // If this module is activated for this environment, expand the
         // fieldset.
         if ($active) {
@@ -334,9 +334,9 @@ function tadaa_module_configuration_form($form, $form_state) {
         }
       }
     }
-    
+
   }
-  
+
   // Lastly, sort all fieldsets by title.
   uasort($form['modules'], 'element_sort_by_title');
 
@@ -344,7 +344,7 @@ function tadaa_module_configuration_form($form, $form_state) {
     '#type' => 'submit',
     '#value' => t('Save configuration'),
   );
-  
+
   return $form;
 }
 
@@ -361,7 +361,7 @@ function tadaa_module_configuration_form_submit($form, $form_state) {
       }
     }
   }
-  
+
   foreach ($environments as $environment => $configuration) {
     variable_set('tadaa_' . $environment . '_modules', $configuration);
   }
@@ -383,7 +383,7 @@ function tadaa_variable_configuration_page() {
       '#markup' => t('No environments has been added. Go to !page to add an environment.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/configure/environments/add'))),
     );
   }
-  
+
   $output = '';
 
   // The header for the tables.
@@ -395,7 +395,7 @@ function tadaa_variable_configuration_page() {
       'colspan' => 2,
     ),
   );
-  
+
   // Load the environments, and create a table for each environment.
   $environments = variable_get('tadaa_environments', array());
   foreach ($environments as $name => $title) {
@@ -412,7 +412,7 @@ function tadaa_variable_configuration_page() {
         l(t('delete'), 'admin/config/development/tadaa/configure/variables/' . $name . '/delete/' . $variable),
       );
     }
-    
+
     // Add this table to the output.
     $table = array(
       'caption' => $title,
@@ -423,7 +423,7 @@ function tadaa_variable_configuration_page() {
     $output .= theme('table', $table);
     $output .= '<p>' . l(t('Add variable'), 'admin/config/development/tadaa/configure/variables/add/' . $name) . '</p>';
   }
-  
+
   return $output;
 }
 
@@ -434,7 +434,7 @@ function tadaa_variable_form($form, &$form_state, $environment_name, $variable_n
   module_load_include('inc', 'tadaa', 'tadaa.callbacks');
   $environments = variable_get('tadaa_environments', array());
   $environment_title = $environments[$environment_name];
-  
+
   // Set the page title.
   if (isset($variable_name)) {
     drupal_set_title(t('Edit @variable', array('@variable' => $variable_name)));
@@ -442,13 +442,13 @@ function tadaa_variable_form($form, &$form_state, $environment_name, $variable_n
   else {
     drupal_set_title(t('Add variable'));
   }
-  
+
   // Add the current environment to the form values.
   $form['environment_name'] = array(
     '#type' => 'value',
     '#value' => $environment_name,
   );
-  
+
   // Add a textfield for the variables name.
   $form['variable_name'] = array(
     '#type' => 'textfield',
@@ -460,37 +460,55 @@ function tadaa_variable_form($form, &$form_state, $environment_name, $variable_n
     '#disabled' => isset($variable_name),
   );
   
-  // Add the value configuration fieldset.
-  $form['environment'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Configuration'),
-  );
-
-  // Get the configuration for this environment if we're editing a variable.
-  if (isset($variable_name)) {
-    $configuration = variable_get('tadaa_' . $environment_name . '_variables', array());
-    $default_value = isset($configuration[$variable_name]) ? serialize($configuration[$variable_name]) : '';
+  if (module_exists('variable')) {
+    $form['load'] = array(
+      '#type' => 'button',
+      '#value' => t('Load variable form'),
+      '#limit_validation_errors' => array(),
+      '#ajax' => array(
+        'callback' => 'tadaa_variable_load_form',
+        'wrapper' => 'variable-value-wrapper',
+      ),
+    );
+    
+    $form['variable_value'] = array(
+      '#markup' => '<div id="variable-value-wrapper"></div>',
+    );
   }
+  else {
+    // Add the value configuration fieldset.
+    $form['environment'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Configuration'),
+    );
   
-  $form['environment']['variable_value'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Value'),
-    '#prefix' => '<div id="' . $environment_name . '-value-wrapper">',
-    '#suffix' => '</div>',
-    '#default_value' => isset($default_value) ? $default_value : '',
-    '#description' => t("Enter the desired value for the %environment environment. If you're configuring a variable that already exists, you may load the current value automatically.", array('%environment' => $environment_title)),
-    '#required' => TRUE,
-  );
-  $form['environment']['load'] = array(
-    '#type' => 'button',
-    '#value' => t('Load current value'),
-    '#name' => $environment_name,
-    '#limit_validation_errors' => array(),
-    '#ajax' => array(
-      'callback' => 'tadaa_variable_load_value',
-      'wrapper' => $environment_name . '-value-wrapper',
-    ),
-  );
+    // Get the configuration for this environment if we're editing a variable.
+    if (isset($variable_name)) {
+      $configuration = variable_get('tadaa_' . $environment_name . '_variables', array());
+      $default_value = isset($configuration[$variable_name]) ? serialize($configuration[$variable_name]) : '';
+    }
+    
+    $form['environment']['variable_value'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Value'),
+      '#prefix' => '<div id="' . $environment_name . '-value-wrapper">',
+      '#suffix' => '</div>',
+      '#default_value' => isset($default_value) ? $default_value : '',
+      '#description' => t("Enter the desired value for the %environment environment. If you're configuring a variable that already exists, you may load the current value automatically.", array('%environment' => $environment_title)),
+      '#required' => TRUE,
+    );
+    $form['environment']['load'] = array(
+      '#type' => 'button',
+      '#value' => t('Load current value'),
+      '#name' => $environment_name,
+      '#limit_validation_errors' => array(),
+      '#ajax' => array(
+        'callback' => 'tadaa_variable_load_value',
+        'wrapper' => $environment_name . '-value-wrapper',
+        'event' => 'change',
+      ),
+    );
+  }
 
   // Action buttons.
   $form['actions']['submit'] = array(
@@ -505,7 +523,7 @@ function tadaa_variable_form($form, &$form_state, $environment_name, $variable_n
       '#limit_validation_errors' => array(),
     );
   }
-  
+
   return $form;
 }
 
@@ -545,7 +563,7 @@ function tadaa_variable_form_delete($form, &$form_state) {
   // Get the variable and environment names.
   $environment_name = $form['environment_name']['#value'];
   $variable_name = $form['variable_name']['#value'];
-  
+
   // Redirect to the delete page.
   $form_state['redirect'] = 'admin/config/development/tadaa/configure/variables/' . $environment_name . '/delete/' . $variable_name;
 }
@@ -563,7 +581,7 @@ function tadda_variable_delete_confirm($form, &$form_state, $environment_name, $
     '#type' => 'value',
     '#value' => $variable_name,
   );
-  
+
   // Load the title.
   $environments = variable_get('tadaa_environments', array());
   if (!isset($environments[$environment_name])) {
@@ -575,12 +593,12 @@ function tadda_variable_delete_confirm($form, &$form_state, $environment_name, $
     die();
   }
   $environment_title = $environments[$environment_name];
-  
-  return confirm_form($form, 
-    t('Are you sure you want to delete the configuration for %variable?', array('%variable' => $variable_name)), 
-    'admin/config/development/tadaa/configure/variables', 
-    isset($environment_name) ? t('This will delete the configuration for the %title environment.', array('%title' => $environment_title)) : t('This will delete the configuration for every environment.'), 
-    t('Delete'), 
+
+  return confirm_form($form,
+    t('Are you sure you want to delete the configuration for %variable?', array('%variable' => $variable_name)),
+    'admin/config/development/tadaa/configure/variables',
+    isset($environment_name) ? t('This will delete the configuration for the %title environment.', array('%title' => $environment_title)) : t('This will delete the configuration for every environment.'),
+    t('Delete'),
     t('Cancel')
   );
 }

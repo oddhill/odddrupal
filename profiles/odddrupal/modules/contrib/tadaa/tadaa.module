@@ -51,6 +51,15 @@ function tadaa_menu() {
     'file' => $callback_file,
     'type' => MENU_CALLBACK,
   );
+  // Switch environment.
+  $items['tadaa/environment/switch/%'] = array(
+    'page callback' => 'tadaa_environment_switch',
+    'page arguments' => array(3),
+    'access callback' => 'tadaa_environment_switch_access',
+    'access arguments' => array(3),
+    'file' => $callback_file,
+    'type' => MENU_CALLBACK,
+  );
 
   // Module status page.
   $items['admin/config/development/tadaa'] = array(
@@ -93,7 +102,7 @@ function tadaa_menu() {
     'type' => MENU_LOCAL_TASK,
     'weight' => 2,
   );
-  
+
   // Module configuration.
   $items['admin/config/development/tadaa/configure'] = array(
     'title' => 'Configure',
@@ -111,7 +120,7 @@ function tadaa_menu() {
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'weight' => 0,
   );
-  
+
   // Variables configuration.
   $items['admin/config/development/tadaa/configure/variables'] = array(
     'title' => 'Variables',
@@ -190,6 +199,19 @@ function tadaa_menu() {
 }
 
 /**
+ * Access callback for tadaa_environment_switch().
+ *
+ * This will verify the key that has been supplied in the query string. We will
+ * use the same key as the cron key, for convenience. It will also verify that
+ * the environment exists.
+ */
+function tadaa_environment_switch_access($environment) {
+  $environments = variable_get('tadaa_environments', array());
+
+  return isset($environments[$environment]) && isset($_GET['key']) && variable_get('cron_key', 'drupal') == $_GET['key'];
+}
+
+/**
  * Implements hook_theme().
  */
 function tadaa_theme($existing, $type, $theme, $path) {
@@ -259,13 +281,13 @@ function tadaa_batch_disable_modules($modules, &$context) {
   // Only disable the module if it's currently enabled.
   if (module_exists($modules[$context['sandbox']['current_module']])) {
     module_disable(array($modules[$context['sandbox']['current_module']]));
-    
+
     // Get the real module name, and set the message.
     $module_info = drupal_parse_info_file(drupal_get_path('module', $modules[$context['sandbox']['current_module']]) . '/' . $modules[$context['sandbox']['current_module']] . '.info');
     $context['message'] = t('Successfully disabled %module', array('%module' => $module_info['name']));
     $context['results']['disabled'][] = $module_info['name'];
   }
-  
+
   // Move on to the next module.
   $context['sandbox']['current_module']++;
   $context['finished'] = $context['sandbox']['current_module'] / $context['sandbox']['total_modules'];
@@ -288,7 +310,7 @@ function tadaa_batch_enable_modules($modules, &$context) {
   // Only enable the module if it's currently disabled.
   if (!module_exists($modules[$context['sandbox']['current_module']])) {
     $result = module_enable(array($modules[$context['sandbox']['current_module']]));
-    
+
     // Get the real module name, and set the message.
     $module_info = drupal_parse_info_file(drupal_get_path('module', $modules[$context['sandbox']['current_module']]) . '/' . $modules[$context['sandbox']['current_module']] . '.info');
     if ($result) {
@@ -300,7 +322,7 @@ function tadaa_batch_enable_modules($modules, &$context) {
       $context['results']['enabled']['failed'][] = $module_info['name'];
     }
   }
-  
+
   // Move on to the next module.
   $context['sandbox']['current_module']++;
   $context['finished'] = $context['sandbox']['current_module'] / $context['sandbox']['total_modules'];
@@ -323,16 +345,16 @@ function tadaa_batch_set_variables($variables, &$context) {
   $current_variable = array_slice($variables, $context['sandbox']['current_variable'], 1);
   $variable = key($current_variable);
   $value = current($current_variable);
-  
+
   // Only change the variables value if it's different from the current value.
   if (variable_get($variable) != $value) {
     variable_set($variable, $value);
-    
+
     // Set a message and keep the result.
     $context['message'] = t('Altered %variable', array('%variable' => key($current_variable)));
     $context['results']['variables'][] = key($current_variable);
   }
-  
+
   // Move on to the next variable.
   $context['sandbox']['current_variable']++;
   $context['finished'] = $context['sandbox']['current_variable'] / $context['sandbox']['total_variables'];
@@ -361,7 +383,7 @@ function tadaa_batch_finished($success, $results, $operations) {
     if (empty($results)) {
       drupal_set_message(t('Nothing has been done.'));
     }
-  
+
     // At least one module has been disabled.
     if (!empty($results['disabled'])) {
       drupal_set_message(t('The following modules have been disabled: !modules', array('!modules' => '<br />' . implode('<br />', $results['disabled']))));
@@ -378,7 +400,7 @@ function tadaa_batch_finished($success, $results, $operations) {
         drupal_set_message(t('Failed to enable the following modules: !modules', array('!modules' => '<br />' . implode('</li><li>', $results['enabled']['failed']))), 'error');
       }
     }
-    
+
     // At least one variable has been changed.
     if (!empty($results['variables'])) {
       drupal_set_message(t('Altered the following variables: !variables', array('!variables' => '<br />' . implode('<br />', $results['variables']))));

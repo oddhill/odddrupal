@@ -18,14 +18,14 @@ function tadaa_module_status_page() {
       '#markup' => t('No environments has been added. Go to !page to add an environment.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/configure/environments/add'))),
     );
   }
-  
+
   // Verify that we have an active environment.
   if (!TADAA_ENVIRONMENT) {
     return array(
       '#markup' => t('No environment has been selected. Go to !page to activate an environment.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/status/environments'))),
     );
   }
-  
+
   // Load the modules.
   $modules = tadaa_get_modules(TADAA_ENVIRONMENT);
   if (count($modules) < 1) {
@@ -65,10 +65,10 @@ function tadaa_module_status_page() {
       $configuration != $real_status ? l(t('Fix'), 'tadaa/module/' . $module . '/fix') : '',
     );
   }
-  
+
   // Load the title for the current environment that we'll use as the caption.
   $environment_title = isset($environments[TADAA_ENVIRONMENT]) ? $environments[TADAA_ENVIRONMENT] : t('none');
-  
+
   // Return a renderable table array.
   $table = array(
     '#type' => 'table',
@@ -77,7 +77,7 @@ function tadaa_module_status_page() {
     '#rows' => $rows,
     '#caption' => t('Current environment: @environment', array('@environment' => $environment_title)),
   );
-  
+
   return $table;
 }
 
@@ -95,14 +95,14 @@ function tadaa_variable_status_page() {
       '#markup' => t('No environments has been added. Go to !page to add an environment.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/configure/environments/add'))),
     );
   }
-  
+
   // Verify that we have an active environment.
   if (!TADAA_ENVIRONMENT) {
     return array(
       '#markup' => t('No environment has been selected. Go to !page to activate an environment.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/status/environments'))),
     );
   }
-  
+
   // Load the variables.
   $variables = tadaa_get_variables(TADAA_ENVIRONMENT);
   if (count($variables) < 1) {
@@ -111,7 +111,7 @@ function tadaa_variable_status_page() {
       '#markup' => t('No variables has been configured yet. Go to !page to set up some values.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/configure/variables'))),
     );
   }
-  
+
   // The header for the table.
   $header = array(
     '',
@@ -120,7 +120,7 @@ function tadaa_variable_status_page() {
     t('Real value'),
     t('Operations'),
   );
-  
+
   // Build one row per variable.
   $rows = array();
   foreach ($variables as $variable => $configuration) {
@@ -140,7 +140,7 @@ function tadaa_variable_status_page() {
 
   // Load the title for the current environment that we'll use as the caption.
   $environment_title = isset($environments[TADAA_ENVIRONMENT]) ? $environments[TADAA_ENVIRONMENT] : t('none');
-  
+
   // Return a renderable table array.
   $table = array(
     '#type' => 'table',
@@ -149,7 +149,7 @@ function tadaa_variable_status_page() {
     '#rows' => $rows,
     '#caption' => t('Current environment: @environment', array('@environment' => $environment_title)),
   );
-  
+
   return $table;
 }
 
@@ -166,6 +166,7 @@ function tadaa_environment_status_form($form, &$form_state) {
       '#options' => $environments,
       '#default_value' => TADAA_ENVIRONMENT,
       '#required' => TRUE,
+      '#description' => 'To switch environment from outside the site, go to ' . url('tadaa/environment/switch/ENVIRONMENT_MACHINE_NAME', array('absolute' => TRUE, 'query' => array('key' => variable_get('cron_key', 'drupal')))) . '.',
     );
     $form['submit'] = array(
       '#type' => 'submit',
@@ -175,7 +176,7 @@ function tadaa_environment_status_form($form, &$form_state) {
   else {
     $form['#prefix'] = t('No environments has been added. Go to !page to add an environment.', array('!page' => l(t('this page'), 'admin/config/development/tadaa/configure/environments/add')));
   }
-  
+
   return $form;
 }
 
@@ -195,7 +196,7 @@ function tadaa_environment_status_form_submit($form, &$form_state) {
   // Get the configured module and variables.
   $modules = tadaa_get_modules($form_state['values']['environment']);
   $variables = tadaa_get_variables($form_state['values']['environment']);
-  
+
   // Build an array of modules to disable.
   $disable = array();
   foreach ($modules as $module => $status) {
@@ -203,7 +204,7 @@ function tadaa_environment_status_form_submit($form, &$form_state) {
       $disable[] = $module;
     }
   }
-    
+
   // Build an array of modules to enable.
   $enable = array();
   foreach ($modules as $module => $status) {
@@ -211,7 +212,7 @@ function tadaa_environment_status_form_submit($form, &$form_state) {
       $enable[] = $module;
     }
   }
-  
+
   // Set up the operations.
   $operations = array();
   if (!empty($disable)) {
