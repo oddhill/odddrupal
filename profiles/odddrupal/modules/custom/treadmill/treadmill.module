@@ -1,0 +1,193 @@
+<?php
+/**
+ * @file
+ * Main module file for the Treadmill module.
+ *
+ * This is a custom module that extracts the archives that came from the
+ * production environment. These archives will contain a backup of the files
+ * directory.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function treadmill_menu() {
+  $items['admin/config/system/backup_migrate/treadmill'] = array(
+    'title' => 'Treadmill',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('treadmill_form'),
+    'access arguments' => array('configure treadmill'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function treadmill_permission() {
+  return array(
+    'configure treadmill' => array(
+      'title' => 'Configure treadmill settings',
+    ),
+  );
+}
+
+/**
+ * Main configuration form.
+ */
+function treadmill_form($form, &$form_state) {
+  // Get the settings, and the available Backup and Migrate destinations.
+  $settings = treadmill_get_settings();
+  backup_migrate_include('profiles', 'destinations');
+  $destinations = _backup_migrate_get_destination_form_item_options('manual backup');
+
+  $visible_states = array();
+  foreach ($destinations as $key => $label) {
+    $visible_states[]['[name=treadmill_destination]'] = array('value' => $key);
+  }
+
+  // Global settings.
+  $form['global'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Global settings'),
+    '#collapsible' => TRUE,
+  );
+  $form['global']['treadmill_destination'] = array(
+    '#type' => 'select',
+    '#title' => 'Triggering destination',
+    '#options' => array('' => t('- None -')) + $destinations,
+    '#default_value' => $settings['destination'],
+    '#description' => t('Select the Backup and Migrate destination that should trigger Treadmill.'),
+  );
+  $form['global']['treadmill_url'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Destination URL',
+    '#description' => t('The full base url for the destination site including a trailing slash, e.g. %example.', array('%example' => 'http://example.oddserver.se/')),
+    '#required' => TRUE,
+    '#default_value' => $settings['url'],
+    '#states' => array(
+      'visible' => $visible_states,
+    ),
+  );
+  $form['global']['treadmill_key'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Access key',
+    '#required' => TRUE,
+    '#default_value' => $settings['key'],
+    '#states' => array(
+      'visible' => $visible_states,
+    ),
+  );
+
+  // Features specific settings.
+  $form['features'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Features settings'),
+    '#collapsible' => TRUE,
+    '#states' => array(
+      'visible' => $visible_states,
+    ),
+  );
+  $form['features']['treadmill_features_revert'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Revert features for the destination site.',
+    '#default_value' => $settings['features_revert'],
+  );
+
+  // Tadaa! specific settings.
+  $form['tadaa'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Tadaa! settings'),
+    '#collapsible' => TRUE,
+    '#states' => array(
+      'visible' => $visible_states,
+    ),
+  );
+  $form['tadaa']['treadmill_environment_switch'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Switch environment for the destination site.',
+    '#default_value' => $settings['tadaa_switch'],
+  );
+  $form['tadaa']['treadmill_environment'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Environment machine name',
+    '#description' => t('Enter the name of the environment that should be activated once the backup has finished, e.g. %example.', array('%example' => 'staging')),
+    '#states' => array(
+      'visible' => array(
+        '[name=treadmill_environment_switch]' => array('checked' => TRUE),
+      ),
+      'required' => array(
+        '[name=treadmill_environment_switch]' => array('checked' => TRUE),
+      ),
+    ),
+    '#default_value' => $settings['tadaa_environment'],
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Form validation for the main configuration form.
+ */
+function treadmill_form_validate($form, &$form_state) {
+  // Validate the URL.
+  if (!valid_url($form_state['values']['treadmill_url'], TRUE)) {
+    form_set_error('url', t("%url isn't a valid URL.", array('%url' => $form_state['values']['treadmill_url'])));
+  }
+
+  // Make sure that the URL has a trailing slash.
+  if (!preg_match('/\/$/', $form_state['values']['treadmill_url'])) {
+    form_set_error('url', t('The URL has to end with a trailing slash.'));
+  }
+
+  // Verify that we have an environment name if the user has enabled the
+  // environment switch.
+  if ($form_state['values']['treadmill_environment_switch'] && empty($form_state['values']['treadmill_environment'])) {
+    form_set_error('environment', t('Environment machine name field is required.'));
+  }
+}
+
+/**
+ * Implements hook_backup_migrate_postbackup().
+ */
+function treadmill_backup_migrate_postbackup($backup_migrate_settings) {
+  // Get the destination that the backup was performed against, and get the
+  // Treadmill settings.
+  $destination = $backup_migrate_settings->get_destination()->destination_id;
+  $settings = treadmill_get_settings();
+
+  // Don't do anything if this isn't the configured destination.
+  if ($settings['destination'] != $destination) {
+    return;
+  }
+
+  // Build the URL and the base query.
+  $url = $settings['url'];
+  $query = array('key' => $settings['key']);
+
+  // Perform the Tadaa! environment switch.
+  if ($settings['tadaa_switch']) {
+    $query['q'] = 'tadaa/environment/switch/' . $settings['tadaa_environment'];
+    drupal_http_request(url($url, array('query' => $query)));
+  }
+}
+
+/**
+ * Helper function that gets the settings.
+ *
+ * @return
+ *  An array with the values, keyed by the name.
+ */
+function treadmill_get_settings() {
+  return array(
+    'destination' => variable_get('treadmill_destination', ''),
+    'url' => variable_get('treadmill_url', ''),
+    'key' => variable_get('treadmill_key', ''),
+    'features_revert' => variable_get('treadmill_features_revert', FALSE),
+    'tadaa_switch' => variable_get('treadmill_environment_switch', FALSE),
+    'tadaa_environment' => variable_get('treadmill_environment', 'staging'),
+  );
+}
