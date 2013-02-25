@@ -330,3 +330,16 @@ function odddrupal_update_7122() {
     module_enable(array('stage_file_proxy'));
   }
 }
+
+/**
+ * Enable Treadmill for the staging environment.
+ */
+function odddrupal_update_7123() {
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['treadmill'] = 1;
+  variable_set('tadaa_staging_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'staging' && !module_exists('treadmill')) {
+    module_enable(array('treadmill'));
+  }
+}

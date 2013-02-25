@@ -12,13 +12,23 @@
  * Implements hook_menu().
  */
 function treadmill_menu() {
-  $items['admin/config/system/backup_migrate/treadmill'] = array(
-    'title' => 'Treadmill',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('treadmill_form'),
-    'access arguments' => array('configure treadmill'),
-    'type' => MENU_LOCAL_TASK,
-    'weight' => 10,
+  // Only enable the Backup and Migrate cooperation if that module exists.
+  if (module_exists('backup_migrate')) {
+    $items['admin/config/system/backup_migrate/treadmill'] = array(
+      'title' => 'Treadmill',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('treadmill_form'),
+      'access arguments' => array('configure treadmill'),
+      'type' => MENU_LOCAL_TASK,
+      'weight' => 10,
+    );
+  }
+
+  // Callback that reverts every feature.
+  $items['treadmill/features/revert'] = array(
+    'page callback' => 'treadmill_features_revert',
+    'access callback' => 'treadmill_features_revert_access',
+    'type' => MENU_CALLBACK,
   );
 
   return $items;
@@ -33,6 +43,32 @@ function treadmill_permission() {
       'title' => 'Configure treadmill settings',
     ),
   );
+}
+
+/**
+ * Access callback for treadmill_features_revert().
+ *
+ * This will verify the key that has been supplied in the query string. We will
+ * use the same key as the cron key, for convenience.
+ */
+function treadmill_features_revert_access() {
+  return isset($_GET['key']) && variable_get('cron_key', 'drupal') == $_GET['key'];
+}
+
+/**
+ * Page callback for treadmill_features_revert().
+ *
+ * @see ftools_features_revert_all_submit().
+ */
+function treadmill_features_revert() {
+  // Include the necessary files and revert all features.
+  module_load_include('inc', 'features', 'features.export');
+  features_include();
+  features_revert();
+
+  // Clear the cache, and exit.
+  cache_clear_all();
+  exit();
 }
 
 /**
@@ -160,13 +196,19 @@ function treadmill_backup_migrate_postbackup($backup_migrate_settings) {
   $settings = treadmill_get_settings();
 
   // Don't do anything if this isn't the configured destination.
-  if ($settings['destination'] != $destination) {
+  if (empty($settings['destination']) || $settings['destination'] != $destination) {
     return;
   }
 
   // Build the URL and the base query.
   $url = $settings['url'];
   $query = array('key' => $settings['key']);
+
+  // Perform the Features revert.
+  if ($settings['features_revert']) {
+    $query['q'] = 'treadmill/features/revert';
+    drupal_http_request(url($url, array('query' => $query)));
+  }
 
   // Perform the Tadaa! environment switch.
   if ($settings['tadaa_switch']) {
@@ -184,8 +226,8 @@ function treadmill_backup_migrate_postbackup($backup_migrate_settings) {
 function treadmill_get_settings() {
   return array(
     'destination' => variable_get('treadmill_destination', ''),
-    'url' => variable_get('treadmill_url', ''),
-    'key' => variable_get('treadmill_key', ''),
+    'url' => variable_get('treadmill_url', 'http://kund:kund@'),
+    'key' => variable_get('treadmill_key', variable_get('cron_key', 'drupal')),
     'features_revert' => variable_get('treadmill_features_revert', FALSE),
     'tadaa_switch' => variable_get('treadmill_environment_switch', FALSE),
     'tadaa_environment' => variable_get('treadmill_environment', 'staging'),
