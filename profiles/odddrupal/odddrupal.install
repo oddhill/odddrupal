@@ -326,7 +326,7 @@ function odddrupal_update_7122() {
     variable_set('tadaa_production_modules', $modules);
   }
 
-  if (in_array(variable_get('tadaa_environment'), array('development', 'staging') && !module_exists('stage_file_proxy'))) {
+  if (in_array(variable_get('tadaa_environment'), array('development', 'staging')) && !module_exists('stage_file_proxy')) {
     module_enable(array('stage_file_proxy'));
   }
 }
