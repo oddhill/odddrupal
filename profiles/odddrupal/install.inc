@@ -325,11 +325,13 @@ function odddrupal_set_variables() {
   ));
   variable_set('tadaa_development_modules', array(
     'backup_migrate' => 0,
+    'bad_judgement' => 1,
     'context_ui' => 1,
     'devel' => 1,
     'devel_generate' => 1,
     'devel_themer' => 1,
     'help' => 1,
+    'letmein' => 1,
     'reroute_email' => 1,
     'rules_admin' => 1,
     'simplehtmldom' => 1,
@@ -354,11 +356,13 @@ function odddrupal_set_variables() {
   ));
   variable_set('tadaa_staging_modules', array(
     'backup_migrate' => 0,
+    'bad_judgement' => 1,
     'context_ui' => 1,
     'devel' => 0,
     'devel_generate' => 0,
     'devel_themer' => 0,
     'help' => 0,
+    'letmein' => 1,
     'reroute_email' => 1,
     'rules_admin' => 1,
     'simplehtmldom' => 0,
@@ -384,11 +388,13 @@ function odddrupal_set_variables() {
   ));
   variable_set('tadaa_production_modules', array(
     'backup_migrate' => 1,
+    'bad_judgement' => 0,
     'context_ui' => 0,
     'devel' => 0,
     'devel_generate' => 0,
     'devel_themer' => 0,
     'help' => 0,
+    'letmein' => 0,
     'reroute_email' => 0,
     'rules_admin' => 0,
     'simplehtmldom' => 0,

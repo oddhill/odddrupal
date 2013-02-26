@@ -50,6 +50,7 @@ dependencies[] = field_group
 dependencies[] = field_word_boundary
 dependencies[] = jquery_update
 dependencies[] = l10n_update
+dependencies[] = letmein
 dependencies[] = logintoboggan
 dependencies[] = mailsystem
 dependencies[] = mimemail

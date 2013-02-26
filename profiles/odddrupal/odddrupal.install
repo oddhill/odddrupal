@@ -343,3 +343,27 @@ function odddrupal_update_7123() {
     module_enable(array('treadmill'));
   }
 }
+
+/**
+ * Enable Letmein for the development and staging environments.
+ */
+function odddrupal_update_7125() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['bad_judgement'] = 1;
+  $modules['letmein'] = 1;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['bad_judgement'] = 1;
+  $modules['letmein'] = 1;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['bad_judgement'] = 0;
+  $modules['letmein'] = 0;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (in_array(variable_get('tadaa_environment'), array('development', 'staging'))) {
+    module_enable(array('letmein'));
+  }
+}
