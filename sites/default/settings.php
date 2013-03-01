@@ -30,7 +30,7 @@ $conf['404_fast_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><titl
 /**
  * Include the site specific settings file.
  */
-require 'settings.site.php';
+include 'settings.site.php';
 
 /**
  * Include the local settings file.
