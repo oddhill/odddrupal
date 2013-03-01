@@ -6,6 +6,9 @@
 /sites/*/files/*
 /sites/*/tmp/*
 
+# Include README in the files folders.
+!/sites/*/files/README
+
 # Exlude various other files
 icon.png
 icon.gif
