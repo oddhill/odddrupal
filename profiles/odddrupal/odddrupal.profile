@@ -893,3 +893,15 @@ function odddrupal_form_views_form_administration_users_users_alter(&$form, $for
   // Collapse the VBO fieldset by default.
   $form['select']['#collapsed'] = TRUE;
 }
+
+/**
+ * Implements hook_menu_alter().
+ */
+function odddrupal_menu_alter(&$items) {
+  // Since we have a Views page for the admin/people page, we need to modify the
+  // admin/people/create page since it relies on some info from the parent,
+  // which Views will modify. By altering these properties, everything works as
+  // it should.
+  $items['admin/people/create']['page callback'] = 'user_admin';
+  $items['admin/people/create']['file'] = 'user.admin.inc';
+}
