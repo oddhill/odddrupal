@@ -106,8 +106,10 @@ function admin_language_init() {
     if (_admin_language_switch_language()) {
       global $user;
 
-      if (isset($user->admin_language)) {
-        switch ($user->admin_language) {
+      $account = user_load($user->uid);
+
+      if (isset($account->admin_language)) {
+        switch ($account->admin_language) {
           case 'admin':
             // nothing to do, use default value of $admin_language
             break;
@@ -116,8 +118,8 @@ function admin_language_init() {
             $admin_language = $default->language;
             break;
           default:
-            if (isset($languages[$user->admin_language])) {
-              $admin_language = $user->admin_language;
+            if (isset($languages[$account->admin_language])) {
+              $admin_language = $account->admin_language;
             }
         }
       }
