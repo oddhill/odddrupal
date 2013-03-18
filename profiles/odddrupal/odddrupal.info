@@ -1,5 +1,5 @@
 name = Odd Drupal
-description = Custom Drupal profile by Odd Hill.
+description = Base profile that should be used for every site if there's no specific installation profile available.
 core = 7.x
 
 ; Core modules
@@ -63,6 +63,7 @@ dependencies[] = rules
 dependencies[] = rules_admin
 dependencies[] = simplehtmldom
 dependencies[] = spamspan
+dependencies[] = stage_file_proxy
 dependencies[] = strongarm
 dependencies[] = tadaa
 dependencies[] = themekey

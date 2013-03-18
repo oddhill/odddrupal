@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ *  Installation and update instructions for sites using Odd Drupal.
+ */
+
+/**
+ * Implements hook_instal().
+ */
+function oddvault_install() {
+  require_once drupal_get_path('profile', 'oddvault') . '/oddvault.install.inc';
+
+  // Reset some Odd Drupal settings.
+  oddvault_odddrupal_reset();
+
+  // Create the default fields.
+  oddvault_fields();
+
+  // Set up the roles and permissions.
+  oddvault_roles_users();
+
+  // Set various variables.
+  oddvault_set_variables();
+}

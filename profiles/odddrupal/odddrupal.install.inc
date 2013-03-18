@@ -170,9 +170,6 @@ function odddrupal_locale_settings_global() {
   variable_set('date_format_long', 'l, j F, Y - H:i');
   variable_set('date_format_medium', 'D, Y-m-d H:i');
   variable_set('date_format_short', 'Y-m-d H:i');
-
-  // Set the source language for string translations.
-  variable_set('i18n_string_source_language', 'en');
 }
 
 /**
@@ -182,10 +179,6 @@ function odddrupal_locale_settings_global() {
  * the profile installation.
  */
 function odddrupal_locale_settings_sv() {
-  // Include the required files.
-  require_once DRUPAL_ROOT . '/includes/language.inc';
-  require_once DRUPAL_ROOT . '/includes/locale.inc';
-
   // Alter the weight for english.
   db_update('languages')
     ->fields(array(
@@ -195,32 +188,8 @@ function odddrupal_locale_settings_sv() {
     ->condition('language',  'en')
     ->execute();
 
-  // Set up the enabled negotiation providers and their weight.
-  $enabled = array(
-    LOCALE_LANGUAGE_NEGOTIATION_USER => -10,
-    LANGUAGE_NEGOTIATION_DEFAULT => 10,
-  );
-
-  // Iterate through every available provider, so that we can get the required
-  // info and set the weights.
-  $providers = language_negotiation_info();
-  $weight = $enabled;
-  foreach ($providers as $provider => &$data) {
-    if (isset($enabled[$provider])) {
-      // This provider is provided in the enabled array, set the weight that we
-      // have provided.
-      $data['weight'] = $enabled[$provider];
-    }
-    else {
-      // This provider shouldn't be enabled, remove it and set its weight to 0.
-      $weight[$provider] = 0;
-      unset($providers[$provider]);
-    }
-  }
-
-  // Set the negotiation settings and the weights.
-  language_negotiation_set(LANGUAGE_TYPE_INTERFACE, $providers);
-  variable_set('locale_language_providers_weight_' . LANGUAGE_TYPE_INTERFACE, $weight);
+  // Set the source language for string translations.
+  variable_set('i18n_string_source_language', 'en');
 }
 
 /**
@@ -255,7 +224,7 @@ function odddrupal_themekey_rules() {
  * This will add our editor role, and set the default permissions for every
  * role.
  */
-function odddrupal_roles() {
+function odddrupal_roles_users() {
   // Create the editor role.
   $editor_role->name = 'editor';
   user_role_save($editor_role);
@@ -272,6 +241,11 @@ function odddrupal_roles() {
     'access devel information',
   ));
 
+  // Remove permissions for the authenticated role.
+  user_role_revoke_permissions(2, array(
+    'edit mimemail user settings',
+  ));
+
   // Permissions for the editor role.
   user_role_grant_permissions($editor_role->rid, array(
     'access contextual links',
@@ -281,6 +255,41 @@ function odddrupal_roles() {
     'use text format filtered_html',
     'view the administration theme',
   ));
+
+  // Disable the overlay for user 1, and set the language to english.
+  $user = user_load(1);
+  $user->language = 'en';
+  user_save($user, array('data' => array('overlay' => 0)));
+
+  // Create the editor account.
+  $user = array();
+  $user['name'] = 'editor';
+  $user['mail'] = 'admin@oddhill.se';
+  $user['pass'] = 'karljohan12';
+  $user['timezone'] = ODDDRUPAL_DEFAULT_TIMEZONE;
+  $user['language'] = $_GET['locale'];
+  $user['init'] = 'admin@oddhill.se';
+  $user['status'] = 1;
+  $user['roles'] = array(
+    2 => TRUE,
+    $editor_role->rid => $editor_role->rid
+  );
+  user_save(NULL, $user);
+
+  // Create the support account.
+  $user = array();
+  $user['name'] = 'support';
+  $user['mail'] = 'support@oddhill.se';
+  $user['pass'] = 'karljohan12';
+  $user['timezone'] = ODDDRUPAL_DEFAULT_TIMEZONE;
+  $user['language'] = $_GET['locale'];
+  $user['init'] = 'support@oddhill.se';
+  $user['status'] = 1;
+  $user['roles'] = array(
+    2 => TRUE,
+    $editor_role->rid => $editor_role->rid
+  );
+  user_save(NULL, $user);
 }
 
 /**
@@ -440,4 +449,5 @@ function odddrupal_set_variables() {
     'blockify-feed-icons' => 'blockify-feed-icons',
   ));
   variable_set('ftools_disable_features_page_js', 1);
+  variable_set('configurable_timezones', 0);
 }

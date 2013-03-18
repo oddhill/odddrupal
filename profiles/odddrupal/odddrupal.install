@@ -8,7 +8,7 @@
  * Implements hook_instal().
  */
 function odddrupal_install() {
-  require_once DRUPAL_ROOT . '/profiles/odddrupal/install.inc';
+  require_once drupal_get_path('profile', 'odddrupal') . '/odddrupal.install.inc';
 
   // Configure text formats and Wysiwyg settings.
   odddrupal_text_formats();
@@ -25,8 +25,8 @@ function odddrupal_install() {
   // Configure Themekey rules.
   odddrupal_themekey_rules();
 
-  // Set up the roles and permissions.
-  odddrupal_roles();
+  // Set up the roles, users and permissions.
+  odddrupal_roles_users();
 
   // Set various variables.
   odddrupal_set_variables();
