@@ -162,9 +162,6 @@ function install_state_defaults() {
     // An array of information about the chosen installation profile. This will
     // be filled in based on the profile's .info file.
     'profile_info' => array(),
-    // An array of information for each of the base profiles of the chosen
-    // install profile.
-    'base_profiles_info' => array(),
     // An array of available installation profiles.
     'profiles' => array(),
     // An array of server variables that will be substituted into the global
@@ -572,18 +569,15 @@ function install_tasks($install_state) {
   if (!empty($install_state['parameters']['profile'])) {
     // Load the profile install file, because it is not always loaded when
     // hook_install_tasks() is invoked (e.g. batch processing).
-    foreach (drupal_get_profiles() as $profile) {
-      $profile_install_file = DRUPAL_ROOT . "/profiles/$profile/$profile.install";
-      if (file_exists($profile_install_file)) {
-        include_once $profile_install_file;
-      }
-
-      $function = $profile . '_install_tasks';
-      if (function_exists($function)) {
-        $result = $function($install_state);
-        if (is_array($result)) {
-          $tasks += $result;
-        }
+    $profile_install_file = DRUPAL_ROOT . '/profiles/' . $install_state['parameters']['profile'] . '/' . $install_state['parameters']['profile'] . '.install';
+    if (file_exists($profile_install_file)) {
+      include_once $profile_install_file;
+    }
+    $function = $install_state['parameters']['profile'] . '_install_tasks';
+    if (function_exists($function)) {
+      $result = $function($install_state);
+      if (is_array($result)) {
+        $tasks += $result;
       }
     }
   }
@@ -603,14 +597,12 @@ function install_tasks($install_state) {
 
   // Allow the installation profile to modify the full list of tasks.
   if (!empty($install_state['parameters']['profile'])) {
-    foreach (drupal_get_profiles() as $profile) {
-      $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
-      if (file_exists($profile_file)) {
-        include_once $profile_file;
-        $function = $profile . '_install_tasks_alter';
-        if (function_exists($function)) {
-          $function($tasks, $install_state);
-        }
+    $profile_file = DRUPAL_ROOT . '/profiles/' . $install_state['parameters']['profile'] . '/' . $install_state['parameters']['profile'] . '.profile';
+    if (file_exists($profile_file)) {
+      include_once $profile_file;
+      $function = $install_state['parameters']['profile'] . '_install_tasks_alter';
+      if (function_exists($function)) {
+        $function($tasks, $install_state);
       }
     }
   }
@@ -780,19 +772,11 @@ function install_system_module(&$install_state) {
 
   // Save the list of other modules to install for the upcoming tasks.
   // variable_set() can be used now that system.module is installed.
-  $profiles = drupal_get_profiles();
-  $profile_dependencies = array();
-
-  foreach ($profiles as $profile) {
-    $info = install_profile_info($profile);
-    $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-  }
-
-  $modules = $profile_dependencies;
+  $modules = $install_state['profile_info']['dependencies'];
 
   // The installation profile is also a module, which needs to be installed
   // after all the dependencies have been installed.
-  $modules = array_merge($modules, $profiles);
+  $modules[] = drupal_get_profile();
 
   variable_set('install_profile_modules', array_diff($modules, array('system')));
   $install_state['database_tables_exist'] = TRUE;
@@ -1057,7 +1041,21 @@ function install_select_profile(&$install_state) {
 }
 
 /**
- * Selects an installation profile from a list or from a $_POST submission.
+ * Selects an installation profile.
+ *
+ * A profile will be selected if:
+ * - Only one profile is available,
+ * - A profile was submitted through $_POST,
+ * - Exactly one of the profiles is marked as "exclusive".
+ * If multiple profiles are marked as "exclusive" then no profile will be
+ * selected.
+ *
+ * @param array $profiles
+ *   An associative array of profiles with the machine-readable names as keys.
+ *
+ * @return
+ *   The machine-readable name of the selected profile or NULL if no profile was
+ *   selected.
  */
 function _install_select_profile($profiles) {
   if (sizeof($profiles) == 0) {
@@ -1077,6 +1075,23 @@ function _install_select_profile($profiles) {
       }
     }
   }
+  // Check for a profile marked as "exclusive" and ensure that only one
+  // profile is marked as such.
+  $exclusive_profile = NULL;
+  foreach ($profiles as $profile) {
+    $profile_info = install_profile_info($profile->name);
+    if (!empty($profile_info['exclusive'])) {
+      if (empty($exclusive_profile)) {
+        $exclusive_profile = $profile->name;
+      }
+      else {
+        // We found a second "exclusive" profile. There's no way to choose
+        // between them, so we ignore the property.
+        return;
+      }
+    }
+  }
+  return $exclusive_profile;
 }
 
 /**
@@ -1180,15 +1195,8 @@ function install_find_locales($profilename) {
  */
 function install_select_locale(&$install_state) {
   // Find all available locales.
-  $locales = array();
   $profilename = $install_state['parameters']['profile'];
-
-  // @todo remove duplicate 'en' languages from install_find_locales() to avoid
-  // polluting the 'locales' install state key.
-  foreach (drupal_get_profiles() as $profile) {
-    $locales = array_merge($locales, install_find_locales($profile));
-  }
-
+  $locales = install_find_locales($profilename);
   $install_state['locales'] += $locales;
 
   if (!empty($_POST['locale'])) {
@@ -1331,21 +1339,13 @@ function install_already_done_error() {
  *   the profile cannot be loaded.
  */
 function install_load_profile(&$install_state) {
-  foreach (drupal_get_profiles() as $profile) {
-    $profile_file = DRUPAL_ROOT . '/profiles/' . $profile . '/' . $profile . '.profile';
-    if (file_exists($profile_file)) {
-      include_once $profile_file;
-
-      if ($install_state['parameters']['profile'] == $profile) {
-        $install_state['profile_info'] = install_profile_info($profile, $install_state['parameters']['locale']);
-      }
-      else {
-        $install_state['base_profiles_info'][] = install_profile_info($profile, $install_state['parameters']['locale']);
-      }
-    }
-    else {
-      throw new Exception(st('Sorry, the profile you have chosen cannot be loaded.'));
-    }
+  $profile_file = DRUPAL_ROOT . '/profiles/' . $install_state['parameters']['profile'] . '/' . $install_state['parameters']['profile'] . '.profile';
+  if (file_exists($profile_file)) {
+    include_once $profile_file;
+    $install_state['profile_info'] = install_profile_info($install_state['parameters']['profile'], $install_state['parameters']['locale']);
+  }
+  else {
+    throw new Exception(st('Sorry, the profile you have chosen cannot be loaded.'));
   }
 }
 
@@ -1380,9 +1380,7 @@ function install_profile_modules(&$install_state) {
   // Although the profile module is marked as required, it needs to go after
   // every dependency, including non-required ones. So clear its required
   // flag for now to allow it to install late.
-  foreach (drupal_get_profiles() as $profile) {
-    $files[$profile]->info['required'] = FALSE;
-  }
+  $files[$install_state['parameters']['profile']]->info['required'] = FALSE;
   // Add modules that other modules depend on.
   foreach ($modules as $module) {
     if ($files[$module]->requires) {
@@ -1543,10 +1541,6 @@ function install_finished(&$install_state) {
 
   // Remember the profile which was used.
   variable_set('install_profile', drupal_get_profile());
-  // When sub-profiles are used, remember the dependency tree.
-  if ($profiles = install_get_base_profiles()) {
-    variable_set('install_profiles', $profiles);
-  }
 
   // Installation profiles are always loaded last
   db_update('system')
