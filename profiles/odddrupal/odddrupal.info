@@ -51,7 +51,6 @@ dependencies[] = mailsystem
 dependencies[] = mimemail
 dependencies[] = module_filter
 dependencies[] = pathauto
-dependencies[] = rabbit_hole
 dependencies[] = redirect
 dependencies[] = reroute_email
 dependencies[] = rules
