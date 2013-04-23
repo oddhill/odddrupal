@@ -36,6 +36,7 @@ dependencies[] = devel_themer
 dependencies[] = diff
 dependencies[] = ds
 dependencies[] = ds_extras
+dependencies[] = ds_ui
 dependencies[] = entity
 dependencies[] = extlink
 dependencies[] = features
