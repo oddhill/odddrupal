@@ -41,6 +41,7 @@ dependencies[] = extlink
 dependencies[] = features
 dependencies[] = ftools
 dependencies[] = field_group
+dependencies[] = fpa
 dependencies[] = jquery_update
 dependencies[] = l10n_update
 dependencies[] = letmein
