@@ -39,7 +39,6 @@ dependencies[] = diff
 dependencies[] = ds
 dependencies[] = ds_extras
 dependencies[] = entity
-dependencies[] = entityreference
 dependencies[] = extlink
 dependencies[] = features
 dependencies[] = ftools
