@@ -334,7 +334,6 @@ function odddrupal_set_variables() {
   ));
   variable_set('tadaa_development_modules', array(
     'backup_migrate' => 0,
-    'bad_judgement' => 1,
     'context_ui' => 1,
     'devel' => 1,
     'devel_generate' => 1,
@@ -365,7 +364,6 @@ function odddrupal_set_variables() {
   ));
   variable_set('tadaa_staging_modules', array(
     'backup_migrate' => 0,
-    'bad_judgement' => 1,
     'context_ui' => 1,
     'devel' => 0,
     'devel_generate' => 0,
@@ -397,7 +395,6 @@ function odddrupal_set_variables() {
   ));
   variable_set('tadaa_production_modules', array(
     'backup_migrate' => 1,
-    'bad_judgement' => 0,
     'context_ui' => 0,
     'devel' => 0,
     'devel_generate' => 0,

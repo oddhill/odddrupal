@@ -367,3 +367,26 @@ function odddrupal_update_7125() {
     module_enable(array('letmein'));
   }
 }
+
+/**
+ * Remove Bad Judgement from the Tadaa! settings.
+ */
+function odddrupal_update_7126() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (isset($modules['bad_judgement'])) {
+    unset($modules['bad_judgement']);
+    variable_set('tadaa_development_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (isset($modules['bad_judgement'])) {
+    unset($modules['bad_judgement']);
+    variable_set('tadaa_staging_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (isset($modules['bad_judgement'])) {
+    unset($modules['bad_judgement']);
+    variable_set('tadaa_production_modules', $modules);
+  }
+}
