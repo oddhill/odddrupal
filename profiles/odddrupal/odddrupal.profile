@@ -43,6 +43,7 @@ function odddrupal_theme_form() {
   unset($options['oddmaintenance']);
   unset($options['oddroots']);
   unset($options['seven']);
+  unset($options['eight']);
 
   // Get the assumed theme for this site. This will be the last one in the
   // options array.
@@ -97,8 +98,8 @@ function odddrupal_theme_form_submit($form, $form_state) {
   // Get all themes.
   $themes = list_themes(TRUE);
 
-  // Add the selected theme to the enabled themes.
-  $enabled[] = $default_theme;
+  // Add the selected theme and the administration theme to the enabled themes.
+  $enabled = array($default_theme, 'eight');
 
   // Disable the other themes.
   foreach ($themes as $theme => $data) {
