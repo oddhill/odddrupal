@@ -175,9 +175,9 @@
     // clear out the initial "click on any element" starter text
     $('#themer-popup div.starter').empty();
 
-    if (type == 'func') {
+    if (type == 'function') {
       // populate the function name
-      $('#themer-popup dd.key').empty().prepend('<a href="'+ strs.api_site +'api/search/'+ strs.drupal_version +'/'+ key +'" title="'+ strs.drupal_api_docs +'">'+ key +'()</a>');
+      $('#themer-popup dd.key').empty().prepend('<a href="'+ strs.api_site +'api/search/'+ strs.drupal_version +'/'+ key +'" title="'+ strs.drupal_api_docs +'">'+ key + '</a>');
       $('#themer-popup dt.key-type').empty().prepend(strs.function_called);
     }
     else {
@@ -232,25 +232,42 @@
     }
     else {
       $('#themer-popup div.duration').empty().prepend('<span class="dt">' + strs.duration + '</span>' + vars.duration + ' ms');
-      $('#themer-popup dd.candidates').empty().prepend(vars.candidates.join('<span class="delimiter"> < </span>'));
-      $('#themer-popup dd.preprocessors').empty().prepend(vars.preprocessors.join('<span class="delimiter"> + </span>'));
-      $('#themer-popup dt.preprocessors-type').empty().prepend(strs.preprocessors);
-      $('#themer-popup dd.processors').empty().prepend(vars.processors.join('<span class="delimiter"> + </span>'));
-      $('#themer-popup dt.processors-type').empty().prepend(strs.processors);
-
-      var uri = Drupal.settings.devel_themer_uri + '/' + id;
-      if (type == 'func') {
+ 
+      if (vars.candidates.length > 0) {
+        $('#themer-popup dd.candidates').show().empty().prepend(vars.candidates.join('<span class="delimiter"> < </span>'));
+  
+        if (type == 'function') {
           // populate the candidates
-          $('#themer-popup dt.candidates-type').empty().prepend(strs.candidate_functions);
+          $('#themer-popup dt.candidates-type').show().empty().prepend(strs.candidate_functions);
+        }
+        else {
+          $('#themer-popup dt.candidates-type').show().empty().prepend(strs.candidate_files);
+        }
       }
       else {
-        $('#themer-popup dt.candidates-type').empty().prepend(strs.candidate_files);
+        $('#themer-popup dt.candidates-type, #themer-popup dd.candidates').hide();
+      }
+
+      if (vars.preprocessors.length > 0) {
+        $('#themer-popup dd.preprocessors').show().empty().prepend(vars.preprocessors.join('<span class="delimiter"> + </span>'));
+        $('#themer-popup dt.preprocessors-type').show().empty().prepend(strs.preprocessors);
+      }
+      else {
+        $('#themer-popup dd.preprocessors, #themer-popup dt.preprocessors-type').hide();
+      }
+
+      if (vars.processors.length > 0) {
+        $('#themer-popup dd.processors').show().empty().prepend(vars.processors.join('<span class="delimiter"> + </span>'));
+        $('#themer-popup dt.processors-type').show().empty().prepend(strs.processors);
+      }
+      else {
+        $('#themer-popup dd.processors, #themer-popup dt.processors-type').hide();
       }
 
       // Use drupal ajax to do what we need 
       vars_div_array = $('div.themer-variables');
       vars_div = vars_div_array[0];
-      
+      var uri = Drupal.settings.devel_themer_uri + '/' + vars['variables'];
       // Programatically using the drupal ajax things is tricky, so cheat.
       dummy_link = $('<a href="'+uri+'" class="use-ajax">Loading Vars</a>');
       $(vars_div).append(dummy_link);
