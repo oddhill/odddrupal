@@ -387,7 +387,7 @@ function odddrupal_set_variables() {
     'cache' => 1,
     'cron_safe_threshold' => '43200',
     'dblog_row_limit' => '100',
-    'error_level' => '2',
+    'error_level' => '0',
     'jquery_update_compression_type' => 'min',
     'preprocess_css' => 1,
     'preprocess_js' => 1,

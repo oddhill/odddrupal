@@ -442,3 +442,18 @@ function odddrupal_update_7128() {
   variable_set('admin_language_hide_user', '1');
   variable_set('admin_language_translate_admin_menu', '1');
 }
+
+/**
+ * Don't display errors for the staging environment.
+ */
+function odddrupal_update_7129() {
+  $variables = variable_get('tadaa_staging_variables', array());
+  if (isset($variables['error_level'])) {
+    $variables['error_level'] = '0';
+    variable_set('tadaa_staging_variables', $variables);
+  }
+
+  if (variable_get('tadaa_environment') == 'staging') {
+    variable_set('error_level', '0');
+  }
+}
