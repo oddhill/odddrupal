@@ -429,3 +429,16 @@ function odddrupal_update_7127() {
   variable_set('locale_language_providers_weight_' . LANGUAGE_TYPE_INTERFACE, $weight);
 }
 
+/**
+ * Enable and configure Administration language module.
+ */
+function odddrupal_update_7128() {
+  // Enable the module.
+  module_enable(array('admin_language'));
+
+  // Set the variables.
+  variable_set('admin_language_default', 'en');
+  variable_set('admin_language_hide_node', '1');
+  variable_set('admin_language_hide_user', '1');
+  variable_set('admin_language_translate_admin_menu', '1');
+}
