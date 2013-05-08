@@ -236,50 +236,6 @@ function treadmill_form($form, &$form_state) {
     ),
   );
 
-  // Features specific settings.
-  $form['features'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Features settings'),
-    '#collapsible' => TRUE,
-    '#states' => array(
-      'visible' => $visible_states,
-    ),
-  );
-  $form['features']['treadmill_features_revert'] = array(
-    '#type' => 'checkbox',
-    '#title' => 'Revert features for the destination site.',
-    '#default_value' => $settings['features_revert'],
-  );
-
-  // Tadaa! specific settings.
-  $form['tadaa'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Tadaa! settings'),
-    '#collapsible' => TRUE,
-    '#states' => array(
-      'visible' => $visible_states,
-    ),
-  );
-  $form['tadaa']['treadmill_environment_switch'] = array(
-    '#type' => 'checkbox',
-    '#title' => 'Switch environment for the destination site.',
-    '#default_value' => $settings['tadaa_switch'],
-  );
-  $form['tadaa']['treadmill_environment'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Environment machine name',
-    '#description' => t('Enter the name of the environment that should be activated once the backup has finished, e.g. %example.', array('%example' => 'staging')),
-    '#states' => array(
-      'visible' => array(
-        '[name=treadmill_environment_switch]' => array('checked' => TRUE),
-      ),
-      'required' => array(
-        '[name=treadmill_environment_switch]' => array('checked' => TRUE),
-      ),
-    ),
-    '#default_value' => $settings['tadaa_environment'],
-  );
-
   return system_settings_form($form);
 }
 
@@ -295,12 +251,6 @@ function treadmill_form_validate($form, &$form_state) {
   // Make sure that the URL has a trailing slash.
   if (!preg_match('/\/$/', $form_state['values']['treadmill_url'])) {
     form_set_error('url', t('The URL has to end with a trailing slash.'));
-  }
-
-  // Verify that we have an environment name if the user has enabled the
-  // environment switch.
-  if ($form_state['values']['treadmill_environment_switch'] && empty($form_state['values']['treadmill_environment'])) {
-    form_set_error('environment', t('Environment machine name field is required.'));
   }
 }
 
@@ -327,16 +277,12 @@ function treadmill_backup_migrate_postbackup($backup_migrate_settings) {
   drupal_http_request(url($url, array('query' => $query)));
 
   // Perform the Features revert.
-  if ($settings['features_revert']) {
-    $query['q'] = 'treadmill/features/revert';
-    drupal_http_request(url($url, array('query' => $query)));
-  }
+  $query['q'] = 'treadmill/features/revert';
+  drupal_http_request(url($url, array('query' => $query)));
 
   // Perform the Tadaa! environment switch.
-  if ($settings['tadaa_switch']) {
-    $query['q'] = 'tadaa/environment/switch/' . $settings['tadaa_environment'];
-    drupal_http_request(url($url, array('query' => $query)));
-  }
+  $query['q'] = 'tadaa/environment/switch/staging';
+  drupal_http_request(url($url, array('query' => $query)));
 }
 
 /**
@@ -350,8 +296,5 @@ function treadmill_get_settings() {
     'destination' => variable_get('treadmill_destination', ''),
     'url' => variable_get('treadmill_url', 'http://kund:kund@'),
     'key' => variable_get('treadmill_key', variable_get('cron_key', 'drupal')),
-    'features_revert' => variable_get('treadmill_features_revert', FALSE),
-    'tadaa_switch' => variable_get('treadmill_environment_switch', FALSE),
-    'tadaa_environment' => variable_get('treadmill_environment', 'staging'),
   );
 }
