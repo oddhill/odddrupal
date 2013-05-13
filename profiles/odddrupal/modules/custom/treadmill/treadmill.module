@@ -272,16 +272,16 @@ function treadmill_backup_migrate_postbackup($backup_migrate_settings) {
   $url = $settings['url'];
   $query = array('key' => $settings['key']);
 
-  // Perform the system update.
-  $query['q'] = 'treadmill/system/update';
-  drupal_http_request(url($url, array('query' => $query)));
-
   // Perform the Features revert.
   $query['q'] = 'treadmill/features/revert';
   drupal_http_request(url($url, array('query' => $query)));
 
   // Perform the Tadaa! environment switch.
   $query['q'] = 'tadaa/environment/switch/staging';
+  drupal_http_request(url($url, array('query' => $query)));
+
+  // Perform the system update.
+  $query['q'] = 'treadmill/system/update';
   drupal_http_request(url($url, array('query' => $query)));
 }
 
