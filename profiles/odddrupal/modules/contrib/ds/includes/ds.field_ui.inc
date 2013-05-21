@@ -881,7 +881,7 @@ function ds_field_formatter_settings_form($field, $instance, $view_mode, $form, 
   }
 
   // Taxonomy separated.
-  if ($display['type'] === 'ds_taxonomy_separator') {
+  if ($display['type'] === 'ds_taxonomy_separator' || $display['type'] == 'ds_taxonomy_separator_localized') {
     $element['taxonomy_term_link'] = array(
       '#title' => t('Link to term'),
       '#type' => 'checkbox',
@@ -925,7 +925,7 @@ function ds_field_formatter_settings_summary($field, $instance, $view_mode) {
     $summary = t('View mode: %mode', array('%mode' => $mode));
   }
 
-  if ($display['type'] === 'ds_taxonomy_separator') {
+  if ($display['type'] === 'ds_taxonomy_separator' || $display['type'] == 'ds_taxonomy_separator_localized') {
     $separators = array(
       ' ' => t('space'),
       ', ' => t('comma'),
@@ -1087,7 +1087,7 @@ function ds_ds_field_format_summary($field) {
       $conf = unserialize($value);
       $summary .= t('Type: !type', array('!type' => check_plain(drupal_ucfirst(str_replace('_', ' ', $conf['subtype'])))));
     }
-    elseif ($key == 'ft') {
+    elseif ($key == 'ft' || is_array($value)) {
       // Do nothing
     }
     elseif (!empty($value)) {
@@ -1109,7 +1109,7 @@ function ds_ds_field_format_summary($field) {
 function ds_ds_field_settings_form($field) {
   $form = array();
 
-  $settings = !empty($field['formatter_settings']['settings']) ? $field['formatter_settings']['settings'] : (!empty($field['properties']['default']) ? $field['properties']['default'] : array());
+  $settings = !empty($field['formatter_settings']) ? $field['formatter_settings'] : (!empty($field['properties']['default']) ? $field['properties']['default'] : array());
 
   if (empty($field['properties']['settings'])) {
     return $form;
