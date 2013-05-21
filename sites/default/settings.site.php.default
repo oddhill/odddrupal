@@ -14,4 +14,3 @@
  * doesn't exist yet.
  */
 $conf['stage_file_proxy_origin'] = 'http://www.example.com';
-$conf['stage_file_proxy_hotlink'] = TRUE;
