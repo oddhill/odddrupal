@@ -453,4 +453,14 @@ function odddrupal_set_variables() {
   variable_set('admin_language_hide_node', '1');
   variable_set('admin_language_hide_user', '1');
   variable_set('admin_language_translate_admin_menu', '1');
+  variable_set('module_filter_count_enabled', 1);
+  variable_set('module_filter_dynamic_save_position', 1);
+  variable_set('module_filter_hide_empty_tabs', 0);
+  variable_set('module_filter_remember_update_state', 0);
+  variable_set('module_filter_set_focus', 1);
+  variable_set('module_filter_tabs', 1);
+  variable_set('module_filter_track_recent_modules', 0);
+  variable_set('module_filter_use_switch', 0);
+  variable_set('module_filter_use_url_fragment', 0);
+  variable_set('module_filter_visual_aid', 1);
 }

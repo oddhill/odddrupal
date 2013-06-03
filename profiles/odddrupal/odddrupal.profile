@@ -181,6 +181,15 @@ function odddrupal_views_api() {
 /**
  * Implements hook_form_FORM_ID_alter().
  */
+function odddrupal_form_user_admin_permissions_alter(&$form, &$form_state) {
+  if (isset($form['module_filter'])) {
+    unset($form['module_filter']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function odddrupal_form_views_exposed_form_alter(&$form, $form_state) {
 
   // Alter the exposed form for content and user administration views.
