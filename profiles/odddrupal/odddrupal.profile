@@ -29,6 +29,7 @@ function odddrupal_install_tasks($install_state) {
  */
 function odddrupal_theme_form() {
   drupal_set_title(st('Default theme'));
+  $form = array();
 
   // Set an array of avaliable themes.
   $themes = list_themes(TRUE);
@@ -44,33 +45,45 @@ function odddrupal_theme_form() {
   unset($options['oddroots']);
   unset($options['seven']);
   unset($options['eight']);
+  unset($options['stark']);
+  unset($options['garland']);
+  unset($options['bartik']);
 
-  // Get the assumed theme for this site. This will be the last one in the
-  // options array.
-  $default_name = end($options);
-  $default_key = key($options);
-
-  // If the name of the default theme is "Origin", we'll issue a warning since
-  // the user probably has forgotten to rename the theme before installing.
-  if ($default_key == 'origin') {
-    drupal_set_message(st("It seems that you've forgotten to rename the %default theme to a more suitable name, like %name. If you want to rename the theme, you should do that right now, refresh this page, and then submit the form.", array('%default' => 'Origin', '%name' => variable_get('site_name', preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST'])))), 'warning');
+  if (empty($options)) {
+    // No theme has been setup for this site.
+    $halt = TRUE;
+    drupal_set_message(st("You haven't created a theme for this site yet. Download the %default theme, put it in the sites folder and rename it. Reload the page, and then you'll be able to continue.", array('%default' => 'Origin')), 'error');
   }
+  else {
+    // Get the assumed theme for this site. This will be the last one in the
+    // options array.
+    $default_name = end($options);
+    $default_key = key($options);
 
-  // Create the form.
-  $form['odddrupal'] = array(
-    '#type' => 'fieldset',
-    '#title' => st('Choose the default theme for this site'),
-    '#collapsible' => FALSE,
-  );
-  $form['odddrupal']['default_theme'] = array(
-    '#type' => 'radios',
-    '#options' => $options,
-    '#default_value' => $default_key,
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => st('Save and continue'),
-  );
+    // If the name of the default theme is "Origin", we'll issue a warning since
+    // the user probably has forgotten to rename the theme before installing.
+    if ($default_key == 'origin') {
+      $halt = TRUE;
+      drupal_set_message(st("You've forgotten to rename the %default theme to a more suitable name. You'll have to rename the theme before you'll be able to continue.", array('%default' => 'Origin', '%name' => variable_get('site_name', preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST'])))), 'error');
+    }
+
+    // Create the form.
+    $form['odddrupal'] = array(
+      '#type' => 'fieldset',
+      '#title' => st('Choose the default theme for this site'),
+      '#collapsible' => FALSE,
+    );
+    $form['odddrupal']['default_theme'] = array(
+      '#type' => 'radios',
+      '#options' => $options,
+      '#default_value' => $default_key,
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => st('Save and continue'),
+      '#disabled' => isset($halt),
+    );
+  }
 
   return $form;
 }
