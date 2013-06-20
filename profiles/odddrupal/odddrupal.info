@@ -33,7 +33,6 @@ dependencies[] = context_ui
 dependencies[] = ctools
 dependencies[] = devel
 dependencies[] = devel_generate
-dependencies[] = devel_themer
 dependencies[] = diff
 dependencies[] = ds
 dependencies[] = ds_extras

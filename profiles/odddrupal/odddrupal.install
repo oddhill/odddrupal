@@ -482,3 +482,26 @@ function odddrupal_update_7131() {
   // Enable the module.
   module_enable(array('fpa'));
 }
+
+/**
+ * Remove Theme Developer from the Tadaa! settings.
+ */
+function odddrupal_update_7132() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if ($modules['devel_themer']) {
+    unset($modules['devel_themer']);
+    variable_set('tadaa_development_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if ($modules['devel_themer']) {
+    unset($modules['devel_themer']);
+    variable_set('tadaa_staging_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if ($modules['devel_themer']) {
+    unset($modules['devel_themer']);
+    variable_set('tadaa_production_modules', $modules);
+  }
+}
