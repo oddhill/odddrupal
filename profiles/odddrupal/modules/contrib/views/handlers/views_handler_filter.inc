@@ -767,18 +767,7 @@ class views_handler_filter extends views_handler {
     // Build the form and set the value based on the identifier.
     if (!empty($this->options['expose']['identifier'])) {
       $value = $this->options['expose']['identifier'];
-      if ($this->operator == 'empty' || $this->operator == 'not empty') {
-        $this->value = 'All';
-        $this->value_value = '';
-        $this->value_options = array(
-          1 => t('Yes'),
-          0 => t('No')
-        );
-        views_handler_filter_boolean_operator::value_form($form, $form_state);
-      }
-      else {
-        $this->value_form($form, $form_state);
-      }
+      $this->value_form($form, $form_state);
       $form[$value] = $form['value'];
 
       if (isset($form[$value]['#title']) && !empty($form[$value]['#type']) && $form[$value]['#type'] != 'checkbox') {
@@ -1272,13 +1261,14 @@ class views_handler_filter extends views_handler {
 
       // Various ways to check for the absence of non-required input.
       if (empty($this->options['expose']['required'])) {
-        if ($this->operator == 'empty' || $this->operator == 'not empty') {
-          $value = is_array($value) ? $value['value'] : $value;
-          $this->operator = ($this->operator == 'empty' && empty($value)) || ($this->operator == 'not empty' && !empty($value)) ? 'not empty' : 'empty';
+        if (($this->operator == 'empty' || $this->operator == 'not empty') && $value === '') {
+          $value = ' ';
         }
 
-        if ($value == 'All' || $value === array()) {
-          return FALSE;
+        if ($this->operator != 'empty' && $this->operator != 'not empty') {
+          if ($value == 'All' || $value === array()) {
+            return FALSE;
+          }
         }
 
         if (!empty($this->always_multiple) && $value === '') {
