@@ -136,8 +136,8 @@ function odddrupal_locale_settings_global() {
 
   // Set up the enabled negotiation providers and their weight.
   $enabled = array(
-    LOCALE_LANGUAGE_NEGOTIATION_USER => -10,
-    LOCALE_LANGUAGE_NEGOTIATION_URL => -9,
+    LOCALE_LANGUAGE_NEGOTIATION_URL => -10,
+    LOCALE_LANGUAGE_NEGOTIATION_USER => -9,
     LANGUAGE_NEGOTIATION_DEFAULT => 10,
   );
 
@@ -179,6 +179,33 @@ function odddrupal_locale_settings_global() {
  * the profile installation.
  */
 function odddrupal_locale_settings_sv() {
+  // Set up the enabled negotiation providers and their weight.
+  $enabled = array(
+    LOCALE_LANGUAGE_NEGOTIATION_USER => -10,
+    LANGUAGE_NEGOTIATION_DEFAULT => 10,
+  );
+
+  // Iterate through every available provider, so that we can get the required
+  // info and set the weights.
+  $providers = language_negotiation_info();
+  $weight = $enabled;
+  foreach ($providers as $provider => &$data) {
+    if (isset($enabled[$provider])) {
+      // This provider is provided in the enabled array, set the weight that we
+      // have provided.
+      $data['weight'] = $enabled[$provider];
+    }
+    else {
+      // This provider shouldn't be enabled, remove it and set its weight to 0.
+      $weight[$provider] = 0;
+      unset($providers[$provider]);
+    }
+  }
+
+  // Set the negotiation settings and the weights.
+  language_negotiation_set(LANGUAGE_TYPE_INTERFACE, $providers);
+  variable_set('locale_language_providers_weight_' . LANGUAGE_TYPE_INTERFACE, $weight);
+
   // Alter the weight for english.
   db_update('languages')
     ->fields(array(
