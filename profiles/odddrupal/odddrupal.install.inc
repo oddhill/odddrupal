@@ -487,4 +487,5 @@ function odddrupal_set_variables() {
   variable_set('module_filter_use_switch', 0);
   variable_set('module_filter_use_url_fragment', 0);
   variable_set('module_filter_visual_aid', 1);
+  variable_set('install_language', $_GET['locale']);
 }

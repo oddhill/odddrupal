@@ -10,7 +10,7 @@
 function odddrupal_views_default_views() {
   $export = array();
 
-  if (drupal_multilingual()) {
+  if (drupal_multilingual() && variable_get('install_language', 'en') != 'sv') {
     $view = new view();
     $view->name = 'administration_nodes';
     $view->description = '';
