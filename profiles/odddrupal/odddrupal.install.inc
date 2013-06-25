@@ -383,7 +383,6 @@ function odddrupal_set_variables() {
     'cron_safe_threshold' => '0',
     'dblog_row_limit' => '100',
     'error_level' => '2',
-    'jquery_update_compression_type' => 'none',
     'preprocess_css' => 0,
     'preprocess_js' => 0,
     'reroute_email_enable' => 1,
@@ -413,7 +412,6 @@ function odddrupal_set_variables() {
     'cron_safe_threshold' => '43200',
     'dblog_row_limit' => '100',
     'error_level' => '0',
-    'jquery_update_compression_type' => 'min',
     'preprocess_css' => 1,
     'preprocess_js' => 1,
     'reroute_email_enable' => 1,
@@ -444,7 +442,6 @@ function odddrupal_set_variables() {
     'cron_safe_threshold' => '3600',
     'dblog_row_limit' => '0',
     'error_level' => '0',
-    'jquery_update_compression_type' => 'min',
     'preprocess_css' => 1,
     'preprocess_js' => 1,
     'reroute_email_enable' => 0,
@@ -456,7 +453,7 @@ function odddrupal_set_variables() {
   variable_set('cron_safe_threshold', '0');
   variable_set('dblog_row_limit', '100');
   variable_set('error_level', '2');
-  variable_set('jquery_update_compression_type', 'none');
+  variable_set('jquery_update_compression_type', 'min');
   variable_set('jquery_update_jquery_cdn', 'google');
   variable_set('jquery_update_jquery_version', '1.5');
   variable_set('preprocess_css', 0);
