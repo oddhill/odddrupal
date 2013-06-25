@@ -453,6 +453,7 @@ function odddrupal_set_variables() {
   ));
   variable_set('block_cache', 0);
   variable_set('cache', 0);
+  variable_set('cron_safe_threshold', '0');
   variable_set('dblog_row_limit', '100');
   variable_set('error_level', '2');
   variable_set('jquery_update_compression_type', 'none');
