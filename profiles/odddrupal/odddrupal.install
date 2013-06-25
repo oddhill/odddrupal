@@ -505,3 +505,31 @@ function odddrupal_update_7132() {
     variable_set('tadaa_production_modules', $modules);
   }
 }
+
+/**
+ * Remove jQuery compression level from the Tadaa! settings, and set it to
+ * minified from Google's CDN.
+ */
+function odddrupal_update_7133() {
+  $variables = variable_get('tadaa_development_variables', array());
+  if ($variables['jquery_update_compression_type']) {
+    unset($variables['jquery_update_compression_type']);
+    variable_set('tadaa_development_variables', $variables);
+  }
+
+  $variables = variable_get('tadaa_staging_variables', array());
+  if ($variables['jquery_update_compression_type']) {
+    unset($variables['jquery_update_compression_type']);
+    variable_set('tadaa_staging_variables', $variables);
+  }
+
+  $variables = variable_get('tadaa_production_variables', array());
+  if ($variables['jquery_update_compression_type']) {
+    unset($variables['jquery_update_compression_type']);
+    variable_set('tadaa_production_variables', $variables);
+  }
+  
+  variable_set('jquery_update_compression_type', 'min');
+  variable_set('jquery_update_jquery_cdn', 'google');
+  variable_set('jquery_update_jquery_version', '1.5');
+}
