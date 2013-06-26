@@ -63,7 +63,7 @@ function odddrupal_theme_form() {
     // If the name of the default theme is "Origin", we'll issue a warning since
     // the user probably has forgotten to rename the theme before installing.
     if ($default_key == 'origin') {
-      //$halt = TRUE;
+      $halt = TRUE;
       drupal_set_message(st("You've forgotten to rename the %default theme to a more suitable name. You'll have to rename the theme before you'll be able to continue.", array('%default' => 'Origin', '%name' => variable_get('site_name', preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST'])))), 'error');
     }
 
