@@ -528,8 +528,24 @@ function odddrupal_update_7133() {
     unset($variables['jquery_update_compression_type']);
     variable_set('tadaa_production_variables', $variables);
   }
-  
+
   variable_set('jquery_update_compression_type', 'min');
   variable_set('jquery_update_jquery_cdn', 'google');
   variable_set('jquery_update_jquery_version', '1.5');
+}
+
+/**
+ * Sets a default value for the install_language variable.
+ */
+function odddrupal_update_7134() {
+  $languages = language_list('weight');
+
+  if (count($languages) == 2 && key($languages[0]) == 'sv') {
+    // There are two languages for this site, with Swedish as the default.
+    variable_set('install_language', 'sv');
+  }
+  else {
+    // In other scenarios, assume english.
+    variable_set('install_language', 'en');
+  }
 }
