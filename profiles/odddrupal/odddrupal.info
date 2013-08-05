@@ -68,8 +68,5 @@ dependencies[] = views_ui
 dependencies[] = wysiwyg
 
 ; Custom modules
-dependencies[] = blindfold
 dependencies[] = fanta
-dependencies[] = poolbar
 dependencies[] = seducing_mail
-dependencies[] = tower_of_babel
