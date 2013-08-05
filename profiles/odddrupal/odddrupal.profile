@@ -305,3 +305,23 @@ function odddrupal_page_alter(&$page) {
     unset($page['page_top']['toolbar']);
   }
 }
+
+/**
+ * Implements hook_init().
+ */
+function odddrupal_init() {
+  // Alter the language when Drupal is being accessed via the CLI.
+  if (drupal_is_cli()) {
+    // Load user 1, and all the available languages.
+    $user1 = user_load(1);
+    $languages = language_list();
+
+    // Get the language of user 1, fallback to en if it hasn't been set.
+    $language = $user1->language ? $user1->language : 'en';
+
+    // Change the language if the language exists.
+    if (isset($languages[$language])) {
+      $GLOBALS['language'] = $languages[$language];
+    }
+  }
+}
