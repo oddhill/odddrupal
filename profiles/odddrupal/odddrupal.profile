@@ -293,3 +293,15 @@ function odddrupal_wysiwyg_editor_settings_alter(&$settings, $context) {
     $settings['paste_remove_styles'] = TRUE;
   }
 }
+
+/**
+ * Implements hook_page_alter().
+ */
+function odddrupal_page_alter(&$page) {
+  global $user;
+
+  // Remove the toolbar for user 1.
+  if ($user->uid == 1) {
+    unset($page['page_top']['toolbar']);
+  }
+}

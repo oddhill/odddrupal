@@ -1,5 +1,0 @@
-name = "Poolbar"
-description = "Removes the toolbar for user 1."
-core = 7.x
-package = Odd Hill
-dependencies[] = toolbar
