@@ -35,77 +35,155 @@ function odddrupal_views_default_views() {
     $handler->display->display_options['pager']['type'] = 'full';
     $handler->display->display_options['pager']['options']['items_per_page'] = '50';
     $handler->display->display_options['style_plugin'] = 'table';
-    $handler->display->display_options['style_options']['columns'] = array(
-      'views_bulk_operations' => 'views_bulk_operations',
-      'title' => 'title',
-      'language' => 'language',
-      'type' => 'type',
-      'status' => 'status',
-      'created' => 'created',
-      'changed' => 'changed',
-      'edit_node' => 'edit_node',
-      'delete_node' => 'edit_node',
-    );
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['style_options']['columns'] = array(
+        'views_bulk_operations' => 'views_bulk_operations',
+        'title_field' => 'title_field',
+        'language' => 'language',
+        'type' => 'type',
+        'status' => 'status',
+        'created' => 'created',
+        'changed' => 'changed',
+        'edit_node' => 'edit_node',
+        'delete_node' => 'edit_node',
+      );
+    }
+    else {
+      $handler->display->display_options['style_options']['columns'] = array(
+        'views_bulk_operations' => 'views_bulk_operations',
+        'title' => 'title',
+        'language' => 'language',
+        'type' => 'type',
+        'status' => 'status',
+        'created' => 'created',
+        'changed' => 'changed',
+        'edit_node' => 'edit_node',
+        'delete_node' => 'edit_node',
+      );
+    }
     $handler->display->display_options['style_options']['default'] = 'changed';
-    $handler->display->display_options['style_options']['info'] = array(
-      'views_bulk_operations' => array(
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'title' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'asc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'language' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'asc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'type' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'asc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'status' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'asc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'created' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'desc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'changed' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'desc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'edit_node' => array(
-        'align' => '',
-        'separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
-        'empty_column' => 0,
-      ),
-      'delete_node' => array(
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-    );
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['style_options']['info'] = array(
+        'views_bulk_operations' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'title_field' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'language' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'type' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'status' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'created' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'changed' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'edit_node' => array(
+          'align' => '',
+          'separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+          'empty_column' => 0,
+        ),
+        'delete_node' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+      );
+    }
+    else {
+      $handler->display->display_options['style_options']['info'] = array(
+        'views_bulk_operations' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'title' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'language' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'type' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'status' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'created' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'changed' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'edit_node' => array(
+          'align' => '',
+          'separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+          'empty_column' => 0,
+        ),
+        'delete_node' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+      );
+    }
     /* Field: Bulk operations: Content */
     $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
     $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
@@ -232,11 +310,19 @@ function odddrupal_views_default_views() {
       ),
     );
     /* Field: Content: Title */
-    $handler->display->display_options['fields']['title']['id'] = 'title';
-    $handler->display->display_options['fields']['title']['table'] = 'node';
-    $handler->display->display_options['fields']['title']['field'] = 'title';
-    $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-    $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+      $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+      $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+      $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+    }
+    else {
+      $handler->display->display_options['fields']['title']['id'] = 'title';
+      $handler->display->display_options['fields']['title']['table'] = 'node';
+      $handler->display->display_options['fields']['title']['field'] = 'title';
+      $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+      $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+    }
     /* Field: Content: Type */
     $handler->display->display_options['fields']['type']['id'] = 'type';
     $handler->display->display_options['fields']['type']['table'] = 'node';
@@ -276,21 +362,40 @@ function odddrupal_views_default_views() {
     $handler->display->display_options['fields']['delete_node']['label'] = '';
     $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
     /* Filter criterion: Content: Title */
-    $handler->display->display_options['filters']['title']['id'] = 'title';
-    $handler->display->display_options['filters']['title']['table'] = 'node';
-    $handler->display->display_options['filters']['title']['field'] = 'title';
-    $handler->display->display_options['filters']['title']['operator'] = 'contains';
-    $handler->display->display_options['filters']['title']['group'] = 1;
-    $handler->display->display_options['filters']['title']['exposed'] = TRUE;
-    $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-    $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
-    $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
-    $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-    $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
-      2 => '2',
-      1 => 0,
-      3 => 0,
-    );
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
+      $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
+      $handler->display->display_options['filters']['title_field_value']['field'] = 'title_field_value';
+      $handler->display->display_options['filters']['title_field_value']['operator'] = 'contains';
+      $handler->display->display_options['filters']['title_field_value']['group'] = 1;
+      $handler->display->display_options['filters']['title_field_value']['exposed'] = TRUE;
+      $handler->display->display_options['filters']['title_field_value']['expose']['operator_id'] = 'title_field_value_op';
+      $handler->display->display_options['filters']['title_field_value']['expose']['label'] = 'Title';
+      $handler->display->display_options['filters']['title_field_value']['expose']['operator'] = 'title_field_value_op';
+      $handler->display->display_options['filters']['title_field_value']['expose']['identifier'] = 'title_field_value';
+      $handler->display->display_options['filters']['title_field_value']['expose']['remember_roles'] = array(
+        2 => '2',
+        1 => 0,
+        3 => 0,
+      );
+    }
+    else {
+      $handler->display->display_options['filters']['title']['id'] = 'title';
+      $handler->display->display_options['filters']['title']['table'] = 'node';
+      $handler->display->display_options['filters']['title']['field'] = 'title';
+      $handler->display->display_options['filters']['title']['operator'] = 'contains';
+      $handler->display->display_options['filters']['title']['group'] = 1;
+      $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+      $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+      $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
+      $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+      $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+      $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+        2 => '2',
+        1 => 0,
+        3 => 0,
+      );
+    }
     /* Filter criterion: Content: Type */
     $handler->display->display_options['filters']['type']['id'] = 'type';
     $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -397,63 +502,139 @@ function odddrupal_views_default_views() {
     $handler->display->display_options['pager']['type'] = 'full';
     $handler->display->display_options['pager']['options']['items_per_page'] = '50';
     $handler->display->display_options['style_plugin'] = 'table';
-    $handler->display->display_options['style_options']['columns'] = array(
-      'title' => 'title',
-      'type' => 'type',
-      'status' => 'status',
-      'created' => 'created',
-      'changed' => 'changed',
-      'edit_node' => 'edit_node',
-      'delete_node' => 'edit_node',
-    );
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['style_options']['columns'] = array(
+        'views_bulk_operations' => 'views_bulk_operations',
+        'title_field' => 'title_field',
+        'type' => 'type',
+        'status' => 'status',
+        'created' => 'created',
+        'changed' => 'changed',
+        'edit_node' => 'edit_node',
+        'delete_node' => 'edit_node',
+      );
+    }
+    else {
+      $handler->display->display_options['style_options']['columns'] = array(
+        'views_bulk_operations' => 'views_bulk_operations',
+        'title' => 'title',
+        'type' => 'type',
+        'status' => 'status',
+        'created' => 'created',
+        'changed' => 'changed',
+        'edit_node' => 'edit_node',
+        'delete_node' => 'edit_node',
+      );
+    }
     $handler->display->display_options['style_options']['default'] = 'changed';
-    $handler->display->display_options['style_options']['info'] = array(
-      'title' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'asc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'type' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'asc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'status' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'asc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'created' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'desc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'changed' => array(
-        'sortable' => 1,
-        'default_sort_order' => 'desc',
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-      'edit_node' => array(
-        'align' => '',
-        'separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
-        'empty_column' => 0,
-      ),
-      'delete_node' => array(
-        'align' => '',
-        'separator' => '',
-        'empty_column' => 0,
-      ),
-    );
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['style_options']['info'] = array(
+        'views_bulk_operations' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'title_field' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'type' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'status' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'created' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'changed' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'edit_node' => array(
+          'align' => '',
+          'separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+          'empty_column' => 0,
+        ),
+        'delete_node' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+      );
+    }
+    else {
+      $handler->display->display_options['style_options']['info'] = array(
+        'views_bulk_operations' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'title' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'type' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'status' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'asc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'created' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'changed' => array(
+          'sortable' => 1,
+          'default_sort_order' => 'desc',
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+        'edit_node' => array(
+          'align' => '',
+          'separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+          'empty_column' => 0,
+        ),
+        'delete_node' => array(
+          'align' => '',
+          'separator' => '',
+          'empty_column' => 0,
+        ),
+      );
+    }
     /* Field: Bulk operations: Content */
     $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
     $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
@@ -580,11 +761,19 @@ function odddrupal_views_default_views() {
       ),
     );
     /* Field: Content: Title */
-    $handler->display->display_options['fields']['title']['id'] = 'title';
-    $handler->display->display_options['fields']['title']['table'] = 'node';
-    $handler->display->display_options['fields']['title']['field'] = 'title';
-    $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-    $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+      $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+      $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+      $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+    }
+    else {
+      $handler->display->display_options['fields']['title']['id'] = 'title';
+      $handler->display->display_options['fields']['title']['table'] = 'node';
+      $handler->display->display_options['fields']['title']['field'] = 'title';
+      $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+      $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+    }
     /* Field: Content: Type */
     $handler->display->display_options['fields']['type']['id'] = 'type';
     $handler->display->display_options['fields']['type']['table'] = 'node';
@@ -619,21 +808,40 @@ function odddrupal_views_default_views() {
     $handler->display->display_options['fields']['delete_node']['label'] = '';
     $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
     /* Filter criterion: Content: Title */
-    $handler->display->display_options['filters']['title']['id'] = 'title';
-    $handler->display->display_options['filters']['title']['table'] = 'node';
-    $handler->display->display_options['filters']['title']['field'] = 'title';
-    $handler->display->display_options['filters']['title']['operator'] = 'contains';
-    $handler->display->display_options['filters']['title']['group'] = 1;
-    $handler->display->display_options['filters']['title']['exposed'] = TRUE;
-    $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-    $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
-    $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
-    $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-    $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
-      2 => '2',
-      1 => 0,
-      3 => 0,
-    );
+    if (module_exists('title') && field_info_field('title_field')) {
+      $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
+      $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
+      $handler->display->display_options['filters']['title_field_value']['field'] = 'title_field_value';
+      $handler->display->display_options['filters']['title_field_value']['operator'] = 'contains';
+      $handler->display->display_options['filters']['title_field_value']['group'] = 1;
+      $handler->display->display_options['filters']['title_field_value']['exposed'] = TRUE;
+      $handler->display->display_options['filters']['title_field_value']['expose']['operator_id'] = 'title_field_value_op';
+      $handler->display->display_options['filters']['title_field_value']['expose']['label'] = 'Title';
+      $handler->display->display_options['filters']['title_field_value']['expose']['operator'] = 'title_field_value_op';
+      $handler->display->display_options['filters']['title_field_value']['expose']['identifier'] = 'title_field_value';
+      $handler->display->display_options['filters']['title_field_value']['expose']['remember_roles'] = array(
+        2 => '2',
+        1 => 0,
+        3 => 0,
+      );
+    }
+    else {
+      $handler->display->display_options['filters']['title']['id'] = 'title';
+      $handler->display->display_options['filters']['title']['table'] = 'node';
+      $handler->display->display_options['filters']['title']['field'] = 'title';
+      $handler->display->display_options['filters']['title']['operator'] = 'contains';
+      $handler->display->display_options['filters']['title']['group'] = 1;
+      $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+      $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+      $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
+      $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+      $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+      $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+        2 => '2',
+        1 => 0,
+        3 => 0,
+      );
+    }
     /* Filter criterion: Content: Type */
     $handler->display->display_options['filters']['type']['id'] = 'type';
     $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -654,6 +862,7 @@ function odddrupal_views_default_views() {
     $handler->display->display_options['filters']['status']['table'] = 'node';
     $handler->display->display_options['filters']['status']['field'] = 'status';
     $handler->display->display_options['filters']['status']['value'] = 'All';
+    $handler->display->display_options['filters']['status']['group'] = 1;
     $handler->display->display_options['filters']['status']['exposed'] = TRUE;
     $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
     $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
