@@ -42,5 +42,3 @@ function oddvault_default_rules_configuration() {
 
   return $configs;
 }
-
-

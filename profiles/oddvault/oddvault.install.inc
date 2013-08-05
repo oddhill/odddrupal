@@ -1,8 +1,8 @@
 <?php
 /**
  * @file
- *  Helper and utility functions that are used during the installation process
- *  of Odd Drupal.
+ * Helper and utility functions that are used during the installation process of
+ * Odd Vault.
  */
 
 /**

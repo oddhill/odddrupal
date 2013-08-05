@@ -1,5 +1,10 @@
 <?php
 /**
+ * @file
+ * Main module file for Fanta module.
+ */
+
+/**
  * Implements hook_init().
  */
 function fanta_init() {
@@ -11,7 +16,7 @@ function fanta_init() {
  */
 function fanta_library() {
   global $base_path;
-  
+
   $libraries['ie6-warning'] = array(
     'js' => array(
       drupal_get_path('module', 'fanta') . '/ie6/warning.js' => array('every_page' => TRUE),
@@ -22,6 +27,6 @@ function fanta_library() {
       drupal_get_path('module', 'fanta') . '/fanta.css' => array('every_page' => TRUE),
     ),
   );
-  
+
   return $libraries;
 }

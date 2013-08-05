@@ -1,4 +1,4 @@
-name = "Seducing mail"
-description = "Forces the use of the default theme when sending HTML emails."
+name = Seducing mail
+description = Forces the use of the default theme when sending HTML emails.
 core = 7.x
 package = Odd Hill

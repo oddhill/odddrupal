@@ -2,10 +2,6 @@
 /**
  * @file
  * Main module file for the Treadmill module.
- *
- * This is a custom module that extracts the archives that came from the
- * production environment. These archives will contain a backup of the files
- * directory.
  */
 
 /**

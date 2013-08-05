@@ -1,11 +1,11 @@
 <?php
 /**
  * @file
+ * Main module file for Seducing Mail module.
  *
- * The code for this functionality is available at
- * http://drupal.org/node/374222#comment-3587178
+ * @see http://drupal.org/node/374222#comment-3587178
  */
- 
+
 /**
  * Implements hook_theme_registry_alter().
  */
@@ -19,7 +19,7 @@ function seducing_mail_theme_registry_alter(&$theme_registry) {
  */
 function seducing_mail_theme_reroute_hook(&$theme_registry, $hook, $source_theme = NULL, $target_theme = NULL) {
   global $theme;
-  
+
   if (empty($source_theme)) {
     $source_theme = variable_get('admin_theme', '');
   }
