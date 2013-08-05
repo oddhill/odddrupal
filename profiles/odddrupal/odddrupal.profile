@@ -273,3 +273,23 @@ function odddrupal_menu_alter(&$items) {
   $items['admin/people/create']['page callback'] = 'user_admin';
   $items['admin/people/create']['file'] = 'user.admin.inc';
 }
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function odddrupal_wysiwyg_editor_settings_alter(&$settings, $context) {
+  // Alter the settings for CKEditor.
+  if ($context['profile']->editor == 'ckeditor') {
+    $settings['forcePasteAsPlainText'] = TRUE;
+  }
+
+  // Alter the settings for TinyMCE.
+  if ($context['profile']->editor == 'tinymce') {
+    // Remove the paste button.
+    $settings['theme_advanced_buttons1'] = preg_replace('/(pastetext,*|,*pastetext$)/ui', '', $settings['theme_advanced_buttons1']);
+
+    // Remove span and style tags.
+    $settings['paste_remove_spans'] = TRUE;
+    $settings['paste_remove_styles'] = TRUE;
+  }
+}
