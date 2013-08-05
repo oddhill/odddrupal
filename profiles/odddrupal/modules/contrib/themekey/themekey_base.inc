@@ -63,11 +63,11 @@ function themekey_invoke_modules($hook) {
  */
 function themekey_match_path($condition, &$parameters) {
   global $language;
-  
+
   // don't repeat alias detection for all rules during one page request
   static $alias_uri = '';
   static $language_prefix = NULL;
-  
+
   if ('drupal:path' != $condition->property) {
     return FALSE;
   }
@@ -80,7 +80,8 @@ function themekey_match_path($condition, &$parameters) {
   $wildcards = themekey_match_path_parts($get_q_parts, $condition_parts);
   if (FALSE === $wildcards && module_exists('path')) {
     if (empty($alias_uri)) {
-      // Derive path from request_uri
+      // Derive path from request_uri.
+      // drupal_parse_url() is not suitable because it lacks language prefix support.
       $offset = (variable_get('clean_url', 0) ? 0 : 3) + drupal_strlen(base_path());
       $alias_uri = drupal_substr(request_uri(), $offset);
       if (strpos($alias_uri, '?') !== FALSE) {
@@ -88,7 +89,7 @@ function themekey_match_path($condition, &$parameters) {
         $alias_uri_parts = explode('?', $alias_uri);
         $alias_uri = $alias_uri_parts[0];
       }
-      
+
       if (NULL === $language_prefix) {
         if (drupal_multilingual() && LOCALE_LANGUAGE_NEGOTIATION_URL_PREFIX ==
           variable_get('locale_language_negotiation_url_part', LOCALE_LANGUAGE_NEGOTIATION_URL_PREFIX)
@@ -109,7 +110,7 @@ function themekey_match_path($condition, &$parameters) {
           $language_prefix = FALSE;
         }
       }
-            
+
       // For $alias_uri != $_GET['q'] the page was requested using an
       // aliased path, otherwise get the path alias internally
       if ($alias_uri == $get_q) {
@@ -117,7 +118,7 @@ function themekey_match_path($condition, &$parameters) {
         if (!empty($language->language) && LANGUAGE_NONE != $language->language) {
           $lang_code = $language->language;
         }
-        
+
         $alias_uri = drupal_get_path_alias($get_q, $lang_code);
       }
     }
@@ -211,14 +212,16 @@ function themekey_get_global_parameters() {
   if (is_null($global_parameters)) {
     $global_parameters = array_merge_recursive(themekey_invoke_modules('themekey_global'), module_invoke_all('themekey_global'));
 
-    $get_q_parts = explode('/', themekey_get_q());
+    $path_condition = new StdClass();
+    $path_condition->property = 'drupal:path';
     $paths = variable_get('themekey_paths', array());
     foreach ($paths as $item) {
-      $item_parts = explode('/', $item['path']);
-      $wildcards = themekey_match_path_parts($get_q_parts, $item_parts);
-      if (!empty($wildcards)) {
-        foreach ($item['wildcards'] as $index => $item_wildcard) {
-          $global_parameters[$item_wildcard] = $wildcards[$index];
+      $path_condition->value = $item['path'];
+      $parameters = array();
+
+      if (themekey_match_path($path_condition, $parameters)) {
+        foreach ($parameters['internal:temp_wildcards'] as $index => $item_wildcard) {
+          $global_parameters[$item['wildcards'][$index]] = $item_wildcard;
         }
 
         if (count($item['callbacks'])) {

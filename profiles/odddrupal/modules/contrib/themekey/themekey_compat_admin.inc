@@ -18,6 +18,8 @@ function themekey_compat_settings_form() {
 
   $modules = module_implements('custom_theme');
   $modules = array_diff($modules, array('themekey'));
+  $modules = array_merge($modules, variable_get('themekey_compat_modules_enabled', array()));
+  asort($modules);
 
   if (!empty($modules)) {
     $modules_list = system_list('module_enabled');

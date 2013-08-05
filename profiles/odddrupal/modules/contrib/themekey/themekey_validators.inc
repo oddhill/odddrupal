@@ -882,7 +882,7 @@ function themekey_validator_month($rule) {
 * Validates a Theme Switching Rule.
 * Allowed Operators: "=", "!", "<", "<=", ">", ">="
 * Allowed values:
-* - a three letter month string if operator is "=" or "!"
+* - a number between 1 and 31
 *
 *
 * @param $rule
@@ -922,6 +922,55 @@ function themekey_validator_day_of_month($rule) {
     default:
       $errors['operator'] = t('Possible operators are "=", "!", "<", "<=", ">", ">="');
     break;
+
+  }
+
+  return $errors;
+}
+
+
+/**
+ * Validates a Theme Switching Rule.
+ * Allowed Operators: "=", "!"
+ * Allowed values:
+ * - 'parent', 'child', 'none'
+ *
+ *
+ * @param $rule
+ *   A Theme Switching Rule as associative array:
+ *   - property: ThemeKey property as string (e.g., "drupal:path")
+ *   - wildcard: optional string, only used if property is "drupal:path:wildcard"
+ *   - operator: ThemeKey operator as string ("=", "!", "*", "!*", "<", "<=", ">", ">=", "~", "!~")
+ *   - value: ThemeKey property value as string
+ *
+ * @return
+ *   An associative array of errors:
+ *   - property: translated error message as string
+ *     describing a problem with the property
+ *   - wildcard: translated error message as string
+ *     describing a problem with the wildcard
+ *   - operator: translated error message as string
+ *     describing a problem with the operator
+ *   - value: translated error message as string
+ *     describing a problem with the value
+ *   If no errors detected the array is empty.
+ */
+function themekey_validator_overlay_mode($rule) {
+  static $modes = array('parent', 'child', 'none');
+
+  $errors = array();
+
+  switch ($rule['operator']) {
+    case '=':
+    case '!':
+      if (!in_array($rule['value'], $modes)) {
+        $errors['value'] = t('The mode %value is not valid. Possible modes are "%modes".', array('%value' => $rule['value'], '%modes' => implode('", "', $modes)));
+      }
+      break;
+
+    default:
+      $errors['operator'] = t('Possible operators are "=" and "!"');
+      break;
 
   }
 

@@ -53,7 +53,7 @@ function themekey_system_themekey_properties() {
   $attributes = array();
 
   $attributes['system:host'] = array(
-    'description' => t('System: HTTP_HOST - The hostname/domain of the site without http:// or https://, like "www.drupal.org" or "drupal.cocomore.com"'),
+    'description' => t('System: HTTP_HOST - The hostname/domain of the site without http:// or https://, like "www.drupal.org" or "www.biologis.com"'),
     'validator' => 'themekey_validator_http_host',
     'page cache' => THEMEKEY_PAGECACHE_SUPPORTED,
   );
@@ -79,7 +79,7 @@ function themekey_system_themekey_properties() {
   );
 
   $attributes['system:post'] = array(
-    'description' => t("System: POST - Every single POST value formatted like 'POST_VARIABLE_NAME=POST_VARIABLE_VALUE'. Example: form_id=node_form"),
+    'description' => t("System: POST - Every single POST value formatted like 'POST_VARIABLE_NAME=POST_VARIABLE_VALUE'. Example: form_id=node_form. If the POST value is not a scalar but a complex type like array or object, the resulting string is formatted as 'POST_VARIABLE_NAME' without a value."),
     'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
   );
 
@@ -268,6 +268,12 @@ foo
     'page cache' => THEMEKEY_PAGECACHE_SUPPORTED,
   );
 
+  $attributes['drupal:path_is_admin'] = array(
+    'description' => t("Drupal: Path is admin - 'true' if current page's path belongs to the admin section, otherwise just 'false'."),
+    'validator' => 'themekey_validator_string_boolean',
+    'page cache' => THEMEKEY_PAGECACHE_SUPPORTED,
+  );
+
   $maps = array();
   $maps[] = array('src'       => 'system:dummy',
                   'dst'       => 'system:query_param',
@@ -345,6 +351,7 @@ function themekey_system_themekey_global() {
 
   $parameters['drupal:base_path'] = base_path();
   $parameters['drupal:is_front_page'] = drupal_is_front_page() ? 'true' : 'false';
+  $parameters['drupal:path_is_admin'] = path_is_admin($_GET['q']) ? 'true' : 'false';
 
   return $parameters;
 }
@@ -421,7 +428,7 @@ function themekey_dummy2http_header($dummy) {
     // Function apache_request_headers() is only available when PHP runs as an Apache module.
     // P.e. when running drush, it's not available
     foreach (apache_request_headers() as $key => $value) {
-      $filtered_headers[] = $key . (!empty($value) ? '=' . $value : '');
+        $filtered_headers[] = $key . (!empty($value) ? '=' . $value : '');
     }
   }
   return count($filtered_headers) ? array_unique($filtered_headers) : NULL;
@@ -446,7 +453,12 @@ function themekey_dummy2http_header($dummy) {
 function themekey_dummy2post($dummy) {
   $filtered_post = array();
   foreach ($_POST as $key => $value) {
-    $filtered_post[] = $key . (!empty($value) ? '=' . $value : '');
+    if (!empty($value) && is_scalar($value)) {
+      $filtered_post[] = $key . '=' . $value;
+    }
+    else {
+      $filtered_post[] = $key;
+    }
   }
   return count($filtered_post) ? array_unique($filtered_post) : NULL;
 }
@@ -570,9 +582,12 @@ function themekey_dummy2time($dummy) {
  *   current user's browser as string
  */
 function themekey_dummy2user_browser($dummy) {
-  return ThemekeyBrowserDetection::getBrowser($_SERVER['HTTP_USER_AGENT']);
-}
+  if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+    return ThemekeyBrowserDetection::getBrowser($_SERVER['HTTP_USER_AGENT']);
+  }
 
+  return NULL;
+}
 
 /**
  * ThemeKey mapping function to set a
@@ -589,7 +604,11 @@ function themekey_dummy2user_browser($dummy) {
  *   current user's operating system as string
  */
 function themekey_dummy2user_os($dummy) {
-  return ThemekeyBrowserDetection::getOs($_SERVER['HTTP_USER_AGENT']);
+  if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+    return ThemekeyBrowserDetection::getOs($_SERVER['HTTP_USER_AGENT']);
+  }
+
+  return NULL;
 }
 
 
@@ -651,7 +670,7 @@ function themekey_dummy2session($dummy) {
   if (!empty($_SESSION)) {
     foreach ($_SESSION as $key => $value) {
       if (is_bool($value)) {
-        $filtered_params[] = $key . '=' . ($value) ? '1' : '0';
+        $filtered_params[] = $key . '=' . ($value ? '1' : '0');
       }
       elseif (!empty($value) && (is_numeric($value) || is_string($value))) {
         $filtered_params[] = $key . '=' . $value;

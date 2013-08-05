@@ -1,3 +1,28 @@
+ThemeKey 7.x-2.5, 2013-07-16
+----------------------------
+[        ] mkalkbrenner: fixed creation of new rule with regex operator
+[#2039581] Nosta, mkalkbrenner: wrong boolean values in system:session
+[#1900864] Pacufist: selected modules disappear from Compatibility tab
+[        ] mkalkbrenner: removed class ThemeKeyEntityFieldQuery which is only required in ThemeKey 7.x-3.x
+
+
+ThemeKey 7.x-2.4, 2013-07-09
+----------------------------
+[        ] mkalkbrenner: new property drupal:path_is_admin
+[#1842066] netw3rker, mkalkbrenner: organic groups properties are not available
+[        ] mkalkbrenner: fixed rare fatal error on upgrades from early ThemeKey 6.x versions
+[#1705410] rooby, mkalkbrenner: new property overlay:mode
+[#1866850] frizi, mkalkbrenner: differentiate between scalar and complex post values for property system:post
+[#1900864] Pacufist: Bug in function themekey_compat_module_implements_alter().
+[#1916338] dwatson, mkalkbrenner: Undefined index: HTTP_USER_AGENT in themekey_dummy2user_os()
+[#1955062] andrewsuth, mkalkbrenner: support path aliases in themekey_get_global_parameters()
+[        ] mkalkbrenner: fixed explode() expects parameter 2 to be string, array given themekey_base.inc:77
+[        ] mkalkbrenner: Avoid caching of pages containing debug info in internal page cache and in external caches like varnish, boost, ...
+[        ] mkalkbrenner: fixed disabling rules on feature import
+[#2027069] mkalkbrenner: added property path:node_alias
+[#2034017] mkalkbrenner: added properties views:machine_name and views:human_name
+
+
 ThemeKey 7.x-2.3, 2012-07-24
 ----------------------------
 [#686650]  daggerhart, mkalkbrenner: add Organic Groups to properties (continued experimental implementation)

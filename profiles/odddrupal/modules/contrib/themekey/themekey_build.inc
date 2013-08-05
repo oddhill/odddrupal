@@ -135,7 +135,7 @@ function themekey_rebuild() {
  */
 function themekey_scan_modules($blacklist = array()) {
   $modules = array();
-  $files = file_scan_directory(dirname(__FILE__) . '/modules', '/^themekey\.[a-z]+\.inc$/');
+  $files = file_scan_directory(dirname(__FILE__) . '/modules', '/^themekey\.[^.]+\.inc$/');
   foreach ($files as $file) {
     list( , $module) = explode('.', $file->name);
     if (!in_array($module, $blacklist) && module_exists($module)) {
@@ -151,7 +151,7 @@ function themekey_scan_modules($blacklist = array()) {
  * Named wildcards in ThemeKey rules based on property
  * drupal:path are stored as serialized array in the database.
  *
- * This function deserializes those wildcards and injects them back
+ * This function de-serializes those wildcards and injects them back
  * into the value of the rule. This format is needed by ThemeKey's
  * administration interface.
  *
@@ -325,7 +325,7 @@ function themekey_load_rules($parent = 0, $depth = 0) {
  * @param $module
  *   name of the module that sets the item
  *
- * @throws ThemeKeyRuleConfictException
+ * @throws ThemeKeyRuleConflictException
  */
 function themekey_rule_set(&$item, $module = 'themekey') {
   if ('drupal:path' == $item['property']) {
@@ -356,7 +356,7 @@ function themekey_rule_set(&$item, $module = 'themekey') {
         ->fetchField();
 
       if ($id) {
-        throw new ThemeKeyRuleConfictException(t('New rule conficts with an existing rule on the same level.'), $id);
+        throw new ThemeKeyRuleConflictException(t('New rule conflicts with an existing rule on the same level.'), $id);
       }
     }
 
@@ -384,7 +384,7 @@ function themekey_rule_set(&$item, $module = 'themekey') {
         ->fetchField();
 
       if ($id) {
-        throw new ThemeKeyRuleConfictException(t('Updated rule conficts with an existing rule on the same level.'), $id);
+        throw new ThemeKeyRuleConflictException(t('Updated rule conflicts with an existing rule on the same level.'), $id);
       }
     }
 
@@ -538,6 +538,6 @@ function themekey_update_static_rule($property, $state) {
   }
 }
 
-class ThemeKeyRuleConfictException extends Exception { }
+class ThemeKeyRuleConflictException extends Exception { }
 
 class ThemeKeyRuleDeletionException extends Exception { }

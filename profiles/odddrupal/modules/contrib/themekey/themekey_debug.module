@@ -171,6 +171,10 @@ function themekey_debug_page_alter(&$page) {
       '#type' => 'markup',
       '#markup' => $messages,
     );
+    // Avoid caching of pages containing debug info in internal page cache
+    drupal_page_is_cacheable(FALSE);
+    // ... and external caches like varnish, boost, ...
+    drupal_add_http_header('Status', '503 Service unavailable');
   }
 }
 

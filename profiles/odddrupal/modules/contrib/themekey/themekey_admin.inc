@@ -178,14 +178,14 @@ function themekey_rule_chain_form($form, &$form_state) {
 
     $form['old_items'][$item['id']]['weight'] = array(
       '#type' => 'weight',
-      '#delta' => 50,
+      '#delta' => 200,
       '#default_value' => $item['weight'],
     );
 
     $form['old_items'][$item['id']]['delete'] = array(
       '#markup' => $static ? '' : l(t('delete'), 'admin/config/user-interface/themekey/properties/delete/' . $item['id']),
     );
-    
+
     $form['old_items'][$item['id']]['module'] = array(
       '#type' => 'hidden',
       '#default_value' => $item['module'],
@@ -404,10 +404,10 @@ function themekey_rule_chain_form_validate(&$form, $form_state) {
       }
       elseif ('~' == $values['new_item']['operator'] || '!~' == $values['new_item']['operator']) {
         $rule = array(
-                  'property' => $value_1['property'],
-                  'wildcard' => $value_1['wildcard'],
-                  'operator' => $value_1['operator'],
-                  'value' => $value_1['value'],
+                  'property' => $values['new_item']['property'],
+                  'wildcard' => $values['new_item']['wildcard'],
+                  'operator' => $values['new_item']['operator'],
+                  'value' => $values['new_item']['value'],
         );
         $errors = themekey_validator_regex($rule);
         foreach ($errors as $element => $msg) {

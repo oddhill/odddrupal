@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Integration of different theme switching modules into ThemeKey and it's theme switching rule chain.
+ * Integration of different theme switching modules into ThemeKey and its theme switching rule chain.
  * @see themekey.module
  *
  * @author Markus Kalkbrenner | bio.logis GmbH
@@ -117,7 +117,7 @@ function themekey_compat_modules_disabled($modules) {
 function themekey_compat_module_implements_alter(&$implementations, $hook) {
   if ('custom_theme' == $hook) {
     foreach (variable_get('themekey_compat_modules_enabled', array()) as $module) {
-      unset($implementations['$module']);
+      unset($implementations[$module]);
     }
   }
 }
