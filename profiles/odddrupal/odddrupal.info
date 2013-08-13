@@ -47,6 +47,7 @@ dependencies[] = l10n_update
 dependencies[] = letmein
 dependencies[] = logintoboggan
 dependencies[] = mailsystem
+dependencies[] = metatag_opengraph
 dependencies[] = mimemail
 dependencies[] = module_filter
 dependencies[] = pathauto
