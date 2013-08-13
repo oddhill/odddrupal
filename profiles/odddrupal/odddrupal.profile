@@ -52,7 +52,7 @@ function odddrupal_theme_form() {
   if (empty($options)) {
     // No theme has been setup for this site.
     $halt = TRUE;
-    drupal_set_message(st("You haven't created a theme for this site yet. Download the %default theme, put it in the sites folder and rename it. Reload the page, and then you'll be able to continue.", array('%default' => 'Origin')), 'error');
+    drupal_set_message(st("You haven't created a theme for this site yet. Download the %default theme, put it in the sites folder and rename it. Reload the page, and then you'll be able to continue.", array('%default' => 'Odd Baby')), 'error');
   }
   else {
     // Get the assumed theme for this site. This will be the last one in the
@@ -60,11 +60,12 @@ function odddrupal_theme_form() {
     $default_name = end($options);
     $default_key = key($options);
 
-    // If the name of the default theme is "Origin", we'll issue a warning since
-    // the user probably has forgotten to rename the theme before installing.
-    if ($default_key == 'origin') {
+    // If the name of the default theme is "Odd Baby", we'll issue a warning
+    // since the user probably has forgotten to rename the theme before
+    // installing.
+    if ($default_key == 'oddbaby') {
       $halt = TRUE;
-      drupal_set_message(st("You've forgotten to rename the %default theme to a more suitable name. You'll have to rename the theme before you'll be able to continue.", array('%default' => 'Origin', '%name' => variable_get('site_name', preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST'])))), 'error');
+      drupal_set_message(st("You've forgotten to rename the %default theme to a more suitable name. You'll have to rename the theme before you'll be able to continue.", array('%default' => 'Odd baby', '%name' => variable_get('site_name', preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST'])))), 'error');
     }
 
     // Create the form.
