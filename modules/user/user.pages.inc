@@ -36,6 +36,7 @@ function user_pass() {
     '#size' => 60,
     '#maxlength' => max(USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH),
     '#required' => TRUE,
+    '#default_value' => isset($_GET['name']) ? $_GET['name'] : '',
   );
   // Allow logged in users to request this also.
   if ($user->uid > 0) {
@@ -72,8 +73,11 @@ function user_pass_validate($form, &$form_state) {
 }
 
 function user_pass_submit($form, &$form_state) {
+  global $language;
+
   $account = $form_state['values']['account'];
-  $mail = _user_mail_notify('password_reset', $account);
+  // Mail one time login URL and instructions using current language.
+  $mail = _user_mail_notify('password_reset', $account, $language);
   if (!empty($mail)) {
     watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
     drupal_set_message(t('Further instructions have been sent to your e-mail address.'));
