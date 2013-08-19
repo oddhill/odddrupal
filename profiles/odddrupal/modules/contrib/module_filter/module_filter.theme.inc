@@ -12,45 +12,6 @@ function theme_module_filter($variables) {
 }
 
 /**
- * A router theme function.
- *
- * Appropriately themes the system modules page with alterations and based on
- * set variables
- *
- * @param $form
- *   An associative array containing the structure of the form.
- *
- * @return
- *   An output string.
- */
-function theme_module_filter_system_modules($variables) {
-  $form = $variables['form'];
-
-  $output = '';
-  if (variable_get('module_filter_tabs', 1)) {
-    $form['module_filter']['#attached']['css'][] = drupal_get_path('module', 'module_filter') .'/css/module_filter_tab.css';
-    $form['module_filter']['#attached']['js'][] = 'misc/jquery.ba-bbq.js';
-    $form['module_filter']['#attached']['js'][] = drupal_get_path('module', 'module_filter') .'/js/module_filter_tab.js';
-
-    if (!module_exists('page_actions') && variable_get('module_filter_dynamic_save_position', 1)) {
-      $form['module_filter']['#attached']['css'][] = drupal_get_path('module', 'module_filter') .'/css/dynamic_position.css';
-      $form['module_filter']['#attached']['js'][] = drupal_get_path('module', 'module_filter') .'/js/dynamic_position.js';
-    }
-
-    $output .= theme('module_filter_system_modules_tabs', $form);
-  }
-  else {
-    $form['#theme'] = 'system_modules';
-
-    $output .= drupal_render($form['module_filter']);
-    $output .= drupal_render($form['modules']);
-    $output .= drupal_render($form['actions']);
-  }
-
-  return $output;
-}
-
-/**
  * Theme callback for the modules tabbed form.
  */
 function theme_module_filter_system_modules_tabs($variables) {

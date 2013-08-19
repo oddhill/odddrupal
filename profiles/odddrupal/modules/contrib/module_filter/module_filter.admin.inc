@@ -54,7 +54,7 @@ function module_filter_settings() {
   );
   $form['tabs']['module_filter_dynamic_save_position'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Dynamic Save position'),
+    '#title' => t('Dynamically position Save button'),
     '#description' => t("For sites with lots of tabs, enable to help keep the 'Save configuration' button more accessible."),
     '#default_value' => variable_get('module_filter_dynamic_save_position', 1)
   );

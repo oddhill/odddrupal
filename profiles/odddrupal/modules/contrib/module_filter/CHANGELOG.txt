@@ -1,3 +1,15 @@
+Module Filter 7.x-2.x, 2013-08-08
+---------------------------------
+by greenSkin: Changed the title for the 'module_filter_dynamic_save_position'
+  checkbox to make it clearer what it does.
+#1166414 by greenSkin: Fixed broken submit when tabs are disabled. We no longer
+  reroute the theme of the system modules page unless tabs are enabled.
+by greenSkin: Fixed issue on Available updates page where the update state
+  would not be remembered.
+by greenSkin: Fixed 7200 update to rebuild the theme registry at the same time
+  as rebuilding the menu.
+
+
 Module Filter 7.x-2.x, 2013-01-04
 ---------------------------------
 by greenSkin: Fixed issue relating to row coloring when enabling/disabling
