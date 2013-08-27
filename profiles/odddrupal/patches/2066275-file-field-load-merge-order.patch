@@ -1,0 +1,13 @@
+diff --git a/modules/file/file.field.inc b/modules/file/file.field.inc
+index 319cd58..c841f60 100644
+--- a/modules/file/file.field.inc
++++ b/modules/file/file.field.inc
+@@ -186,7 +186,7 @@ function file_field_load($entity_type, $entities, $field, $instances, $langcode,
+         $items[$id][$delta] = NULL;
+       }
+       else {
+-        $items[$id][$delta] = array_merge($item, (array) $files[$item['fid']]);
++        $items[$id][$delta] = array_merge((array) $files[$item['fid']], $item);
+       }
+     }
+   }
