@@ -326,3 +326,14 @@ function odddrupal_init() {
     }
   }
 }
+
+/**
+ * Implements hook_block_info_alter().
+ */
+function odddrupal_block_info_alter(&$blocks, $theme, $code_blocks) {
+  // Cache the Blockify logo block per page rather than globally since the
+  // contents of this block changes depending on the page.
+  if (isset($blocks['blockify']['blockify-logo'])) {
+    $blocks['blockify']['blockify-logo']['cache'] = DRUPAL_CACHE_PER_PAGE;
+  }
+}
