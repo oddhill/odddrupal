@@ -282,7 +282,7 @@ function odddrupal_roles_users() {
 
   // Create the support account.
   $user = array();
-  $user['name'] = 'support';
+  $user['name'] = 'Odd Hill Support';
   $user['mail'] = 'support@oddhill.se';
   $user['pass'] = 'karljohan12';
   $user['timezone'] = ODDDRUPAL_DEFAULT_TIMEZONE;
