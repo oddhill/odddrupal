@@ -459,56 +459,38 @@ function tadaa_variable_form($form, &$form_state, $environment_name, $variable_n
     '#description' => !isset($variable_name) ? t("Enter the name of the variable you wish to configure. If it can't be found automatically, you may enter any value, and it will be created.") : '',
     '#disabled' => isset($variable_name),
   );
-  
-  if (module_exists('variable')) {
-    $form['load'] = array(
-      '#type' => 'button',
-      '#value' => t('Load variable form'),
-      '#limit_validation_errors' => array(),
-      '#ajax' => array(
-        'callback' => 'tadaa_variable_load_form',
-        'wrapper' => 'variable-value-wrapper',
-      ),
-    );
-    
-    $form['variable_value'] = array(
-      '#markup' => '<div id="variable-value-wrapper"></div>',
-    );
+
+  // Add the value configuration fieldset.
+  $form['environment'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Configuration'),
+  );
+
+  // Get the configuration for this environment if we're editing a variable.
+  if (isset($variable_name)) {
+    $configuration = variable_get('tadaa_' . $environment_name . '_variables', array());
+    $default_value = isset($configuration[$variable_name]) ? serialize($configuration[$variable_name]) : '';
   }
-  else {
-    // Add the value configuration fieldset.
-    $form['environment'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Configuration'),
-    );
-  
-    // Get the configuration for this environment if we're editing a variable.
-    if (isset($variable_name)) {
-      $configuration = variable_get('tadaa_' . $environment_name . '_variables', array());
-      $default_value = isset($configuration[$variable_name]) ? serialize($configuration[$variable_name]) : '';
-    }
-    
-    $form['environment']['variable_value'] = array(
-      '#type' => 'textarea',
-      '#title' => t('Value'),
-      '#prefix' => '<div id="' . $environment_name . '-value-wrapper">',
-      '#suffix' => '</div>',
-      '#default_value' => isset($default_value) ? $default_value : '',
-      '#description' => t("Enter the desired value for the %environment environment. If you're configuring a variable that already exists, you may load the current value automatically.", array('%environment' => $environment_title)),
-      '#required' => TRUE,
-    );
-    $form['environment']['load'] = array(
-      '#type' => 'button',
-      '#value' => t('Load current value'),
-      '#name' => $environment_name,
-      '#limit_validation_errors' => array(),
-      '#ajax' => array(
-        'callback' => 'tadaa_variable_load_value',
-        'wrapper' => $environment_name . '-value-wrapper',
-        'event' => 'change',
-      ),
-    );
-  }
+
+  $form['environment']['variable_value'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Value'),
+    '#prefix' => '<div id="' . $environment_name . '-value-wrapper">',
+    '#suffix' => '</div>',
+    '#default_value' => isset($default_value) ? $default_value : '',
+    '#description' => t("Enter the desired value for the %environment environment. If you're configuring a variable that already exists, you may load the current value automatically.", array('%environment' => $environment_title)),
+    '#required' => TRUE,
+  );
+  $form['environment']['load'] = array(
+    '#type' => 'button',
+    '#value' => t('Load current value'),
+    '#name' => $environment_name,
+    '#limit_validation_errors' => array(),
+    '#ajax' => array(
+      'callback' => 'tadaa_variable_load_value',
+      'wrapper' => $environment_name . '-value-wrapper',
+    ),
+  );
 
   // Action buttons.
   $form['actions']['submit'] = array(

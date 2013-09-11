@@ -1,4 +1,0 @@
-name = "Tadaa! Toolbar"
-description = "Provides a simple mechanism to switch between different environments."
-core = 7.x
-package = Development
