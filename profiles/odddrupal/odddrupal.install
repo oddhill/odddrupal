@@ -572,3 +572,26 @@ function odddrupal_update_7135() {
     variable_set('tadaa_production_modules', $modules);
   }
 }
+
+/**
+ * Remove Metatag UI module from the Tadaa! settings. This has been deprecated.
+ */
+function odddrupal_update_7136() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if ($modules['metatag_ui']) {
+    unset($modules['metatag_ui']);
+    variable_set('tadaa_development_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if ($modules['metatag_ui']) {
+    unset($modules['metatag_ui']);
+    variable_set('tadaa_staging_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if ($modules['metatag_ui']) {
+    unset($modules['metatag_ui']);
+    variable_set('tadaa_production_modules', $modules);
+  }
+}
