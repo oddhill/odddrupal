@@ -151,7 +151,7 @@ function odddrupal_form_install_configure_form_alter(&$form, $form_state) {
     '#tree' => TRUE,
     'name' => array(
       '#type' => 'hidden',
-      '#value' => 'admin',
+      '#value' => 'root',
     ),
     'mail' => array(
       '#type' => 'hidden',
