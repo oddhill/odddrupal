@@ -13,12 +13,6 @@ function oddvault_odddrupal_reset() {
   module_load_include('inc', 'themekey', 'themekey_build');
   themekey_rule_del(1);
 
-  // Delete the editor role.
-  user_role_delete('editor');
-
-  // Delete the editor account.
-  user_delete(2);
-
   // Remove permissions from the anonymous role.
   user_role_revoke_permissions(1, array(
     'access content',
@@ -99,7 +93,7 @@ function oddvault_roles_users() {
 
   // Set the name for the support account, and add the user to the administrator
   // role.
-  $support = entity_metadata_wrapper('user', user_load(3));
+  $support = entity_metadata_wrapper('user', user_load(2));
   $support->field_user_name = 'Odd Hill Support';
   $support->roles = array(2, $administrator_role->rid);
   $support->save();

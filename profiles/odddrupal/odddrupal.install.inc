@@ -252,10 +252,6 @@ function odddrupal_themekey_rules() {
  * role.
  */
 function odddrupal_roles_users() {
-  // Create the editor role.
-  $editor_role->name = 'editor';
-  user_role_save($editor_role);
-
   // Permissions for the anonymous role.
   user_role_grant_permissions(1, array(
     'access content',
@@ -265,17 +261,8 @@ function odddrupal_roles_users() {
   // Permissions for the authenticated role.
   user_role_grant_permissions(2, array(
     'access content',
-    'access devel information',
-  ));
-
-  // Remove permissions for the authenticated role.
-  user_role_revoke_permissions(2, array(
-    'edit mimemail user settings',
-  ));
-
-  // Permissions for the editor role.
-  user_role_grant_permissions($editor_role->rid, array(
     'access contextual links',
+    'access devel information',
     'access overlay',
     'access toolbar',
     'change own username',
@@ -283,25 +270,15 @@ function odddrupal_roles_users() {
     'view the administration theme',
   ));
 
+  // Remove permissions for the authenticated role.
+  user_role_revoke_permissions(2, array(
+    'edit mimemail user settings',
+  ));
+
   // Disable the overlay for user 1, and set the language to english.
   $user = user_load(1);
   $user->language = 'en';
   user_save($user, array('data' => array('overlay' => 0)));
-
-  // Create the editor account.
-  $user = array();
-  $user['name'] = 'editor';
-  $user['mail'] = 'admin@oddhill.se';
-  $user['pass'] = 'karljohan12';
-  $user['timezone'] = ODDDRUPAL_DEFAULT_TIMEZONE;
-  $user['language'] = $_GET['locale'];
-  $user['init'] = 'admin@oddhill.se';
-  $user['status'] = 1;
-  $user['roles'] = array(
-    2 => TRUE,
-    $editor_role->rid => $editor_role->rid
-  );
-  user_save(NULL, $user);
 
   // Create the support account.
   $user = array();
