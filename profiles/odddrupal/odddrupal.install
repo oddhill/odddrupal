@@ -595,3 +595,11 @@ function odddrupal_update_7136() {
     variable_set('tadaa_production_modules', $modules);
   }
 }
+
+/**
+ * Disable the Use administration language in the administration menu setting
+ * for Administration Language.
+ */
+function odddrupal_update_7137() {
+  variable_del('admin_language_translate_admin_menu');
+}

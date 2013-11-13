@@ -448,7 +448,6 @@ function odddrupal_set_variables() {
   variable_set('admin_language_default', 'en');
   variable_set('admin_language_hide_node', '1');
   variable_set('admin_language_hide_user', '1');
-  variable_set('admin_language_translate_admin_menu', '1');
   variable_set('module_filter_count_enabled', 1);
   variable_set('module_filter_dynamic_save_position', 1);
   variable_set('module_filter_hide_empty_tabs', 0);
