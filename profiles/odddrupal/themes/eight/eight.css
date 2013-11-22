@@ -3,6 +3,6 @@ form.administration-filters .fieldset-wrapper .form-item {
   padding-right: 1em;
 }
 
-form.administration-filters .fieldset-wrapper .ajax-progress {
-  margin-top: 28px;
+form.administration-filters .fieldset-wrapper .form-submit {
+  margin-top: 25px;
 }
