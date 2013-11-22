@@ -73,8 +73,11 @@ function user_pass_validate($form, &$form_state) {
 }
 
 function user_pass_submit($form, &$form_state) {
+  global $language;
+
   $account = $form_state['values']['account'];
-  $mail = _user_mail_notify('password_reset', $account);
+  // Mail one time login URL and instructions using current language.
+  $mail = _user_mail_notify('password_reset', $account, $language);
   if (!empty($mail)) {
     watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
     drupal_set_message(t('Further instructions have been sent to your e-mail address.'));
@@ -134,7 +137,7 @@ function user_pass_reset($form, &$form_state, $uid, $timestamp, $hashed_pass, $a
           watchdog('user', 'User %name used one-time login link at time %timestamp.', array('%name' => $account->name, '%timestamp' => $timestamp));
           drupal_set_message(t('You have just used your one-time login link. It is no longer necessary to use this link to log in. Please change your password.'));
           // Let the user's password be changed without the current password check.
-          $token = drupal_hash_base64(drupal_random_bytes(55));
+          $token = drupal_random_key();
           $_SESSION['pass_reset_' . $user->uid] = $token;
           drupal_goto('user/' . $user->uid . '/edit', array('query' => array('pass-reset-token' => $token)));
         }

@@ -232,22 +232,6 @@ function drupal_get_profile() {
   return $profile;
 }
 
-/**
- * Returns a list of related install profiles in decending order of their
- * dependencies.
- */
-function drupal_get_profiles() {
-  global $install_state;
-
-  if (isset($install_state['parameters']['profile'])) {
-    $profiles = install_get_base_profiles();
-  }
-  else {
-    $profiles = variable_get('install_profiles', array('standard'));
-  }
-
-  return $profiles;
-}
 
 /**
  * Sets the breadcrumb trail for the current page.
@@ -5058,7 +5042,7 @@ function drupal_json_output($var = NULL) {
  */
 function drupal_get_private_key() {
   if (!($key = variable_get('drupal_private_key', 0))) {
-    $key = drupal_hash_base64(drupal_random_bytes(55));
+    $key = drupal_random_key();
     variable_set('drupal_private_key', $key);
   }
   return $key;
@@ -5097,7 +5081,7 @@ function drupal_get_token($value = '') {
  */
 function drupal_valid_token($token, $value = '', $skip_anonymous = FALSE) {
   global $user;
-  return (($skip_anonymous && $user->uid == 0) || ($token == drupal_get_token($value)));
+  return (($skip_anonymous && $user->uid == 0) || ($token === drupal_get_token($value)));
 }
 
 function _drupal_bootstrap_full() {
@@ -5130,6 +5114,10 @@ function _drupal_bootstrap_full() {
   module_load_all();
   // Make sure all stream wrappers are registered.
   file_get_stream_wrappers();
+  // Ensure mt_rand is reseeded, to prevent random values from one page load
+  // being exploited to predict random values in subsequent page loads.
+  $seed = unpack("L", drupal_random_bytes(4));
+  mt_srand($seed[1]);
 
   $test_info = &$GLOBALS['drupal_test_info'];
   if (!empty($test_info['in_child_site'])) {
@@ -5376,7 +5364,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
   }
   // In case both profile directories contain the same extension, the actual
   // profile always has precedence.
-  $profiles = array_merge($profiles, drupal_get_profiles());
+  $profiles[] = $profile;
   foreach ($profiles as $profile) {
     if (file_exists("profiles/$profile/$directory")) {
       $searchdir[] = "profiles/$profile/$directory";
@@ -5394,7 +5382,6 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
   if (!function_exists('file_scan_directory')) {
     require_once DRUPAL_ROOT . '/includes/file.inc';
   }
-
   foreach ($searchdir as $dir) {
     $files_to_add = file_scan_directory($dir, $mask, array('key' => $key, 'min_depth' => $min_depth));
 
