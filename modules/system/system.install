@@ -442,11 +442,11 @@ function system_requirements($phase) {
 
   // Display an error if a newly introduced dependency in a module is not resolved.
   if ($phase == 'update') {
-    $profile = drupal_get_profile();
+    $profiles = drupal_get_profiles();
     $files = system_rebuild_module_data();
     foreach ($files as $module => $file) {
       // Ignore disabled modules and installation profiles.
-      if (!$file->status || $module == $profile) {
+      if (!$file->status || in_array($module, $profiles)) {
         continue;
       }
       // Check the module's PHP version.

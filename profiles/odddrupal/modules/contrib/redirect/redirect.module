@@ -404,6 +404,10 @@ function redirect_path_update(array $path) {
     if (!redirect_load_by_hash($hash)) {
       redirect_save($redirect);
     }
+    // Remove existing redirect if it matches the new alias.
+    if ($old = redirect_load_by_source($path['alias'], $path['language'])) {
+      redirect_delete($old->rid);
+    }
   }
 }
 
@@ -1017,7 +1021,6 @@ function redirect_redirect($redirect = NULL) {
 
   // Continue if the redirect has not been disabled by hook_redirect_alter().
   if (isset($redirect->redirect) && isset($redirect->callback) && $redirect->redirect !== FALSE && function_exists($redirect->callback)) {
-
     // Prevent circular redirects.
     if ($GLOBALS['base_root'] . request_uri() == url($redirect->redirect, array('absolute' => TRUE) + $redirect->redirect_options)) {
       return FALSE;

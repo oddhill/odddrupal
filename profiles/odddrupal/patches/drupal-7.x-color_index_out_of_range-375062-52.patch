@@ -1,5 +1,5 @@
 diff --git a/modules/system/image.gd.inc b/modules/system/image.gd.inc
-index 39f86dc..1da2bc3 100644
+index 91c0b05..c8b4120 100644
 --- a/modules/system/image.gd.inc
 +++ b/modules/system/image.gd.inc
 @@ -305,7 +305,7 @@ function image_gd_create_tmp(stdClass $image, $width, $height) {
@@ -7,7 +7,7 @@ index 39f86dc..1da2bc3 100644
      $transparent = imagecolortransparent($image->resource);
  
 -    if ($transparent >= 0) {
-+    if ($transparent >= 0 && $transparent < imagecolorstotal($image->resource)) {
++    if ($transparent >= 0 && (imageistruecolor($image->resource) || ($transparent < imagecolorstotal($image->resource)))) {
        // The original must have a transparent color, allocate to the new image.
        $transparent_color = imagecolorsforindex($image->resource, $transparent);
        $transparent = imagecolorallocate($res, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);

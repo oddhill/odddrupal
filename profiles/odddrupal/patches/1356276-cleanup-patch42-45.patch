@@ -1,5 +1,5 @@
 diff --git a/includes/common.inc b/includes/common.inc
-index 0ebe857..4b6e802 100644
+index 3ec6863..31da142 100644
 --- a/includes/common.inc
 +++ b/includes/common.inc
 @@ -232,6 +232,22 @@ function drupal_get_profile() {
@@ -25,7 +25,7 @@ index 0ebe857..4b6e802 100644
  
  /**
   * Sets the breadcrumb trail for the current page.
-@@ -5352,7 +5368,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
+@@ -5360,7 +5376,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
    }
    // In case both profile directories contain the same extension, the actual
    // profile always has precedence.
@@ -34,7 +34,7 @@ index 0ebe857..4b6e802 100644
    foreach ($profiles as $profile) {
      if (file_exists("profiles/$profile/$directory")) {
        $searchdir[] = "profiles/$profile/$directory";
-@@ -5370,6 +5386,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
+@@ -5378,6 +5394,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
    if (!function_exists('file_scan_directory')) {
      require_once DRUPAL_ROOT . '/includes/file.inc';
    }
@@ -196,7 +196,7 @@ index 7a694e9..1aeca09 100644
    // Installation profiles are always loaded last
    db_update('system')
 diff --git a/includes/install.inc b/includes/install.inc
-index c4bcb88..dce39a0 100644
+index 3631c36..93532f1 100644
 --- a/includes/install.inc
 +++ b/includes/install.inc
 @@ -669,17 +669,31 @@ function drupal_rewrite_settings($settings = array(), $prefix = '') {
@@ -247,7 +247,7 @@ index c4bcb88..dce39a0 100644
  
    $requirements = array();
  
-@@ -763,7 +777,7 @@ function drupal_uninstall_modules($module_list = array(), $uninstall_dependents
+@@ -770,7 +784,7 @@ function drupal_uninstall_modules($module_list = array(), $uninstall_dependents
      // Create an associative array with weights as values.
      $module_list = array_flip(array_values($module_list));
  
@@ -255,8 +255,8 @@ index c4bcb88..dce39a0 100644
 +    $profiles = drupal_get_profiles();
      while (list($module) = each($module_list)) {
        if (!isset($module_data[$module]) || drupal_get_installed_schema_version($module) == SCHEMA_UNINSTALLED) {
-         // This module doesn't exist or is already uninstalled, skip it.
-@@ -777,7 +791,7 @@ function drupal_uninstall_modules($module_list = array(), $uninstall_dependents
+         // This module doesn't exist or is already uninstalled. Skip it.
+@@ -784,7 +798,7 @@ function drupal_uninstall_modules($module_list = array(), $uninstall_dependents
        // them automatically because uninstalling a module is a destructive
        // operation.
        foreach (array_keys($module_data[$module]->required_by) as $dependent) {
@@ -265,7 +265,7 @@ index c4bcb88..dce39a0 100644
            return FALSE;
          }
        }
-@@ -1116,7 +1130,12 @@ function st($string, array $args = array(), array $options = array()) {
+@@ -1123,7 +1137,12 @@ function st($string, array $args = array(), array $options = array()) {
        // with its name ending in {$install_state['parameters']['locale']}.po
        // This might or might not be the entire filename. It is also possible
        // that multiple files end with the same extension, even if unlikely.
@@ -279,7 +279,7 @@ index c4bcb88..dce39a0 100644
        if (count($po_files)) {
          require_once DRUPAL_ROOT . '/includes/locale.inc';
          foreach ($po_files as $po_file) {
-@@ -1157,24 +1176,36 @@ function st($string, array $args = array(), array $options = array()) {
+@@ -1164,24 +1183,36 @@ function st($string, array $args = array(), array $options = array()) {
   */
  function drupal_check_profile($profile) {
    include_once DRUPAL_ROOT . '/includes/file.inc';
@@ -328,7 +328,7 @@ index c4bcb88..dce39a0 100644
    return $requirements;
  }
  
-@@ -1301,6 +1332,23 @@ function install_profile_info($profile, $locale = 'en') {
+@@ -1308,6 +1339,23 @@ function install_profile_info($profile, $locale = 'en') {
  }
  
  /**
@@ -338,7 +338,7 @@ index c4bcb88..dce39a0 100644
 +  $profile = drupal_get_profile();
 +  $info = drupal_parse_info_file("profiles/$profile/$profile.info");
 +
-+  $profiles = array($profile);  
++  $profiles = array($profile);
 +  while (!empty($info) && isset($info['base'])) {
 +    $profiles[] = $info['base'];
 +    $profile = $info['base'];
@@ -353,7 +353,7 @@ index c4bcb88..dce39a0 100644
   *
   * This will run tasks that check that Drupal can perform all of the functions
 diff --git a/includes/module.inc b/includes/module.inc
-index 341cd79..23db7ab 100644
+index da6dae9..bbaa540 100644
 --- a/includes/module.inc
 +++ b/includes/module.inc
 @@ -519,7 +519,7 @@ function module_disable($module_list, $disable_dependents = TRUE) {
@@ -374,7 +374,7 @@ index 341cd79..23db7ab 100644
            $module_list[$dependent] = 0;
          }
        }
-@@ -879,7 +879,7 @@ function drupal_required_modules() {
+@@ -920,7 +920,7 @@ function drupal_required_modules() {
    $required = array();
  
    // An installation profile is required and one must always be loaded.
@@ -384,10 +384,10 @@ index 341cd79..23db7ab 100644
    foreach ($files as $name => $file) {
      $info = drupal_parse_info_file($file->uri);
 diff --git a/modules/simpletest/drupal_web_test_case.php b/modules/simpletest/drupal_web_test_case.php
-index 694880b..1dbf5a8 100644
+index 0853c7d..c461ea8 100644
 --- a/modules/simpletest/drupal_web_test_case.php
 +++ b/modules/simpletest/drupal_web_test_case.php
-@@ -1458,10 +1458,16 @@ class DrupalWebTestCase extends DrupalTestCase {
+@@ -1459,10 +1459,16 @@ class DrupalWebTestCase extends DrupalTestCase {
  
      // Include the testing profile.
      variable_set('install_profile', $this->profile);
@@ -429,7 +429,7 @@ index 05543be..9d2e045 100644
            $form['modules'][$module->name]['#required_by'][] = $dependent_name;
            $form['uninstall'][$module->name]['#disabled'] = TRUE;
 diff --git a/modules/system/system.install b/modules/system/system.install
-index 7b66767..1553134 100644
+index 1b037b8..83b3086 100644
 --- a/modules/system/system.install
 +++ b/modules/system/system.install
 @@ -409,11 +409,11 @@ function system_requirements($phase) {
@@ -447,10 +447,10 @@ index 7b66767..1553134 100644
        }
        // Check the module's PHP version.
 diff --git a/modules/system/system.module b/modules/system/system.module
-index d47ab8a..6f9ad29 100644
+index 2bbcd7f..51850f1 100644
 --- a/modules/system/system.module
 +++ b/modules/system/system.module
-@@ -2361,15 +2361,18 @@ function _system_rebuild_module_data() {
+@@ -2362,15 +2362,18 @@ function _system_rebuild_module_data() {
    // Find modules
    $modules = drupal_system_listing('/^' . DRUPAL_PHP_FUNCTION_PATTERN . '\.module$/', 'modules', 'name', 0);
  
@@ -477,7 +477,7 @@ index d47ab8a..6f9ad29 100644
  
    // Set defaults for module info.
    $defaults = array(
-@@ -2411,7 +2414,7 @@ function _system_rebuild_module_data() {
+@@ -2412,7 +2415,7 @@ function _system_rebuild_module_data() {
  
      // Installation profiles are hidden by default, unless explicitly specified
      // otherwise in the .info file.
@@ -486,7 +486,7 @@ index d47ab8a..6f9ad29 100644
        $modules[$key]->info['hidden'] = TRUE;
      }
  
-@@ -2421,13 +2424,15 @@ function _system_rebuild_module_data() {
+@@ -2422,13 +2425,15 @@ function _system_rebuild_module_data() {
      drupal_alter('system_info', $modules[$key]->info, $modules[$key], $type);
    }
  
