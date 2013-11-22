@@ -43,7 +43,7 @@ function theme_module_filter_system_modules_tabs($variables) {
   if (variable_get('module_filter_track_recent_modules', 1)) {
     $recent_modules = array_filter(variable_get('module_filter_recent_modules', array()), 'module_filter_recent_filter');
     // Save the filtered results.
-    variable_get('module_filter_recent_modules', $recent_modules);
+    variable_set('module_filter_recent_modules', $recent_modules);
 
     $package_ids[] = 'recent';
     $enabled['recent'] = array();

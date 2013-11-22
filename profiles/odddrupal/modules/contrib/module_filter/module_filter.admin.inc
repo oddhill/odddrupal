@@ -76,6 +76,12 @@ function module_filter_settings() {
     '#description' => t('Adds a "Recent" tab that displays modules that have been enabled or disabled with the last week.'),
     '#default_value' => variable_get('module_filter_track_recent_modules', 1),
   );
+  $form['tabs']['module_filter_remember_active_tab'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Remember active tab.'),
+    '#description' => t('When enabled, the active tab will be remembered.'),
+    '#default_value' => variable_get('module_filter_remember_active_tab', 1),
+  );
 
   $form['update'] = array(
     '#type' => 'fieldset',

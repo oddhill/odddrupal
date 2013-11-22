@@ -107,6 +107,9 @@ html.js .module-filter-inputs-wrapper .form-item {
 html.js .module-filter-inputs-wrapper label {
   display: inline;
 }
+html.js .module-filter-inputs-wrapper input[name="module_filter[name]"] {
+  width: 80%;
+}
 html.js #module-filter-show-wrapper {
   margin-bottom: 1em;
 }
@@ -245,4 +248,13 @@ html.js .toggle-enable div:after {
 }
 html.js .toggle-enable.off div {
   left: 24px;
+}
+
+#module-filter-tabs.top-fixed {
+  position: fixed;
+  top: 0;
+}
+#module-filter-tabs.bottom-fixed {
+  position: fixed;
+  bottom: 0;
 }

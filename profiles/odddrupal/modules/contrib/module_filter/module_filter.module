@@ -178,6 +178,7 @@ function form_process_module_filter($element, &$form_state) {
               'useURLFragment' => variable_get('module_filter_use_url_fragment', 1),
               'useSwitch' => variable_get('module_filter_use_switch', 1),
               'trackRecent' => variable_get('module_filter_track_recent_modules', 1),
+              'rememberActiveTab' => variable_get('module_filter_remember_active_tab', 1),
               'rememberUpdateState' => variable_get('module_filter_remember_update_state', 0),
             )
           ),
