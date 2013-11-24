@@ -5,24 +5,24 @@
  */
 
 /**
+ * Implements hook_backup_migrate_filters().
+ */
+function treadmill_backup_migrate_filters(){
+  return array(
+    'treadmill' => array(
+      'file' => drupal_get_path('module', 'treadmill') .'/filters.treadmill.inc',
+      'class' => 'backup_migrate_filter_treadmill'
+    )
+  );
+}
+
+/**
  * Implements hook_menu().
  */
 function treadmill_menu() {
-  // Only enable the Backup and Migrate cooperation if that module exists.
-  if (module_exists('backup_migrate')) {
-    $items['admin/config/system/backup_migrate/treadmill'] = array(
-      'title' => 'Treadmill',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('treadmill_form'),
-      'access arguments' => array('configure treadmill'),
-      'type' => MENU_LOCAL_TASK,
-      'weight' => 10,
-    );
-  }
-
-  // Callback that runs update.php.
-  $items['treadmill/system/update'] = array(
-    'page callback' => 'treadmill_system_update',
+  // Callback that deletes every table.
+  $items['treadmill/system/delete-tables'] = array(
+    'page callback' => 'treadmill_system_delete_tables',
     'access callback' => 'treadmill_remote_access',
     'type' => MENU_CALLBACK,
   );
@@ -34,18 +34,14 @@ function treadmill_menu() {
     'type' => MENU_CALLBACK,
   );
 
-  return $items;
-}
-
-/**
- * Implements hook_permission().
- */
-function treadmill_permission() {
-  return array(
-    'configure treadmill' => array(
-      'title' => 'Configure treadmill settings',
-    ),
+  // Callback that runs update.php.
+  $items['treadmill/system/update'] = array(
+    'page callback' => 'treadmill_system_update',
+    'access callback' => 'treadmill_remote_access',
+    'type' => MENU_CALLBACK,
   );
+
+  return $items;
 }
 
 /**
@@ -56,6 +52,39 @@ function treadmill_permission() {
  */
 function treadmill_remote_access() {
   return isset($_GET['key']) && variable_get('cron_key', 'drupal') == $_GET['key'];
+}
+
+/**
+ * Page callback for treadmill/system/delete-tables.
+ */
+function treadmill_system_delete_tables() {
+  // Get the tables that we should keep.
+  $keep = is_array($_POST) ? $_POST : array();
+
+  // Iterate through every table and delete the ones that shouldn't be kept.
+  foreach (drupal_get_complete_schema() as $table) {
+    if (!in_array($table['name'], $keep) && db_table_exists($table['name'])) {
+      db_drop_table($table['name']);
+    }
+  }
+
+  exit();
+}
+
+/**
+ * Page callback for treadmill/features/revert.
+ *
+ * @see ftools_features_revert_all_submit()
+ */
+function treadmill_features_revert() {
+  // Include the necessary files and revert all features.
+  module_load_include('inc', 'features', 'features.export');
+  features_include();
+  features_revert();
+
+  // Clear the cache, and exit.
+  drupal_flush_all_caches();
+  exit();
 }
 
 /**
@@ -171,130 +200,4 @@ function treadmill_system_update() {
   // Clear the cache, and exit.
   drupal_flush_all_caches();
   exit();
-}
-
-/**
- * Page callback for treadmill/features/revert.
- *
- * @see ftools_features_revert_all_submit()
- */
-function treadmill_features_revert() {
-  // Include the necessary files and revert all features.
-  module_load_include('inc', 'features', 'features.export');
-  features_include();
-  features_revert();
-
-  // Clear the cache, and exit.
-  drupal_flush_all_caches();
-  exit();
-}
-
-/**
- * Main configuration form.
- */
-function treadmill_form($form, &$form_state) {
-  // Get the settings, and the available Backup and Migrate destinations.
-  $settings = treadmill_get_settings();
-  backup_migrate_include('profiles', 'destinations');
-  $destinations = _backup_migrate_get_destination_form_item_options('manual backup');
-
-  $visible_states = array();
-  foreach ($destinations as $key => $label) {
-    $visible_states[]['[name=treadmill_destination]'] = array('value' => $key);
-  }
-
-  // Global settings.
-  $form['global'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Global settings'),
-    '#collapsible' => TRUE,
-  );
-  $form['global']['treadmill_destination'] = array(
-    '#type' => 'select',
-    '#title' => 'Triggering destination',
-    '#options' => array('' => t('- None -')) + $destinations,
-    '#default_value' => $settings['destination'],
-    '#description' => t('Select the Backup and Migrate destination that should trigger Treadmill.'),
-  );
-  $form['global']['treadmill_url'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Destination URL',
-    '#description' => t('The full base url for the destination site including a trailing slash, e.g. %example.', array('%example' => 'http://example.oddserver.se/')),
-    '#required' => TRUE,
-    '#default_value' => $settings['url'],
-    '#states' => array(
-      'visible' => $visible_states,
-    ),
-  );
-  $form['global']['treadmill_key'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Access key',
-    '#required' => TRUE,
-    '#default_value' => $settings['key'],
-    '#states' => array(
-      'visible' => $visible_states,
-    ),
-  );
-
-  return system_settings_form($form);
-}
-
-/**
- * Form validation for the main configuration form.
- */
-function treadmill_form_validate($form, &$form_state) {
-  // Validate the URL.
-  if (!valid_url($form_state['values']['treadmill_url'], TRUE)) {
-    form_set_error('url', t("%url isn't a valid URL.", array('%url' => $form_state['values']['treadmill_url'])));
-  }
-
-  // Make sure that the URL has a trailing slash.
-  if (!preg_match('/\/$/', $form_state['values']['treadmill_url'])) {
-    form_set_error('url', t('The URL has to end with a trailing slash.'));
-  }
-}
-
-/**
- * Implements hook_backup_migrate_postbackup().
- */
-function treadmill_backup_migrate_postbackup($backup_migrate_settings) {
-  // Get the destination that the backup was performed against, and get the
-  // Treadmill settings.
-  $destination = $backup_migrate_settings->get_destination()->destination_id;
-  $settings = treadmill_get_settings();
-
-  // Don't do anything if this isn't the configured destination.
-  if (empty($settings['destination']) || $settings['destination'] != $destination) {
-    return;
-  }
-
-  // Build the URL and the base query.
-  $url = $settings['url'];
-  $query = array('key' => $settings['key']);
-
-  // Perform the Features revert.
-  $query['q'] = 'treadmill/features/revert';
-  drupal_http_request(url($url, array('query' => $query)));
-
-  // Perform the Tadaa! environment switch.
-  $query['q'] = 'tadaa/environment/switch/staging';
-  drupal_http_request(url($url, array('query' => $query)));
-
-  // Perform the system update.
-  $query['q'] = 'treadmill/system/update';
-  drupal_http_request(url($url, array('query' => $query)));
-}
-
-/**
- * Helper function that gets the settings.
- *
- * @return
- *  An array with the values, keyed by the name.
- */
-function treadmill_get_settings() {
-  return array(
-    'destination' => variable_get('treadmill_destination', ''),
-    'url' => variable_get('treadmill_url', 'http://kund:kund@'),
-    'key' => variable_get('treadmill_key', variable_get('cron_key', 'drupal')),
-  );
 }
