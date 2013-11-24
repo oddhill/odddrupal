@@ -148,8 +148,8 @@ function tadaa_environment_switch($environment) {
     variable_set($name, $value);
   }
 
-  // Finally, set the new environment, clear the cache, and exit.
+  // Finally, set the new environment, flush the cache, and exit.
   variable_set('tadaa_environment', $environment);
-  cache_clear_all();
+  drupal_flush_all_caches();
   exit();
 }

@@ -45,7 +45,7 @@ function tadaa_drush_help($section) {
       case 'drush:tadaa-fix':
       return dt('Fixes the configuration for the current environment, by enabling/disabling modules that are in the wrong state, and changing the values of variables that are wrong.');
     case 'drush:tadaa-switch':
-      return dt('Switches environment to the one you specify. All caches will be cleared afterwards.');
+      return dt('Switches environment to the one you specify. All caches will be flushed afterwards.');
   }
 }
 
@@ -285,8 +285,9 @@ function drush_tadaa_switch($environment = NULL) {
     }
   }
 
-  // Finally, set the new environment, clear the cache, and print a helpful
+  // Finally, set the new environment, flush the cache, and print a helpful
   // message.
   variable_set('tadaa_environment', $environment);
+  drupal_flush_all_caches();
   drush_print("\n" . dt('Successfully switched to !environment.', array('!environment' => $environments[$environment])));
 }

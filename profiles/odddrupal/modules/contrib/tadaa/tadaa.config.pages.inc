@@ -286,7 +286,7 @@ function tadaa_module_configuration_form($form, $form_state) {
     // Add this module to the modules array if it's visible.
     if (!isset($module_info['hidden']) || !$module_info['hidden']) {
       $package = isset($module_info['package']) ? $module_info['package'] : 'Other';
-      $modules[$package][$row->name] = $module_info['name'];
+      $modules[$package][$row->name] = isset($module_info['name']) ? $module_info['name'] : $row->name;
     }
   }
 

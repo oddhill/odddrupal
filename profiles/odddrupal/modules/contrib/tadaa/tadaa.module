@@ -364,11 +364,11 @@ function tadaa_batch_set_variables($variables, &$context) {
  * Batch callback when switching environment.
  *
  * This is the last step, and will simply update the current environment
- * variable, and clear the cache.
+ * variable, and flush the cache.
  */
 function tadaa_batch_finish($new_environment, &$context) {
   variable_set('tadaa_environment', $new_environment);
-  cache_clear_all();
+  drupal_flush_all_caches();
 }
 
 /**
