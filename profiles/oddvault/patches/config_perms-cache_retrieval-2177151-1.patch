@@ -1,0 +1,21 @@
+diff --git a/config_perms.module b/config_perms.module
+index a7a7603..3cc0cd6 100644
+--- a/config_perms.module
++++ b/config_perms.module
+@@ -18,10 +18,15 @@ function config_perms_perms($machine_name = NULL, $rebuild = FALSE) {
+   // Load current perms
+   $perms = cache_get('config_perms');
+ 
+-  // Rebuild if not there
++  // Rebuild if the cache doesn't exist or if we should force a rebuild. If the
++  // cache exists, we'll need to point to the data property of the cache object
++  // in order to maintain the same structure.
+   if (!$perms || $rebuild) {
+     $perms = config_perms_cache_rebuild();
+   }
++  else {
++    $perms = $perms->data;
++  }
+ 
+   return ($machine_name) ? $perms[$machine_name] : $perms;
+ }
