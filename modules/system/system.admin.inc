@@ -309,7 +309,7 @@ function system_theme_enable() {
     }
     drupal_goto('admin/appearance');
   }
-  return drupal_access_denied();
+  return MENU_ACCESS_DENIED;
 }
 
 /**
@@ -337,7 +337,7 @@ function system_theme_disable() {
     }
     drupal_goto('admin/appearance');
   }
-  return drupal_access_denied();
+  return MENU_ACCESS_DENIED;
 }
 
 /**
@@ -383,7 +383,7 @@ function system_theme_default() {
     }
     drupal_goto('admin/appearance');
   }
-  return drupal_access_denied();
+  return MENU_ACCESS_DENIED;
 }
 
 /**
@@ -1260,7 +1260,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
   // Only build the rest of the form if there are any modules available to
   // uninstall.
   if (!empty($disabled_modules)) {
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     uasort($disabled_modules, 'system_sort_modules_by_info_name');
     $form['uninstall'] = array('#tree' => TRUE);
     foreach ($disabled_modules as $module) {
@@ -1277,7 +1277,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
       // we can allow this module to be uninstalled. (The installation profile
       // is excluded from this list.)
       foreach (array_keys($module->required_by) as $dependent) {
-        if (!in_array($dependent, $profiles) && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
+        if ($dependent != $profile && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
           $dependent_name = isset($all_modules[$dependent]->info['name']) ? $all_modules[$dependent]->info['name'] : $dependent;
           $form['modules'][$module->name]['#required_by'][] = $dependent_name;
           $form['uninstall'][$module->name]['#disabled'] = TRUE;
@@ -1618,6 +1618,7 @@ function system_cron_settings() {
   $form['cron']['cron_safe_threshold'] = array(
     '#type' => 'select',
     '#title' => t('Run cron every'),
+    '#description' => t('More information about setting up scheduled tasks can be found by <a href="@url">reading the cron tutorial on drupal.org</a>.', array('@url' => url('http://drupal.org/cron'))),
     '#default_value' => variable_get('cron_safe_threshold', DRUPAL_CRON_DEFAULT_THRESHOLD),
     '#options' => array(0 => t('Never')) + drupal_map_assoc(array(3600, 10800, 21600, 43200, 86400, 604800), 'format_interval'),
   );
@@ -2575,7 +2576,7 @@ function theme_status_report($variables) {
 
   foreach ($requirements as $requirement) {
     if (empty($requirement['#type'])) {
-      $severity = $severities[isset($requirement['severity']) ? (int) $requirement['severity'] : 0];
+      $severity = $severities[isset($requirement['severity']) ? (int) $requirement['severity'] : REQUIREMENT_OK];
       $severity['icon'] = '<div title="' . $severity['title'] . '"><span class="element-invisible">' . $severity['title'] . '</span></div>';
 
       // Output table row(s)
