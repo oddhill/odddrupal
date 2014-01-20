@@ -82,6 +82,7 @@ function oddvault_roles_users() {
   config_perms_cache_rebuild();
 
   // Create the administrator role.
+  $administrator_role = new StdClass;
   $administrator_role->name = 'administrator';
   user_role_save($administrator_role);
 
