@@ -1,5 +1,4 @@
 <?php
-// $Id: comment.module,v 1.617.2.17 2010/08/11 20:35:47 goba Exp $
 
 /**
  * @file
@@ -1820,7 +1819,6 @@ function theme_comment_post_forbidden($node) {
  * Process variables for comment-wrapper.tpl.php.
  *
  * @see comment-wrapper.tpl.php
- * @see theme_comment_wrapper()
  */
 function template_preprocess_comment_wrapper(&$variables) {
   // Provide contextual information.

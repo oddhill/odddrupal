@@ -1,5 +1,4 @@
 <?php
-// $Id: database.mysql-common.inc,v 1.17.2.5 2010/12/15 13:21:14 goba Exp $
 
 /**
  * @file
@@ -27,8 +26,9 @@
  *   and TRUE values to decimal 1.
  *
  * @return
- *   A database query result resource, or FALSE if the query was not
- *   executed correctly.
+ *   Successful SELECT, SHOW, DESCRIBE, EXPLAIN, or other queries which return a
+ *   set of results will return a database query result resource. Other
+ *   successful queries will return TRUE and failing queries will return FALSE.
  */
 function db_query($query) {
   $args = func_get_args();
@@ -290,7 +290,7 @@ function db_drop_table(&$ret, $table) {
  *   table along with adding the field. The format is the same as a
  *   table specification but without the 'fields' element.  If you are
  *   adding a type 'serial' field, you MUST specify at least one key
- *   or index including it in this array. @see db_change_field for more
+ *   or index including it in this array. See db_change_field() for more
  *   explanation why.
  */
 function db_add_field(&$ret, $table, $field, $spec, $keys_new = array()) {

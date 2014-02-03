@@ -1,5 +1,4 @@
 <?php
-// $Id: translation.module,v 1.23.2.6 2010/12/15 12:27:56 goba Exp $
 
 /**
  * @file
@@ -181,7 +180,7 @@ function translation_link($type, $node = NULL, $teaser = FALSE) {
  *
  * Manages translation information for nodes.
  */
-function translation_nodeapi(&$node, $op, $teaser, $page) {
+function translation_nodeapi(&$node, $op, $teaser = NULL, $page = NULL) {
   // Only act if we are dealing with a content type supporting translations.
   if (!translation_supported_type($node->type)) {
     return;

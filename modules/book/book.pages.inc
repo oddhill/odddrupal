@@ -1,5 +1,4 @@
 <?php
-// $Id: book.pages.inc,v 1.5.2.2 2010/08/06 11:00:49 goba Exp $
 
 /**
  * @file
@@ -40,6 +39,14 @@ function book_render() {
  *   in a format determined by the $type parameter.
  */
 function book_export($type, $nid) {
+  // Check that the node exists and that the current user has access to it.
+  $node = node_load($nid);
+  if (!$node) {
+    return MENU_NOT_FOUND;
+  }
+  if (!node_access('view', $node)) {
+    return MENU_ACCESS_DENIED;
+  }
 
   $type = drupal_strtolower($type);
 
@@ -78,8 +85,11 @@ function book_export_html($nid) {
     if (isset($node->book)) {
       $tree = book_menu_subtree_data($node->book);
       $contents = book_export_traverse($tree, 'book_node_export');
+      return theme('book_export_html', $node->title, $contents, $node->book['depth']);
     }
-    return theme('book_export_html', $node->title, $contents, $node->book['depth']);
+    else {
+      drupal_not_found();
+    }
   }
   else {
     drupal_access_denied();

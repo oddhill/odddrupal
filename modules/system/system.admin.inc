@@ -1,5 +1,4 @@
 <?php
-// $Id: system.admin.inc,v 1.63.2.16 2010/09/06 10:49:14 goba Exp $
 
 /**
  * @file
@@ -62,6 +61,7 @@ function system_main_admin_page($arg = NULL) {
 
 /**
  * Provide a single block from the administration menu as a page.
+ *
  * This function is often a destination for these blocks.
  * For example, 'admin/content/types' needs to have a destination to be valid
  * in the Drupal menu system, but too much information there might be
@@ -128,7 +128,7 @@ function system_admin_by_module() {
 }
 
 /**
- * Menu callback; displays a module's settings page.
+ * Menu callback: Displays the configuration overview page.
  */
 function system_settings_overview() {
   // Check database setup if necessary

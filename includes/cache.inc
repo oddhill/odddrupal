@@ -1,5 +1,4 @@
 <?php
-// $Id: cache.inc,v 1.17.2.5 2010/11/03 19:07:46 goba Exp $
 
 /**
  * Return data from the persistent cache. Data may be stored as either plain text or as serialized data.
@@ -10,6 +9,8 @@
  * @param $table
  *   The table $table to store the data in. Valid core values are 'cache_filter',
  *   'cache_menu', 'cache_page', or 'cache' for the default cache.
+ *
+ *   @see cache_set()
  */
 function cache_get($cid, $table = 'cache') {
   global $user;
@@ -98,6 +99,8 @@ function cache_get($cid, $table = 'cache') {
  *     the given time, after which it behaves like CACHE_TEMPORARY.
  * @param $headers
  *   A string containing HTTP header information for cached pages.
+ *
+ *   @see cache_get()
  */
 function cache_set($cid, $data, $table = 'cache', $expire = CACHE_PERMANENT, $headers = NULL) {
   $serialized = 0;
