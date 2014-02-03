@@ -728,7 +728,7 @@ function drupal_load($type, $name) {
 function drupal_page_header() {
   header("Expires: Sun, 19 Nov 1978 05:00:00 GMT");
   header("Last-Modified: ". gmdate("D, d M Y H:i:s") ." GMT");
-  header("Cache-Control: store, no-cache, must-revalidate");
+  header("Cache-Control: no-store, no-cache, must-revalidate");
   header("Cache-Control: post-check=0, pre-check=0", FALSE);
 }
 
@@ -765,7 +765,7 @@ function drupal_page_cache_header($cache) {
 
   // The following headers force validation of cache:
   header("Expires: Sun, 19 Nov 1978 05:00:00 GMT");
-  header("Cache-Control: must-revalidate");
+  header("Cache-Control: no-store, no-cache, must-revalidate");
 
   if (variable_get('page_compression', TRUE) && extension_loaded('zlib')) {
     // Determine if the browser accepts gzipped data.
