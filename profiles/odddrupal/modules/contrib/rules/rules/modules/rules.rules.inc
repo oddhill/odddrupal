@@ -1,5 +1,4 @@
 <?php
-// $Id: rules.rules.inc,v 1.1.2.45 2011/01/05 13:59:43 fago Exp $
 
 
 /**
@@ -172,7 +171,7 @@ function rules_rules_condition_info() {
  */
 function rules_condition_text_compare($text1, $text2, $settings) {
   if ($settings['regex']) {
-    return (bool) preg_match('/'. $text2 .'/', $text1);
+    return (bool) preg_match('/'. str_replace('/', '\\/', $text2) .'/', $text1);
   }
   return $text1 == $text2;
 }
@@ -349,13 +348,14 @@ function rules_core_action_transform_info($name, $core_action_info, $type_map) {
 /**
  * Action implementation: Execute a core action
  */
-function rules_core_action_execute(&$object, $settings, $element, &$state) {
+function rules_core_action_execute($object, $settings, $element, &$state) {
   $info = rules_get_element_info($element);
 
   $info['action_name']($object, $settings);
 
   if (isset($settings['auto_save']) && $settings['auto_save']) {
-    $argument_name = array_shift(array_keys($info['arguments']));
+    $keys = array_keys($info['arguments']);
+    $argument_name = array_shift($keys);
     return array($argument_name => $object);
   }
 }

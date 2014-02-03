@@ -1,5 +1,4 @@
 <?php
-// $Id: rules.export.inc,v 1.1.2.12 2010/11/25 11:14:52 fago Exp $
 
 /**
  * @file

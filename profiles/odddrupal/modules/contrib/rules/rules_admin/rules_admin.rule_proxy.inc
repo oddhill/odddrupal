@@ -1,5 +1,4 @@
 <?php
-// $Id: rules_admin.rule_proxy.inc,v 1.1.2.3 2010/11/25 11:14:53 fago Exp $
 
 
 /**

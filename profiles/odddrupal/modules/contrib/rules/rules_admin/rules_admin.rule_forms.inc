@@ -1,5 +1,4 @@
 <?php
-// $Id: rules_admin.rule_forms.inc,v 1.1.2.11 2011/01/05 13:59:43 fago Exp $
 
 
 /**
