@@ -27,7 +27,7 @@ function odddrupal_text_formats() {
       'filter_html' => array(
         'weight' => 1,
         'status' => 1,
-		    'settings' => array(
+        'settings' => array(
           'allowed_html' => '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <h2> <h3> <h4> <br> <p>',
         ),
       ),
@@ -228,17 +228,17 @@ function odddrupal_themekey_rules() {
   // Make sure the required files are loaded.
   module_load_include('inc', 'themekey', 'themekey_build');
 
-	$rules = array(
-	  array(
-	    'property' => 'drupal:path',
-	    'operator' => '=',
-	    'value' => 'user',
-	    'theme' => 'ThemeKeyAdminTheme',
-	    'enabled' => 1,
-	    'parent' => 0,
-	    'weight' => 0,
-	  ),
-	);
+  $rules = array(
+    array(
+      'property' => 'drupal:path',
+      'operator' => '=',
+      'value' => 'user',
+      'theme' => 'ThemeKeyAdminTheme',
+      'enabled' => 1,
+      'parent' => 0,
+      'weight' => 0,
+    ),
+  );
 
   foreach ($rules as $rule) {
     themekey_rule_set($rule);
@@ -429,7 +429,8 @@ function odddrupal_set_variables() {
   variable_set('error_level', '2');
   variable_set('jquery_update_compression_type', 'min');
   variable_set('jquery_update_jquery_cdn', 'google');
-  variable_set('jquery_update_jquery_version', '1.5');
+  variable_set('jquery_update_jquery_version', '1.8');
+  variable_set('jquery_update_jquery_admin_version', '1.5');
   variable_set('preprocess_css', 0);
   variable_set('preprocess_js', 0);
   variable_set('reroute_email_enable', 1);

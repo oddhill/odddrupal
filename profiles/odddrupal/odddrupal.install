@@ -603,3 +603,10 @@ function odddrupal_update_7136() {
 function odddrupal_update_7137() {
   variable_del('admin_language_translate_admin_menu');
 }
+
+/**
+ * Sets the jQuery version to 1.5 för administration pages.
+ */
+function odddrupal_update_7138() {
+  variable_set('jquery_update_jquery_admin_version', '1.5');
+}
