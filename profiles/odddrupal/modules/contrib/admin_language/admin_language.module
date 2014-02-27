@@ -5,7 +5,7 @@
  * administrator.
  */
 
-define('ADMIN_LANGUAGE_DEFAULT_PAGES', "admin\nadmin/*\nadmin_menu/*\nnode/add/*\nnode/*/edit\nnode/*/devel\nnode/*/translate\nfile/ajax/*\nsystem/ajax");
+define('ADMIN_LANGUAGE_DEFAULT_PAGES', "admin_menu/*\nfile/ajax/*\nsystem/ajax");
 define('ADMIN_LANGUAGE_BLACKLIST', 0);
 define('ADMIN_LANGUAGE_WHITELIST', 1);
 
@@ -86,46 +86,6 @@ function admin_language_translated_menu_link_alter(&$item, $map) {
 
       // ...and restore the previous language
       $language = $current_language;
-    }
-  }
-}
-
-/**
- * Implements hook_init().
- */
-function admin_language_init() {
-  if (user_access('display admin pages in another language') && drupal_multilingual()) {
-    global $_admin_language;
-
-    $languages = language_list('enabled');
-    $languages = $languages[1];
-
-    $admin_language = variable_get('admin_language_default', 'en');
-    $_admin_language = $languages[$admin_language];
-
-    if (_admin_language_switch_language()) {
-      global $user;
-
-      $account = user_load($user->uid);
-
-      if (isset($account->admin_language)) {
-        switch ($account->admin_language) {
-          case 'admin':
-            // nothing to do, use default value of $admin_language
-            break;
-          case 'default':
-            $default = language_default();
-            $admin_language = $default->language;
-            break;
-          default:
-            if (isset($languages[$account->admin_language])) {
-              $admin_language = $account->admin_language;
-            }
-        }
-      }
-
-      global $language;
-      $language = $languages[$admin_language];
     }
   }
 }
@@ -401,6 +361,36 @@ function admin_language_settings() {
     '#description' => $description,
   );
 
+  $form['admin_language']['core_admin_paths'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Use paths provided by core'),
+    '#description' => t('Core modules to registers administrative paths (see <a href="https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_admin_paths/7">hook_admin_paths()</a> for further information).<br />Below you find a list of the paths and the option to toggle if this module should rely on those.<br /><br />'),
+  );
+  $form['admin_language']['core_admin_paths']['admin_language_use_path_is_admin'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use admin paths provided by core'),
+    '#default_value' => variable_get('admin_language_use_path_is_admin', TRUE),
+
+  );
+  $patterns = path_get_admin_paths();
+  // Refresh the stored core admin paths. See admin_language_path_cron() for
+  // documentation why this is necessary.
+  variable_set('admin_language_path_is_admin_paths', $patterns);
+  $form['admin_language']['core_admin_paths']['list']['admin'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#title' => t('Registered administrative paths'),
+    '#description' => nl2br($patterns['admin']),
+  );
+  $form['admin_language']['core_admin_paths']['list']['non_admin'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#title' => t('Registered non-administrative paths'),
+    '#description' => nl2br($patterns['non_admin']),
+  );
+
   $form['admin_language_hide_user'] = array(
     '#type' => 'radios',
     '#title' => t('Hide administration language on user form'),
@@ -555,9 +545,63 @@ function admin_language_preferred($account) {
 }
 
 /**
+ * Implements hook_language_init().
+ *
+ * The module doesn't provide its own language negotiation provider to ensure it
+ * doesn't interfere with other language negotiation handlers e.g. the url based
+ * language negotiation which changes the request path if configured
+ * accordingly.
+ */
+function admin_language_language_init() {
+  // We need the user module to check the access.
+  drupal_load('module', 'user');
+  if (user_access('display admin pages in another language') && drupal_multilingual()) {
+    global $_admin_language;
+
+    $languages = language_list('enabled');
+    $languages = $languages[1];
+
+    $admin_language = variable_get('admin_language_default', 'en');
+    $_admin_language = $languages[$admin_language];
+
+    if (_admin_language_switch_language()) {
+      global $user;
+
+      // user_load() can't be used here because it needs a higher bootstrap
+      // level.
+      $query = db_select('admin_language', 'al');
+      $query->addField('al', 'language');
+      $query->condition('uid', $user->uid);
+      $usr_lang = $query->execute()->fetchField();
+
+      if (isset($usr_lang)) {
+        switch ($usr_lang) {
+          case 'admin':
+            // Nothing to do, use default value of $admin_language.
+            break;
+
+          case 'default':
+            $default = language_default();
+            $admin_language = $default->language;
+            break;
+
+          default:
+            if (isset($languages[$usr_lang])) {
+              $admin_language = $usr_lang;
+            }
+        }
+      }
+
+      global $language;
+      $language = $languages[$admin_language];
+    }
+  }
+}
+
+/**
  * Determine whether the language needs to be switched on the current path.
  *
- * @return boolean
+ * @return bool
  *   TRUE to switch to the selected administration language or FALSE to use the
  *   default language.
  */
@@ -567,11 +611,24 @@ function _admin_language_switch_language() {
   $visibility = variable_get('admin_language_visibility', ADMIN_LANGUAGE_WHITELIST);
   $pages = variable_get('admin_language_pages', ADMIN_LANGUAGE_DEFAULT_PAGES);
 
+  // If enabled check the path against the paths defined by hook_admin_paths().
+  // path_is_admin() can't be used because it relies on functions available in
+  // higher bootstrap levels only. Thus the module stores and uses a variable
+  // with the defined admin paths. The variable is updated on every cron run.
+  if (variable_get('admin_language_use_path_is_admin', TRUE)) {
+    $patterns = variable_get('admin_language_path_is_admin_paths', array(
+      'admin' => '',
+      'non_admin' => '',
+    ));
+    $switch = _admin_language_match_path($_GET['q'], $patterns['admin']) && !_admin_language_match_path($_GET['q'], $patterns['non_admin']);
+  }
+
   if ($pages) {
-    $path = drupal_get_path_alias($_GET['q']);
-    $switch = drupal_match_path($path, $pages);
+    // We do not need aliases for administration purposes.
+    $path = request_path();
+    $switch = $switch || _admin_language_match_path($path, $pages);
     if ($path != $_GET['q']) {
-      $switch = $switch || drupal_match_path($_GET['q'], $pages);
+      $switch = $switch || _admin_language_match_path($_GET['q'], $pages);
     }
     $switch = !($visibility xor $switch);
   }
@@ -664,4 +721,70 @@ function _admin_language_user_form_remove_admin_language($form) {
   }
 
   return $form;
+}
+
+/**
+ * Check if a path matches any pattern in a set of patterns.
+ *
+ * This is a clone of drupal_match_path(), this is necessary because the
+ * function isn't available at the bootstrap level where the language switch is
+ * done.
+ *
+ * @see drupal_match_path()
+ *
+ * @param string $path
+ *   The path to match.
+ * @param string $patterns
+ *   String containing a set of patterns separated by \n, \r or \r\n.
+ *
+ * @return bool
+ *   Boolean value: TRUE if the path matches a pattern, FALSE otherwise.
+ */
+function _admin_language_match_path($path, $patterns) {
+  $regexps = &drupal_static(__FUNCTION__);
+
+  if (!isset($regexps[$patterns])) {
+    // Convert path settings to a regular expression.
+    // Therefore replace newlines with a logical or, /* with asterisks and the <front> with the frontpage.
+    $to_replace = array(
+      '/(\r\n?|\n)/', // newlines
+      '/\\\\\*/', // asterisks
+      '/(^|\|)\\\\<front\\\\>($|\|)/', // <front>
+    );
+    $replacements = array(
+      '|',
+      '.*',
+      '\1' . preg_quote(variable_get('site_frontpage', 'node'), '/') . '\2',
+    );
+    $patterns_quoted = preg_quote($patterns, '/');
+    $regexps[$patterns] = '/^(' . preg_replace($to_replace, $replacements, $patterns_quoted) . ')$/';
+  }
+  return (bool) preg_match($regexps[$patterns], $path);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function admin_language_path_cron() {
+  // Update the stored core admin paths.
+  // The paths are stored in a variable because path_get_admin_paths() and / or
+  // path_is_admin() need a higher bootstrap level than the hook the module uses
+  // to switch the language.
+  variable_set('admin_language_path_is_admin_paths', path_get_admin_paths());
+}
+
+/**
+ * Implements hook_modules_disabled().
+ */
+function admin_language_modules_disabled() {
+  // See admin_language_path_cron() for documentation why this is necessary.
+  variable_set('admin_language_path_is_admin_paths', path_get_admin_paths());
+}
+
+/**
+ * Implements hook_modules_enabled().
+ */
+function admin_language_modules_enabled() {
+  // See admin_language_path_cron() for documentation why this is necessary.
+  variable_set('admin_language_path_is_admin_paths', path_get_admin_paths());
 }

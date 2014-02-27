@@ -26,6 +26,8 @@ function admin_language_uninstall() {
   variable_del('admin_language_translate_admin_menu');
   variable_del('admin_language_translate_toolbar');
   variable_del('admin_language_visibility');
+  variable_del('admin_language_use_path_is_admin');
+  variable_del('admin_language_path_is_admin_paths');
 }
 
 /**
