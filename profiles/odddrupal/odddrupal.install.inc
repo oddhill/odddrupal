@@ -279,21 +279,6 @@ function odddrupal_roles_users() {
   $user = user_load(1);
   $user->language = 'en';
   user_save($user, array('data' => array('overlay' => 0)));
-
-  // Create the support account.
-  $user = array();
-  $user['name'] = 'Odd Hill Support';
-  $user['mail'] = 'support@oddhill.se';
-  $user['pass'] = 'karljohan12';
-  $user['timezone'] = ODDDRUPAL_DEFAULT_TIMEZONE;
-  $user['language'] = $_GET['locale'];
-  $user['init'] = 'support@oddhill.se';
-  $user['status'] = 1;
-  $user['roles'] = array(
-    2 => TRUE,
-    $editor_role->rid => $editor_role->rid
-  );
-  user_save(NULL, $user);
 }
 
 /**

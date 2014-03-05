@@ -15,7 +15,7 @@ class backup_migrate_filter_treadmill extends backup_migrate_filter {
   function backup_settings_default() {
     return array(
       'treadmill_enabled' => FALSE,
-      'treadmill_url' => 'http://kund:kund@',
+      'treadmill_url' => '',
       'treadmill_key' => variable_get('cron_key', 'drupal'),
     );
   }
@@ -44,7 +44,7 @@ class backup_migrate_filter_treadmill extends backup_migrate_filter {
     $form['treadmill']['treadmill_url'] = array(
       '#type' => 'textfield',
       '#title' => 'Destination URL',
-      '#description' => t('The full base url for the destination site including a trailing slash, e.g. %example.', array('%example' => 'http://example.oddserver.se/')),
+      '#description' => t('The full base url for the destination site including a trailing slash, e.g. %example.', array('%example' => 'http://www.example.com/')),
       '#required' => TRUE,
       '#default_value' => $settings['treadmill_url'],
       '#states' => array(

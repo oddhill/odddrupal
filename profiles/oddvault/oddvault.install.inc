@@ -91,13 +91,6 @@ function oddvault_roles_users() {
     'administer permissions' => TRUE,
     'administer users' => TRUE,
   ));
-
-  // Set the name for the support account, and add the user to the administrator
-  // role.
-  $support = entity_metadata_wrapper('user', user_load(2));
-  $support->field_user_name = 'Odd Hill Support';
-  $support->roles = array(2, $administrator_role->rid);
-  $support->save();
 }
 
 /**

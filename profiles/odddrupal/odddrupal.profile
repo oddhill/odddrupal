@@ -37,54 +37,20 @@ function odddrupal_theme_form() {
     $options[$theme] = $data->info['name'];
   }
 
-  // Remove unwanted themes from the options.
-  unset($options['test_theme']);
-  unset($options['update_test_basetheme']);
-  unset($options['update_test_subtheme']);
-  unset($options['oddmaintenance']);
-  unset($options['oddroots']);
-  unset($options['seven']);
-  unset($options['eight']);
-  unset($options['stark']);
-  unset($options['garland']);
-  unset($options['bartik']);
-
-  if (empty($options)) {
-    // No theme has been setup for this site.
-    $halt = TRUE;
-    drupal_set_message(st("You haven't created a theme for this site yet. Download the %default theme, put it in the sites folder and rename it. Reload the page, and then you'll be able to continue.", array('%default' => 'Odd Baby')), 'error');
-  }
-  else {
-    // Get the assumed theme for this site. This will be the last one in the
-    // options array.
-    $default_name = end($options);
-    $default_key = key($options);
-
-    // If the name of the default theme is "Odd Baby", we'll issue a warning
-    // since the user probably has forgotten to rename the theme before
-    // installing.
-    if ($default_key == 'oddbaby') {
-      $halt = TRUE;
-      drupal_set_message(st("You've forgotten to rename the %default theme to a more suitable name. You'll have to rename the theme before you'll be able to continue.", array('%default' => 'Odd baby', '%name' => variable_get('site_name', preg_replace('/\\..*$/ui', "", $_SERVER['HTTP_HOST'])))), 'error');
-    }
-
-    // Create the form.
-    $form['odddrupal'] = array(
-      '#type' => 'fieldset',
-      '#title' => st('Choose the default theme for this site'),
-      '#collapsible' => FALSE,
-    );
-    $form['odddrupal']['default_theme'] = array(
-      '#type' => 'radios',
-      '#options' => $options,
-      '#default_value' => $default_key,
-    );
-    $form['submit'] = array(
-      '#type' => 'submit',
-      '#value' => st('Save and continue'),
-      '#disabled' => isset($halt),
-    );
-  }
+  // Create the form.
+  $form['odddrupal'] = array(
+    '#type' => 'fieldset',
+    '#title' => st('Choose the default theme for this site'),
+    '#collapsible' => FALSE,
+  );
+  $form['odddrupal']['default_theme'] = array(
+    '#type' => 'radios',
+    '#options' => $options,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => st('Save and continue'),
+  );
 
   return $form;
 }
@@ -145,23 +111,9 @@ function odddrupal_form_install_configure_form_alter(&$form, $form_state) {
   // Set the site mail based on the site name and site language.
   $form['site_information']['site_mail']['#default_value'] = 'info@' . $form['site_information']['site_name']['#default_value'] . ($_GET['locale'] == 'sv' ? '.se' : '.com');
 
-  // Remove the entire admin account fieldset, and set the defailt values.
-  unset($form['admin_account']);
-  $form['account'] = array(
-    '#tree' => TRUE,
-    'name' => array(
-      '#type' => 'hidden',
-      '#value' => 'root',
-    ),
-    'mail' => array(
-      '#type' => 'hidden',
-      '#value' => 'admin@oddhill.se',
-    ),
-    'pass' => array(
-      '#type' => 'hidden',
-      '#value' => 'karljohan12',
-    ),
-  );
+  // Set the default username and email for user 1.
+  $form['admin_account']['account']['name']['#default_value'] = 'root';
+  $form['admin_account']['account']['mail']['#default_value'] = 'admin@oddhill.se';
 
   // Remove the country and date settings, and set them to Sweden as country and
   // Stockholm as timezone.
