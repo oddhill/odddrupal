@@ -71,3 +71,19 @@ function oddvault_alterations_strip_form(&$elements, $ignore) {
     }
   }
 }
+
+/**
+ * Implements hook_init().
+ */
+function oddvault_init() {
+  // Add an HTML head tag which indicates what version of Odd Vault that is
+  // running. This number should be updated for every new release.
+  $element = array(
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'name' => 'Odd Vault version',
+      'content' => '7.x-1.0',
+    ),
+  );
+  drupal_add_html_head($element, 'oddvault-version');
+}
