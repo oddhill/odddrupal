@@ -33,7 +33,7 @@ function tadaa_environment_configuration_page() {
   $rows = array();
   $environments = variable_get('tadaa_environments', array());
   foreach ($environments as $name => $title) {
-  	// Build the row.
+    // Build the row.
     $rows[] = array(
       $title,
       l(t('edit'), 'admin/config/development/tadaa/configure/environments/' . $name . '/edit'),
@@ -164,9 +164,7 @@ function tadaa_environment_form_submit($form, &$form_state) {
   }
   else {
     // Add this to the existing environments.
-    $environments += array(
-      $machine_name => $title,
-    );
+    $environments += array($machine_name => $title);
   }
 
   // Save the environments.
@@ -292,9 +290,7 @@ function tadaa_module_configuration_form($form, $form_state) {
 
   $form['#prefix'] = t("Select for which environments a module should be enabled. If no environments are selected for a specific module, Tadaa! will ignore that module.");
 
-  $form['modules'] = array(
-    '#tree' => TRUE,
-  );
+  $form['modules'] = array('#tree' => TRUE);
 
   // Build one row per module.
   $rows = array();
@@ -312,9 +308,7 @@ function tadaa_module_configuration_form($form, $form_state) {
 
     foreach ($modules as $module => $title) {
       $form['modules'][$package][$module] = array(
-        'title' => array(
-          '#markup' => $title,
-        ),
+        'title' => array('#markup' => $title),
       );
       // Add one checkbox for each environment.
       foreach ($environments as $environment => $title) {

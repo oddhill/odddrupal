@@ -3,9 +3,10 @@ description = "Provides a simple mechanism to switch between different environme
 core = 7.x
 package = Development
 configure = admin/config/development/tadaa
-; Information added by  packaging script on 2013-11-22
-version = "7.x-1.2"
+
+; Information added by Drupal.org packaging script on 2014-02-28
+version = "7.x-1.3"
 core = "7.x"
 project = "tadaa"
-datestamp = "1385127505"
+datestamp = "1393583630"
 

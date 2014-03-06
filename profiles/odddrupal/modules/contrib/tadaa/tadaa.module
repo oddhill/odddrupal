@@ -12,11 +12,13 @@ define('TADAA_ENVIRONMENT', variable_get('tadaa_environment'));
  * Implements hook_permission().
  */
 function tadaa_permission() {
-  return array('use tadaa' => array(
-    'title' => t('Use Tadaa!'),
-    'description' => t('Switch environments using the Tadaa! toolbar'),
-    'restrict access' => TRUE,
-  ));
+  return array(
+    'use tadaa' => array(
+      'title' => t('Use Tadaa!'),
+      'description' => t('Switch environments using Tadaa!'),
+      'restrict access' => TRUE,
+    ),
+  );
 }
 
 /**
@@ -227,13 +229,13 @@ function tadaa_theme($existing, $type, $theme, $path) {
 /**
  * Gets every configured module and their state.
  *
- * @param $environment
- *  A string indicating which environment we'd like to get the configuration
- *  for.
+ * @param string $environment
+ *   A string indicating which environment we'd like to get the configuration
+ *   for.
  *
- * @return
- *  An associative array where each key is the name of the module, and the value
- *  is the state of the module, according to the $environment param.
+ * @return array
+ *   An associative array where each key is the name of the module, and
+ *   the value is the state of the module, according to the $environment param.
  */
 function tadaa_get_modules($environment) {
   // Load the configuration for the specified environment.
@@ -247,13 +249,14 @@ function tadaa_get_modules($environment) {
 /**
  * Gets the configured variables for a specific environment.
  *
- * @param $active_environment
- *  A string indicating which environment we'd like to get the configuration
- *  for.
+ * @param string $environment
+ *   A string indicating which environment we'd like to get the configuration
+ *   for.
  *
- * @return
- *  An associative array where each key is the name of the variable, and the value
- *  is the value for the variable, according to the $environment param.
+ * @return array
+ *   An associative array where each key is the name of the variable,
+ *   and the value is the value for the variable,
+ *   according to the $environment param.
  */
 function tadaa_get_variables($environment) {
   // Load the configuration for the specified environment.
@@ -262,6 +265,18 @@ function tadaa_get_variables($environment) {
   // Sort the variables by their name before returning them.
   ksort($variables);
   return $variables;
+}
+
+
+/**
+ * Batch callback that gets the old and new environment.
+ *
+ * This gets the environment switched from and the environment switched to.
+ */
+function tadaa_batch_init($old, $new, &$context) {
+  // Set the old and new status in the results array.
+  $context['results']['status']['old'] = $old;
+  $context['results']['status']['new'] = $new;
 }
 
 /**
@@ -411,4 +426,8 @@ function tadaa_batch_finished($success, $results, $operations) {
     // of some sort.
     drupal_set_message(t('An error occurred while switching environments. Please review the latest log entries, and try again.'), 'error');
   }
+
+  // Make it possible for hooks to act on swtich between environments after
+  // the alterations by tadaa is made.
+  module_invoke_all('tadaa_post_switch', $results['status']['old'], $results['status']['new']);
 }

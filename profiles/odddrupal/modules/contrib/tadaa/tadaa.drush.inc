@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- *   Drush integration for Tadaa!
+ * Drush integration for Tadaa!
  */
 
 /**
@@ -25,9 +25,7 @@ function tadaa_drush_command() {
     'arguments' => array(
       'environment' => dt('The machine name of the environment to switch to.'),
     ),
-    'examples' => array(
-      dt('Switch to development environment') => 'drush tadaa-switch development',
-    ),
+    'examples' => array(dt('Switch to development environment') => 'drush tadaa-switch development'),
     'drupal dependencies' => array('tadaa'),
     'aliases' => array('ts'),
   );
@@ -42,8 +40,10 @@ function tadaa_drush_help($section) {
   switch ($section) {
     case 'drush:tadaa':
       return dt('Checks which environment is currently being used, and its status.');
-      case 'drush:tadaa-fix':
+
+    case 'drush:tadaa-fix':
       return dt('Fixes the configuration for the current environment, by enabling/disabling modules that are in the wrong state, and changing the values of variables that are wrong.');
+
     case 'drush:tadaa-switch':
       return dt('Switches environment to the one you specify. All caches will be flushed afterwards.');
   }
@@ -81,10 +81,10 @@ function drush_tadaa_status() {
       // Get the real module name.
       $module_info = drupal_parse_info_file(drupal_get_path('module', $module) . '/' . $module . '.info');
       // Set human readable texts for the configuration.
-    	$configuration_text = $configuration ? t('Enable') : t('Disable');
-    	// Get the real status of the module.
-    	$real_status = module_exists($module);
-    	// Build the row.
+      $configuration_text = $configuration ? t('Enable') : t('Disable');
+      // Get the real status of the module.
+      $real_status = module_exists($module);
+      // Build the row.
       $module_rows[] = array(
         $module_info['name'],
         $configuration_text,
@@ -102,8 +102,8 @@ function drush_tadaa_status() {
     );
     foreach ($variables as $variable => $configuration) {
       // Get the real variable value.
-    	$real_value = variable_get($variable);
-    	// Build the row.
+      $real_value = variable_get($variable);
+      // Build the row.
       $variable_rows[] = array(
         $variable,
         wordwrap(serialize($configuration), 45, '<br />', TRUE),
@@ -215,6 +215,11 @@ function drush_tadaa_fix() {
  * Callback function for drush tadaa-switch.
  */
 function drush_tadaa_switch($environment = NULL) {
+  // Get the enivorment that the user has switched from. The enivorment that is
+  // to be swtiched to is the first argument in this function.
+  $old = variable_get('tadaa_environment', '');
+  $new = $environment;
+
   // Verify the supplied argument.
   if (!$environment) {
     drush_set_error('Missing environment. See drush help tadaa-switch for more information.');
@@ -239,6 +244,10 @@ function drush_tadaa_switch($environment = NULL) {
     drush_set_error(dt("!environment is the current environment, can't switch.", array('!environment' => $environments[$environment])));
     return;
   }
+
+  // Make it possible for hooks to act on swtich between environments before
+  // the alterations by tadaa is made.
+  module_invoke_all('tadaa_pre_switch', $old, $new);
 
   // Get the configured module and variables.
   $modules = tadaa_get_modules($environment);
@@ -289,5 +298,10 @@ function drush_tadaa_switch($environment = NULL) {
   // message.
   variable_set('tadaa_environment', $environment);
   drupal_flush_all_caches();
+
+  // Make it possible for hooks to act on swtich between environments after
+  // the alterations by tadaa is made.
+  module_invoke_all('tadaa_post_switch', $old, $new);
+
   drush_print("\n" . dt('Successfully switched to !environment.', array('!environment' => $environments[$environment])));
 }

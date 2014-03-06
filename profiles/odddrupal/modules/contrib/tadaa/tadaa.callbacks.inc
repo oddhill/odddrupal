@@ -9,8 +9,8 @@
  *
  * Used by the environment form.
  *
- * @return
- *  TRUE or FALSE depending on whether the name already exists or not.
+ * @return boolean
+ *   TRUE or FALSE depending on whether the name already exists or not.
  */
 function tadaa_environment_name_exists($environment_name) {
   $existing = variable_get('tadaa_environments', array());
@@ -23,8 +23,8 @@ function tadaa_environment_name_exists($environment_name) {
  *
  * This is used for the autocomplete textfield when configuring a new variable.
  *
- * @param $search_string
- *  The search string for the variable name.
+ * @param string $search_string
+ *   The search string for the variable name.
  */
 function tadaa_variable_autocomplete($search_string = '') {
   $matches = array();
@@ -66,8 +66,8 @@ function tadaa_variable_load_value($form, &$form_state) {
 /**
  * Callback that fixes a module.
  *
- * @param $module
- *  The module that we'd like to fix.
+ * @param string $module
+ *   The module that we'd like to fix.
  */
 function tadaa_module_fix($module) {
   // Load the modules for the active environment.
@@ -95,8 +95,8 @@ function tadaa_module_fix($module) {
 /**
  * Callback that fixes a variable.
  *
- * @param $variable
- *  The variable that we'd like to fix.
+ * @param string $variable
+ *   The variable that we'd like to fix.
  */
 function tadaa_variable_fix($variable) {
   // Load the variables for the active environment.
@@ -118,10 +118,19 @@ function tadaa_variable_fix($variable) {
 /**
  * Callback that switches environment.
  *
- * @param $environment
- *  The environment that we should switch to.
+ * @param string $environment
+ *   The environment that we should switch to.
  */
 function tadaa_environment_switch($environment) {
+  // Get the enivorment that the user has switched from. The enivorment that is
+  // to be swtiched to is the first argument in this function.
+  $old = variable_get('tadaa_environment', '');
+  $new = $environment;
+
+  // Make it possible for hooks to act on swtich between environments before
+  // the alterations by tadaa is made.
+  module_invoke_all('tadaa_pre_switch', $old, $environment);
+
   // Get the configured module and variables.
   $modules = tadaa_get_modules($environment);
   $variables = tadaa_get_variables($environment);
@@ -151,5 +160,10 @@ function tadaa_environment_switch($environment) {
   // Finally, set the new environment, flush the cache, and exit.
   variable_set('tadaa_environment', $environment);
   drupal_flush_all_caches();
+
+  // Make it possible for hooks to act on swtich between environments after
+  // the alterations by tadaa is made.
+  module_invoke_all('tadaa_post_switch', $old, $new);
+
   exit();
 }

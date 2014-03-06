@@ -49,14 +49,14 @@ function tadaa_module_status_page() {
   foreach ($modules as $module => $configuration) {
     // Get the real module name.
     $module_info = drupal_parse_info_file(drupal_get_path('module', $module) . '/' . $module . '.info');
-  	// Get the real status of the module.
-  	$real_status = module_exists($module);
-  	// Get the path to the icon that we should use,
-  	$status_icon = $configuration == $real_status ? 'misc/message-16-ok.png' : 'misc/message-16-error.png';
-  	// Set human readable texts for the configuration.
-  	$configuration_text = $configuration ? t('Enable') : t('Disable');
-  	$real_status_text = $real_status ? t('Enabled') : t('Disabled');
-  	// Build the row.
+    // Get the real status of the module.
+    $real_status = module_exists($module);
+    // Get the path to the icon that we should use,
+    $status_icon = $configuration == $real_status ? 'misc/message-16-ok.png' : 'misc/message-16-error.png';
+    // Set human readable texts for the configuration.
+    $configuration_text = $configuration ? t('Enable') : t('Disable');
+    $real_status_text = $real_status ? t('Enabled') : t('Disabled');
+    // Build the row.
     $rows[] = array(
       theme('image', array('path' => $status_icon)),
       $module_info['name'],
@@ -125,10 +125,10 @@ function tadaa_variable_status_page() {
   $rows = array();
   foreach ($variables as $variable => $configuration) {
     // Get the real variable value.
-  	$real_value = variable_get($variable);
-  	// Get the path to the icon that we should use,
-  	$status_icon = $configuration == $real_value ? 'misc/message-16-ok.png' : 'misc/message-16-error.png';
-  	// Build the row.
+    $real_value = variable_get($variable);
+    // Get the path to the icon that we should use,
+    $status_icon = $configuration == $real_value ? 'misc/message-16-ok.png' : 'misc/message-16-error.png';
+    // Build the row.
     $rows[] = array(
       theme('image', array('path' => $status_icon)),
       $variable,
@@ -166,7 +166,8 @@ function tadaa_environment_status_form($form, &$form_state) {
       '#options' => $environments,
       '#default_value' => TADAA_ENVIRONMENT,
       '#required' => TRUE,
-      '#description' => 'To switch environment from outside the site, go to ' . url('tadaa/environment/switch/ENVIRONMENT_MACHINE_NAME', array('absolute' => TRUE, 'query' => array('key' => variable_get('cron_key', 'drupal')))) . '.',
+      '#description' => 'To switch environment from outside the site, go to ' . url('tadaa/environment/switch/ENVIRONMENT_MACHINE_NAME', array(
+        'absolute' => TRUE, 'query' => array('key' => variable_get('cron_key', 'drupal')))) . '.',
     );
     $form['submit'] = array(
       '#type' => 'submit',
@@ -187,12 +188,17 @@ function tadaa_environment_status_form($form, &$form_state) {
  * and the variables that should be set. This will be executed through a batch
  * process.
  *
- * @see tadaa_batch_disable_modules().
- * @see tadaa_batch_enable_modules().
- * @see tadaa_batch_set_variables().
- * @see tadaa_batch_finish().
+ * @see tadaa_batch_disable_modules()
+ * @see tadaa_batch_enable_modules()
+ * @see tadaa_batch_set_variables()
+ * @see tadaa_batch_finish()
  */
 function tadaa_environment_status_form_submit($form, &$form_state) {
+  // Get the enivorment that the user has switched from and what enivorment
+  // that is to be set.
+  $old = variable_get('tadaa_environment', '');
+  $new = $form_state['values']['environment'];
+
   // Get the configured module and variables.
   $modules = tadaa_get_modules($form_state['values']['environment']);
   $variables = tadaa_get_variables($form_state['values']['environment']);
@@ -214,7 +220,10 @@ function tadaa_environment_status_form_submit($form, &$form_state) {
   }
 
   // Set up the operations.
-  $operations = array();
+  $operations = array(
+    array('tadaa_batch_init', array('old' => $old, 'new' => $new)),
+  );
+
   if (!empty($disable)) {
     $operations[] = array('tadaa_batch_disable_modules', array($disable));
   }
@@ -233,5 +242,10 @@ function tadaa_environment_status_form_submit($form, &$form_state) {
     'operations' => $operations,
     'finished' => 'tadaa_batch_finished',
   );
+
+  // Make it possible for hooks to act on swtich between environments before
+  // the alterations by tadaa is made.
+  module_invoke_all('tadaa_pre_switch', $old, $new);
+
   batch_set($batch);
 }
