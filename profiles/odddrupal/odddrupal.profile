@@ -6,6 +6,7 @@
 
 define('ODDDRUPAL_DEFAULT_COUNTRY', 'SE');
 define('ODDDRUPAL_DEFAULT_TIMEZONE', 'Europe/Stockholm');
+define('ODDDRUPAL_VERSION', '7.x-1.1');
 
 /**
  * Implements hook_install_tasks().
@@ -269,7 +270,7 @@ function odddrupal_init() {
     '#tag' => 'meta',
     '#attributes' => array(
       'name' => 'Odd Drupal version',
-      'content' => '7.x-1.0',
+      'content' => ODDDRUPAL_VERSION,
     ),
   );
   drupal_add_html_head($element, 'odddrupal-version');

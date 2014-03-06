@@ -4,6 +4,8 @@
  * Custom installation profile for Odd Hill.
  */
 
+define('ODDVAULT_VERSION', '7.x-1.1');
+
 /**
  * Implements hook_boot().
  */
@@ -82,7 +84,7 @@ function oddvault_init() {
     '#tag' => 'meta',
     '#attributes' => array(
       'name' => 'Odd Vault version',
-      'content' => '7.x-1.0',
+      'content' => ODDVAULT_VERSION,
     ),
   );
   drupal_add_html_head($element, 'oddvault-version');
