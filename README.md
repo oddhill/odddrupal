@@ -1,6 +1,6 @@
 # Drupal, by Odd Hill
 
-Complete Drupal package that contains custom installation profiles that are used by Odd Hill.
+Complete Drupal package that contains custom installation profiles that are used by [Odd Hill](http://www.oddhill.se/).
 
 We won't keep this README updated with the detailed contents of each profile since its to much work to maintain. Instead, feel free to download and investigate for yourself, fork and modify for your needs, or simply be inspired.
 
