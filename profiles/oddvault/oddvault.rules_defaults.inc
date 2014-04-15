@@ -26,6 +26,9 @@ function oddvault_default_rules_configuration() {
       'variable_name' => 'maintenance_mode',
       'variable_value' => '1',
     ))->negate())
+    ->condition(rules_condition('php_eval', array(
+      'code' => 'return $_SERVER[\'SCRIPT_NAME\'] == $GLOBALS[\'base_path\'] . \'cron.php\';',
+    ))->negate())
     ->action('php_eval', array(
       'code' => "drupal_goto('user', array('query' => drupal_get_destination()));",
     ));
