@@ -22,6 +22,10 @@ function oddvault_default_rules_configuration() {
     ->condition(rules_condition('php_eval', array(
       'code' => "return drupal_is_cli();",
     ))->negate())
+    ->condition(rules_condition('rules_condition_site_variable_compare_variable', array(
+      'variable_name' => 'maintenance_mode',
+      'variable_value' => '1',
+    ))->negate())
     ->action('php_eval', array(
       'code' => "drupal_goto('user', array('query' => drupal_get_destination()));",
     ));

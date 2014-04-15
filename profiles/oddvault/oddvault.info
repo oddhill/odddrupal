@@ -7,3 +7,4 @@ base = odddrupal
 dependencies[] = config_perms
 dependencies[] = email_registration
 dependencies[] = realname
+dependencies[] = rules_condition_site_variable
