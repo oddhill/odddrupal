@@ -22,3 +22,12 @@ function oddvault_install() {
   // Set various variables.
   oddvault_set_variables();
 }
+
+/**
+ * Enables the Rules Condition Site Variable module.
+ */
+function oddvault_update_7001() {
+  if (!module_exists('rules_condition_site_variable')) {
+    module_enable(array('rules_condition_site_variable'));
+  }
+}
