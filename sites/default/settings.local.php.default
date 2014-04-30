@@ -12,5 +12,5 @@ $databases['default']['default'] = array(
   'database' => 'database',
   'username' => 'root',
   'password' => '',
-  'host' => 'dev',
+  'host' => '127.0.0.1',
 );
