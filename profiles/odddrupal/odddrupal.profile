@@ -301,3 +301,26 @@ function odddrupal_block_info_alter(&$blocks, $theme, $code_blocks) {
     $blocks['blockify']['blockify-logo']['cache'] = DRUPAL_CACHE_PER_PAGE;
   }
 }
+
+/**
+ * Implements hook_js_alter().
+ */
+function odddrupal_js_alter(&$js) {
+  // If a jQuery version greather than or equal to 1.9 is being used, we'll need
+  // to add the jQuery migrate plugin in order to support deprecated features.
+  if (version_compare(variable_get('jquery_update_jquery_version', '1.9'), '1.9') >= 0) {
+    // Set the path to the plugin. We'll use the development version if Tadaa!
+    // is currently set to development. Otherwise we'll use the minified version
+    // since this doesn't generate any warnings.
+    if (variable_get('tadaa_environment', 'development') != 'development') {
+      $path = 'http://code.jquery.com/jquery-migrate-1.2.1.min.js';
+    }
+    else {
+      $path = 'http://code.jquery.com/jquery-migrate-1.2.1.js';
+    }
+
+    // Add the plugin with a high weight. This is because the plugin should be
+    // included after jQuery itself.
+    drupal_add_js($path, array('type' => 'external', 'weight' => 100));
+  }
+}
