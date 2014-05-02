@@ -306,9 +306,18 @@ function odddrupal_block_info_alter(&$blocks, $theme, $code_blocks) {
  * Implements hook_js_alter().
  */
 function odddrupal_js_alter(&$js) {
+  // Get the configured jQuery version. Use 1.9 as the default.
+  $version = variable_get('jquery_update_jquery_version', '1.9');
+
+  // If we're currently on an administation page and a different version is
+  // configured for those, we'll need to compare against that version instead.
+  if (path_is_admin(current_path()) && ($admin_version = variable_get('jquery_update_jquery_admin_version'))) {
+    $version = $admin_version;
+  }
+
   // If a jQuery version greather than or equal to 1.9 is being used, we'll need
   // to add the jQuery migrate plugin in order to support deprecated features.
-  if (version_compare(variable_get('jquery_update_jquery_version', '1.9'), '1.9') >= 0) {
+  if (version_compare($version, '1.9') >= 0) {
     // Set the path to the plugin. We'll use the development version if Tadaa!
     // is currently set to development. Otherwise we'll use the minified version
     // since this doesn't generate any warnings.
