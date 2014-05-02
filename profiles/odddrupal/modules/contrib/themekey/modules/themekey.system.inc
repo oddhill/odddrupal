@@ -125,21 +125,29 @@ function themekey_system_themekey_properties() {
   $attributes['system:user_browser'] = array(
     'description' => t("System: Browser - Information about user's browser. Possible values: 'Blazer [VERSION]', 'Internet Explorer [VERSION]', 'Internet Explorer Mobile [VERSION]', 'Mozilla Firefox [VERSION]', 'Netscape [VERSION]', 'Google Chrome [VERSION]', 'Safari [VERSION]', 'Galeon [VERSION]', 'Konqueror [VERSION]', 'Gecko based', 'Opera [VERSION]', 'Lynx [VERSION]', 'Fennec [VERSION]', 'Maemo [VERSION]', 'unknown'"),
     'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
+    'deprecated' => TRUE,
+    'deprecated message' => filter_xss(t('Property system:user_browser is deprecated. Consider to use one of the new properties ThemeKey provides in combination with !browscap, !mobile_detect_api, or !mobile_detect.', array('!browscap' => l(t('Browscap'), 'https://drupal.org/project/browscap'), '!mobile_detect_api' => l(t('Mobile Detect API'), 'https://drupal.org/project/mobile_detect_api'), '!mobile_detect' => l(t('Mobile Detect'), 'https://drupal.org/project/mobile_detect_api')))),
   );
 
   $attributes['system:user_browser_simplified'] = array(
     'description' => t("System: Browser - Simplified information about user's browser. Possible values: 'Blazer', 'Internet Explorer', 'Internet Explorer Mobile', 'Mozilla Firefox', 'Netscape', 'Google Chrome', 'Safari', 'Galeon', 'Konqueror', 'Gecko based', 'Opera', 'Lynx', 'Fennec', 'Maemo', 'unknown'"),
     'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
+    'deprecated' => TRUE,
+    'deprecated message' => filter_xss(t('Property system:user_browser_simplified is deprecated. Consider to use one of the new properties ThemeKey provides in combination with !browscap, !mobile_detect_api, or !mobile_detect.', array('!browscap' => l(t('Browscap'), 'https://drupal.org/project/browscap'), '!mobile_detect_api' => l(t('Mobile Detect API'), 'https://drupal.org/project/mobile_detect_api'), '!mobile_detect' => l(t('Mobile Detect'), 'https://drupal.org/project/mobile_detect_api')))),
   );
 
   $attributes['system:user_os'] = array(
     'description' => t("System: Operating System - Information about user's browser. Possible values: 'Windows XP', 'Windows Vista', 'Windows 98', 'Windows 2000', 'Windows 2003 server', 'Windows NT',  'Windows ME', 'Windows CE', 'Windows ME', 'Windows Phone', 'iPhone', 'iPad', 'Mac OS X', 'Macintosh', 'Linux', 'Free BSD', 'Symbian', 'webOS', 'Android', 'Blackberry', 'unknown'"),
     'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
+    'deprecated' => TRUE,
+    'deprecated message' => filter_xss(t('Property system:user_os is deprecated. Consider to use one of the new properties ThemeKey provides in combination with !browscap, !mobile_detect_api, or !mobile_detect.', array('!browscap' => l(t('Browscap'), 'https://drupal.org/project/browscap'), '!mobile_detect_api' => l(t('Mobile Detect API'), 'https://drupal.org/project/mobile_detect_api'), '!mobile_detect' => l(t('Mobile Detect'), 'https://drupal.org/project/mobile_detect_api')))),
   );
 
   $attributes['system:user_os_simplified'] = array(
     'description' => t("System: Operating System - Simplified information about user's browser. Possible values: 'Windows', 'Windows Phone', 'iPhone', 'iPad', 'Mac OS X', 'Macintosh', 'Linux', 'Free BSD', 'Symbian', 'webOS', 'Android', 'Blackberry', 'unknown'"),
     'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
+    'deprecated' => TRUE,
+    'deprecated message' => filter_xss(t('Property system:user_os_simplified is deprecated. Consider to use one of the new properties ThemeKey provides in combination with !browscap, !mobile_detect_api, or !mobile_detect.', array('!browscap' => l(t('Browscap'), 'https://drupal.org/project/browscap'), '!mobile_detect_api' => l(t('Mobile Detect API'), 'https://drupal.org/project/mobile_detect_api'), '!mobile_detect' => l(t('Mobile Detect'), 'https://drupal.org/project/mobile_detect_api')))),
   );
 
   $attributes['system:date_time'] = array(
@@ -190,15 +198,15 @@ function themekey_system_themekey_properties() {
 
   $attributes['system:random'] = array(
     'description' => t("System: Random - A random value that could be '0' or 1'."),
-    'validator' => 'themekey_validator_nummeric_boolean',
+    'validator' => 'themekey_validator_numeric_boolean',
     'page cache' => THEMEKEY_PAGECACHE_UNSUPPORTED,
   );
 
   $attributes['drupal:path'] = array(
     'description' => t('Drupal: Drupal path like "node/add/story" or path alias with support for wildcards.<br />
-Query parameters are stripped off before the path gets examined. P.e. "node/add/story?destination=node" becomes "node/add/story" first. If you want to access query parameters, have a look at the system:query_param property provided by !link.<br />
+Query parameters are stripped off before the path gets examined. P.e. "node/add/story?destination=node" becomes "node/add/story" first. If you want to access query parameters, have a look at the <strong>system:query_param</strong> property.<br />
 Wildcard characters are "#" for numeric parts and "%" for all characters. To match conditions against a certain part, use an identifier with the wildcard. For example "comment/reply/#xyz" matches all paths with "comment/reply" and a numeric third argument. You can then specify conditions for every wildcard argument using the property "drupal:path:wildcard" and the identifier you choose ("xyz" in this example).<br />
-These are the possible wildcard replacements for foo/bar/42/test.html:', array('!link' => l(t('!path', array('!path' => 'ThemeKey Properties')), 'http://drupal.org/project/themekey_properties'))) .
+These are the possible wildcard replacements for foo/bar/42/test.html:') .
 '<pre>
 foo/bar/42/test.html
 foo/bar/42/%
@@ -480,14 +488,8 @@ function themekey_dummy2post($dummy) {
  *   or NULL if no value could be mapped
  */
 function themekey_dummy2query_string($dummy) {
-  if (!empty($_SERVER['QUERY_STRING'])) {
-    $query_string = trim(preg_replace("/q=[^&]*/", '', $_SERVER['QUERY_STRING']), '&');
-    if (!empty($query_string)) {
-      return $query_string;
-    }
-  }
-
-  return NULL;
+  $query_string = themekey_query_string();
+  return $query_string ? $query_string : NULL;
 }
 
 
@@ -704,19 +706,19 @@ function themekey_dummy2day_of_week($dummy) {
 
 
 /**
-* ThemeKey mapping function to set a
-* ThemeKey property's value (destination)
-* with the aid of another ThemeKey property (source).
-*
-* src: system:dummy
-* dst: system:day_of_month
-*
-* @param $dummy
-*   string containing current value of ThemeKey property system:dummy
-*
-* @return
-*   current day of the month without leading zeros
-*/
+ * ThemeKey mapping function to set a
+ * ThemeKey property's value (destination)
+ * with the aid of another ThemeKey property (source).
+ *
+ * src: system:dummy
+ * dst: system:day_of_month
+ *
+ * @param $dummy
+ *   string containing current value of ThemeKey property system:dummy
+ *
+ * @return
+ *   current day of the month without leading zeros
+ */
 function themekey_dummy2day_of_month($dummy) {
   return format_date(time(), 'custom', 'j', variable_get('date_default_timezone', 0));
 }

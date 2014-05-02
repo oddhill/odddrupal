@@ -93,3 +93,4 @@ HOOK_themekey_paths()
               - $item:    array of elements associated with the path/callback
               - $params:  array of parameters available for load callback
 
+HOOK_themekey_custom_theme_alter(&$custom_theme, $rules_matched)

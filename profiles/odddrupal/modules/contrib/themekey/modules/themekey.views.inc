@@ -1,10 +1,21 @@
 <?php
 
 /**
- * @file themekey.views.inc
+ * @file
  * Provides some views properties
  */
 
+/**
+ * Implements hook_themekey_properties().
+ *
+ * Provides additional properties for module ThemeKey:
+ * - views:vid
+ * - views:machine_name
+ * - views:human_name
+ *
+ * @return
+ *   array of themekey properties and mapping functions
+ */
 function themekey_views_themekey_properties() {
   // Attributes of properties
   $attributes = array();

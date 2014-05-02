@@ -211,6 +211,10 @@ function themekey_update_6104() {
  * Implements hook_update_N().
  */
 function themekey_update_6105() {
+  // Coder module complains "global variables should start with a single
+  // underscore followed by the module and another underscore". But $db_type is
+  // defined by drupal core.
+  // @ignore style_global_vars
   global $db_type;
 
   $return = array();
@@ -236,7 +240,7 @@ function themekey_update_6105() {
 
         foreach ($result as $row) {
 
-          $return['INSERT']['success'] = db_insert('themekey_ui_node_theme') // Table name no longer needs {}
+          $return['INSERT']['success'] = db_insert('themekey_ui_node_theme')
             ->fields(array(
               'nid' => $row->nid,
               'vid' => $row->vid,
@@ -343,7 +347,7 @@ function themekey_update_6200() {
       }
     }
 
-    $insert_success = db_insert('themekey_properties') // Table name no longer needs {}
+    $insert_success = db_insert('themekey_properties')
     ->fields(array(
       'property' => 'drupal:path',
       'value' => $item->path,
@@ -373,8 +377,7 @@ function themekey_update_6200() {
  * Implements hook_update_N().
  */
 function themekey_update_6201() {
-  // Don't rebuild anymore when themekey_update_6202() will run
-  //themekey_rebuild();
+  // Moved to themekey_update_6202().
   return '';
 }
 
@@ -404,14 +407,12 @@ function themekey_update_6202() {
   db_add_field('themekey_properties', 'parent', $field_parent);
 
   if ($result = db_query("SELECT * FROM {themekey_properties} WHERE conditions <> :conditions", array(':conditions' => serialize(array())))) {
-
     foreach ($result as $row) {
-
-     $conditions = unserialize($row->conditions);
+      $conditions = unserialize($row->conditions);
       if (is_array($conditions)) {
         $parent = $row->id;
         foreach ($conditions as $condition) {
-          $parent = db_insert('themekey_properties') // Table name no longer needs {}
+          $parent = db_insert('themekey_properties')
           ->fields(array(
             'property' =>  $condition['property'],
             'operator' => $condition['operator'],
@@ -553,9 +554,21 @@ function themekey_update_7103() {
 }
 
 /**
- * Enable Organic Group properties if og_context is enabled.
+ * Rebuild ThemeKey's internal property registry.
  */
 function themekey_update_7104() {
+  // moved themekey_rebuild() to themekey_update_7301()
+
+  return t('Update of ThemeKey ran successfully');
+}
+
+// function themekey_update_7300() has been erroneously declared in
+// themekey_redeirect.install before.
+
+/**
+ * Rebuild ThemeKey's internal property registry.
+ */
+function themekey_update_7301() {
   module_load_include('inc', 'themekey', 'themekey_base');
   module_load_include('inc', 'themekey', 'themekey_build');
   themekey_rebuild();
