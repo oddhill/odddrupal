@@ -3,10 +3,9 @@ description = Proxies files from production server so you don't have to transfer
 core = 7.x
 version=7.x-0.1-dev
 
-
-; Information added by drupal.org packaging script on 2013-07-10
-version = "7.x-1.4"
+; Information added by Drupal.org packaging script on 2014-03-21
+version = "7.x-1.5"
 core = "7.x"
 project = "stage_file_proxy"
-datestamp = "1373465751"
+datestamp = "1395441864"
 
