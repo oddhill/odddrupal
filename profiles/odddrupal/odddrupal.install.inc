@@ -449,4 +449,20 @@ function odddrupal_set_variables() {
   variable_del('pathauto_node_pattern');
   variable_del('pathauto_taxonomy_term_pattern');
   variable_del('pathauto_user_pattern');
+  variable_set('jreject_browser_alternatives', array(
+    'msie' => 0,
+    'firefox' => 1,
+    'safari' => 1,
+    'opera' => 0,
+    'chrome' => 1,
+    'gcf' => 0,
+  ));
+  variable_set('jreject_browser_config', array(
+    'msie' => array('5' => 1, '6' => 1, '7' => 1, '8' => 0, '9' => 0, '10' => 0),
+    'firefox' => array(),
+    'chrome' => array(),
+    'safari' => array(),
+    'opera' => array(),
+  ));
+  variable_set('jreject_enable', 1);
 }

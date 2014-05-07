@@ -42,6 +42,7 @@ dependencies[] = features
 dependencies[] = field_group
 dependencies[] = fpa
 dependencies[] = jquery_update
+dependencies[] = jreject
 dependencies[] = l10n_update
 dependencies[] = letmein
 dependencies[] = logintoboggan
@@ -68,5 +69,4 @@ dependencies[] = views_ui
 dependencies[] = wysiwyg
 
 ; Custom modules
-dependencies[] = fanta
 dependencies[] = seducing_mail

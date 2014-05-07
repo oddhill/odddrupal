@@ -620,3 +620,27 @@ function odddrupal_update_7139() {
     variable_set('dblog_row_limit', '10000');
   }
 }
+
+/**
+ * Enable and configure jReject.
+ */
+function odddrupal_update_7140() {
+  module_enable(array('jreject'));
+
+  variable_set('jreject_browser_alternatives', array(
+    'msie' => 0,
+    'firefox' => 1,
+    'safari' => 1,
+    'opera' => 0,
+    'chrome' => 1,
+    'gcf' => 0,
+  ));
+  variable_set('jreject_browser_config', array(
+    'msie' => array('5' => 1, '6' => 1, '7' => 1, '8' => 0, '9' => 0, '10' => 0),
+    'firefox' => array(),
+    'chrome' => array(),
+    'safari' => array(),
+    'opera' => array(),
+  ));
+  variable_set('jreject_enable', 1);
+}
