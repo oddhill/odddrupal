@@ -444,11 +444,9 @@ function odddrupal_set_variables() {
   variable_set('module_filter_visual_aid', 1);
   variable_set('install_language', $_GET['locale']);
   variable_set('ft-default', 'theme_ds_field_minimal');
-  variable_del('pathauto_blog_pattern');
-  variable_del('pathauto_forum_pattern');
-  variable_del('pathauto_node_pattern');
-  variable_del('pathauto_taxonomy_term_pattern');
-  variable_del('pathauto_user_pattern');
+  variable_set('pathauto_node_pattern', '');
+  variable_set('pathauto_taxonomy_term_pattern', '');
+  variable_set('pathauto_user_pattern', '');
   variable_set('jreject_browser_alternatives', array(
     'msie' => 0,
     'firefox' => 1,
