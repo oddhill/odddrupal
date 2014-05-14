@@ -644,3 +644,10 @@ function odddrupal_update_7140() {
   ));
   variable_set('jreject_enable', 1);
 }
+
+/**
+ * Use the administration language for the administration menu.
+ */
+function odddrupal_update_7141() {
+  variable_set('admin_language_translate_admin_menu', 1);
+}

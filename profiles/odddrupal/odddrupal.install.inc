@@ -463,4 +463,5 @@ function odddrupal_set_variables() {
     'opera' => array(),
   ));
   variable_set('jreject_enable', 1);
+  variable_set('admin_language_translate_admin_menu', 1);
 }
