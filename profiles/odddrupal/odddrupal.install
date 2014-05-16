@@ -651,3 +651,12 @@ function odddrupal_update_7140() {
 function odddrupal_update_7141() {
   variable_set('admin_language_translate_admin_menu', 1);
 }
+
+
+/**
+ * Don't use the administration language for the administration menu, due to a
+ * bug...
+ */
+function odddrupal_update_7142() {
+  variable_del('admin_language_translate_admin_menu');
+}
