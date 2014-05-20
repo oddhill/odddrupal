@@ -2362,18 +2362,15 @@ function _system_rebuild_module_data() {
   // Find modules
   $modules = drupal_system_listing('/^' . DRUPAL_PHP_FUNCTION_PATTERN . '\.module$/', 'modules', 'name', 0);
 
-  // Include the active install profile(s) in modules that are loaded.
-  $profile_weight = 1000;
-  $profiles = drupal_get_profiles();
-  foreach ($profiles as $profile) {
-    $modules[$profile] = new stdClass();
-    $modules[$profile]->name = $profile;
-    $modules[$profile]->uri = 'profiles/' . $profile . '/' . $profile . '.profile';
-    $modules[$profile]->filename = $profile . '.profile';
+  // Include the installation profile in modules that are loaded.
+  $profile = drupal_get_profile();
+  $modules[$profile] = new stdClass();
+  $modules[$profile]->name = $profile;
+  $modules[$profile]->uri = 'profiles/' . $profile . '/' . $profile . '.profile';
+  $modules[$profile]->filename = $profile . '.profile';
 
-    // Install profile hooks are always executed last.
-    $modules[$profile]->weight = $profile_weight++;
-  }
+  // Installation profile hooks are always executed last.
+  $modules[$profile]->weight = 1000;
 
   // Set defaults for module info.
   $defaults = array(
@@ -2415,7 +2412,7 @@ function _system_rebuild_module_data() {
 
     // Installation profiles are hidden by default, unless explicitly specified
     // otherwise in the .info file.
-    if (in_array($key, $profiles) && !isset($modules[$key]->info['hidden'])) {
+    if ($key == $profile && !isset($modules[$key]->info['hidden'])) {
       $modules[$key]->info['hidden'] = TRUE;
     }
 
@@ -2425,15 +2422,13 @@ function _system_rebuild_module_data() {
     drupal_alter('system_info', $modules[$key]->info, $modules[$key], $type);
   }
 
-  foreach ($profiles as $profile) {
-    if (isset($modules[$profile])) {
-      // The installation profile is required, if it's a valid module.
-      $modules[$profile]->info['required'] = TRUE;
-      // Add a default distribution name if the profile did not provide one.
-      // This matches the default value used in install_profile_info().
-      if (!isset($modules[$profile]->info['distribution_name'])) {
-        $modules[$profile]->info['distribution_name'] = 'Drupal';
-      }
+  if (isset($modules[$profile])) {
+    // The installation profile is required, if it's a valid module.
+    $modules[$profile]->info['required'] = TRUE;
+    // Add a default distribution name if the profile did not provide one. This
+    // matches the default value used in install_profile_info().
+    if (!isset($modules[$profile]->info['distribution_name'])) {
+      $modules[$profile]->info['distribution_name'] = 'Drupal';
     }
   }
 
@@ -3427,30 +3422,32 @@ function system_image_toolkits() {
 /**
  * Attempts to get a file using drupal_http_request and to store it locally.
  *
- * @param $url
+ * @param string $url
  *   The URL of the file to grab.
- *
- * @param $destination
+ * @param string $destination
  *   Stream wrapper URI specifying where the file should be placed. If a
  *   directory path is provided, the file is saved into that directory under
  *   its original name. If the path contains a filename as well, that one will
  *   be used instead.
  *   If this value is omitted, the site's default files scheme will be used,
  *   usually "public://".
- *
- * @param $managed boolean
+ * @param bool $managed
  *   If this is set to TRUE, the file API hooks will be invoked and the file is
  *   registered in the database.
- *
- * @param $replace boolean
+ * @param int $replace
  *   Replace behavior when the destination file already exists:
  *   - FILE_EXISTS_REPLACE: Replace the existing file.
  *   - FILE_EXISTS_RENAME: Append _{incrementing number} until the filename is
  *     unique.
  *   - FILE_EXISTS_ERROR: Do nothing and return FALSE.
  *
- * @return
- *   On success the location the file was saved to, FALSE on failure.
+ * @return mixed
+ *   One of these possibilities:
+ *   - If it succeeds and $managed is FALSE, the location where the file was
+ *     saved.
+ *   - If it succeeds and $managed is TRUE, a \Drupal\file\FileInterface
+ *     object which describes the file.
+ *   - If it fails, FALSE.
  */
 function system_retrieve_file($url, $destination = NULL, $managed = FALSE, $replace = FILE_EXISTS_RENAME) {
   $parsed_url = parse_url($url);

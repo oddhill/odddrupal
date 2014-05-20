@@ -995,22 +995,28 @@ function _system_modules_build_row($info, $extra) {
   $status_short = '';
   $status_long = '';
 
+  // Initialize empty arrays of long and short reasons explaining why the
+  // module is incompatible.
+  // Add each reason as a separate element in both the arrays.
+  $reasons_short = array();
+  $reasons_long = array();
+
   // Check the core compatibility.
   if (!isset($info['core']) || $info['core'] != DRUPAL_CORE_COMPATIBILITY) {
     $compatible = FALSE;
-    $status_short .= t('Incompatible with this version of Drupal core.');
-    $status_long .= t('This version is not compatible with Drupal !core_version and should be replaced.', array('!core_version' => DRUPAL_CORE_COMPATIBILITY));
+    $reasons_short[] = t('Incompatible with this version of Drupal core.');
+    $reasons_long[] = t('This version is not compatible with Drupal !core_version and should be replaced.', array('!core_version' => DRUPAL_CORE_COMPATIBILITY));
   }
 
   // Ensure this module is compatible with the currently installed version of PHP.
   if (version_compare(phpversion(), $info['php']) < 0) {
     $compatible = FALSE;
-    $status_short .= t('Incompatible with this version of PHP');
+    $reasons_short[] = t('Incompatible with this version of PHP');
     $php_required = $info['php'];
     if (substr_count($info['php'], '.') < 2) {
       $php_required .= '.*';
     }
-    $status_long .= t('This module requires PHP version @php_required and is incompatible with PHP version !php_version.', array('@php_required' => $php_required, '!php_version' => phpversion()));
+    $reasons_long[] = t('This module requires PHP version @php_required and is incompatible with PHP version !php_version.', array('@php_required' => $php_required, '!php_version' => phpversion()));
   }
 
   // If this module is compatible, present a checkbox indicating
@@ -1026,6 +1032,8 @@ function _system_modules_build_row($info, $extra) {
     }
   }
   else {
+    $status_short = implode(' ', $reasons_short);
+    $status_long = implode(' ', $reasons_long);
     $form['enable'] = array(
       '#markup' =>  theme('image', array('path' => 'misc/watchdog-error.png', 'alt' => $status_short, 'title' => $status_short)),
     );
@@ -1260,7 +1268,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
   // Only build the rest of the form if there are any modules available to
   // uninstall.
   if (!empty($disabled_modules)) {
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     uasort($disabled_modules, 'system_sort_modules_by_info_name');
     $form['uninstall'] = array('#tree' => TRUE);
     foreach ($disabled_modules as $module) {
@@ -1277,7 +1285,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
       // we can allow this module to be uninstalled. (The installation profile
       // is excluded from this list.)
       foreach (array_keys($module->required_by) as $dependent) {
-        if (!in_array($dependent, $profiles) && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
+        if ($dependent != $profile && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
           $dependent_name = isset($all_modules[$dependent]->info['name']) ? $all_modules[$dependent]->info['name'] : $dependent;
           $form['modules'][$module->name]['#required_by'][] = $dependent_name;
           $form['uninstall'][$module->name]['#disabled'] = TRUE;

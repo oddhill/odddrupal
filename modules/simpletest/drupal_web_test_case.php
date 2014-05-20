@@ -1145,7 +1145,7 @@ class DrupalWebTestCase extends DrupalTestCase {
   }
 
   /**
-   * Internal helper function; Create a role with specified permissions.
+   * Creates a role with specified permissions.
    *
    * @param $permissions
    *   Array of permission names to assign to role.
@@ -1472,16 +1472,10 @@ class DrupalWebTestCase extends DrupalTestCase {
 
     // Include the testing profile.
     variable_set('install_profile', $this->profile);
+    $profile_details = install_profile_info($this->profile, 'en');
 
     // Install the modules specified by the testing profile.
-    $profiles = drupal_get_profiles();
-    $profile_dependencies = array();
-
-    foreach ($profiles as $profile) {
-      $info = install_profile_info($profile);
-      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-    }
-    module_enable($profile_dependencies);
+    module_enable($profile_details['dependencies'], FALSE);
 
     // Install modules needed for this test. This could have been passed in as
     // either a single array argument or a variable number of string arguments.
@@ -2300,6 +2294,14 @@ class DrupalWebTestCase extends DrupalTestCase {
     }
     $this->drupalSetContent($content);
     $this->drupalSetSettings($drupal_settings);
+
+    $verbose = 'AJAX POST request to: ' . $path;
+    $verbose .= '<br />AJAX callback path: ' . $ajax_path;
+    $verbose .= '<hr />Ending URL: ' . $this->getUrl();
+    $verbose .= '<hr />' . $this->content;
+
+    $this->verbose($verbose);
+
     return $return;
   }
 
