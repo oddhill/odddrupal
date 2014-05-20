@@ -5,9 +5,9 @@ dependencies[] = themekey
 package = ThemeKey
 configure = admin/config/user-interface/themekey/settings/compat
 
-; Information added by Drupal.org packaging script on 2014-04-03
-version = "7.x-3.1"
+; Information added by Drupal.org packaging script on 2014-05-14
+version = "7.x-3.2"
 core = "7.x"
 project = "themekey"
-datestamp = "1396550047"
+datestamp = "1400056438"
 

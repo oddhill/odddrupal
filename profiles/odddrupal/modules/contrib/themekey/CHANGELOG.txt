@@ -1,3 +1,8 @@
+ThemeKey 7.x-3.2, 2014-05-13
+----------------------------
+[#2265813] mkalkbrenner: fatal error when submitting a contextual filter for a view via ajax
+
+
 ThemeKey 7.x-3.1, 2014-04-03
 ----------------------------
 [#2188709] mkalkbrenner: 'Retain the theme until a new theme is set' doesn't work for static/triggered rules
