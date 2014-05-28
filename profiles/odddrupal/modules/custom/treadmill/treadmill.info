@@ -1,5 +1,0 @@
-name = Treadmill
-description = Triggers various magic actions when a backup has been performed.
-core = 7.x
-package = Odd Hill
-configure = admin/config/system/backup_migrate/treadmill

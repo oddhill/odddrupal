@@ -660,3 +660,36 @@ function odddrupal_update_7141() {
 function odddrupal_update_7142() {
   variable_del('admin_language_translate_admin_menu');
 }
+
+/**
+ * Remove Backup & Migrate and the Treadmill module from the Tadaa!
+ * configuration.
+ */
+function odddrupal_update_7143() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (isset($modules['backup_migrate'])) {
+    unset($modules['backup_migrate']);
+  }
+  if (isset($modules['treadmill'])) {
+    unset($modules['treadmill']);
+  }
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (isset($modules['backup_migrate'])) {
+    unset($modules['backup_migrate']);
+  }
+  if (isset($modules['treadmill'])) {
+    unset($modules['treadmill']);
+  }
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (isset($modules['backup_migrate'])) {
+    unset($modules['backup_migrate']);
+  }
+  if (isset($modules['treadmill'])) {
+    unset($modules['treadmill']);
+  }
+  variable_set('tadaa_production_modules', $modules);
+}
