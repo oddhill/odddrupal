@@ -322,6 +322,7 @@ function odddrupal_set_variables() {
     'production' => 'Production',
   ));
   variable_set('tadaa_development_modules', array(
+    'backup_migrate' => 0,
     'context_ui' => 1,
     'devel' => 1,
     'devel_generate' => 1,
@@ -348,6 +349,7 @@ function odddrupal_set_variables() {
     'reroute_email_enable_message' => 1,
   ));
   variable_set('tadaa_staging_modules', array(
+    'backup_migrate' => 0,
     'context_ui' => 1,
     'devel' => 0,
     'devel_generate' => 0,
@@ -375,6 +377,7 @@ function odddrupal_set_variables() {
     'speedy_js_production' => 1,
   ));
   variable_set('tadaa_production_modules', array(
+    'backup_migrate' => 1,
     'context_ui' => 0,
     'devel' => 0,
     'devel_generate' => 0,

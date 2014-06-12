@@ -693,3 +693,26 @@ function odddrupal_update_7143() {
   }
   variable_set('tadaa_production_modules', $modules);
 }
+
+/**
+ * Add Backup & Migrate to the production environment using Tadaa!
+ */
+function odddrupal_update_7144() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (!isset($modules['backup_migrate'])) {
+    $modules['backup_migrate'] = 0;
+    variable_set('tadaa_development_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (!isset($modules['backup_migrate'])) {
+    $modules['backup_migrate'] = 0;
+    variable_set('tadaa_staging_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (!isset($modules['backup_migrate'])) {
+    $modules['backup_migrate'] = 1;
+    variable_set('tadaa_production_modules', $modules);
+  }
+}
