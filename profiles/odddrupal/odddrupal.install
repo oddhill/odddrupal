@@ -716,3 +716,10 @@ function odddrupal_update_7144() {
     variable_set('tadaa_production_modules', $modules);
   }
 }
+
+/**
+ * Enable Masquerade and Masquerade Views modules.
+ */
+function odddrupal_update_7145() {
+  module_enable(array('masquerade', 'masquerade_views'));
+}

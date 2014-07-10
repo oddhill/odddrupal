@@ -289,6 +289,21 @@ function odddrupal_init() {
       $GLOBALS['language'] = $languages[$language];
     }
   }
+
+  // Print a warning message if the user is masquerading, and isn't about to
+  // switch back.
+  if (isset($_SESSION['masquerading']) && current_path() != 'masquerade/unswitch') {
+    $params = array(
+      '!user' => theme('username', array('account' => $GLOBALS['user'])),
+      '@unswitch-path' => url('masquerade/unswitch', array(
+        'query' => array(
+          'token' => drupal_get_token('masquerade/unswitch'),
+          'destination' => 'admin/people',
+        ),
+      )),
+    );
+    drupal_set_message(t('You are masquerading as !user. <a href="@unswitch-path">Switch back</a>.', $params), 'warning');
+  }
 }
 
 /**

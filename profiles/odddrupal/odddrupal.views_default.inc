@@ -933,6 +933,7 @@ function odddrupal_views_default_views() {
     'status' => 'status',
     'access' => 'access',
     'edit_node' => 'edit_node',
+    'masquerade_as' => 'edit_node',
   );
   $handler->display->display_options['style_options']['default'] = 'access';
   $handler->display->display_options['style_options']['info'] = array(
@@ -970,6 +971,11 @@ function odddrupal_views_default_views() {
       'empty_column' => 0,
     ),
     'edit_node' => array(
+      'align' => '',
+      'separator' => '&nbsp;&nbsp;&nbsp;',
+      'empty_column' => 0,
+    ),
+    'masquerade_as' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -1085,6 +1091,16 @@ function odddrupal_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  /* Field: User: Masquerade As */
+  $handler->display->display_options['fields']['masquerade_as']['id'] = 'masquerade_as';
+  $handler->display->display_options['fields']['masquerade_as']['table'] = 'users';
+  $handler->display->display_options['fields']['masquerade_as']['field'] = 'masquerade_as';
+  $handler->display->display_options['fields']['masquerade_as']['label'] = '';
+  $handler->display->display_options['fields']['masquerade_as']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['masquerade_as']['masquerade_views'] = array(
+    'custom_destination' => 1,
+    'destination' => 'user',
+  );
   /* Filter criterion: User: The user ID */
   $handler->display->display_options['filters']['uid_raw']['id'] = 'uid_raw';
   $handler->display->display_options['filters']['uid_raw']['table'] = 'users';
@@ -1167,6 +1183,7 @@ function odddrupal_views_default_views() {
     t('Status'),
     t('Last access'),
     t('Never'),
+    t('masquerade'),
   );
   $export['administration_users'] = $view;
 
