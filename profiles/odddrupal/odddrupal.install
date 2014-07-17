@@ -723,3 +723,12 @@ function odddrupal_update_7144() {
 function odddrupal_update_7145() {
   module_enable(array('masquerade', 'masquerade_views'));
 }
+
+/**
+ * Save the origin for Stage File Proxy to the database.
+ */
+function odddrupal_update_7146() {
+  if ($value = variable_get('stage_file_proxy_origin')) {
+    variable_set('stage_file_proxy_origin', $value);
+  }
+}
