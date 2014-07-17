@@ -15,9 +15,9 @@
  */
 $aliases['staging'] = array(
   'uri' => 'http://example.oddserver.se',
-  'root' => '/var/www/example',
+  'root' => '/mnt/persist/www/example',
   'remote-host' => 'oddserver.se',
-  'remote-user' => 'admin',
+  'remote-user' => 'root',
   'command-specific' => array (
     'sql-sync' => array (
       'create-db' => TRUE,
