@@ -12,12 +12,9 @@
  *
  * @return
  *   The maximum number of shortcuts allowed to be added to a shortcut set.
- *   If this is 0 (the default), then no maximum will be enforced. Other
- *   modules may choose to enforce a limit by setting the 'shortcut_max_slots'
- *   variable to a non-zero value.
  */
 function shortcut_max_slots() {
-  return variable_get('shortcut_max_slots', 0);
+  return variable_get('shortcut_max_slots', 7);
 }
 
 /**
@@ -377,16 +374,7 @@ function theme_shortcut_set_customize($variables) {
     }
 
     if ($status == 'enabled') {
-      $count_shortcuts = count(element_children($form['shortcuts'][$status]));
-      $number_of_slots = shortcut_max_slots();
-      if (empty($number_of_slots)) {
-        // If there is no hard limit on the number of shortcut slots per set,
-        // we display 7 slots by default (but make sure to expand the number if
-        // necessary so that there are always at least a couple empty slots
-        // available).
-        $number_of_slots = max($count_shortcuts + 2, 7);
-      }
-      for ($i = 0; $i < $number_of_slots; $i++) {
+      for ($i = 0; $i < shortcut_max_slots(); $i++) {
         $rows['empty-' . $i] = array(
           'data' => array(array(
             'colspan' => 5,
@@ -395,8 +383,9 @@ function theme_shortcut_set_customize($variables) {
           'class' => array('shortcut-slot-empty'),
         );
       }
+      $count_shortcuts = count($shortcuts_by_status[$status]);
       if (!empty($count_shortcuts)) {
-        for ($i = 0; $i < min($count_shortcuts, $number_of_slots); $i++) {
+        for ($i = 0; $i < min($count_shortcuts, shortcut_max_slots()); $i++) {
           $rows['empty-' . $i]['class'][] = 'shortcut-slot-hidden';
         }
       }
@@ -571,11 +560,11 @@ function shortcut_link_add_submit($form, &$form_state) {
  * @param $limit
  *   (optional) The maximum number of links that are allowed to be enabled for
  *   this shortcut set. If provided, existing links at the end of the list that
- *   exceed the limit will be automatically disabled. If left at the default
- *   value of 0, no limit will be enforced.
+ *   exceed the limit will be automatically disabled. If not provided, no limit
+ *   will be enforced.
  */
-function shortcut_admin_add_link($shortcut_link, &$shortcut_set, $limit = 0) {
-  if ($limit) {
+function shortcut_admin_add_link($shortcut_link, &$shortcut_set, $limit = NULL) {
+  if (isset($limit)) {
     // Disable any existing links at the end of the list that would cause the
     // limit to be exceeded. Take into account whether or not the new link will
     // be enabled and count towards the total.
