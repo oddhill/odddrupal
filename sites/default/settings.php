@@ -35,6 +35,6 @@ if (file_exists('settings.site.php')) {
 }
 
 /**
- * Include the local settings file.
+ * Require the local settings file.
  */
 require 'settings.local.php';
