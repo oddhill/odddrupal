@@ -144,4 +144,9 @@ username: [user:name-raw]
 password: Your password
 
 --  [site:name] team');
+  variable_set('r4032login_default_redirect_code', '302');
+  variable_set('r4032login_display_denied_message', 0);
+  variable_set('r4032login_match_noredirect_pages', '');
+  variable_set('r4032login_redirect_authenticated_users_to', '');
+  variable_set('r4032login_user_login_path', 'user');
 }
