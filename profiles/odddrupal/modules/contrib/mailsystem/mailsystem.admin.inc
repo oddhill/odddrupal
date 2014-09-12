@@ -100,6 +100,9 @@ function mailsystem_admin_settings() {
       '#type' => 'submit',
       '#value' => t('Remove custom settings for mail-id @id', array('@id' => $id)),
       '#submit' => array('mailsystem_admin_remove_setting_submit'),
+      '#limit_validation_errors' => array(
+        array('mailsystem', $id),
+      ),
     );
   }
 
@@ -154,6 +157,11 @@ function mailsystem_admin_settings() {
  * Add an additional custom setting for a module/key.
  */
 function mailsystem_admin_add_setting_validate($fieldset, &$form_state) {
+  // Only perform this validation if we're adding a custom setting.
+  if (!isset($form_state['submit_handlers']) || !in_array('mailsystem_admin_add_setting_submit', $form_state['submit_handlers'])) {
+    return;
+  }
+
   $module = $fieldset['module']['#value'];
   $key = $fieldset['key']['#value'];
   $id = $module;

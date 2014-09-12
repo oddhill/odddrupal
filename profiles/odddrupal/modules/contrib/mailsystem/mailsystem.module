@@ -195,9 +195,15 @@ function mailsystem_delegate_set_mailsystem_settings($id, $settings) {
 function _mailsystem_delegate_get_mailsystem($module, $key, $action) {
   $instances = &drupal_static(__FUNCTION__, array());
 
+  // Try to use custom settings defined for the message's module and key.
   $settings = variable_get('mailsystem_delegate:' . $module . '_' . $key);
   if ($settings === NULL) {
+    // Try to use custom settings defined for the message's module.
     $settings = variable_get('mailsystem_delegate:' . $module);
+  }
+  if ($settings === NULL) {
+    // Try to use the configured site-wide default mail system settings.
+    $settings = variable_get('mailsystem_delegate:' . mailsystem_default_id());
   }
 
   // Use the class configured for the given action.
@@ -419,4 +425,22 @@ function mailsystem_get_mail_theme() {
       break;
   }
   return $theme;
+}
+
+/**
+ * Implements hook_system_info_alter().
+ *
+ * Prevent the module from being disabled while the mail_system variable is
+ * still using the MailsystemDelegateMailSystem class.
+ */
+function mailsystem_system_info_alter(&$info, $file, $type) {
+  if ($type == 'module' && $file->name == 'mailsystem') {
+    $mail_system = mailsystem_get();
+    foreach ($mail_system as $key => $class) {
+      if ($class == 'MailsystemDelegateMailSystem') {
+        $info['required'] = TRUE;
+        $info['explanation'] = t('<em>Mail System</em> cannot be disabled until each custom setting on its <a href="@url">configure page</a> is either removed, or uses the same class for both its formatting and delivery class.', array('@url' => url('admin/config/system/mailsystem')));
+      }
+    }
+  }
 }

@@ -64,18 +64,16 @@ function mailsystem_update_7300() {
   $delegate_settings = array();
   $fallback_classes = array();
   foreach ($genclasses as $classname => $filename) {
-    if (substr_compare($filename, $class_dir, 0, $class_dir_len) == 0) {
-      $classes = explode('__', $classname);
-      if (count($classes) == 2) {
-        $delegate_settings[$classname] = array(
-          'format' => $classes[0],
-          'mail' => $classes[1],
-        );
-      }
-      else {
-        $fallback_classes[$classname] = $classname;
-        watchdog('Mail System', 'Cannot update generated mail system class %class. Custom mail system settings using this class are set to the default mail system.', array('%class' => $classname), WATCHDOG_WARNING);
-      }
+    $classes = explode('__', $classname);
+    if (count($classes) == 2) {
+      $delegate_settings[$classname] = array(
+        'format' => $classes[0],
+        'mail' => $classes[1],
+      );
+    }
+    else {
+      $fallback_classes[$classname] = $classname;
+      watchdog('Mail System', 'Cannot update generated mail system class %class. Custom mail system settings using this class are set to the default mail system.', array('%class' => $classname), WATCHDOG_WARNING);
     }
   }
 
@@ -94,14 +92,15 @@ function mailsystem_update_7300() {
   }
   mailsystem_set($mail_system);
 
-  // Remove the generated classes from the registry.
-  db_delete('registry')
-    ->condition('name', array_keys($genclasses))
-    ->execute();
-
-  // Finally remove all the generated class files from the files directory.
-  foreach ($genclasses as $classname => $filename) {
-    file_unmanaged_delete($filename);
+  if (!empty($genclasses)) {
+    // Remove the generated classes from the registry.
+    db_delete('registry')
+      ->condition('name', array_keys($genclasses))
+      ->execute();
+    // Finally remove all the generated class files from the files directory.
+    foreach ($genclasses as $classname => $filename) {
+      file_unmanaged_delete($filename);
+    }
   }
 
   return t('Converted !count dynamically generated mailsystem classes',
