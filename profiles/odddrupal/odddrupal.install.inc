@@ -420,7 +420,6 @@ function odddrupal_set_variables() {
     'blockify-site-slogan' => 'blockify-site-slogan',
     'blockify-page-title' => 'blockify-page-title',
     'blockify-breadcrumb' => 'blockify-breadcrumb',
-    'blockify-tabs' => 'blockify-tabs',
     'blockify-messages' => 'blockify-messages',
     'blockify-actions' => 'blockify-actions',
     'blockify-feed-icons' => 'blockify-feed-icons',
