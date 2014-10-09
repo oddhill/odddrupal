@@ -263,7 +263,6 @@ function odddrupal_roles_users() {
     'access content',
     'access contextual links',
     'access devel information',
-    'access overlay',
     'access toolbar',
     'change own username',
     'use text format filtered_html',
@@ -275,10 +274,10 @@ function odddrupal_roles_users() {
     'edit mimemail user settings',
   ));
 
-  // Disable the overlay for user 1, and set the language to english.
+  // Set the language to english for user 1.
   $user = user_load(1);
   $user->language = 'en';
-  user_save($user, array('data' => array('overlay' => 0)));
+  user_save($user);
 }
 
 /**

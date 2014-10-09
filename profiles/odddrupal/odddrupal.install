@@ -767,3 +767,12 @@ function odddrupal_update_7147() {
     }
   }
 }
+
+/**
+ * Disable the Overlay module.
+ */
+function odddrupal_update_7148() {
+  if (module_exists('overlay')) {
+    module_disable(array('overlay'));
+  }
+}
