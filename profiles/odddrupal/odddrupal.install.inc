@@ -336,6 +336,7 @@ function odddrupal_set_variables() {
     'stage_file_proxy' => 1,
     'googleanalytics' => 0,
     'themekey_ui' => 1,
+    'update' => 1,
     'views_ui' => 1,
   ));
   variable_set('tadaa_development_variables', array(
@@ -365,6 +366,7 @@ function odddrupal_set_variables() {
     'stage_file_proxy' => 1,
     'googleanalytics' => 0,
     'themekey_ui' => 1,
+    'update' => 0,
     'views_ui' => 1,
   ));
   variable_set('tadaa_staging_variables', array(
@@ -395,6 +397,7 @@ function odddrupal_set_variables() {
     'stage_file_proxy' => 0,
     'googleanalytics' => 1,
     'themekey_ui' => 0,
+    'update' => 0,
     'views_ui' => 0,
   ));
   variable_set('tadaa_production_variables', array(

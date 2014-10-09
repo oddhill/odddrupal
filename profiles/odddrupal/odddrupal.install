@@ -776,3 +776,38 @@ function odddrupal_update_7148() {
     module_disable(array('overlay'));
   }
 }
+
+/**
+ * Disable the Update manager for the staging and production environments.
+ */
+function odddrupal_update_7149() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (!isset($modules['update'])) {
+    $modules['update'] = 1;
+    variable_set('tadaa_development_modules', $modules);
+
+    if (!module_exists('update') && variable_get('tadaa_environment') == 'development') {
+      module_enable(array('update'));
+    }
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (!isset($modules['update'])) {
+    $modules['update'] = 0;
+    variable_set('tadaa_staging_modules', $modules);
+
+    if (module_exists('update') && variable_get('tadaa_environment') == 'staging') {
+      module_disable(array('update'));
+    }
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (!isset($modules['update'])) {
+    $modules['update'] = 0;
+    variable_set('tadaa_production_modules', $modules);
+
+    if (module_exists('update') && variable_get('tadaa_environment') == 'production') {
+      module_disable(array('update'), FALSE);
+    }
+  }
+}
