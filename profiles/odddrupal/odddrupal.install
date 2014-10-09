@@ -732,3 +732,38 @@ function odddrupal_update_7146() {
     variable_set('stage_file_proxy_origin', $value);
   }
 }
+
+/**
+ * Disable the Field UI for the production environment.
+ */
+function odddrupal_update_7147() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (!isset($modules['field_ui'])) {
+    $modules['field_ui'] = 1;
+    variable_set('tadaa_development_modules', $modules);
+
+    if (!module_exists('field_ui') && variable_get('tadaa_environment') == 'development') {
+      module_enable(array('field_ui'));
+    }
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (!isset($modules['field_ui'])) {
+    $modules['field_ui'] = 1;
+    variable_set('tadaa_staging_modules', $modules);
+
+    if (!module_exists('field_ui') && variable_get('tadaa_environment') == 'staging') {
+      module_enable(array('field_ui'));
+    }
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (!isset($modules['field_ui'])) {
+    $modules['field_ui'] = 0;
+    variable_set('tadaa_production_modules', $modules);
+
+    if (module_exists('field_ui') && variable_get('tadaa_environment') == 'production') {
+      module_disable(array('field_ui'), FALSE);
+    }
+  }
+}
