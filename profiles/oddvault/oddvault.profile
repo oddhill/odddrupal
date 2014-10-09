@@ -4,7 +4,7 @@
  * Custom installation profile for Odd Hill.
  */
 
-define('ODDVAULT_VERSION', '7.x-1.6');
+define('ODDVAULT_VERSION', '7.x-1.8');
 
 /**
  * Implements hook_boot().
