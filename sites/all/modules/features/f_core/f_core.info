@@ -1,0 +1,10 @@
+name = Core
+core = 7.x
+package = Features
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = site_mail
+features[variable][] = site_name
+project path = sites/all/modules/features
