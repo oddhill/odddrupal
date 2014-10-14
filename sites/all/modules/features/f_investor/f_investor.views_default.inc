@@ -169,6 +169,13 @@ function f_investor_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Kunde inte hitta några investerare som matchade sökkriterierna.';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Field: Investerare: Id */
   $handler->display->display_options['fields']['id']['id'] = 'id';
   $handler->display->display_options['fields']['id']['table'] = 'eck_investor';
@@ -308,6 +315,7 @@ function f_investor_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Select any filter and click on Apply to see results'),
+    t('Kunde inte hitta några investerare som matchade sökkriterierna.'),
     t('.'),
     t('Namn'),
     t('Plats'),
