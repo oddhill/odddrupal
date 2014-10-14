@@ -1,6 +1,7 @@
 name = Core
 core = 7.x
 package = Features
+dependencies[] = auto_entitylabel
 dependencies[] = ctools
 dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
