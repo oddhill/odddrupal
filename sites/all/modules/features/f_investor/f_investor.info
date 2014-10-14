@@ -2,6 +2,7 @@ name = Investerare
 core = 7.x
 package = Features
 dependencies[] = addressfield
+dependencies[] = better_exposed_filters
 dependencies[] = ctools
 dependencies[] = eck
 dependencies[] = email
