@@ -214,7 +214,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Namn';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'name';
   $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -229,7 +229,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['operator_id'] = 'field_shared_address_postal_code_op';
   $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['label'] = 'Postnummer';
   $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['operator'] = 'field_shared_address_postal_code_op';
-  $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['identifier'] = 'field_shared_address_postal_code';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['identifier'] = 'postal';
   $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -245,7 +245,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['field_shared_address_locality']['expose']['operator_id'] = 'field_shared_address_locality_op';
   $handler->display->display_options['filters']['field_shared_address_locality']['expose']['label'] = 'Ort';
   $handler->display->display_options['filters']['field_shared_address_locality']['expose']['operator'] = 'field_shared_address_locality_op';
-  $handler->display->display_options['filters']['field_shared_address_locality']['expose']['identifier'] = 'field_shared_address_locality';
+  $handler->display->display_options['filters']['field_shared_address_locality']['expose']['identifier'] = 'city';
   $handler->display->display_options['filters']['field_shared_address_locality']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -260,7 +260,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['field_shared_address_country']['expose']['operator_id'] = 'field_shared_address_country_op';
   $handler->display->display_options['filters']['field_shared_address_country']['expose']['label'] = 'Land';
   $handler->display->display_options['filters']['field_shared_address_country']['expose']['operator'] = 'field_shared_address_country_op';
-  $handler->display->display_options['filters']['field_shared_address_country']['expose']['identifier'] = 'field_shared_address_country';
+  $handler->display->display_options['filters']['field_shared_address_country']['expose']['identifier'] = 'country';
   $handler->display->display_options['filters']['field_shared_address_country']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_shared_address_country']['expose']['remember_roles'] = array(
     2 => '2',
@@ -276,7 +276,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['operator_id'] = 'field_shared_industries_tid_op';
   $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['label'] = 'Branscher';
   $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['operator'] = 'field_shared_industries_tid_op';
-  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['identifier'] = 'field_shared_industries_tid';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['identifier'] = 'industries';
   $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['remember_roles'] = array(
     2 => '2',
