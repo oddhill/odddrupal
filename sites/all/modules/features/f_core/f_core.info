@@ -3,6 +3,7 @@ core = 7.x
 package = Features
 dependencies[] = auto_entitylabel
 dependencies[] = ctools
+dependencies[] = eck
 dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
