@@ -2,7 +2,10 @@
 @import "../assets/bourbon/dist/bourbon";
 
 // Import our variables, mixins & helpers
-@import "variables", "mixins", "helpers";
+@import "elements/typography", "variables", "mixins", "helpers";
+
+// Import page elements
+@import "elements/sidebar";
 
 // Neat should be imported after variable, reset and mixin declaration.
 // Otherwise neat overrides our variables.

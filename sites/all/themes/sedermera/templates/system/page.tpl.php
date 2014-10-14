@@ -16,6 +16,9 @@
  * @see template_process()
  */
 ?>
-<?php print render($page['header']); ?>
-<?php print render($page['content']); ?>
-<?php print render($page['footer']); ?>
+<aside id="main-sidebar">
+	<?php print render($page['header']); ?>
+</aside>
+<main id="main-content">
+  <?php print render($page['content']); ?>
+</main>

@@ -16,4 +16,3 @@ stylesheets[screen][] = css/main.css
 ; Regions.
 regions[header] = Header
 regions[content] = Content
-regions[footer] = Footer
