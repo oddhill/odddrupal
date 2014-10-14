@@ -12,6 +12,7 @@ dependencies[] = entityreference
 dependencies[] = f_investor
 dependencies[] = menu_firstchild
 dependencies[] = strongarm
+dependencies[] = taxonomy
 features[context][] = sitewide
 features[ctools][] = context:context:3
 features[ctools][] = strongarm:strongarm:1
