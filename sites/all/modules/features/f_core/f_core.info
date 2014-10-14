@@ -7,6 +7,7 @@ dependencies[] = blockify
 dependencies[] = context
 dependencies[] = ctools
 dependencies[] = eck
+dependencies[] = email
 dependencies[] = entityreference
 dependencies[] = f_investor
 dependencies[] = menu_firstchild
