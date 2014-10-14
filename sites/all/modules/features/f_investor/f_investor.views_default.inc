@@ -31,12 +31,44 @@ function f_investor_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
+    'id' => 'id',
+    'type' => 'type',
     'title' => 'title',
+    'field_shared_address_locality' => 'field_shared_address_locality',
+    'field_shared_address_country' => 'field_shared_address_locality',
   );
   $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
+    'id' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'title' => array(
       'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_shared_address_locality' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => ', ',
+      'empty_column' => 0,
+    ),
+    'field_shared_address_country' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -66,6 +98,18 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
   $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id]';
+  /* Field: Investerare: Plats - Locality (i.e. City) */
+  $handler->display->display_options['fields']['field_shared_address_locality']['id'] = 'field_shared_address_locality';
+  $handler->display->display_options['fields']['field_shared_address_locality']['table'] = 'field_data_field_shared_address';
+  $handler->display->display_options['fields']['field_shared_address_locality']['field'] = 'field_shared_address_locality';
+  $handler->display->display_options['fields']['field_shared_address_locality']['label'] = 'Plats';
+  /* Field: Investerare: Plats - Country */
+  $handler->display->display_options['fields']['field_shared_address_country']['id'] = 'field_shared_address_country';
+  $handler->display->display_options['fields']['field_shared_address_country']['table'] = 'field_data_field_shared_address';
+  $handler->display->display_options['fields']['field_shared_address_country']['field'] = 'field_shared_address_country';
+  $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
+  $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -90,6 +134,7 @@ function f_investor_views_default_views() {
     t('Desc'),
     t('.'),
     t('Namn'),
+    t('Plats'),
     t('Page'),
   );
   $export['investerare'] = $view;
