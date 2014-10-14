@@ -108,7 +108,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'investor',
     'field_name' => 'field_shared_address',
-    'label' => 'Adress',
+    'label' => 'Plats',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -401,7 +401,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'investor',
     'field_name' => 'field_shared_address',
-    'label' => 'Adress',
+    'label' => 'Plats',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -593,7 +593,6 @@ function f_investor_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Adress');
   t('Ange vilka branscher som den här investeraren är intresserad av, om några. Separera flera branscher med komma.');
   t('Ange vilka ägarna är för detta bolag, om några. Separera flera ägare med komma.');
   t('Anger huruvida investeraren enbart ska existera för ett prospekt eller om hen ska finnas i registret tills vidare.');
@@ -603,6 +602,7 @@ function f_investor_field_default_field_instances() {
   t('Förnamn');
   t('Mobiltelefon');
   t('Namn');
+  t('Plats');
   t('Telefon');
   t('Tillfällig investerare');
   t('Ägare');
