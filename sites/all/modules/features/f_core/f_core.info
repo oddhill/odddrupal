@@ -6,6 +6,7 @@ dependencies[] = blockify
 dependencies[] = context
 dependencies[] = ctools
 dependencies[] = eck
+dependencies[] = entityreference
 dependencies[] = f_investor
 dependencies[] = menu_firstchild
 dependencies[] = strongarm
