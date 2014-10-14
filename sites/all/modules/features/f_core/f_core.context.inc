@@ -19,7 +19,7 @@ function f_core_context_default_contexts() {
   $context->conditions = array(
     'theme' => array(
       'values' => array(
-        'oddbaby' => 'oddbaby',
+        'sedermera' => 'sedermera',
       ),
     ),
   );
