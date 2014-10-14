@@ -27,7 +27,101 @@ function f_investor_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filtrera listan';
+  $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
+  $handler->display->display_options['exposed_form']['options']['bef'] = array(
+    'general' => array(
+      'allow_secondary' => 0,
+      'secondary_label' => 'Advanced options',
+    ),
+    'title' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'field_shared_address_postal_code' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'field_shared_address_locality' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'field_shared_address_country' => array(
+      'bef_format' => 'bef',
+      'more_options' => array(
+        'bef_select_all_none' => FALSE,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'field_shared_industries_tid' => array(
+      'bef_format' => 'bef',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+  );
+  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'filtered_html';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -110,6 +204,87 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
   $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
+  /* Filter criterion: Investerare: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'eck_investor';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Namn';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Investerare: Plats - Postal code */
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['id'] = 'field_shared_address_postal_code';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['table'] = 'field_data_field_shared_address';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['field'] = 'field_shared_address_postal_code';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['group'] = 1;
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['operator_id'] = 'field_shared_address_postal_code_op';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['label'] = 'Postnummer';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['operator'] = 'field_shared_address_postal_code_op';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['identifier'] = 'field_shared_address_postal_code';
+  $handler->display->display_options['filters']['field_shared_address_postal_code']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Investerare: Plats - Locality (i.e. City) */
+  $handler->display->display_options['filters']['field_shared_address_locality']['id'] = 'field_shared_address_locality';
+  $handler->display->display_options['filters']['field_shared_address_locality']['table'] = 'field_data_field_shared_address';
+  $handler->display->display_options['filters']['field_shared_address_locality']['field'] = 'field_shared_address_locality';
+  $handler->display->display_options['filters']['field_shared_address_locality']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_shared_address_locality']['group'] = 1;
+  $handler->display->display_options['filters']['field_shared_address_locality']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_address_locality']['expose']['operator_id'] = 'field_shared_address_locality_op';
+  $handler->display->display_options['filters']['field_shared_address_locality']['expose']['label'] = 'Ort';
+  $handler->display->display_options['filters']['field_shared_address_locality']['expose']['operator'] = 'field_shared_address_locality_op';
+  $handler->display->display_options['filters']['field_shared_address_locality']['expose']['identifier'] = 'field_shared_address_locality';
+  $handler->display->display_options['filters']['field_shared_address_locality']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Investerare: Plats - Country */
+  $handler->display->display_options['filters']['field_shared_address_country']['id'] = 'field_shared_address_country';
+  $handler->display->display_options['filters']['field_shared_address_country']['table'] = 'field_data_field_shared_address';
+  $handler->display->display_options['filters']['field_shared_address_country']['field'] = 'field_shared_address_country';
+  $handler->display->display_options['filters']['field_shared_address_country']['group'] = 1;
+  $handler->display->display_options['filters']['field_shared_address_country']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_address_country']['expose']['operator_id'] = 'field_shared_address_country_op';
+  $handler->display->display_options['filters']['field_shared_address_country']['expose']['label'] = 'Land';
+  $handler->display->display_options['filters']['field_shared_address_country']['expose']['operator'] = 'field_shared_address_country_op';
+  $handler->display->display_options['filters']['field_shared_address_country']['expose']['identifier'] = 'field_shared_address_country';
+  $handler->display->display_options['filters']['field_shared_address_country']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_address_country']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Investerare: Branscher (field_shared_industries) */
+  $handler->display->display_options['filters']['field_shared_industries_tid']['id'] = 'field_shared_industries_tid';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['table'] = 'field_data_field_shared_industries';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['field'] = 'field_shared_industries_tid';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_shared_industries_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['operator_id'] = 'field_shared_industries_tid_op';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['label'] = 'Branscher';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['operator'] = 'field_shared_industries_tid_op';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['identifier'] = 'field_shared_industries_tid';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_industries_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_shared_industries_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_shared_industries_tid']['vocabulary'] = 'industries';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -127,14 +302,19 @@ function f_investor_views_default_views() {
     t('Master'),
     t('Investerare'),
     t('more'),
-    t('Apply'),
+    t('Filtrera listan'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Select any filter and click on Apply to see results'),
     t('.'),
     t('Namn'),
     t('Plats'),
+    t('Postnummer'),
+    t('Ort'),
+    t('Land'),
+    t('Branscher'),
     t('Page'),
   );
   $export['investerare'] = $view;
