@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file sedermera_investor.module
+ * Main module file for the Sedermera Investor module.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  // Alter the exposed form for the investor page.
+  if ($form['#id'] == 'views-exposed-form-investors-page') {
+    // Get the country values from the database. We'll use a regular DB Query in
+    // order to improve performance.
+    $available_countries = db_query("SELECT DISTINCT field_shared_address_country FROM {field_data_field_shared_address}")->fetchAllKeyed();
+
+    // Remove the options that aren't stored in the database, and disable access
+    // to the field if the options are empty.
+    $form['country']['#options'] = array_intersect_key($form['country']['#options'], $available_countries);
+    $form['country']['#options']['#access'] = empty($form['country']['#options']);
+
+    // Get the industry values from the database. We'll use a regular DB Query
+    // here as well, for the same reason as above...
+    $available_industries = db_query("SELECT DISTINCT field_shared_industries_tid FROM {field_data_field_shared_industries}")->fetchAllKeyed();
+
+    // Remove the options that aren't stored in the database, and disable access
+    // to the field if the options are empty.
+    $form['industries']['#options'] = array_intersect_key($form['industries']['#options'], $available_industries);
+    $form['industries']['#options']['#access'] = empty($form['industries']['#options']);
+  }
+}

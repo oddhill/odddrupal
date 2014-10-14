@@ -10,6 +10,7 @@ dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = list
 dependencies[] = menu
+dependencies[] = sedermera_investor
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
