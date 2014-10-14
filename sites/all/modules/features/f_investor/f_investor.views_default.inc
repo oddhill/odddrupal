@@ -22,7 +22,7 @@ function f_investor_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Investerare';
+  $handler->display->display_options['title'] = 'Alla investerare';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -307,7 +307,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['tab_options']['name'] = 'main-menu';
   $translatables['investors'] = array(
     t('Master'),
-    t('Investerare'),
+    t('Alla investerare'),
     t('more'),
     t('Filtrera listan'),
     t('Reset'),
