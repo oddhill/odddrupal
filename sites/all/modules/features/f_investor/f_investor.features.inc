@@ -33,3 +33,38 @@ function f_investor_eck_bundle_info() {
   );
   return $items;
 }
+
+/**
+ * Implements hook_eck_entity_type_info().
+ */
+function f_investor_eck_entity_type_info() {
+  $items = array(
+    'investor' => array(
+      'name' => 'investor',
+      'label' => 'Investerare',
+      'properties' => array(
+        'uid' => array(
+          'label' => 'Author',
+          'type' => 'integer',
+          'behavior' => 'author',
+        ),
+        'created' => array(
+          'label' => 'Created',
+          'type' => 'integer',
+          'behavior' => 'created',
+        ),
+        'changed' => array(
+          'label' => 'Changed',
+          'type' => 'integer',
+          'behavior' => 'changed',
+        ),
+        'title' => array(
+          'label' => 'Title',
+          'type' => 'text',
+          'behavior' => 'title',
+        ),
+      ),
+    ),
+  );
+  return $items;
+}
