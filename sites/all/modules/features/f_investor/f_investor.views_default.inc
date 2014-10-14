@@ -11,7 +11,7 @@ function f_investor_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'investerare';
+  $view->name = 'investors';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'eck_investor';
@@ -298,7 +298,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['tab_options']['title'] = 'Investerare';
   $handler->display->display_options['tab_options']['weight'] = '0';
   $handler->display->display_options['tab_options']['name'] = 'main-menu';
-  $translatables['investerare'] = array(
+  $translatables['investors'] = array(
     t('Master'),
     t('Investerare'),
     t('more'),
@@ -317,7 +317,7 @@ function f_investor_views_default_views() {
     t('Branscher'),
     t('Page'),
   );
-  $export['investerare'] = $view;
+  $export['investors'] = $view;
 
   return $export;
 }
