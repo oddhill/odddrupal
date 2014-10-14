@@ -1,6 +1,7 @@
 name = Core
 core = 7.x
 package = Features
+dependencies[] = addressfield
 dependencies[] = auto_entitylabel
 dependencies[] = blockify
 dependencies[] = context
