@@ -46,12 +46,14 @@ body {
   height: 100%; }
 
 #main-content {
-  width: 80%; }
+  overflow: hidden; }
 
 #main-sidebar {
   background-color: #282828;
   height: 100%;
-  width: 20%; }
+  width: 280px;
+  float: left;
+  position: relative; }
 
 .logo {
   background-color: #000;
@@ -59,35 +61,54 @@ body {
   text-align: center;
   width: 100%; }
 
-.menu ul {
+#main-navigation ul.menu {
   list-style-type: none; }
-.menu li {
-  background: #202020;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 21px;
-  font-weight: 500;
-  padding: 20px 0 20px 30px;
-  border-bottom: 1px solid #282828; }
-  .menu li li {
-    border-bottom: 0 none; }
-.menu a {
-  color: #b2b3b6;
-  display: block;
-  padding-left: 30px;
-  font-size: 12px;
-  font-size: 1.2rem; }
-  .menu a#investors {
-    background: url("../graphics/investors.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/investors.svg") transparent 0 0 no-repeat; }
-  .menu a#all-investors {
-    background: url("../graphics/all_investors.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/all_investors.svg") transparent 0 0 no-repeat;
-    border-bottom: none; }
-  .menu a#add-investor {
-    background: url("../graphics/add_investor.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/add_investor.svg") transparent 0 0 no-repeat; }
+  #main-navigation ul.menu li {
+    background: #202020;
+    text-transform: uppercase;
+    padding: 20px 0 20px 30px;
+    margin-bottom: 1px; }
+    #main-navigation ul.menu li a {
+      color: #b2b3b6;
+      display: block;
+      padding-left: 30px;
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 20px;
+      font-weight: 500; }
+      #main-navigation ul.menu li a:hover {
+        color: #d8d9da; }
+      #main-navigation ul.menu li a#investors {
+        background: url("../graphics/investors.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/investors.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a#all_investors {
+        background: url("../graphics/all_investors.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/all_investors.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a#add_investor {
+        background: url("../graphics/add_investor.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/add_investor.svg") transparent 0 0 no-repeat; }
+    #main-navigation ul.menu li li {
+      border-bottom: 0 none;
+      padding: 10px 0 0 20px; }
+      #main-navigation ul.menu li li a {
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 18px;
+        line-height: 12px;
+        padding-left: 22px; }
+        #main-navigation ul.menu li li a.active {
+          color: #f9a400; }
+      #main-navigation ul.menu li li.last {
+        padding: 10px 0 5px 20px; }
+    #main-navigation ul.menu li.expanded > a {
+      color: #fff; }
+    #main-navigation ul.menu li.last {
+      margin-bottom: 0; }
 
 #user {
-  background-color: #202020; }
+  background-color: #202020;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0; }

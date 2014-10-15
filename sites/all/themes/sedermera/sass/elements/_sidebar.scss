@@ -3,10 +3,12 @@
 #main-sidebar {
   background-color: $coffee;
   height: 100%;
-  width: 20%;
+  width: 280px;
+  float: left;
+  position: relative;
 }
 
-// SEDEMERA LOGOTYPE
+// SEDERMERA LOGOTYPE
 
 .logo {
   background-color: #000;
@@ -17,52 +19,81 @@
 
 // MAIN MENU
 
-.menu {
+#main-navigation {
 
-  ul {
+  ul.menu {
     list-style-type: none;
-  }
-
-  li {
-    background: $medium-grey;
-    text-transform: uppercase;
-    @include font-size($standard);
-    font-weight: 500;
-    padding: 20px 0 20px 30px;
-    border-bottom: 1px solid $coffee;
 
     li {
-      border-bottom: 0 none;
-    }
+      background: $medium-grey;
+      text-transform: uppercase;
+      padding: 20px 0 20px 30px;
+      margin-bottom: 1px;
 
+      a {
+        color: $cloudy;
+        display: block;
+        padding-left: 30px;
+        @include font-size(1.4);
+        line-height: 20px;
+        font-weight: 500;
+
+        &:hover {
+          color: tint($cloudy,50%);
+        }
+
+        &#investors {
+          @include svg-bg(investors);
+        }
+
+        &#all_investors {
+          @include svg-bg(all_investors);
+        }
+
+         &#add_investor {
+          @include svg-bg(add_investor);
+        }
+      }
+
+      li {
+        border-bottom: 0 none;
+        padding: 10px 0 0 20px;
+
+        a {
+          @include font-size(1.2);
+          line-height: 12px;
+          padding-left: 22px;
+
+          &.active {
+            color: $mustard;
+          }
+        }
+
+        &.last {
+          padding: 10px 0 5px 20px;
+        }
+      }
+
+      &.expanded {
+
+        > a {
+          color: $snow;
+        }
+      }
+
+      &.last {
+        margin-bottom: 0;
+      }
+    }
   }
-
-  a {
-    color: #b2b3b6;
-    display: block;
-    padding-left: 30px;
-    font-size: 12px;
-    font-size: 1.2rem;
-
-    &#investors {
-      @include svg-bg(investors);
-    }
-
-    &#all-investors {
-      @include svg-bg(all_investors);
-      border-bottom: none;
-    }
-
-     &#add-investor {
-      @include svg-bg(add_investor);
-    }
-
-  }
-
 }
 
 // USER LOGGED IN
 
 #user {
   background-color: $medium-grey;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

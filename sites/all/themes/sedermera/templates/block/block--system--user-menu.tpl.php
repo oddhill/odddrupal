@@ -20,7 +20,7 @@
  * @see template_process()
  */
 ?>
-<div class="<?php print $block_html_id; ?>" <?php print $attributes; ?>>
+<div id="user">
   <div class="block-header">
     Inloggad som <h2><?php print $block->subject; ?></h2>
   </div>
