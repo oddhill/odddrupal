@@ -271,7 +271,7 @@ function f_investor_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Anger huruvida bolaget enbart ska existera för ett specifikt prospekt eller om det ska finnas i registret tills vidare.',
+    'description' => 'Anger huruvida bolaget enbart ska existera för en specifik kapitalanskaffning eller om det ska finnas i registret tills vidare.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -564,7 +564,7 @@ function f_investor_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Anger huruvida personen enbart ska existera för ett specifikt prospekt eller om hen ska finnas i registret tills vidare.',
+    'description' => 'Anger huruvida personen enbart ska existera för en specifik kapitalanskaffning eller om hen ska finnas i registret tills vidare.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -599,8 +599,8 @@ function f_investor_field_default_field_instances() {
   t('Ange vilka branscher som den här investeraren är intresserad av, om några. Separera flera branscher med komma.');
   t('Ange vilka branscher som det här bolaget är intresserat av, om några. Separera flera branscher med komma.');
   t('Ange vilka ägarna är för detta bolag, om några. Separera flera ägare med komma.');
-  t('Anger huruvida bolaget enbart ska existera för ett specifikt prospekt eller om det ska finnas i registret tills vidare.');
-  t('Anger huruvida personen enbart ska existera för ett specifikt prospekt eller om hen ska finnas i registret tills vidare.');
+  t('Anger huruvida bolaget enbart ska existera för en specifik kapitalanskaffning eller om det ska finnas i registret tills vidare.');
+  t('Anger huruvida personen enbart ska existera för en specifik kapitalanskaffning eller om hen ska finnas i registret tills vidare.');
   t('Branscher');
   t('E-post');
   t('Efternamn');
