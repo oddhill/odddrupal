@@ -18,7 +18,7 @@ function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, 
     // Remove the options that aren't stored in the database, and disable access
     // to the field if the options are empty.
     $form['country']['#options'] = array_intersect_key($form['country']['#options'], $available_countries);
-    $form['country']['#options']['#access'] = empty($form['country']['#options']);
+    $form['country']['#access'] = empty($form['country']['#options']);
 
     // Get the industry values from the database. We'll use a regular DB Query
     // here as well, for the same reason as above...
@@ -27,6 +27,6 @@ function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, 
     // Remove the options that aren't stored in the database, and disable access
     // to the field if the options are empty.
     $form['industries']['#options'] = array_intersect_key($form['industries']['#options'], $available_industries);
-    $form['industries']['#options']['#access'] = empty($form['industries']['#options']);
+    $form['industries']['#access'] = empty($form['industries']['#options']);
   }
 }
