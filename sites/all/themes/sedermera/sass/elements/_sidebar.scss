@@ -1,5 +1,5 @@
 #main-sidebar {
-  background-color: $medium-grey;
+  background-color: $coffee;
   height: 100%;
   width: 20%;
 }
@@ -10,3 +10,51 @@
   text-align: center;
   width: 100%;
 }
+
+// MAIN MENU
+
+.menu {
+
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    background: $medium-grey;
+    text-transform: uppercase;
+    @include font-size($standard);
+    font-weight: 500;
+    padding: 20px 0 20px 30px;
+    border-bottom: 1px solid $coffee;
+  }
+
+  a {
+    color: #b2b3b6;
+    display: block;
+    padding-left: 30px;
+    font-size: 12px;
+    font-size: 1.2rem;
+
+    &#investors {
+      @include svg-bg(investors);
+    }
+
+    &#all-investors {
+      @include svg-bg(all_investors);
+    }
+
+     &#add-investor {
+      @include svg-bg(add_investor);
+    }
+
+  }
+
+}
+
+// USER LOGGED IN
+
+#user {
+  background-color: $medium-grey;
+}
+
+

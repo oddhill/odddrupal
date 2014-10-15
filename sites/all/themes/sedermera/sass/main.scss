@@ -4,9 +4,6 @@
 // Import our variables, mixins & helpers
 @import "elements/typography", "variables", "mixins", "helpers";
 
-// Import page elements
-@import "elements/sidebar";
-
 // Neat should be imported after variable, reset and mixin declaration.
 // Otherwise neat overrides our variables.
 @import "../assets/neat/app/assets/stylesheets/neat";
@@ -58,7 +55,7 @@ img {
 body {
   height: 100%;
   background: $light-grey;
-  color: $medium-grey;
+  color: $coffee;
   font-family: $body-font;
  }
 
@@ -69,3 +66,6 @@ body {
 #main-content {
   width: 80%;
 }
+
+// Import page elements
+@import "elements/sidebar";
