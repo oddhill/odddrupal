@@ -15,10 +15,15 @@ function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, 
     // order to improve performance.
     $available_countries = db_query("SELECT DISTINCT field_shared_address_country FROM {field_data_field_shared_address}")->fetchAllKeyed();
 
-    // Remove the options that aren't stored in the database, and disable access
-    // to the field if the options are empty.
+    // Remove the options that aren't stored in the database.
     $form['country']['#options'] = array_intersect_key($form['country']['#options'], $available_countries);
-    $form['country']['#access'] = empty($form['country']['#options']);
+
+    // Disable access to the country field and remove the label if the options
+    // are empty.
+    if (empty($form['country']['#options'])) {
+      $form['country']['#access'] = FALSE;
+      unset($form['#info']['filter-field_shared_address_country']);
+    }
 
     // Get the industry values from the database. We'll use a regular DB Query
     // here as well, for the same reason as above...
@@ -27,6 +32,12 @@ function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, 
     // Remove the options that aren't stored in the database, and disable access
     // to the field if the options are empty.
     $form['industries']['#options'] = array_intersect_key($form['industries']['#options'], $available_industries);
-    $form['industries']['#access'] = empty($form['industries']['#options']);
+
+    // Disable access to the industries field and remove the label if the
+    // options are empty.
+    if (empty($form['industries']['#options'])) {
+      $form['industries']['#access'] = FALSE;
+      unset($form['#info']['filter-field_shared_industries_tid']);
+    }
   }
 }
