@@ -21,6 +21,7 @@ features[ctools][] = context:context:3
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[taxonomy][] = industries
+features[variable][] = blockify_blocks
 features[variable][] = site_mail
 features[variable][] = site_name
 features[variable][] = theme_default

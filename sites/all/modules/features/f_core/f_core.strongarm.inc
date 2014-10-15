@@ -13,6 +13,23 @@ function f_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'blockify_blocks';
+  $strongarm->value = array(
+    'blockify-logo' => 'blockify-logo',
+    'blockify-site-slogan' => 'blockify-site-slogan',
+    'blockify-page-title' => 'blockify-page-title',
+    'blockify-breadcrumb' => 'blockify-breadcrumb',
+    'blockify-tabs' => 'blockify-tabs',
+    'blockify-messages' => 'blockify-messages',
+    'blockify-actions' => 'blockify-actions',
+    'blockify-feed-icons' => 'blockify-feed-icons',
+    'blockify-site-name' => 0,
+  );
+  $export['blockify_blocks'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'site_mail';
   $strongarm->value = 'info@sedermera.se';
   $export['site_mail'] = $strongarm;
