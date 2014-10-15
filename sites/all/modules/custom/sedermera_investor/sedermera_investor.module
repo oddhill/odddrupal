@@ -20,6 +20,15 @@ function sedermera_investor_menu() {
 }
 
 /**
+ * Implements hook_admin_paths_alter().
+ */
+function sedermera_investor_admin_paths_alter(&$paths) {
+  // Don't treat the add forms for investor bundles as administrative pages, in
+  // order to use the sites default theme rather than the administration theme.
+  $paths['admin/structure/entity-type/investor/*/add'] = FALSE;
+}
+
+/**
  * Page callback for the investerare/skapa path.
  *
  * This will generate a page that looks like the node/add page.
