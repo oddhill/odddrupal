@@ -6,6 +6,57 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function sedermera_investor_menu() {
+  $items['investerare/skapa'] = array(
+    'title' => 'Lägg till investerare',
+    'page callback' => 'sedermera_investor_create_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for the investerare/skapa path.
+ *
+ * This will generate a page that looks like the node/add page.
+ *
+ * @see node_add_page()
+ */
+function sedermera_investor_create_page() {
+  // Get the entity info for the investor entity type.
+  $investor_info = entity_get_info('investor');
+
+  // Setup the descriptions for the different bundles. The ECK module doesn't
+  // support descriptions, like node types. This is a way to mimic the same
+  // behavior for this particular page.
+  $descriptions = array(
+    'company' => 'Lägg till ett nytt investmentbolag. Dessa kan kopplas till flera ägare.',
+    'person' => 'Lägg till en ny privatperson.',
+  );
+
+  // Iterate through the bundles, add add a link for each bundle. This will be
+  // used to genereate the output.
+  foreach ($investor_info['bundles'] as $bundle_name => $bundle_info) {
+    $items[] = array(
+      'title' => $bundle_info['label'],
+      'href' => "admin/structure/entity-type/investor/{$bundle_name}/add",
+      'description' => isset($descriptions[$bundle_name]) ? $descriptions[$bundle_name] : '',
+      'localized_options' => array(),
+    );
+  }
+
+  // Return a list which looks like the node add list. This isn't actually
+  // nodes, but it's convinient to use the same theme function since we'd like
+  // to generate a similar list.
+  return theme('node_add_list', array('content' => $items));
+}
+
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
