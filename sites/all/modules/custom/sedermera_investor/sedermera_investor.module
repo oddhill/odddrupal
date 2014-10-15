@@ -54,7 +54,9 @@ function sedermera_investor_create_page() {
       'title' => $bundle_info['label'],
       'href' => "admin/structure/entity-type/investor/{$bundle_name}/add",
       'description' => isset($descriptions[$bundle_name]) ? $descriptions[$bundle_name] : '',
-      'localized_options' => array(),
+      'localized_options' => array(
+        'query' => array('destination' => 'investerare'),
+      ),
     );
   }
 
