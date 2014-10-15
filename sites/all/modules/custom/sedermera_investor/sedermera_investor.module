@@ -94,6 +94,18 @@ function sedermera_investor_create_page() {
 }
 
 /**
+ * Implements hook_field_widget_form_alter().
+ */
+function sedermera_investor_field_widget_form_alter(&$element, &$form_state, $context) {
+  // Disable access to the field_shared_temp field. This will hopefully be
+  // managed automatically in the future. We'll disable it for now, just to make
+  // sure that we avoid any confusion for the end user.
+  if ($element['#field_name'] == 'field_shared_temp') {
+    $element['#access'] = FALSE;
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_investor_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
