@@ -93,6 +93,59 @@ function sedermera_investor_create_page() {
   return theme('node_add_list', array('content' => $items));
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_investor_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
+  // Add a delete button right next to the submit button. This will redirect the
+  // user to the delete confirmation page.
+  $form['delete'] = array(
+    '#type' => 'submit',
+    '#value' => 'Radera',
+    '#weight' => $form['submit']['#weight'] + 1,
+    '#submit' => array('sedermera_investor_delete_redirect'),
+    '#limit_validation_errors' => array(),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_investor_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
+  // Add a delete button right next to the submit button. This will redirect the
+  // user to the delete confirmation page.
+  $form['delete'] = array(
+    '#type' => 'submit',
+    '#value' => 'Radera',
+    '#weight' => $form['submit']['#weight'] + 1,
+    '#submit' => array('sedermera_investor_delete_redirect'),
+    '#limit_validation_errors' => array(),
+  );
+}
+
+/**
+ * Submit callback for the delete action.
+ *
+ * This will simply redirect the user to the appropriate delete confirmation
+ * form.
+ */
+function sedermera_investor_delete_redirect($form, &$form_state) {
+  $form_state['redirect'] = array(
+    "investor/{$form['#entity']->type}/{$form['#entity']->id}/delete",
+    array('query' => array('destination' => 'investerare'))
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_investor_form_eck__entity__delete_form_alter(&$form, &$form_state, $form_id) {
+  // Change the href for the cancel link when deleting a person or company We
+  // want to redirect the user back to the edit form for the entity.
+  if (in_array($form['entity']['#value']->type, array('person', 'company'))) {
+    $form['actions']['cancel']['#href'] = "investor/{$form['entity']['#value']->type}/{$form['entity']['#value']->id}/edit";
+  }
+}
 
 /**
  * Implements hook_form_FORM_ID_alter().
