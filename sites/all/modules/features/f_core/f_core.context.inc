@@ -38,6 +38,12 @@ function f_core_context_default_contexts() {
           'region' => 'header',
           'weight' => '-9',
         ),
+        'system-user-menu' => array(
+          'module' => 'system',
+          'delta' => 'user-menu',
+          'region' => 'header',
+          'weight' => '-8',
+        ),
         'blockify-blockify-actions' => array(
           'module' => 'blockify',
           'delta' => 'blockify-actions',
