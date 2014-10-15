@@ -52,28 +52,6 @@ function sedermera_blockify_logo($variables) {
 }
 
 /**
- * Overrides theme_menu_local_tasks().
- */
-function sedermera_menu_local_tasks($variables) {
-  // Add Contextual links library, if it hasn't been added already.
-  drupal_add_library('contextual', 'contextual-links');
-
-  $output = '';
-  if (!empty($variables['primary'])) {
-    $variables['primary']['#prefix'] = '<div class="contextual-links-wrapper"><ul class="contextual-links">';
-    $variables['primary']['#suffix'] = '</ul></div>';
-    $output .= drupal_render($variables['primary']);
-  }
-  if (!empty($variables['secondary'])) {
-    $variables['secondary']['#prefix'] = '<ul class="tabs secondary clearfix">';
-    $variables['secondary']['#suffix'] = '</ul>';
-    $output .= drupal_render($variables['secondary']);
-  }
-
-  return $output;
-}
-
-/**
  * Overrides theme_form_element().
  */
 function sedermera_form_element($variables) {
