@@ -4,6 +4,7 @@ package = Features
 dependencies[] = addressfield
 dependencies[] = auto_entitylabel
 dependencies[] = blockify
+dependencies[] = ccl
 dependencies[] = context
 dependencies[] = ctools
 dependencies[] = eck
