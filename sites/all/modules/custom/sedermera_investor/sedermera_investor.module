@@ -24,7 +24,7 @@ function sedermera_investor_menu() {
   $items['investerare/skapa'] = array(
     'title' => 'Lägg till investerare',
     'page callback' => 'sedermera_investor_create_page',
-    'access arguments' => array('access content'),
+    'access arguments' => array('administer investors'),
     'type' => MENU_CALLBACK,
   );
 
@@ -62,6 +62,7 @@ function sedermera_investor_create_page() {
   // Iterate through the bundles, add add a link for each bundle. This will be
   // used to genereate the output.
   foreach ($investor_info['bundles'] as $bundle_name => $bundle_info) {
+    if (user_access("eck administer investor $bundle_name entities") || user_access("eck add investor $bundle_name entities"))
     $items[] = array(
       'title' => $bundle_info['label'],
       'href' => "admin/structure/entity-type/investor/{$bundle_name}/add",
