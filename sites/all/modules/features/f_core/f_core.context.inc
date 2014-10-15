@@ -50,6 +50,12 @@ function f_core_context_default_contexts() {
           'region' => 'content',
           'weight' => '-9',
         ),
+        'blockify-blockify-tabs' => array(
+          'module' => 'blockify',
+          'delta' => 'blockify-tabs',
+          'region' => 'content',
+          'weight' => '-8',
+        ),
       ),
     ),
   );
