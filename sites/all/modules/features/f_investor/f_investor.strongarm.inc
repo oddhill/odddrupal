@@ -92,5 +92,12 @@ function f_investor_strongarm() {
   );
   $export['field_bundle_settings_investor__person'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rh_taxonomy_term_action_industries';
+  $strongarm->value = '2';
+  $export['rh_taxonomy_term_action_industries'] = $strongarm;
+
   return $export;
 }
