@@ -38,6 +38,12 @@ function f_core_context_default_contexts() {
           'region' => 'header',
           'weight' => '-9',
         ),
+        'blockify-blockify-messages' => array(
+          'module' => 'blockify',
+          'delta' => 'blockify-messages',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
       ),
     ),
   );
