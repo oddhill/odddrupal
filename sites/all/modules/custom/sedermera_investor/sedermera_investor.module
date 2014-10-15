@@ -32,6 +32,20 @@ function sedermera_investor_menu() {
 }
 
 /**
+ * Implements hook_menu_alter().
+ */
+function sedermera_investor_menu_alter(&$items) {
+  // Get the entity info for the investor entity type.
+  $investor_info = entity_get_info('investor');
+
+  // Iterate through the bundles, add change the delete link for every bundle to
+  // a regular menu callback in order to get rid of the tab.
+  foreach ($investor_info['bundles'] as $bundle_name => $bundle_info) {
+    $items["investor/{$bundle_name}/%eckentity/delete"]['type'] = MENU_CALLBACK;
+  }
+}
+
+/**
  * Implements hook_admin_paths_alter().
  */
 function sedermera_investor_admin_paths_alter(&$paths) {
