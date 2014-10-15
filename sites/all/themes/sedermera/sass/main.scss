@@ -26,6 +26,7 @@
 html {
   font-size: 62.5%;
   min-height: 100%;
+  height: 100%;
 }
 
 // Remove subpixels from webkit browsers and FF
@@ -46,4 +47,25 @@ button {
 button,
 input[type=submit] {
   border: 0px;
+}
+
+// Responsive images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  height: 100%;
+  background: $light-grey;
+  color: $medium-grey;
+  font-family: $body-font;
+ }
+
+#site-wrapper {
+  height: 100%;
+}
+
+#main-content {
+  width: 80%;
 }
