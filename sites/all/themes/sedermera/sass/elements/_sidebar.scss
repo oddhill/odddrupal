@@ -1,8 +1,12 @@
+// SIDEBAR
+
 #main-sidebar {
   background-color: $coffee;
   height: 100%;
   width: 20%;
 }
+
+// SEDEMERA LOGOTYPE
 
 .logo {
   background-color: #000;
@@ -26,6 +30,11 @@
     font-weight: 500;
     padding: 20px 0 20px 30px;
     border-bottom: 1px solid $coffee;
+
+    li {
+      border-bottom: 0 none;
+    }
+
   }
 
   a {
@@ -41,6 +50,7 @@
 
     &#all-investors {
       @include svg-bg(all_investors);
+      border-bottom: none;
     }
 
      &#add-investor {
@@ -56,5 +66,3 @@
 #user {
   background-color: $medium-grey;
 }
-
-

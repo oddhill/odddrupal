@@ -70,6 +70,8 @@ body {
   font-weight: 500;
   padding: 20px 0 20px 30px;
   border-bottom: 1px solid #282828; }
+  .menu li li {
+    border-bottom: 0 none; }
 .menu a {
   color: #b2b3b6;
   display: block;
@@ -81,7 +83,8 @@ body {
     background: none, url("../graphics/investors.svg") transparent 0 0 no-repeat; }
   .menu a#all-investors {
     background: url("../graphics/all_investors.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/all_investors.svg") transparent 0 0 no-repeat; }
+    background: none, url("../graphics/all_investors.svg") transparent 0 0 no-repeat;
+    border-bottom: none; }
   .menu a#add-investor {
     background: url("../graphics/add_investor.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/add_investor.svg") transparent 0 0 no-repeat; }
