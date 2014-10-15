@@ -6,6 +6,18 @@
  */
 
 /**
+ * Implements hook_permission().
+ */
+function sedermera_investor_permission() {
+  return array(
+    'administer investors' => array(
+      'title' => t('Administer investors'),
+      'description' => t('Administer any investor bundle and access the administration list.'),
+    ),
+  );
+}
+
+/**
  * Implements hook_menu().
  */
 function sedermera_investor_menu() {
