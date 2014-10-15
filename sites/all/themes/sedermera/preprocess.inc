@@ -25,6 +25,11 @@ function sedermera_preprocess_block(&$variables) {
     case 'system-main-menu':
       $variables['block']->subject = '';
       break;
+
+    // Change the block header for the user menu to the current users name.
+    case 'system-user-menu':
+      $variables['block']->subject = format_username($GLOBALS['user']);
+      break;
   }
 }
 
