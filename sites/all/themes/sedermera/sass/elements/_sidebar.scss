@@ -38,6 +38,14 @@
         line-height: 20px;
         font-weight: 500;
 
+        &.active {
+
+          &#investors {
+            @include svg-bg(investors_white);
+          }
+
+        }
+
         &:hover {
           color: tint($cloudy,50%);
         }
@@ -53,6 +61,7 @@
          &#add_investor {
           @include svg-bg(add_investor);
         }
+
       }
 
       li {
@@ -66,7 +75,17 @@
 
           &.active {
             color: $mustard;
+
+            &#all_investors {
+              @include svg-bg(all_investors_yellow);
+            }
+
+            &#add_investor {
+              @include svg-bg(add_investor_yellow);
+            }
+
           }
+
         }
 
         &.last {
