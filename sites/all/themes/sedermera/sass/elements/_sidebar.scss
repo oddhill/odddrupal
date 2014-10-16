@@ -43,7 +43,6 @@
           &#investors {
             @include svg-bg(investors_white);
           }
-
         }
 
         &:hover {
@@ -55,13 +54,12 @@
         }
 
         &#all_investors {
-          @include svg-bg(all_investors);
+          @include svg-bg(list_small_grey);
         }
 
          &#add_investor {
-          @include svg-bg(add_investor);
+          @include svg-bg(add_small_grey);
         }
-
       }
 
       ul {
@@ -83,13 +81,12 @@
             color: $mustard;
 
             &#all_investors {
-              @include svg-bg(all_investors_yellow);
+              @include svg-bg(list_small_yellow);
             }
 
             &#add_investor {
-              @include svg-bg(add_investor_yellow);
+              @include svg-bg(add_small_yellow);
             }
-
           }
         }
 

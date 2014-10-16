@@ -128,11 +128,11 @@ body {
         background: url("../graphics/investors.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/investors.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a#all_investors {
-        background: url("../graphics/all_investors.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/all_investors.svg") transparent 0 0 no-repeat; }
+        background: url("../graphics/list_small_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/list_small_grey.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a#add_investor {
-        background: url("../graphics/add_investor.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/add_investor.svg") transparent 0 0 no-repeat; }
+        background: url("../graphics/add_small_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/add_small_grey.svg") transparent 0 0 no-repeat; }
     #main-navigation ul.menu li ul {
       margin-top: 3px; }
     #main-navigation ul.menu li li {
@@ -150,11 +150,11 @@ body {
         #main-navigation ul.menu li li a.active {
           color: #f9a400; }
           #main-navigation ul.menu li li a.active#all_investors {
-            background: url("../graphics/all_investors_yellow.png") transparent 0 0 no-repeat;
-            background: none, url("../graphics/all_investors_yellow.svg") transparent 0 0 no-repeat; }
+            background: url("../graphics/list_small_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/list_small_yellow.svg") transparent 0 0 no-repeat; }
           #main-navigation ul.menu li li a.active#add_investor {
-            background: url("../graphics/add_investor_yellow.png") transparent 0 0 no-repeat;
-            background: none, url("../graphics/add_investor_yellow.svg") transparent 0 0 no-repeat; }
+            background: url("../graphics/add_small_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/add_small_yellow.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li li.last {
         padding: 10px 0 5px 30px;
         background: url("../graphics/tree_two.png") transparent 0 0 no-repeat;
