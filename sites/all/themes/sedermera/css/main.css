@@ -77,6 +77,9 @@ body {
       line-height: 21px;
       line-height: 20px;
       font-weight: 500; }
+      #main-navigation ul.menu li a.active#investors {
+        background: url("../graphics/investors_white.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/investors_white.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a:hover {
         color: #d8d9da; }
       #main-navigation ul.menu li a#investors {
@@ -99,6 +102,12 @@ body {
         padding-left: 22px; }
         #main-navigation ul.menu li li a.active {
           color: #f9a400; }
+          #main-navigation ul.menu li li a.active#all_investors {
+            background: url("../graphics/all_investors_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/all_investors_yellow.svg") transparent 0 0 no-repeat; }
+          #main-navigation ul.menu li li a.active#add_investor {
+            background: url("../graphics/add_investor_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/add_investor_yellow.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li li.last {
         padding: 10px 0 5px 20px; }
     #main-navigation ul.menu li.expanded > a {
