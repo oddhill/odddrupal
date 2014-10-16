@@ -56,6 +56,36 @@ body {
   font-size: 14px;
   font-size: 1.4rem;
   line-height: 18.2px; }
+  #main-content #page-actions {
+    float: right;
+    margin-top: 16px; }
+    #main-content #page-actions ul.action-links {
+      list-style: none; }
+      #main-content #page-actions ul.action-links li {
+        display: inline;
+        margin-left: 20px; }
+        #main-content #page-actions ul.action-links li a {
+          display: inline-block;
+          height: 34px;
+          font-size: 12px;
+          font-size: 1.2rem;
+          line-height: 12px;
+          line-height: 34px;
+          border-radius: 34px;
+          color: #fff;
+          padding: 0 20px;
+          font-weight: 500;
+          text-transform: uppercase;
+          background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+          background-position: 20px 11px;
+          padding-left: 42px;
+          background-color: #454545;
+          -webkit-transition: background-color 0.1s ease-in-out;
+          -moz-transition: background-color 0.1s ease-in-out;
+          transition: background-color 0.1s ease-in-out; }
+          #main-content #page-actions ul.action-links li a:hover {
+            background-color: #303030; }
 
 #main-sidebar {
   background-color: #282828;

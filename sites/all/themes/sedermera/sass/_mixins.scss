@@ -1,0 +1,24 @@
+@mixin button($background: $dark-grey, $icon: default) {
+  display: inline-block;
+  height: 34px;
+  @include font-size(1.2,1);
+  line-height: 34px;
+  border-radius: 34px;
+  color: $snow;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  @if $icon == add {
+    @include svg-bg(add_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  background-color: $background;
+  @include transition (background-color 0.1s ease-in-out);
+
+  &:hover {
+    background-color: shade($background,30%);
+  }
+}

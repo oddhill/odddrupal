@@ -2,7 +2,7 @@
 @import "../assets/bourbon/dist/bourbon";
 
 // Import our variables, mixins & helpers
-@import "variables", "mixins", "helpers", "elements/typography";
+@import "variables", "helpers", "mixins", "elements/typography";
 
 // Neat should be imported after variable, reset and mixin declaration.
 // Otherwise neat overrides our variables.
@@ -66,6 +66,25 @@ body {
 #main-content {
   overflow: hidden;
   @include font-size($standard,1.3);
+
+  // Page action links
+  #page-actions {
+    float: right;
+    margin-top: 16px;
+
+    ul.action-links {
+      list-style: none;
+
+      li {
+        display: inline;
+        margin-left: 20px;
+
+        a {
+          @include button($dark-grey,add);
+        }
+      }
+    }
+  }
 }
 
 // Import page elements
