@@ -64,9 +64,15 @@
 
       }
 
+      ul {
+        margin-top: 3px;
+      }
+
       li {
         border-bottom: 0 none;
-        padding: 10px 0 0 20px;
+        padding: 10px 0 0 30px;
+        @include svg-bg(tree_one);
+        margin-bottom: 0;
 
         a {
           @include font-size(1.2);
@@ -85,11 +91,11 @@
             }
 
           }
-
         }
 
         &.last {
-          padding: 10px 0 5px 20px;
+          padding: 10px 0 5px 30px;
+          @include svg-bg(tree_two);
         }
       }
 
@@ -101,10 +107,10 @@
       }
 
       &.active-trail {
-        background: $night;
+        background-color: $night;
 
         li {
-          background: $night;
+          background-color: $night;
         }
       }
 
@@ -138,7 +144,6 @@
     .menu {
       display: none;
   }
-
 }
 
 .user-image {
