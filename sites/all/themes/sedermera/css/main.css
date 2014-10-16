@@ -1,4 +1,10 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic");
+h1 {
+  font-size: 48px;
+  font-size: 4.8rem;
+  line-height: 62.4px;
+  font-weight: 300; }
+
 a {
   text-decoration: none; }
 
@@ -46,7 +52,10 @@ body {
   height: 100%; }
 
 #main-content {
-  overflow: hidden; }
+  overflow: hidden;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 18.2px; }
 
 #main-sidebar {
   background-color: #282828;
@@ -125,3 +134,14 @@ body {
   left: 0;
   right: 0;
   bottom: 0; }
+
+#page-messages .messages {
+  padding: 20px 40px;
+  color: #fff;
+  font-weight: 500; }
+  #page-messages .messages.status {
+    background: #76c043; }
+  #page-messages .messages.warning {
+    background: #f9a400; }
+  #page-messages .messages.error {
+    background: #c04343; }

@@ -1,0 +1,20 @@
+#page-messages {
+
+  .messages {
+    padding: 20px 40px;
+    color: $snow;
+    font-weight: 500;
+
+    &.status {
+      background: $cactus;
+    }
+
+    &.warning {
+      background: $mustard;
+    }
+
+    &.error {
+      background: $wine;
+    }
+  }
+}
