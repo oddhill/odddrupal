@@ -55,7 +55,8 @@ body {
   overflow: hidden;
   font-size: 14px;
   font-size: 1.4rem;
-  line-height: 18.2px; }
+  line-height: 18.2px;
+  padding: 40px; }
   #main-content #page-actions {
     float: right;
     margin-top: 16px; }
@@ -86,6 +87,8 @@ body {
           transition: background-color 0.1s ease-in-out; }
           #main-content #page-actions ul.action-links li a:hover {
             background-color: #303030; }
+  #main-content #page-content {
+    margin-top: 40px; }
 
 #main-sidebar {
   background-color: #282828;
@@ -202,13 +205,15 @@ body {
   margin-right: 20px;
   width: 40%; }
 
-#page-messages .messages {
-  padding: 20px 40px;
-  color: #fff;
-  font-weight: 500; }
-  #page-messages .messages.status {
-    background: #76c043; }
-  #page-messages .messages.warning {
-    background: #f9a400; }
-  #page-messages .messages.error {
-    background: #c04343; }
+#page-messages {
+  margin: -40px -40px 40px; }
+  #page-messages .messages {
+    padding: 20px 40px;
+    color: #fff;
+    font-weight: 500; }
+    #page-messages .messages.status {
+      background: #76c043; }
+    #page-messages .messages.warning {
+      background: #f9a400; }
+    #page-messages .messages.error {
+      background: #c04343; }
