@@ -103,6 +103,10 @@ body {
         padding: 10px 0 5px 20px; }
     #main-navigation ul.menu li.expanded > a {
       color: #fff; }
+    #main-navigation ul.menu li.active-trail {
+      background: #1a1a1a; }
+      #main-navigation ul.menu li.active-trail li {
+        background: #1a1a1a; }
     #main-navigation ul.menu li.last {
       margin-bottom: 0; }
 

@@ -81,6 +81,14 @@
         }
       }
 
+      &.active-trail {
+        background: $night;
+
+        li {
+          background: $night;
+        }
+      }
+
       &.last {
         margin-bottom: 0;
       }
