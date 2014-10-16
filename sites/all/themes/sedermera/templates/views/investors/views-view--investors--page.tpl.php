@@ -16,6 +16,7 @@
   <?php print $header; ?>
 
   <div class="table-filter">
+    <h2 class="filter-icon"><span class="icon">Filtrera</span></h2>
     <?php print $exposed; ?>
   </div>
 

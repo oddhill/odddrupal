@@ -15,6 +15,11 @@
     padding-left: 42px;
   }
 
+  @if $icon == update {
+    text-align: center;
+    width: 100%;
+  }
+
   background-color: $background;
   @include transition (background-color 0.1s ease-in-out);
 

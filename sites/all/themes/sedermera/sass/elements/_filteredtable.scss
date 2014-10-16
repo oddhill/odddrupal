@@ -3,7 +3,31 @@
 .table-filter {
   float: left;
   background: $woll;
-  padding: 20px 10px 10px 10px;
+
+  h2.filter-icon {
+    background: $dark-grey;
+    padding: 11px 0 11px 0;
+
+    .icon {
+      @include svg-bg(filter_icon);
+      display: block;
+      margin: 0px auto;
+      width: 20px;
+      height: 20px;
+      font-size: 0;
+      color: $dark-grey;
+      text-indent: 42px;
+      overflow: hidden;
+    }
+  }
+
+  form {
+    padding: 20px 10px 10px 10px;
+
+    .form-submit {
+      @include button($dark-grey,update);
+    }
+  }
 }
 
 .table-wrapper {
