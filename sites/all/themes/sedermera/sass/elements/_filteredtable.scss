@@ -1,0 +1,15 @@
+// TABLE-WRAPPER
+
+.table-filter {
+  float: left;
+  background: $woll;
+  padding: 20px 10px 10px 10px;
+}
+
+.table-wrapper {
+  overflow: hidden;
+
+  table {
+    width: 100%;
+  }
+}

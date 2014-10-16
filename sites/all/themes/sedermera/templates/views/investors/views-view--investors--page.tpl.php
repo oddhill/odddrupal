@@ -14,7 +14,11 @@
 ?>
 <div id="investor-table">
   <?php print $header; ?>
-  <?php print $exposed; ?>
+
+  <div class="table-filter">
+    <?php print $exposed; ?>
+  </div>
+
   <?php print $attachment_before; ?>
 
   <div class="table-wrapper">
