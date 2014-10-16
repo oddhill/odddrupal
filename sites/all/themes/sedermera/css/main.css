@@ -86,7 +86,7 @@ body {
       line-height: 21px;
       line-height: 20px;
       font-weight: 500; }
-      #main-navigation ul.menu li a.active#investors {
+      #main-navigation ul.menu li a.active-trail#investors {
         background: url("../graphics/investors_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/investors_white.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a:hover {
@@ -129,11 +129,41 @@ body {
       margin-bottom: 0; }
 
 #user {
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px;
+  color: #fff;
   background-color: #202020;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0; }
+  bottom: 0;
+  padding: 20px 0 20px 0; }
+  #user h2 {
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px;
+    text-transform: uppercase;
+    color: #f9a400;
+    font-weight: 700;
+    line-height: 10px; }
+  #user .menu {
+    display: none; }
+
+.user-image {
+  background: url("../graphics/user_male.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/user_male.svg") transparent 0 0 no-repeat;
+  float: left;
+  width: 20%;
+  height: auto;
+  padding-bottom: 20px;
+  margin-left: 50px;
+  text-indent: -9999px; }
+
+.user-status {
+  float: left;
+  margin-right: 20px;
+  width: 40%; }
 
 #page-messages .messages {
   padding: 20px 40px;

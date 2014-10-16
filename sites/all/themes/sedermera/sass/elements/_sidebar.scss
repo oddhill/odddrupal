@@ -38,7 +38,7 @@
         line-height: 20px;
         font-weight: 500;
 
-        &.active {
+        &.active-trail {
 
           &#investors {
             @include svg-bg(investors_white);
@@ -118,9 +118,41 @@
 // USER LOGGED IN
 
 #user {
+  @include font-size(1.6);
+  color: $snow;
   background-color: $medium-grey;
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
+  padding: 20px 0 20px 0;
+
+    h2 {
+      @include font-size(1.1);
+      text-transform: uppercase;
+      color: $mustard;
+      font-weight: 700;
+      line-height: 10px;
+    }
+
+    .menu {
+      display: none;
+  }
+
+}
+
+.user-image {
+  @include svg-bg(user_male);
+  float: left;
+  width: 20%;
+  height: auto;
+  padding-bottom: 20px;
+  margin-left: 50px;
+  text-indent: -9999px;
+}
+
+.user-status {
+  float: left;
+  margin-right: 20px;
+  width: 40%;
 }

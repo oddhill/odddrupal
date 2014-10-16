@@ -21,8 +21,10 @@
  */
 ?>
 <div id="user">
-  <div class="block-header">
-    Inloggad som <h2><?php print $block->subject; ?></h2>
+  <div class="user-image">User</div>
+    <div class="user-status">
+      <h2>Inloggad som</h2>
+      <?php print $block->subject; ?>
   </div>
 
   <?php print $content ?>
