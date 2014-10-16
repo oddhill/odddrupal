@@ -17,10 +17,10 @@ function f_investor_menu_default_menu_links() {
     'router_path' => 'investerare',
     'link_title' => 'Alla investerare',
     'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
       'identifier' => 'main-menu_alla-investerare:investerare',
+      'attributes' => array(
+        'id' => 'all_investors',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -38,12 +38,12 @@ function f_investor_menu_default_menu_links() {
     'router_path' => '<firstchild>',
     'link_title' => 'Investerare',
     'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
       'alter' => TRUE,
       'unaltered_hidden' => 0,
       'identifier' => 'main-menu_investerare:<firstchild>',
+      'attributes' => array(
+        'id' => 'investors',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -60,10 +60,10 @@ function f_investor_menu_default_menu_links() {
     'router_path' => 'investerare/skapa',
     'link_title' => 'Lägg till investerare',
     'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
       'identifier' => 'main-menu_lgg-till-investerare:investerare/skapa',
+      'attributes' => array(
+        'id' => 'add_investor',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
