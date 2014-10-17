@@ -4,6 +4,7 @@ core = 7.x
 ; Assets.
 scripts[] = assets/selectivizr-1.0.2/selectivizr-min.js
 scripts[] = assets/modernizr/modernizr.min.js
+scripts[] = assets/uniform/jquery.uniform.js
 
 ; Javascripts.
 scripts[] = js/main.js
@@ -11,6 +12,7 @@ scripts[] = js/main.js
 ; Stylesheets.
 stylesheets[screen][] = css/normalize.css
 stylesheets[print][] = css/print.css
+stylesheets[screen][] = assets/uniform/theme/_base/css/uniform._base.css
 stylesheets[screen][] = css/main.css
 
 ; Regions.
