@@ -7,6 +7,7 @@
   h2.filter-icon {
     background: $dark-grey;
     padding: 11px 0 11px 0;
+    border-bottom: 1px solid;
 
     .icon {
       @include svg-bg(filter_icon);
@@ -35,5 +36,68 @@
 
   table {
     width: 100%;
+
+    thead {
+      background: $table-head-grey;
+      border-top: 1px solid $woll;
+      border-bottom: 1px solid $woll;
+
+      th {
+        height: 40px;
+
+        &.views-field {
+          padding: 10px 0px 10px 10px;
+
+          &.active {
+
+            a {
+              border-bottom: 2px solid $mustard;
+            }
+          }
+        }
+
+        a {
+          font-size: $standard;
+          font-weight: 700;
+          float: left;
+          color: $coffee;
+          padding-left: 0px;
+
+          img {
+            margin-left: 5px;
+            border-bottom: none;
+          }
+        }
+      }
+    }
+
+    td {
+      height: 40px;
+      padding: 10px 0 10px 10px;
+    }
+
+    tr:nth-child(even) {
+
+      td {
+      background: #fafbfc;
+      border-top: 1px solid $light-grey;
+      border-bottom: 1px solid $light-grey;
+      }
+    }
+
+    tr:nth-child(odd) {
+
+      td {
+        background: #fff;
+      }
+    }
+
+    td {
+      color: $dark-concrete;
+
+      a {
+        color: $dark-concrete;
+      }
+    }
   }
 }

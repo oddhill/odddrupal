@@ -46,7 +46,8 @@ body {
   height: 100%;
   background: #f3f4f8;
   color: #282828;
-  font-family: "Roboto", sans-serif; }
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4; }
 
 #site-wrapper {
   height: 100%; }
@@ -148,7 +149,7 @@ body {
         line-height: 12px;
         padding-left: 22px; }
         #main-navigation ul.menu li li a.active {
-          color: #f9a400; }
+          color: #f9a500; }
           #main-navigation ul.menu li li a.active#all_investors {
             background: url("../graphics/list_small_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/list_small_yellow.svg") transparent 0 0 no-repeat; }
@@ -184,7 +185,7 @@ body {
     font-size: 1.1rem;
     line-height: 16.5px;
     text-transform: uppercase;
-    color: #f9a400;
+    color: #f9a500;
     font-weight: 700;
     line-height: 10px; }
   #user .menu {
@@ -214,7 +215,7 @@ body {
     #page-messages .messages.status {
       background: #76c043; }
     #page-messages .messages.warning {
-      background: #f9a400; }
+      background: #f9a500; }
     #page-messages .messages.error {
       background: #c04343; }
 
@@ -223,7 +224,8 @@ body {
   background: #e0e2e6; }
   .table-filter h2.filter-icon {
     background: #454545;
-    padding: 11px 0 11px 0; }
+    padding: 11px 0 11px 0;
+    border-bottom: 1px solid; }
     .table-filter h2.filter-icon .icon {
       background: url("../graphics/filter_icon.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/filter_icon.svg") transparent 0 0 no-repeat;
@@ -262,3 +264,35 @@ body {
   overflow: hidden; }
   .table-wrapper table {
     width: 100%; }
+    .table-wrapper table thead {
+      background: #ebedf1;
+      border-top: 1px solid #e0e2e6;
+      border-bottom: 1px solid #e0e2e6; }
+      .table-wrapper table thead th {
+        height: 40px; }
+        .table-wrapper table thead th.views-field {
+          padding: 10px 0px 10px 10px; }
+          .table-wrapper table thead th.views-field.active a {
+            border-bottom: 2px solid #f9a500; }
+        .table-wrapper table thead th a {
+          font-size: 1.4;
+          font-weight: 700;
+          float: left;
+          color: #282828;
+          padding-left: 0px; }
+          .table-wrapper table thead th a img {
+            margin-left: 5px;
+            border-bottom: none; }
+    .table-wrapper table td {
+      height: 40px;
+      padding: 10px 0 10px 10px; }
+    .table-wrapper table tr:nth-child(even) td {
+      background: #fafbfc;
+      border-top: 1px solid #f3f4f8;
+      border-bottom: 1px solid #f3f4f8; }
+    .table-wrapper table tr:nth-child(odd) td {
+      background: #fff; }
+    .table-wrapper table td {
+      color: #363636; }
+      .table-wrapper table td a {
+        color: #363636; }
