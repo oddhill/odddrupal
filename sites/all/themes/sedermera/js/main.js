@@ -17,6 +17,8 @@ $(document).ready(function() {
     });
   }
 
+  $("select, input[type='checkbox'], input[type='radio']").uniform();
+
 });
 
 })(jQuery);
