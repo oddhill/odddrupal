@@ -276,6 +276,8 @@ body {
       transition: background-color 0.1s ease-in-out; }
       .table-filter form .form-submit:hover {
         background-color: #303030; }
+    .table-filter form .form-item {
+      background: #d4d6d9; }
 
 .table-wrapper {
   overflow: hidden; }
@@ -311,9 +313,6 @@ body {
       background: #fff; }
     .table-wrapper table td {
       color: #363636; }
-
-.form-item {
-  background: #d4d6d9; }
 
 /* General settings */
 div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {

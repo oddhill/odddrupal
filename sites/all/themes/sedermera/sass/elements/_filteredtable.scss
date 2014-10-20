@@ -28,6 +28,10 @@
     .form-submit {
       @include button($dark-grey,update);
     }
+
+    .form-item {
+      background: #d4d6d9;
+    }
   }
 }
 
@@ -93,12 +97,4 @@
       color: $dark-concrete;
     }
   }
-}
-
-label {
-
-}
-
-.form-item {
-  background: #d4d6d9;
 }
