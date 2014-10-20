@@ -8,6 +8,7 @@
   padding: 0 20px;
   font-weight: 500;
   text-transform: uppercase;
+  border-bottom: 0px none;
 
   @if $icon == add {
     @include svg-bg(add_small_light);

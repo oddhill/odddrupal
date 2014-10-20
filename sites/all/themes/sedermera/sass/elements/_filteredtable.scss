@@ -2,7 +2,7 @@
 
 .table-filter {
   float: left;
-  background: $woll;
+  background: $wool;
 
   h2.filter-icon {
     background: $dark-grey;
@@ -38,9 +38,9 @@
     width: 100%;
 
     thead {
-      background: $table-head-grey;
-      border-top: 1px solid $woll;
-      border-bottom: 1px solid $woll;
+      background: $aluminium;
+      border-top: 1px solid $wool;
+      border-bottom: 1px solid $wool;
 
       th {
         height: 40px;
@@ -61,6 +61,7 @@
           font-weight: 700;
           float: left;
           color: $coffee;
+          border-bottom: 0px none;
 
           img {
             margin-left: 5px;
@@ -90,10 +91,6 @@
 
     td {
       color: $dark-concrete;
-
-      a {
-        color: $dark-concrete;
-      }
     }
   }
 }

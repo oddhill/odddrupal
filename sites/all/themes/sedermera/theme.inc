@@ -207,6 +207,40 @@ function sedermera_fieldset($variables) {
 }
 
 /**
+ * Overrides theme_node_add_list().
+ */
+function sedermera_node_add_list($variables) {
+  $content = $variables['content'];
+  $output = '';
+
+  if ($content) {
+    $output = '<ul class="create-type-list">';
+    foreach ($content as $item) {
+
+      // Allow html in item link.
+      $item['localized_options']['html'] = TRUE;
+
+      // Add class to item link.
+      $item['localized_options']['attributes']['class'] = 'item';
+
+      // Create markup for item link.
+      $markup = '<span class="title">' . $item['title'] . '</span>';
+      $markup .= '<span class="description">' . filter_xss_admin($item['description']) . '</span>';
+
+      // Output the items.
+      $output .= '<li class="type"><div class="type-container">';
+      $output .= l($markup, $item['href'], $item['localized_options']);
+      $output .= '</div></li>';
+    }
+    $output .= '</ul>';
+  }
+  else {
+    $output = '<p>' . t('You have not created any content types yet. Go to the <a href="@create-content">content type creation page</a> to add a new content type.', array('@create-content' => url('admin/structure/types/add'))) . '</p>';
+  }
+  return $output;
+}
+
+/**
  * Overrides theme_textarea().
  */
 function sedermera_textarea($variables) {
