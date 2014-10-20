@@ -1,0 +1,20 @@
+div.checker {
+
+  span {
+    @include svg-bg(checkbox_unchecked);
+
+    &.checked {
+      @include svg-bg(checkbox_checked);
+    }
+  }
+
+  &.focus {
+      @include svg-bg(checkbox_checked);
+  }
+
+  &.hover {
+    span {
+      @include svg-bg(checkbox_hover);
+    }
+  }
+}
