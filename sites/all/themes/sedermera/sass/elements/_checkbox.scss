@@ -1,0 +1,64 @@
+div.checker {
+
+  span {
+    @include svg-bg(checkbox_unchecked);
+    background-position: 0 0;
+
+    &.checked {
+      @include svg-bg(checkbox_checked);
+      background-position: 0 0;
+    }
+  }
+
+  &.focus {
+
+    span {
+      @include svg-bg(checkbox_hover);
+      background-position: 0 0;
+
+      &.checked {
+        @include svg-bg(checkbox_checked);
+        background-position: 0 0;
+      }
+    }
+  }
+
+  &.focus.active {
+
+    span {
+      @include svg-bg(checkbox_hover);
+      background-position: 0 0;
+
+      &.checked {
+        @include svg-bg(checkbox_checked);
+        background-position: 0 0;
+      }
+    }
+  }
+
+  &.hover {
+
+    span {
+      @include svg-bg(checkbox_hover);
+      background-position: 0 0;
+
+      &.checked {
+        @include svg-bg(checkbox_checked);
+        background-position: 0 0;
+      }
+    }
+  }
+
+  &.hover.active {
+
+    span {
+      @include svg-bg(checkbox_hover);
+      background-position: 0 0;
+
+      &.checked {
+        @include svg-bg(checkbox_checked);
+        background-position: 0 0;
+      }
+    }
+  }
+}

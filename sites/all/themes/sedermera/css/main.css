@@ -595,16 +595,44 @@ div.button {
 
 div.checker span {
   background: url("../graphics/checkbox_unchecked.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_unchecked.svg") transparent 0 0 no-repeat; }
+  background: none, url("../graphics/checkbox_unchecked.svg") transparent 0 0 no-repeat;
+  background-position: 0 0; }
   div.checker span.checked {
     background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat; }
-div.checker.focus {
-  background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat; }
+    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    background-position: 0 0; }
+div.checker.focus span {
+  background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
+  background-position: 0 0; }
+  div.checker.focus span.checked {
+    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    background-position: 0 0; }
+div.checker.focus.active span {
+  background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
+  background-position: 0 0; }
+  div.checker.focus.active span.checked {
+    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    background-position: 0 0; }
 div.checker.hover span {
   background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat; }
+  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
+  background-position: 0 0; }
+  div.checker.hover span.checked {
+    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    background-position: 0 0; }
+div.checker.hover.active span {
+  background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
+  background-position: 0 0; }
+  div.checker.hover.active span.checked {
+    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    background-position: 0 0; }
 
 .page-investerare-skapa ul.create-type-list {
   list-style: none;
