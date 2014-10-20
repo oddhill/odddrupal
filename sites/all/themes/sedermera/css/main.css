@@ -285,16 +285,19 @@ body {
     .table-wrapper table td {
       height: 40px;
       padding: 10px 0 10px 10px; }
-    .table-wrapper table tr:nth-child(even) td {
+    .table-wrapper table tr.even {
       background: #fafbfc;
       border-top: 1px solid #f3f4f8;
       border-bottom: 1px solid #f3f4f8; }
-    .table-wrapper table tr:nth-child(odd) td {
+    .table-wrapper table tr.odd {
       background: #fff; }
     .table-wrapper table td {
       color: #363636; }
       .table-wrapper table td a {
         color: #363636; }
+
+.form-item {
+  background: #d4d6d9; }
 
 /* General settings */
 div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {

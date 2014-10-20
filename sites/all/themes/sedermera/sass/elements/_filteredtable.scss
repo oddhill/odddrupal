@@ -75,18 +75,15 @@
       padding: 10px 0 10px 10px;
     }
 
-    tr:nth-child(even) {
+    tr {
 
-      td {
+      &.even {
       background: #fafbfc;
       border-top: 1px solid $light-grey;
       border-bottom: 1px solid $light-grey;
       }
-    }
 
-    tr:nth-child(odd) {
-
-      td {
+      &.odd {
         background: #fff;
       }
     }
@@ -99,4 +96,12 @@
       }
     }
   }
+}
+
+label {
+
+}
+
+.form-item {
+  background: #d4d6d9;
 }
