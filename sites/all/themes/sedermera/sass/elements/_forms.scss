@@ -1,9 +1,10 @@
-form {
+.page-admin form {
+  max-width: 800px;
 
   fieldset {
     position: relative;
     background: $wool;
-    padding: 52px 20px 20px;
+    padding: 52px 20px 0px;
     margin-bottom: 20px;
 
     legend {
@@ -17,9 +18,122 @@ form {
         height: 32px;
         padding: 0 10px;
         @include font-size(2.0,1.6);
-        font-weight: 500;
+        font-weight: 400;
         text-transform: uppercase;
       }
+    }
+
+    .fieldset-description {
+      @include font-size(1.2,1.3);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+  }
+
+  .form-item {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .description {
+      @include font-size(1.2,1.3);
+      font-style: italic;
+    }
+
+    &.form-type-select {
+      position: relative;
+
+      .ajax-progress {
+        margin: 0 3px;
+        padding: 9px 4px;
+        background: $snow;
+        z-index: 10;
+        position: absolute;
+        height: 39px;
+        width: 200px;
+
+        .throbber {
+          @include throbber;
+        }
+
+        .message {
+          display: none;
+        }
+      }
+    }
+
+    &.form-type-textfield {
+      position: relative;
+
+      label {
+        position: absolute;
+        top: 11px;
+        left: 10px;
+      }
+
+      #autocomplete {
+        border: 0 none;
+        margin: 3px 0 0;
+        box-shadow: 0 0 3px tint($dark-grey,50%);
+
+        ul {
+
+          li {
+            height: 32px;
+            line-height: 32px;
+            border-bottom: 1px solid $wool;
+            cursor: pointer;
+            padding: 0 10px;
+
+            &:hover {
+              background: $light-grey;
+            }
+          }
+        }
+      }
+
+      .throbber {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border: 2px solid $wool;
+        margin-left: -23px;
+        border-radius: 50%;
+
+        &.throbbing {
+          margin: -3px -3px -3px -26px;
+          width: 16px;
+          height: 16px;
+          border-color: $mustard;
+          border-top-color: transparent;
+          @include animation(load 0.9s linear infinite);
+        }
+      }
+    }
+  }
+
+  .form-text {
+    padding: 10px 30px 10px 10px;
+    border-radius: 2px;
+    margin-bottom: 3px;
+
+    &.form-autocomplete {
+
+      .js & {
+        background-image: none;
+
+        &.throbbing {
+          background-image: none;
+        }
+      }
+    }
+
+    &:focus {
+      box-shadow: 0 0 3px tint($dark-grey,50%);
     }
   }
 

@@ -24,18 +24,19 @@ function f_investor_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'field_invest_comp_name',
-      1 => 'field_shared_temp',
-      2 => 'field_invest_comp_own',
-      3 => 'field_shared_industries',
+      1 => 'field_invest_comp_own',
+      2 => 'field_shared_industries',
+      3 => 'field_shared_temp',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Grundläggande',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-invest-comp-1 field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-invest-comp-1 field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_invest_comp_1|investor|company|form'] = $field_group;
@@ -53,18 +54,19 @@ function f_investor_field_group_info() {
     'label' => 'Kontaktuppgifter',
     'weight' => '2',
     'children' => array(
-      0 => 'field_shared_email',
-      1 => 'field_shared_cell',
+      0 => 'field_shared_cell',
+      1 => 'field_shared_email',
       2 => 'field_shared_phone',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Kontaktuppgifter',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-invest-comp-2 field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-invest-comp-2 field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_invest_comp_2|investor|company|form'] = $field_group;
@@ -84,17 +86,18 @@ function f_investor_field_group_info() {
     'children' => array(
       0 => 'field_invest_pers_first_name',
       1 => 'field_invest_pers_last_name',
-      2 => 'field_shared_temp',
-      3 => 'field_shared_industries',
+      2 => 'field_shared_industries',
+      3 => 'field_shared_temp',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Grundläggande',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-invest-pers-1 field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-invest-pers-1 field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_invest_pers_1|investor|person|form'] = $field_group;
@@ -112,18 +115,19 @@ function f_investor_field_group_info() {
     'label' => 'Kontaktuppgifter',
     'weight' => '2',
     'children' => array(
-      0 => 'field_shared_email',
-      1 => 'field_shared_cell',
+      0 => 'field_shared_cell',
+      1 => 'field_shared_email',
       2 => 'field_shared_phone',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Kontaktuppgifter',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-invest-pers-2 field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-invest-pers-2 field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_invest_pers_2|investor|person|form'] = $field_group;

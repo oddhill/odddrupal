@@ -1,4 +1,5 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic");
+@import url("http://gregfranko.com/jquery.selectBoxIt.js/css/jquery.selectBoxIt.css");
 h1 {
   font-size: 48px;
   font-size: 4.8rem;
@@ -21,6 +22,65 @@ a {
   a:hover {
     border-bottom: 1px solid #1a1a1a; }
 
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(-180deg); } }
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(-180deg); } }
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg); } }
+@-webkit-keyframes unRotate {
+  from {
+    -webkit-transform: rotate(-180deg); }
+  to {
+    -webkit-transform: rotate(0deg); } }
+@-moz-keyframes unRotate {
+  from {
+    -moz-transform: rotate(-180deg); }
+  to {
+    -moz-transform: rotate(0deg); } }
+@keyframes unRotate {
+  from {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg); }
+  to {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); } }
+@-webkit-keyframes load {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes load {
+  100% {
+    -moz-transform: rotate(360deg); } }
+@keyframes load {
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -703,6 +763,62 @@ div.checker.hover.active span {
     background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
 
+.selectboxit-container * {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px; }
+.selectboxit-container .selectboxit {
+  border-radius: 2px; }
+.selectboxit-container .selectboxit-text {
+  font-weight: 500; }
+.selectboxit-container span {
+  height: 39px;
+  line-height: 39px; }
+.selectboxit-container .selectboxit-btn {
+  background: #fff;
+  border: 0px none; }
+  .selectboxit-container .selectboxit-btn .selectboxit-arrow-container {
+    right: 5px; }
+    .selectboxit-container .selectboxit-btn .selectboxit-arrow-container .selectboxit-arrow {
+      margin-top: -2px; }
+  .selectboxit-container .selectboxit-btn.selectboxit-hover {
+    background: #fff; }
+  .selectboxit-container .selectboxit-btn.selectboxit-focus {
+    background: #fff;
+    box-shadow: 0 0 3px #a2a2a2; }
+  .selectboxit-container .selectboxit-btn.selectboxit-open .selectboxit-arrow-container {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -webkit-animation: rotate 0.2s ease-in;
+    -moz-animation: rotate 0.2s ease-in;
+    animation: rotate 0.2s ease-in; }
+.selectboxit-container .selectboxit-options {
+  border-radius: 0px;
+  border: 0 none;
+  margin: 3px 0 0;
+  box-shadow: 0 0 3px #a2a2a2;
+  background: transparent; }
+  .selectboxit-container .selectboxit-options .selectboxit-option span,
+  .selectboxit-container .selectboxit-options .selectboxit-option a {
+    height: 32px;
+    line-height: 32px;
+    border: 0 none; }
+  .selectboxit-container .selectboxit-options .selectboxit-option a {
+    border-bottom: 1px solid #e0e2e6;
+    background: #fff; }
+    .selectboxit-container .selectboxit-options .selectboxit-option a:hover {
+      border-color: #e0e2e6;
+      background: #f3f4f8;
+      color: #282828; }
+  .selectboxit-container .selectboxit-options .selectboxit-option.selectboxit-focus a {
+    border-color: #e0e2e6;
+    background: #f3f4f8;
+    color: #282828; }
+
 .page-investerare-skapa ul.create-type-list {
   list-style: none;
   margin: 0 -10px;
@@ -732,44 +848,130 @@ div.checker.hover.active span {
         .page-investerare-skapa ul.create-type-list li.type .type-container a.item:hover {
           border-top: 1px solid #1a1a1a; }
 
-form fieldset {
-  position: relative;
-  background: #e0e2e6;
-  padding: 52px 20px 20px;
-  margin-bottom: 20px; }
-  form fieldset legend span.fieldset-legend {
-    display: block;
-    position: absolute;
-    left: 10px;
-    top: 0px;
-    background: #d4d6d9;
-    height: 32px;
-    padding: 0 10px;
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 32px;
+.page-admin form {
+  max-width: 800px; }
+  .page-admin form fieldset {
+    position: relative;
+    background: #e0e2e6;
+    padding: 52px 20px 0px;
+    margin-bottom: 20px; }
+    .page-admin form fieldset legend span.fieldset-legend {
+      display: block;
+      position: absolute;
+      left: 10px;
+      top: 0px;
+      background: #d4d6d9;
+      height: 32px;
+      padding: 0 10px;
+      font-size: 20px;
+      font-size: 2rem;
+      line-height: 32px;
+      font-weight: 400;
+      text-transform: uppercase; }
+    .page-admin form fieldset .fieldset-description {
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 15.6px;
+      margin-bottom: 20px;
+      font-style: italic; }
+  .page-admin form .form-item {
+    margin-bottom: 20px; }
+    .page-admin form .form-item label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 3px; }
+    .page-admin form .form-item .description {
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 15.6px;
+      font-style: italic; }
+    .page-admin form .form-item.form-type-select {
+      position: relative; }
+      .page-admin form .form-item.form-type-select .ajax-progress {
+        margin: 0 3px;
+        padding: 9px 4px;
+        background: #fff;
+        z-index: 10;
+        position: absolute;
+        height: 39px;
+        width: 200px; }
+        .page-admin form .form-item.form-type-select .ajax-progress .throbber {
+          display: inline-block;
+          background: transparent;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #f9a500;
+          border-radius: 50%;
+          border-top-color: transparent;
+          -webkit-animation: load 0.9s linear infinite;
+          -moz-animation: load 0.9s linear infinite;
+          animation: load 0.9s linear infinite; }
+        .page-admin form .form-item.form-type-select .ajax-progress .message {
+          display: none; }
+    .page-admin form .form-item.form-type-textfield {
+      position: relative; }
+      .page-admin form .form-item.form-type-textfield label {
+        position: absolute;
+        top: 11px;
+        left: 10px; }
+      .page-admin form .form-item.form-type-textfield #autocomplete {
+        border: 0 none;
+        margin: 3px 0 0;
+        box-shadow: 0 0 3px #a2a2a2; }
+        .page-admin form .form-item.form-type-textfield #autocomplete ul li {
+          height: 32px;
+          line-height: 32px;
+          border-bottom: 1px solid #e0e2e6;
+          cursor: pointer;
+          padding: 0 10px; }
+          .page-admin form .form-item.form-type-textfield #autocomplete ul li:hover {
+            background: #f3f4f8; }
+      .page-admin form .form-item.form-type-textfield .throbber {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border: 2px solid #e0e2e6;
+        margin-left: -23px;
+        border-radius: 50%; }
+        .page-admin form .form-item.form-type-textfield .throbber.throbbing {
+          margin: -3px -3px -3px -26px;
+          width: 16px;
+          height: 16px;
+          border-color: #f9a500;
+          border-top-color: transparent;
+          -webkit-animation: load 0.9s linear infinite;
+          -moz-animation: load 0.9s linear infinite;
+          animation: load 0.9s linear infinite; }
+  .page-admin form .form-text {
+    padding: 10px 30px 10px 10px;
+    border-radius: 2px;
+    margin-bottom: 3px; }
+    .js .page-admin form .form-text.form-autocomplete {
+      background-image: none; }
+      .js .page-admin form .form-text.form-autocomplete.throbbing {
+        background-image: none; }
+    .page-admin form .form-text:focus {
+      box-shadow: 0 0 3px #a2a2a2; }
+  .page-admin form .form-submit {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
     font-weight: 500;
-    text-transform: uppercase; }
-form .form-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0px none;
-  background: url("../graphics/save_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/save_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  form .form-submit:hover {
-    background-color: #303030; }
+    text-transform: uppercase;
+    border-bottom: 0px none;
+    background: url("../graphics/save_small_light.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/save_small_light.svg") transparent 0 0 no-repeat;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out; }
+    .page-admin form .form-submit:hover {
+      background-color: #303030; }

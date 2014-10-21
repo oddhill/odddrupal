@@ -34,3 +34,14 @@
     background-color: shade($background,30%);
   }
 }
+
+@mixin throbber {
+  display: inline-block;
+  background: transparent;
+  width: 16px;
+  height: 16px;
+  border: 2px solid $mustard;
+  border-radius: 50%;
+  border-top-color: transparent;
+  @include animation(load 0.9s linear infinite);
+}
