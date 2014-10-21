@@ -20,6 +20,20 @@ if (Drupal.jsAC) {
   };
 }
 
+filterHeightMatch = function() {
+
+  var $target = $('.filtered-table');
+  var $filter = $target.find('.table-filter');
+  var $wrapper = $target.find('.table-wrapper');
+  var filterHeight = $filter.outerHeight();
+  var wrapperHeight = $wrapper.outerHeight();
+
+  if (filterHeight < wrapperHeight) {
+    $filter.height(wrapperHeight);
+  }
+
+};
+
 // Run whenever the DOM tree is changed, e.g. through AJAX/AHAH
 Drupal.behaviors.sedermera = {
   attach: function (context, settings) {
@@ -33,6 +47,8 @@ Drupal.behaviors.sedermera = {
       labelTop:11,
       opacity: 0.5
     });
+
+    filterHeightMatch();
 
   }
 };

@@ -116,7 +116,7 @@ body {
 
 ul.pager {
   list-style: none;
-  margin: 22px 0 0 0; }
+  margin: 22px 0 0 245px; }
   ul.pager:before {
     font-size: 11px;
     font-size: 1.1rem;
@@ -278,6 +278,10 @@ ul.pager {
       background: #f9a500; }
     #page-messages .messages.error {
       background: #c04343; }
+
+.filtered-table {
+  overflow: hidden;
+  background: #fff; }
 
 .table-filter {
   float: left;

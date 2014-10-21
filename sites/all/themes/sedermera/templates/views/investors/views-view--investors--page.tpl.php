@@ -12,7 +12,7 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div id="investor-table">
+<div id="investor-table" class="filtered-table">
   <?php print $header; ?>
 
   <div class="table-filter">
@@ -24,7 +24,6 @@
 
   <div class="table-wrapper">
     <?php print $rows; ?>
-    <?php print $pager; ?>
   </div>
 
   <?php print $empty; ?>
@@ -32,3 +31,4 @@
   <?php print $more; ?>
   <?php print $footer; ?>
 </div>
+<?php print $pager; ?>
