@@ -113,6 +113,33 @@ body {
   #main-content #page-content {
     margin-top: 40px; }
 
+ul.pager {
+  list-style: none; }
+  ul.pager li {
+    display: inline-block;
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px; }
+    ul.pager li.pager-current {
+      background: #454545;
+      border-radius: 3px;
+      color: #e0e2e6;
+      padding: 0 7px;
+      line-height: 21px;
+      font-weight: 700; }
+    ul.pager li a {
+      background: #d5d7da;
+      display: block;
+      border-bottom: 0 none;
+      border-radius: 3px;
+      color: #282828;
+      font-weight: 700;
+      padding: 0 7px;
+      line-height: 21px; }
+      ul.pager li a:hover {
+        background: #b2b3b6;
+        color: #fff; }
+
 #main-sidebar {
   background-color: #282828; }
   #main-sidebar a {

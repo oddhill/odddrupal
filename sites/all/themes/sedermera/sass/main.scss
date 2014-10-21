@@ -103,5 +103,40 @@ body {
   }
 }
 
+// Pager
+ul.pager {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    @include font-size(1.1);
+
+    &.pager-current {
+      background: $dark-grey;
+      border-radius: 3px;
+      color: $wool;
+      padding: 0 7px;
+      line-height: 21px;
+      font-weight: 700;
+    }
+
+    a {
+      background: $stone;
+      display: block;
+      border-bottom: 0 none;
+      border-radius: 3px;
+      color: $coffee;
+      font-weight: 700;
+      padding: 0 7px;
+      line-height: 21px;
+
+      &:hover {
+        background: $cloudy;
+        color: $snow;
+      }
+    }
+  }
+}
+
 // Import page elements
 @import "elements/sidebar", "elements/messages", "elements/filteredtable", "uniform", "elements/checkbox", "content/create", "elements/forms";
