@@ -110,17 +110,18 @@ ul.pager {
 
   &:before {
     @include font-size(1.1);
+    line-height: 21px;
     float: left;
     content: "Sida";
     text-transform: uppercase;
     font-weight: 700;
     padding: 0 7px;
-    line-height: 21px;
   }
 
   li {
     display: inline-block;
     @include font-size(1.1);
+    line-height: 21px;
     margin-right: 1px;
 
     &.pager-current {
@@ -128,7 +129,6 @@ ul.pager {
       border-radius: 3px;
       color: $wool;
       padding: 0 7px;
-      line-height: 21px;
       font-weight: 700;
     }
 

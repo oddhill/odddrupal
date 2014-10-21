@@ -120,24 +120,24 @@ ul.pager {
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
+    line-height: 21px;
     float: left;
     content: "Sida";
     text-transform: uppercase;
     font-weight: 700;
-    padding: 0 7px;
-    line-height: 21px; }
+    padding: 0 7px; }
   ul.pager li {
     display: inline-block;
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
+    line-height: 21px;
     margin-right: 1px; }
     ul.pager li.pager-current {
       background: #454545;
       border-radius: 3px;
       color: #e0e2e6;
       padding: 0 7px;
-      line-height: 21px;
       font-weight: 700; }
     ul.pager li a {
       background: #d5d7da;
