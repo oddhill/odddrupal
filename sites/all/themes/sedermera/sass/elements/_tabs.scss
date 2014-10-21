@@ -1,0 +1,52 @@
+// Tabs
+
+ul.tabs {
+  list-style: none;
+  background: $aluminium;
+  border-top: 1px solid $wool;
+  border-bottom: 1px solid $wool;
+  margin-top: 70px;
+  height: 42px;
+
+  li {
+    @include font-size(1.4);
+    display: block;
+    float: left;
+    text-align: center;
+
+    a {
+      height: 40px;
+      display: inline-block;
+      padding: 0 19px 0 19px;
+      line-height: 40px;
+      border-bottom: 0 none;
+      color: $coffee;
+      border-left: 1px solid $wool;
+
+      &:hover {
+        border-bottom: 0 none;
+        background: $stone;
+        height: 40px;
+        border-bottom: 0 none;
+      }
+    }
+
+    &.active {
+
+      a {
+        font-weight: 700;
+        border-bottom: 0 none;
+        border-left: 0 none;
+        background: $snow;
+        border-top: 2px solid $mustard;
+        height: 42px;
+        margin-top: -1px;
+
+         &:hover {
+          border-bottom: 0 none;
+          background: $snow;
+        }
+      }
+    }
+  }
+}
