@@ -4,7 +4,7 @@
   fieldset {
     position: relative;
     background: $wool;
-    padding: 52px 20px 0px;
+    padding: 60px 20px 0px;
     margin-bottom: 20px;
 
     legend {
@@ -12,11 +12,12 @@
       span.fieldset-legend {
         display: block;
         position: absolute;
-        left: 10px;
+        left: 0px;
         top: 0px;
-        background: $steel;
-        height: 32px;
-        padding: 0 10px;
+        background: $light-grey;
+        height: 40px;
+        width: 100%;
+        padding: 0;
         @include font-size(2.0,1.6);
         font-weight: 400;
         text-transform: uppercase;

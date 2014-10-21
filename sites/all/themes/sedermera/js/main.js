@@ -28,7 +28,7 @@ Drupal.behaviors.sedermera = {
     $('select').selectBoxIt();
 
     // Use superLabels on our form labels.
-    $('form').superLabels({
+    $('.page-admin form').superLabels({
       labelLeft:10,
       labelTop:11,
       opacity: 0.5
