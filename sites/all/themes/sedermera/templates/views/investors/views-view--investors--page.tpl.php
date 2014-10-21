@@ -24,10 +24,10 @@
 
   <div class="table-wrapper">
     <?php print $rows; ?>
+    <?php print $pager; ?>
   </div>
 
   <?php print $empty; ?>
-  <?php print $pager; ?>
   <?php print $attachment_after; ?>
   <?php print $more; ?>
   <?php print $footer; ?>
