@@ -153,6 +153,20 @@ ul.pager {
         background: #b2b3b6;
         color: #fff; }
 
+.empty-wrapper {
+  padding: 80px 30px 0 30px; }
+  .empty-wrapper .empty-icon {
+    background: url("../graphics/sad_computer.png") transparent center top no-repeat;
+    background: none, url("../graphics/sad_computer.svg") transparent center top no-repeat;
+    height: 93px; }
+  .empty-wrapper p {
+    font-size: 20px;
+    font-size: 2rem;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 500;
+    padding-top: 30px; }
+
 #main-sidebar {
   background-color: #282828; }
   #main-sidebar a {

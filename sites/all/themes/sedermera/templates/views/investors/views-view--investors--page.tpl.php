@@ -23,10 +23,17 @@
   <?php print $attachment_before; ?>
 
   <div class="table-wrapper">
+
     <?php print $rows; ?>
+
+    <?php if ($empty) ?>
+     <div class="empty-wrapper">
+        <div class="empty-icon"></div>
+          <p><?php print $empty; ?><p>
+      </div>
+
   </div>
 
-  <?php print $empty; ?>
   <?php print $attachment_after; ?>
   <?php print $more; ?>
   <?php print $footer; ?>
