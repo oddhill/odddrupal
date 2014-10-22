@@ -35,7 +35,6 @@
     }
 
     .filter-item {
-
       margin-bottom: 20px;
 
       > label {
@@ -49,15 +48,14 @@
         margin-top: 20px;
         border-bottom: 1px solid $wool;
       }
-    }
 
-    .form-checkboxes {
-      padding: 10px 0 10px 10px;
+      > .form-item {
+        padding: 10px;
+      }
     }
 
     .form-item {
       background: $steel;
-      padding: 0;
       font-size: 12px;
 
       &.form-type-bef-checkbox {
@@ -71,6 +69,18 @@
           position: absolute;
           top: 0;
           left: 0;
+        }
+      }
+
+      &.form-type-textfield {
+
+        .form-text {
+          padding: 5px;
+          border-radius: 2px;
+
+          &:focus {
+            box-shadow: 0 0 3px tint($dark-grey,50%);
+          }
         }
       }
     }

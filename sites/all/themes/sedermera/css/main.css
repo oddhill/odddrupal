@@ -336,11 +336,10 @@ ul.pager {
         padding: 10px 0 11px 0;
         margin-top: 20px;
         border-bottom: 1px solid #e0e2e6; }
-    .table-filter form .form-checkboxes {
-      padding: 10px 0 10px 10px; }
+      .table-filter form .filter-item > .form-item {
+        padding: 10px; }
     .table-filter form .form-item {
       background: #d4d6d9;
-      padding: 0;
       font-size: 12px; }
       .table-filter form .form-item.form-type-bef-checkbox {
         height: 18px;
@@ -352,6 +351,11 @@ ul.pager {
           position: absolute;
           top: 0;
           left: 0; }
+      .table-filter form .form-item.form-type-textfield .form-text {
+        padding: 5px;
+        border-radius: 2px; }
+        .table-filter form .form-item.form-type-textfield .form-text:focus {
+          box-shadow: 0 0 3px #a2a2a2; }
 
 .table-wrapper {
   overflow: hidden; }
