@@ -6,13 +6,13 @@
 
     #page-content {
       margin-top: 0;
+      background: $snow;
+      padding: 50px 40px 50px 40px;
     }
   }
 }
 
 .entity.entity-investor {
-  background: $snow;
-  padding: 50px 40px 55px 40px;
   @include font-size(1.5);
 
   .title h2 {

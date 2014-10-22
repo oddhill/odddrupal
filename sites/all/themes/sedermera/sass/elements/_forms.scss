@@ -1,11 +1,16 @@
-.page-admin form {
+.page-admin form,
+.page-investor-person-edit form {
   max-width: 800px;
 
   fieldset {
     position: relative;
-    background: $wool;
-    padding: 60px 20px 0px;
     margin-bottom: 20px;
+
+    .fieldset-wrapper {
+      background: $wool;
+      padding: 20px 20px 5px;
+      margin-top: 40px;
+    }
 
     legend {
 
@@ -14,7 +19,6 @@
         position: absolute;
         left: 0px;
         top: 0px;
-        background: $light-grey;
         height: 40px;
         width: 100%;
         padding: 0;
