@@ -808,7 +808,8 @@ div.checker.hover.active span {
     .page-investor-company-edit form fieldset .fieldset-wrapper {
       background: #e0e2e6;
       padding: 20px 20px 5px;
-      margin-top: 40px; }
+      margin-top: 40px;
+      border-radius: 3px; }
     .page-admin form fieldset legend span.fieldset-legend,
     .page-investor-person-edit form fieldset legend span.fieldset-legend,
     .page-investor-company-edit form fieldset legend span.fieldset-legend {
