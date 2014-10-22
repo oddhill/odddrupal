@@ -1,0 +1,32 @@
+// Investor information
+
+.page-investor {
+
+  #main-content {
+
+    #page-content {
+      margin-top: 0;
+    }
+  }
+}
+
+.entity.entity-investor {
+  background: $snow;
+  padding: 50px 40px 50px 40px;
+
+  .title h2 {
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+    border-bottom: 2px solid #f3f4f8;
+    padding: 0 0 33px 0;
+    margin-bottom: 33px;
+  }
+
+  .label {
+    font-weight: 700;
+   }
+
+   .field-shared-industries {
+   }
+}
