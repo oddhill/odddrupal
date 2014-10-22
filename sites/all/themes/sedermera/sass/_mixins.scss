@@ -22,6 +22,12 @@
     padding-left: 42px;
   }
 
+  @if $icon == delete {
+    @include svg-bg(delete_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
   @if $icon == update {
     text-align: center;
     width: 100%;

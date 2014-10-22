@@ -145,6 +145,14 @@
   }
 
   .form-submit {
-    @include button($dark-grey,save);
+    margin-right: 10px;
+
+    &#edit-submit {
+      @include button($dark-grey,save);
+    }
+
+    &#edit-delete {
+      @include button($wine,delete);
+    }
   }
 }
