@@ -41,13 +41,6 @@ Drupal.behaviors.sedermera = {
     // Use selectBoxit on our select lists.
     $('select').selectBoxIt();
 
-    // Use superLabels on our form labels.
-    $('.page-admin form').superLabels({
-      labelLeft:10,
-      labelTop:11,
-      opacity: 0.5
-    });
-
     filterHeightMatch();
 
   }
