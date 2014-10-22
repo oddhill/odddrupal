@@ -8,6 +8,7 @@
 .table-filter {
   float: left;
   background: $wool;
+  width: 280px;
 
   h2.filter-icon {
     background: $dark-grey;
@@ -77,6 +78,7 @@
         .form-text {
           padding: 5px;
           border-radius: 2px;
+          width: 100%;
 
           &:focus {
             box-shadow: 0 0 3px tint($dark-grey,50%);

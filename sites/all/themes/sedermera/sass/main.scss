@@ -109,7 +109,7 @@ body {
 // Pager
 ul.pager {
   list-style: none;
-  margin: 22px 0 0 245px;
+  margin: 22px 0 0 0;
 
   &:before {
     @include font-size(1.1);
@@ -150,6 +150,10 @@ ul.pager {
         color: $snow;
       }
     }
+  }
+
+  .page-investerare & {
+    margin-left: 280px;
   }
 }
 
