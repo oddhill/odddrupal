@@ -26,12 +26,12 @@
 
     <?php print $rows; ?>
 
-    <?php if ($empty) ?>
+    <?php if ($empty): ?>
      <div class="empty-wrapper">
         <div class="empty-icon"></div>
           <p><?php print $empty; ?><p>
       </div>
-
+    <?php endif; ?>
   </div>
 
   <?php print $attachment_after; ?>
