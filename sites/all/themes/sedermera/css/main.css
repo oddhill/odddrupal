@@ -801,38 +801,41 @@ div.checker.hover.active span {
   .page-investor-person-edit form fieldset,
   .page-investor-company-edit form fieldset {
     position: relative;
-    margin-bottom: 20px;
-    overflow: hidden; }
+    margin-bottom: 20px; }
     .page-admin form fieldset .fieldset-wrapper,
     .page-investor-person-edit form fieldset .fieldset-wrapper,
     .page-investor-company-edit form fieldset .fieldset-wrapper {
       background: #e0e2e6;
       padding: 20px 20px 5px;
-      margin-top: 40px;
       border-radius: 3px; }
-    .page-admin form fieldset legend span.fieldset-legend,
-    .page-investor-person-edit form fieldset legend span.fieldset-legend,
-    .page-investor-company-edit form fieldset legend span.fieldset-legend {
-      display: block;
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      height: 40px;
-      width: 100%;
-      padding: 0;
-      font-size: 20px;
-      font-size: 2rem;
-      line-height: 32px;
-      font-weight: 400;
-      text-transform: uppercase; }
+    .page-admin form fieldset legend,
+    .page-investor-person-edit form fieldset legend,
+    .page-investor-company-edit form fieldset legend {
+      height: 40px; }
+      .page-admin form fieldset legend span.fieldset-legend,
+      .page-investor-person-edit form fieldset legend span.fieldset-legend,
+      .page-investor-company-edit form fieldset legend span.fieldset-legend {
+        display: block;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 40px;
+        width: 100%;
+        padding: 0;
+        font-size: 20px;
+        font-size: 2rem;
+        line-height: 32px;
+        font-weight: 400;
+        text-transform: uppercase; }
     .page-admin form fieldset .fieldset-description,
     .page-investor-person-edit form fieldset .fieldset-description,
     .page-investor-company-edit form fieldset .fieldset-description {
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 15.6px;
       margin-bottom: 20px;
-      font-style: italic; }
+      font-style: italic;
+      background: #ecedf0;
+      color: #282828;
+      padding: 10px;
+      border-radius: 2px; }
   .page-admin form .form-item,
   .page-investor-person-edit form .form-item,
   .page-investor-company-edit form .form-item {
@@ -934,7 +937,7 @@ div.checker.hover.active span {
   .page-investor-company-edit form .form-text {
     padding: 10px 30px 10px 10px;
     border-radius: 2px;
-    margin-bottom: 3px; }
+    margin-bottom: 5px; }
     .js .page-admin form .form-text.form-autocomplete, .js
     .page-investor-person-edit form .form-text.form-autocomplete, .js
     .page-investor-company-edit form .form-text.form-autocomplete {
