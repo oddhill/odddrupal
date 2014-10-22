@@ -12,13 +12,14 @@
 
 .entity.entity-investor {
   background: $snow;
-  padding: 50px 40px 50px 40px;
+  padding: 50px 40px 55px 40px;
+  @include font-size(1.5);
 
   .title h2 {
+    @include font-size(3.2);
     font-weight: 500;
-    font-size: 32px;
     text-align: center;
-    border-bottom: 2px solid #f3f4f8;
+    border-bottom: 2px solid $light-grey;
     padding: 0 0 33px 0;
     margin-bottom: 33px;
   }
@@ -27,6 +28,7 @@
     font-weight: 700;
    }
 
-   .field-shared-industries {
+   .field-shared-industries, .field-shared-address, .field-shared-email {
+      margin-bottom: 15px;
    }
 }
