@@ -969,7 +969,6 @@ ul.tabs {
       line-height: 40px;
       border-bottom: 0 none;
       color: #282828;
-      border-left: 1px solid #e0e2e6;
       border-right: 1px solid #e0e2e6; }
       ul.tabs li a:hover {
         border-bottom: 0 none;
