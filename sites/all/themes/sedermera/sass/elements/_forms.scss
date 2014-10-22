@@ -6,6 +6,7 @@
   fieldset {
     position: relative;
     margin-bottom: 20px;
+    overflow: hidden;
 
     .fieldset-wrapper {
       background: $wool;

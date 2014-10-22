@@ -801,7 +801,8 @@ div.checker.hover.active span {
   .page-investor-person-edit form fieldset,
   .page-investor-company-edit form fieldset {
     position: relative;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    overflow: hidden; }
     .page-admin form fieldset .fieldset-wrapper,
     .page-investor-person-edit form fieldset .fieldset-wrapper,
     .page-investor-company-edit form fieldset .fieldset-wrapper {
