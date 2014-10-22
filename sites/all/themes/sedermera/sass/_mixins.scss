@@ -10,6 +10,10 @@
   text-transform: uppercase;
   border-bottom: 0px none;
 
+  &:hover {
+    background-color: shade($background,30%);
+  }
+
   @if $icon == add {
     @include svg-bg(add_small_light);
     background-position: 20px 11px;
@@ -33,12 +37,20 @@
     width: 100%;
   }
 
+  @if $icon == login {
+    @include svg-bg(login_small_dark);
+    color: $coffee;
+    background-position: 20px 11px;
+    padding-left: 42px;
+
+    &:hover {
+      background-color: tint($background,30%);
+      box-shadow: 0 0 3px shade($dark-grey,50%);
+    }
+  }
+
   background-color: $background;
   @include transition (background-color 0.1s ease-in-out);
-
-  &:hover {
-    background-color: shade($background,30%);
-  }
 }
 
 @mixin throbber {

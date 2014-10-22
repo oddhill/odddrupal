@@ -77,9 +77,10 @@ body {
   overflow: hidden;
   font-size: 14px;
   font-size: 1.4rem;
-  line-height: 18.2px;
-  padding: 40px;
-  margin-left: 280px; }
+  line-height: 18.2px; }
+  .logged-in #main-content {
+    margin-left: 280px;
+    padding: 40px; }
   #main-content #page-actions {
     float: right;
     margin-top: 16px; }
@@ -813,26 +814,31 @@ div.checker.hover.active span {
 
 .page-admin form,
 .page-investor-person-edit form,
-.page-investor-company-edit form {
+.page-investor-company-edit form,
+.not-logged-in.page-user form {
   max-width: 800px; }
   .page-admin form fieldset,
   .page-investor-person-edit form fieldset,
-  .page-investor-company-edit form fieldset {
+  .page-investor-company-edit form fieldset,
+  .not-logged-in.page-user form fieldset {
     position: relative;
     margin-bottom: 20px; }
     .page-admin form fieldset .fieldset-wrapper,
     .page-investor-person-edit form fieldset .fieldset-wrapper,
-    .page-investor-company-edit form fieldset .fieldset-wrapper {
+    .page-investor-company-edit form fieldset .fieldset-wrapper,
+    .not-logged-in.page-user form fieldset .fieldset-wrapper {
       background: #e0e2e6;
       padding: 20px 20px 5px;
       border-radius: 3px; }
     .page-admin form fieldset legend,
     .page-investor-person-edit form fieldset legend,
-    .page-investor-company-edit form fieldset legend {
+    .page-investor-company-edit form fieldset legend,
+    .not-logged-in.page-user form fieldset legend {
       height: 40px; }
       .page-admin form fieldset legend span.fieldset-legend,
       .page-investor-person-edit form fieldset legend span.fieldset-legend,
-      .page-investor-company-edit form fieldset legend span.fieldset-legend {
+      .page-investor-company-edit form fieldset legend span.fieldset-legend,
+      .not-logged-in.page-user form fieldset legend span.fieldset-legend {
         display: block;
         position: absolute;
         left: 0px;
@@ -847,7 +853,8 @@ div.checker.hover.active span {
         text-transform: uppercase; }
     .page-admin form fieldset .fieldset-description,
     .page-investor-person-edit form fieldset .fieldset-description,
-    .page-investor-company-edit form fieldset .fieldset-description {
+    .page-investor-company-edit form fieldset .fieldset-description,
+    .not-logged-in.page-user form fieldset .fieldset-description {
       margin-bottom: 20px;
       font-style: italic;
       background: #ecedf0;
@@ -856,28 +863,33 @@ div.checker.hover.active span {
       border-radius: 2px; }
   .page-admin form .form-item,
   .page-investor-person-edit form .form-item,
-  .page-investor-company-edit form .form-item {
+  .page-investor-company-edit form .form-item,
+  .not-logged-in.page-user form .form-item {
     margin-bottom: 20px; }
     .page-admin form .form-item label,
     .page-investor-person-edit form .form-item label,
-    .page-investor-company-edit form .form-item label {
+    .page-investor-company-edit form .form-item label,
+    .not-logged-in.page-user form .form-item label {
       display: block;
       font-weight: 500;
       margin-bottom: 3px; }
     .page-admin form .form-item .description,
     .page-investor-person-edit form .form-item .description,
-    .page-investor-company-edit form .form-item .description {
+    .page-investor-company-edit form .form-item .description,
+    .not-logged-in.page-user form .form-item .description {
       font-size: 12px;
       font-size: 1.2rem;
       line-height: 15.6px;
       font-style: italic; }
     .page-admin form .form-item.form-type-select,
     .page-investor-person-edit form .form-item.form-type-select,
-    .page-investor-company-edit form .form-item.form-type-select {
+    .page-investor-company-edit form .form-item.form-type-select,
+    .not-logged-in.page-user form .form-item.form-type-select {
       position: relative; }
       .page-admin form .form-item.form-type-select .ajax-progress,
       .page-investor-person-edit form .form-item.form-type-select .ajax-progress,
-      .page-investor-company-edit form .form-item.form-type-select .ajax-progress {
+      .page-investor-company-edit form .form-item.form-type-select .ajax-progress,
+      .not-logged-in.page-user form .form-item.form-type-select .ajax-progress {
         margin: 0 3px;
         padding: 9px 4px;
         background: #fff;
@@ -887,7 +899,8 @@ div.checker.hover.active span {
         width: 200px; }
         .page-admin form .form-item.form-type-select .ajax-progress .throbber,
         .page-investor-person-edit form .form-item.form-type-select .ajax-progress .throbber,
-        .page-investor-company-edit form .form-item.form-type-select .ajax-progress .throbber {
+        .page-investor-company-edit form .form-item.form-type-select .ajax-progress .throbber,
+        .not-logged-in.page-user form .form-item.form-type-select .ajax-progress .throbber {
           display: inline-block;
           background: transparent;
           width: 16px;
@@ -900,27 +913,32 @@ div.checker.hover.active span {
           animation: load 0.9s linear infinite; }
         .page-admin form .form-item.form-type-select .ajax-progress .message,
         .page-investor-person-edit form .form-item.form-type-select .ajax-progress .message,
-        .page-investor-company-edit form .form-item.form-type-select .ajax-progress .message {
+        .page-investor-company-edit form .form-item.form-type-select .ajax-progress .message,
+        .not-logged-in.page-user form .form-item.form-type-select .ajax-progress .message {
           display: none; }
     .page-admin form .form-item.form-type-textfield,
     .page-investor-person-edit form .form-item.form-type-textfield,
-    .page-investor-company-edit form .form-item.form-type-textfield {
+    .page-investor-company-edit form .form-item.form-type-textfield,
+    .not-logged-in.page-user form .form-item.form-type-textfield {
       position: relative; }
       .page-admin form .form-item.form-type-textfield label,
       .page-investor-person-edit form .form-item.form-type-textfield label,
-      .page-investor-company-edit form .form-item.form-type-textfield label {
+      .page-investor-company-edit form .form-item.form-type-textfield label,
+      .not-logged-in.page-user form .form-item.form-type-textfield label {
         position: absolute;
         top: 11px;
         left: 10px; }
       .page-admin form .form-item.form-type-textfield #autocomplete,
       .page-investor-person-edit form .form-item.form-type-textfield #autocomplete,
-      .page-investor-company-edit form .form-item.form-type-textfield #autocomplete {
+      .page-investor-company-edit form .form-item.form-type-textfield #autocomplete,
+      .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete {
         border: 0 none;
         margin: 3px 0 0;
         box-shadow: 0 0 3px #a2a2a2; }
         .page-admin form .form-item.form-type-textfield #autocomplete ul li,
         .page-investor-person-edit form .form-item.form-type-textfield #autocomplete ul li,
-        .page-investor-company-edit form .form-item.form-type-textfield #autocomplete ul li {
+        .page-investor-company-edit form .form-item.form-type-textfield #autocomplete ul li,
+        .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete ul li {
           height: 32px;
           line-height: 32px;
           border-bottom: 1px solid #e0e2e6;
@@ -928,11 +946,13 @@ div.checker.hover.active span {
           padding: 0 10px; }
           .page-admin form .form-item.form-type-textfield #autocomplete ul li:hover,
           .page-investor-person-edit form .form-item.form-type-textfield #autocomplete ul li:hover,
-          .page-investor-company-edit form .form-item.form-type-textfield #autocomplete ul li:hover {
+          .page-investor-company-edit form .form-item.form-type-textfield #autocomplete ul li:hover,
+          .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete ul li:hover {
             background: #f3f4f8; }
       .page-admin form .form-item.form-type-textfield .throbber,
       .page-investor-person-edit form .form-item.form-type-textfield .throbber,
-      .page-investor-company-edit form .form-item.form-type-textfield .throbber {
+      .page-investor-company-edit form .form-item.form-type-textfield .throbber,
+      .not-logged-in.page-user form .form-item.form-type-textfield .throbber {
         display: inline-block;
         width: 10px;
         height: 10px;
@@ -941,7 +961,8 @@ div.checker.hover.active span {
         border-radius: 50%; }
         .page-admin form .form-item.form-type-textfield .throbber.throbbing,
         .page-investor-person-edit form .form-item.form-type-textfield .throbber.throbbing,
-        .page-investor-company-edit form .form-item.form-type-textfield .throbber.throbbing {
+        .page-investor-company-edit form .form-item.form-type-textfield .throbber.throbbing,
+        .not-logged-in.page-user form .form-item.form-type-textfield .throbber.throbbing {
           margin: -3px -3px -3px -26px;
           width: 16px;
           height: 16px;
@@ -952,29 +973,35 @@ div.checker.hover.active span {
           animation: load 0.9s linear infinite; }
   .page-admin form .form-text,
   .page-investor-person-edit form .form-text,
-  .page-investor-company-edit form .form-text {
+  .page-investor-company-edit form .form-text,
+  .not-logged-in.page-user form .form-text {
     padding: 10px 30px 10px 10px;
     border-radius: 2px;
     margin-bottom: 5px; }
     .js .page-admin form .form-text.form-autocomplete, .js
     .page-investor-person-edit form .form-text.form-autocomplete, .js
-    .page-investor-company-edit form .form-text.form-autocomplete {
+    .page-investor-company-edit form .form-text.form-autocomplete, .js
+    .not-logged-in.page-user form .form-text.form-autocomplete {
       background-image: none; }
       .js .page-admin form .form-text.form-autocomplete.throbbing, .js
       .page-investor-person-edit form .form-text.form-autocomplete.throbbing, .js
-      .page-investor-company-edit form .form-text.form-autocomplete.throbbing {
+      .page-investor-company-edit form .form-text.form-autocomplete.throbbing, .js
+      .not-logged-in.page-user form .form-text.form-autocomplete.throbbing {
         background-image: none; }
     .page-admin form .form-text:focus,
     .page-investor-person-edit form .form-text:focus,
-    .page-investor-company-edit form .form-text:focus {
+    .page-investor-company-edit form .form-text:focus,
+    .not-logged-in.page-user form .form-text:focus {
       box-shadow: 0 0 3px #a2a2a2; }
   .page-admin form .form-submit,
   .page-investor-person-edit form .form-submit,
-  .page-investor-company-edit form .form-submit {
+  .page-investor-company-edit form .form-submit,
+  .not-logged-in.page-user form .form-submit {
     margin-right: 10px; }
     .page-admin form .form-submit#edit-submit,
     .page-investor-person-edit form .form-submit#edit-submit,
-    .page-investor-company-edit form .form-submit#edit-submit {
+    .page-investor-company-edit form .form-submit#edit-submit,
+    .not-logged-in.page-user form .form-submit#edit-submit {
       display: inline-block;
       height: 34px;
       font-size: 12px;
@@ -997,11 +1024,13 @@ div.checker.hover.active span {
       transition: background-color 0.1s ease-in-out; }
       .page-admin form .form-submit#edit-submit:hover,
       .page-investor-person-edit form .form-submit#edit-submit:hover,
-      .page-investor-company-edit form .form-submit#edit-submit:hover {
+      .page-investor-company-edit form .form-submit#edit-submit:hover,
+      .not-logged-in.page-user form .form-submit#edit-submit:hover {
         background-color: #303030; }
     .page-admin form .form-submit#edit-delete,
     .page-investor-person-edit form .form-submit#edit-delete,
-    .page-investor-company-edit form .form-submit#edit-delete {
+    .page-investor-company-edit form .form-submit#edit-delete,
+    .not-logged-in.page-user form .form-submit#edit-delete {
       display: inline-block;
       height: 34px;
       font-size: 12px;
@@ -1024,7 +1053,8 @@ div.checker.hover.active span {
       transition: background-color 0.1s ease-in-out; }
       .page-admin form .form-submit#edit-delete:hover,
       .page-investor-person-edit form .form-submit#edit-delete:hover,
-      .page-investor-company-edit form .form-submit#edit-delete:hover {
+      .page-investor-company-edit form .form-submit#edit-delete:hover,
+      .not-logged-in.page-user form .form-submit#edit-delete:hover {
         background-color: #862e2e; }
 
 ul.tabs {
@@ -1124,3 +1154,63 @@ ul.tabs {
     font-weight: 700; }
   .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email {
     margin-bottom: 15px; }
+
+.not-logged-in.page-user {
+  background: #282828;
+  box-sizing: border-box; }
+  .not-logged-in.page-user #page-messages {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center; }
+  .not-logged-in.page-user #main-content {
+    max-width: 400px;
+    margin: 0px auto;
+    padding-top: 100px; }
+    .not-logged-in.page-user #main-content .logo {
+      padding: 0;
+      background: transparent; }
+      .not-logged-in.page-user #main-content .logo a {
+        border: 0px none; }
+    .not-logged-in.page-user #main-content form#user-login {
+      padding: 10px; }
+      .not-logged-in.page-user #main-content form#user-login .form-text {
+        background: #1a1a1a;
+        padding: 10px;
+        width: 100%;
+        color: #fff; }
+        .not-logged-in.page-user #main-content form#user-login .form-text:focus {
+          background: #121212;
+          box-shadow: 0 0 5px #3d3d3d; }
+      .not-logged-in.page-user #main-content form#user-login .description {
+        color: #e0e2e6; }
+      .not-logged-in.page-user #main-content form#user-login #edit-submit {
+        margin: 10px 0 0;
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0px none;
+        background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
+        color: #282828;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #f9a500;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out; }
+        .not-logged-in.page-user #main-content form#user-login #edit-submit:hover {
+          background-color: #ae7300; }
+        .not-logged-in.page-user #main-content form#user-login #edit-submit:hover {
+          background-color: #fac04c;
+          box-shadow: 0 0 3px #222222; }

@@ -1,0 +1,53 @@
+.not-logged-in.page-user {
+  background: $coffee;
+  box-sizing: border-box;
+
+  #page-messages {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  #main-content {
+    max-width: 400px;
+    margin: 0px auto;
+    padding-top: 100px;
+
+    .logo {
+      padding: 0;
+      background: transparent;
+
+      a {
+        border: 0px none;
+      }
+    }
+
+    form#user-login {
+      padding: 10px;
+
+      .form-text {
+        background: $night;
+        padding: 10px;
+        width: 100%;
+        color: $snow;
+
+        &:focus {
+          background: shade($night,30%);
+          box-shadow: 0 0 5px tint($coffee,10%);
+        }
+      }
+
+      .description {
+        color: $wool;
+      }
+
+      #edit-submit {
+        margin: 10px 0 0;
+        @include button($mustard,login);
+      }
+    }
+  }
+}

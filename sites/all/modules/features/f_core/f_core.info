@@ -22,6 +22,7 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = user
 features[config_perms][] = access_user_display_settings
+features[context][] = anonymous
 features[context][] = sitewide
 features[ctools][] = config_perms:config_perms:1
 features[ctools][] = context:context:3

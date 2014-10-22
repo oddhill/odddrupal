@@ -75,8 +75,11 @@ body {
 #main-content {
   overflow: hidden;
   @include font-size($standard,1.3);
-  padding: 40px;
-  margin-left: 280px;
+
+  .logged-in & {
+    margin-left: 280px;
+    padding: 40px;
+  }
 
   // Page action links
   #page-actions {
@@ -168,4 +171,4 @@ ul.pager {
 }
 
 // Import page elements
-@import "elements/sidebar", "elements/messages", "elements/filteredtable", "uniform", "elements/checkbox", "content/create", "elements/forms", "elements/tabs", "animations", "content/user";
+@import "elements/sidebar", "elements/messages", "elements/filteredtable", "uniform", "elements/checkbox", "content/create", "elements/forms", "elements/tabs", "animations", "content/user", "elements/login";

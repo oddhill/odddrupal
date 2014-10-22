@@ -18,9 +18,12 @@
 ?>
 
 <div id="site-wrapper">
-  <aside id="main-sidebar">
-  	<?php print render($page['header']); ?>
-  </aside>
+  <?php if($page['header']): ?>
+    <aside id="main-sidebar">
+    	<?php print render($page['header']); ?>
+    </aside>
+  <?php endif; ?>
+
   <main id="main-content">
     <?php print render($page['content']); ?>
   </main>
