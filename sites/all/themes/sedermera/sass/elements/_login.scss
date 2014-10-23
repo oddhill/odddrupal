@@ -30,9 +30,17 @@
 
       .form-text {
         background: $night;
-        padding: 10px;
+        padding: 10px 10px 10px 41px;
         width: 100%;
         color: $snow;
+
+        &#edit-name {
+          @include svg-bg(envelope,$night,11px 10px);
+        }
+
+        &#edit-pass {
+          @include svg-bg(padlock,$night,11px 9px);
+        }
 
         &:focus {
           background: shade($night,30%);

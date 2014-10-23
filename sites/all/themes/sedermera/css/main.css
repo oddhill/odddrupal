@@ -1182,9 +1182,15 @@ ul.tabs {
       padding: 10px; }
       .not-logged-in.page-user #main-content form#user-login .form-text {
         background: #1a1a1a;
-        padding: 10px;
+        padding: 10px 10px 10px 41px;
         width: 100%;
         color: #fff; }
+        .not-logged-in.page-user #main-content form#user-login .form-text#edit-name {
+          background: url("../graphics/envelope.png") #1a1a1a 11px 10px no-repeat;
+          background: none, url("../graphics/envelope.svg") #1a1a1a 11px 10px no-repeat; }
+        .not-logged-in.page-user #main-content form#user-login .form-text#edit-pass {
+          background: url("../graphics/padlock.png") #1a1a1a 11px 9px no-repeat;
+          background: none, url("../graphics/padlock.svg") #1a1a1a 11px 9px no-repeat; }
         .not-logged-in.page-user #main-content form#user-login .form-text:focus {
           background: #121212;
           box-shadow: 0 0 5px #3d3d3d; }
