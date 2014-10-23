@@ -890,6 +890,11 @@ div.checker.hover.active span {
     .page-investor-company-edit form .form-item.form-type-select,
     .not-logged-in.page-user form .form-item.form-type-select {
       position: relative; }
+      .page-admin form .form-item.form-type-select label,
+      .page-investor-person-edit form .form-item.form-type-select label,
+      .page-investor-company-edit form .form-item.form-type-select label,
+      .not-logged-in.page-user form .form-item.form-type-select label {
+        display: none; }
       .page-admin form .form-item.form-type-select .ajax-progress,
       .page-investor-person-edit form .form-item.form-type-select .ajax-progress,
       .page-investor-company-edit form .form-item.form-type-select .ajax-progress,

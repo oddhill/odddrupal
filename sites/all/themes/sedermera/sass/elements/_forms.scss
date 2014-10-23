@@ -58,6 +58,10 @@
     &.form-type-select {
       position: relative;
 
+      label {
+        display: none;
+      }
+
       .ajax-progress {
         margin: 0 3px;
         padding: 9px 4px;
