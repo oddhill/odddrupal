@@ -1,10 +1,10 @@
+// Wraps the entire investor table
 .filtered-table {
   overflow: hidden;
   background: $snow;
 }
 
-// TABLE-WRAPPER
-
+// Wraps the entire investor filter
 .table-filter {
   float: left;
   background: $wool;
@@ -32,7 +32,9 @@
     padding: 0 10px 10px 10px;
 
     .form-submit {
-      @include button($dark-grey,update);
+      @include button($dark-grey);
+      text-align: center;
+      width: 100%;
     }
 
     .filter-item {
@@ -89,6 +91,7 @@
   }
 }
 
+// Wraps the investors table (all investors and filtred investors)
 .table-wrapper {
   overflow: hidden;
 

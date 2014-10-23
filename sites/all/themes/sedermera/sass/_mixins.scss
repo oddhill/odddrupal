@@ -32,11 +32,6 @@
     padding-left: 42px;
   }
 
-  @if $icon == update {
-    text-align: center;
-    width: 100%;
-  }
-
   @if $icon == login {
     @include svg-bg(login_small_dark);
     color: $coffee;
