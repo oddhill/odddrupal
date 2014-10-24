@@ -43,6 +43,9 @@ Drupal.behaviors.sedermera = {
 
     filterHeightMatch();
 
+    // Use uniform to beautify our checkboxes and radio buttons.
+    $('input[type="checkbox"], input[type="radio"]').once().uniform();
+
   }
 };
 
@@ -55,9 +58,6 @@ $(document).ready(function() {
         return $(this).attr('src').replace('.svg', '.png'); /* Replace suffixes with .png */
     });
   }
-
-  // Use uniform to beautify our checkboxes and radio buttons.
-  $('input[type="checkbox"], input[type="radio"]').uniform();
 
   // Add throbber element to autocomplete fields.
   $('.form-text.form-autocomplete').after('<div class="throbber"></div>');
