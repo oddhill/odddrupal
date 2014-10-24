@@ -21,6 +21,9 @@ function sedermera_html_head_alter(&$head_elements) {
       'content' => 'IE=Edge',
     ),
   );
+
+  // Add the jQuery UI Widget library since it's required by selectBoxIt.
+  $head_elements['#attached']['library'][] = array('system', 'ui.widget');
 }
 
 /**
