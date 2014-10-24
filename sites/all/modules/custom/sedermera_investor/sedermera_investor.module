@@ -38,11 +38,25 @@ function sedermera_investor_menu_alter(&$items) {
   // Get the entity info for the investor entity type.
   $investor_info = entity_get_info('investor');
 
-  // Iterate through the bundles, add change the delete link for every bundle to
-  // a regular menu callback in order to get rid of the tab.
+  // Iterate through the bundles.
   foreach ($investor_info['bundles'] as $bundle_name => $bundle_info) {
+    // Change the delete link for every bundle to a regular menu callback in
+    // order to get rid of the tab.
     $items["investor/{$bundle_name}/%eckentity/delete"]['type'] = MENU_CALLBACK;
+
+    // Change the title callback for every bundle in order to use the entity
+    // label.
+    $items["investor/{$bundle_name}/%eckentity"]['title callback'] = 'sedermera_investor_entity_page_title';
+    $items["investor/{$bundle_name}/%eckentity"]['title arguments'] = array(2);
   }
+}
+
+/**
+ * Title callback for the entity pages for investor bundles.
+ */
+function sedermera_investor_entity_page_title($entity) {
+  // Return the label of the entity.
+  return entity_label('investor', $entity);
 }
 
 /**
