@@ -59,9 +59,6 @@ $(document).ready(function() {
     });
   }
 
-  // Add throbber element to autocomplete fields.
-  $('.form-text.form-autocomplete').after('<div class="throbber"></div>');
-
 });
 
 })(jQuery);
