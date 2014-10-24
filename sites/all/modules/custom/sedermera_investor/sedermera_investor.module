@@ -122,6 +122,22 @@ function sedermera_investor_field_widget_form_alter(&$element, &$form_state, $co
 /**
  * Implements hook_form_FORM_ID_alter().
  */
+function sedermera_investor_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
+  // Set the active menu trail.
+  menu_tree_set_path('main-menu', 'investerare/skapa');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_investor_form_eck__entity__form_add_investor_company_alter(&$form, &$form_state, $form_id) {
+  // Set the active menu trail.
+  menu_tree_set_path('main-menu', 'investerare/skapa');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function sedermera_investor_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
   // Add a delete button right next to the submit button. This will redirect the
   // user to the delete confirmation page.
