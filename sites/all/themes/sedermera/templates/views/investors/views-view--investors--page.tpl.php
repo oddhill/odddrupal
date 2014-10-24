@@ -12,7 +12,7 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div id="investor-table" class="filtered-table">
+<div id="investor-table" class="filtered-table <?php print $classes; ?>">
   <?php print $header; ?>
 
   <div class="table-filter">
