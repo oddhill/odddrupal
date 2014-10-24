@@ -38,6 +38,13 @@ filterHeightMatch = function() {
 Drupal.behaviors.sedermera = {
   attach: function (context, settings) {
 
+    // If SVG is not supported replace it with png version
+    if(!Modernizr.svg) { /* Check modernizr for svg support */
+      $('img[src*="svg"]').attr('src', function() {
+          return $(this).attr('src').replace('.svg', '.png'); /* Replace suffixes with .png */
+      });
+    }
+
     // Use selectBoxit on our select lists.
     $('select').selectBoxIt();
 
@@ -48,17 +55,5 @@ Drupal.behaviors.sedermera = {
 
   }
 };
-
-// Run once when the DOM is ready (page load)
-$(document).ready(function() {
-
-  // If SVG is not supported replace it with png version
-  if(!Modernizr.svg) { /* Check modernizr for svg support */
-    $('img[src*="svg"]').attr('src', function() {
-        return $(this).attr('src').replace('.svg', '.png'); /* Replace suffixes with .png */
-    });
-  }
-
-});
 
 })(jQuery);
