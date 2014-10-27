@@ -30,7 +30,7 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
 /**
  * Include the site specific settings file, if it exists.
  */
-if (file_exists('settings.site.php')) {
+if (file_exists(dirname(__FILE__) . '/settings.site.php')) {
   include 'settings.site.php';
 }
 
