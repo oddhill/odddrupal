@@ -937,6 +937,23 @@ div.checker.hover.active span {
         position: absolute;
         top: 11px;
         left: 10px; }
+      .page-admin form .form-item.form-type-textfield .form-required,
+      .page-investor-person-edit form .form-item.form-type-textfield .form-required,
+      .page-investor-company-edit form .form-item.form-type-textfield .form-required,
+      .not-logged-in.page-user form .form-item.form-type-textfield .form-required {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url("../graphics/required.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/required.svg") transparent 0 0 no-repeat;
+        position: relative;
+        left: -25px;
+        top: 2px;
+        color: transparent;
+        font-size: 0px;
+        overflow: hidden;
+        text-indent: 100px;
+        line-height: 0px; }
       .page-admin form .form-item.form-type-textfield #autocomplete,
       .page-investor-person-edit form .form-item.form-type-textfield #autocomplete,
       .page-investor-company-edit form .form-item.form-type-textfield #autocomplete,

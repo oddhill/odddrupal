@@ -45,7 +45,7 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'form_placeholder_required_indicator';
-  $strongarm->value = 'text';
+  $strongarm->value = 'append';
   $export['form_placeholder_required_indicator'] = $strongarm;
 
   $strongarm = new stdClass();

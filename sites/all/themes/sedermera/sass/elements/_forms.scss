@@ -90,6 +90,21 @@
         left: 10px;
       }
 
+      .form-required {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        @include svg-bg(required);
+        position: relative;
+        left: -25px;
+        top: 2px;
+        color: transparent;
+        font-size: 0px;
+        overflow: hidden;
+        text-indent: 100px;
+        line-height: 0px;
+      }
+
       #autocomplete {
         border: 0 none;
         margin: 3px 0 0;
