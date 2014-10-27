@@ -12,30 +12,32 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div id="investor-table" class="filtered-table <?php print $classes; ?>">
-  <?php print $header; ?>
+<div class="<?php print $classes; ?>">
+  <div id="investor-table" class="filtered-table">
+    <?php print $header; ?>
 
-  <div class="table-filter">
-    <h2 class="filter-icon"><span class="icon">Filtrera</span></h2>
-    <?php print $exposed; ?>
+    <div class="table-filter">
+      <h2 class="filter-icon"><span class="icon">Filtrera</span></h2>
+      <?php print $exposed; ?>
+    </div>
+
+    <?php print $attachment_before; ?>
+
+    <div class="table-wrapper">
+
+      <?php print $rows; ?>
+
+      <?php if ($empty): ?>
+       <div class="empty-wrapper">
+          <div class="empty-icon"></div>
+            <p><?php print $empty; ?><p>
+        </div>
+      <?php endif; ?>
+    </div>
+
+    <?php print $attachment_after; ?>
+    <?php print $more; ?>
+    <?php print $footer; ?>
   </div>
-
-  <?php print $attachment_before; ?>
-
-  <div class="table-wrapper">
-
-    <?php print $rows; ?>
-
-    <?php if ($empty): ?>
-     <div class="empty-wrapper">
-        <div class="empty-icon"></div>
-          <p><?php print $empty; ?><p>
-      </div>
-    <?php endif; ?>
-  </div>
-
-  <?php print $attachment_after; ?>
-  <?php print $more; ?>
-  <?php print $footer; ?>
+  <?php print $pager; ?>
 </div>
-<?php print $pager; ?>
