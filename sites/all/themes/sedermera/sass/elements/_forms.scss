@@ -167,15 +167,19 @@
     }
   }
 
-  .form-submit {
-    margin-right: 10px;
+  .submit-wrapper {
+    display: inline-block;
 
-    &#edit-submit {
-      @include button($dark-grey,save);
-    }
+    .form-submit {
+      margin-right: 10px;
 
-    &#edit-delete {
-      @include button($wine,delete);
+      &#edit-submit {
+        @include button($dark-grey,save);
+      }
+
+      &#edit-delete {
+        @include button($wine,delete);
+      }
     }
   }
 }

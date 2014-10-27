@@ -31,10 +31,35 @@
   form {
     padding: 0 10px 10px 10px;
 
-    .form-submit {
-      @include button($dark-grey);
-      text-align: center;
-      width: 100%;
+    .submit-wrapper {
+      position: relative;
+
+      .form-submit {
+        @include button($dark-grey);
+        text-align: center;
+        width: 100%;
+      }
+
+      .ajax-progress {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 34px;
+        cursor: pointer;
+        background: shade($dark-grey,30%);
+        height: 100%;
+        text-align: center;
+        padding-top: 9px;
+
+        .throbber {
+          @include throbber;
+          margin: 0 auto;
+          float: none;
+        }
+      }
     }
 
     .filter-item {

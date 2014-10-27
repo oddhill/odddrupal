@@ -281,6 +281,22 @@ function sedermera_container($variables) {
 }
 
 /**
+ * Overrides theme_button().
+ */
+function sedermera_button($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'submit';
+  element_set_attributes($element, array('id', 'name', 'value'));
+
+  $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
+  if (!empty($element['#attributes']['disabled'])) {
+    $element['#attributes']['class'][] = 'form-button-disabled';
+  }
+
+  return '<div class="submit-wrapper"><input' . drupal_attributes($element['#attributes']) . ' /></div>';
+}
+
+/**
  * Overrides theme_boxes_box().
  */
 function sedermera_boxes_box($variables) {

@@ -321,27 +321,55 @@ ul.pager {
       overflow: hidden; }
   .table-filter form {
     padding: 0 10px 10px 10px; }
-    .table-filter form .form-submit {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0px none;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out;
-      text-align: center;
-      width: 100%; }
-      .table-filter form .form-submit:hover {
-        background-color: #303030; }
+    .table-filter form .submit-wrapper {
+      position: relative; }
+      .table-filter form .submit-wrapper .form-submit {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0px none;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+        text-align: center;
+        width: 100%; }
+        .table-filter form .submit-wrapper .form-submit:hover {
+          background-color: #303030; }
+      .table-filter form .submit-wrapper .ajax-progress {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 34px;
+        cursor: pointer;
+        background: #303030;
+        height: 100%;
+        text-align: center;
+        padding-top: 9px; }
+        .table-filter form .submit-wrapper .ajax-progress .throbber {
+          display: inline-block;
+          background: transparent;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #f9a500;
+          border-radius: 50%;
+          border-top-color: transparent;
+          -webkit-animation: load 0.9s linear infinite;
+          -moz-animation: load 0.9s linear infinite;
+          animation: load 0.9s linear infinite;
+          margin: 0 auto;
+          float: none; }
     .table-filter form .filter-item {
       margin-bottom: 20px; }
       .table-filter form .filter-item > label {
@@ -1019,69 +1047,74 @@ div.checker.hover.active span {
     .page-investor-company-edit form .form-text:focus,
     .not-logged-in.page-user form .form-text:focus {
       box-shadow: 0 0 3px #a2a2a2; }
-  .page-admin form .form-submit,
-  .page-investor-person-edit form .form-submit,
-  .page-investor-company-edit form .form-submit,
-  .not-logged-in.page-user form .form-submit {
-    margin-right: 10px; }
-    .page-admin form .form-submit#edit-submit,
-    .page-investor-person-edit form .form-submit#edit-submit,
-    .page-investor-company-edit form .form-submit#edit-submit,
-    .not-logged-in.page-user form .form-submit#edit-submit {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0px none;
-      background: url("../graphics/save_small_light.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/save_small_light.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
-      padding-left: 42px;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out; }
-      .page-admin form .form-submit#edit-submit:hover,
-      .page-investor-person-edit form .form-submit#edit-submit:hover,
-      .page-investor-company-edit form .form-submit#edit-submit:hover,
-      .not-logged-in.page-user form .form-submit#edit-submit:hover {
-        background-color: #303030; }
-    .page-admin form .form-submit#edit-delete,
-    .page-investor-person-edit form .form-submit#edit-delete,
-    .page-investor-company-edit form .form-submit#edit-delete,
-    .not-logged-in.page-user form .form-submit#edit-delete {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0px none;
-      background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
-      padding-left: 42px;
-      background-color: #c04343;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out; }
-      .page-admin form .form-submit#edit-delete:hover,
-      .page-investor-person-edit form .form-submit#edit-delete:hover,
-      .page-investor-company-edit form .form-submit#edit-delete:hover,
-      .not-logged-in.page-user form .form-submit#edit-delete:hover {
-        background-color: #862e2e; }
+  .page-admin form .submit-wrapper,
+  .page-investor-person-edit form .submit-wrapper,
+  .page-investor-company-edit form .submit-wrapper,
+  .not-logged-in.page-user form .submit-wrapper {
+    display: inline-block; }
+    .page-admin form .submit-wrapper .form-submit,
+    .page-investor-person-edit form .submit-wrapper .form-submit,
+    .page-investor-company-edit form .submit-wrapper .form-submit,
+    .not-logged-in.page-user form .submit-wrapper .form-submit {
+      margin-right: 10px; }
+      .page-admin form .submit-wrapper .form-submit#edit-submit,
+      .page-investor-person-edit form .submit-wrapper .form-submit#edit-submit,
+      .page-investor-company-edit form .submit-wrapper .form-submit#edit-submit,
+      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-submit {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0px none;
+        background: url("../graphics/save_small_light.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/save_small_light.svg") transparent 0 0 no-repeat;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out; }
+        .page-admin form .submit-wrapper .form-submit#edit-submit:hover,
+        .page-investor-person-edit form .submit-wrapper .form-submit#edit-submit:hover,
+        .page-investor-company-edit form .submit-wrapper .form-submit#edit-submit:hover,
+        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-submit:hover {
+          background-color: #303030; }
+      .page-admin form .submit-wrapper .form-submit#edit-delete,
+      .page-investor-person-edit form .submit-wrapper .form-submit#edit-delete,
+      .page-investor-company-edit form .submit-wrapper .form-submit#edit-delete,
+      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-delete {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0px none;
+        background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #c04343;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out; }
+        .page-admin form .submit-wrapper .form-submit#edit-delete:hover,
+        .page-investor-person-edit form .submit-wrapper .form-submit#edit-delete:hover,
+        .page-investor-company-edit form .submit-wrapper .form-submit#edit-delete:hover,
+        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-delete:hover {
+          background-color: #862e2e; }
 
 ul.tabs {
   list-style: none;
