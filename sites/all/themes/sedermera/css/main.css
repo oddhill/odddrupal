@@ -1183,6 +1183,9 @@ ul.tabs {
       background: transparent; }
       .not-logged-in.page-user #main-content .logo a {
         border: 0px none; }
+        .not-logged-in.page-user #main-content .logo a img {
+          width: 300px;
+          height: 117px; }
     .not-logged-in.page-user #main-content form#user-login {
       padding: 10px; }
       .not-logged-in.page-user #main-content form#user-login .form-text {
