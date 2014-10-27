@@ -225,12 +225,12 @@ ul.pager {
         line-height: 18px;
         line-height: 12px;
         padding-left: 22px; }
-        #main-navigation ul.menu li li a.active {
+        #main-navigation ul.menu li li a.active, #main-navigation ul.menu li li a.active-trail {
           color: #f9a500; }
-          #main-navigation ul.menu li li a.active#all_investors {
+          #main-navigation ul.menu li li a.active#all_investors, #main-navigation ul.menu li li a.active-trail#all_investors {
             background: url("../graphics/list_small_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/list_small_yellow.svg") transparent 0 0 no-repeat; }
-          #main-navigation ul.menu li li a.active#add_investor {
+          #main-navigation ul.menu li li a.active#add_investor, #main-navigation ul.menu li li a.active-trail#add_investor {
             background: url("../graphics/add_small_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/add_small_yellow.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li li.last {

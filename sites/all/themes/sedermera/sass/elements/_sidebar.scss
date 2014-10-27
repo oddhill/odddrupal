@@ -74,7 +74,8 @@
           line-height: 12px;
           padding-left: 22px;
 
-          &.active {
+          &.active,
+          &.active-trail {
             color: $mustard;
 
             &#all_investors {
