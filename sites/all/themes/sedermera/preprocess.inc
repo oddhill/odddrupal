@@ -38,5 +38,5 @@ function sedermera_preprocess_block(&$variables) {
  */
 function sedermera_preprocess_blockify_logo(&$variables) {
   // Change the url of the logo to the graphics folder.
-  $variables['logo_path'] = file_create_url(drupal_get_path('theme', 'sedermera') . '/graphics/logo.png');
+  $variables['logo_path'] = file_create_url(drupal_get_path('theme', 'sedermera') . '/graphics/logo.svg');
 }
