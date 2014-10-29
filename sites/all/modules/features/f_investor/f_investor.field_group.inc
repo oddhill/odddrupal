@@ -57,6 +57,7 @@ function f_investor_field_group_info() {
       0 => 'field_shared_cell',
       1 => 'field_shared_email',
       2 => 'field_shared_phone',
+      3 => 'field_shared_fax',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -118,6 +119,7 @@ function f_investor_field_group_info() {
       0 => 'field_shared_cell',
       1 => 'field_shared_email',
       2 => 'field_shared_phone',
+      3 => 'field_shared_fax',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

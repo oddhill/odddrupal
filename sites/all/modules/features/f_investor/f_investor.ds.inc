@@ -65,6 +65,7 @@ function f_investor_ds_layout_settings_info() {
         3 => 'field_shared_email',
         4 => 'field_shared_cell',
         5 => 'field_shared_phone',
+        6 => 'field_shared_fax',
       ),
     ),
     'fields' => array(
@@ -74,6 +75,7 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_email' => 'ds_content',
       'field_shared_cell' => 'ds_content',
       'field_shared_phone' => 'ds_content',
+      'field_shared_fax' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -103,6 +105,7 @@ function f_investor_ds_layout_settings_info() {
         3 => 'field_shared_email',
         4 => 'field_shared_cell',
         5 => 'field_shared_phone',
+        6 => 'field_shared_fax',
       ),
     ),
     'fields' => array(
@@ -112,6 +115,7 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_email' => 'ds_content',
       'field_shared_cell' => 'ds_content',
       'field_shared_phone' => 'ds_content',
+      'field_shared_fax' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
