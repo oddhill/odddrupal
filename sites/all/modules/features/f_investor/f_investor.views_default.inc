@@ -136,6 +136,8 @@ function f_investor_views_default_views() {
     'title' => 'title',
     'field_shared_address_locality' => 'field_shared_address_locality',
     'field_shared_address_country' => 'field_shared_address_locality',
+    'field_shared_cell' => 'field_shared_cell',
+    'field_shared_phone' => 'field_shared_phone',
   );
   $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
@@ -169,6 +171,20 @@ function f_investor_views_default_views() {
     ),
     'field_shared_address_country' => array(
       'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_shared_cell' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_shared_phone' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -217,6 +233,14 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
   $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
+  /* Field: Investerare: Mobiltelefon */
+  $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
+  $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
+  $handler->display->display_options['fields']['field_shared_cell']['field'] = 'field_shared_cell';
+  /* Field: Investerare: Telefon */
+  $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
+  $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
+  $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
   /* Filter criterion: Investerare: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'eck_investor';
@@ -301,6 +325,50 @@ function f_investor_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Investerare: Id */
+  $handler->display->display_options['fields']['id']['id'] = 'id';
+  $handler->display->display_options['fields']['id']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['id']['field'] = 'id';
+  $handler->display->display_options['fields']['id']['label'] = '';
+  $handler->display->display_options['fields']['id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['id']['separator'] = '';
+  /* Field: Investerare: investor type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['machine_name'] = TRUE;
+  /* Field: Investerare: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id]';
+  /* Field: Investerare: Plats - Locality (i.e. City) */
+  $handler->display->display_options['fields']['field_shared_address_locality']['id'] = 'field_shared_address_locality';
+  $handler->display->display_options['fields']['field_shared_address_locality']['table'] = 'field_data_field_shared_address';
+  $handler->display->display_options['fields']['field_shared_address_locality']['field'] = 'field_shared_address_locality';
+  $handler->display->display_options['fields']['field_shared_address_locality']['label'] = 'Plats';
+  /* Field: Investerare: Plats - Country */
+  $handler->display->display_options['fields']['field_shared_address_country']['id'] = 'field_shared_address_country';
+  $handler->display->display_options['fields']['field_shared_address_country']['table'] = 'field_data_field_shared_address';
+  $handler->display->display_options['fields']['field_shared_address_country']['field'] = 'field_shared_address_country';
+  $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
+  $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
+  /* Field: Investerare: Mobiltelefon */
+  $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
+  $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
+  $handler->display->display_options['fields']['field_shared_cell']['field'] = 'field_shared_cell';
+  /* Field: Investerare: Telefon */
+  $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
+  $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
+  $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
   $handler->display->display_options['path'] = 'investerare';
   $handler->display->display_options['menu']['title'] = 'Alla investerare';
   $handler->display->display_options['menu']['weight'] = '0';
@@ -332,6 +400,8 @@ function f_investor_views_default_views() {
     t('.'),
     t('Namn'),
     t('Plats'),
+    t('Mobiltelefon'),
+    t('Telefon'),
     t('Postnummer'),
     t('Ort'),
     t('Land'),
