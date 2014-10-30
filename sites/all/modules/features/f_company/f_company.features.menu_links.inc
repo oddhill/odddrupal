@@ -56,8 +56,11 @@ function f_company_menu_default_menu_links() {
     'router_path' => 'node/add/company',
     'link_title' => 'Lägg till bolag',
     'options' => array(
-      'attributes' => array(),
       'identifier' => 'main-menu_lgg-till-bolag:node/add/company',
+      'attributes' => array(),
+      'query' => array(
+        'destination' => 'bolag',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
