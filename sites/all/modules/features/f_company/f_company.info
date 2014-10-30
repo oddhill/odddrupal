@@ -43,4 +43,5 @@ features[variable][] = node_options_company
 features[variable][] = node_preview_company
 features[variable][] = node_submitted_company
 features[views_view][] = company
+features_exclude[dependencies][f_investor] = f_investor
 project path = sites/all/modules/features
