@@ -49,10 +49,30 @@ function f_company_menu_default_menu_links() {
     'weight' => 1,
     'customized' => 1,
   );
+  // Exported menu link: main-menu_lgg-till-bolag:node/add/company
+  $menu_links['main-menu_lgg-till-bolag:node/add/company'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'node/add/company',
+    'router_path' => 'node/add/company',
+    'link_title' => 'Lägg till bolag',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'main-menu_lgg-till-bolag:node/add/company',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 10,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_bolag:<firstchild>',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Alla bolag');
   t('Bolag');
+  t('Lägg till bolag');
 
 
   return $menu_links;

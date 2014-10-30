@@ -5,6 +5,20 @@
  */
 
 /**
+ * Implements hook_ccl_features_preset().
+ */
+function f_company_ccl_features_preset() {
+  return array(
+    'Lägg till bolag' => array(
+      'type' => 'local_action',
+      'title' => 'Lägg till bolag',
+      'link' => 'node/add/company',
+      'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:7:"company";s:7:"node_id";s:7:" [nid:]";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:5:"bolag";s:8:"la_types";a:1:{s:7:"company";i:0;}s:8:"la_roles";a:3:{i:1;i:0;i:2;i:0;i:3;i:0;}}',
+    ),
+  );
+}
+
+/**
  * Implements hook_ctools_plugin_api().
  */
 function f_company_ctools_plugin_api($module = NULL, $api = NULL) {
