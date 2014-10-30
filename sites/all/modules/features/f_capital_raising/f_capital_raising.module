@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Kapitalanskaffning feature.
+ */
+
+include_once 'f_capital_raising.features.inc';
