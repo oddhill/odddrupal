@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Bolag feature.
+ */
+
+include_once 'f_company.features.inc';
