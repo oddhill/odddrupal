@@ -35,6 +35,7 @@ features[variable][] = blockify_blocks
 features[variable][] = form_placeholder_exclude
 features[variable][] = form_placeholder_include
 features[variable][] = form_placeholder_required_indicator
+features[variable][] = node_admin_theme
 features[variable][] = rh_user_action_user
 features[variable][] = rh_user_redirect_response_user
 features[variable][] = rh_user_redirect_user
