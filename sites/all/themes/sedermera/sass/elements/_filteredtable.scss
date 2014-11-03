@@ -1,10 +1,10 @@
-// Wraps the entire investor table
+// Wraps the entire table
 .filtered-table {
   overflow: hidden;
   background: $snow;
 }
 
-// Wraps the entire investor filter
+// Wraps the entire filter
 .table-filter {
   float: left;
   background: $wool;
@@ -116,7 +116,7 @@
   }
 }
 
-// Wraps the investors table (all investors and filtred investors)
+// Wraps the table (all content and filtred content)
 .table-wrapper {
   overflow: hidden;
 
@@ -127,9 +127,11 @@
       background: $aluminium;
       border-top: 1px solid $wool;
       border-bottom: 1px solid $wool;
+      font-weight: 700;
 
       th {
         height: 40px;
+        text-align: left;
 
         &.views-field {
           padding: 10px 0px 10px 10px;
@@ -144,8 +146,6 @@
 
         a {
           font-size: $standard;
-          font-weight: 700;
-          float: left;
           color: $coffee;
           border-bottom: 0px none;
 

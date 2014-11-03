@@ -423,17 +423,17 @@ ul.pager {
     .table-wrapper table thead {
       background: #ebedf1;
       border-top: 1px solid #e0e2e6;
-      border-bottom: 1px solid #e0e2e6; }
+      border-bottom: 1px solid #e0e2e6;
+      font-weight: 700; }
       .table-wrapper table thead th {
-        height: 40px; }
+        height: 40px;
+        text-align: left; }
         .table-wrapper table thead th.views-field {
           padding: 10px 0px 10px 10px; }
           .table-wrapper table thead th.views-field.active a {
             border-bottom: 2px solid #f9a500; }
         .table-wrapper table thead th a {
           font-size: 1.4;
-          font-weight: 700;
-          float: left;
           color: #282828;
           border-bottom: 0px none; }
           .table-wrapper table thead th a img {
