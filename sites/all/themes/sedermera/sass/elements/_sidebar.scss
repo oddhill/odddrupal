@@ -45,7 +45,7 @@
             @include svg-bg(company_white);
           }
 
-          &#prospect {
+          &#prospects {
             @include svg-bg(prospect_white);
           }
         }
@@ -62,7 +62,7 @@
           @include svg-bg(company_grey);
         }
 
-        &#prospect {
+        &#prospects {
           @include svg-bg(prospect_grey);
         }
 

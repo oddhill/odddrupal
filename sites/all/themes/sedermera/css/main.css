@@ -203,7 +203,7 @@ ul.pager {
       #main-navigation ul.menu li a.active-trail#companies {
         background: url("../graphics/company_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/company_white.svg") transparent 0 0 no-repeat; }
-      #main-navigation ul.menu li a.active-trail#prospect {
+      #main-navigation ul.menu li a.active-trail#prospects {
         background: url("../graphics/prospect_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/prospect_white.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a:hover {
@@ -214,7 +214,7 @@ ul.pager {
       #main-navigation ul.menu li a#companies {
         background: url("../graphics/company_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/company_grey.svg") transparent 0 0 no-repeat; }
-      #main-navigation ul.menu li a#prospect {
+      #main-navigation ul.menu li a#prospects {
         background: url("../graphics/prospect_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/prospect_grey.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a.all {

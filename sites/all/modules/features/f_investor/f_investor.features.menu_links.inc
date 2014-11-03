@@ -19,7 +19,9 @@ function f_investor_menu_default_menu_links() {
     'options' => array(
       'identifier' => 'main-menu_alla-investerare:investerare',
       'attributes' => array(
-        'id' => 'all_investors',
+        'class' => array(
+          0 => 'all',
+        ),
       ),
     ),
     'module' => 'menu',
@@ -62,7 +64,9 @@ function f_investor_menu_default_menu_links() {
     'options' => array(
       'identifier' => 'main-menu_lgg-till-investerare:investerare/skapa',
       'attributes' => array(
-        'id' => 'add_investor',
+        'class' => array(
+          0 => 'add',
+        ),
       ),
     ),
     'module' => 'menu',

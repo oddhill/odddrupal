@@ -17,8 +17,12 @@ function f_capital_raising_menu_default_menu_links() {
     'router_path' => 'kapitalanskaffningar',
     'link_title' => 'Alla kapitalanskaffningar',
     'options' => array(
-      'attributes' => array(),
       'identifier' => 'main-menu_alla-kapitalanskaffningar:kapitalanskaffningar',
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -36,10 +40,12 @@ function f_capital_raising_menu_default_menu_links() {
     'router_path' => '<firstchild>',
     'link_title' => 'Kapitalanskaffningar',
     'options' => array(
-      'attributes' => array(),
       'alter' => TRUE,
       'unaltered_hidden' => 0,
       'identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
+      'attributes' => array(
+        'id' => 'prospects',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,

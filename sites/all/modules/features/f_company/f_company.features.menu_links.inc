@@ -17,8 +17,12 @@ function f_company_menu_default_menu_links() {
     'router_path' => 'bolag',
     'link_title' => 'Alla bolag',
     'options' => array(
-      'attributes' => array(),
       'identifier' => 'main-menu_alla-bolag:bolag',
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -36,10 +40,12 @@ function f_company_menu_default_menu_links() {
     'router_path' => '<firstchild>',
     'link_title' => 'Bolag',
     'options' => array(
-      'attributes' => array(),
       'alter' => TRUE,
       'unaltered_hidden' => 0,
       'identifier' => 'main-menu_bolag:<firstchild>',
+      'attributes' => array(
+        'id' => 'companies',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -57,9 +63,13 @@ function f_company_menu_default_menu_links() {
     'link_title' => 'Lägg till bolag',
     'options' => array(
       'identifier' => 'main-menu_lgg-till-bolag:node/add/company',
-      'attributes' => array(),
       'query' => array(
         'destination' => 'bolag',
+      ),
+      'attributes' => array(
+        'class' => array(
+          0 => 'add',
+        ),
       ),
     ),
     'module' => 'menu',
