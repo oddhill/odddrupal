@@ -1,6 +1,6 @@
-// Single investor information
+// Node page
 
-.page-investor {
+.page-investor, .node-type-company {
 
   #main-content {
 
@@ -31,4 +31,9 @@
    .field-shared-industries, .field-shared-address, .field-shared-email {
       margin-bottom: 15px;
    }
+}
+
+// Company logo
+.field-comp-logo {
+  margin-top: 10px;
 }

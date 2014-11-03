@@ -1203,7 +1203,7 @@ ul.tabs {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-.page-investor #main-content #page-content {
+.page-investor #main-content #page-content, .node-type-company #main-content #page-content {
   margin-top: 0;
   background: #fff;
   padding: 50px 40px 50px 40px; }
@@ -1225,6 +1225,9 @@ ul.tabs {
     font-weight: 700; }
   .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email {
     margin-bottom: 15px; }
+
+.field-comp-logo {
+  margin-top: 10px; }
 
 .not-logged-in.page-user {
   background: #282828;
