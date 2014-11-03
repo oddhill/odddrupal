@@ -200,15 +200,27 @@ ul.pager {
       #main-navigation ul.menu li a.active-trail#investors {
         background: url("../graphics/investors_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/investors_white.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a.active-trail#companies {
+        background: url("../graphics/company_white.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/company_white.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a.active-trail#prospect {
+        background: url("../graphics/prospect_white.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/prospect_white.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a:hover {
         color: #d8d9da; }
       #main-navigation ul.menu li a#investors {
-        background: url("../graphics/investors.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/investors.svg") transparent 0 0 no-repeat; }
-      #main-navigation ul.menu li a#all_investors {
+        background: url("../graphics/investors_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/investors_grey.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a#companies {
+        background: url("../graphics/company_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/company_grey.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a#prospect {
+        background: url("../graphics/prospect_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/prospect_grey.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a.all {
         background: url("../graphics/list_small_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/list_small_grey.svg") transparent 0 0 no-repeat; }
-      #main-navigation ul.menu li a#add_investor {
+      #main-navigation ul.menu li a.add {
         background: url("../graphics/add_small_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/add_small_grey.svg") transparent 0 0 no-repeat; }
     #main-navigation ul.menu li ul {
@@ -227,10 +239,10 @@ ul.pager {
         padding-left: 22px; }
         #main-navigation ul.menu li li a.active, #main-navigation ul.menu li li a.active-trail {
           color: #f9a500; }
-          #main-navigation ul.menu li li a.active#all_investors, #main-navigation ul.menu li li a.active-trail#all_investors {
+          #main-navigation ul.menu li li a.active.all, #main-navigation ul.menu li li a.active-trail.all {
             background: url("../graphics/list_small_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/list_small_yellow.svg") transparent 0 0 no-repeat; }
-          #main-navigation ul.menu li li a.active#add_investor, #main-navigation ul.menu li li a.active-trail#add_investor {
+          #main-navigation ul.menu li li a.active.add, #main-navigation ul.menu li li a.active-trail.add {
             background: url("../graphics/add_small_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/add_small_yellow.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li li.last {

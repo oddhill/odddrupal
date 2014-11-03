@@ -40,6 +40,14 @@
           &#investors {
             @include svg-bg(investors_white);
           }
+
+          &#companies {
+            @include svg-bg(company_white);
+          }
+
+          &#prospect {
+            @include svg-bg(prospect_white);
+          }
         }
 
         &:hover {
@@ -47,14 +55,22 @@
         }
 
         &#investors {
-          @include svg-bg(investors);
+          @include svg-bg(investors_grey);
         }
 
-        &#all_investors {
+        &#companies {
+          @include svg-bg(company_grey);
+        }
+
+        &#prospect {
+          @include svg-bg(prospect_grey);
+        }
+
+        &.all {
           @include svg-bg(list_small_grey);
         }
 
-         &#add_investor {
+         &.add {
           @include svg-bg(add_small_grey);
         }
       }
@@ -78,11 +94,11 @@
           &.active-trail {
             color: $mustard;
 
-            &#all_investors {
+            &.all {
               @include svg-bg(list_small_yellow);
             }
 
-            &#add_investor {
+            &.add {
               @include svg-bg(add_small_yellow);
             }
           }
