@@ -1,4 +1,4 @@
-@mixin button($background: $dark-grey, $icon: default) {
+@mixin button($background: $dark-grey, $icon: default, $size: default) {
   display: inline-block;
   height: 34px;
   @include font-size(1.2,1);
@@ -26,6 +26,12 @@
     padding-left: 42px;
   }
 
+  @if $icon == upload {
+    @include svg-bg(upload);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
   @if $icon == delete {
     @include svg-bg(delete_small_light);
     background-position: 20px 11px;
@@ -46,6 +52,15 @@
 
   background-color: $background;
   @include transition (background-color 0.1s ease-in-out);
+
+  @if $size == small {
+    height: 24px;
+    line-height: 24px;
+    border-radius: 24px;
+    background-position: 10px 6px;
+    padding: 0 10px 0 26px;
+    margin-right: 8px;
+  }
 }
 
 @mixin throbber {

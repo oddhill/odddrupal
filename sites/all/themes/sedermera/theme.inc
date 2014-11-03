@@ -358,3 +358,38 @@ function sedermera_textfield($variables) {
 
   return $output . $extra;
 }
+
+/**
+ * Overrides theme_image_widget.
+ */
+function sedermera_image_widget($variables) {
+  $element = $variables['element'];
+  $output = '';
+  if ($element['fid']['#value'] == 0) {
+    $output .= '<div class="image-widget form-managed-file clearfix">';
+  }
+  else {
+    $output .= '<div class="image-widget form-managed-file populated clearfix">';
+  }
+
+  if (isset($element['preview'])) {
+    $output .= '<div class="image-preview">';
+    $output .= drupal_render($element['preview']);
+    $output .= '</div>';
+  }
+
+  if ($element['fid']['#value'] == 0) {
+    $output .= '<div class="image-widget-data"><div class="icon"></div><input type="text" class="text" placeholder="Välj en bild.."/>';
+  } else {
+    $output .= '<div class="image-widget-data">';
+  }
+
+  if ($element['fid']['#value'] != 0) {
+    $element['filename']['#markup'] .= ' <span class="file-size">(' . format_size($element['#file']->filesize) . ')</span> ';
+  }
+  $output .= drupal_render_children($element);
+  $output .= '</div>';
+  $output .= '</div>';
+
+  return $output;
+}

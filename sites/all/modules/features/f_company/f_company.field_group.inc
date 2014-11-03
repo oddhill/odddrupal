@@ -28,12 +28,13 @@ function f_company_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Grundläggande',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-comp-1 field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-comp-1 field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_comp_1|node|company|form'] = $field_group;

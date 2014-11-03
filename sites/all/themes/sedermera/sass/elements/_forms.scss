@@ -1,7 +1,9 @@
 .page-admin form,
 .page-investor-person-edit form,
 .page-investor-company-edit form,
-.not-logged-in.page-user form {
+.not-logged-in.page-user form,
+.page-node-add form,
+.page-node-edit form {
   max-width: 800px;
 
   fieldset {
@@ -142,6 +144,113 @@
           border-top-color: transparent;
           @include animation(load 0.9s linear infinite);
         }
+      }
+    }
+
+    &.form-type-managed-file {
+
+      .image-widget {
+        float: left;
+
+        .image-widget-data {
+          background: $snow;
+          border-radius: 2px;
+          margin-bottom: 5px;
+          position: relative;
+
+          .icon {
+            display: block;
+            position: absolute;
+            left: 9px;
+            top: 9px;
+            width: 20px;
+            height: 20px;
+            @include svg-bg(folder);
+          }
+
+          .text {
+            position: absolute;
+            left: 34px;
+            top: 10px;
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0;
+            padding: 0;
+          }
+
+          input[type="file"] {
+            display: block;
+            float: left;
+            width: 240px;
+            height: 39px;
+            opacity: 0;
+          }
+
+          .submit-wrapper {
+            margin: 8px 8px 0 0;
+            height: 24px;
+            position: relative;
+
+            .form-submit {
+              @include button($dark-grey,upload,small);
+              margin: 0;
+            }
+
+            .ajax-progress {
+              display: block;
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              margin: 0 8px 0 0;
+              border-radius: 24px;
+              cursor: pointer;
+              background: shade($dark-grey,30%);
+              height: 100%;
+              text-align: center;
+              padding-top: 4px;
+
+              .throbber {
+                @include throbber;
+                margin: 0 auto;
+                float: none;
+              }
+            }
+          }
+        }
+
+        &.populated {
+          background: $snow;
+          border-radius: 2px;
+          margin-bottom: 5px;
+          padding: 10px;
+
+          .image-preview {
+            margin: 0 10px 0 0;
+            line-height: 0px;
+            padding: 0;
+          }
+
+          .image-widget-data {
+            background: transparent;
+            border-radius: 0px;
+            margin: 10px 0;
+
+            .submit-wrapper {
+              margin: 0 0 0 10px;
+
+              .form-submit {
+                @include button($dark-grey,delete,small);
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .description {
+        clear: both;
       }
     }
   }

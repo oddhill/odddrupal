@@ -859,30 +859,40 @@ div.checker.hover.active span {
 .page-admin form,
 .page-investor-person-edit form,
 .page-investor-company-edit form,
-.not-logged-in.page-user form {
+.not-logged-in.page-user form,
+.page-node-add form,
+.page-node-edit form {
   max-width: 800px; }
   .page-admin form fieldset,
   .page-investor-person-edit form fieldset,
   .page-investor-company-edit form fieldset,
-  .not-logged-in.page-user form fieldset {
+  .not-logged-in.page-user form fieldset,
+  .page-node-add form fieldset,
+  .page-node-edit form fieldset {
     position: relative;
     margin-bottom: 20px; }
     .page-admin form fieldset .fieldset-wrapper,
     .page-investor-person-edit form fieldset .fieldset-wrapper,
     .page-investor-company-edit form fieldset .fieldset-wrapper,
-    .not-logged-in.page-user form fieldset .fieldset-wrapper {
+    .not-logged-in.page-user form fieldset .fieldset-wrapper,
+    .page-node-add form fieldset .fieldset-wrapper,
+    .page-node-edit form fieldset .fieldset-wrapper {
       background: #e0e2e6;
       padding: 20px 20px 5px;
       border-radius: 3px; }
     .page-admin form fieldset legend,
     .page-investor-person-edit form fieldset legend,
     .page-investor-company-edit form fieldset legend,
-    .not-logged-in.page-user form fieldset legend {
+    .not-logged-in.page-user form fieldset legend,
+    .page-node-add form fieldset legend,
+    .page-node-edit form fieldset legend {
       height: 40px; }
       .page-admin form fieldset legend span.fieldset-legend,
       .page-investor-person-edit form fieldset legend span.fieldset-legend,
       .page-investor-company-edit form fieldset legend span.fieldset-legend,
-      .not-logged-in.page-user form fieldset legend span.fieldset-legend {
+      .not-logged-in.page-user form fieldset legend span.fieldset-legend,
+      .page-node-add form fieldset legend span.fieldset-legend,
+      .page-node-edit form fieldset legend span.fieldset-legend {
         display: block;
         position: absolute;
         left: 0px;
@@ -898,7 +908,9 @@ div.checker.hover.active span {
     .page-admin form fieldset .fieldset-description,
     .page-investor-person-edit form fieldset .fieldset-description,
     .page-investor-company-edit form fieldset .fieldset-description,
-    .not-logged-in.page-user form fieldset .fieldset-description {
+    .not-logged-in.page-user form fieldset .fieldset-description,
+    .page-node-add form fieldset .fieldset-description,
+    .page-node-edit form fieldset .fieldset-description {
       margin-bottom: 20px;
       font-style: italic;
       background: #ecedf0;
@@ -908,19 +920,25 @@ div.checker.hover.active span {
   .page-admin form .form-item,
   .page-investor-person-edit form .form-item,
   .page-investor-company-edit form .form-item,
-  .not-logged-in.page-user form .form-item {
+  .not-logged-in.page-user form .form-item,
+  .page-node-add form .form-item,
+  .page-node-edit form .form-item {
     margin-bottom: 20px; }
     .page-admin form .form-item label,
     .page-investor-person-edit form .form-item label,
     .page-investor-company-edit form .form-item label,
-    .not-logged-in.page-user form .form-item label {
+    .not-logged-in.page-user form .form-item label,
+    .page-node-add form .form-item label,
+    .page-node-edit form .form-item label {
       display: block;
       font-weight: 500;
       margin-bottom: 3px; }
     .page-admin form .form-item .description,
     .page-investor-person-edit form .form-item .description,
     .page-investor-company-edit form .form-item .description,
-    .not-logged-in.page-user form .form-item .description {
+    .not-logged-in.page-user form .form-item .description,
+    .page-node-add form .form-item .description,
+    .page-node-edit form .form-item .description {
       font-size: 12px;
       font-size: 1.2rem;
       line-height: 15.6px;
@@ -928,17 +946,23 @@ div.checker.hover.active span {
     .page-admin form .form-item.form-type-select,
     .page-investor-person-edit form .form-item.form-type-select,
     .page-investor-company-edit form .form-item.form-type-select,
-    .not-logged-in.page-user form .form-item.form-type-select {
+    .not-logged-in.page-user form .form-item.form-type-select,
+    .page-node-add form .form-item.form-type-select,
+    .page-node-edit form .form-item.form-type-select {
       position: relative; }
       .page-admin form .form-item.form-type-select label,
       .page-investor-person-edit form .form-item.form-type-select label,
       .page-investor-company-edit form .form-item.form-type-select label,
-      .not-logged-in.page-user form .form-item.form-type-select label {
+      .not-logged-in.page-user form .form-item.form-type-select label,
+      .page-node-add form .form-item.form-type-select label,
+      .page-node-edit form .form-item.form-type-select label {
         display: none; }
       .page-admin form .form-item.form-type-select .ajax-progress,
       .page-investor-person-edit form .form-item.form-type-select .ajax-progress,
       .page-investor-company-edit form .form-item.form-type-select .ajax-progress,
-      .not-logged-in.page-user form .form-item.form-type-select .ajax-progress {
+      .not-logged-in.page-user form .form-item.form-type-select .ajax-progress,
+      .page-node-add form .form-item.form-type-select .ajax-progress,
+      .page-node-edit form .form-item.form-type-select .ajax-progress {
         margin: 0 3px;
         padding: 9px 4px;
         background: #fff;
@@ -949,7 +973,9 @@ div.checker.hover.active span {
         .page-admin form .form-item.form-type-select .ajax-progress .throbber,
         .page-investor-person-edit form .form-item.form-type-select .ajax-progress .throbber,
         .page-investor-company-edit form .form-item.form-type-select .ajax-progress .throbber,
-        .not-logged-in.page-user form .form-item.form-type-select .ajax-progress .throbber {
+        .not-logged-in.page-user form .form-item.form-type-select .ajax-progress .throbber,
+        .page-node-add form .form-item.form-type-select .ajax-progress .throbber,
+        .page-node-edit form .form-item.form-type-select .ajax-progress .throbber {
           display: inline-block;
           background: transparent;
           width: 16px;
@@ -963,24 +989,32 @@ div.checker.hover.active span {
         .page-admin form .form-item.form-type-select .ajax-progress .message,
         .page-investor-person-edit form .form-item.form-type-select .ajax-progress .message,
         .page-investor-company-edit form .form-item.form-type-select .ajax-progress .message,
-        .not-logged-in.page-user form .form-item.form-type-select .ajax-progress .message {
+        .not-logged-in.page-user form .form-item.form-type-select .ajax-progress .message,
+        .page-node-add form .form-item.form-type-select .ajax-progress .message,
+        .page-node-edit form .form-item.form-type-select .ajax-progress .message {
           display: none; }
     .page-admin form .form-item.form-type-textfield,
     .page-investor-person-edit form .form-item.form-type-textfield,
     .page-investor-company-edit form .form-item.form-type-textfield,
-    .not-logged-in.page-user form .form-item.form-type-textfield {
+    .not-logged-in.page-user form .form-item.form-type-textfield,
+    .page-node-add form .form-item.form-type-textfield,
+    .page-node-edit form .form-item.form-type-textfield {
       position: relative; }
       .page-admin form .form-item.form-type-textfield label,
       .page-investor-person-edit form .form-item.form-type-textfield label,
       .page-investor-company-edit form .form-item.form-type-textfield label,
-      .not-logged-in.page-user form .form-item.form-type-textfield label {
+      .not-logged-in.page-user form .form-item.form-type-textfield label,
+      .page-node-add form .form-item.form-type-textfield label,
+      .page-node-edit form .form-item.form-type-textfield label {
         position: absolute;
         top: 11px;
         left: 10px; }
       .page-admin form .form-item.form-type-textfield .form-required,
       .page-investor-person-edit form .form-item.form-type-textfield .form-required,
       .page-investor-company-edit form .form-item.form-type-textfield .form-required,
-      .not-logged-in.page-user form .form-item.form-type-textfield .form-required {
+      .not-logged-in.page-user form .form-item.form-type-textfield .form-required,
+      .page-node-add form .form-item.form-type-textfield .form-required,
+      .page-node-edit form .form-item.form-type-textfield .form-required {
         display: inline-block;
         width: 15px;
         height: 15px;
@@ -997,14 +1031,18 @@ div.checker.hover.active span {
       .page-admin form .form-item.form-type-textfield #autocomplete,
       .page-investor-person-edit form .form-item.form-type-textfield #autocomplete,
       .page-investor-company-edit form .form-item.form-type-textfield #autocomplete,
-      .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete {
+      .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete,
+      .page-node-add form .form-item.form-type-textfield #autocomplete,
+      .page-node-edit form .form-item.form-type-textfield #autocomplete {
         border: 0 none;
         margin: 3px 0 0;
         box-shadow: 0 0 3px #a2a2a2; }
         .page-admin form .form-item.form-type-textfield #autocomplete ul li,
         .page-investor-person-edit form .form-item.form-type-textfield #autocomplete ul li,
         .page-investor-company-edit form .form-item.form-type-textfield #autocomplete ul li,
-        .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete ul li {
+        .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete ul li,
+        .page-node-add form .form-item.form-type-textfield #autocomplete ul li,
+        .page-node-edit form .form-item.form-type-textfield #autocomplete ul li {
           height: 32px;
           line-height: 32px;
           border-bottom: 1px solid #e0e2e6;
@@ -1013,12 +1051,16 @@ div.checker.hover.active span {
           .page-admin form .form-item.form-type-textfield #autocomplete ul li:hover,
           .page-investor-person-edit form .form-item.form-type-textfield #autocomplete ul li:hover,
           .page-investor-company-edit form .form-item.form-type-textfield #autocomplete ul li:hover,
-          .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete ul li:hover {
+          .not-logged-in.page-user form .form-item.form-type-textfield #autocomplete ul li:hover,
+          .page-node-add form .form-item.form-type-textfield #autocomplete ul li:hover,
+          .page-node-edit form .form-item.form-type-textfield #autocomplete ul li:hover {
             background: #f3f4f8; }
       .page-admin form .form-item.form-type-textfield .throbber,
       .page-investor-person-edit form .form-item.form-type-textfield .throbber,
       .page-investor-company-edit form .form-item.form-type-textfield .throbber,
-      .not-logged-in.page-user form .form-item.form-type-textfield .throbber {
+      .not-logged-in.page-user form .form-item.form-type-textfield .throbber,
+      .page-node-add form .form-item.form-type-textfield .throbber,
+      .page-node-edit form .form-item.form-type-textfield .throbber {
         display: inline-block;
         width: 10px;
         height: 10px;
@@ -1028,7 +1070,9 @@ div.checker.hover.active span {
         .page-admin form .form-item.form-type-textfield .throbber.throbbing,
         .page-investor-person-edit form .form-item.form-type-textfield .throbber.throbbing,
         .page-investor-company-edit form .form-item.form-type-textfield .throbber.throbbing,
-        .not-logged-in.page-user form .form-item.form-type-textfield .throbber.throbbing {
+        .not-logged-in.page-user form .form-item.form-type-textfield .throbber.throbbing,
+        .page-node-add form .form-item.form-type-textfield .throbber.throbbing,
+        .page-node-edit form .form-item.form-type-textfield .throbber.throbbing {
           margin: -3px -3px -3px -26px;
           width: 16px;
           height: 16px;
@@ -1037,42 +1081,279 @@ div.checker.hover.active span {
           -webkit-animation: load 0.9s linear infinite;
           -moz-animation: load 0.9s linear infinite;
           animation: load 0.9s linear infinite; }
+    .page-admin form .form-item.form-type-managed-file .image-widget,
+    .page-investor-person-edit form .form-item.form-type-managed-file .image-widget,
+    .page-investor-company-edit form .form-item.form-type-managed-file .image-widget,
+    .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget,
+    .page-node-add form .form-item.form-type-managed-file .image-widget,
+    .page-node-edit form .form-item.form-type-managed-file .image-widget {
+      float: left; }
+      .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data,
+      .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data,
+      .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data,
+      .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data,
+      .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data,
+      .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data {
+        background: #fff;
+        border-radius: 2px;
+        margin-bottom: 5px;
+        position: relative; }
+        .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data .icon,
+        .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .icon,
+        .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .icon,
+        .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data .icon,
+        .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data .icon,
+        .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .icon {
+          display: block;
+          position: absolute;
+          left: 9px;
+          top: 9px;
+          width: 20px;
+          height: 20px;
+          background: url("../graphics/folder.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/folder.svg") transparent 0 0 no-repeat; }
+        .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data .text,
+        .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .text,
+        .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .text,
+        .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data .text,
+        .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data .text,
+        .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .text {
+          position: absolute;
+          left: 34px;
+          top: 10px;
+          width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 0;
+          padding: 0; }
+        .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data input[type="file"],
+        .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data input[type="file"],
+        .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data input[type="file"],
+        .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data input[type="file"],
+        .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data input[type="file"],
+        .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data input[type="file"] {
+          display: block;
+          float: left;
+          width: 240px;
+          height: 39px;
+          opacity: 0; }
+        .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper,
+        .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper,
+        .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper,
+        .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper,
+        .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper,
+        .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper {
+          margin: 8px 8px 0 0;
+          height: 24px;
+          position: relative; }
+          .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit,
+          .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit,
+          .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit,
+          .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit,
+          .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit,
+          .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit {
+            display: inline-block;
+            height: 34px;
+            font-size: 12px;
+            font-size: 1.2rem;
+            line-height: 12px;
+            line-height: 34px;
+            border-radius: 34px;
+            color: #fff;
+            padding: 0 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-bottom: 0px none;
+            background: url("../graphics/upload.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/upload.svg") transparent 0 0 no-repeat;
+            background-position: 20px 11px;
+            padding-left: 42px;
+            background-color: #454545;
+            -webkit-transition: background-color 0.1s ease-in-out;
+            -moz-transition: background-color 0.1s ease-in-out;
+            transition: background-color 0.1s ease-in-out;
+            height: 24px;
+            line-height: 24px;
+            border-radius: 24px;
+            background-position: 10px 6px;
+            padding: 0 10px 0 26px;
+            margin-right: 8px;
+            margin: 0; }
+            .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit:hover,
+            .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit:hover,
+            .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit:hover,
+            .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit:hover,
+            .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit:hover,
+            .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit:hover {
+              background-color: #303030; }
+          .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress,
+          .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress,
+          .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress,
+          .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress,
+          .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress,
+          .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            margin: 0 8px 0 0;
+            border-radius: 24px;
+            cursor: pointer;
+            background: #303030;
+            height: 100%;
+            text-align: center;
+            padding-top: 4px; }
+            .page-admin form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress .throbber,
+            .page-investor-person-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress .throbber,
+            .page-investor-company-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress .throbber,
+            .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress .throbber,
+            .page-node-add form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress .throbber,
+            .page-node-edit form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress .throbber {
+              display: inline-block;
+              background: transparent;
+              width: 16px;
+              height: 16px;
+              border: 2px solid #f9a500;
+              border-radius: 50%;
+              border-top-color: transparent;
+              -webkit-animation: load 0.9s linear infinite;
+              -moz-animation: load 0.9s linear infinite;
+              animation: load 0.9s linear infinite;
+              margin: 0 auto;
+              float: none; }
+      .page-admin form .form-item.form-type-managed-file .image-widget.populated,
+      .page-investor-person-edit form .form-item.form-type-managed-file .image-widget.populated,
+      .page-investor-company-edit form .form-item.form-type-managed-file .image-widget.populated,
+      .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget.populated,
+      .page-node-add form .form-item.form-type-managed-file .image-widget.populated,
+      .page-node-edit form .form-item.form-type-managed-file .image-widget.populated {
+        background: #fff;
+        border-radius: 2px;
+        margin-bottom: 5px;
+        padding: 10px; }
+        .page-admin form .form-item.form-type-managed-file .image-widget.populated .image-preview,
+        .page-investor-person-edit form .form-item.form-type-managed-file .image-widget.populated .image-preview,
+        .page-investor-company-edit form .form-item.form-type-managed-file .image-widget.populated .image-preview,
+        .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget.populated .image-preview,
+        .page-node-add form .form-item.form-type-managed-file .image-widget.populated .image-preview,
+        .page-node-edit form .form-item.form-type-managed-file .image-widget.populated .image-preview {
+          margin: 0 10px 0 0;
+          line-height: 0px;
+          padding: 0; }
+        .page-admin form .form-item.form-type-managed-file .image-widget.populated .image-widget-data,
+        .page-investor-person-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data,
+        .page-investor-company-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data,
+        .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget.populated .image-widget-data,
+        .page-node-add form .form-item.form-type-managed-file .image-widget.populated .image-widget-data,
+        .page-node-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data {
+          background: transparent;
+          border-radius: 0px;
+          margin: 10px 0; }
+          .page-admin form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper,
+          .page-investor-person-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper,
+          .page-investor-company-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper,
+          .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper,
+          .page-node-add form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper,
+          .page-node-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper {
+            margin: 0 0 0 10px; }
+            .page-admin form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit,
+            .page-investor-person-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit,
+            .page-investor-company-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit,
+            .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit,
+            .page-node-add form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit,
+            .page-node-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit {
+              display: inline-block;
+              height: 34px;
+              font-size: 12px;
+              font-size: 1.2rem;
+              line-height: 12px;
+              line-height: 34px;
+              border-radius: 34px;
+              color: #fff;
+              padding: 0 20px;
+              font-weight: 500;
+              text-transform: uppercase;
+              border-bottom: 0px none;
+              background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+              background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+              background-position: 20px 11px;
+              padding-left: 42px;
+              background-color: #454545;
+              -webkit-transition: background-color 0.1s ease-in-out;
+              -moz-transition: background-color 0.1s ease-in-out;
+              transition: background-color 0.1s ease-in-out;
+              height: 24px;
+              line-height: 24px;
+              border-radius: 24px;
+              background-position: 10px 6px;
+              padding: 0 10px 0 26px;
+              margin-right: 8px;
+              margin: 0; }
+              .page-admin form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover,
+              .page-investor-person-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover,
+              .page-investor-company-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover,
+              .not-logged-in.page-user form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover,
+              .page-node-add form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover,
+              .page-node-edit form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover {
+                background-color: #303030; }
+    .page-admin form .form-item.form-type-managed-file .description,
+    .page-investor-person-edit form .form-item.form-type-managed-file .description,
+    .page-investor-company-edit form .form-item.form-type-managed-file .description,
+    .not-logged-in.page-user form .form-item.form-type-managed-file .description,
+    .page-node-add form .form-item.form-type-managed-file .description,
+    .page-node-edit form .form-item.form-type-managed-file .description {
+      clear: both; }
   .page-admin form .form-text,
   .page-investor-person-edit form .form-text,
   .page-investor-company-edit form .form-text,
-  .not-logged-in.page-user form .form-text {
+  .not-logged-in.page-user form .form-text,
+  .page-node-add form .form-text,
+  .page-node-edit form .form-text {
     padding: 10px 30px 10px 10px;
     border-radius: 2px;
     margin-bottom: 5px; }
     .js .page-admin form .form-text.form-autocomplete, .js
     .page-investor-person-edit form .form-text.form-autocomplete, .js
     .page-investor-company-edit form .form-text.form-autocomplete, .js
-    .not-logged-in.page-user form .form-text.form-autocomplete {
+    .not-logged-in.page-user form .form-text.form-autocomplete, .js
+    .page-node-add form .form-text.form-autocomplete, .js
+    .page-node-edit form .form-text.form-autocomplete {
       background-image: none; }
       .js .page-admin form .form-text.form-autocomplete.throbbing, .js
       .page-investor-person-edit form .form-text.form-autocomplete.throbbing, .js
       .page-investor-company-edit form .form-text.form-autocomplete.throbbing, .js
-      .not-logged-in.page-user form .form-text.form-autocomplete.throbbing {
+      .not-logged-in.page-user form .form-text.form-autocomplete.throbbing, .js
+      .page-node-add form .form-text.form-autocomplete.throbbing, .js
+      .page-node-edit form .form-text.form-autocomplete.throbbing {
         background-image: none; }
     .page-admin form .form-text:focus,
     .page-investor-person-edit form .form-text:focus,
     .page-investor-company-edit form .form-text:focus,
-    .not-logged-in.page-user form .form-text:focus {
+    .not-logged-in.page-user form .form-text:focus,
+    .page-node-add form .form-text:focus,
+    .page-node-edit form .form-text:focus {
       box-shadow: 0 0 3px #a2a2a2; }
   .page-admin form .submit-wrapper,
   .page-investor-person-edit form .submit-wrapper,
   .page-investor-company-edit form .submit-wrapper,
-  .not-logged-in.page-user form .submit-wrapper {
+  .not-logged-in.page-user form .submit-wrapper,
+  .page-node-add form .submit-wrapper,
+  .page-node-edit form .submit-wrapper {
     display: inline-block; }
     .page-admin form .submit-wrapper .form-submit,
     .page-investor-person-edit form .submit-wrapper .form-submit,
     .page-investor-company-edit form .submit-wrapper .form-submit,
-    .not-logged-in.page-user form .submit-wrapper .form-submit {
+    .not-logged-in.page-user form .submit-wrapper .form-submit,
+    .page-node-add form .submit-wrapper .form-submit,
+    .page-node-edit form .submit-wrapper .form-submit {
       margin-right: 10px; }
       .page-admin form .submit-wrapper .form-submit#edit-submit,
       .page-investor-person-edit form .submit-wrapper .form-submit#edit-submit,
       .page-investor-company-edit form .submit-wrapper .form-submit#edit-submit,
-      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-submit {
+      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-submit,
+      .page-node-add form .submit-wrapper .form-submit#edit-submit,
+      .page-node-edit form .submit-wrapper .form-submit#edit-submit {
         display: inline-block;
         height: 34px;
         font-size: 12px;
@@ -1096,12 +1377,16 @@ div.checker.hover.active span {
         .page-admin form .submit-wrapper .form-submit#edit-submit:hover,
         .page-investor-person-edit form .submit-wrapper .form-submit#edit-submit:hover,
         .page-investor-company-edit form .submit-wrapper .form-submit#edit-submit:hover,
-        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-submit:hover {
+        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-submit:hover,
+        .page-node-add form .submit-wrapper .form-submit#edit-submit:hover,
+        .page-node-edit form .submit-wrapper .form-submit#edit-submit:hover {
           background-color: #303030; }
       .page-admin form .submit-wrapper .form-submit#edit-delete,
       .page-investor-person-edit form .submit-wrapper .form-submit#edit-delete,
       .page-investor-company-edit form .submit-wrapper .form-submit#edit-delete,
-      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-delete {
+      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-delete,
+      .page-node-add form .submit-wrapper .form-submit#edit-delete,
+      .page-node-edit form .submit-wrapper .form-submit#edit-delete {
         display: inline-block;
         height: 34px;
         font-size: 12px;
@@ -1125,7 +1410,9 @@ div.checker.hover.active span {
         .page-admin form .submit-wrapper .form-submit#edit-delete:hover,
         .page-investor-person-edit form .submit-wrapper .form-submit#edit-delete:hover,
         .page-investor-company-edit form .submit-wrapper .form-submit#edit-delete:hover,
-        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-delete:hover {
+        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-delete:hover,
+        .page-node-add form .submit-wrapper .form-submit#edit-delete:hover,
+        .page-node-edit form .submit-wrapper .form-submit#edit-delete:hover {
           background-color: #862e2e; }
 
 ul.tabs {
