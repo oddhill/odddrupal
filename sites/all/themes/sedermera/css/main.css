@@ -441,7 +441,8 @@ ul.pager {
             border-bottom: none; }
     .table-wrapper table td {
       height: 40px;
-      padding: 10px 0 10px 10px; }
+      padding: 10px 0 10px 10px;
+      vertical-align: top; }
     .table-wrapper table tr.even {
       background: #fafbfc;
       border-top: 1px solid #f3f4f8;
@@ -905,6 +906,14 @@ div.checker.hover.active span {
         line-height: 32px;
         font-weight: 400;
         text-transform: uppercase; }
+@-moz-document url-prefix() {
+  .page-admin form fieldset legend span.fieldset-legend,
+  .page-investor-person-edit form fieldset legend span.fieldset-legend,
+  .page-investor-company-edit form fieldset legend span.fieldset-legend,
+  .not-logged-in.page-user form fieldset legend span.fieldset-legend,
+  .page-node-add form fieldset legend span.fieldset-legend,
+  .page-node-edit form fieldset legend span.fieldset-legend {
+    margin-top: -40px; } }
     .page-admin form fieldset .fieldset-description,
     .page-investor-person-edit form fieldset .fieldset-description,
     .page-investor-company-edit form fieldset .fieldset-description,
