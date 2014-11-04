@@ -42,6 +42,11 @@ function f_capital_raising_context_default_contexts() {
           'weight' => '-9',
         ),
       ),
+          'region' => 'sidebar-second',
+          'weight' => '-10',
+        ),
+      ),
+      'layout' => 'frontpage',
     ),
   );
   $context->condition_mode = 1;

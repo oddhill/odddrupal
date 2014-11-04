@@ -45,7 +45,7 @@
  */
 ?>
 
-<div class="<?php print $field_name_css; ?>">
+<div class="field <?php print $field_name_css; ?>">
   <?php if (!$label_hidden): ?>
     <span class="label" <?php print $title_attributes; ?>><?php print $label ?>:&nbsp;</span>
   <?php endif; ?>

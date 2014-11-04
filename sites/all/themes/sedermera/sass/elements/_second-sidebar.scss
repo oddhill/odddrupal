@@ -1,0 +1,45 @@
+.wrapper {
+  overflow: auto;
+  width: 60%;
+}
+
+.content {
+  display: inline-block;
+  width: 75%;
+}
+
+.sidebar-second {
+  margin-top: 132px;
+  background: $wool;
+  float: right;
+  padding: 10px;
+  width: 25%;
+}
+
+.block-sedermera-capital-raising-time-remaining {
+
+  background: $steel;
+  text-align: center;
+
+  h2 {
+    @include font-size(1.2);
+    background: #c8cacd;
+    border-bottom: 1px solid $wool;
+    font-weight: 700;
+    padding: 10px 0 10px 0;
+    text-transform: uppercase;
+  }
+
+  .date {
+    @include font-size(3.4);
+    color: $dark-grey;
+    font-weight: 700;
+    padding-top: 20px;
+    text-transform: uppercase;
+  }
+
+  .remaining {
+    @include font-size(1.4);
+    padding-bottom: 20px;
+  }
+}

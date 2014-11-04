@@ -1499,16 +1499,16 @@ ul.tabs {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-.page-investor #main-content #page-content, .node-type-company #main-content #page-content {
+.page-investor #main-content #page-content, .node-type-company #main-content #page-content, .page-node #main-content #page-content {
   margin-top: 0;
   background: #fff;
   padding: 50px 40px 50px 40px; }
 
-.entity.entity-investor, .node-company {
+.entity.entity-investor, .node-company, .node-capital-raising {
   font-size: 15px;
   font-size: 1.5rem;
   line-height: 22.5px; }
-  .entity.entity-investor .title h2, .node-company .title h2 {
+  .entity.entity-investor .title h2, .node-company .title h2, .node-capital-raising .title h2 {
     font-size: 32px;
     font-size: 3.2rem;
     line-height: 48px;
@@ -1517,9 +1517,9 @@ ul.tabs {
     border-bottom: 2px solid #f3f4f8;
     padding: 0 0 33px 0;
     margin-bottom: 33px; }
-  .entity.entity-investor .label, .node-company .label {
+  .entity.entity-investor .label, .node-company .label, .node-capital-raising .label {
     font-weight: 700; }
-  .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email, .node-company .field-shared-industries, .node-company .field-shared-address, .node-company .field-shared-email {
+  .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email, .node-company .field-shared-industries, .node-company .field-shared-address, .node-company .field-shared-email, .node-capital-raising .field-shared-industries, .node-capital-raising .field-shared-address, .node-capital-raising .field-shared-email {
     margin-bottom: 15px; }
 
 .field-comp-logo {
@@ -1599,3 +1599,64 @@ ul.tabs {
         .not-logged-in.page-user #main-content form#user-login #edit-submit:hover {
           background-color: #fac04c;
           box-shadow: 0 0 3px #222222; }
+
+.prospect-wrapper {
+  background: #fff;
+  overflow: auto; }
+
+.prospect-text {
+  float: left;
+  width: 60%; }
+
+.prospect-information {
+  float: left;
+  padding: 0 0 0 25px;
+  width: 40%; }
+  .prospect-information .field {
+    border-bottom: 1px solid #f3f4f8;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0; }
+  .prospect-information .label {
+    display: block;
+    font-weight: 700; }
+
+.wrapper {
+  overflow: auto;
+  width: 60%; }
+
+.content {
+  display: inline-block;
+  width: 75%; }
+
+.sidebar-second {
+  margin-top: 132px;
+  background: #e0e2e6;
+  float: right;
+  padding: 10px;
+  width: 25%; }
+
+.block-sedermera-capital-raising-time-remaining {
+  background: #d4d6d9;
+  text-align: center; }
+  .block-sedermera-capital-raising-time-remaining h2 {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
+    background: #c8cacd;
+    border-bottom: 1px solid #e0e2e6;
+    font-weight: 700;
+    padding: 10px 0 10px 0;
+    text-transform: uppercase; }
+  .block-sedermera-capital-raising-time-remaining .date {
+    font-size: 34px;
+    font-size: 3.4rem;
+    line-height: 51px;
+    color: #454545;
+    font-weight: 700;
+    padding-top: 20px;
+    text-transform: uppercase; }
+  .block-sedermera-capital-raising-time-remaining .remaining {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    padding-bottom: 20px; }

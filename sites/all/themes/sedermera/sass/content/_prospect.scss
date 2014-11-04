@@ -1,0 +1,27 @@
+.prospect-wrapper {
+  background: $snow;
+  overflow: auto;
+}
+
+.prospect-text {
+  float: left;
+  width: 60%;
+}
+
+.prospect-information {
+  float: left;
+  padding: 0 0 0 25px;
+  width: 40%;
+
+  .field {
+    border-bottom: 1px solid $light-grey;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+  }
+
+  .label {
+    display: block;
+    font-weight: 700;
+  }
+}
+

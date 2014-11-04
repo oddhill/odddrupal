@@ -1,6 +1,6 @@
 // Node page
 
-.page-investor, .node-type-company {
+.page-investor, .node-type-company, .page-node {
 
   #main-content {
 
@@ -12,7 +12,7 @@
   }
 }
 
-.entity.entity-investor, .node-company {
+.entity.entity-investor, .node-company, .node-capital-raising {
   @include font-size(1.5);
 
   .title h2 {
