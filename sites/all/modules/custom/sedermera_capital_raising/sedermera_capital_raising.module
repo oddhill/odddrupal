@@ -48,10 +48,9 @@ function sedermera_capital_raising_block_view($delta = '') {
 
     // Add the formated string to the output.
     $block['content'][] = array(
-      array(
-        '#prefix' => '<div class="remaining">',
-        '#markup' => $remaining->format($format)),
-        '#suffix' => '</div>',
+      '#prefix' => '<div class="remaining">',
+      '#markup' => $remaining->format($format),
+      '#suffix' => '</div>',
     );
   }
 
