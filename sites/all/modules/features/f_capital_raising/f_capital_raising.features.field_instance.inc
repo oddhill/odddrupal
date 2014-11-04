@@ -21,7 +21,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -72,13 +72,13 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'full' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'node',
@@ -111,7 +111,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'full' => array(
         'label' => 'above',
@@ -147,11 +147,55 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_file'
+  $field_instances['node-capital_raising-field_cap_rais_file'] = array(
+    'bundle' => 'capital_raising',
+    'deleted' => 0,
+    'description' => 'Bifoga filer som är relevanta för denna kapitalanskaffning.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_file',
+    'label' => 'Filer',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 1,
+      'file_directory' => 'capital_raisings',
+      'file_extensions' => 'pdf doc xls',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 4,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Ange för vilket bolag denna kapitalanskaffning tillhör.');
   t('Ange mellan vilka datum denna kapitalanskaffning har sin teckningstid.');
+  t('Bifoga filer som är relevanta för denna kapitalanskaffning.');
   t('Bolag');
+  t('Filer');
   t('Teckningstid');
   t('Text');
 

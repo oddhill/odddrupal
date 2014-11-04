@@ -25,7 +25,8 @@ function f_capital_raising_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_cap_rais_comp',
-      2 => 'title',
+      2 => 'field_cap_rais_file',
+      3 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
