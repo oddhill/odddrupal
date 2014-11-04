@@ -46,13 +46,15 @@ function f_capital_raising_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'title',
         1 => 'body',
-        2 => 'field_cap_rais_date',
-        3 => 'field_cap_rais_file',
+        2 => 'field_cap_rais_comp',
+        3 => 'field_cap_rais_date',
+        4 => 'field_cap_rais_file',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
       'body' => 'ds_content',
+      'field_cap_rais_comp' => 'ds_content',
       'field_cap_rais_date' => 'ds_content',
       'field_cap_rais_file' => 'ds_content',
     ),
