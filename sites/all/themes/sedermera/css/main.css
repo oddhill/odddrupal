@@ -1504,11 +1504,11 @@ ul.tabs {
   background: #fff;
   padding: 50px 40px 50px 40px; }
 
-.entity.entity-investor {
+.entity.entity-investor, .node-company {
   font-size: 15px;
   font-size: 1.5rem;
   line-height: 22.5px; }
-  .entity.entity-investor .title h2 {
+  .entity.entity-investor .title h2, .node-company .title h2 {
     font-size: 32px;
     font-size: 3.2rem;
     line-height: 48px;
@@ -1517,9 +1517,9 @@ ul.tabs {
     border-bottom: 2px solid #f3f4f8;
     padding: 0 0 33px 0;
     margin-bottom: 33px; }
-  .entity.entity-investor .label {
+  .entity.entity-investor .label, .node-company .label {
     font-weight: 700; }
-  .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email {
+  .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email, .node-company .field-shared-industries, .node-company .field-shared-address, .node-company .field-shared-email {
     margin-bottom: 15px; }
 
 .field-comp-logo {

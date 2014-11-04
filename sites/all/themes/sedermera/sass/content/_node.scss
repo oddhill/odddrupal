@@ -12,7 +12,7 @@
   }
 }
 
-.entity.entity-investor {
+.entity.entity-investor, .node-company {
   @include font-size(1.5);
 
   .title h2 {
