@@ -3,6 +3,7 @@ core = 7.x
 package = Features
 dependencies[] = addressfield
 dependencies[] = auto_entitylabel
+dependencies[] = better_formats
 dependencies[] = blockify
 dependencies[] = ccl
 dependencies[] = config_perms
