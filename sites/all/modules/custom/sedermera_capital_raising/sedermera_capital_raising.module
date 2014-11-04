@@ -53,6 +53,11 @@ function sedermera_capital_raising_block_view($delta = '') {
       '#suffix' => '</div>',
     );
   }
+  elseif ($node->status) {
+    // There is no remaining time, add the form that lets the user archive this
+    // capital raising if it isn't archived already.
+    $block['content'][] = drupal_get_form('sedermera_capital_raising_archive_form', $node);
+  }
 
   // Return the block.
   return $block;
@@ -151,4 +156,41 @@ function sedermera_capital_raising_get_time_remaining_format($remaining) {
   // Return all the the other parts seperated by a comma with the last part
   // appended, or simply the last part if this was the only one.
   return (empty($parts) ? $last : implode(', ', $parts) . " och $last") . ' kvar';
+}
+
+/**
+ * Form that archives a single capital raising node.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ */
+function sedermera_capital_raising_archive_form($form, &$form_state, $node) {
+  // Add a simple submit button.
+  $form['archive'] = array(
+    '#type' => 'submit',
+    '#value' => 'Arkivera',
+  );
+
+  // Add the node id for the node to the internal values.
+  $form['node'] = array(
+    '#type' => 'value',
+    '#value' => $node,
+  );
+
+  return $form;
+}
+
+/**
+ * Form submit handler for the archive form.
+ */
+function sedermera_capital_raising_archive_form_submit($form, &$form_state) {
+  // Retrieve the node from the form values.
+  $node = $form_state['values']['node'];
+
+  // Unpublish the node, and save it.
+  $node->status = 0;
+  node_save($node);
+
+  // Display a message to the user.
+  drupal_set_message(format_string('Kapitalanskaffningen "%title" arkiverades.', array('%title' => $node->title)));
 }
