@@ -55,10 +55,37 @@ function f_capital_raising_menu_default_menu_links() {
     'weight' => 2,
     'customized' => 1,
   );
+  // Exported menu link: main-menu_lgg-till-kapitalanskaffning:node/add/capital-raising
+  $menu_links['main-menu_lgg-till-kapitalanskaffning:node/add/capital-raising'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'node/add/capital-raising',
+    'router_path' => 'node/add/capital-raising',
+    'link_title' => 'Lägg till kapitalanskaffning',
+    'options' => array(
+      'identifier' => 'main-menu_lgg-till-kapitalanskaffning:node/add/capital-raising',
+      'query' => array(
+        'destination' => 'kapitalanskaffningar',
+      ),
+      'attributes' => array(
+        'class' => array(
+          0 => 'add',
+        ),
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 20,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Alla kapitalanskaffningar');
   t('Kapitalanskaffningar');
+  t('Lägg till kapitalanskaffning');
 
 
   return $menu_links;
