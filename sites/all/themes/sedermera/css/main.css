@@ -1549,6 +1549,12 @@ ul.tabs {
           height: 117px; }
     .not-logged-in.page-user #main-content form#user-login {
       padding: 10px; }
+      .not-logged-in.page-user #main-content form#user-login .form-required {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 12px;
+        left: auto; }
       .not-logged-in.page-user #main-content form#user-login .form-text {
         background: #1a1a1a;
         padding: 10px 10px 10px 41px;

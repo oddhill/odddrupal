@@ -33,6 +33,14 @@
     form#user-login {
       padding: 10px;
 
+      .form-required {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 12px;
+        left: auto;
+      }
+
       .form-text {
         background: $night;
         padding: 10px 10px 10px 41px;
