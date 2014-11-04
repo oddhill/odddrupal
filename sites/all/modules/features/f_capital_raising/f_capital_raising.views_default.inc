@@ -107,10 +107,50 @@ function f_capital_raising_views_default_views() {
     1 => 0,
     3 => 0,
   );
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
+  /* Display: Alla */
+  $handler = $view->new_display('page', 'Alla', 'page');
   $handler->display->display_options['path'] = 'kapitalanskaffningar';
+
+  /* Display: Arkiverade */
+  $handler = $view->new_display('page', 'Arkiverade', 'archived');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Arkiverade kapitalanskaffningar';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'capital_raising' => 'capital_raising',
+  );
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Titel';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '0';
+  $handler->display->display_options['path'] = 'kapitalanskaffningar/arkiverade';
   $translatables['capital_raisings'] = array(
     t('Master'),
     t('Alla kapitalanskaffningar'),
@@ -131,7 +171,9 @@ function f_capital_raising_views_default_views() {
     t('Kunde inte hitta några kapitalanskaffningar som matchade sökkriterierna.'),
     t('Bolag'),
     t('Titel'),
-    t('Page'),
+    t('Alla'),
+    t('Arkiverade'),
+    t('Arkiverade kapitalanskaffningar'),
   );
   $export['capital_raisings'] = $view;
 

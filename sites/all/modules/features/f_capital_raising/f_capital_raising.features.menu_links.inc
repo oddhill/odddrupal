@@ -33,6 +33,25 @@ function f_capital_raising_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
   );
+  // Exported menu link: main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade
+  $menu_links['main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'kapitalanskaffningar/arkiverade',
+    'router_path' => 'kapitalanskaffningar/arkiverade',
+    'link_title' => 'Arkiverade kapitalanskaffningar',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 10,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
+  );
   // Exported menu link: main-menu_kapitalanskaffningar:<firstchild>
   $menu_links['main-menu_kapitalanskaffningar:<firstchild>'] = array(
     'menu_name' => 'main-menu',
@@ -84,6 +103,7 @@ function f_capital_raising_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Alla kapitalanskaffningar');
+  t('Arkiverade kapitalanskaffningar');
   t('Kapitalanskaffningar');
   t('Lägg till kapitalanskaffning');
 

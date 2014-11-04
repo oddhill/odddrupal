@@ -42,6 +42,7 @@ features[field_instance][] = node-capital_raising-field_cap_rais_comp
 features[field_instance][] = node-capital_raising-field_cap_rais_date
 features[field_instance][] = node-capital_raising-field_cap_rais_file
 features[menu_links][] = main-menu_alla-kapitalanskaffningar:kapitalanskaffningar
+features[menu_links][] = main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade
 features[menu_links][] = main-menu_kapitalanskaffningar:<firstchild>
 features[menu_links][] = main-menu_lgg-till-kapitalanskaffning:node/add/capital-raising
 features[node][] = capital_raising
