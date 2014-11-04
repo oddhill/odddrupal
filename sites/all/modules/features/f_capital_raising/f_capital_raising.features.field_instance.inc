@@ -21,7 +21,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -72,7 +72,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'full' => array(
         'label' => 'above',
@@ -101,10 +101,58 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_date'
+  $field_instances['node-capital_raising-field_cap_rais_date'] = array(
+    'bundle' => 'capital_raising',
+    'deleted' => 0,
+    'description' => 'Ange mellan vilka datum denna kapitalanskaffning har sin teckningstid.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_date',
+    'label' => 'Teckningstid',
+    'required' => 1,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 5,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Ange för vilket bolag denna kapitalanskaffning tillhör.');
+  t('Ange mellan vilka datum denna kapitalanskaffning har sin teckningstid.');
   t('Bolag');
+  t('Teckningstid');
   t('Text');
 
   return $field_instances;
