@@ -115,9 +115,15 @@ function f_capital_raising_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'module' => 'date_range_formatter',
+        'settings' => array(
+          'one_month' => 'j - {j} F Y',
+          'several_months' => 'j F - {j} {F} Y',
+          'several_years' => 'j F Y - {j} {F} {Y}',
+          'single' => 'j F Y',
+        ),
+        'type' => 'date_range_without_time',
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'node',
