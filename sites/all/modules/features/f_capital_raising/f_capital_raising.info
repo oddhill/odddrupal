@@ -5,6 +5,7 @@ dependencies[] = better_exposed_filters
 dependencies[] = ccl_local_actions
 dependencies[] = ctools
 dependencies[] = date
+dependencies[] = date_popup
 dependencies[] = date_range_formatter
 dependencies[] = ds
 dependencies[] = entityreference
