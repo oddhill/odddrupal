@@ -1,0 +1,155 @@
+<?php
+
+/**
+ * @file sedermera_capital_raising.module
+ * Main module file for the Sedermera Capital Raising module.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function sedermera_capital_raising_block_info() {
+  $blocks['time_remaining'] = array(
+    'info' => 'Tid för kapitalanskaffning',
+    'cache' => DRUPAL_CACHE_PER_PAGE
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sedermera_capital_raising_block_view($delta = '') {
+  // Bail out if this isn't a capital raising node.
+  if (!($node = menu_get_object('node')) || $node->type != 'capital_raising') {
+    return;
+  }
+
+  // Get the end timestamp for the node.
+  $end = sedermera_capital_raising_get_time_end($node);
+
+  // Create the initial block structure, with a subject and basic content.
+  $block = array(
+    'subject' => 'Löptid utgår',
+    'content' => array(
+      array(
+        '#prefix' => '<div class="date">',
+        '#markup' => format_date($end, 'custom', 'j F'),
+        '#suffix' => '</div>',
+      )
+    ),
+  );
+
+  // Add the remaining time for this capital raising if there is one.
+  if ($remaining = sedermera_capital_raising_get_time_remaining($node)) {
+    // Get the format that we should use for the string.
+    $format = sedermera_capital_raising_get_time_remaining_format($remaining);
+
+    // Add the formated string to the output.
+    $block['content'][] = array(
+      array(
+        '#prefix' => '<div class="remaining">',
+        '#markup' => $remaining->format($format)),
+        '#suffix' => '</div>',
+    );
+  }
+
+  // Return the block.
+  return $block;
+}
+
+/**
+ * Get the end time for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ *
+ * @return int
+ *   The UNIX timestamp for the end time.
+ */
+function sedermera_capital_raising_get_time_end($node) {
+  // Wrap the node.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Return the end timestamp.
+  return $wrapper->field_cap_rais_date->value2->value();
+}
+
+/**
+ * Get the remaining time for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ *
+ * @return mixed
+ *   The DateInterval object that represents the remaining time, or FALSE if the
+ *   time has passed.
+ */
+function sedermera_capital_raising_get_time_remaining($node) {
+  // Wrap the node.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Get the relevant timestamps.
+  $now = REQUEST_TIME;
+  $end = $wrapper->field_cap_rais_date->value2->value();
+
+  // Bail out if there is no remaining time.
+  if ($now >= $end) {
+    return FALSE;
+  }
+
+  // Get the current date, and make sure that the time points at midnight.
+  $now = new DateTime(date(DATE_ISO8601, $now));
+  $now->setTime(0, 0, 0);
+
+  // Get the end date, and make sure that the time points at midnight.
+  $end = new DateTime(date(DATE_ISO8601, $end));
+  $end->setTime(0, 0, 0);
+
+  // Return the remaining the based on the two date objects.
+  return $end->diff($now);
+}
+
+/**
+ * Formats the remaining time to a swedish string, handling plurals and empty
+ * parts.
+ *
+ * @param obj $remaining
+ *   The DateInterval object that represents the time.
+ *
+ * @return string
+ *   A format string that is usable by the DateInterval object.
+ */
+function sedermera_capital_raising_get_time_remaining_format($remaining) {
+  // Create the initial array that will hold our parts.
+  $parts = array();
+
+  // Add the parts that aren't empty.
+  if ($remaining->y) {
+    $parts[] = '%y år';
+  }
+  if ($remaining->m) {
+    $parts[] = format_plural($remaining->m, '%m månad', '%m månader');
+  }
+  if ($remaining->d) {
+    $parts[] = format_plural($remaining->d, '%d dag', '%d dagar');
+  }
+  if ($remaining->h) {
+    $parts[] = format_plural($remaining->h, '%d timme', '%d timmar');
+  }
+  if ($remaining->i) {
+    $parts[] = format_plural($remaining->i, '%d minut', '%d minuter');
+  }
+  if ($remaining->s) {
+    $parts[] = format_plural($remaining->s, '%d sekund', '%d sekunder');
+  }
+
+  // Get the last part of the array, since we'd like to separeate this with an
+  // "och".
+  $last = array_pop($parts);
+
+  // Return all the the other parts seperated by a comma with the last part
+  // appended, or simply the last part if this was the only one.
+  return (empty($parts) ? $last : implode(', ', $parts) . " och $last") . ' kvar';
+}
