@@ -50,6 +50,12 @@
     }
   }
 
+  @if $icon == archive {
+    @include svg-bg(archive_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
   background-color: $background;
   @include transition (background-color 0.1s ease-in-out);
 
