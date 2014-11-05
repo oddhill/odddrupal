@@ -9,6 +9,7 @@
 }
 
 .prospect-information {
+  @include font-size(1.2);
   float: left;
   padding: 0 0 0 25px;
   width: 40%;
@@ -21,15 +22,21 @@
     &:last-child  {
       border-bottom: 0 none;
     }
+
+    a {
+      border: 0 none;
+    }
   }
 
   .label {
+    @include font-size(1.4);
     display: block;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .file {
     display: block;
+    font-weight: 500;
   }
 }
 
