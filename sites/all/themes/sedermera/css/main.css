@@ -81,6 +81,16 @@ body {
   .logged-in #main-content {
     margin-left: 280px;
     padding: 40px; }
+  #main-content .page-head {
+    margin-bottom: 70px; }
+  #main-content .content-wrapper .content-sidebar {
+    background: #e0e2e6;
+    float: right;
+    width: 280px; }
+    #main-content .content-wrapper .content-sidebar .sidebar-second-content {
+      padding: 0 10px 10px 10px; }
+  #main-content .content-wrapper .content-column {
+    overflow: hidden; }
   #main-content #page-actions {
     float: right;
     margin-top: 16px; }
@@ -1435,7 +1445,6 @@ ul.tabs {
   background: #ebedf1;
   border-top: 1px solid #e0e2e6;
   border-bottom: 1px solid #e0e2e6;
-  margin-top: 70px;
   height: 42px; }
   ul.tabs li {
     font-size: 14px;
@@ -1639,38 +1648,23 @@ ul.tabs {
 .field-comp-logo {
   margin-top: 10px; }
 
-.wrapper {
-  overflow: auto;
-  width: 100%; }
-
-.content {
+h2.sidebar-second-icon {
+  background: #454545;
   display: inline-block;
-  width: 75%; }
-
-.sidebar-second-wrapper {
-  background: #e0e2e6;
-  float: right;
-  margin-top: 132px;
-  width: 25%; }
-  .sidebar-second-wrapper h2.sidebar-second-icon {
-    background: #454545;
-    display: inline-block;
-    padding: 10px;
-    width: 100%;
-    padding: 11px 0 11px 0;
-    margin-bottom: 20px; }
-    .sidebar-second-wrapper h2.sidebar-second-icon .icon {
-      background: url("../graphics/progress_chart.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/progress_chart.svg") transparent 0 0 no-repeat;
-      display: block;
-      margin: 0px auto;
-      width: 26px;
-      height: 20px;
-      font-size: 0;
-      color: #454545;
-      overflow: hidden; }
-  .sidebar-second-wrapper .sidebar-second-content {
-    padding: 0 10px 10px 10px; }
+  padding: 10px;
+  width: 100%;
+  padding: 11px 0 11px 0;
+  margin-bottom: 20px; }
+  h2.sidebar-second-icon .icon {
+    background: url("../graphics/progress_chart.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/progress_chart.svg") transparent 0 0 no-repeat;
+    display: block;
+    margin: 0px auto;
+    width: 26px;
+    height: 20px;
+    font-size: 0;
+    color: #454545;
+    overflow: hidden; }
 
 .block-sedermera-capital-raising-time-remaining {
   background: #d4d6d9;

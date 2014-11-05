@@ -82,6 +82,27 @@ body {
     padding: 40px;
   }
 
+  .page-head {
+    margin-bottom: 70px;
+  }
+
+  .content-wrapper {
+
+    .content-sidebar {
+      background: $wool;
+      float: right;
+      width: 280px;
+
+      .sidebar-second-content {
+        padding: 0 10px 10px 10px;
+      }
+    }
+
+    .content-column {
+      overflow: hidden;
+    }
+  }
+
   // Page action links
   #page-actions {
     float: right;

@@ -16,15 +16,8 @@ stylesheets[print][] = css/print.css
 stylesheets[screen][] = assets/uniform/theme/_base/css/uniform._base.css
 stylesheets[screen][] = css/main.css
 
-; Layout - Sidebar Second
-layouts[frontpage][name] = "Sidebar Second"
-layouts[frontpage][description] = "Sidebar Second"
-layouts[frontpage][template] = "/templates/system/page-sidebar"
-layouts[frontpage][regions][] = "sidebar-second"
-layouts[frontpage][regions][] = "header"
-layouts[frontpage][regions][] = "content"
-
 ; Regions.
 regions[header] = Header
 regions[content] = Content
+regions[page-head] = Page Head
 regions[sidebar-second] = Sidebar Second

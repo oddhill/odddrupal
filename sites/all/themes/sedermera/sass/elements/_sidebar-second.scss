@@ -1,21 +1,4 @@
-// Page-sidebar wrapper - wraps the enitre page
-.wrapper {
-  overflow: auto;
-  width: 100%;
-}
-
-.content {
-  display: inline-block;
-  width: 75%;
-}
-
-.sidebar-second-wrapper {
-  background: $wool;
-  float: right;
-  margin-top: 132px;
-  width: 25%;
-
- h2.sidebar-second-icon {
+h2.sidebar-second-icon {
   background: $dark-grey;
   display: inline-block;
   padding: 10px;
@@ -32,11 +15,6 @@
     font-size: 0;
     color: $dark-grey;
     overflow: hidden;
-  }
-}
-
-  .sidebar-second-content {
-    padding: 0 10px 10px 10px;
   }
 }
 

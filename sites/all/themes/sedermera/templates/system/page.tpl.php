@@ -25,6 +25,30 @@
   <?php endif; ?>
 
   <main id="main-content">
-    <?php print render($page['content']); ?>
+
+   <?php if($page['page-head']): ?>
+      <div class="page-head">
+        <?php print render($page['page-head']); ?>
+      </div>
+    <?php endif; ?>
+
+    <div class="content-wrapper">
+
+      <?php if($page['sidebar-second']): ?>
+        <aside class="content-sidebar">
+          <h2 class="sidebar-second-icon"><span class="icon"></span></h2>
+          <div class="sidebar-second-content">
+            <?php print render($page['sidebar-second']); ?>
+          </div>
+        </aside>
+      <?php endif; ?>
+
+      <div class="content-column">
+        <?php print render($page['content']); ?>
+      </div>
+
+    </div>
+
   </main>
+
 </div>
