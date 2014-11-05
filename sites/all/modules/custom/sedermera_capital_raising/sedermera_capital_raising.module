@@ -194,3 +194,17 @@ function sedermera_capital_raising_archive_form_submit($form, &$form_state) {
   // Display a message to the user.
   drupal_set_message(format_string('Kapitalanskaffningen "%title" arkiverades.', array('%title' => $node->title)));
 }
+
+/**
+ * Implements hook_node_view().
+ */
+function sedermera_capital_raising_node_view($node, $view_mode, $langcode) {
+  // Bail out if this isn't a capital raising node that's viewed on its own
+  // page.
+  if ($node->type != 'capital_raising' || $view_mode != 'full' || !node_is_page($node)) {
+    return;
+  }
+
+  // Set the active menu trail based on the archived state.
+  menu_tree_set_path('main-menu', ($node->status ? 'kapitalanskaffningar' : 'kapitalanskaffningar/arkiverade'));
+}
