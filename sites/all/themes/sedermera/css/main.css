@@ -185,18 +185,18 @@ ul.pager {
   list-style-type: none; }
   #main-navigation ul.menu li {
     background: #202020;
-    text-transform: uppercase;
+    margin-bottom: 1px;
     padding: 20px 0 20px 30px;
-    margin-bottom: 1px; }
+    text-transform: uppercase; }
     #main-navigation ul.menu li a {
-      color: #b2b3b6;
-      display: block;
-      padding-left: 30px;
       font-size: 14px;
       font-size: 1.4rem;
       line-height: 21px;
+      color: #b2b3b6;
+      display: block;
+      font-weight: 500;
       line-height: 20px;
-      font-weight: 500; }
+      padding-left: 30px; }
       #main-navigation ul.menu li a.active-trail#investors {
         background: url("../graphics/investors_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/investors_white.svg") transparent 0 0 no-repeat; }
@@ -217,6 +217,9 @@ ul.pager {
       #main-navigation ul.menu li a#prospects {
         background: url("../graphics/prospect_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/prospect_grey.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a.archive {
+        background: url("../graphics/archive_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/archive_grey.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a.all {
         background: url("../graphics/list_small_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/list_small_grey.svg") transparent 0 0 no-repeat; }
@@ -226,11 +229,11 @@ ul.pager {
     #main-navigation ul.menu li ul {
       margin-top: 3px; }
     #main-navigation ul.menu li li {
-      border-bottom: 0 none;
-      padding: 10px 0 0 30px;
       background: url("../graphics/tree_one.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/tree_one.svg") transparent 0 0 no-repeat;
-      margin-bottom: 0; }
+      border-bottom: 0 none;
+      margin-bottom: 0;
+      padding: 10px 0 0 30px; }
       #main-navigation ul.menu li li a {
         font-size: 12px;
         font-size: 1.2rem;
@@ -245,10 +248,13 @@ ul.pager {
           #main-navigation ul.menu li li a.active.add, #main-navigation ul.menu li li a.active-trail.add {
             background: url("../graphics/add_small_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/add_small_yellow.svg") transparent 0 0 no-repeat; }
+          #main-navigation ul.menu li li a.active.archive, #main-navigation ul.menu li li a.active-trail.archive {
+            background: url("../graphics/archive_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/archive_yellow.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li li.last {
-        padding: 10px 0 5px 30px;
         background: url("../graphics/tree_two.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/tree_two.svg") transparent 0 0 no-repeat; }
+        background: none, url("../graphics/tree_two.svg") transparent 0 0 no-repeat;
+        padding: 10px 0 5px 30px; }
     #main-navigation ul.menu li.expanded > a {
       color: #fff; }
     #main-navigation ul.menu li.active-trail {
@@ -262,21 +268,21 @@ ul.pager {
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 24px;
-  color: #fff;
   background-color: #202020;
-  position: absolute;
-  left: 0;
-  right: 0;
   bottom: 0;
-  padding: 20px 0 20px 0; }
+  color: #fff;
+  left: 0;
+  padding: 20px 0 20px 0;
+  position: absolute;
+  right: 0; }
   #user h2 {
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
-    text-transform: uppercase;
     color: #f9a500;
+    line-height: 10px;
     font-weight: 700;
-    line-height: 10px; }
+    text-transform: uppercase; }
   #user .menu {
     display: none; }
 
@@ -284,11 +290,11 @@ ul.pager {
   background: url("../graphics/user_male.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/user_male.svg") transparent 0 0 no-repeat;
   float: left;
-  width: 20%;
   height: auto;
-  padding-bottom: 20px;
   margin-left: 50px;
-  text-indent: -9999px; }
+  padding-bottom: 20px;
+  text-indent: -9999px;
+  width: 20%; }
 
 .user-status {
   float: left;
