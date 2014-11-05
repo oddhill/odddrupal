@@ -1609,13 +1609,17 @@ ul.tabs {
   float: left;
   padding: 0 0 0 25px;
   width: 40%; }
-  .prospect-information .field {
-    border-bottom: 1px solid #f3f4f8;
+  .prospect-information .field, .prospect-information .file {
+    border-bottom: 2px solid #f3f4f8;
     margin: 0 0 20px 0;
     padding: 0 0 20px 0; }
+    .prospect-information .field:last-child, .prospect-information .file:last-child {
+      border-bottom: 0 none; }
   .prospect-information .label {
     display: block;
     font-weight: 700; }
+  .prospect-information .file {
+    display: block; }
 
 .field-comp-logo {
   margin-top: 10px; }
