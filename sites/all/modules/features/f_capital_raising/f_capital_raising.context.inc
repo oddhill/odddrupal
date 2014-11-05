@@ -38,10 +38,6 @@ function f_capital_raising_context_default_contexts() {
         'sedermera_capital_raising-time_remaining' => array(
           'module' => 'sedermera_capital_raising',
           'delta' => 'time_remaining',
-          'region' => 'content',
-          'weight' => '-9',
-        ),
-      ),
           'region' => 'sidebar-second',
           'weight' => '-10',
         ),

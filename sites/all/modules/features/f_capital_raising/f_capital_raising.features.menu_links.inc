@@ -40,8 +40,12 @@ function f_capital_raising_menu_default_menu_links() {
     'router_path' => 'kapitalanskaffningar/arkiverade',
     'link_title' => 'Arkiverade kapitalanskaffningar',
     'options' => array(
-      'attributes' => array(),
       'identifier' => 'main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade',
+      'attributes' => array(
+        'class' => array(
+          0 => 'archive',
+        ),
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
