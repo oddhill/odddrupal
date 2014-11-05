@@ -46,7 +46,7 @@
 
   h2 {
     @include font-size(1.2);
-    background: #c8cacd;
+    background: $light-concrete;
     border-bottom: 1px solid $wool;
     font-weight: 700;
     padding: 10px 0 10px 0;
