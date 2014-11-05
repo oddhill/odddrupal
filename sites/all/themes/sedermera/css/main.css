@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic");
+@import url("http://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto:400,300,500,700,400italic,500italic,700italic,300italic");
 @import url("http://gregfranko.com/jquery.selectBoxIt.js/css/jquery.selectBoxIt.css");
 h1 {
   font-size: 48px;
@@ -1522,9 +1522,6 @@ ul.tabs {
   .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email, .node-company .field-shared-industries, .node-company .field-shared-address, .node-company .field-shared-email, .node-capital-raising .field-shared-industries, .node-capital-raising .field-shared-address, .node-capital-raising .field-shared-email {
     margin-bottom: 15px; }
 
-.field-comp-logo {
-  margin-top: 10px; }
-
 .not-logged-in.page-user {
   background: #282828;
   box-sizing: border-box; }
@@ -1620,20 +1617,41 @@ ul.tabs {
     display: block;
     font-weight: 700; }
 
+.field-comp-logo {
+  margin-top: 10px; }
+
 .wrapper {
   overflow: auto;
-  width: 60%; }
+  width: 100%; }
 
 .content {
   display: inline-block;
   width: 75%; }
 
-.sidebar-second {
-  margin-top: 132px;
+.sidebar-second-wrapper {
   background: #e0e2e6;
   float: right;
-  padding: 10px;
+  margin-top: 132px;
   width: 25%; }
+  .sidebar-second-wrapper h2.sidebar-second-icon {
+    background: #454545;
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    padding: 11px 0 11px 0;
+    margin-bottom: 20px; }
+    .sidebar-second-wrapper h2.sidebar-second-icon .icon {
+      background: url("../graphics/progress_chart.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/progress_chart.svg") transparent 0 0 no-repeat;
+      display: block;
+      margin: 0px auto;
+      width: 26px;
+      height: 20px;
+      font-size: 0;
+      color: #454545;
+      overflow: hidden; }
+  .sidebar-second-wrapper .sidebar-second-content {
+    padding: 0 10px 10px 10px; }
 
 .block-sedermera-capital-raising-time-remaining {
   background: #d4d6d9;
@@ -1659,4 +1677,5 @@ ul.tabs {
     font-size: 14px;
     font-size: 1.4rem;
     line-height: 21px;
+    font-family: "Inconsolata";
     padding-bottom: 20px; }

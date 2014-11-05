@@ -30,8 +30,11 @@
         <?php print render($page['content']); ?>
       </div>
       <?php if($page['sidebar-second']): ?>
-        <div class="sidebar-second">
-          <?php print render($page['sidebar-second']); ?>
+        <div class="sidebar-second-wrapper">
+          <h2 class="sidebar-second-icon"><span class="icon"></span></h2>
+          <div class="sidebar-second-content">
+            <?php print render($page['sidebar-second']); ?>
+          </div>
         </div>
       <?php endif; ?>
       </div>
