@@ -37,6 +37,22 @@
   .file {
     display: block;
     font-weight: 500;
+
+   &.application-pdf {
+
+    img {
+      display: none;
+    }
+
+    &.application-pdf {
+
+      a {
+        @include svg-bg(pdf);
+        padding-left: 25px;
+        padding-bottom: 5px;
+      }
+    }
+   }
   }
 }
 
@@ -44,4 +60,6 @@
 .field-comp-logo {
   margin-top: 10px;
 }
+
+
 

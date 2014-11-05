@@ -180,6 +180,9 @@ ul.pager {
     font-weight: 500;
     padding-top: 30px; }
 
+.label {
+  font-weight: 700; }
+
 #main-sidebar {
   background-color: #282828; }
   #main-sidebar a {
@@ -1514,16 +1517,13 @@ ul.tabs {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-.page-investor #main-content #page-content, .node-type-company #main-content #page-content, .page-node #main-content #page-content {
+.page-investor #main-content #page-content,
+.page-node #main-content #page-content {
   margin-top: 0;
   background: #fff;
   padding: 50px 40px 50px 40px; }
-
-.entity.entity-investor, .node-company, .node-capital-raising {
-  font-size: 15px;
-  font-size: 1.5rem;
-  line-height: 22.5px; }
-  .entity.entity-investor .title h2, .node-company .title h2, .node-capital-raising .title h2 {
+  .page-investor #main-content #page-content .title h2,
+  .page-node #main-content #page-content .title h2 {
     font-size: 32px;
     font-size: 3.2rem;
     line-height: 48px;
@@ -1532,10 +1532,11 @@ ul.tabs {
     border-bottom: 2px solid #f3f4f8;
     padding: 0 0 33px 0;
     margin-bottom: 33px; }
-  .entity.entity-investor .label, .node-company .label, .node-capital-raising .label {
-    font-weight: 700; }
-  .entity.entity-investor .field-shared-industries, .entity.entity-investor .field-shared-address, .entity.entity-investor .field-shared-email, .node-company .field-shared-industries, .node-company .field-shared-address, .node-company .field-shared-email, .node-capital-raising .field-shared-industries, .node-capital-raising .field-shared-address, .node-capital-raising .field-shared-email {
-    margin-bottom: 15px; }
+
+.field-shared-industries,
+.field-shared-address,
+.field-shared-email {
+  margin-bottom: 15px; }
 
 .not-logged-in.page-user {
   background: #282828;
@@ -1644,6 +1645,13 @@ ul.tabs {
   .prospect-information .file {
     display: block;
     font-weight: 500; }
+    .prospect-information .file.application-pdf img {
+      display: none; }
+    .prospect-information .file.application-pdf.application-pdf a {
+      background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
+      padding-left: 25px;
+      padding-bottom: 5px; }
 
 .field-comp-logo {
   margin-top: 10px; }
