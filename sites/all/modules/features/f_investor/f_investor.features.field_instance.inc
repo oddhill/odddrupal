@@ -45,7 +45,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -79,7 +79,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -271,7 +271,63 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 5,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_inv_id'
+  $field_instances['investor-company-field_shared_inv_id'] = array(
+    'bundle' => 'company',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Ange investerar ID för denna investerare. Detta måste vara unikt, och kräver att investeraren har godkänt avtalet.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_inv_id',
+    'label' => 'Investerar ID',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
     ),
   );
 
@@ -380,7 +436,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -419,7 +475,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -611,7 +667,63 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_inv_id'
+  $field_instances['investor-person-field_shared_inv_id'] = array(
+    'bundle' => 'person',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Ange investerar ID för denna investerare. Detta måste vara unikt, och kräver att investeraren har godkänt avtalet.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_inv_id',
+    'label' => 'Investerar ID',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
     ),
   );
 
@@ -687,6 +799,7 @@ function f_investor_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Ange investerar ID för denna investerare. Detta måste vara unikt, och kräver att investeraren har godkänt avtalet.');
   t('Ange namnet på bolaget.');
   t('Ange platsinformation för bolaget. Du måste inte fylla i alla fält, om det inte är relevant.');
   t('Ange platsinformation för investeraren. Du måste inte fylla i alla fält, om det inte är relevant.');
@@ -700,6 +813,7 @@ function f_investor_field_default_field_instances() {
   t('Efternamn');
   t('Fax');
   t('Förnamn');
+  t('Investerar ID');
   t('Mobiltelefon');
   t('Namn');
   t('Plats');
