@@ -27,6 +27,17 @@ ul.tabs {
         &:hover {
           background-color: $stone;
         }
+
+         &.active {
+          background-color: $snow;
+          border-bottom: 0 none;
+          border-left: 0 none;
+          border-right: 0 none;
+          border-top: 2px solid $mustard;
+          font-weight: 700;
+          height: 42px;
+          margin-top: -1px;
+         }
       }
     }
 

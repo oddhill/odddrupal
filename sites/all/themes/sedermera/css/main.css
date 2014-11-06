@@ -31,6 +31,18 @@ a {
   a:hover {
     border-bottom: 1px solid #1a1a1a; }
 
+.body ul,
+.body ol {
+  list-style-type: disc;
+  margin: 10px;
+  padding: 10px; }
+  .body ul li,
+  .body ol li {
+    margin-bottom: 18px;
+    font-weight: 700; }
+.body ol {
+  list-style-type: decimal; }
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2068,6 +2080,17 @@ ul.tabs {
         ul.tabs li.edit a.redigera:hover, ul.tabs li.redigera a.edit:hover,
         ul.tabs li.redigera a.redigera:hover {
           background-color: #d5d7da; }
+        ul.tabs li.edit a.edit.active,
+        ul.tabs li.edit a.redigera.active, ul.tabs li.redigera a.edit.active,
+        ul.tabs li.redigera a.redigera.active {
+          background-color: #fff;
+          border-bottom: 0 none;
+          border-left: 0 none;
+          border-right: 0 none;
+          border-top: 2px solid #f9a500;
+          font-weight: 700;
+          height: 42px;
+          margin-top: -1px; }
     ul.tabs li a {
       border-right: 1px solid #e0e2e6;
       border-bottom: 0 none;
