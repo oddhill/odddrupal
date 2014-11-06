@@ -30,12 +30,13 @@ function f_capital_raising_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Grundläggande',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-cap-rais-1 field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-cap-rais-1 field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_cap_rais_1|node|capital_raising|form'] = $field_group;
@@ -57,12 +58,13 @@ function f_capital_raising_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Detaljer',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-cap-rais-2 field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-cap-rais-2 field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_cap_rais_2|node|capital_raising|form'] = $field_group;

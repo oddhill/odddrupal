@@ -10,10 +10,53 @@
     position: relative;
     margin-bottom: 20px;
 
+    .messages {
+      padding: 10px;
+      color: $snow;
+      font-weight: 500;
+      margin: 10px 0;
+
+      &.status {
+        background: $cactus;
+      }
+
+      &.warning {
+        background: $mustard;
+      }
+
+      &.error {
+        background: $wine;
+      }
+    }
+
     .fieldset-wrapper {
       background: $wool;
       padding: 20px 20px 5px;
       border-radius: 3px;
+
+      fieldset {
+        border-top: 1px solid $steel;
+
+        &.filter-wrapper {
+          display: none;
+        }
+
+        legend {
+          height: 0;
+
+          span.fieldset-legend {
+            margin-top: 10px;
+            @include font-size(1.4,1.3);
+            font-weight: 500;
+            height: 28px;
+            border-bottom: 1px solid $steel;
+          }
+        }
+
+        .fieldset-wrapper {
+          padding: 50px 0 0;
+        }
+      }
     }
 
     legend {
@@ -41,12 +84,179 @@
     }
 
     .fieldset-description {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-style: italic;
       background: tint($wool,40%);
       color: $coffee;
       padding: 10px;
       border-radius: 2px;
+    }
+
+    .tabledrag-changed-warning {
+      background: $mustard;
+      border-radius: 2px;
+      color: $snow;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      display: block;
+      padding-left: 27px;
+      position: relative;
+
+      span.warning {
+        font-size: 25px;
+        line-height: 10px;
+        padding-top: 0px;
+        position: absolute;
+        left: 10px;
+        top: 17px;
+      }
+    }
+
+    .tabledrag-toggle-weight-wrapper {
+      display: none;
+    }
+
+    table.tabledrag-processed {
+      width: 100%;
+      margin-bottom: 20px;
+
+      thead {
+        background: $dark-grey;
+        color: $snow;
+        text-align: left;
+        font-weight: 500;
+
+        th {
+          padding: 10px;
+        }
+      }
+
+      tbody {
+
+        tr {
+          border-bottom: 1px solid $wool;
+
+          &.even {
+            background: tint($wool,30%);
+
+            a.tabledrag-handle {
+              background-color: tint($wool,30%);
+
+              &:hover,
+              &.tabledrag-handle-hover {
+                background-color: tint($wool,30%);
+              }
+            }
+          }
+
+          &.odd {
+            background: tint($wool,50%);
+
+            a.tabledrag-handle {
+              background-color: tint($wool,50%);
+
+              &:hover,
+              &.tabledrag-handle-hover {
+                background-color: tint($wool,50%);
+              }
+            }
+          }
+
+          &.drag {
+            background: tint($wool,70%);
+
+            a.tabledrag-handle {
+              background-color: tint($wool,70%);
+
+              &:hover,
+              &.tabledrag-handle-hover {
+                background-color: tint($wool,70%);
+              }
+            }
+          }
+
+          td {
+            padding: 10px;
+            position: relative;
+
+            a.tabledrag-handle {
+              margin-top: -6px;
+              margin-left: -26px;
+              width: 16px;
+              height: 30px;
+              border-radius: 3px 0 0 3px;
+              @include svg-bg(tabledrag_handle,transparent,center center);
+              border: 0px none;
+              position: relative;
+              z-index: 2;
+
+              &:hover,
+              &.tabledrag-handle-hover {
+                border: 0px none;
+                @include svg-bg(tabledrag_handle_hover,transparent,center center);
+                z-index: 5;
+              }
+            }
+
+            .tabledrag-changed {
+              position: absolute;
+              top: 24px;
+              width: 14px;
+              left: -15px;
+              height: 8px;
+              background: $bubblegum;
+              border-radius: 4px;
+              overflow: hidden;
+              text-indent: 20px;
+              font-size: 0px;
+              line-height: 0px;
+              z-index: 3;
+            }
+
+            .form-item {
+              margin-bottom: 5px;
+
+              .form-text {
+                padding: 5px;
+                margin-top: 15px;
+              }
+            }
+
+            .submit-wrapper {
+              margin: 8px 8px 0 0;
+              height: 24px;
+              position: relative;
+
+              .form-submit {
+                @include button($dark-grey,delete,small);
+                margin: 0;
+              }
+
+              .ajax-progress {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0 8px 0 0;
+                border-radius: 24px;
+                cursor: pointer;
+                background: shade($dark-grey,30%);
+                height: 100%;
+                text-align: center;
+                padding-top: 4px;
+
+                .throbber {
+                  @include throbber;
+                  margin: 0 auto;
+                  float: none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -155,20 +365,19 @@
       }
     }
 
-    &.form-type-textarea {
-
-    }
-
     &.form-type-managed-file {
 
-      .image-widget {
+      .image-widget,
+      .file-widget {
         float: left;
 
-        .image-widget-data {
+        .image-widget-data,
+        .file-widget-data {
           background: $snow;
           border-radius: 2px;
           margin-bottom: 5px;
           position: relative;
+          float: left;
 
           .icon {
             display: block;

@@ -360,6 +360,32 @@ function sedermera_textfield($variables) {
 }
 
 /**
+ * Overrides theme_file_widget.
+ */
+function sedermera_file_widget($variables) {
+  $element = $variables['element'];
+  $output = '';
+
+  // The "form-managed-file" class is required for proper Ajax functionality.
+  $output .= '<div class="file-widget form-managed-file clearfix">';
+
+  if ($element['fid']['#value'] == 0) {
+    $output .= '<div class="file-widget-data"><div class="icon"></div><input type="text" class="text" placeholder="Välj en fil.."/>';
+  } else {
+    $output .= '<div class="file-widget-data">';
+  }
+
+  if ($element['fid']['#value'] != 0) {
+    // Add the file size after the file name.
+    $element['filename']['#markup'] .= ' <span class="file-size">(' . format_size($element['#file']->filesize) . ')</span> ';
+  }
+  $output .= drupal_render_children($element);
+  $output .= '</div></div>';
+
+  return $output;
+}
+
+/**
  * Overrides theme_image_widget.
  */
 function sedermera_image_widget($variables) {

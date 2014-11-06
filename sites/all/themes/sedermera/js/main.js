@@ -94,6 +94,13 @@ imageFieldChange = function() {
   });
 };
 
+fileFieldChange = function() {
+  $('.file-widget-data input[type=file]').on('change', function (e) {
+    $in = $(this);
+    $in.prev().val($in.val());
+  });
+};
+
 // Run whenever the DOM tree is changed, e.g. through AJAX/AHAH
 Drupal.behaviors.sedermera = {
   attach: function (context, settings) {
@@ -111,6 +118,8 @@ Drupal.behaviors.sedermera = {
     filterHeightMatch();
 
     imageFieldChange();
+
+    fileFieldChange();
 
     $('.image-widget-data input[type=file]').change(function (e) {
       $in = $(this);
