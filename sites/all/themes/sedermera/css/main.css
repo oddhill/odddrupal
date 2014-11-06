@@ -74,23 +74,26 @@ body {
   top: 0; }
 
 #main-content {
-  overflow: hidden;
   font-size: 14px;
   font-size: 1.4rem;
-  line-height: 18.2px; }
+  line-height: 18.2px;
+  overflow: hidden; }
   .logged-in #main-content {
     margin-left: 280px;
     padding: 40px; }
   #main-content .page-head {
     margin-bottom: 70px; }
-  #main-content .content-wrapper .content-sidebar {
-    background: #e0e2e6;
-    float: right;
-    width: 280px; }
-    #main-content .content-wrapper .content-sidebar .sidebar-second-content {
-      padding: 0 10px 10px 10px; }
-  #main-content .content-wrapper .content-column {
-    overflow: hidden; }
+  #main-content .content-wrapper {
+    margin: 0;
+    padding: 0; }
+    #main-content .content-wrapper .content-sidebar {
+      background: #e0e2e6;
+      float: right;
+      width: 280px; }
+      #main-content .content-wrapper .content-sidebar .sidebar-second-content {
+        padding: 0 10px 10px 10px; }
+    #main-content .content-wrapper .content-column {
+      overflow: hidden; }
   #main-content #page-actions {
     float: right;
     margin-top: 16px; }
@@ -122,8 +125,6 @@ body {
           transition: background-color 0.1s ease-in-out; }
           #main-content #page-actions ul.action-links li a:hover {
             background-color: #303030; }
-  #main-content #page-content {
-    margin-top: 40px; }
 
 ul.pager {
   list-style: none;
@@ -1518,12 +1519,14 @@ ul.tabs {
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
 .page-investor #main-content #page-content,
-.page-node #main-content #page-content {
+.node-type-capital-raising #main-content #page-content,
+.node-type-company #main-content #page-content {
   margin-top: 0;
   background: #fff;
   padding: 50px 40px 50px 40px; }
   .page-investor #main-content #page-content .title h2,
-  .page-node #main-content #page-content .title h2 {
+  .node-type-capital-raising #main-content #page-content .title h2,
+  .node-type-company #main-content #page-content .title h2 {
     font-size: 32px;
     font-size: 3.2rem;
     line-height: 48px;
