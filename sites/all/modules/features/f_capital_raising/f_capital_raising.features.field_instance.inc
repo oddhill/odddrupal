@@ -210,7 +210,7 @@ function f_capital_raising_field_default_field_instances() {
     'settings' => array(
       'description_field' => 1,
       'file_directory' => 'capital_raisings',
-      'file_extensions' => 'pdf doc xls',
+      'file_extensions' => 'pdf',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
