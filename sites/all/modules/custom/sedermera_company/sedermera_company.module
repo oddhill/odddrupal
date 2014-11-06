@@ -22,8 +22,8 @@ function sedermera_company_node_view($node, $view_mode, $langcode) {
  * Implements hook_node_prepare().
  */
 function sedermera_company_node_prepare($node) {
-  // Bail out if this isn't a company node.
-  if ($node->type != 'company') {
+  // Bail out if this isn't an existing company node.
+  if ($node->type != 'company' || !$node->nid) {
     return;
   }
 
