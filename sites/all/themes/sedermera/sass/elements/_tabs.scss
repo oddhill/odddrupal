@@ -1,11 +1,11 @@
 // Tabs
 
 ul.tabs {
-  list-style: none;
   background: $aluminium;
-  border-top: 1px solid $wool;
   border-bottom: 1px solid $wool;
+  border-top: 1px solid $wool;
   height: 42px;
+  list-style: none;
 
   li {
     @include font-size(1.4);
@@ -13,37 +13,53 @@ ul.tabs {
     float: left;
     text-align: center;
 
+    &.edit,
+    &.redigera {
+      border-left: 1px solid $wool;
+      float: right;
+
+      a.edit,
+      a.redigera {
+        @include svg-bg(edit);
+        background-position: 20px 12px;
+        padding-left: 42px;
+
+        &:hover {
+          background-color: $stone;
+        }
+      }
+    }
+
     a {
-      height: 40px;
-      display: inline-block;
-      padding: 0 19px 0 19px;
-      line-height: 40px;
+      border-right: 1px solid $wool;
       border-bottom: 0 none;
       color: $coffee;
-      border-right: 1px solid $wool;
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 19px 0 19px;
 
       &:hover {
+        background-color: $stone;
         border-bottom: 0 none;
-        background: $stone;
         height: 40px;
-        border-bottom: 0 none;
       }
     }
 
     &.active {
 
       a {
-        font-weight: 700;
+        background: $snow;
         border-bottom: 0 none;
         border-left: 0 none;
-        background: $snow;
         border-top: 2px solid $mustard;
+        font-weight: 700;
         height: 42px;
         margin-top: -1px;
 
          &:hover {
+          background-color: $snow;
           border-bottom: 0 none;
-          background: $snow;
         }
       }
     }

@@ -328,7 +328,7 @@ function sedermera_menu_local_task($variables) {
 
   $link['localized_options']['attributes']['class'] = array($link_class);
 
-  return '<li' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
+  return '<li' . (!empty($variables['element']['#active']) ? ' class="active ' . $link_class . '"' : ' class="' . $link_class . '"') . '>' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
 }
 
 /**

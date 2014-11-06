@@ -1464,11 +1464,11 @@ div.checker.hover.active span {
           background-color: #862e2e; }
 
 ul.tabs {
-  list-style: none;
   background: #ebedf1;
-  border-top: 1px solid #e0e2e6;
   border-bottom: 1px solid #e0e2e6;
-  height: 42px; }
+  border-top: 1px solid #e0e2e6;
+  height: 42px;
+  list-style: none; }
   ul.tabs li {
     font-size: 14px;
     font-size: 1.4rem;
@@ -1476,30 +1476,43 @@ ul.tabs {
     display: block;
     float: left;
     text-align: center; }
+    ul.tabs li.edit, ul.tabs li.redigera {
+      border-left: 1px solid #e0e2e6;
+      float: right; }
+      ul.tabs li.edit a.edit,
+      ul.tabs li.edit a.redigera, ul.tabs li.redigera a.edit,
+      ul.tabs li.redigera a.redigera {
+        background: url("../graphics/edit.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/edit.svg") transparent 0 0 no-repeat;
+        background-position: 20px 12px;
+        padding-left: 42px; }
+        ul.tabs li.edit a.edit:hover,
+        ul.tabs li.edit a.redigera:hover, ul.tabs li.redigera a.edit:hover,
+        ul.tabs li.redigera a.redigera:hover {
+          background-color: #d5d7da; }
     ul.tabs li a {
-      height: 40px;
-      display: inline-block;
-      padding: 0 19px 0 19px;
-      line-height: 40px;
+      border-right: 1px solid #e0e2e6;
       border-bottom: 0 none;
       color: #282828;
-      border-right: 1px solid #e0e2e6; }
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 19px 0 19px; }
       ul.tabs li a:hover {
+        background-color: #d5d7da;
         border-bottom: 0 none;
-        background: #d5d7da;
-        height: 40px;
-        border-bottom: 0 none; }
+        height: 40px; }
     ul.tabs li.active a {
-      font-weight: 700;
+      background: #fff;
       border-bottom: 0 none;
       border-left: 0 none;
-      background: #fff;
       border-top: 2px solid #f9a500;
+      font-weight: 700;
       height: 42px;
       margin-top: -1px; }
       ul.tabs li.active a:hover {
-        border-bottom: 0 none;
-        background: #fff; }
+        background-color: #fff;
+        border-bottom: 0 none; }
 
 @-webkit-keyframes rotate {
   from {
