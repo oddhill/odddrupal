@@ -45,8 +45,8 @@
             @include svg-bg(company_white);
           }
 
-          &#prospects {
-            @include svg-bg(prospect_white);
+          &#transactions {
+            @include svg-bg(transaction_white);
           }
         }
 
@@ -62,8 +62,8 @@
           @include svg-bg(company_grey);
         }
 
-        &#prospects {
-          @include svg-bg(prospect_grey);
+        &#transactions {
+          @include svg-bg(transaction_grey);
         }
 
         &.archive {

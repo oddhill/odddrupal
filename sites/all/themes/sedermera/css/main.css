@@ -228,9 +228,9 @@ ul.pager {
       #main-navigation ul.menu li a.active-trail#companies {
         background: url("../graphics/company_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/company_white.svg") transparent 0 0 no-repeat; }
-      #main-navigation ul.menu li a.active-trail#prospects {
-        background: url("../graphics/prospect_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/prospect_white.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a.active-trail#transactions {
+        background: url("../graphics/transaction_white.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/transaction_white.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a:hover {
         color: #d8d9da; }
       #main-navigation ul.menu li a#investors {
@@ -239,9 +239,9 @@ ul.pager {
       #main-navigation ul.menu li a#companies {
         background: url("../graphics/company_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/company_grey.svg") transparent 0 0 no-repeat; }
-      #main-navigation ul.menu li a#prospects {
-        background: url("../graphics/prospect_grey.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/prospect_grey.svg") transparent 0 0 no-repeat; }
+      #main-navigation ul.menu li a#transactions {
+        background: url("../graphics/transaction_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/transaction_grey.svg") transparent 0 0 no-repeat; }
       #main-navigation ul.menu li a.archive {
         background: url("../graphics/archive_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/archive_grey.svg") transparent 0 0 no-repeat; }
@@ -1635,41 +1635,41 @@ ul.tabs {
           background-color: #fac04c;
           box-shadow: 0 0 3px #222222; }
 
-.prospect-wrapper {
+.transaction-wrapper {
   background: #fff;
   overflow: auto; }
 
-.prospect-text {
+.transaction-text {
   float: left;
   width: 60%; }
 
-.prospect-information {
+.transaction-information {
   font-size: 12px;
   font-size: 1.2rem;
   line-height: 18px;
   float: left;
   padding: 0 0 0 25px;
   width: 40%; }
-  .prospect-information .field, .prospect-information .file {
+  .transaction-information .field, .transaction-information .file {
     border-bottom: 2px solid #f3f4f8;
     margin: 0 0 20px 0;
     padding: 0 0 20px 0; }
-    .prospect-information .field:last-child, .prospect-information .file:last-child {
+    .transaction-information .field:last-child, .transaction-information .file:last-child {
       border-bottom: 0 none; }
-    .prospect-information .field a, .prospect-information .file a {
+    .transaction-information .field a, .transaction-information .file a {
       border: 0 none; }
-  .prospect-information .label {
+  .transaction-information .label {
     font-size: 14px;
     font-size: 1.4rem;
     line-height: 21px;
     display: block;
     font-weight: 500; }
-  .prospect-information .file {
+  .transaction-information .file {
     display: block;
     font-weight: 500; }
-    .prospect-information .file.application-pdf img {
+    .transaction-information .file.application-pdf img {
       display: none; }
-    .prospect-information .file.application-pdf.application-pdf a {
+    .transaction-information .file.application-pdf.application-pdf a {
       background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
       padding-left: 25px;

@@ -16,13 +16,13 @@
   <?php print render($content['title']); ?>
 </div>
 
-<div class="prospect-wrapper">
+<div class="transaction-wrapper">
 
-  <div class="prospect-text">
+  <div class="transaction-text">
     <?php print render($content['body']); ?>
   </div>
 
-  <div class="prospect-information">
+  <div class="transaction-information">
     <?php print render($content['field_cap_rais_comp']); ?>
     <?php print render($content['field_cap_rais_date']); ?>
     <?php print render($content['field_cap_rais_file']); ?>

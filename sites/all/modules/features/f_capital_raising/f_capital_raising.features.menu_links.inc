@@ -67,7 +67,7 @@ function f_capital_raising_menu_default_menu_links() {
       'unaltered_hidden' => 0,
       'identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
       'attributes' => array(
-        'id' => 'prospects',
+        'id' => 'transactions',
       ),
     ),
     'module' => 'menu',
