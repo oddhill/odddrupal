@@ -161,6 +161,9 @@ function sedermera_investor_form_eck__entity__form_edit_investor_person_alter(&$
     '#submit' => array('sedermera_investor_delete_redirect'),
     '#limit_validation_errors' => array(),
   );
+
+  // Set the active menu trail.
+  menu_tree_set_path('main-menu', 'investerare');
 }
 
 /**
@@ -176,6 +179,9 @@ function sedermera_investor_form_eck__entity__form_edit_investor_company_alter(&
     '#submit' => array('sedermera_investor_delete_redirect'),
     '#limit_validation_errors' => array(),
   );
+
+  // Set the active menu trail.
+  menu_tree_set_path('main-menu', 'investerare');
 }
 
 /**
