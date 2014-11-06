@@ -9,11 +9,11 @@
  */
 function f_company_ccl_features_preset() {
   return array(
-    'Lägg till bolag' => array(
+    'Lägg till kundbolag' => array(
       'type' => 'local_action',
-      'title' => 'Lägg till bolag',
+      'title' => 'Lägg till kundbolag',
       'link' => 'node/add/company',
-      'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:7:"company";s:7:"node_id";s:7:" [nid:]";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:5:"bolag";s:8:"la_types";a:1:{s:7:"company";i:0;}s:8:"la_roles";a:3:{i:1;i:0;i:2;i:0;i:3;i:0;}}',
+      'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:7:"company";s:7:"node_id";s:21:" [nid: [nid: [nid:]]]";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:9:"kundbolag";s:8:"la_types";a:2:{s:15:"capital_raising";i:0;s:7:"company";i:0;}s:8:"la_roles";a:3:{i:1;i:0;i:2;i:0;i:3;i:0;}}',
     ),
   );
 }
@@ -46,9 +46,9 @@ function f_company_views_api($module = NULL, $api = NULL) {
 function f_company_node_info() {
   $items = array(
     'company' => array(
-      'name' => t('Bolag'),
+      'name' => t('Kundbolag'),
       'base' => 'node_content',
-      'description' => t('Ett bolag fyller ingen funktion av sig själv, utan används för att knyta kapitalanskaffningar till sig. Detta görs när du lägger till en ny kapitalanskaffning.'),
+      'description' => t('Ett kundbolag fyller ingen funktion av sig själv, utan används för att knyta kapitalanskaffningar till sig. Detta görs när du lägger till en ny kapitalanskaffning.'),
       'has_title' => '1',
       'title_label' => t('Bolagsnamn'),
       'help' => '',

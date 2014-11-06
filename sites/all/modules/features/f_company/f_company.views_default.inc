@@ -15,14 +15,14 @@ function f_company_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Bolag';
+  $view->human_name = 'Kundbolag';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Alla bolag';
+  $handler->display->display_options['title'] = 'Alla kundbolag';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -98,10 +98,10 @@ function f_company_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'bolag';
+  $handler->display->display_options['path'] = 'kundbolag';
   $translatables['company'] = array(
     t('Master'),
-    t('Alla bolag'),
+    t('Alla kundbolag'),
     t('more'),
     t('Filtrera listan'),
     t('Reset'),

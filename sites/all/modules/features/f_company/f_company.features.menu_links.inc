@@ -10,39 +10,16 @@
 function f_company_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-bolag:bolag
-  $menu_links['main-menu_alla-bolag:bolag'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'bolag',
-    'router_path' => 'bolag',
-    'link_title' => 'Alla bolag',
-    'options' => array(
-      'identifier' => 'main-menu_alla-bolag:bolag',
-      'attributes' => array(
-        'class' => array(
-          0 => 'all',
-        ),
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 1,
-    'expanded' => 0,
-    'weight' => 0,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_bolag:<firstchild>',
-  );
-  // Exported menu link: main-menu_bolag:<firstchild>
-  $menu_links['main-menu_bolag:<firstchild>'] = array(
+  // Exported menu link: main-menu_kundbolag:<firstchild>
+  $menu_links['main-menu_kundbolag:<firstchild>'] = array(
     'menu_name' => 'main-menu',
     'link_path' => '<firstchild>',
     'router_path' => '<firstchild>',
-    'link_title' => 'Bolag',
+    'link_title' => 'Kundbolag',
     'options' => array(
       'alter' => TRUE,
       'unaltered_hidden' => 0,
-      'identifier' => 'main-menu_bolag:<firstchild>',
+      'identifier' => 'main-menu_kundbolag:<firstchild>',
       'attributes' => array(
         'id' => 'companies',
       ),
@@ -55,16 +32,16 @@ function f_company_menu_default_menu_links() {
     'weight' => 1,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_lgg-till-bolag:node/add/company
-  $menu_links['main-menu_lgg-till-bolag:node/add/company'] = array(
+  // Exported menu link: main-menu_lgg-till-kundbolag:node/add/company
+  $menu_links['main-menu_lgg-till-kundbolag:node/add/company'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/company',
     'router_path' => 'node/add/company',
-    'link_title' => 'Lägg till bolag',
+    'link_title' => 'Lägg till kundbolag',
     'options' => array(
-      'identifier' => 'main-menu_lgg-till-bolag:node/add/company',
+      'identifier' => 'main-menu_lgg-till-kundbolag:node/add/company',
       'query' => array(
-        'destination' => 'bolag',
+        'destination' => 'kundbolag',
       ),
       'attributes' => array(
         'class' => array(
@@ -79,13 +56,12 @@ function f_company_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_bolag:<firstchild>',
+    'parent_identifier' => 'main-menu_kundbolag:<firstchild>',
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('Alla bolag');
-  t('Bolag');
-  t('Lägg till bolag');
+  t('Kundbolag');
+  t('Lägg till kundbolag');
 
 
   return $menu_links;

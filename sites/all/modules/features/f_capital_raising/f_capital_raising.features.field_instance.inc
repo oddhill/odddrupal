@@ -88,7 +88,7 @@ function f_capital_raising_field_default_field_instances() {
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Ange för vilket bolag denna kapitalanskaffning tillhör.',
+    'description' => 'Ange för vilket kundbolag denna kapitalanskaffning tillhör.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -113,7 +113,7 @@ function f_capital_raising_field_default_field_instances() {
     'ied_settings' => array(
       'display_fields' => 1,
     ),
-    'label' => 'Bolag',
+    'label' => 'Kundbolag',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -227,11 +227,11 @@ function f_capital_raising_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Ange för vilket bolag denna kapitalanskaffning tillhör.');
+  t('Ange för vilket kundbolag denna kapitalanskaffning tillhör.');
   t('Ange mellan vilka datum denna kapitalanskaffning har sin teckningstid.');
   t('Bifoga filer som är relevanta för denna kapitalanskaffning.');
-  t('Bolag');
   t('Filer');
+  t('Kundbolag');
   t('Teckningstid');
   t('Text');
 
