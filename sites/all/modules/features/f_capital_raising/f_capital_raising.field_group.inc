@@ -55,6 +55,11 @@ function f_capital_raising_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_cap_rais_date',
+      1 => 'field_cap_rais_post',
+      2 => 'field_cap_rais_rate',
+      3 => 'field_cap_rais_vol',
+      4 => 'field_cap_rais_estim',
+      5 => 'field_cap_rais_stock_no',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

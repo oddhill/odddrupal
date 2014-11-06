@@ -21,7 +21,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 7,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -94,7 +94,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 8,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -141,7 +141,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 6,
       ),
       'full' => array(
         'label' => 'above',
@@ -183,6 +183,52 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_estim'
+  $field_instances['node-capital_raising-field_cap_rais_estim'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'TODO: Se över hjälptexten.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => ',',
+          'prefix_suffix' => 1,
+          'scale' => 1,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_estim',
+    'label' => 'Värdering (pre-money)',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => ' miljoner SEK',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-capital_raising-field_cap_rais_file'
   $field_instances['node-capital_raising-field_cap_rais_file'] = array(
     'bundle' => 'capital_raising',
@@ -193,14 +239,14 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 4,
+        'weight' => 9,
       ),
     ),
     'entity_type' => 'node',
@@ -225,15 +271,211 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_post'
+  $field_instances['node-capital_raising-field_cap_rais_post'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Ange hur många aktier som går att teckna.
+TODO: Se över hjälptexten.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_post',
+    'label' => 'Teckningspost',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => ' aktier',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_rate'
+  $field_instances['node-capital_raising-field_cap_rais_rate'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Ange kursen per aktie.
+TODO: Se över hjälptexten.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => ',',
+          'prefix_suffix' => 1,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_rate',
+    'label' => 'Teckningskurs',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => ' SEK per aktie',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_stock_no'
+  $field_instances['node-capital_raising-field_cap_rais_stock_no'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'TODO: Se över hjälptexten.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_stock_no',
+    'label' => 'Aktier innan nyemission',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => ' aktier',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_vol'
+  $field_instances['node-capital_raising-field_cap_rais_vol'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'TODO: Se över hjälptexten.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_vol',
+    'label' => 'Emissionsvolym',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => ' aktier',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 8,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
+  t('Aktier innan nyemission');
   t('Ange för vilket kundbolag denna transaktion tillhör.');
+  t('Ange hur många aktier som går att teckna.
+TODO: Se över hjälptexten.');
+  t('Ange kursen per aktie.
+TODO: Se över hjälptexten.');
   t('Ange mellan vilka datum denna transaktion har sin teckningstid.');
   t('Bifoga filer som är relevanta för denna transaktion.');
+  t('Emissionsvolym');
   t('Filer');
   t('Kundbolag');
+  t('TODO: Se över hjälptexten.');
+  t('Teckningskurs');
+  t('Teckningspost');
   t('Teckningstid');
   t('Text');
+  t('Värdering (pre-money)');
 
   return $field_instances;
 }
