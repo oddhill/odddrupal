@@ -103,13 +103,11 @@ function sedermera_capital_raising_get_time_remaining($node) {
     return FALSE;
   }
 
-  // Get the current date, and make sure that the time points at midnight.
+  // Get the current date.
   $now = new DateTime(date(DATE_ISO8601, $now));
-  $now->setTime(0, 0, 0);
 
-  // Get the end date, and make sure that the time points at midnight.
+  // Get the end date.
   $end = new DateTime(date(DATE_ISO8601, $end));
-  $end->setTime(0, 0, 0);
 
   // Return the remaining the based on the two date objects.
   return $end->diff($now);
@@ -129,7 +127,7 @@ function sedermera_capital_raising_get_time_remaining_format($remaining) {
   // Create the initial array that will hold our parts.
   $parts = array();
 
-  // Add the parts that aren't empty.
+  // Start of by adding the most basic parts: Year, months and day.
   if ($remaining->y) {
     $parts[] = '%y år';
   }
@@ -139,14 +137,22 @@ function sedermera_capital_raising_get_time_remaining_format($remaining) {
   if ($remaining->d) {
     $parts[] = format_plural($remaining->d, '%d dag', '%d dagar');
   }
-  if ($remaining->h) {
-    $parts[] = format_plural($remaining->h, '%d timme', '%d timmar');
+
+  // If we haven't got any parts yet, we'll add the remaining hours and minutes.
+  if (empty($parts)) {
+    if ($remaining->h) {
+      $parts[] = format_plural($remaining->h, '%h timme', '%h timmar');
+    }
+    if ($remaining->i) {
+      $parts[] = format_plural($remaining->i, '%i minut', '%i minuter');
+    }
   }
-  if ($remaining->i) {
-    $parts[] = format_plural($remaining->i, '%d minut', '%d minuter');
-  }
-  if ($remaining->s) {
-    $parts[] = format_plural($remaining->s, '%d sekund', '%d sekunder');
+
+  // If there still aren't anything added, we'll add the seconds.
+  if (empty($parts)) {
+    if ($remaining->s) {
+      $parts[] = format_plural($remaining->s, '%s sekund', '%s sekunder');
+    }
   }
 
   // Get the last part of the array, since we'd like to separeate this with an
