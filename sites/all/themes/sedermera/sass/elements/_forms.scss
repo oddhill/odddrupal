@@ -101,17 +101,18 @@
 
       .form-required {
         display: inline-block;
-        width: 15px;
-        height: 15px;
-        @include svg-bg(required);
-        position: relative;
-        left: -25px;
-        top: 2px;
+        width: 24px;
+        height: 39px;
+        @include svg-bg(required, $light-grey, 5px center);
+        position: absolute;
+        left: 0px;
+        top: 0px;
         color: transparent;
         font-size: 0px;
         overflow: hidden;
         text-indent: 100px;
         line-height: 0px;
+        border-radius: 2px 0 0 2px;
       }
 
       #autocomplete {
@@ -152,6 +153,10 @@
           @include animation(load 0.9s linear infinite);
         }
       }
+    }
+
+    &.form-type-textarea {
+
     }
 
     &.form-type-managed-file {
@@ -276,6 +281,10 @@
           background-image: none;
         }
       }
+    }
+
+    &.required {
+      padding: 10px 30px;
     }
 
     &:focus {

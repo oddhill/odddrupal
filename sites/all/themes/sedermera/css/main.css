@@ -12,6 +12,15 @@ h2 {
   line-height: 32px;
   font-weight: 500; }
 
+h3 {
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 20.8px;
+  font-weight: 500; }
+
+p {
+  margin: 1em 0; }
+
 a {
   color: #1a1a1a;
   border-bottom: 1px solid #e0e2e6;
@@ -61,7 +70,9 @@ body {
   background: #f3f4f8;
   color: #282828;
   font-family: "Roboto", sans-serif;
-  font-size: 1.4; }
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 18.2px; }
 
 #site-wrapper {
   height: 100%; }
@@ -1045,18 +1056,19 @@ div.checker.hover.active span {
       .page-node-add form .form-item.form-type-textfield .form-required,
       .page-node-edit form .form-item.form-type-textfield .form-required {
         display: inline-block;
-        width: 15px;
-        height: 15px;
-        background: url("../graphics/required.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/required.svg") transparent 0 0 no-repeat;
-        position: relative;
-        left: -25px;
-        top: 2px;
+        width: 24px;
+        height: 39px;
+        background: url("../graphics/required.png") #f3f4f8 5px center no-repeat;
+        background: none, url("../graphics/required.svg") #f3f4f8 5px center no-repeat;
+        position: absolute;
+        left: 0px;
+        top: 0px;
         color: transparent;
         font-size: 0px;
         overflow: hidden;
         text-indent: 100px;
-        line-height: 0px; }
+        line-height: 0px;
+        border-radius: 2px 0 0 2px; }
       .page-admin form .form-item.form-type-textfield #autocomplete,
       .page-investor-person-edit form .form-item.form-type-textfield #autocomplete,
       .page-investor-company-edit form .form-item.form-type-textfield #autocomplete,
@@ -1356,6 +1368,13 @@ div.checker.hover.active span {
       .page-node-add form .form-text.form-autocomplete.throbbing, .js
       .page-node-edit form .form-text.form-autocomplete.throbbing {
         background-image: none; }
+    .page-admin form .form-text.required,
+    .page-investor-person-edit form .form-text.required,
+    .page-investor-company-edit form .form-text.required,
+    .not-logged-in.page-user form .form-text.required,
+    .page-node-add form .form-text.required,
+    .page-node-edit form .form-text.required {
+      padding: 10px 30px; }
     .page-admin form .form-text:focus,
     .page-investor-person-edit form .form-text:focus,
     .page-investor-company-edit form .form-text:focus,
