@@ -2180,7 +2180,11 @@ ul.tabs {
         position: absolute;
         right: 10px;
         top: 12px;
-        left: auto; }
+        left: auto;
+        background-color: transparent;
+        background-position: 0 0;
+        width: 15px;
+        height: 15px; }
       .not-logged-in.page-user #main-content form#user-login .form-text {
         background: #1a1a1a;
         padding: 10px 10px 10px 41px;
