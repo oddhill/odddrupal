@@ -1,4 +1,4 @@
-name = Bolag
+name = Kundbolag
 core = 7.x
 package = Features
 dependencies[] = field_group
