@@ -133,6 +133,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['style_options']['columns'] = array(
     'id' => 'id',
     'type' => 'type',
+    'field_shared_inv_id' => 'field_shared_inv_id',
     'title' => 'title',
     'field_shared_address_locality' => 'field_shared_address_locality',
     'field_shared_address_country' => 'field_shared_address_locality',
@@ -150,6 +151,13 @@ function f_investor_views_default_views() {
     ),
     'type' => array(
       'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_shared_inv_id' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -241,6 +249,21 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
   $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
   $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
+  /* Filter criterion: Investerare: Investerar ID (field_shared_inv_id) */
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['id'] = 'field_shared_inv_id_value';
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['table'] = 'field_data_field_shared_inv_id';
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['field'] = 'field_shared_inv_id_value';
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['expose']['operator_id'] = 'field_shared_inv_id_value_op';
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['expose']['label'] = 'Investerar ID';
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['expose']['operator'] = 'field_shared_inv_id_value_op';
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['expose']['identifier'] = 'field_shared_inv_id_value';
+  $handler->display->display_options['filters']['field_shared_inv_id_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
   /* Filter criterion: Investerare: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'eck_investor';
@@ -342,6 +365,11 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['machine_name'] = TRUE;
+  /* Field: Investerare: Investerar ID */
+  $handler->display->display_options['fields']['field_shared_inv_id']['id'] = 'field_shared_inv_id';
+  $handler->display->display_options['fields']['field_shared_inv_id']['table'] = 'field_data_field_shared_inv_id';
+  $handler->display->display_options['fields']['field_shared_inv_id']['field'] = 'field_shared_inv_id';
+  $handler->display->display_options['fields']['field_shared_inv_id']['label'] = 'ID';
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
@@ -402,11 +430,13 @@ function f_investor_views_default_views() {
     t('Plats'),
     t('Mobiltelefon'),
     t('Telefon'),
+    t('Investerar ID'),
     t('Postnummer'),
     t('Ort'),
     t('Land'),
     t('Branscher'),
     t('Page'),
+    t('ID'),
   );
   $export['investors'] = $view;
 
