@@ -14,23 +14,23 @@
 
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
   <?php print render($content['title']); ?>
-</div>
 
-<div class="transaction-wrapper">
+  <div class="transaction-wrapper">
 
-  <div class="transaction-text">
-    <?php print render($content['body']); ?>
+    <div class="transaction-text">
+      <?php print render($content['body']); ?>
+    </div>
+
+    <div class="transaction-information">
+      <?php print render($content['field_cap_rais_comp']); ?>
+      <?php print render($content['field_cap_rais_date']); ?>
+      <?php print render($content['field_cap_rais_post']); ?>
+      <?php print render($content['field_cap_rais_rate']); ?>
+      <?php print render($content['field_cap_rais_vol']); ?>
+      <?php print render($content['field_cap_rais_stock_no']); ?>
+      <?php print render($content['field_cap_rais_estim']); ?>
+      <?php print render($content['field_cap_rais_file']); ?>
+    </div>
+
   </div>
-
-  <div class="transaction-information">
-    <?php print render($content['field_cap_rais_comp']); ?>
-    <?php print render($content['field_cap_rais_date']); ?>
-    <?php print render($content['field_cap_rais_post']); ?>
-    <?php print render($content['field_cap_rais_rate']); ?>
-    <?php print render($content['field_cap_rais_vol']); ?>
-    <?php print render($content['field_cap_rais_stock_no']); ?>
-    <?php print render($content['field_cap_rais_estim']); ?>
-    <?php print render($content['field_cap_rais_file']); ?>
-  </div>
-
 </div>

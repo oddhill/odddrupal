@@ -25,6 +25,9 @@
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {
-      margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
+.node.view-mode-full {
+  @include outer-container;
+}

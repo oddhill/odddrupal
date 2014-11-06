@@ -2151,6 +2151,15 @@ ul.tabs {
 .field-shared-email {
   margin-bottom: 15px; }
 
+.node.view-mode-full {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .node.view-mode-full:after {
+    content: "";
+    display: table;
+    clear: both; }
+
 .not-logged-in.page-user {
   background: #282828;
   box-sizing: border-box; }
@@ -2236,15 +2245,25 @@ ul.tabs {
 
 .transaction-text {
   float: left;
-  width: 60%; }
+  display: block;
+  margin-right: 2.35765%;
+  width: 65.88078%;
+  float: left; }
+  .transaction-text:last-child {
+    margin-right: 0; }
 
 .transaction-information {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
   font-size: 12px;
   font-size: 1.2rem;
   line-height: 18px;
   float: left;
-  padding: 0 0 0 25px;
-  width: 40%; }
+  padding: 0 0 0 25px; }
+  .transaction-information:last-child {
+    margin-right: 0; }
   .transaction-information .field, .transaction-information .file {
     border-bottom: 2px solid #f3f4f8;
     margin: 0 0 20px 0;

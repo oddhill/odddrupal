@@ -4,15 +4,15 @@
 }
 
 .transaction-text {
+  @include span-columns(8);
   float: left;
-  width: 60%;
 }
 
 .transaction-information {
+  @include span-columns(4);
   @include font-size(1.2);
   float: left;
   padding: 0 0 0 25px;
-  width: 40%;
 
   .field, .file {
     border-bottom: 2px solid $light-grey;
