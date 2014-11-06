@@ -15,14 +15,14 @@ function f_capital_raising_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Kapitalanskaffningar';
+  $view->human_name = 'Transaktioner';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Alla kapitalanskaffningar';
+  $handler->display->display_options['title'] = 'Alla transaktioner';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -64,7 +64,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Kunde inte hitta några kapitalanskaffningar som matchade sökkriterierna.';
+  $handler->display->display_options['empty']['area']['content'] = 'Kunde inte hitta några transaktioner som matchade sökkriterierna.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_cap_rais_comp_target_id']['id'] = 'field_cap_rais_comp_target_id';
@@ -115,12 +115,12 @@ function f_capital_raising_views_default_views() {
 
   /* Display: Alla */
   $handler = $view->new_display('page', 'Alla', 'page');
-  $handler->display->display_options['path'] = 'kapitalanskaffningar';
+  $handler->display->display_options['path'] = 'transaktioner';
 
   /* Display: Arkiverade */
   $handler = $view->new_display('page', 'Arkiverade', 'archived');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Arkiverade kapitalanskaffningar';
+  $handler->display->display_options['title'] = 'Arkiverade transaktioner';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
@@ -150,10 +150,10 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '0';
-  $handler->display->display_options['path'] = 'kapitalanskaffningar/arkiverade';
+  $handler->display->display_options['path'] = 'transaktioner/arkiverade';
   $translatables['capital_raisings'] = array(
     t('Master'),
-    t('Alla kapitalanskaffningar'),
+    t('Alla transaktioner'),
     t('more'),
     t('Filtrera listan'),
     t('Reset'),
@@ -168,12 +168,12 @@ function f_capital_raising_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Kunde inte hitta några kapitalanskaffningar som matchade sökkriterierna.'),
+    t('Kunde inte hitta några transaktioner som matchade sökkriterierna.'),
     t('Bolag'),
     t('Titel'),
     t('Alla'),
     t('Arkiverade'),
-    t('Arkiverade kapitalanskaffningar'),
+    t('Arkiverade transaktioner'),
   );
   $export['capital_raisings'] = $view;
 

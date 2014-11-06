@@ -88,7 +88,7 @@ function f_capital_raising_field_default_field_instances() {
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Ange för vilket kundbolag denna kapitalanskaffning tillhör.',
+    'description' => 'Ange för vilket kundbolag denna transaktion tillhör.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -135,7 +135,7 @@ function f_capital_raising_field_default_field_instances() {
   $field_instances['node-capital_raising-field_cap_rais_date'] = array(
     'bundle' => 'capital_raising',
     'deleted' => 0,
-    'description' => 'Ange mellan vilka datum denna kapitalanskaffning har sin teckningstid.',
+    'description' => 'Ange mellan vilka datum denna transaktion har sin teckningstid.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -187,7 +187,7 @@ function f_capital_raising_field_default_field_instances() {
   $field_instances['node-capital_raising-field_cap_rais_file'] = array(
     'bundle' => 'capital_raising',
     'deleted' => 0,
-    'description' => 'Bifoga filer som är relevanta för denna kapitalanskaffning.',
+    'description' => 'Bifoga filer som är relevanta för denna transaktion.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -227,9 +227,9 @@ function f_capital_raising_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Ange för vilket kundbolag denna kapitalanskaffning tillhör.');
-  t('Ange mellan vilka datum denna kapitalanskaffning har sin teckningstid.');
-  t('Bifoga filer som är relevanta för denna kapitalanskaffning.');
+  t('Ange för vilket kundbolag denna transaktion tillhör.');
+  t('Ange mellan vilka datum denna transaktion har sin teckningstid.');
+  t('Bifoga filer som är relevanta för denna transaktion.');
   t('Filer');
   t('Kundbolag');
   t('Teckningstid');

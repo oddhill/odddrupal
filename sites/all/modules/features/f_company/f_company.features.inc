@@ -48,7 +48,7 @@ function f_company_node_info() {
     'company' => array(
       'name' => t('Kundbolag'),
       'base' => 'node_content',
-      'description' => t('Ett kundbolag fyller ingen funktion av sig själv, utan används för att knyta kapitalanskaffningar till sig. Detta görs när du lägger till en ny kapitalanskaffning.'),
+      'description' => t('Ett kundbolag fyller ingen funktion av sig själv, utan används för att knyta transaktioner till sig. Detta görs när du lägger till en ny transaktion.'),
       'has_title' => '1',
       'title_label' => t('Bolagsnamn'),
       'help' => '',

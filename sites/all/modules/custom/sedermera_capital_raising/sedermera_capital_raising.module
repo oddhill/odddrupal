@@ -10,7 +10,7 @@
  */
 function sedermera_capital_raising_block_info() {
   $blocks['time_remaining'] = array(
-    'info' => 'Tid för kapitalanskaffning',
+    'info' => 'Tid för transaktion',
     'cache' => DRUPAL_CACHE_PER_PAGE
   );
 
@@ -192,7 +192,7 @@ function sedermera_capital_raising_archive_form_submit($form, &$form_state) {
   node_save($node);
 
   // Display a message to the user.
-  drupal_set_message(format_string('Kapitalanskaffningen "%title" arkiverades.', array('%title' => $node->title)));
+  drupal_set_message(format_string('Transaktionen "%title" arkiverades.', array('%title' => $node->title)));
 }
 
 /**
@@ -206,5 +206,5 @@ function sedermera_capital_raising_node_view($node, $view_mode, $langcode) {
   }
 
   // Set the active menu trail based on the archived state.
-  menu_tree_set_path('main-menu', ($node->status ? 'kapitalanskaffningar' : 'kapitalanskaffningar/arkiverade'));
+  menu_tree_set_path('main-menu', ($node->status ? 'transaktioner' : 'transaktioner/arkiverade'));
 }

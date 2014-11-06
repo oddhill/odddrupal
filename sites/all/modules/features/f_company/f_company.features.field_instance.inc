@@ -14,7 +14,7 @@ function f_company_field_default_field_instances() {
   $field_instances['node-company-field_comp_logo'] = array(
     'bundle' => 'company',
     'deleted' => 0,
-    'description' => 'Ladda upp en logotyp för bolaget. Denna kommer presenteras i samband med utskicken av kapitalanskaffningar.',
+    'description' => 'Ladda upp en logotyp för bolaget. Denna kommer presenteras i samband med utskicken av transaktioner.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -62,7 +62,7 @@ function f_company_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Ladda upp en logotyp för bolaget. Denna kommer presenteras i samband med utskicken av kapitalanskaffningar.');
+  t('Ladda upp en logotyp för bolaget. Denna kommer presenteras i samband med utskicken av transaktioner.');
   t('Logotyp');
 
   return $field_instances;

@@ -10,14 +10,14 @@
 function f_capital_raising_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-kapitalanskaffningar:kapitalanskaffningar
-  $menu_links['main-menu_alla-kapitalanskaffningar:kapitalanskaffningar'] = array(
+  // Exported menu link: main-menu_alla-transaktioner:transaktioner
+  $menu_links['main-menu_alla-transaktioner:transaktioner'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'kapitalanskaffningar',
-    'router_path' => 'kapitalanskaffningar',
-    'link_title' => 'Alla kapitalanskaffningar',
+    'link_path' => 'transaktioner',
+    'router_path' => 'transaktioner',
+    'link_title' => 'Alla transaktioner',
     'options' => array(
-      'identifier' => 'main-menu_alla-kapitalanskaffningar:kapitalanskaffningar',
+      'identifier' => 'main-menu_alla-transaktioner:transaktioner',
       'attributes' => array(
         'class' => array(
           0 => 'all',
@@ -31,16 +31,16 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
+    'parent_identifier' => 'main-menu_transaktioner:<firstchild>',
   );
-  // Exported menu link: main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade
-  $menu_links['main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade'] = array(
+  // Exported menu link: main-menu_arkiverade-transaktioner:transaktioner/arkiverade
+  $menu_links['main-menu_arkiverade-transaktioner:transaktioner/arkiverade'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'kapitalanskaffningar/arkiverade',
-    'router_path' => 'kapitalanskaffningar/arkiverade',
-    'link_title' => 'Arkiverade kapitalanskaffningar',
+    'link_path' => 'transaktioner/arkiverade',
+    'router_path' => 'transaktioner/arkiverade',
+    'link_title' => 'Arkiverade transaktioner',
     'options' => array(
-      'identifier' => 'main-menu_arkiverade-kapitalanskaffningar:kapitalanskaffningar/arkiverade',
+      'identifier' => 'main-menu_arkiverade-transaktioner:transaktioner/arkiverade',
       'attributes' => array(
         'class' => array(
           0 => 'archive',
@@ -54,40 +54,18 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
+    'parent_identifier' => 'main-menu_transaktioner:<firstchild>',
   );
-  // Exported menu link: main-menu_kapitalanskaffningar:<firstchild>
-  $menu_links['main-menu_kapitalanskaffningar:<firstchild>'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => '<firstchild>',
-    'router_path' => '<firstchild>',
-    'link_title' => 'Kapitalanskaffningar',
-    'options' => array(
-      'alter' => TRUE,
-      'unaltered_hidden' => 0,
-      'identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
-      'attributes' => array(
-        'id' => 'transactions',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 1,
-    'expanded' => 0,
-    'weight' => 2,
-    'customized' => 1,
-  );
-  // Exported menu link: main-menu_lgg-till-kapitalanskaffning:node/add/capital-raising
-  $menu_links['main-menu_lgg-till-kapitalanskaffning:node/add/capital-raising'] = array(
+  // Exported menu link: main-menu_lgg-till-transaktion:node/add/capital-raising
+  $menu_links['main-menu_lgg-till-transaktion:node/add/capital-raising'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/capital-raising',
     'router_path' => 'node/add/capital-raising',
-    'link_title' => 'Lägg till kapitalanskaffning',
+    'link_title' => 'Lägg till transaktion',
     'options' => array(
-      'identifier' => 'main-menu_lgg-till-kapitalanskaffning:node/add/capital-raising',
+      'identifier' => 'main-menu_lgg-till-transaktion:node/add/capital-raising',
       'query' => array(
-        'destination' => 'kapitalanskaffningar',
+        'destination' => 'transaktioner',
       ),
       'attributes' => array(
         'class' => array(
@@ -102,14 +80,36 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 20,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_kapitalanskaffningar:<firstchild>',
+    'parent_identifier' => 'main-menu_transaktioner:<firstchild>',
+  );
+  // Exported menu link: main-menu_transaktioner:<firstchild>
+  $menu_links['main-menu_transaktioner:<firstchild>'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => '<firstchild>',
+    'router_path' => '<firstchild>',
+    'link_title' => 'Transaktioner',
+    'options' => array(
+      'alter' => TRUE,
+      'unaltered_hidden' => 0,
+      'identifier' => 'main-menu_transaktioner:<firstchild>',
+      'attributes' => array(
+        'id' => 'transactions',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => 2,
+    'customized' => 1,
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('Alla kapitalanskaffningar');
-  t('Arkiverade kapitalanskaffningar');
-  t('Kapitalanskaffningar');
-  t('Lägg till kapitalanskaffning');
+  t('Alla transaktioner');
+  t('Arkiverade transaktioner');
+  t('Lägg till transaktion');
+  t('Transaktioner');
 
 
   return $menu_links;
