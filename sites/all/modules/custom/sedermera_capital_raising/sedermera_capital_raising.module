@@ -221,3 +221,22 @@ function sedermera_capital_raising_node_prepare($node) {
   // Set the active menu trail based on the archived state.
   menu_tree_set_path('main-menu', ($node->status ? 'transaktioner' : 'transaktioner/arkiverade'));
 }
+
+/**
+ * Implements hook_node_presave().
+ */
+function sedermera_capital_raising_node_presave($node) {
+  // Bail out if this isn't a capital raising node.
+  if ($node->type != 'capital_raising') {
+    return;
+  }
+
+  // Create a DateTime object based of the end date, and change the time to
+  // the end of the day.
+  $date = new DateTime($node->field_cap_rais_date[LANGUAGE_NONE][0]['value2']);
+  $date->setTime(23, 59, 59);
+
+  // Change the stored value for the end date to the new value, based on the ISO
+  // format.
+  $node->field_cap_rais_date[LANGUAGE_NONE][0]['value2'] = $date->format(DATE_FORMAT_ISO);
+}
