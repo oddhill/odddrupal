@@ -126,8 +126,23 @@ Drupal.behaviors.sedermera = {
       $in.prev().val($in.val());
     });
 
-    // Use uniform to beautify our checkboxes and radio buttons.
-    $('input[type="checkbox"], input[type="radio"]').once().uniform();
+    // Use uniform to beautify our checkboxes and radio buttons. We'll add an
+    // event listener to the change event, since Uniform doesn't automatically
+    // respond to the change event. This is required since a "select-all"
+    // checkbox doesn't actually click every checkbox, but only changes the
+    // checked property.
+    $('input[type="checkbox"], input[type="radio"]').once().uniform().change(function() {
+      var $input = $(this);
+
+      // Add the checked class to the parent element if the input has been
+      // checked, or remove it otherwise.
+      if ($input.prop('checked')) {
+        $input.parent().addClass('checked');
+      }
+      else {
+        $input.parent().removeClass('checked');
+      }
+    });
 
   }
 };
