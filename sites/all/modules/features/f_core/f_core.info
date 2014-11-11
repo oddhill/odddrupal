@@ -15,6 +15,7 @@ dependencies[] = entityreference
 dependencies[] = f_capital_raising
 dependencies[] = f_company
 dependencies[] = f_investor
+dependencies[] = f_offer
 dependencies[] = features
 dependencies[] = filter
 dependencies[] = form_placeholder
