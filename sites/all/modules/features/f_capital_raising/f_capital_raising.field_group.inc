@@ -18,10 +18,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'capital_raising';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'step_cap_rais_1';
   $field_group->data = array(
     'label' => 'Grundläggande',
-    'weight' => '0',
+    'weight' => '1',
     'children' => array(
       0 => 'body',
       1 => 'field_cap_rais_comp',
@@ -49,10 +49,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'capital_raising';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'step_cap_rais_1';
   $field_group->data = array(
     'label' => 'Detaljer',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'field_cap_rais_date',
       1 => 'field_cap_rais_post',

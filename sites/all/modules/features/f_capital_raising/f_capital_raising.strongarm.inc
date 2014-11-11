@@ -59,16 +59,19 @@ function f_capital_raising_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'title' => array(
-          'weight' => '1',
+          'weight' => '14',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '3',
+          'weight' => '4',
+        ),
+        'additional_settings' => array(
+          'weight' => '6',
         ),
       ),
       'display' => array(),

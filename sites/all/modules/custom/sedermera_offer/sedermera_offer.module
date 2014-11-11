@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file sedermera_offer.module
+ * Main module file for the Sedermera Offer module.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_state) {
+  if ($form['#node']->nid) {
+    // Don't alter the form when editing an existing node, bail out.
+    return;
+  }
+
+  // Add the offer display from the investors view as a prefix to the form. The
+  // view is needed in order to filter among the investors. The view can't be
+  // embedded as a subform within the node form, since this will break the AJAX
+  // functionality. The reason is unknown, but that's just the way it is...
+  if ($form_state['storage']['step'] == 'step_cap_rais_2') {
+    $form['#prefix'] = views_embed_view('investors', 'offer_embed');
+  }
+
+  // Add checkboxes for every available investor. This will be added to the
+  // second step, and will get its values from the embedded view. See the
+  // attached javascript for more information about what's going on.
+  $form['investors'] = array(
+    '#type' => 'checkboxes',
+    '#options' => db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed(),
+  );
+  $form['#step_children']['investors'] =  'step_cap_rais_2';
+}
+
+/**
+ * Implements hook_views_bulk_operations_form_alter().
+ */
+function sedermera_offer_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) {
+  // Remove the action selection and submit button for the VBO form for the
+  // investors embeded offer display.
+  if ($vbo->view->name == 'investors' && $vbo->view->current_display == 'offer_embed') {
+    $form['select']['#access'] = FALSE;
+    $form['actions']['#access'] = FALSE;
+  }
+}

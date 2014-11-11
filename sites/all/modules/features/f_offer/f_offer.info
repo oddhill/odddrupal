@@ -9,6 +9,7 @@ dependencies[] = features
 dependencies[] = list
 dependencies[] = number
 dependencies[] = options
+dependencies[] = sedermera_offer
 dependencies[] = strongarm
 dependencies[] = text
 features[ctools][] = strongarm:strongarm:1

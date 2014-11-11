@@ -79,7 +79,7 @@ function f_capital_raising_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 16,
     ),
   );
 
@@ -127,7 +127,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 2,
+      'weight' => 15,
     ),
   );
 
@@ -225,7 +225,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -267,7 +267,7 @@ function f_capital_raising_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 4,
+      'weight' => 17,
     ),
   );
 
