@@ -32,6 +32,7 @@ features[field_instance][] = offer-offer-field_offer_investor
 features[field_instance][] = offer-offer-field_offer_signed
 features[field_instance][] = offer-offer-field_offer_status
 features[user_permission][] = eck administer offer offer entities
+features[user_permission][] = use editablefields
 features[variable][] = auto_entitylabel_offer_offer
 features[variable][] = auto_entitylabel_pattern_offer_offer
 features[variable][] = auto_entitylabel_php_offer_offer

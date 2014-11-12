@@ -19,5 +19,14 @@ function f_offer_user_default_permissions() {
     'module' => 'eck',
   );
 
+  // Exported permission: 'use editablefields'.
+  $permissions['use editablefields'] = array(
+    'name' => 'use editablefields',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'editablefields',
+  );
+
   return $permissions;
 }
