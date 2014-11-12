@@ -965,6 +965,13 @@ div.checker.hover.active span {
     text-align: right; }
     .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
       margin: 0 0 0 10px; }
+  .page-node-add-capital-raising form.node-capital_raising-form #preview-transaction {
+    background: #fff;
+    overflow: hidden; }
+  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors {
+    float: right;
+    padding: 20px;
+    width: 280px; }
 
 .page-admin form,
 .page-investor-person-edit form,

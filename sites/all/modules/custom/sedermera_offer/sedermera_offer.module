@@ -118,7 +118,7 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
       '#type' => 'checkboxes',
       '#options' => $selected_investors,
       '#default_value' => array_keys($selected_investors),
-      '#prefix' => '<div>',
+      '#prefix' => '<div id="preview-investors">',
       '#suffix' => '</div>',
     );
     $form['#step_children']['selected_investors'] =  'step_cap_rais_3';
@@ -130,7 +130,7 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     // Add the rendered node as a preview to the left fieldset. This fieldset will
     // be added to the third step.
     $form['preview_node'] = node_view($node);
-    $form['preview_node']['#prefix'] = '<div>';
+    $form['preview_node']['#prefix'] = '<div id="preview-transaction">';
     $form['preview_node']['#suffix'] = '</div>';
     $form['#step_children']['preview_node'] =  'step_cap_rais_3';
   }

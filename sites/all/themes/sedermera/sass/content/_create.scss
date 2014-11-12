@@ -130,5 +130,16 @@
         }
       }
     }
+
+    #preview-transaction {
+      background: $snow;
+      overflow: hidden;
+    }
+
+    #preview-investors {
+      float: right;
+      padding: 20px;
+      width: 280px;
+    }
   }
 }
