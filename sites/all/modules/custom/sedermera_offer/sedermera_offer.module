@@ -28,6 +28,11 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
   $form['investors'] = array(
     '#type' => 'checkboxes',
     '#options' => db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed(),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
+      ),
+    ),
   );
   $form['#step_children']['investors'] =  'step_cap_rais_2';
 }
