@@ -92,6 +92,42 @@
       border-radius: 2px;
     }
 
+    .container-inline-date {
+      background: tint($wool,40%);
+      float: left;
+      width: 45%;
+      clear: none;
+      border-radius: 2px;
+      position: relative;
+
+      .form-item {
+        margin: 0;
+        width: 100%;
+
+        .date-padding {
+          width: 100%;
+        }
+
+        .form-text {
+          width: 100%;
+          padding: 10px;
+        }
+      }
+
+      &.end-date-wrapper {
+        margin-left: 10%;
+
+        .form-type-date-popup {
+
+          > label {
+            position: absolute;
+            top: 50%;
+            left: -15%;
+          }
+        }
+      }
+    }
+
     .tabledrag-changed-warning {
       background: $mustard;
       border-radius: 2px;
@@ -515,5 +551,17 @@
         @include button($wine,delete);
       }
     }
+  }
+}
+
+#ui-datepicker-div {
+  font-family: $body-font;
+  background: $snow;
+  border-right: 0px none;
+  border-bottom: 0px none;
+
+  &.ui-datepicker {
+    margin-top: 2px;
+    padding: 10px;
   }
 }

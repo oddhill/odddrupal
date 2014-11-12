@@ -1041,6 +1041,57 @@ div.checker.hover.active span {
       color: #282828;
       padding: 10px;
       border-radius: 2px; }
+    .page-admin form fieldset .container-inline-date,
+    .page-investor-person-edit form fieldset .container-inline-date,
+    .page-investor-company-edit form fieldset .container-inline-date,
+    .not-logged-in.page-user form fieldset .container-inline-date,
+    .page-node-add form fieldset .container-inline-date,
+    .page-node-edit form fieldset .container-inline-date {
+      background: #ecedf0;
+      float: left;
+      width: 45%;
+      clear: none;
+      border-radius: 2px;
+      position: relative; }
+      .page-admin form fieldset .container-inline-date .form-item,
+      .page-investor-person-edit form fieldset .container-inline-date .form-item,
+      .page-investor-company-edit form fieldset .container-inline-date .form-item,
+      .not-logged-in.page-user form fieldset .container-inline-date .form-item,
+      .page-node-add form fieldset .container-inline-date .form-item,
+      .page-node-edit form fieldset .container-inline-date .form-item {
+        margin: 0;
+        width: 100%; }
+        .page-admin form fieldset .container-inline-date .form-item .date-padding,
+        .page-investor-person-edit form fieldset .container-inline-date .form-item .date-padding,
+        .page-investor-company-edit form fieldset .container-inline-date .form-item .date-padding,
+        .not-logged-in.page-user form fieldset .container-inline-date .form-item .date-padding,
+        .page-node-add form fieldset .container-inline-date .form-item .date-padding,
+        .page-node-edit form fieldset .container-inline-date .form-item .date-padding {
+          width: 100%; }
+        .page-admin form fieldset .container-inline-date .form-item .form-text,
+        .page-investor-person-edit form fieldset .container-inline-date .form-item .form-text,
+        .page-investor-company-edit form fieldset .container-inline-date .form-item .form-text,
+        .not-logged-in.page-user form fieldset .container-inline-date .form-item .form-text,
+        .page-node-add form fieldset .container-inline-date .form-item .form-text,
+        .page-node-edit form fieldset .container-inline-date .form-item .form-text {
+          width: 100%;
+          padding: 10px; }
+      .page-admin form fieldset .container-inline-date.end-date-wrapper,
+      .page-investor-person-edit form fieldset .container-inline-date.end-date-wrapper,
+      .page-investor-company-edit form fieldset .container-inline-date.end-date-wrapper,
+      .not-logged-in.page-user form fieldset .container-inline-date.end-date-wrapper,
+      .page-node-add form fieldset .container-inline-date.end-date-wrapper,
+      .page-node-edit form fieldset .container-inline-date.end-date-wrapper {
+        margin-left: 10%; }
+        .page-admin form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
+        .page-investor-person-edit form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
+        .page-investor-company-edit form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
+        .not-logged-in.page-user form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
+        .page-node-add form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
+        .page-node-edit form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label {
+          position: absolute;
+          top: 50%;
+          left: -15%; }
     .page-admin form fieldset .tabledrag-changed-warning,
     .page-investor-person-edit form fieldset .tabledrag-changed-warning,
     .page-investor-company-edit form fieldset .tabledrag-changed-warning,
@@ -2052,6 +2103,15 @@ div.checker.hover.active span {
         .page-node-add form .submit-wrapper .form-submit#edit-delete:hover,
         .page-node-edit form .submit-wrapper .form-submit#edit-delete:hover {
           background-color: #862e2e; }
+
+#ui-datepicker-div {
+  font-family: "Roboto", sans-serif;
+  background: #fff;
+  border-right: 0px none;
+  border-bottom: 0px none; }
+  #ui-datepicker-div.ui-datepicker {
+    margin-top: 2px;
+    padding: 10px; }
 
 ul.tabs {
   background: #ebedf1;
