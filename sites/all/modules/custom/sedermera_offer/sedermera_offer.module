@@ -74,6 +74,9 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     '#default_value' => array_keys($selected_investors),
   );
   $form['#step_children']['preview_right'] =  'step_cap_rais_3';
+
+  // Change the text of the submit button.
+  $form['actions']['submit']['#value'] = 'Spara och skicka ut';
 }
 
 /**
