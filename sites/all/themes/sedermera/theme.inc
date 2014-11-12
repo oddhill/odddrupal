@@ -262,25 +262,6 @@ function sedermera_textarea($variables) {
 }
 
 /**
- * Overrides theme_container().
- */
-function sedermera_container($variables) {
-  $element = $variables['element'];
-
-  // Special handling for form elements.
-  if (isset($element['#array_parents'])) {
-    // Assign an html ID.
-    if (!isset($element['#attributes']['id'])) {
-      $element['#attributes']['id'] = $element['#id'];
-    }
-    // Add the 'form-wrapper' class.
-    $element['#attributes']['class'][] = 'form-wrapper';
-  }
-
-  return $element['#children'];
-}
-
-/**
  * Overrides theme_button().
  */
 function sedermera_button($variables) {
