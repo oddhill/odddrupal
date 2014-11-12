@@ -353,9 +353,6 @@ function f_investor_views_default_views() {
   /* Display: Skicka ut erbjudande */
   $handler = $view->new_display('embed', 'Skicka ut erbjudande', 'offer_embed');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Bulk operations: Investerare */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
