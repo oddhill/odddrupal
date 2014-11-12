@@ -6,6 +6,57 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function sedermera_offer_menu() {
+  $items['node/%/intressenter/%/teckna'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sedermera_offer_sign_confirm', 1, 3),
+    'access arguments' => array('eck administer offer offer entities'),
+  );
+
+  return $items;
+}
+
+/**
+ * Form function for the confirm page when signing an offer.
+ */
+function sedermera_offer_sign_confirm($form, &$form_state, $transaction_id, $offer_id) {
+  // Load the transaction node and offer entity.
+  $transaction = entity_metadata_wrapper('node', $transaction_id);
+  $offer = entity_metadata_wrapper('offer', $offer_id);
+
+  // Add the offer entity to the form.
+  $form['#offer'] = $offer;
+
+  // Create the text that we'll use for the confirmation form.
+  $text = format_string('Är du säker på att du vill teckna %investor för %transaction?', array(
+    '%investor' => $offer->field_offer_investor->title->value(),
+    '%transaction' => $transaction->title->value(),
+  ));
+
+  // Return the confirmation form.
+  return confirm_form($form, $transaction->title->value(), "node/$transaction_id/intressenter", $text);
+}
+
+/**
+ * Submit callback for the confirmation form when signing a transaction.
+ */
+function sedermera_offer_sign_confirm_submit($form, &$form_state) {
+  // Get the offer that should get signed.
+  $offer = $form['#offer'];
+
+  // Set the boolean field to TRUE, and save the entity.
+  $offer->field_offer_signed->set(TRUE);
+  $offer->save();
+
+  // Display a message, and return to the overview page.
+  drupal_set_message(format_string('%investor har tecknats.', array('%investor' => $offer->field_offer_investor->title->value())));
+  $form_state['redirect'] = "node/{$offer->field_offer_cap_rais->nid->value()}/intressenter";
+}
+
+/**
  * Implements hook_msnf_info_steps_alter().
  */
 function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bundle, $form, $form_state = array()) {
