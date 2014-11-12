@@ -66,19 +66,20 @@
       margin-bottom: 20px;
 
       > label {
-        background: #c8cacd;
+        background: $light-concrete;
         text-align: center;
         display: block;
         text-transform: uppercase;
-        font-size: $standard;
         font-weight: 700;
         padding: 10px 0 11px 0;
         margin-top: 20px;
         border-bottom: 1px solid $wool;
+        border-radius: 2px 2px 0 0;
       }
 
       > .form-item {
         padding: 10px;
+        border-radius: 2px;
       }
     }
 

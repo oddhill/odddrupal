@@ -35,26 +35,49 @@
       border-radius: 3px;
 
       fieldset {
-        border-top: 1px solid $steel;
+        background: $steel;
+        position: relative;
+        border-radius: 2px;
 
         &.filter-wrapper {
           display: none;
         }
 
-        legend {
-          height: 0;
+        .fieldset-legend {
+          background: $light-concrete;
+          text-align: left;
+          display: block;
+          @include font-size($standard,1.3);
+          font-weight: 500;
+          text-transform: none;
+          padding: 10px 0 11px 0;
+          border-bottom: 1px solid $wool;
+          border-radius: 2px 2px 0 0;
 
-          span.fieldset-legend {
-            margin-top: 10px;
-            @include font-size(1.4,1.3);
-            font-weight: 500;
-            height: 28px;
-            border-bottom: 1px solid $steel;
+          .form-required {
+            display: block;
+            float: left;
+            width: 18px;
+            height: 18px;
+            @include svg-bg(required, transparent, 5px center);
+            color: transparent;
+            font-size: 0px;
+            overflow: hidden;
+            text-indent: 100px;
+            line-height: 0px;
+            margin-right: 12px;
           }
         }
 
         .fieldset-wrapper {
-          padding: 50px 0 0;
+          overflow: hidden;
+          padding: 10px;
+          background: transparent;
+
+          .fieldset-description {
+            padding: 0;
+            background: transparent;
+          }
         }
       }
     }
@@ -93,37 +116,48 @@
     }
 
     .container-inline-date {
-      background: tint($wool,40%);
-      float: left;
-      width: 45%;
-      clear: none;
-      border-radius: 2px;
       position: relative;
+      width: 100%;
+      margin: 0;
 
       .form-item {
         margin: 0;
         width: 100%;
 
+        .description {
+          display: none;
+        }
+
+        label {
+          margin: 10px 0;
+          text-align: left;
+          font-weight: 700;
+          @include font-size(1.2,1.5);
+          height: 18px;
+
+          .form-required {
+            display: block;
+            float: left;
+            width: 18px;
+            height: 18px;
+            @include svg-bg(required, transparent, 0 center);
+            color: transparent;
+            font-size: 0px;
+            overflow: hidden;
+            text-indent: 100px;
+            line-height: 0px;
+          }
+        }
+
         .date-padding {
           width: 100%;
+          padding: 0;
         }
 
         .form-text {
           width: 100%;
           padding: 10px;
-        }
-      }
-
-      &.end-date-wrapper {
-        margin-left: 10%;
-
-        .form-type-date-popup {
-
-          > label {
-            position: absolute;
-            top: 50%;
-            left: -15%;
-          }
+          margin: 0;
         }
       }
     }
@@ -559,9 +593,117 @@
   background: $snow;
   border-right: 0px none;
   border-bottom: 0px none;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  border-radius: 2px;
 
   &.ui-datepicker {
-    margin-top: 2px;
-    padding: 10px;
+    padding: 0px;
+
+    .ui-datepicker-header {
+      margin: 0;
+      padding: 5px;
+      background: $mustard;
+      overflow: hidden;
+      border-radius: 2px 2px 0 0;
+
+      .ui-datepicker-prev,
+      .ui-datepicker-next {
+        width: 22px;
+        height: 22px;
+        border-bottom: 0 none;
+        top: 8px;
+        cursor: pointer;
+
+        &:hover {
+          border-bottom: 0 none;
+        }
+
+        span {
+          left: 4px;
+          top: 4px;
+          margin: 0;
+          width: 14px;
+          height: 14px;
+          overflow: hidden;
+          color: $mustard;
+          font-size: 0;
+          line-height: 0;
+        }
+      }
+
+      .ui-datepicker-prev {
+        left: 5px;
+
+        span {
+          @include svg-bg(date_left);
+        }
+      }
+
+      .ui-datepicker-next {
+        right: 5px;
+
+        span {
+          @include svg-bg(date_right);
+        }
+      }
+    }
+
+    .ui-datepicker-title {
+      overflow: hidden;
+      margin: 0 27px;
+
+      select.ui-datepicker-month,
+      select.ui-datepicker-year {
+        border-radius: 2px;
+        background: tint($mustard,70%);
+        padding: 0 5px;
+      }
+    }
+
+    table {
+
+      thead {
+        background: $light-grey;
+
+        th {
+          padding: 5px;
+        }
+      }
+
+      tbody {
+
+        td {
+          padding: 1px;
+
+          a {
+            padding: 5px;
+            border: 0px none;
+            text-align: center;
+
+            &.ui-state-highlight {
+              border-radius: 2px;
+              background: tint($mustard,85%);
+            }
+
+            &.ui-state-active {
+              border-radius: 2px;
+              background: $mustard;
+              color: $snow;
+              font-weight: 700;
+
+              &:hover {
+                background: $mustard;
+              }
+            }
+
+            &:hover {
+              background: tint($mustard,70%);
+              font-weight: 700;
+              border-radius: 2px;
+            }
+          }
+        }
+      }
+    }
   }
 }

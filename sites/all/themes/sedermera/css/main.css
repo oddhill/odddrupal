@@ -432,13 +432,14 @@ ul.pager {
         text-align: center;
         display: block;
         text-transform: uppercase;
-        font-size: 1.4;
         font-weight: 700;
         padding: 10px 0 11px 0;
         margin-top: 20px;
-        border-bottom: 1px solid #e0e2e6; }
+        border-bottom: 1px solid #e0e2e6;
+        border-radius: 2px 2px 0 0; }
       .table-filter form .filter-item > .form-item {
-        padding: 10px; }
+        padding: 10px;
+        border-radius: 2px; }
     .table-filter form .form-item {
       background: #d4d6d9;
       font-size: 12px; }
@@ -900,6 +901,57 @@ div.checker.hover.active span {
         .page-investerare-skapa ul.create-type-list li.type .type-container a.item:hover {
           border-top: 1px solid #1a1a1a; }
 
+.page-node-add-capital-raising form.node-capital_raising-form {
+  max-width: 100%; }
+  .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics {
+    float: left;
+    width: 340px;
+    background: #e0e2e6;
+    padding: 20px; }
+    .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics .form-text {
+      width: 100%; }
+    .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics fieldset {
+      background: #d4d6d9;
+      position: relative;
+      border-radius: 2px; }
+      .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics fieldset legend .fieldset-legend {
+        background: #c8cacd;
+        text-align: left;
+        display: block;
+        font-size: 14px;
+        font-size: 1.4rem;
+        line-height: 18.2px;
+        font-weight: 500;
+        text-transform: none;
+        padding: 10px 0 11px 10px;
+        border-bottom: 1px solid #e0e2e6;
+        border-radius: 2px 2px 0 0; }
+        .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics fieldset legend .fieldset-legend .form-required {
+          display: block;
+          float: left;
+          width: 18px;
+          height: 18px;
+          background: url("../graphics/required.png") transparent 5px center no-repeat;
+          background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
+          color: transparent;
+          font-size: 0px;
+          overflow: hidden;
+          text-indent: 100px;
+          line-height: 0px;
+          margin-right: 12px;
+          margin-left: -10px; }
+      .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics fieldset .fieldset-wrapper {
+        overflow: hidden;
+        padding: 10px;
+        background: transparent; }
+        .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics fieldset .fieldset-wrapper .fieldset-description {
+          padding: 0;
+          background: transparent; }
+  .page-node-add-capital-raising form.node-capital_raising-form #transaction-text {
+    overflow: hidden;
+    background: #fff;
+    padding: 20px; }
+
 .page-admin form,
 .page-investor-person-edit form,
 .page-investor-company-edit form,
@@ -961,7 +1013,9 @@ div.checker.hover.active span {
       .not-logged-in.page-user form fieldset .fieldset-wrapper fieldset,
       .page-node-add form fieldset .fieldset-wrapper fieldset,
       .page-node-edit form fieldset .fieldset-wrapper fieldset {
-        border-top: 1px solid #d4d6d9; }
+        background: #d4d6d9;
+        position: relative;
+        border-radius: 2px; }
         .page-admin form fieldset .fieldset-wrapper fieldset.filter-wrapper,
         .page-investor-person-edit form fieldset .fieldset-wrapper fieldset.filter-wrapper,
         .page-investor-company-edit form fieldset .fieldset-wrapper fieldset.filter-wrapper,
@@ -969,33 +1023,58 @@ div.checker.hover.active span {
         .page-node-add form fieldset .fieldset-wrapper fieldset.filter-wrapper,
         .page-node-edit form fieldset .fieldset-wrapper fieldset.filter-wrapper {
           display: none; }
-        .page-admin form fieldset .fieldset-wrapper fieldset legend,
-        .page-investor-person-edit form fieldset .fieldset-wrapper fieldset legend,
-        .page-investor-company-edit form fieldset .fieldset-wrapper fieldset legend,
-        .not-logged-in.page-user form fieldset .fieldset-wrapper fieldset legend,
-        .page-node-add form fieldset .fieldset-wrapper fieldset legend,
-        .page-node-edit form fieldset .fieldset-wrapper fieldset legend {
-          height: 0; }
-          .page-admin form fieldset .fieldset-wrapper fieldset legend span.fieldset-legend,
-          .page-investor-person-edit form fieldset .fieldset-wrapper fieldset legend span.fieldset-legend,
-          .page-investor-company-edit form fieldset .fieldset-wrapper fieldset legend span.fieldset-legend,
-          .not-logged-in.page-user form fieldset .fieldset-wrapper fieldset legend span.fieldset-legend,
-          .page-node-add form fieldset .fieldset-wrapper fieldset legend span.fieldset-legend,
-          .page-node-edit form fieldset .fieldset-wrapper fieldset legend span.fieldset-legend {
-            margin-top: 10px;
-            font-size: 14px;
-            font-size: 1.4rem;
-            line-height: 18.2px;
-            font-weight: 500;
-            height: 28px;
-            border-bottom: 1px solid #d4d6d9; }
+        .page-admin form fieldset .fieldset-wrapper fieldset .fieldset-legend,
+        .page-investor-person-edit form fieldset .fieldset-wrapper fieldset .fieldset-legend,
+        .page-investor-company-edit form fieldset .fieldset-wrapper fieldset .fieldset-legend,
+        .not-logged-in.page-user form fieldset .fieldset-wrapper fieldset .fieldset-legend,
+        .page-node-add form fieldset .fieldset-wrapper fieldset .fieldset-legend,
+        .page-node-edit form fieldset .fieldset-wrapper fieldset .fieldset-legend {
+          background: #c8cacd;
+          text-align: left;
+          display: block;
+          font-size: 14px;
+          font-size: 1.4rem;
+          line-height: 18.2px;
+          font-weight: 500;
+          text-transform: none;
+          padding: 10px 0 11px 0;
+          border-bottom: 1px solid #e0e2e6;
+          border-radius: 2px 2px 0 0; }
+          .page-admin form fieldset .fieldset-wrapper fieldset .fieldset-legend .form-required,
+          .page-investor-person-edit form fieldset .fieldset-wrapper fieldset .fieldset-legend .form-required,
+          .page-investor-company-edit form fieldset .fieldset-wrapper fieldset .fieldset-legend .form-required,
+          .not-logged-in.page-user form fieldset .fieldset-wrapper fieldset .fieldset-legend .form-required,
+          .page-node-add form fieldset .fieldset-wrapper fieldset .fieldset-legend .form-required,
+          .page-node-edit form fieldset .fieldset-wrapper fieldset .fieldset-legend .form-required {
+            display: block;
+            float: left;
+            width: 18px;
+            height: 18px;
+            background: url("../graphics/required.png") transparent 5px center no-repeat;
+            background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
+            color: transparent;
+            font-size: 0px;
+            overflow: hidden;
+            text-indent: 100px;
+            line-height: 0px;
+            margin-right: 12px; }
         .page-admin form fieldset .fieldset-wrapper fieldset .fieldset-wrapper,
         .page-investor-person-edit form fieldset .fieldset-wrapper fieldset .fieldset-wrapper,
         .page-investor-company-edit form fieldset .fieldset-wrapper fieldset .fieldset-wrapper,
         .not-logged-in.page-user form fieldset .fieldset-wrapper fieldset .fieldset-wrapper,
         .page-node-add form fieldset .fieldset-wrapper fieldset .fieldset-wrapper,
         .page-node-edit form fieldset .fieldset-wrapper fieldset .fieldset-wrapper {
-          padding: 50px 0 0; }
+          overflow: hidden;
+          padding: 10px;
+          background: transparent; }
+          .page-admin form fieldset .fieldset-wrapper fieldset .fieldset-wrapper .fieldset-description,
+          .page-investor-person-edit form fieldset .fieldset-wrapper fieldset .fieldset-wrapper .fieldset-description,
+          .page-investor-company-edit form fieldset .fieldset-wrapper fieldset .fieldset-wrapper .fieldset-description,
+          .not-logged-in.page-user form fieldset .fieldset-wrapper fieldset .fieldset-wrapper .fieldset-description,
+          .page-node-add form fieldset .fieldset-wrapper fieldset .fieldset-wrapper .fieldset-description,
+          .page-node-edit form fieldset .fieldset-wrapper fieldset .fieldset-wrapper .fieldset-description {
+            padding: 0;
+            background: transparent; }
     .page-admin form fieldset legend,
     .page-investor-person-edit form fieldset legend,
     .page-investor-company-edit form fieldset legend,
@@ -1047,12 +1126,9 @@ div.checker.hover.active span {
     .not-logged-in.page-user form fieldset .container-inline-date,
     .page-node-add form fieldset .container-inline-date,
     .page-node-edit form fieldset .container-inline-date {
-      background: #ecedf0;
-      float: left;
-      width: 45%;
-      clear: none;
-      border-radius: 2px;
-      position: relative; }
+      position: relative;
+      width: 100%;
+      margin: 0; }
       .page-admin form fieldset .container-inline-date .form-item,
       .page-investor-person-edit form fieldset .container-inline-date .form-item,
       .page-investor-company-edit form fieldset .container-inline-date .form-item,
@@ -1061,13 +1137,51 @@ div.checker.hover.active span {
       .page-node-edit form fieldset .container-inline-date .form-item {
         margin: 0;
         width: 100%; }
+        .page-admin form fieldset .container-inline-date .form-item .description,
+        .page-investor-person-edit form fieldset .container-inline-date .form-item .description,
+        .page-investor-company-edit form fieldset .container-inline-date .form-item .description,
+        .not-logged-in.page-user form fieldset .container-inline-date .form-item .description,
+        .page-node-add form fieldset .container-inline-date .form-item .description,
+        .page-node-edit form fieldset .container-inline-date .form-item .description {
+          display: none; }
+        .page-admin form fieldset .container-inline-date .form-item label,
+        .page-investor-person-edit form fieldset .container-inline-date .form-item label,
+        .page-investor-company-edit form fieldset .container-inline-date .form-item label,
+        .not-logged-in.page-user form fieldset .container-inline-date .form-item label,
+        .page-node-add form fieldset .container-inline-date .form-item label,
+        .page-node-edit form fieldset .container-inline-date .form-item label {
+          margin: 10px 0;
+          text-align: left;
+          font-weight: 700;
+          font-size: 12px;
+          font-size: 1.2rem;
+          line-height: 18px;
+          height: 18px; }
+          .page-admin form fieldset .container-inline-date .form-item label .form-required,
+          .page-investor-person-edit form fieldset .container-inline-date .form-item label .form-required,
+          .page-investor-company-edit form fieldset .container-inline-date .form-item label .form-required,
+          .not-logged-in.page-user form fieldset .container-inline-date .form-item label .form-required,
+          .page-node-add form fieldset .container-inline-date .form-item label .form-required,
+          .page-node-edit form fieldset .container-inline-date .form-item label .form-required {
+            display: block;
+            float: left;
+            width: 18px;
+            height: 18px;
+            background: url("../graphics/required.png") transparent 0 center no-repeat;
+            background: none, url("../graphics/required.svg") transparent 0 center no-repeat;
+            color: transparent;
+            font-size: 0px;
+            overflow: hidden;
+            text-indent: 100px;
+            line-height: 0px; }
         .page-admin form fieldset .container-inline-date .form-item .date-padding,
         .page-investor-person-edit form fieldset .container-inline-date .form-item .date-padding,
         .page-investor-company-edit form fieldset .container-inline-date .form-item .date-padding,
         .not-logged-in.page-user form fieldset .container-inline-date .form-item .date-padding,
         .page-node-add form fieldset .container-inline-date .form-item .date-padding,
         .page-node-edit form fieldset .container-inline-date .form-item .date-padding {
-          width: 100%; }
+          width: 100%;
+          padding: 0; }
         .page-admin form fieldset .container-inline-date .form-item .form-text,
         .page-investor-person-edit form fieldset .container-inline-date .form-item .form-text,
         .page-investor-company-edit form fieldset .container-inline-date .form-item .form-text,
@@ -1075,23 +1189,8 @@ div.checker.hover.active span {
         .page-node-add form fieldset .container-inline-date .form-item .form-text,
         .page-node-edit form fieldset .container-inline-date .form-item .form-text {
           width: 100%;
-          padding: 10px; }
-      .page-admin form fieldset .container-inline-date.end-date-wrapper,
-      .page-investor-person-edit form fieldset .container-inline-date.end-date-wrapper,
-      .page-investor-company-edit form fieldset .container-inline-date.end-date-wrapper,
-      .not-logged-in.page-user form fieldset .container-inline-date.end-date-wrapper,
-      .page-node-add form fieldset .container-inline-date.end-date-wrapper,
-      .page-node-edit form fieldset .container-inline-date.end-date-wrapper {
-        margin-left: 10%; }
-        .page-admin form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
-        .page-investor-person-edit form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
-        .page-investor-company-edit form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
-        .not-logged-in.page-user form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
-        .page-node-add form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label,
-        .page-node-edit form fieldset .container-inline-date.end-date-wrapper .form-type-date-popup > label {
-          position: absolute;
-          top: 50%;
-          left: -15%; }
+          padding: 10px;
+          margin: 0; }
     .page-admin form fieldset .tabledrag-changed-warning,
     .page-investor-person-edit form fieldset .tabledrag-changed-warning,
     .page-investor-company-edit form fieldset .tabledrag-changed-warning,
@@ -2108,10 +2207,80 @@ div.checker.hover.active span {
   font-family: "Roboto", sans-serif;
   background: #fff;
   border-right: 0px none;
-  border-bottom: 0px none; }
+  border-bottom: 0px none;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 2px; }
   #ui-datepicker-div.ui-datepicker {
-    margin-top: 2px;
-    padding: 10px; }
+    padding: 0px; }
+    #ui-datepicker-div.ui-datepicker .ui-datepicker-header {
+      margin: 0;
+      padding: 5px;
+      background: #f9a500;
+      overflow: hidden;
+      border-radius: 2px 2px 0 0; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev,
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+        width: 22px;
+        height: 22px;
+        border-bottom: 0 none;
+        top: 8px;
+        cursor: pointer; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev:hover,
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next:hover {
+          border-bottom: 0 none; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev span,
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next span {
+          left: 4px;
+          top: 4px;
+          margin: 0;
+          width: 14px;
+          height: 14px;
+          overflow: hidden;
+          color: #f9a500;
+          font-size: 0;
+          line-height: 0; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
+        left: 5px; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev span {
+          background: url("../graphics/date_left.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/date_left.svg") transparent 0 0 no-repeat; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+        right: 5px; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next span {
+          background: url("../graphics/date_right.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/date_right.svg") transparent 0 0 no-repeat; }
+    #ui-datepicker-div.ui-datepicker .ui-datepicker-title {
+      overflow: hidden;
+      margin: 0 27px; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-month,
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-year {
+        border-radius: 2px;
+        background: #fde4b2;
+        padding: 0 5px; }
+    #ui-datepicker-div.ui-datepicker table thead {
+      background: #f3f4f8; }
+      #ui-datepicker-div.ui-datepicker table thead th {
+        padding: 5px; }
+    #ui-datepicker-div.ui-datepicker table tbody td {
+      padding: 1px; }
+      #ui-datepicker-div.ui-datepicker table tbody td a {
+        padding: 5px;
+        border: 0px none;
+        text-align: center; }
+        #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-highlight {
+          border-radius: 2px;
+          background: #fef1d8; }
+        #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active {
+          border-radius: 2px;
+          background: #f9a500;
+          color: #fff;
+          font-weight: 700; }
+          #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active:hover {
+            background: #f9a500; }
+        #ui-datepicker-div.ui-datepicker table tbody td a:hover {
+          background: #fde4b2;
+          font-weight: 700;
+          border-radius: 2px; }
 
 ul.tabs {
   background: #ebedf1;
