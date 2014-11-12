@@ -231,16 +231,6 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
-  /* Field: Erbjudande: Summa */
-  $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
-  $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
-  $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
-  $handler->display->display_options['fields']['field_offer_amount']['settings'] = array(
-    'thousand_separator' => ' ',
-    'decimal_separator' => ',',
-    'scale' => '2',
-    'prefix_suffix' => 1,
-  );
   /* Field: Erbjudande: Tecknad */
   $handler->display->display_options['fields']['field_offer_signed']['id'] = 'field_offer_signed';
   $handler->display->display_options['fields']['field_offer_signed']['table'] = 'field_data_field_offer_signed';
