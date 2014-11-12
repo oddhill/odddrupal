@@ -487,6 +487,8 @@ ul.pager {
       height: 40px;
       padding: 10px 0 10px 10px;
       vertical-align: top; }
+      .table-wrapper table td .form-item {
+        margin-bottom: 0; }
     .table-wrapper table tr.even {
       background: #fafbfc;
       border-top: 1px solid #f3f4f8;
@@ -958,7 +960,7 @@ div.checker.hover.active span {
 .not-logged-in.page-user form,
 .page-node-add form,
 .page-node-edit form {
-  max-width: 800px; }
+  max-width: 1200px; }
   .page-admin form fieldset,
   .page-investor-person-edit form fieldset,
   .page-investor-company-edit form fieldset,
@@ -1492,6 +1494,13 @@ div.checker.hover.active span {
                 animation: load 0.9s linear infinite;
                 margin: 0 auto;
                 float: none; }
+  .page-admin form .filter-item .form-item.form-type-select label,
+  .page-investor-person-edit form .filter-item .form-item.form-type-select label,
+  .page-investor-company-edit form .filter-item .form-item.form-type-select label,
+  .not-logged-in.page-user form .filter-item .form-item.form-type-select label,
+  .page-node-add form .filter-item .form-item.form-type-select label,
+  .page-node-edit form .filter-item .form-item.form-type-select label {
+    display: block; }
   .page-admin form .form-item,
   .page-investor-person-edit form .form-item,
   .page-investor-company-edit form .form-item,

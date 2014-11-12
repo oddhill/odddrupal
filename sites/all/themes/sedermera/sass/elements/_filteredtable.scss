@@ -162,6 +162,10 @@
       height: 40px;
       padding: 10px 0 10px 10px;
       vertical-align: top;
+
+      .form-item {
+        margin-bottom: 0;
+      }
     }
 
     tr {

@@ -4,7 +4,7 @@
 .not-logged-in.page-user form,
 .page-node-add form,
 .page-node-edit form {
-  max-width: 800px;
+  max-width: 1200px;
 
   fieldset {
     position: relative;
@@ -325,6 +325,19 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  .filter-item {
+
+    .form-item {
+
+      &.form-type-select {
+
+        label {
+          display: block;
         }
       }
     }
