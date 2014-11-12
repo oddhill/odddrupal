@@ -21,8 +21,11 @@ function sedermera_capital_raising_block_info() {
  * Implements hook_block_view().
  */
 function sedermera_capital_raising_block_view($delta = '') {
+  // Load the node based on the second argument.
+  $node = node_load(arg(1));
+
   // Bail out if this isn't a capital raising node.
-  if (!($node = menu_get_object('node')) || $node->type != 'capital_raising') {
+  if (!$node || $node->type != 'capital_raising') {
     return;
   }
 

@@ -25,6 +25,13 @@ function f_capital_raising_context_default_contexts() {
         'node_form' => '0',
       ),
     ),
+    'views' => array(
+      'values' => array(
+        'offers:interest' => 'offers:interest',
+        'offers:page' => 'offers:page',
+        'offers:page_1' => 'offers:page_1',
+      ),
+    ),
   );
   $context->reactions = array(
     'block' => array(
@@ -42,10 +49,9 @@ function f_capital_raising_context_default_contexts() {
           'weight' => '-10',
         ),
       ),
-      'layout' => 'frontpage',
     ),
   );
-  $context->condition_mode = 1;
+  $context->condition_mode = 0;
 
   // Translatables
   // Included for use with string extractors like potx.
