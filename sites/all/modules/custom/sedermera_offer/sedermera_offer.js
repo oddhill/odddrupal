@@ -9,12 +9,10 @@ Drupal.behaviors.sedermeraOffer = {
     $investorCheckboxes = $('#edit-investors input[type=checkbox]');
 
     // Check the table checkboxes that corresponds to a checked investor
-    // checkbox, when the document is loaded initially.
-    if ($(context).is(document)) {
-      $investorCheckboxes.filter(':checked').each(function() {
-        $tableFormCheckboxes.filter('[value=' + this.value + ']').prop('checked', true).change();
-      });
-    }
+    // checkbox.
+    $investorCheckboxes.filter(':checked').each(function() {
+      $tableFormCheckboxes.filter('[value=' + this.value + ']').prop('checked', true).change();
+    });
 
     // Change the checked property for the "real" investor checkboxes when the
     // corresponding checkbox from the view changes.
