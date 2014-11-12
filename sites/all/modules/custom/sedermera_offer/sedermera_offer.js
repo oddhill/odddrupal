@@ -8,10 +8,12 @@ Drupal.behaviors.sedermeraOffer = {
     $tableFormCheckboxes = $tableForm.find('td.views-field-views-bulk-operations input[type=checkbox]');
     $investorCheckboxes = $('#edit-investors input[type=checkbox]');
 
-    // Empty the "real" investor checkboxes if the views exposed form was
-    // submitted.
-    if ($(context).is('#views-exposed-form-investors-offer-embed')) {
-      $investorCheckboxes.prop('checked', false).change();
+    // Check the table checkboxes that corresponds to a checked investor
+    // checkbox, when the document is loaded initially.
+    if ($(context).is(document)) {
+      $investorCheckboxes.filter(':checked').each(function() {
+        $tableFormCheckboxes.filter('[value=' + this.value + ']').prop('checked', true).change();
+      });
     }
 
     // Change the checked property for the "real" investor checkboxes when the

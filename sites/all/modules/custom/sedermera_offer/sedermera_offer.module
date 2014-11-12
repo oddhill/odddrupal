@@ -22,17 +22,23 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     $form['#prefix'] = views_embed_view('investors', 'offer_embed');
   }
 
+  // Get the available investors from the database.
+  $available_investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
+
   // Add checkboxes for every available investor. This will be added to the
   // second step, and will get its values from the embedded view. See the
   // attached javascript for more information about what's going on.
   $form['investors'] = array(
     '#type' => 'checkboxes',
-    '#options' => db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed(),
+    '#options' => $available_investors,
+    '#default_value' => isset($form_state['values']['investors']) ? $form_state['values']['investors'] : array(),
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
       ),
     ),
+    '#prefix' => '<div style="display: none;">',
+    '#suffix' => '</div>',
   );
   $form['#step_children']['investors'] =  'step_cap_rais_2';
 }
