@@ -24,6 +24,7 @@ dependencies[] = menu_firstchild
 dependencies[] = node
 dependencies[] = rh_taxonomy
 dependencies[] = rh_user
+dependencies[] = sedermera_core
 dependencies[] = spamspan
 dependencies[] = strongarm
 dependencies[] = taxonomy

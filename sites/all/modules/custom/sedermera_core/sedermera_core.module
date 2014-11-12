@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file sedermera_core.module
+ * Main module file for the Sedermera Core module.
+ */
+
+/**
+ * Implements hook_menu_alter().
+ */
+function sedermera_core_menu_alter(&$items) {
+  $items['node/%node/view']['title'] = 'Översikt';
+}
