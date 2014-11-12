@@ -107,7 +107,7 @@ function f_offer_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 1,
+        'display_label' => 0,
       ),
       'type' => 'options_onoff',
       'weight' => 3,
@@ -177,7 +177,7 @@ function f_offer_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 1,
+        'display_label' => 0,
       ),
       'type' => 'options_onoff',
       'weight' => 5,
