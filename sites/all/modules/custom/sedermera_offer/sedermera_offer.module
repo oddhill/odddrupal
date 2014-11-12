@@ -92,6 +92,38 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
   $form['actions']['submit']['#value'] = 'Spara och skicka ut';
 }
 
+
+/**
+ * Implements hook_node_insert().
+ */
+function sedermera_offer_node_insert($node) {
+  if ($node->type != 'capital_raising' || empty($node->selected_investors)) {
+    return;
+  }
+
+  // Create offer entities for each investor.
+  foreach (array_filter($node->selected_investors) as $investor_id) {
+    // Setup the values for the offer entity.
+    $values = array(
+      'type' => 'offer',
+      'field_offer_cap_rais' => array(
+        LANGUAGE_NONE => array(
+          array('target_id' => $node->nid)
+        ),
+      ),
+      'field_offer_investor' => array(
+        LANGUAGE_NONE => array(
+          array('target_id' => $investor_id)
+        ),
+      ),
+    );
+
+    // Create the offer, and save it.
+    $offer = entity_create('offer', $values);
+    entity_save('offer', $offer);
+  }
+}
+
 /**
  * Implements hook_views_bulk_operations_form_alter().
  */
