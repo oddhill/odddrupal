@@ -399,6 +399,10 @@ ul.pager {
         width: 100%; }
         .table-filter form .submit-wrapper .form-submit:hover {
           background-color: #303030; }
+      .page-node-add .table-filter form .submit-wrapper {
+        display: block; }
+        .page-node-add .table-filter form .submit-wrapper .form-submit {
+          margin: 0; }
       .table-filter form .submit-wrapper .ajax-progress {
         display: block;
         position: absolute;
@@ -904,7 +908,7 @@ div.checker.hover.active span {
           border-top: 1px solid #1a1a1a; }
 
 .page-node-add-capital-raising form.node-capital_raising-form {
-  max-width: 100%; }
+  background: #e0e2e6; }
   .page-node-add-capital-raising form.node-capital_raising-form #transaction-basics {
     float: left;
     width: 340px;
@@ -953,6 +957,14 @@ div.checker.hover.active span {
     overflow: hidden;
     background: #fff;
     padding: 20px; }
+    .page-node-add-capital-raising form.node-capital_raising-form #transaction-text fieldset .fieldset-wrapper {
+      background: #e0e2e6; }
+  .page-node-add-capital-raising form.node-capital_raising-form .form-actions {
+    background: #f3f4f8;
+    padding-top: 30px;
+    text-align: right; }
+    .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
+      margin: 0 0 0 10px; }
 
 .page-admin form,
 .page-investor-person-edit form,
@@ -961,6 +973,37 @@ div.checker.hover.active span {
 .page-node-add form,
 .page-node-edit form {
   max-width: 1200px; }
+  .page-admin form .messages,
+  .page-investor-person-edit form .messages,
+  .page-investor-company-edit form .messages,
+  .not-logged-in.page-user form .messages,
+  .page-node-add form .messages,
+  .page-node-edit form .messages {
+    padding: 10px;
+    color: #fff;
+    font-weight: 500;
+    margin: 10px 0; }
+    .page-admin form .messages.status,
+    .page-investor-person-edit form .messages.status,
+    .page-investor-company-edit form .messages.status,
+    .not-logged-in.page-user form .messages.status,
+    .page-node-add form .messages.status,
+    .page-node-edit form .messages.status {
+      background: #76c043; }
+    .page-admin form .messages.warning,
+    .page-investor-person-edit form .messages.warning,
+    .page-investor-company-edit form .messages.warning,
+    .not-logged-in.page-user form .messages.warning,
+    .page-node-add form .messages.warning,
+    .page-node-edit form .messages.warning {
+      background: #f9a500; }
+    .page-admin form .messages.error,
+    .page-investor-person-edit form .messages.error,
+    .page-investor-company-edit form .messages.error,
+    .not-logged-in.page-user form .messages.error,
+    .page-node-add form .messages.error,
+    .page-node-edit form .messages.error {
+      background: #c04343; }
   .page-admin form fieldset,
   .page-investor-person-edit form fieldset,
   .page-investor-company-edit form fieldset,
@@ -969,37 +1012,6 @@ div.checker.hover.active span {
   .page-node-edit form fieldset {
     position: relative;
     margin-bottom: 20px; }
-    .page-admin form fieldset .messages,
-    .page-investor-person-edit form fieldset .messages,
-    .page-investor-company-edit form fieldset .messages,
-    .not-logged-in.page-user form fieldset .messages,
-    .page-node-add form fieldset .messages,
-    .page-node-edit form fieldset .messages {
-      padding: 10px;
-      color: #fff;
-      font-weight: 500;
-      margin: 10px 0; }
-      .page-admin form fieldset .messages.status,
-      .page-investor-person-edit form fieldset .messages.status,
-      .page-investor-company-edit form fieldset .messages.status,
-      .not-logged-in.page-user form fieldset .messages.status,
-      .page-node-add form fieldset .messages.status,
-      .page-node-edit form fieldset .messages.status {
-        background: #76c043; }
-      .page-admin form fieldset .messages.warning,
-      .page-investor-person-edit form fieldset .messages.warning,
-      .page-investor-company-edit form fieldset .messages.warning,
-      .not-logged-in.page-user form fieldset .messages.warning,
-      .page-node-add form fieldset .messages.warning,
-      .page-node-edit form fieldset .messages.warning {
-        background: #f9a500; }
-      .page-admin form fieldset .messages.error,
-      .page-investor-person-edit form fieldset .messages.error,
-      .page-investor-company-edit form fieldset .messages.error,
-      .not-logged-in.page-user form fieldset .messages.error,
-      .page-node-add form fieldset .messages.error,
-      .page-node-edit form fieldset .messages.error {
-        background: #c04343; }
     .page-admin form fieldset .fieldset-wrapper,
     .page-investor-person-edit form fieldset .fieldset-wrapper,
     .page-investor-company-edit form fieldset .fieldset-wrapper,
@@ -1345,14 +1357,21 @@ div.checker.hover.active span {
         .page-node-edit form fieldset table.tabledrag-processed tbody tr td {
           padding: 10px;
           position: relative; }
+          .page-admin form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data,
+          .page-investor-person-edit form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data,
+          .page-investor-company-edit form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data,
+          .not-logged-in.page-user form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data,
+          .page-node-add form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data,
+          .page-node-edit form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data {
+            padding-left: 15px; }
           .page-admin form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle,
           .page-investor-person-edit form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle,
           .page-investor-company-edit form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle,
           .not-logged-in.page-user form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle,
           .page-node-add form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle,
           .page-node-edit form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle {
-            margin-top: -6px;
-            margin-left: -26px;
+            margin-top: 1px;
+            margin-left: -5px;
             width: 16px;
             height: 30px;
             border-radius: 3px 0 0 3px;
@@ -1383,9 +1402,9 @@ div.checker.hover.active span {
           .page-node-add form fieldset table.tabledrag-processed tbody tr td .tabledrag-changed,
           .page-node-edit form fieldset table.tabledrag-processed tbody tr td .tabledrag-changed {
             position: absolute;
-            top: 24px;
+            top: 22px;
             width: 14px;
-            left: -15px;
+            left: 6px;
             height: 8px;
             background: #e0afaf;
             border-radius: 4px;
@@ -1408,14 +1427,15 @@ div.checker.hover.active span {
             .page-node-add form fieldset table.tabledrag-processed tbody tr td .form-item .form-text,
             .page-node-edit form fieldset table.tabledrag-processed tbody tr td .form-item .form-text {
               padding: 5px;
-              margin-top: 15px; }
+              margin-top: 15px;
+              width: 100%; }
           .page-admin form fieldset table.tabledrag-processed tbody tr td .submit-wrapper,
           .page-investor-person-edit form fieldset table.tabledrag-processed tbody tr td .submit-wrapper,
           .page-investor-company-edit form fieldset table.tabledrag-processed tbody tr td .submit-wrapper,
           .not-logged-in.page-user form fieldset table.tabledrag-processed tbody tr td .submit-wrapper,
           .page-node-add form fieldset table.tabledrag-processed tbody tr td .submit-wrapper,
           .page-node-edit form fieldset table.tabledrag-processed tbody tr td .submit-wrapper {
-            margin: 8px 8px 0 0;
+            margin: 0;
             height: 24px;
             position: relative; }
             .page-admin form fieldset table.tabledrag-processed tbody tr td .submit-wrapper .form-submit,
@@ -2145,6 +2165,72 @@ div.checker.hover.active span {
     .page-node-add form .submit-wrapper .form-submit,
     .page-node-edit form .submit-wrapper .form-submit {
       margin-right: 10px; }
+      .page-admin form .submit-wrapper .form-submit#edit-next,
+      .page-investor-person-edit form .submit-wrapper .form-submit#edit-next,
+      .page-investor-company-edit form .submit-wrapper .form-submit#edit-next,
+      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-next,
+      .page-node-add form .submit-wrapper .form-submit#edit-next,
+      .page-node-edit form .submit-wrapper .form-submit#edit-next {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0px none;
+        background: url("../graphics/next.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/next.svg") transparent 0 0 no-repeat;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out; }
+        .page-admin form .submit-wrapper .form-submit#edit-next:hover,
+        .page-investor-person-edit form .submit-wrapper .form-submit#edit-next:hover,
+        .page-investor-company-edit form .submit-wrapper .form-submit#edit-next:hover,
+        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-next:hover,
+        .page-node-add form .submit-wrapper .form-submit#edit-next:hover,
+        .page-node-edit form .submit-wrapper .form-submit#edit-next:hover {
+          background-color: #303030; }
+      .page-admin form .submit-wrapper .form-submit#edit-previous,
+      .page-investor-person-edit form .submit-wrapper .form-submit#edit-previous,
+      .page-investor-company-edit form .submit-wrapper .form-submit#edit-previous,
+      .not-logged-in.page-user form .submit-wrapper .form-submit#edit-previous,
+      .page-node-add form .submit-wrapper .form-submit#edit-previous,
+      .page-node-edit form .submit-wrapper .form-submit#edit-previous {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0px none;
+        background: url("../graphics/previous.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/previous.svg") transparent 0 0 no-repeat;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out; }
+        .page-admin form .submit-wrapper .form-submit#edit-previous:hover,
+        .page-investor-person-edit form .submit-wrapper .form-submit#edit-previous:hover,
+        .page-investor-company-edit form .submit-wrapper .form-submit#edit-previous:hover,
+        .not-logged-in.page-user form .submit-wrapper .form-submit#edit-previous:hover,
+        .page-node-add form .submit-wrapper .form-submit#edit-previous:hover,
+        .page-node-edit form .submit-wrapper .form-submit#edit-previous:hover {
+          background-color: #303030; }
       .page-admin form .submit-wrapper .form-submit#edit-submit,
       .page-investor-person-edit form .submit-wrapper .form-submit#edit-submit,
       .page-investor-company-edit form .submit-wrapper .form-submit#edit-submit,

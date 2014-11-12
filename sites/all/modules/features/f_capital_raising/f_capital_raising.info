@@ -45,6 +45,7 @@ features[field_base][] = field_cap_rais_stock_no
 features[field_base][] = field_cap_rais_vol
 features[field_group][] = group_cap_rais_1|node|capital_raising|form
 features[field_group][] = group_cap_rais_2|node|capital_raising|form
+features[field_group][] = group_cap_rais_details|node|capital_raising|form
 features[field_instance][] = node-capital_raising-body
 features[field_instance][] = node-capital_raising-field_cap_rais_comp
 features[field_instance][] = node-capital_raising-field_cap_rais_date

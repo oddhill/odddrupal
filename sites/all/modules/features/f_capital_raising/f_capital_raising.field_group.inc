@@ -25,13 +25,8 @@ function f_capital_raising_field_group_info() {
     'children' => array(
       0 => 'field_cap_rais_comp',
       1 => 'field_cap_rais_date',
-      2 => 'field_cap_rais_estim',
-      3 => 'field_cap_rais_file',
-      4 => 'field_cap_rais_post',
-      5 => 'field_cap_rais_rate',
-      6 => 'field_cap_rais_stock_no',
-      7 => 'field_cap_rais_vol',
-      8 => 'title',
+      2 => 'title',
+      3 => 'group_cap_rais_details',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -65,6 +60,7 @@ function f_capital_raising_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'body',
+      1 => 'field_cap_rais_file',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -83,6 +79,38 @@ function f_capital_raising_field_group_info() {
     ),
   );
   $export['group_cap_rais_2|node|capital_raising|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_cap_rais_details|node|capital_raising|form';
+  $field_group->group_name = 'group_cap_rais_details';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'capital_raising';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_cap_rais_1';
+  $field_group->data = array(
+    'label' => 'Detaljer',
+    'weight' => '17',
+    'children' => array(
+      0 => 'field_cap_rais_estim',
+      1 => 'field_cap_rais_post',
+      2 => 'field_cap_rais_rate',
+      3 => 'field_cap_rais_stock_no',
+      4 => 'field_cap_rais_vol',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Detaljer',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-cap-rais-details field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_cap_rais_details|node|capital_raising|form'] = $field_group;
 
   return $export;
 }

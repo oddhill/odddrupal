@@ -75,7 +75,7 @@ function f_capital_raising_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 20,
+        'rows' => 40,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
@@ -225,7 +225,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -267,7 +267,7 @@ function f_capital_raising_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 22,
+      'weight' => 17,
     ),
   );
 
@@ -314,7 +314,7 @@ TODO: Se över hjälptexten.',
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -361,7 +361,7 @@ TODO: Se över hjälptexten.',
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -407,7 +407,7 @@ TODO: Se över hjälptexten.',
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 20,
+      'weight' => 21,
     ),
   );
 
@@ -453,7 +453,7 @@ TODO: Se över hjälptexten.',
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 

@@ -6,28 +6,28 @@
 .page-node-edit form {
   max-width: 1200px;
 
+  .messages {
+    padding: 10px;
+    color: $snow;
+    font-weight: 500;
+    margin: 10px 0;
+
+    &.status {
+      background: $cactus;
+    }
+
+    &.warning {
+      background: $mustard;
+    }
+
+    &.error {
+      background: $wine;
+    }
+  }
+
   fieldset {
     position: relative;
     margin-bottom: 20px;
-
-    .messages {
-      padding: 10px;
-      color: $snow;
-      font-weight: 500;
-      margin: 10px 0;
-
-      &.status {
-        background: $cactus;
-      }
-
-      &.warning {
-        background: $mustard;
-      }
-
-      &.error {
-        background: $wine;
-      }
-    }
 
     .fieldset-wrapper {
       background: $wool;
@@ -250,9 +250,16 @@
             padding: 10px;
             position: relative;
 
+            .file-widget {
+
+              .file-widget-data {
+                padding-left: 15px;
+              }
+            }
+
             a.tabledrag-handle {
-              margin-top: -6px;
-              margin-left: -26px;
+              margin-top: 1px;
+              margin-left: -5px;
               width: 16px;
               height: 30px;
               border-radius: 3px 0 0 3px;
@@ -271,9 +278,9 @@
 
             .tabledrag-changed {
               position: absolute;
-              top: 24px;
+              top: 22px;
               width: 14px;
-              left: -15px;
+              left: 6px;
               height: 8px;
               background: $bubblegum;
               border-radius: 4px;
@@ -290,11 +297,12 @@
               .form-text {
                 padding: 5px;
                 margin-top: 15px;
+                width: 100%;
               }
             }
 
             .submit-wrapper {
-              margin: 8px 8px 0 0;
+              margin: 0;
               height: 24px;
               position: relative;
 
@@ -589,6 +597,14 @@
 
     .form-submit {
       margin-right: 10px;
+
+      &#edit-next {
+        @include button($dark-grey,next);
+      }
+
+      &#edit-previous {
+        @include button($dark-grey,previous);
+      }
 
       &#edit-submit {
         @include button($dark-grey,save);

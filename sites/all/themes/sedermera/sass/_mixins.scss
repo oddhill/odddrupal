@@ -32,6 +32,18 @@
     padding-left: 42px;
   }
 
+  @if $icon == next {
+    @include svg-bg(next);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == previous {
+    @include svg-bg(previous);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
   @if $icon == delete {
     @include svg-bg(delete_small_light);
     background-position: 20px 11px;

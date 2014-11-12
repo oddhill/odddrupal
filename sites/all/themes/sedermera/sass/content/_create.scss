@@ -45,7 +45,7 @@
 .page-node-add-capital-raising {
 
   form.node-capital_raising-form {
-    max-width: 100%;
+    background: $wool;
 
     #transaction-basics {
       float: left;
@@ -109,6 +109,26 @@
       overflow: hidden;
       background: $snow;
       padding: 20px;
+
+      fieldset {
+
+        .fieldset-wrapper {
+          background: $wool;
+        }
+      }
+    }
+
+    .form-actions {
+      background: $light-grey;
+      padding-top: 30px;
+      text-align: right;
+
+      .submit-wrapper {
+
+        .form-submit {
+          margin: 0 0 0 10px;
+        }
+      }
     }
   }
 }

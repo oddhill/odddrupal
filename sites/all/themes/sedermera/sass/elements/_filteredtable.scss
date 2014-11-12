@@ -40,6 +40,14 @@
         width: 100%;
       }
 
+      .page-node-add & {
+        display: block;
+
+        .form-submit {
+          margin: 0;
+        }
+      }
+
       .ajax-progress {
         display: block;
         position: absolute;
