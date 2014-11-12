@@ -112,6 +112,52 @@ function f_offer_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+
+  /* Display: Intressenter */
+  $handler = $view->new_display('page', 'Intressenter', 'interest');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Intressenter';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Investerare: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  /* Field: Erbjudande: Summa */
+  $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => ',',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Erbjudande: Tecknad */
+  $handler->display->display_options['fields']['field_offer_signed']['id'] = 'field_offer_signed';
+  $handler->display->display_options['fields']['field_offer_signed']['table'] = 'field_data_field_offer_signed';
+  $handler->display->display_options['fields']['field_offer_signed']['field'] = 'field_offer_signed';
+  $handler->display->display_options['fields']['field_offer_signed']['label'] = 'Teckning';
+  $handler->display->display_options['fields']['field_offer_signed']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_offer_signed']['alter']['text'] = 'Tecknad';
+  $handler->display->display_options['fields']['field_offer_signed']['empty'] = 'Länk för att teckna';
+  $handler->display->display_options['fields']['field_offer_signed']['empty_zero'] = TRUE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Erbjudande: Intresserad (field_offer_interested) */
+  $handler->display->display_options['filters']['field_offer_interested_value']['id'] = 'field_offer_interested_value';
+  $handler->display->display_options['filters']['field_offer_interested_value']['table'] = 'field_data_field_offer_interested';
+  $handler->display->display_options['filters']['field_offer_interested_value']['field'] = 'field_offer_interested_value';
+  $handler->display->display_options['filters']['field_offer_interested_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['path'] = 'node/%/intressenter';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Intressenter';
+  $handler->display->display_options['menu']['weight'] = '10';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['offers'] = array(
     t('Master'),
     t('Erbjudna'),
@@ -128,6 +174,10 @@ function f_offer_views_default_views() {
     t('Summa'),
     t('All'),
     t('%1'),
+    t('Intressenter'),
+    t('Teckning'),
+    t('Tecknad'),
+    t('Länk för att teckna'),
   );
   $export['offers'] = $view;
 

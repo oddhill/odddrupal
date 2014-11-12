@@ -159,7 +159,7 @@ function f_offer_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 'Nej',
+        0 => '',
         1 => 'Ja',
       ),
       'allowed_values_function' => '',
