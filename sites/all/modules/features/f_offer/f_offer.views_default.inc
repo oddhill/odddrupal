@@ -255,6 +255,69 @@ function f_offer_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '10';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+
+  /* Display: Teckningslista */
+  $handler = $view->new_display('page', 'Teckningslista', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Teckningslista';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_offer_amount' => 'field_offer_amount',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_amount' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Investerare: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  /* Field: Erbjudande: Summa */
+  $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => ',',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Erbjudande: Tecknad (field_offer_signed) */
+  $handler->display->display_options['filters']['field_offer_signed_value']['id'] = 'field_offer_signed_value';
+  $handler->display->display_options['filters']['field_offer_signed_value']['table'] = 'field_data_field_offer_signed';
+  $handler->display->display_options['filters']['field_offer_signed_value']['field'] = 'field_offer_signed_value';
+  $handler->display->display_options['filters']['field_offer_signed_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['path'] = 'node/%/teckningslista';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Teckningslista';
+  $handler->display->display_options['menu']['weight'] = '20';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['offers'] = array(
     t('Master'),
     t('Erbjudna'),
@@ -277,6 +340,7 @@ function f_offer_views_default_views() {
     t('Teckning'),
     t('Tecknad'),
     t('<a href="[path]/intressenter/[id]/teckna">Teckna</a>'),
+    t('Teckningslista'),
   );
   $export['offers'] = $view;
 
