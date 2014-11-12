@@ -14,6 +14,13 @@ function f_offer_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function f_offer_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_eck_bundle_info().
  */
 function f_offer_eck_bundle_info() {
