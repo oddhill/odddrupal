@@ -25,7 +25,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['title'] = 'Erbjudna';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'edit any capital_raising content';
+  $handler->display->display_options['access']['perm'] = 'eck administer offer offer entities';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -43,6 +43,44 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  /* Field: Erbjudande: Status */
+  $handler->display->display_options['fields']['field_offer_status']['id'] = 'field_offer_status';
+  $handler->display->display_options['fields']['field_offer_status']['table'] = 'field_data_field_offer_status';
+  $handler->display->display_options['fields']['field_offer_status']['field'] = 'field_offer_status';
+  $handler->display->display_options['fields']['field_offer_status']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_status']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'text_default',
+  );
+  /* Field: Erbjudande: Intresserad */
+  $handler->display->display_options['fields']['field_offer_interested']['id'] = 'field_offer_interested';
+  $handler->display->display_options['fields']['field_offer_interested']['table'] = 'field_data_field_offer_interested';
+  $handler->display->display_options['fields']['field_offer_interested']['field'] = 'field_offer_interested';
+  $handler->display->display_options['fields']['field_offer_interested']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_interested']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => 'Test',
+    'fallback_format' => 'list_default',
+  );
+  /* Field: Erbjudande: Summa */
+  $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_amount']['settings'] = array(
+    'click_to_edit' => 0,
+    'empty_text' => '',
+    'fallback_format' => 'number_decimal',
+    'fallback_settings' => array(
+      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
+      'scale' => '2',
+      'prefix_suffix' => 1,
+    ),
+  );
   /* Sort criterion: Investerare: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'eck_investor';
@@ -85,6 +123,9 @@ function f_offer_views_default_views() {
     t('Desc'),
     t('Investerare'),
     t('Namn'),
+    t('Status'),
+    t('Intresserad'),
+    t('Summa'),
     t('All'),
     t('%1'),
   );
