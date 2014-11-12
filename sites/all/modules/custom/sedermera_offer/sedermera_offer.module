@@ -25,13 +25,18 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
   // Get the available investors from the database.
   $available_investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
 
+  // Get the selected investors, based on the form values, and sort them
+  // alphabetically.
+  $selected_investors = isset($form_state['values']['investors']) ? array_intersect_key($available_investors, array_filter($form_state['values']['investors'])) : array();
+  asort($selected_investors);
+
   // Add checkboxes for every available investor. This will be added to the
   // second step, and will get its values from the embedded view. See the
   // attached javascript for more information about what's going on.
   $form['investors'] = array(
     '#type' => 'checkboxes',
     '#options' => $available_investors,
-    '#default_value' => isset($form_state['values']['investors']) ? $form_state['values']['investors'] : array(),
+    '#default_value' => array_keys($selected_investors),
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
@@ -41,6 +46,34 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     '#suffix' => '</div>',
   );
   $form['#step_children']['investors'] =  'step_cap_rais_2';
+
+  // Build the node object based of the form values. This will be used to
+  // generate the preview.
+  $node = node_form_submit_build_node($form, $form_state);
+
+  // Add the rendered node as a preview to the left fieldset. This fieldset will
+  // be added to the third step.
+  $form['preview_left'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Översikt',
+  );
+  $form['preview_left']['node'] = node_view($node);
+  $form['#step_children']['preview_left'] =  'step_cap_rais_3';
+
+  // Add checkboxes for every selected investor, which will be added to the
+  // third step. This will be used as the confirmation page, where the user will
+  // be able to deselect some of the investors before creating the transaction.
+  $form['preview_right'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Investerare',
+    '#description' => 'Följande investerare kommer att få utskicket:',
+  );
+  $form['preview_right']['selected_investors'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $selected_investors,
+    '#default_value' => array_keys($selected_investors),
+  );
+  $form['#step_children']['preview_right'] =  'step_cap_rais_3';
 }
 
 /**
