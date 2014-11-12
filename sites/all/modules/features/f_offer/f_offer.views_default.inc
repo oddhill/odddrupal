@@ -317,6 +317,18 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  /* Field: Erbjudande: Tecknat den */
+  $handler->display->display_options['fields']['field_offer_signed_date']['id'] = 'field_offer_signed_date';
+  $handler->display->display_options['fields']['field_offer_signed_date']['table'] = 'field_data_field_offer_signed_date';
+  $handler->display->display_options['fields']['field_offer_signed_date']['field'] = 'field_offer_signed_date';
+  $handler->display->display_options['fields']['field_offer_signed_date']['label'] = 'Tecknad datum';
+  $handler->display->display_options['fields']['field_offer_signed_date']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
   /* Field: Erbjudande: Summa */
   $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
@@ -368,6 +380,7 @@ function f_offer_views_default_views() {
     t('<a href="[path]/intressenter/[id]/teckna">Teckna</a>'),
     t('Teckningslista'),
     t('Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
+    t('Tecknad datum'),
   );
   $export['offers'] = $view;
 

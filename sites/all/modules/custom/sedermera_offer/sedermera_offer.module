@@ -47,8 +47,9 @@ function sedermera_offer_sign_confirm_submit($form, &$form_state) {
   // Get the offer that should get signed.
   $offer = $form['#offer'];
 
-  // Set the boolean field to TRUE, and save the entity.
+  // Set the boolean field to TRUE, set the timestamp, and save the entity.
   $offer->field_offer_signed->set(TRUE);
+  $offer->field_offer_signed_date->set(REQUEST_TIME);
   $offer->save();
 
   // Display a message, and return to the overview page.
