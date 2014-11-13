@@ -23,8 +23,6 @@
 
     <?php print $attachment_before; ?>
 
-    <div class="table-wrapper">
-
       <?php print $rows; ?>
 
       <?php if ($empty): ?>
@@ -33,7 +31,6 @@
             <p><?php print $empty; ?><p>
         </div>
       <?php endif; ?>
-    </div>
 
     <?php print $attachment_after; ?>
     <?php print $more; ?>
