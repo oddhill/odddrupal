@@ -178,7 +178,7 @@ ul.pager {
 
 // Empty filter message
 .empty-wrapper {
-  padding: 80px 30px 0 30px;
+  padding: 80px 30px 0 270px;
 
   .empty-icon {
     @include svg-bg(sad_computer, $background-color: transparent, $background-position: center top);
