@@ -19,8 +19,10 @@ h2.sidebar-second-icon {
   }
 }
 
+.prospect-record,
 .prospect-time-remaining {
   background: $steel;
+  margin-bottom: 20px;
   padding-bottom: 10px;
   text-align: center;
 
@@ -33,6 +35,21 @@ h2.sidebar-second-icon {
     text-transform: uppercase;
   }
 
+  .progress {
+    border: 2px solid #acacac;
+    border-radius: 10px;
+    margin: 20px 10px 10px 10px;
+
+    .progress-bar {
+      @include font-size(1.6);
+      background-color: $snow;
+      color: $coffee;
+      font-family: 'Inconsolata', ;
+      font-weight: 700;
+      line-height: 14px;
+    }
+  }
+
   .date {
     @include font-size(3.4);
     color: $dark-grey;
@@ -41,7 +58,8 @@ h2.sidebar-second-icon {
     text-transform: uppercase;
   }
 
-  .remaining {
+  .remaining,
+  .total {
     @include font-size(1.4);
     font-family: 'Inconsolata', ;
     padding-bottom: 10px;

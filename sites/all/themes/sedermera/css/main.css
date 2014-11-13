@@ -978,6 +978,9 @@ div.checker.hover.active span {
     .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .checker {
       margin-bottom: 4px;
       margin-right: 5px; }
+    .page-node-add-capital-raising form.node-capital_raising-form #preview-investors #edit-selected-investors {
+      background: #d4d6d9;
+      padding: 20px 20px 15px 20px; }
 
 .field.title h2 {
   font-size: 32px;
@@ -2500,13 +2503,19 @@ ul.tabs {
     transform: rotate(360deg); } }
 .page-investor #main-content #page-content,
 .node-type-capital-raising #main-content #page-content,
-.node-type-company #main-content #page-content {
+.node-type-company #main-content #page-content,
+.page-node-erbjudna #main-content #page-content,
+.page-node-teckningslista #main-content #page-content,
+.page-node-intressenter #main-content #page-content {
   margin-top: 0;
   background: #fff;
   padding: 50px 40px 50px 40px; }
   .page-investor #main-content #page-content .title h2,
   .node-type-capital-raising #main-content #page-content .title h2,
-  .node-type-company #main-content #page-content .title h2 {
+  .node-type-company #main-content #page-content .title h2,
+  .page-node-erbjudna #main-content #page-content .title h2,
+  .page-node-teckningslista #main-content #page-content .title h2,
+  .page-node-intressenter #main-content #page-content .title h2 {
     font-size: 32px;
     font-size: 3.2rem;
     line-height: 48px;
@@ -2662,6 +2671,12 @@ ul.tabs {
 .field-comp-logo {
   margin-top: 10px; }
 
+.page-node-erbjudna .text-full.form-text {
+  width: 150px; }
+.page-node-erbjudna .checker {
+  margin-right: 5px;
+  margin-bottom: 4px; }
+
 h2.sidebar-second-icon {
   background: #454545;
   display: inline-block;
@@ -2681,10 +2696,13 @@ h2.sidebar-second-icon {
     color: #454545;
     overflow: hidden; }
 
+.prospect-record,
 .prospect-time-remaining {
   background: #d4d6d9;
+  margin-bottom: 20px;
   padding-bottom: 10px;
   text-align: center; }
+  .prospect-record h3,
   .prospect-time-remaining h3 {
     font-size: 12px;
     font-size: 1.2rem;
@@ -2694,6 +2712,22 @@ h2.sidebar-second-icon {
     font-weight: 700;
     padding: 10px 0 10px 0;
     text-transform: uppercase; }
+  .prospect-record .progress,
+  .prospect-time-remaining .progress {
+    border: 2px solid #acacac;
+    border-radius: 10px;
+    margin: 20px 10px 10px 10px; }
+    .prospect-record .progress .progress-bar,
+    .prospect-time-remaining .progress .progress-bar {
+      font-size: 16px;
+      font-size: 1.6rem;
+      line-height: 24px;
+      background-color: #fff;
+      color: #282828;
+      font-family: "Inconsolata";
+      font-weight: 700;
+      line-height: 14px; }
+  .prospect-record .date,
   .prospect-time-remaining .date {
     font-size: 34px;
     font-size: 3.4rem;
@@ -2702,12 +2736,16 @@ h2.sidebar-second-icon {
     font-weight: 700;
     margin: 10px 0 0 0;
     text-transform: uppercase; }
-  .prospect-time-remaining .remaining {
+  .prospect-record .remaining,
+  .prospect-record .total,
+  .prospect-time-remaining .remaining,
+  .prospect-time-remaining .total {
     font-size: 14px;
     font-size: 1.4rem;
     line-height: 21px;
     font-family: "Inconsolata";
     padding-bottom: 10px; }
+  .prospect-record #edit-archive,
   .prospect-time-remaining #edit-archive {
     display: inline-block;
     height: 34px;
@@ -2731,5 +2769,6 @@ h2.sidebar-second-icon {
     transition: background-color 0.1s ease-in-out;
     margin: 10px 0 10px 0;
     text-transform: uppercase; }
+    .prospect-record #edit-archive:hover,
     .prospect-time-remaining #edit-archive:hover {
       background-color: #303030; }
