@@ -85,7 +85,7 @@ function sedermera_offer_block_view($delta = '') {
   // percentage.
   $maximum = sedermera_offer_capital_raising_get_signed_max($node);
   $signed = sedermera_offer_capital_raising_get_signed_current($node);
-  $percentage = ($signed / $maximum) * 100;
+  $percentage = $maximum ? ($signed / $maximum) * 100 : 100;
 
   // Create the renderable array for the progress bar.
   $progress_bar = array(
@@ -95,9 +95,11 @@ function sedermera_offer_block_view($delta = '') {
   );
 
   // Create the renderable array for the total progress.
+  $signed_readable = preg_replace('/\,0$/u', '', number_format($signed, 1, ',', ' '));
+  $maximum_readable = $maximum ? preg_replace('/\,0$/u', '', number_format($maximum, 1, ',', ' ')) : '?';
   $progress_total = array(
     '#prefix' => '<div class="total">',
-    '#markup' => "$signed av $total bananer",
+    '#markup' => "$signed_readable av $maximum_readable miljoner SEK",
     '#suffix' => '</div>',
   );
 
@@ -125,30 +127,36 @@ function sedermera_offer_block_view($delta = '') {
 }
 
 /**
- * TODO: Fix documentation.
+ * Get the total amount that's available for a capital raising, in terms of
+ * million SEK.
  *
  * @param obj $node
  *   The capital raising node object.
  *
- * @return
- *   TODO: Fix this.
+ * @return int
+ *   Returns the total amount, based on the number of stocks and price per
+ *   stock.
  */
 function sedermera_offer_capital_raising_get_signed_max($node) {
   // Wrap the node in order to get its values.
   $wrapper = entity_metadata_wrapper('node', $node);
 
-  // TODO: Fix this.
-  return $wrapper->field_cap_rais_estim->value();
+  // Get the total number of stocks, and the price per stock.
+  $number_of_stocks = $wrapper->field_cap_rais_post->value();
+  $price_per_stock = $wrapper->field_cap_rais_rate->value();
+
+  // Return the total amount, based on the above parameters.
+  return ($number_of_stocks * $price_per_stock) / 1000000;
 }
 
 /**
- * TODO: Fix documentation.
+ * Get the currently signed amount for a capital raising.
  *
  * @param obj $node
  *   The capital raising node object.
  *
- * @return
- *   TODO: Fix this.
+ * @return float
+ *   The currently signed amount.
  */
 function sedermera_offer_capital_raising_get_signed_current($node) {
   // The initial return value.
