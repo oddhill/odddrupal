@@ -1,6 +1,6 @@
 (function($) {
 
-Drupal.behaviors.sedermeraOffer = {
+Drupal.behaviors.sedermeraOfferWorkFlow = {
   attach: function (context, settings) {
 
     // Find the relevant elements.
@@ -20,6 +20,17 @@ Drupal.behaviors.sedermeraOffer = {
       $(this).change(function() {
         $investorCheckboxes.filter('[value=' + this.value + ']').prop('checked', $(this).prop('checked')).change();
       })
+    });
+
+  }
+};
+
+Drupal.behaviors.sedermeraOfferStock = {
+  attach: function (context, settings) {
+
+    // Create the progress bar for the signed status.
+    $('.progress .progress-bar').progressbar({
+      display_text: 'fill'
     });
 
   }

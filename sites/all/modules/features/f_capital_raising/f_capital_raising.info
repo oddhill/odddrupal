@@ -19,6 +19,7 @@ dependencies[] = msnf
 dependencies[] = node
 dependencies[] = number
 dependencies[] = sedermera_capital_raising
+dependencies[] = sedermera_offer
 dependencies[] = strongarm
 dependencies[] = text
 dependencies[] = token_formatters

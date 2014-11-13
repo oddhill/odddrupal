@@ -42,11 +42,17 @@ function f_capital_raising_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
+        'sedermera_offer-stock_remaining' => array(
+          'module' => 'sedermera_offer',
+          'delta' => 'stock_remaining',
+          'region' => 'sidebar-second',
+          'weight' => '-10',
+        ),
         'sedermera_capital_raising-time_remaining' => array(
           'module' => 'sedermera_capital_raising',
           'delta' => 'time_remaining',
           'region' => 'sidebar-second',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
       ),
     ),

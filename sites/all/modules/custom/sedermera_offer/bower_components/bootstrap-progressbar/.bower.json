@@ -1,0 +1,23 @@
+{
+  "name": "bootstrap-progressbar",
+  "version": "0.8.4",
+  "main": "./bootstrap-progressbar.js",
+  "ignore": [
+    "**/.*",
+    "Gulpfile.js",
+    "bower_components",
+    "node_modules",
+    "resources"
+  ],
+  "homepage": "https://github.com/minddust/bootstrap-progressbar",
+  "_release": "0.8.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.8.4",
+    "commit": "045ac478994a80a389dbf3141aa0e503e926ff14"
+  },
+  "_source": "git://github.com/minddust/bootstrap-progressbar.git",
+  "_target": "~0.8.4",
+  "_originalSource": "bootstrap-progressbar",
+  "_direct": true
+}

@@ -58,6 +58,122 @@ function sedermera_offer_sign_confirm_submit($form, &$form_state) {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function sedermera_offer_block_info() {
+  $blocks['stock_remaining'] = array(
+    'info' => 'Aktier för transaktion',
+    'cache' => DRUPAL_CACHE_PER_PAGE
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sedermera_offer_block_view($delta = '') {
+  // Load the node based on the second argument.
+  $node = node_load(arg(1));
+
+  // Bail out if this isn't a capital raising node.
+  if (!$node || $node->type != 'capital_raising') {
+    return;
+  }
+
+  // Get the maximum value, the currently signed value, and calculate the
+  // percentage.
+  $maximum = sedermera_offer_capital_raising_get_signed_max($node);
+  $signed = sedermera_offer_capital_raising_get_signed_current($node);
+  $percentage = ($signed / $maximum) * 100;
+
+  // Create the renderable array for the progress bar.
+  $progress_bar = array(
+    '#prefix' => '<div class="progress">',
+    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage . '"></div>',
+    '#suffix' => '</div>',
+  );
+
+  // Create the renderable array for the total progress.
+  $progress_total = array(
+    '#prefix' => '<div class="total">',
+    '#markup' => "$signed av $total bananer",
+    '#suffix' => '</div>',
+  );
+
+  // Create the block structure, and attach the CSS and JS that's required for
+  // the progress bar.
+  $block = array(
+    'subject' => 'Upptecknat',
+    'content' => array(
+      'progress' => $progress_bar,
+      'total' => $progress_total,
+      '#attached' => array(
+        'css' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/css/bootstrap-progressbar-3.3.0.css',
+        ),
+        'js' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/bootstrap-progressbar.js',
+          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js',
+        ),
+      ),
+    ),
+  );
+
+  // Return the block.
+  return $block;
+}
+
+/**
+ * TODO: Fix documentation.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return
+ *   TODO: Fix this.
+ */
+function sedermera_offer_capital_raising_get_signed_max($node) {
+  // Wrap the node in order to get its values.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // TODO: Fix this.
+  return $wrapper->field_cap_rais_estim->value();
+}
+
+/**
+ * TODO: Fix documentation.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return
+ *   TODO: Fix this.
+ */
+function sedermera_offer_capital_raising_get_signed_current($node) {
+  // The initial return value.
+  $signed = 0;
+
+  // Create and execute a query that fetches the offers that are signed and
+  // connected to this capital raising.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'offer')
+    ->fieldCondition('field_offer_cap_rais', 'target_id', $node->nid)
+    ->fieldCondition('field_offer_signed', 'value', 1);
+  $result = $query->execute();
+
+  // Increment the signed value with each offer.
+  if (!empty($result['offer'])) {
+    foreach ($result['offer'] as $row) {
+      $signed += entity_metadata_wrapper('offer', $row->id)->field_offer_amount->value();
+    }
+  }
+
+  // Return the total amount.
+  return $signed;
+}
+
+/**
  * Implements hook_msnf_info_steps_alter().
  */
 function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bundle, $form, $form_state = array()) {
