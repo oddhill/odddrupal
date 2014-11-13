@@ -967,11 +967,27 @@ div.checker.hover.active span {
       margin: 0 0 0 10px; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-transaction {
     background: #fff;
-    overflow: hidden; }
+    overflow: hidden;
+    padding: 50px 40px 50px 40px; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors {
     float: right;
     padding: 20px;
     width: 280px; }
+    .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .form-item {
+      margin-bottom: 5px; }
+    .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .checker {
+      margin-bottom: 4px;
+      margin-right: 5px; }
+
+.field.title h2 {
+  font-size: 32px;
+  font-size: 3.2rem;
+  line-height: 48px;
+  font-weight: 500;
+  border-bottom: 2px solid #f3f4f8;
+  margin-bottom: 33px;
+  padding: 0 0 33px 0;
+  text-align: center; }
 
 .page-admin form,
 .page-investor-person-edit form,
@@ -2405,8 +2421,8 @@ ul.tabs {
       ul.tabs li.redigera a.redigera {
         background: url("../graphics/edit.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/edit.svg") transparent 0 0 no-repeat;
-        background-position: 20px 12px;
-        padding-left: 42px; }
+        background-position: 20px 13px;
+        padding-left: 40px; }
         ul.tabs li.edit a.edit:hover,
         ul.tabs li.edit a.redigera:hover, ul.tabs li.redigera a.edit:hover,
         ul.tabs li.redigera a.redigera:hover {

@@ -21,8 +21,8 @@ ul.tabs {
       a.edit,
       a.redigera {
         @include svg-bg(edit);
-        background-position: 20px 12px;
-        padding-left: 42px;
+        background-position: 20px 13px;
+        padding-left: 40px;
 
         &:hover {
           background-color: $stone;

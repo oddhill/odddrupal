@@ -134,12 +134,37 @@
     #preview-transaction {
       background: $snow;
       overflow: hidden;
+      padding: 50px 40px 50px 40px;
     }
 
     #preview-investors {
       float: right;
       padding: 20px;
       width: 280px;
+
+      .form-item {
+        margin-bottom: 5px;
+      }
+
+      label.option {
+      }
+
+      .checker {
+        margin-bottom: 4px;
+        margin-right: 5px;
+      }
     }
+  }
+}
+
+.field.title {
+
+  h2 {
+    @include font-size(3.2);
+    font-weight: 500;
+    border-bottom: 2px solid $light-grey;
+    margin-bottom: 33px;
+    padding: 0 0 33px 0;
+    text-align: center;
   }
 }
