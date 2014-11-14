@@ -63,14 +63,27 @@
 }
 
 // Offerd table (Erbjudna)
-.page-node-erbjudna {
+.views-field.views-field-field-offer-status {
 
-  .text-full.form-text {
-    width: 150px;
+  input {
+    width: 200px;
   }
+}
+
+.views-field-field-offer-interested {
 
   .checker {
     margin-right: 5px;
     margin-bottom: 4px;
   }
 }
+
+.views-field-field-offer-amount {
+
+  input {
+    margin-right: 5px;
+    padding: 0 5px 0 5px 0;
+    width: 35px;
+  }
+}
+
