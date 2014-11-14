@@ -47,9 +47,10 @@
     &.application-pdf {
 
       a {
+        display: inline-block;
+        height: 20px;
         @include svg-bg(pdf);
         padding-left: 25px;
-        padding-bottom: 5px;
       }
     }
    }

@@ -351,6 +351,13 @@
     }
   }
 
+  .field-type-text-with-summary {
+
+    .filter-wrapper {
+      display: none;
+    }
+  }
+
   .form-item {
     margin-bottom: 20px;
 

@@ -1549,6 +1549,13 @@ div.checker.hover.active span {
   .page-node-add form .filter-item .form-item.form-type-select label,
   .page-node-edit form .filter-item .form-item.form-type-select label {
     display: block; }
+  .page-admin form .field-type-text-with-summary .filter-wrapper,
+  .page-investor-person-edit form .field-type-text-with-summary .filter-wrapper,
+  .page-investor-company-edit form .field-type-text-with-summary .filter-wrapper,
+  .not-logged-in.page-user form .field-type-text-with-summary .filter-wrapper,
+  .page-node-add form .field-type-text-with-summary .filter-wrapper,
+  .page-node-edit form .field-type-text-with-summary .filter-wrapper {
+    display: none; }
   .page-admin form .form-item,
   .page-investor-person-edit form .form-item,
   .page-investor-company-edit form .form-item,
@@ -2665,10 +2672,11 @@ ul.tabs {
     .transaction-information .file.application-pdf img {
       display: none; }
     .transaction-information .file.application-pdf.application-pdf a {
+      display: inline-block;
+      height: 20px;
       background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
-      padding-left: 25px;
-      padding-bottom: 5px; }
+      padding-left: 25px; }
 
 .field-comp-logo {
   margin-top: 10px; }
