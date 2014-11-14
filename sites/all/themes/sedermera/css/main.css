@@ -973,6 +973,16 @@ div.checker.hover.active span {
     float: right;
     padding: 20px;
     width: 280px; }
+    .page-node-add-capital-raising form.node-capital_raising-form #preview-investors h3 {
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 18px;
+      background: #c8cacd;
+      border-bottom: 1px solid #e0e2e6;
+      font-weight: 700;
+      padding: 10px 0 10px 0;
+      text-transform: uppercase;
+      text-align: center; }
     .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .form-item {
       margin-bottom: 5px; }
     .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .checker {
