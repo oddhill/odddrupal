@@ -1004,6 +1004,14 @@ div.checker.hover.active span {
   padding: 0 0 33px 0;
   text-align: center; }
 
+.page-node-edit.node-type-capital-raising #title-wrapper {
+  background: #e0e2e6;
+  padding: 20px 20px 5px;
+  border-radius: 3px;
+  margin-bottom: 20px; }
+.page-node-edit.node-type-capital-raising .field-name-field-cap-rais-date .fieldset-wrapper {
+  padding: 20px; }
+
 .page-admin form,
 .page-investor-person-edit form,
 .page-investor-company-edit form,

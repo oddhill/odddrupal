@@ -127,7 +127,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 15,
+      'weight' => 27,
     ),
   );
 
@@ -179,7 +179,7 @@ function f_capital_raising_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 16,
+      'weight' => 28,
     ),
   );
 

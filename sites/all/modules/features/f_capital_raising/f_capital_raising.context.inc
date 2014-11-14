@@ -22,7 +22,7 @@ function f_capital_raising_context_default_contexts() {
         'capital_raising' => 'capital_raising',
       ),
       'options' => array(
-        'node_form' => '0',
+        'node_form' => '1',
       ),
     ),
     'views' => array(

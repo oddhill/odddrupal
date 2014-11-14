@@ -62,7 +62,7 @@ function f_capital_raising_strongarm() {
           'weight' => '5',
         ),
         'title' => array(
-          'weight' => '14',
+          'weight' => '26',
         ),
         'path' => array(
           'weight' => '3',
