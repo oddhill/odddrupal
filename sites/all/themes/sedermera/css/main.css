@@ -981,6 +981,8 @@ div.checker.hover.active span {
     .page-node-add-capital-raising form.node-capital_raising-form #preview-investors #edit-selected-investors {
       background: #d4d6d9;
       padding: 20px 20px 15px 20px; }
+.page-node-add-capital-raising ul.pager {
+  margin-left: 280px; }
 
 .field.title h2 {
   font-size: 32px;
