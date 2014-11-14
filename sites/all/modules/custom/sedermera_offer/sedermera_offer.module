@@ -242,7 +242,7 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
       '#type' => 'checkboxes',
       '#options' => $selected_investors,
       '#default_value' => array_keys($selected_investors),
-      '#prefix' => '<div id="preview-investors">',
+      '#prefix' => '<div id="preview-investors"><h2>Erbjudna investerare</h2>',
       '#suffix' => '</div>',
     );
     $form['#step_children']['selected_investors'] =  'step_cap_rais_3';
