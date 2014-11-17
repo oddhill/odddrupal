@@ -36,5 +36,6 @@
     <?php print $more; ?>
     <?php print $footer; ?>
   </div>
+
   <?php print $pager; ?>
 </div>

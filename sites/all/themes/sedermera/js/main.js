@@ -74,6 +74,10 @@ Drupal.behaviors.form_placeholder = {
   }
 };
 
+/**
+ * Function that sets equal heights to the filter and table of the
+ * filtered tables.
+ */
 filterHeightMatch = function() {
 
   var $target = $('.filtered-table');
@@ -87,6 +91,10 @@ filterHeightMatch = function() {
   }
 };
 
+/**
+ * Function that sets the value of the image field to the new
+ * text field that is used as a substitute.
+ */
 imageFieldChange = function() {
   $('.image-widget-data input[type=file]').on('change', function (e) {
     $in = $(this);
@@ -94,6 +102,10 @@ imageFieldChange = function() {
   });
 };
 
+/**
+ * Function that sets the value of the file field to the new
+ * text field that is used as a substitute.
+ */
 fileFieldChange = function() {
   $('.file-widget-data input[type=file]').on('change', function (e) {
     $in = $(this);
@@ -115,16 +127,13 @@ Drupal.behaviors.sedermera = {
     // Use selectBoxit on our select lists.
     $('select').selectBoxIt();
 
+    // Set equal heights to filtered table.
     filterHeightMatch();
 
+    // Add the file field value to the substitute text field when
+    // we've chosen a file from the file browser.
     imageFieldChange();
-
     fileFieldChange();
-
-    $('.image-widget-data input[type=file]').change(function (e) {
-      $in = $(this);
-      $in.prev().val($in.val());
-    });
 
     // Use uniform to beautify our checkboxes and radio buttons. We'll add an
     // event listener to the change event, since Uniform doesn't automatically

@@ -11,7 +11,6 @@
  * Have a look at the example_layout folder in the DS folder for guidance.
  */
 ?>
-
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
   <?php print render($content['title']); ?>
 
@@ -31,6 +30,5 @@
       <?php print render($content['field_cap_rais_estim']); ?>
       <?php print render($content['field_cap_rais_file']); ?>
     </div>
-
   </div>
 </div>

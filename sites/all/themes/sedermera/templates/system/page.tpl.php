@@ -37,18 +37,15 @@
       <?php if($page['sidebar-second']): ?>
         <aside class="content-sidebar">
           <h2 class="sidebar-second-icon"><span class="icon">Information</span></h2>
-          <div class="sidebar-second-content">
-            <?php print render($page['sidebar-second']); ?>
-          </div>
+            <div class="sidebar-second-content">
+              <?php print render($page['sidebar-second']); ?>
+            </div>
         </aside>
       <?php endif; ?>
 
       <div class="content-column">
         <?php print render($page['content']); ?>
       </div>
-
     </div>
-
   </main>
-
 </div>
