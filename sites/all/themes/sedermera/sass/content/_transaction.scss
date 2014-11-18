@@ -14,6 +14,11 @@
   float: left;
   padding: 0 0 0 25px;
 
+  img {
+    height: auto;
+    width: 100%;
+  }
+
   .field, .file {
     border-bottom: 2px solid $light-grey;
     margin: 0 0 20px 0;

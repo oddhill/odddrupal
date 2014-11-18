@@ -2171,7 +2171,8 @@ div.checker.hover.active span {
 .page-node-edit form .form-text {
   padding: 10px 30px 10px 10px;
   border-radius: 2px;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  max-width: 100%; }
   .js .page-admin form .form-text.form-autocomplete, .js
   .page-investor-person-edit form .form-text.form-autocomplete, .js
   .page-investor-company-edit form .form-text.form-autocomplete, .js
@@ -2728,6 +2729,9 @@ ul.tabs {
   padding: 0 0 0 25px; }
   .transaction-information:last-child {
     margin-right: 0; }
+  .transaction-information img {
+    height: auto;
+    width: 100%; }
   .transaction-information .field, .transaction-information .file {
     border-bottom: 2px solid #f3f4f8;
     margin: 0 0 20px 0;
