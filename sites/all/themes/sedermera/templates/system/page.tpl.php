@@ -35,7 +35,7 @@
     <div class="content-wrapper">
 
       <?php if($page['sidebar-second']): ?>
-        <aside class="content-sidebar">
+        <aside class="content-sidebar column">
           <h2 class="sidebar-second-icon"><span class="icon">Information</span></h2>
             <div class="sidebar-second-content">
               <?php print render($page['sidebar-second']); ?>
@@ -43,7 +43,7 @@
         </aside>
       <?php endif; ?>
 
-      <div class="content-column">
+      <div class="content-column column">
         <?php print render($page['content']); ?>
       </div>
     </div>

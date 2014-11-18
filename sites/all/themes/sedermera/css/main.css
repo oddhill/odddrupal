@@ -2610,6 +2610,13 @@ ul.tabs {
     border-bottom: 2px solid #f3f4f8;
     padding: 0 0 33px 0;
     margin-bottom: 33px; }
+.page-investor #main-content .content-wrapper,
+.node-type-capital-raising #main-content .content-wrapper,
+.node-type-company #main-content .content-wrapper,
+.page-node-erbjudna #main-content .content-wrapper,
+.page-node-teckningslista #main-content .content-wrapper,
+.page-node-intressenter #main-content .content-wrapper {
+  background-color: #fff; }
 
 .field-shared-industries,
 .field-shared-address,

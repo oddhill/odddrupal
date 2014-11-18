@@ -95,6 +95,7 @@ filterHeightMatch = function() {
  * Function that sets the value of the image field to the new
  * text field that is used as a substitute.
  */
+
 imageFieldChange = function() {
   $('.image-widget-data input[type=file]').on('change', function (e) {
     $in = $(this);
@@ -152,6 +153,17 @@ Drupal.behaviors.sedermera = {
         $input.parent().removeClass('checked');
       }
     });
+
+    /**
+     * Sets equal heights to the transaction-information sidebar and the
+     * transaction content.
+     */
+    var contentHeight = 0;
+    var $groups = $('.content-wrapper .column');
+    $groups.each(function() {
+       contentHeight = Math.max($(this).height(), contentHeight);
+     });
+     $groups.height(contentHeight);
 
   }
 };
