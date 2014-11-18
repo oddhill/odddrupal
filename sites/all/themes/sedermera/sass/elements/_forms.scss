@@ -4,7 +4,6 @@
 .not-logged-in.page-user form,
 .page-node-add form,
 .page-node-edit form {
-  //max-width: 1200px;
 
   .messages {
     padding: 10px;
@@ -742,4 +741,31 @@
       }
     }
   }
+}
+
+// Form submit confirmation styling
+form.confirmation {
+  @include font-size(1.6);
+  display: inline-block;
+  font-weight: 700;
+
+  input {
+    @include button($dark-grey, confirm);
+    display: inline;
+  }
+
+  .form-actions.form-wrapper {
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%;
+
+    .submit-wrapper {
+      display: inline;
+    }
+  }
+}
+
+#edit-cancel {
+    @include button($wine, cancel);
+    margin-left: 20px;
 }

@@ -2426,6 +2426,68 @@ div.checker.hover.active span {
           font-weight: 700;
           border-radius: 2px; }
 
+form.confirmation {
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px;
+  display: inline-block;
+  font-weight: 700; }
+  form.confirmation input {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0px none;
+    background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+    background-position: 20px 14px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    display: inline; }
+    form.confirmation input:hover {
+      background-color: #303030; }
+  form.confirmation .form-actions.form-wrapper {
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%; }
+    form.confirmation .form-actions.form-wrapper .submit-wrapper {
+      display: inline; }
+
+#edit-cancel {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0px none;
+  background: url("../graphics/cancel.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/cancel.svg") transparent 0 0 no-repeat;
+  background-position: 20px 12px;
+  padding-left: 42px;
+  background-color: #c04343;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin-left: 20px; }
+  #edit-cancel:hover {
+    background-color: #862e2e; }
+
 ul.tabs {
   background: #ebedf1;
   border-bottom: 1px solid #e0e2e6;

@@ -50,6 +50,18 @@
     padding-left: 42px;
   }
 
+  @if $icon == confirm {
+    @include svg-bg(confirm);
+    background-position: 20px 14px;
+    padding-left: 42px;
+  }
+
+   @if $icon == cancel {
+    @include svg-bg(cancel);
+    background-position: 20px 12px;
+    padding-left: 42px;
+  }
+
   @if $icon == login {
     @include svg-bg(login_small_dark);
     color: $coffee;
