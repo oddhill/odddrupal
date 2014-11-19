@@ -89,11 +89,12 @@ body {
 
   .content-wrapper {
     margin: 0;
-    padding: 0;
+    padding: 0 0 30px 0;
 
     .content-sidebar {
       background: $wool;
       float: right;
+      padding-bottom: 30px;
       width: 280px;
 
       .sidebar-second-content {

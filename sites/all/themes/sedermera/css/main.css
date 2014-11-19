@@ -109,10 +109,11 @@ body {
     margin-bottom: 70px; }
   #main-content .content-wrapper {
     margin: 0;
-    padding: 0; }
+    padding: 0 0 30px 0; }
     #main-content .content-wrapper .content-sidebar {
       background: #e0e2e6;
       float: right;
+      padding-bottom: 30px;
       width: 280px; }
       #main-content .content-wrapper .content-sidebar .sidebar-second-content {
         padding: 0 10px 10px 10px; }
@@ -2631,6 +2632,9 @@ ul.tabs {
     content: "";
     display: table;
     clear: both; }
+
+.node-type-company #main-content .content-column {
+  overflow: visible; }
 
 .not-logged-in.page-user {
   background: #282828;

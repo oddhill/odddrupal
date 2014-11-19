@@ -38,3 +38,15 @@
 .node.view-mode-full {
   @include outer-container;
 }
+
+// Node type company
+.node-type-company {
+
+   #main-content {
+
+    .content-column {
+      overflow: visible;
+    }
+  }
+}
+
