@@ -793,6 +793,8 @@ div.checker span {
     background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
+  div.checker span input.form-checkbox {
+    cursor: pointer; }
 div.checker.focus span {
   background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
