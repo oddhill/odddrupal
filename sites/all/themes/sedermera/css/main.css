@@ -2821,9 +2821,10 @@ h2.sidebar-second-icon {
     text-transform: uppercase; }
   .prospect-record .progress,
   .prospect-time-remaining .progress {
-    border: 2px solid #acacac;
-    border-radius: 10px;
-    height: 31px;
+    background: #454545;
+    border: 2px solid #454545;
+    border-radius: 16px;
+    height: 32px;
     margin: 20px 10px 10px 10px; }
     .prospect-record .progress .progress-bar,
     .prospect-time-remaining .progress .progress-bar {
@@ -2834,7 +2835,9 @@ h2.sidebar-second-icon {
       color: #282828;
       font-family: "Inconsolata";
       font-weight: 700;
-      line-height: 27px; }
+      line-height: 28px;
+      box-shadow: none;
+      -webkit-box-shadow: none; }
   .prospect-record .date,
   .prospect-time-remaining .date {
     font-size: 34px;

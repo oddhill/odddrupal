@@ -36,9 +36,10 @@ h2.sidebar-second-icon {
   }
 
   .progress {
-    border: 2px solid #acacac;
-    border-radius: 10px;
-    height: 31px;
+    background: $dark-grey;
+    border: 2px solid $dark-grey;
+    border-radius: 16px;
+    height: 32px;
     margin: 20px 10px 10px 10px;
 
     .progress-bar {
@@ -47,7 +48,9 @@ h2.sidebar-second-icon {
       color: $coffee;
       font-family: 'Inconsolata', ;
       font-weight: 700;
-      line-height: 27px;
+      line-height: 28px;
+      box-shadow: none;
+      -webkit-box-shadow: none;
     }
   }
 
