@@ -30,4 +30,32 @@
       margin-bottom: 20px;
     }
   }
+
+  .form-actions {
+    padding-top: 20px;
+    border-top: 2px solid $wool;
+  }
+}
+
+.page-investor-person-edit,
+.page-investor-company-edit {
+
+  .form-sidebar {
+    float: left;
+    width: 280px;
+    margin-right: 20px;
+    padding: 0;
+    background: transparent;
+  }
+
+  .form-body {
+    overflow: hidden;
+    padding: 0;
+    background: transparent;
+  }
+
+  .form-actions {
+    padding-top: 20px;
+    border-top: 2px solid $wool;
+  }
 }

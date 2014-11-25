@@ -107,8 +107,7 @@ body {
   #main-content .page-head {
     margin-bottom: 70px; }
   #main-content .content-wrapper {
-    margin: 0;
-    padding: 0 0 30px 0; }
+    margin: 0; }
     #main-content .content-wrapper .content-sidebar {
       background: #e0e2e6;
       float: right;
@@ -210,7 +209,7 @@ ul.pager {
     margin-left: 280px; }
 
 .empty-wrapper {
-  padding: 80px 30px 0 270px; }
+  padding: 80px 30px; }
   .empty-wrapper .empty-icon {
     background: url("../graphics/sad_computer.png") transparent center top no-repeat;
     background: none, url("../graphics/sad_computer.svg") transparent center top no-repeat;
@@ -394,10 +393,11 @@ ul.pager {
       text-indent: 42px;
       overflow: hidden; }
   .table-filter form {
-    padding: 0 10px 20px 10px; }
+    padding: 0 10px 20px; }
     .table-filter form .submit-wrapper {
       position: relative;
-      display: block; }
+      display: block;
+      height: 34px; }
       .table-filter form .submit-wrapper .form-submit {
         display: inline-block;
         height: 34px;
@@ -450,7 +450,7 @@ ul.pager {
           margin: 0 auto;
           float: none; }
     .table-filter form .filter-item {
-      margin-bottom: 20px; }
+      margin: 20px 0; }
       .table-filter form .filter-item > label {
         background: #c8cacd;
         text-align: center;
@@ -458,7 +458,6 @@ ul.pager {
         text-transform: uppercase;
         font-weight: 700;
         padding: 10px 0 11px 0;
-        margin-top: 20px;
         border-bottom: 1px solid #e0e2e6;
         border-radius: 2px 2px 0 0; }
       .table-filter form .filter-item > .form-item {
@@ -477,6 +476,8 @@ ul.pager {
           position: absolute;
           top: 0;
           left: 0; }
+        .table-filter form .form-item.form-type-bef-checkbox:last-child {
+          margin-bottom: 0px; }
       .table-filter form .form-item.form-type-textfield .form-text {
         padding: 5px;
         border-radius: 2px;
@@ -980,7 +981,8 @@ div.checker.hover.active span {
 .page-node-add-capital-raising form.node-capital_raising-form #preview-investors {
   float: right;
   padding: 20px;
-  width: 280px; }
+  width: 280px;
+  background: #e0e2e6; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors h3 {
     font-size: 12px;
     font-size: 1.2rem;
@@ -999,6 +1001,11 @@ div.checker.hover.active span {
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors #edit-selected-investors {
     background: #d4d6d9;
     padding: 20px 20px 15px 20px; }
+.page-node-add-capital-raising form.node-capital_raising-form .form-actions {
+  text-align: right; }
+  .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
+    margin-right: 0;
+    margin-left: 10px; }
 .page-node-add-capital-raising ul.pager {
   margin-left: 280px; }
 
@@ -1032,6 +1039,26 @@ div.checker.hover.active span {
   padding: 10px;
   border-radius: 2px;
   margin-bottom: 20px; }
+.page-node-edit .form-actions {
+  padding-top: 20px;
+  border-top: 2px solid #e0e2e6; }
+
+.page-investor-person-edit .form-sidebar,
+.page-investor-company-edit .form-sidebar {
+  float: left;
+  width: 280px;
+  margin-right: 20px;
+  padding: 0;
+  background: transparent; }
+.page-investor-person-edit .form-body,
+.page-investor-company-edit .form-body {
+  overflow: hidden;
+  padding: 0;
+  background: transparent; }
+.page-investor-person-edit .form-actions,
+.page-investor-company-edit .form-actions {
+  padding-top: 20px;
+  border-top: 2px solid #e0e2e6; }
 
 form .form-sidebar {
   float: left;
@@ -1046,6 +1073,8 @@ form .form-body {
   overflow: hidden;
   background: #fff;
   padding: 20px; }
+form .form-actions {
+  margin-top: 20px; }
 form .messages {
   padding: 10px;
   color: #fff;
@@ -1971,7 +2000,7 @@ ul.tabs {
 .page-node-erbjudna #main-content .content-wrapper,
 .page-node-teckningslista #main-content .content-wrapper,
 .page-node-intressenter #main-content .content-wrapper {
-  background-color: #fff; }
+  background-color: #e0e2e6; }
 
 .field-shared-industries,
 .field-shared-address,

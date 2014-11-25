@@ -6,6 +6,7 @@ scripts[] = assets/selectivizr-1.0.2/selectivizr-min.js
 scripts[] = assets/modernizr/modernizr.min.js
 scripts[] = assets/uniform/jquery.uniform.js
 scripts[] = assets/selectBoxIt/src/javascripts/jquery.selectBoxIt.min.js
+scripts[] = assets/jquery-match-height/jquery.matchHeight-min.js
 
 ; Javascripts.
 scripts[] = js/main.js

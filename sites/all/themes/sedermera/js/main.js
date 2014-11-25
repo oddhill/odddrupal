@@ -78,13 +78,8 @@ Drupal.behaviors.form_placeholder = {
  * Sets equal heights to columns.
  */
 columnHeightMatch = function() {
-  var contentHeight = 0;
   var $groups = $('.column');
-
-  $groups.each(function() {
-    contentHeight = Math.max($(this).outerHeight(), contentHeight);
-    $(this).height(contentHeight);
-  });
+  $groups.matchHeight();
 };
 
 /**
