@@ -173,19 +173,86 @@
 
       .form-item {
         margin-bottom: 0;
+
+        &.form-type-checkbox {
+          padding-top: 2px;
+
+          label.option {
+            display: block;
+            position: relative;
+            padding-left: 23px;
+            line-height: 18px;
+
+            .checker {
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+          }
+        }
       }
     }
 
     tr {
 
       &.even {
-      background: #fafbfc;
-      border-top: 1px solid $light-grey;
-      border-bottom: 1px solid $light-grey;
+        background: tint($light-grey,60%);
+        border-top: 1px solid $light-grey;
+        border-bottom: 1px solid $light-grey;
+
+        .editablefield-item {
+          position: relative;
+
+          .form-actions {
+
+            .ajax-progress {
+              position: absolute;
+              left: 0px;
+              top: 0px;
+              width: 100%;
+              height: 100%;
+              background: tint($light-grey,60%);
+              padding-top: 3px;
+
+              .throbber {
+                @include throbber;
+              }
+
+              .message {
+                padding-left: 24px;
+              }
+            }
+          }
+        }
       }
 
       &.odd {
-        background: #fff;
+        background: $snow;
+
+        .editablefield-item {
+          position: relative;
+
+          .form-actions {
+
+            .ajax-progress {
+              position: absolute;
+              left: 0px;
+              top: 0px;
+              width: 100%;
+              height: 100%;
+              background: $snow;
+              padding-top: 3px;
+
+              .throbber {
+                @include throbber;
+              }
+
+              .message {
+                padding-left: 24px;
+              }
+            }
+          }
+        }
       }
     }
 

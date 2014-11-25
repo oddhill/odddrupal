@@ -495,12 +495,69 @@ ul.pager {
       vertical-align: top; }
       .table-wrapper table td .form-item {
         margin-bottom: 0; }
+        .table-wrapper table td .form-item.form-type-checkbox {
+          padding-top: 2px; }
+          .table-wrapper table td .form-item.form-type-checkbox label.option {
+            display: block;
+            position: relative;
+            padding-left: 23px;
+            line-height: 18px; }
+            .table-wrapper table td .form-item.form-type-checkbox label.option .checker {
+              position: absolute;
+              left: 0;
+              top: 0; }
     .table-wrapper table tr.even {
-      background: #fafbfc;
+      background: #fafafc;
       border-top: 1px solid #f3f4f8;
       border-bottom: 1px solid #f3f4f8; }
+      .table-wrapper table tr.even .editablefield-item {
+        position: relative; }
+        .table-wrapper table tr.even .editablefield-item .form-actions .ajax-progress {
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          width: 100%;
+          height: 100%;
+          background: #fafafc;
+          padding-top: 3px; }
+          .table-wrapper table tr.even .editablefield-item .form-actions .ajax-progress .throbber {
+            display: inline-block;
+            background: transparent;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f9a500;
+            border-radius: 50%;
+            border-top-color: transparent;
+            -webkit-animation: load 0.9s linear infinite;
+            -moz-animation: load 0.9s linear infinite;
+            animation: load 0.9s linear infinite; }
+          .table-wrapper table tr.even .editablefield-item .form-actions .ajax-progress .message {
+            padding-left: 24px; }
     .table-wrapper table tr.odd {
       background: #fff; }
+      .table-wrapper table tr.odd .editablefield-item {
+        position: relative; }
+        .table-wrapper table tr.odd .editablefield-item .form-actions .ajax-progress {
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          width: 100%;
+          height: 100%;
+          background: #fff;
+          padding-top: 3px; }
+          .table-wrapper table tr.odd .editablefield-item .form-actions .ajax-progress .throbber {
+            display: inline-block;
+            background: transparent;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f9a500;
+            border-radius: 50%;
+            border-top-color: transparent;
+            -webkit-animation: load 0.9s linear infinite;
+            -moz-animation: load 0.9s linear infinite;
+            animation: load 0.9s linear infinite; }
+          .table-wrapper table tr.odd .editablefield-item .form-actions .ajax-progress .message {
+            padding-left: 24px; }
     .table-wrapper table td {
       color: #363636; }
   .table-wrapper input {
