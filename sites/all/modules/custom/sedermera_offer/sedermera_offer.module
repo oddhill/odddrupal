@@ -70,53 +70,72 @@ function sedermera_offer_sign_confirm_submit($form, &$form_state) {
 /**
  * Title callback for the add investors page.
  *
- * @param int $transaction_id
- *   The node id for the transaction node.
+ * @param int $capital_raising_nid
+ *   The node id for the capital raising node.
  *
  * @return string
  *   The title that will be used for the page.
  */
-function sedermera_offer_investors_add_title($transaction_id) {
-  // Load the transaction node, and return the title.
-  $node = node_load($transaction_id);
+function sedermera_offer_investors_add_title($capital_raising_nid) {
+  // Load the node, and return the title.
+  $node = node_load($capital_raising_nid);
   return $node->title;
 }
 
 /**
  * Form function for the add investors page.
  *
- * @param int $transaction_id
- *   The node id for the transaction node.
+ * @param int $capital_raising_nid
+ *   The node id for the capital raising node.
  */
-function sedermera_offer_investors_add($form, &$form_state, $transaction_id) {
+function sedermera_offer_investors_add($form, &$form_state, $capital_raising_nid) {
+  // Add the capital raising nid to the internal values.
+  $form['capital_raising_nid'] = array(
+    '#type' => 'value',
+    '#value' => $capital_raising_nid,
+  );
+
   // Add the offer display from the investors view as a prefix to the form. The
   // view is needed in order to filter among the investors. The view can't be
   // embedded as a subform within the node form, since this will break the AJAX
   // functionality. The reason is unknown, but that's just the way it is...
   $form['#prefix'] = views_embed_view('investors', 'offer_embed');
 
-  // Get the available investors from the database.
-  $available_investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
+  // Get the exiting investors for this capital raising.
+  $existing_investors = sedermera_offer_get_investors_for_capital_raising($capital_raising_nid);
 
-  // Get the selected investors, based on the form values, and sort them
-  // alphabetically.
-  $selected_investors = isset($form_state['values']['investors']) ? array_intersect_key($available_investors, array_filter($form_state['values']['investors'])) : array();
-  asort($selected_investors);
+  // Get the investors from the database, and remove the ones that are already
+  // added.
+  $investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
+  $available_investors = array_diff_key($investors, array_flip($existing_investors));
 
-  // Add checkboxes for every available investor. This will be added to the
-  // second step, and will get its values from the embedded view. See the
-  // attached javascript for more information about what's going on.
+  // Add checkboxes for every available investor. This will get its values from
+  // the embedded view. See the attached javascript for more information about
+  // what's going on.
   $form['investors'] = array(
     '#type' => 'checkboxes',
     '#options' => $available_investors,
-    '#default_value' => array_keys($selected_investors),
+    '#default_value' => isset($form_state['values']['investors']) ? $form_state['values']['investors'] : array(),
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
       ),
     ),
-    //'#prefix' => '<div style="display: none;">',
-    //'#suffix' => '</div>',
+    '#prefix' => '<div style="display: none;">',
+    '#suffix' => '</div>',
+  );
+
+  // Add a checkbox which allows us to send the capital raising via email.
+  $form['send_mail'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Skicka erbjudandet via e-post',
+  );
+
+  // Add the submit button.
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Lägg till valda investerare',
   );
 
   return $form;
@@ -126,7 +145,35 @@ function sedermera_offer_investors_add($form, &$form_state, $transaction_id) {
  * Submit callback for the add investor form.
  */
 function sedermera_offer_investors_add_submit($form, &$form_state) {
+  foreach (array_filter($form_state['values']['investors']) as $investor_id) {
+    // Setup the values for the offer entity.
+    $values = array(
+      'type' => 'offer',
+      'field_offer_cap_rais' => array(
+        LANGUAGE_NONE => array(
+          array('target_id' => $form_state['values']['capital_raising_nid']),
+        ),
+      ),
+      'field_offer_investor' => array(
+        LANGUAGE_NONE => array(
+          array('target_id' => $investor_id),
+        ),
+      ),
+    );
 
+    // Create the offer, and save it.
+    $offer = entity_create('offer', $values);
+    entity_save('offer', $offer);
+
+    // Send an email, if this was selected.
+    if ($form_state['values']['send_mail']) {
+      // TODO: Implement.
+    }
+  }
+
+  // Display a message, and redirect to the "Erbjudande" view.
+  drupal_set_message('De valda investerarna har lagts till.');
+  $form_state['redirect'] = "node/{$form_state['values']['capital_raising_nid']}/erbjudna";
 }
 
 /**
@@ -376,6 +423,24 @@ function sedermera_offer_views_bulk_operations_form_alter(&$form, &$form_state, 
   if ($vbo->view->name == 'investors' && $vbo->view->current_display == 'offer_embed') {
     $form['select']['#access'] = FALSE;
     $form['actions']['#access'] = FALSE;
+
+    // Disable existing investors when using this form for adding investors to
+    // an existing capital raising.
+    if (($nid = arg(1)) && is_numeric($nid)) {
+      // Get the existing investors for this capital raising.
+      $existing_investors = sedermera_offer_get_investors_for_capital_raising($nid);
+
+      // Find the checkboxes that points to the existing investors.
+      foreach (element_children($form['views_bulk_operations']) as $key) {
+        $element = &$form['views_bulk_operations'][$key];
+
+        // Disable and check this checkbox if it points to an existing investor.
+        if (in_array($element['#return_value'], $existing_investors)) {
+          $element['#attributes']['disabled'] = 'disabled';
+          $element['#attributes']['checked'] = 'checked';
+        }
+      }
+    }
   }
 }
 
@@ -386,4 +451,26 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
   // Disable access to the regular submit button since the values are changed
   // via AJAX.
   $form['actions']['#access'] = FALSE;
+}
+
+/**
+ * Get every investor that are connected to a capital raising via an offer
+ * entity.
+ *
+ * @param int $capital_raising_nid.
+ *   The node ID for the capital raising node.
+ *
+ * @return array
+ *   An array with the ID's for every investor entity.
+ */
+function sedermera_offer_get_investors_for_capital_raising($capital_raising_nid) {
+  // Create and execute the query.
+  $query = db_select('field_data_field_offer_cap_rais', 'capital_raising');
+  $query->addField('offer', 'field_offer_investor_target_id', 'investor');
+  $query->join('field_data_field_offer_investor', 'offer', 'capital_raising.entity_id = offer.entity_id');
+  $query->condition('field_offer_cap_rais_target_id', $capital_raising_nid);
+  $result = $query->execute();
+
+  // Return the first column for the entire result.
+  return $result->fetchCol();
 }

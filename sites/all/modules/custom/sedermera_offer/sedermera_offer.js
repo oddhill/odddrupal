@@ -22,6 +22,15 @@ Drupal.behaviors.sedermeraOfferWorkFlow = {
       })
     });
 
+    // Toggle the value for the submit button when changing the send email
+    // checkbox.
+    $('#edit-send-mail').once(function() {
+      $(this).change(function() {
+        var submitText = $(this).is(':checked') ? 'Lägg till valda investerare, och skicka ut e-post' : 'Lägg till valda investerare';
+        $(this).closest('form').find('input[type=submit]').val(submitText);
+      });
+    });
+
   }
 };
 
