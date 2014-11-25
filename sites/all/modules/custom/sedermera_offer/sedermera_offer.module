@@ -16,6 +16,16 @@ function sedermera_offer_menu() {
     'access arguments' => array('eck administer offer offer entities'),
   );
 
+  $items['node/%/erbjudna/lagg-till'] = array(
+    'title' => 'Lägg till investerare',
+    'type' => MENU_CALLBACK,
+    'title callback' => 'sedermera_offer_investors_add_title',
+    'title arguments' => array(1),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sedermera_offer_investors_add', 1),
+    'access arguments' => array('eck administer offer offer entities'),
+  );
+
   return $items;
 }
 
@@ -55,6 +65,68 @@ function sedermera_offer_sign_confirm_submit($form, &$form_state) {
   // Display a message, and return to the overview page.
   drupal_set_message(format_string('%investor har tecknats.', array('%investor' => $offer->field_offer_investor->title->value())));
   $form_state['redirect'] = "node/{$offer->field_offer_cap_rais->nid->value()}/intressenter";
+}
+
+/**
+ * Title callback for the add investors page.
+ *
+ * @param int $transaction_id
+ *   The node id for the transaction node.
+ *
+ * @return string
+ *   The title that will be used for the page.
+ */
+function sedermera_offer_investors_add_title($transaction_id) {
+  // Load the transaction node, and return the title.
+  $node = node_load($transaction_id);
+  return $node->title;
+}
+
+/**
+ * Form function for the add investors page.
+ *
+ * @param int $transaction_id
+ *   The node id for the transaction node.
+ */
+function sedermera_offer_investors_add($form, &$form_state, $transaction_id) {
+  // Add the offer display from the investors view as a prefix to the form. The
+  // view is needed in order to filter among the investors. The view can't be
+  // embedded as a subform within the node form, since this will break the AJAX
+  // functionality. The reason is unknown, but that's just the way it is...
+  $form['#prefix'] = views_embed_view('investors', 'offer_embed');
+
+  // Get the available investors from the database.
+  $available_investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
+
+  // Get the selected investors, based on the form values, and sort them
+  // alphabetically.
+  $selected_investors = isset($form_state['values']['investors']) ? array_intersect_key($available_investors, array_filter($form_state['values']['investors'])) : array();
+  asort($selected_investors);
+
+  // Add checkboxes for every available investor. This will be added to the
+  // second step, and will get its values from the embedded view. See the
+  // attached javascript for more information about what's going on.
+  $form['investors'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $available_investors,
+    '#default_value' => array_keys($selected_investors),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
+      ),
+    ),
+    //'#prefix' => '<div style="display: none;">',
+    //'#suffix' => '</div>',
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for the add investor form.
+ */
+function sedermera_offer_investors_add_submit($form, &$form_state) {
+
 }
 
 /**
