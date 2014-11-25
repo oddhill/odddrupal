@@ -349,11 +349,6 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     '#type' => 'checkboxes',
     '#options' => $available_investors,
     '#default_value' => array_keys($selected_investors),
-    '#attached' => array(
-      'js' => array(
-        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
-      ),
-    ),
     '#prefix' => '<div style="display: none;">',
     '#suffix' => '</div>',
   );
@@ -403,6 +398,13 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     $form['preview_node']['#suffix'] = '</div>';
     $form['#step_children']['preview_node'] =  'step_cap_rais_3';
   }
+
+  // Add javascript that are used in every step for the form.
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
+    ),
+  );
 
   // Change the text of the submit button.
   $form['actions']['submit']['#value'] = $settings['no_email'];
