@@ -361,22 +361,27 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
 
   // Add elements that are required for the third step.
   if ($form_state['storage']['step'] == 'step_cap_rais_3') {
+    // Add a wrapper for all the elements in the right column.
+    $form['right'] = array(
+      '#prefix' => '<div id="preview-investors">',
+      '#suffix' => '</div>',
+    );
+    $form['#step_children']['right'] =  'step_cap_rais_3';
+
     // Add checkboxes for every selected investor, which will be added to the
     // third step. This will be used as the confirmation page, where the user will
     // be able to deselect some of the investors before creating the transaction.
-    $form['selected_investors'] = array(
+    $form['right']['selected_investors'] = array(
       '#type' => 'checkboxes',
       '#options' => $selected_investors,
       '#default_value' => array_keys($selected_investors),
-      '#prefix' => '<div id="preview-investors"><h3>Erbjudna investerare</h3>',
-      '#suffix' => '</div>',
+      '#prefix' => '<h3>Erbjudna investerare</h3>',
     );
-    $form['#step_children']['selected_investors'] =  'step_cap_rais_3';
 
     // Add a checkbox which controls whether or not the selected investors
     // should receive an email.
     $settings = array('no_email' => 'Skapa transaktion', 'send_email' => 'Skapa och skicka ut transaktion');
-    $form['send_email'] = array(
+    $form['right']['send_email'] = array(
       '#type' => 'checkbox',
       '#title' => 'Skicka erbjudandet via e-post',
       '#attached' => array(
@@ -386,7 +391,6 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
         ),
       ),
     );
-    $form['#step_children']['send_email'] =  'step_cap_rais_3';
 
     // Build the node object based of the form values. This will be used to
     // generate the preview.
