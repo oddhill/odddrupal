@@ -1,9 +1,28 @@
-.page-admin form,
-.page-investor-person-edit form,
-.page-investor-company-edit form,
-.not-logged-in.page-user form,
-.page-node-add form,
-.page-node-edit form {
+form {
+
+  .form-sidebar {
+    float: left;
+    width: 340px;
+    background: $wool;
+    padding: 20px;
+
+    .form-text {
+      width: 100%;
+    }
+
+    .group-cap-rais-details {
+
+      .form-text {
+        width: auto;
+      }
+    }
+  }
+
+  .form-body {
+    overflow: hidden;
+    background: $snow;
+    padding: 20px;
+  }
 
   .messages {
     padding: 10px;
@@ -24,14 +43,60 @@
     }
   }
 
+  .field-suffix {
+    font-weight: 500;
+    margin-left: 5px;
+  }
+
   fieldset {
     position: relative;
     margin-bottom: 20px;
 
+    legend {
+      height: 40px;
+      width: 100%;
+
+      @-moz-document url-prefix() { // Apply FF-specific styling to legend spans.
+
+        span.fieldset-legend {
+          margin-top: -40px;
+        }
+      }
+
+      .fieldset-legend {
+        background: $light-concrete;
+        text-align: left;
+        display: block;
+        height: 40px;
+        width: 100%;
+        @include font-size($standard,1.3);
+        font-weight: 500;
+        text-transform: none;
+        padding: 10px 0 11px 10px;
+        border-bottom: 1px solid $wool;
+        border-radius: 2px 2px 0 0;
+
+        .form-required {
+          display: block;
+          float: left;
+          width: 18px;
+          height: 18px;
+          @include svg-bg(required, transparent, 5px center);
+          color: transparent;
+          font-size: 0px;
+          overflow: hidden;
+          text-indent: 100px;
+          line-height: 0px;
+          margin-right: 12px;
+          margin-left: -10px;
+        }
+      }
+    }
+
     .fieldset-wrapper {
-      background: $wool;
-      padding: 20px 20px 5px;
-      border-radius: 3px;
+      background: $steel;
+      padding: 10px;
+      border-radius: 0 0 2px 2px;
 
       fieldset {
         background: $steel;
@@ -77,30 +142,6 @@
             padding: 0;
             background: transparent;
           }
-        }
-      }
-    }
-
-    legend {
-      height: 40px;
-
-      span.fieldset-legend {
-        display: block;
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        height: 40px;
-        width: 100%;
-        padding: 0;
-        @include font-size(2.0,1.6);
-        font-weight: 400;
-        text-transform: uppercase;
-      }
-
-      @-moz-document url-prefix() { // Apply FF-specific styling to legend spans.
-
-        span.fieldset-legend {
-          margin-top: -40px;
         }
       }
     }

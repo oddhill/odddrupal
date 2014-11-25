@@ -2,18 +2,32 @@
 
   &.node-type-capital-raising {
 
-    #title-wrapper {
-      background: $wool;
-      padding: 20px 20px 5px;
-      border-radius: 3px;
-      margin-bottom: 20px;
+    .form-sidebar {
+      float: left;
+      width: 280px;
+      margin-right: 20px;
+      padding: 0;
+      background: transparent;
     }
 
-    .field-name-field-cap-rais-date {
+    .form-body {
+      overflow: hidden;
+      padding: 0;
+      background: transparent;
 
-      .fieldset-wrapper {
-        padding: 20px;
+      .field-name-body {
+        background: $wool;
+        padding: 10px;
+        border-radius: 2px;
+        margin-bottom: 20px;
       }
+    }
+
+    #title-wrapper {
+      background: $wool;
+      padding: 10px;
+      border-radius: 2px;
+      margin-bottom: 20px;
     }
   }
 }

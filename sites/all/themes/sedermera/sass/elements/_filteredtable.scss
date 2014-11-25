@@ -29,10 +29,11 @@
   }
 
   form {
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 20px 10px;
 
     .submit-wrapper {
       position: relative;
+      display: block;
 
       .form-submit {
         @include button($dark-grey);
@@ -167,9 +168,9 @@
     }
 
     td {
-      height: 40px;
+      height: 44px;
       padding: 10px 0 10px 10px;
-      vertical-align: top;
+      vertical-align: middle;
 
       .form-item {
         margin-bottom: 0;
@@ -190,6 +191,42 @@
             }
           }
         }
+
+        &.form-type-textfield {
+
+          .form-text {
+            margin: 0;
+            padding: 0 2px;
+          }
+        }
+      }
+
+      .editablefield-item {
+        position: relative;
+
+        .form-actions {
+
+          .submit-wrapper {
+            display: block;
+          }
+
+          .ajax-progress {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            padding-top: 3px;
+
+            .throbber {
+              @include throbber;
+            }
+
+            .message {
+              padding-left: 24px;
+            }
+          }
+        }
       }
     }
 
@@ -200,58 +237,16 @@
         border-top: 1px solid $light-grey;
         border-bottom: 1px solid $light-grey;
 
-        .editablefield-item {
-          position: relative;
-
-          .form-actions {
-
-            .ajax-progress {
-              position: absolute;
-              left: 0px;
-              top: 0px;
-              width: 100%;
-              height: 100%;
-              background: tint($light-grey,60%);
-              padding-top: 3px;
-
-              .throbber {
-                @include throbber;
-              }
-
-              .message {
-                padding-left: 24px;
-              }
-            }
-          }
+        .ajax-progress {
+          background: tint($light-grey,60%);
         }
       }
 
       &.odd {
         background: $snow;
 
-        .editablefield-item {
-          position: relative;
-
-          .form-actions {
-
-            .ajax-progress {
-              position: absolute;
-              left: 0px;
-              top: 0px;
-              width: 100%;
-              height: 100%;
-              background: $snow;
-              padding-top: 3px;
-
-              .throbber {
-                @include throbber;
-              }
-
-              .message {
-                padding-left: 24px;
-              }
-            }
-          }
+        .ajax-progress {
+          background: $snow;
         }
       }
     }

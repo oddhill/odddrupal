@@ -20,7 +20,7 @@ function f_capital_raising_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'step_cap_rais_1';
   $field_group->data = array(
-    'label' => 'Grundläggande',
+    'label' => 'Sidebar',
     'weight' => '1',
     'children' => array(
       0 => 'field_cap_rais_date',
@@ -29,11 +29,11 @@ function f_capital_raising_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Grundläggande',
+      'label' => 'Sidebar',
       'instance_settings' => array(
         'required_fields' => 0,
-        'id' => 'transaction_basics',
-        'classes' => '',
+        'id' => '',
+        'classes' => 'form-sidebar column',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -55,7 +55,7 @@ function f_capital_raising_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'step_cap_rais_1';
   $field_group->data = array(
-    'label' => 'Text',
+    'label' => 'Body',
     'weight' => '2',
     'children' => array(
       0 => 'body',
@@ -63,11 +63,11 @@ function f_capital_raising_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Text',
+      'label' => 'Body',
       'instance_settings' => array(
         'required_fields' => 0,
-        'id' => 'transaction_text',
-        'classes' => '',
+        'id' => '',
+        'classes' => 'form-body column',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',

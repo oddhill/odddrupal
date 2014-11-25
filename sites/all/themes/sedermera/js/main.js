@@ -75,20 +75,16 @@ Drupal.behaviors.form_placeholder = {
 };
 
 /**
- * Function that sets equal heights to the filter and table of the
- * filtered tables.
+ * Sets equal heights to columns.
  */
-filterHeightMatch = function() {
+columnHeightMatch = function() {
+  var contentHeight = 0;
+  var $groups = $('.column');
 
-  var $target = $('.filtered-table');
-  var $filter = $target.find('.table-filter');
-  var $wrapper = $target.find('.table-wrapper');
-  var filterHeight = $filter.outerHeight();
-  var wrapperHeight = $wrapper.outerHeight();
-
-  if (filterHeight < wrapperHeight) {
-    $filter.height(wrapperHeight);
-  }
+  $groups.each(function() {
+    contentHeight = Math.max($(this).outerHeight(), contentHeight);
+    $(this).height(contentHeight);
+  });
 };
 
 /**
@@ -128,8 +124,8 @@ Drupal.behaviors.sedermera = {
     // Use selectBoxit on our select lists.
     $('select').selectBoxIt();
 
-    // Set equal heights to filtered table.
-    filterHeightMatch();
+    // Set equal heights to columns.
+    columnHeightMatch();
 
     // Add the file field value to the substitute text field when
     // we've chosen a file from the file browser.
@@ -153,18 +149,6 @@ Drupal.behaviors.sedermera = {
         $input.parent().removeClass('checked');
       }
     });
-
-    /**
-     * Sets equal heights to the transaction-information sidebar and the
-     * transaction content.
-     */
-    var contentHeight = 0;
-    var $groups = $('.content-wrapper .column');
-    $groups.each(function() {
-       contentHeight = Math.max($(this).height(), contentHeight);
-     });
-     $groups.height(contentHeight);
-
   }
 };
 

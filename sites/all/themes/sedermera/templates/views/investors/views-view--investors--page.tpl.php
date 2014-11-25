@@ -16,21 +16,24 @@
   <div id="investor-table" class="filtered-table">
     <?php print $header; ?>
 
-    <div class="table-filter">
+    <div class="table-filter column">
       <h2 class="filter-icon"><span class="icon">Filtrera</span></h2>
       <?php print $exposed; ?>
     </div>
 
     <?php print $attachment_before; ?>
 
+    <div class="table-wrapper column">
+
       <?php print $rows; ?>
 
       <?php if ($empty): ?>
        <div class="empty-wrapper">
           <div class="empty-icon"></div>
-            <p><?php print $empty; ?><p>
+            <p><?php print $empty; ?></p>
         </div>
       <?php endif; ?>
+    </div>
 
     <?php print $attachment_after; ?>
     <?php print $more; ?>

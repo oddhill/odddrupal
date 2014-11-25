@@ -641,7 +641,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
