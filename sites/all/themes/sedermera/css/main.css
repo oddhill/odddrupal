@@ -1012,7 +1012,8 @@ div.checker.disabled span {
     margin-right: 5px; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors #edit-selected-investors {
     background: #d4d6d9;
-    padding: 20px 20px 15px 20px; }
+    padding: 20px 20px 15px 20px;
+    margin-bottom: 20px; }
 .page-node-add-capital-raising form.node-capital_raising-form .form-actions {
   text-align: right; }
   .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
