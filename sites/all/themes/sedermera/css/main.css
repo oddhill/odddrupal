@@ -1373,7 +1373,8 @@ form fieldset {
               float: none; }
 form .filter-item .form-item.form-type-select label {
   display: block; }
-form .field-type-text-with-summary .filter-wrapper {
+form .field-type-text-with-summary .filter-wrapper,
+form .field-type-text-long .filter-wrapper {
   display: none; }
 form .form-item {
   margin-bottom: 20px; }

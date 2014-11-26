@@ -267,7 +267,7 @@ function f_capital_raising_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -437,7 +437,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_text_def',
-    'label' => 'Standardtext',
+    'label' => 'Tilläggsinformation',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -472,7 +472,7 @@ function f_capital_raising_field_default_field_instances() {
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 18,
+      'weight' => 17,
     ),
   );
 
@@ -527,11 +527,11 @@ function f_capital_raising_field_default_field_instances() {
   t('Emissionsvolym');
   t('Filer');
   t('Kundbolag');
-  t('Standardtext');
   t('Teckningskurs');
   t('Teckningspost');
   t('Teckningstid');
   t('Text');
+  t('Tilläggsinformation');
   t('Units innan nyemission');
   t('Värdering (pre-money)');
 

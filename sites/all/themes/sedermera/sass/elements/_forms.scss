@@ -395,7 +395,8 @@ form {
     }
   }
 
-  .field-type-text-with-summary {
+  .field-type-text-with-summary,
+  .field-type-text-long {
 
     .filter-wrapper {
       display: none;
