@@ -512,6 +512,8 @@ ul.pager {
       height: 44px;
       padding: 10px 0 10px 10px;
       vertical-align: middle; }
+      .table-wrapper table td .form-actions {
+        margin: 0; }
       .table-wrapper table td .form-item {
         margin-bottom: 0; }
         .table-wrapper table td .form-item.form-type-checkbox {
