@@ -29,18 +29,32 @@ function sedermera_capital_raising_block_view($delta = '') {
     return;
   }
 
-  // Get the end timestamp for the node.
-  $end = sedermera_capital_raising_get_time_end($node);
-
-  // Create the initial block structure, with a subject and basic content.
+  // Create the initial block structure.
   $block = array(
     'subject' => 'Löptid utgår',
     'content' => array(
       array(
         '#prefix' => '<div class="date">',
-        '#markup' => format_date($end, 'custom', 'j F'),
+        '#markup' => '?',
         '#suffix' => '</div>',
-      )
+      ),
+    ),
+  );
+
+  // Get the end timestamp for the node.
+  $end = sedermera_capital_raising_get_time_end($node);
+
+  // Bail out if there isn't an end date set.
+  if (!$end) {
+    return $block;
+  }
+
+  // Change the content of the block to the actual end date.
+  $block['content'] = array(
+    array(
+      '#prefix' => '<div class="date">',
+      '#markup' => format_date($end, 'custom', 'j F'),
+      '#suffix' => '</div>',
     ),
   );
 
@@ -78,6 +92,11 @@ function sedermera_capital_raising_block_view($delta = '') {
 function sedermera_capital_raising_get_time_end($node) {
   // Wrap the node.
   $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Return FALSE if the date hasn't been set.
+  if (!$wrapper->field_cap_rais_date->value()) {
+    return FALSE;
+  }
 
   // Return the end timestamp.
   return $wrapper->field_cap_rais_date->value2->value();
