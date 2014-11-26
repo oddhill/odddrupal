@@ -18,6 +18,7 @@
 
     <div class="transaction-text">
       <?php print render($content['body']); ?>
+      <?php print render($content['field_cap_rais_text_def']); ?>
     </div>
 
     <div class="transaction-information">
