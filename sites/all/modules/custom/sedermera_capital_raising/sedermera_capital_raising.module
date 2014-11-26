@@ -235,8 +235,9 @@ function sedermera_capital_raising_node_prepare($node) {
  * Implements hook_node_presave().
  */
 function sedermera_capital_raising_node_presave($node) {
-  // Bail out if this isn't a capital raising node.
-  if ($node->type != 'capital_raising') {
+  // Bail out if this isn't a capital raising node, or if the end date hasn't
+  // been set.
+  if ($node->type != 'capital_raising' || !isset($node->field_cap_rais_date[LANGUAGE_NONE][0]['value2'])) {
     return;
   }
 
