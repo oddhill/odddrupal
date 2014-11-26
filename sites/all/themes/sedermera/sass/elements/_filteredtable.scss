@@ -133,6 +133,8 @@
 // Wraps the table (all content and filtred content)
 .table-wrapper {
   overflow: hidden;
+  position: relative;
+  padding-bottom: 60px;
 
   table {
     width: 100%;

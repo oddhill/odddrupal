@@ -23,22 +23,24 @@
 
     <?php print $attachment_before; ?>
 
-    <div class="table-wrapper">
+    <div class="table-wrapper column">
 
       <?php print $rows; ?>
 
       <?php if ($empty): ?>
        <div class="empty-wrapper">
           <div class="empty-icon"></div>
-            <p><?php print $empty; ?><p>
+            <p><?php print $empty; ?></p>
         </div>
       <?php endif; ?>
+
+      <?php print $attachment_after; ?>
+      <?php print $more; ?>
+      <?php print $footer; ?>
+      <?php print $pager; ?>
+
     </div>
 
-    <?php print $attachment_after; ?>
-    <?php print $more; ?>
-    <?php print $footer; ?>
   </div>
 
-  <?php print $pager; ?>
 </div>

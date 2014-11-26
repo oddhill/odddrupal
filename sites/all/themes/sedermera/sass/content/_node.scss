@@ -29,6 +29,17 @@
   }
 }
 
+.page-node-erbjudna-lagg-till {
+
+  #main-content {
+
+    #page-content {
+      background: $light-grey;
+      padding: 0;
+    }
+  }
+}
+
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {
@@ -49,4 +60,3 @@
     }
   }
 }
-

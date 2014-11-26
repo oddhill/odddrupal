@@ -33,12 +33,14 @@
             <p><?php print $empty; ?></p>
         </div>
       <?php endif; ?>
+
+      <?php print $attachment_after; ?>
+      <?php print $more; ?>
+      <?php print $footer; ?>
+      <?php print $pager; ?>
+
     </div>
 
-    <?php print $attachment_after; ?>
-    <?php print $more; ?>
-    <?php print $footer; ?>
   </div>
 
-  <?php print $pager; ?>
 </div>
