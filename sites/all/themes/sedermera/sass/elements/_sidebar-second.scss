@@ -19,8 +19,7 @@ h2.sidebar-second-icon {
   }
 }
 
-.prospect-record,
-.prospect-time-remaining {
+.sidebar-block {
   background: $steel;
   margin-bottom: 20px;
   padding-bottom: 10px;
@@ -35,22 +34,95 @@ h2.sidebar-second-icon {
     text-transform: uppercase;
   }
 
-  .progress {
-    background: $dark-grey;
-    border: 2px solid $dark-grey;
-    border-radius: 16px;
-    height: 32px;
-    margin: 20px 10px 10px 10px;
+  &.prospect-record {
 
-    .progress-bar {
-      @include font-size(1.6);
-      background-color: $snow;
-      color: $coffee;
-      font-family: 'Inconsolata', ;
-      font-weight: 700;
-      line-height: 28px;
-      box-shadow: none;
-      -webkit-box-shadow: none;
+    .vertical-bars {
+      height: 200px;
+      margin: 10px 20px 40px;
+      border-bottom: 1px solid $dark-grey;
+
+      .bar {
+        width: 50%;
+        float: left;
+        height: 199px;
+        margin-bottom: 1px;
+        position: relative;
+
+        .progress.vertical {
+          width: 80%;
+          margin: 0 10%;
+          background: transparent;
+          box-shadow: none;
+          border-radius: 0;
+
+          .progressbar-back-text {
+            display: none;
+          }
+
+          .progress-bar {
+            box-shadow: none;
+            overflow: visible;
+
+            .progressbar-front-text {
+              height: auto;
+              position: static;
+              @include font-size(2.0,1);
+              font-weight: 500;
+              line-height: 20px !important;
+              height: 20px !important;
+              margin-top: -30px;
+              color: $dark-grey;
+            }
+          }
+        }
+
+        .text {
+          overflow: hidden;
+          bottom: -24px;
+          text-align: center;
+          width: 100%;
+          position: absolute;
+          @include font-size(1.4);
+          font-family: 'Inconsolata';
+        }
+
+        &.guaranteed-wrapper {
+
+          .progress-bar {
+            background-color: shade($mustard,15%);
+          }
+        }
+
+        &.committed-wrapper {
+
+          .progress-bar {
+            background-color: shade($mustard,25%);
+          }
+        }
+      }
+    }
+
+    .total-wrapper {
+      clear: both;
+
+      .progress {
+        background: $dark-grey;
+        border: 2px solid $dark-grey;
+        border-radius: 16px;
+        height: 32px;
+        margin: 20px 10px 10px 10px;
+
+        .progress-bar {
+          @include font-size(1.6);
+          background-color: $snow;
+          color: $coffee;
+          font-family: 'Inconsolata', ;
+          font-weight: 700;
+          line-height: 28px;
+          box-shadow: none;
+          -webkit-box-shadow: none;
+        }
+      }
     }
   }
 
@@ -65,7 +137,7 @@ h2.sidebar-second-icon {
   .remaining,
   .total {
     @include font-size(1.4);
-    font-family: 'Inconsolata', ;
+    font-family: 'Inconsolata';
     padding-bottom: 10px;
   }
 

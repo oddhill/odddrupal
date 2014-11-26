@@ -254,7 +254,7 @@ function sedermera_offer_block_view($delta = '') {
     'subject' => 'Upptecknat',
     'content' => array(
       'progress_guaranteed' => array(
-        '#prefix' => '<div class="guaranteed-wrapper">',
+        '#prefix' => '<div class="vertical-bars"><div class="guaranteed-wrapper bar">',
         'bar' => $progress_bar_guaranteed,
         'text' => array(
           '#prefix' => '<div class="text">',
@@ -264,14 +264,14 @@ function sedermera_offer_block_view($delta = '') {
         '#suffix' => '</div>',
       ),
       'progress_committed' => array(
-        '#prefix' => '<div class="committed-wrapper">',
+        '#prefix' => '<div class="committed-wrapper bar">',
         'bar' => $progress_bar_committed,
         'text' => array(
           '#prefix' => '<div class="text">',
           '#markup' => 'Åtaget',
           '#suffix' => '</div>',
         ),
-        '#suffix' => '</div>',
+        '#suffix' => '</div></div>',
       ),
       'progress_total' => array(
         '#prefix' => '<div class="total-wrapper">',

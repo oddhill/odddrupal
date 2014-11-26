@@ -2260,14 +2260,12 @@ h2.sidebar-second-icon {
     color: #454545;
     overflow: hidden; }
 
-.prospect-record,
-.prospect-time-remaining {
+.sidebar-block {
   background: #d4d6d9;
   margin-bottom: 20px;
   padding-bottom: 10px;
   text-align: center; }
-  .prospect-record h3,
-  .prospect-time-remaining h3 {
+  .sidebar-block h3 {
     font-size: 12px;
     font-size: 1.2rem;
     line-height: 18px;
@@ -2276,27 +2274,72 @@ h2.sidebar-second-icon {
     font-weight: 700;
     padding: 10px 0 10px 0;
     text-transform: uppercase; }
-  .prospect-record .progress,
-  .prospect-time-remaining .progress {
-    background: #454545;
-    border: 2px solid #454545;
-    border-radius: 16px;
-    height: 32px;
-    margin: 20px 10px 10px 10px; }
-    .prospect-record .progress .progress-bar,
-    .prospect-time-remaining .progress .progress-bar {
-      font-size: 16px;
-      font-size: 1.6rem;
-      line-height: 24px;
-      background-color: #fff;
-      color: #282828;
-      font-family: "Inconsolata";
-      font-weight: 700;
-      line-height: 28px;
-      box-shadow: none;
-      -webkit-box-shadow: none; }
-  .prospect-record .date,
-  .prospect-time-remaining .date {
+  .sidebar-block.prospect-record .vertical-bars {
+    height: 200px;
+    margin: 10px 20px 40px;
+    border-bottom: 1px solid #454545; }
+    .sidebar-block.prospect-record .vertical-bars .bar {
+      width: 50%;
+      float: left;
+      height: 199px;
+      margin-bottom: 1px;
+      position: relative; }
+      .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical {
+        width: 80%;
+        margin: 0 10%;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0; }
+        .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical .progressbar-back-text {
+          display: none; }
+        .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical .progress-bar {
+          box-shadow: none;
+          overflow: visible; }
+          .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical .progress-bar .progressbar-front-text {
+            height: auto;
+            position: static;
+            font-size: 20px;
+            font-size: 2rem;
+            line-height: 20px;
+            font-weight: 500;
+            line-height: 20px !important;
+            height: 20px !important;
+            margin-top: -30px;
+            color: #454545; }
+      .sidebar-block.prospect-record .vertical-bars .bar .text {
+        overflow: hidden;
+        bottom: -24px;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        font-size: 14px;
+        font-size: 1.4rem;
+        line-height: 21px;
+        font-family: 'Inconsolata'; }
+      .sidebar-block.prospect-record .vertical-bars .bar.guaranteed-wrapper .progress-bar {
+        background-color: #d38c00; }
+      .sidebar-block.prospect-record .vertical-bars .bar.committed-wrapper .progress-bar {
+        background-color: #ba7b00; }
+  .sidebar-block.prospect-record .total-wrapper {
+    clear: both; }
+    .sidebar-block.prospect-record .total-wrapper .progress {
+      background: #454545;
+      border: 2px solid #454545;
+      border-radius: 16px;
+      height: 32px;
+      margin: 20px 10px 10px 10px; }
+      .sidebar-block.prospect-record .total-wrapper .progress .progress-bar {
+        font-size: 16px;
+        font-size: 1.6rem;
+        line-height: 24px;
+        background-color: #fff;
+        color: #282828;
+        font-family: "Inconsolata";
+        font-weight: 700;
+        line-height: 28px;
+        box-shadow: none;
+        -webkit-box-shadow: none; }
+  .sidebar-block .date {
     font-size: 34px;
     font-size: 3.4rem;
     line-height: 51px;
@@ -2304,17 +2347,14 @@ h2.sidebar-second-icon {
     font-weight: 700;
     margin: 10px 0 0 0;
     text-transform: uppercase; }
-  .prospect-record .remaining,
-  .prospect-record .total,
-  .prospect-time-remaining .remaining,
-  .prospect-time-remaining .total {
+  .sidebar-block .remaining,
+  .sidebar-block .total {
     font-size: 14px;
     font-size: 1.4rem;
     line-height: 21px;
-    font-family: "Inconsolata";
+    font-family: 'Inconsolata';
     padding-bottom: 10px; }
-  .prospect-record #edit-archive,
-  .prospect-time-remaining #edit-archive {
+  .sidebar-block #edit-archive {
     display: inline-block;
     height: 34px;
     font-size: 12px;
@@ -2337,6 +2377,5 @@ h2.sidebar-second-icon {
     transition: background-color 0.1s ease-in-out;
     margin: 10px 0 10px 0;
     text-transform: uppercase; }
-    .prospect-record #edit-archive:hover,
-    .prospect-time-remaining #edit-archive:hover {
+    .sidebar-block #edit-archive:hover {
       background-color: #303030; }
