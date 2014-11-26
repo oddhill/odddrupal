@@ -150,13 +150,15 @@ function f_offer_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Unfiltered text */
-  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
-  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['header']['area_text_custom']['content'] = '[nothing]';
-  $handler->display->display_options['header']['area_text_custom']['tokenize'] = TRUE;
+  /* Header: Global: Link */
+  $handler->display->display_options['header']['link']['id'] = 'link';
+  $handler->display->display_options['header']['link']['table'] = 'views';
+  $handler->display->display_options['header']['link']['field'] = 'link';
+  $handler->display->display_options['header']['link']['label'] = 'Lägg till fler';
+  $handler->display->display_options['header']['link']['empty'] = TRUE;
+  $handler->display->display_options['header']['link']['text'] = 'Lägg till fler investerare';
+  $handler->display->display_options['header']['link']['path'] = 'node/!1/erbjudna/lagg-till';
+  $handler->display->display_options['header']['link']['class'] = 'add-more';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -166,18 +168,6 @@ function f_offer_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har blivit erbjudna denna transaktion.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Länk i header */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Länk i header';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Lägg till fler investerare';
-  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['nothing']['alter']['path'] = 'node/!1/erbjudna/lagg-till';
-  $handler->display->display_options['fields']['nothing']['alter']['link_class'] = 'add-more';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
@@ -436,9 +426,9 @@ function f_offer_views_default_views() {
     t('Summa'),
     t('All'),
     t('%1'),
-    t('[nothing]'),
-    t('Inga investerare har blivit erbjudna denna transaktion.'),
+    t('Lägg till fler'),
     t('Lägg till fler investerare'),
+    t('Inga investerare har blivit erbjudna denna transaktion.'),
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('.'),

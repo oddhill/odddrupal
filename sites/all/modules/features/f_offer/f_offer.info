@@ -14,6 +14,7 @@ dependencies[] = sedermera_offer
 dependencies[] = strongarm
 dependencies[] = text
 dependencies[] = views
+dependencies[] = views_linkarea
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[eck_bundle][] = offer_offer
