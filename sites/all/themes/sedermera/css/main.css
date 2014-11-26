@@ -1456,6 +1456,42 @@ form .form-item {
         -webkit-animation: load 0.9s linear infinite;
         -moz-animation: load 0.9s linear infinite;
         animation: load 0.9s linear infinite; }
+  form .form-item.form-type-textarea {
+    background: #ebedf1;
+    padding: 10px;
+    border-radius: 2px;
+    margin-bottom: 20px; }
+    form .form-item.form-type-textarea .mce-panel {
+      border: 0 solid #ebedf1;
+      background: #ebedf1; }
+    form .form-item.form-type-textarea label {
+      background: #c8cacd;
+      text-align: left;
+      display: block;
+      height: 40px;
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 18.2px;
+      font-weight: 500;
+      text-transform: none;
+      padding: 10px 0 11px 10px;
+      margin: -10px -10px 0;
+      border-bottom: 1px solid #fff;
+      border-radius: 2px 2px 0 0; }
+      form .form-item.form-type-textarea label .form-required {
+        display: block;
+        float: left;
+        width: 18px;
+        height: 18px;
+        background: url("../graphics/required.png") transparent 5px center no-repeat;
+        background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
+        color: transparent;
+        font-size: 0px;
+        overflow: hidden;
+        text-indent: 100px;
+        line-height: 0px;
+        margin-right: 12px;
+        margin-left: -10px; }
   form .form-item.form-type-managed-file .image-widget,
   form .form-item.form-type-managed-file .file-widget {
     float: left; }
