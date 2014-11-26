@@ -214,8 +214,8 @@ function sedermera_offer_block_view($delta = '') {
   $total = $guaranteed + $committed;
 
   // Caluclate the different percentages.
-  $percentage_guaranteed = ceil($maximum ? ($guaranteed / $maximum) * 100 : 100);
-  $percentage_committed = ceil($maximum ? ($committed / $maximum) * 100 : 100);
+  $percentage_guaranteed = ceil($maximum ? ($guaranteed / $maximum) * 100 : 0);
+  $percentage_committed = ceil($maximum ? ($committed / $maximum) * 100 : 0);
   $percentage_total = $percentage_guaranteed + $percentage_committed;
 
   // Create the renderable array for the guaranteed progress bar.
