@@ -116,6 +116,7 @@ body {
       #main-content .content-wrapper .content-sidebar .sidebar-second-content {
         padding: 0 10px 10px 10px; }
     #main-content .content-wrapper .content-column {
+      background-color: #fff;
       overflow: hidden; }
   #main-content #page-actions {
     float: right;
