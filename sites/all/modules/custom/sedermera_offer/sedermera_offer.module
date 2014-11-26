@@ -225,7 +225,7 @@ function sedermera_offer_block_view($delta = '') {
   $maximum_readable = $maximum ? preg_replace('/\,0$/u', '', number_format($maximum, 1, ',', ' ')) : '?';
   $progress_total = array(
     '#prefix' => '<div class="total">',
-    '#markup' => "$signed_readable av $maximum_readable miljoner SEK",
+    '#markup' => "$signed_readable av $maximum_readable SEK",
     '#suffix' => '</div>',
   );
 
@@ -272,7 +272,7 @@ function sedermera_offer_capital_raising_get_signed_max($node) {
   $price_per_stock = $wrapper->field_cap_rais_rate->value();
 
   // Return the total amount, based on the above parameters.
-  return ($number_of_stocks * $price_per_stock) / 1000000;
+  return $number_of_stocks * $price_per_stock;
 }
 
 /**

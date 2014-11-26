@@ -217,7 +217,7 @@ function f_capital_raising_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => ' miljoner SEK',
+      'suffix' => ' SEK',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
