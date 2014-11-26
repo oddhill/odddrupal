@@ -11,7 +11,7 @@
 function sedermera_capital_raising_block_info() {
   $blocks['time_remaining'] = array(
     'info' => 'Tid för transaktion',
-    'cache' => DRUPAL_CACHE_PER_PAGE
+    'cache' => DRUPAL_NO_CACHE
   );
 
   return $blocks;
