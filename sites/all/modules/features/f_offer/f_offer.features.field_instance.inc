@@ -21,12 +21,12 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
     ),
     'entity_type' => 'offer',
     'field_name' => 'field_offer_amount',
-    'label' => 'Summa',
+    'label' => 'Åtagande',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -44,6 +44,40 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'offer-offer-field_offer_amount_guar'
+  $field_instances['offer-offer-field_offer_amount_guar'] = array(
+    'bundle' => 'offer',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'offer',
+    'field_name' => 'field_offer_amount_guar',
+    'label' => 'Garant',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => ' SEK',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'offer-offer-field_offer_cap_rais'
   $field_instances['offer-offer-field_offer_cap_rais'] = array(
     'bundle' => 'offer',
@@ -55,7 +89,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'offer',
@@ -93,7 +127,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'offer',
@@ -125,7 +159,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'offer',
@@ -163,7 +197,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 7,
       ),
     ),
     'entity_type' => 'offer',
@@ -180,7 +214,7 @@ function f_offer_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -194,7 +228,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'offer',
@@ -220,7 +254,7 @@ function f_offer_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_text',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -235,7 +269,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'offer',
@@ -282,13 +316,14 @@ function f_offer_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Ange vilken investerare som ska få erbjudandet.');
+  t('Garant');
   t('Intresserad');
   t('Investerare');
   t('Status');
-  t('Summa');
   t('Tecknad');
   t('Tecknat den');
   t('Transaktion');
+  t('Åtagande');
 
   return $field_instances;
 }

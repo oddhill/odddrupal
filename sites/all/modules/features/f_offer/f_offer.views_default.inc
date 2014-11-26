@@ -71,7 +71,7 @@ function f_offer_views_default_views() {
     'empty_text' => 'Test',
     'fallback_format' => 'list_default',
   );
-  /* Field: Erbjudande: Summa */
+  /* Field: Erbjudande: Åtagande */
   $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
@@ -196,7 +196,7 @@ function f_offer_views_default_views() {
     'empty_text' => 'Test',
     'fallback_format' => 'list_default',
   );
-  /* Field: Erbjudande: Summa */
+  /* Field: Erbjudande: Åtagande */
   $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
@@ -384,7 +384,7 @@ function f_offer_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Erbjudande: Summa */
+  /* Field: Erbjudande: Åtagande */
   $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
@@ -423,7 +423,7 @@ function f_offer_views_default_views() {
     t('Namn'),
     t('Status'),
     t('Intresserad'),
-    t('Summa'),
+    t('Åtagande'),
     t('All'),
     t('%1'),
     t('Lägg till fler'),
