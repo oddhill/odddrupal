@@ -188,7 +188,7 @@ function sedermera_offer_investors_add_submit($form, &$form_state) {
  */
 function sedermera_offer_block_info() {
   $blocks['stock_remaining'] = array(
-    'info' => 'Aktier för transaktion',
+    'info' => 'Units för transaktion',
     'cache' => DRUPAL_CACHE_PER_PAGE
   );
 

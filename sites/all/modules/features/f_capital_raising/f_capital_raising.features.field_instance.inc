@@ -21,7 +21,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -94,7 +94,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -141,7 +141,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'full' => array(
         'label' => 'above',
@@ -194,7 +194,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'full' => array(
         'label' => 'above',
@@ -239,7 +239,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -282,7 +282,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'full' => array(
         'label' => 'above',
@@ -305,7 +305,7 @@ function f_capital_raising_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => ' aktier',
+      'suffix' => ' unit| units',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -328,7 +328,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'full' => array(
         'label' => 'above',
@@ -351,7 +351,7 @@ function f_capital_raising_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => ' SEK per aktie',
+      'suffix' => ' SEK per unit',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -374,7 +374,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'full' => array(
         'label' => 'above',
@@ -391,13 +391,13 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_stock_no',
-    'label' => 'Aktier innan nyemission',
+    'label' => 'Units innan nyemission',
     'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => ' aktier',
+      'suffix' => ' unit| units',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -423,10 +423,9 @@ function f_capital_raising_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 9,
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -488,7 +487,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'full' => array(
         'label' => 'above',
@@ -511,7 +510,7 @@ function f_capital_raising_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => ' aktier',
+      'suffix' => ' unit| units',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -525,7 +524,6 @@ function f_capital_raising_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Aktier innan nyemission');
   t('Ange för vilket kundbolag denna transaktion tillhör.');
   t('Emissionsvolym');
   t('Filer');
@@ -535,6 +533,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Teckningspost');
   t('Teckningstid');
   t('Text');
+  t('Units innan nyemission');
   t('Värdering (pre-money)');
 
   return $field_instances;
