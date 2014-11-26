@@ -43,7 +43,7 @@ function f_capital_raising_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Text',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -159,10 +159,10 @@ function f_capital_raising_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_date',
     'label' => 'Teckningstid',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
+      'default_value' => 'blank',
+      'default_value2' => 'blank',
       'default_value_code' => '',
       'default_value_code2' => '',
       'user_register_form' => FALSE,
