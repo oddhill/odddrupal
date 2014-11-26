@@ -196,22 +196,6 @@ function f_offer_views_default_views() {
     'empty_text' => 'Test',
     'fallback_format' => 'list_default',
   );
-  /* Field: Erbjudande: Åtagande */
-  $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
-  $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
-  $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
-  $handler->display->display_options['fields']['field_offer_amount']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_offer_amount']['settings'] = array(
-    'click_to_edit' => 0,
-    'empty_text' => '',
-    'fallback_format' => 'number_decimal',
-    'fallback_settings' => array(
-      'thousand_separator' => ' ',
-      'decimal_separator' => ',',
-      'scale' => '2',
-      'prefix_suffix' => 1,
-    ),
-  );
   $handler->display->display_options['path'] = 'node/%/erbjudna';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Erbjudna';
@@ -302,6 +286,40 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  /* Field: Erbjudande: Garant */
+  $handler->display->display_options['fields']['field_offer_amount_guar']['id'] = 'field_offer_amount_guar';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['table'] = 'field_data_field_offer_amount_guar';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['field'] = 'field_offer_amount_guar';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'number_decimal',
+    'fallback_settings' => array(
+      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
+      'scale' => '2',
+      'prefix_suffix' => 1,
+    ),
+  );
+  /* Field: Erbjudande: Åtagande */
+  $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_amount']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'number_decimal',
+    'fallback_settings' => array(
+      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
+      'scale' => '2',
+      'prefix_suffix' => 1,
+    ),
+  );
   /* Field: Erbjudande: Tecknad */
   $handler->display->display_options['fields']['field_offer_signed']['id'] = 'field_offer_signed';
   $handler->display->display_options['fields']['field_offer_signed']['table'] = 'field_data_field_offer_signed';
@@ -384,10 +402,22 @@ function f_offer_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Field: Erbjudande: Garant */
+  $handler->display->display_options['fields']['field_offer_amount_guar']['id'] = 'field_offer_amount_guar';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['table'] = 'field_data_field_offer_amount_guar';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['field'] = 'field_offer_amount_guar';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['empty'] = '-';
+  $handler->display->display_options['fields']['field_offer_amount_guar']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => ',',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
   /* Field: Erbjudande: Åtagande */
   $handler->display->display_options['fields']['field_offer_amount']['id'] = 'field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['table'] = 'field_data_field_offer_amount';
   $handler->display->display_options['fields']['field_offer_amount']['field'] = 'field_offer_amount';
+  $handler->display->display_options['fields']['field_offer_amount']['empty'] = '-';
   $handler->display->display_options['fields']['field_offer_amount']['settings'] = array(
     'thousand_separator' => ' ',
     'decimal_separator' => ',',
@@ -432,12 +462,14 @@ function f_offer_views_default_views() {
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('.'),
+    t('Garant'),
     t('Teckning'),
     t('Tecknad'),
     t('<a href="[path]/intressenter/[id]/teckna">Teckna</a>'),
     t('Teckningslista'),
     t('Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('Tecknad datum'),
+    t('-'),
   );
   $export['offers'] = $view;
 

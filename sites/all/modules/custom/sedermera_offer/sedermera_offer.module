@@ -207,25 +207,44 @@ function sedermera_offer_block_view($delta = '') {
     return;
   }
 
-  // Get the maximum value, the currently signed value, and calculate the
-  // percentage.
+  // Get the maximum value, and the currently signed values.
   $maximum = sedermera_offer_capital_raising_get_signed_max($node);
-  $signed = sedermera_offer_capital_raising_get_signed_current($node);
-  $percentage = $maximum ? ($signed / $maximum) * 100 : 100;
+  $guaranteed = sedermera_offer_capital_raising_get_signed_guaranteed($node);
+  $committed = sedermera_offer_capital_raising_get_signed_commitment($node);
+  $total = $guaranteed + $committed;
 
-  // Create the renderable array for the progress bar.
-  $progress_bar = array(
+  // Caluclate the different percentages.
+  $percentage_guaranteed = ceil($maximum ? ($guaranteed / $maximum) * 100 : 100);
+  $percentage_committed = ceil($maximum ? ($committed / $maximum) * 100 : 100);
+  $percentage_total = $percentage_guaranteed + $percentage_committed;
+
+  // Create the renderable array for the guaranteed progress bar.
+  $progress_bar_guaranteed = array(
+    '#prefix' => '<div class="progress vertical bottom guaranteed">',
+    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage_guaranteed . '"></div>',
+    '#suffix' => '</div>',
+  );
+
+  // Create the renderable array for the commited progress bar.
+  $progress_bar_committed  = array(
+    '#prefix' => '<div class="progress vertical bottom committed">',
+    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage_committed . '"></div>',
+    '#suffix' => '</div>',
+  );
+
+  // Create the renderable array for the total progress bar.
+  $progress_bar_total = array(
     '#prefix' => '<div class="progress">',
-    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage . '"></div>',
+    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage_total . '"></div>',
     '#suffix' => '</div>',
   );
 
   // Create the renderable array for the total progress.
-  $signed_readable = preg_replace('/\,0$/u', '', number_format($signed, 1, ',', ' '));
+  $total_readable = preg_replace('/\,0$/u', '', number_format($total, 1, ',', ' '));
   $maximum_readable = $maximum ? preg_replace('/\,0$/u', '', number_format($maximum, 1, ',', ' ')) : '?';
   $progress_total = array(
     '#prefix' => '<div class="total">',
-    '#markup' => "$signed_readable av $maximum_readable SEK",
+    '#markup' => "$total_readable av $maximum_readable SEK",
     '#suffix' => '</div>',
   );
 
@@ -234,8 +253,32 @@ function sedermera_offer_block_view($delta = '') {
   $block = array(
     'subject' => 'Upptecknat',
     'content' => array(
-      'progress' => $progress_bar,
-      'total' => $progress_total,
+      'progress_guaranteed' => array(
+        '#prefix' => '<div class="guaranteed-wrapper">',
+        'bar' => $progress_bar_guaranteed,
+        'text' => array(
+          '#prefix' => '<div class="text">',
+          '#markup' => 'Garanterat',
+          '#suffix' => '</div>',
+        ),
+        '#suffix' => '</div>',
+      ),
+      'progress_committed' => array(
+        '#prefix' => '<div class="committed-wrapper">',
+        'bar' => $progress_bar_committed,
+        'text' => array(
+          '#prefix' => '<div class="text">',
+          '#markup' => 'Åtaget',
+          '#suffix' => '</div>',
+        ),
+        '#suffix' => '</div>',
+      ),
+      'progress_total' => array(
+        '#prefix' => '<div class="total-wrapper">',
+        'bar' => $progress_bar_total,
+        'text' => $progress_total,
+        '#suffix' => '</div>',
+      ),
       '#attached' => array(
         'css' => array(
           drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/css/bootstrap-progressbar-3.3.0.css',
@@ -276,15 +319,15 @@ function sedermera_offer_capital_raising_get_signed_max($node) {
 }
 
 /**
- * Get the currently signed amount for a capital raising.
+ * Get the commited signed amount for a capital raising.
  *
  * @param obj $node
  *   The capital raising node object.
  *
  * @return float
- *   The currently signed amount.
+ *   The currently commited amount.
  */
-function sedermera_offer_capital_raising_get_signed_current($node) {
+function sedermera_offer_capital_raising_get_signed_commitment($node) {
   // The initial return value.
   $signed = 0;
 
@@ -300,6 +343,38 @@ function sedermera_offer_capital_raising_get_signed_current($node) {
   if (!empty($result['offer'])) {
     foreach ($result['offer'] as $row) {
       $signed += entity_metadata_wrapper('offer', $row->id)->field_offer_amount->value();
+    }
+  }
+
+  // Return the total amount.
+  return $signed;
+}
+
+/**
+ * Get the guaranteed signed amount for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return float
+ *   The currently guaranteed amount.
+ */
+function sedermera_offer_capital_raising_get_signed_guaranteed($node) {
+  // The initial return value.
+  $signed = 0;
+
+  // Create and execute a query that fetches the offers that are signed and
+  // connected to this capital raising.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'offer')
+    ->fieldCondition('field_offer_cap_rais', 'target_id', $node->nid)
+    ->fieldCondition('field_offer_signed', 'value', 1);
+  $result = $query->execute();
+
+  // Increment the signed value with each offer.
+  if (!empty($result['offer'])) {
+    foreach ($result['offer'] as $row) {
+      $signed += entity_metadata_wrapper('offer', $row->id)->field_offer_amount_guar->value();
     }
   }
 
