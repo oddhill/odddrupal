@@ -242,7 +242,7 @@ function sedermera_offer_block_view($delta = '') {
         ),
         'js' => array(
           drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/bootstrap-progressbar.js',
-          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js',
+          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_block.js',
         ),
       ),
     ),
