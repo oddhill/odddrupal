@@ -1673,14 +1673,16 @@ form .form-item {
   form .form-item.form-type-managed-file .description {
     clear: both; }
 form .form-text {
-  padding: 10px 30px 10px 10px;
+  padding: 10px;
   border-radius: 2px;
   margin-bottom: 5px;
   max-width: 100%; }
-  .js form .form-text.form-autocomplete {
-    background-image: none; }
-    .js form .form-text.form-autocomplete.throbbing {
+  form .form-text.form-autocomplete {
+    padding: 10px 30px 10px 10px; }
+    .js form .form-text.form-autocomplete {
       background-image: none; }
+      .js form .form-text.form-autocomplete.throbbing {
+        background-image: none; }
   form .form-text.required {
     padding: 10px 30px; }
   form .form-text:focus {
@@ -2214,8 +2216,7 @@ ul.tabs {
 
 .views-field-field-offer-amount input {
   margin-right: 5px;
-  padding: 0 5px 0 5px 0;
-  width: 35px; }
+  padding: 0 5px 0 5px 0; }
 
 .add-more {
   display: inline-block;
