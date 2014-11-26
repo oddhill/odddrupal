@@ -176,6 +176,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Lägg till fler investerare';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['path'] = 'node/!1/erbjudna/lagg-till';
+  $handler->display->display_options['fields']['nothing']['alter']['link_class'] = 'add-more';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
