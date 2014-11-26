@@ -40,3 +40,11 @@ function sedermera_preprocess_blockify_logo(&$variables) {
   // Change the url of the logo to the graphics folder.
   $variables['logo_path'] = file_create_url(drupal_get_path('theme', 'sedermera') . '/graphics/logo.svg');
 }
+
+/**
+ * Implements template_preprocess_date_combo().
+ */
+function sedermera_preprocess_date_combo(&$variables) {
+  // Remove the fieldset description that gets added automatically.
+  unset($variables['element']['#fieldset_description']);
+}
