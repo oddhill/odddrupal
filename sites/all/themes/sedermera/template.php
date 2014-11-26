@@ -79,3 +79,13 @@ function sedermera_js_alter(&$js) {
 // implementations and theme overrides.
 include_once 'preprocess.inc';
 include_once 'theme.inc';
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function sedermera_wysiwyg_editor_settings_alter(&$settings, $context) {
+  if ($context['profile']->editor == 'tinymce') {
+    $settings['skin'] = 'light';
+    $settings['menubar'] = 'edit insert format';
+  }
+}
