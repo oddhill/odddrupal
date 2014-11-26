@@ -88,7 +88,7 @@ function f_capital_raising_field_default_field_instances() {
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Ange för vilket kundbolag denna transaktion tillhör.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -524,7 +524,6 @@ function f_capital_raising_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Ange för vilket kundbolag denna transaktion tillhör.');
   t('Emissionsvolym');
   t('Filer');
   t('Kundbolag');
