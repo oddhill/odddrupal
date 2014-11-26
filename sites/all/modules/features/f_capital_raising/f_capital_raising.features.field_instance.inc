@@ -135,7 +135,7 @@ function f_capital_raising_field_default_field_instances() {
   $field_instances['node-capital_raising-field_cap_rais_date'] = array(
     'bundle' => 'capital_raising',
     'deleted' => 0,
-    'description' => 'Ange mellan vilka datum denna transaktion har sin teckningstid.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -188,7 +188,7 @@ function f_capital_raising_field_default_field_instances() {
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'TODO: Se över hjälptexten.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -233,7 +233,7 @@ function f_capital_raising_field_default_field_instances() {
   $field_instances['node-capital_raising-field_cap_rais_file'] = array(
     'bundle' => 'capital_raising',
     'deleted' => 0,
-    'description' => 'Bifoga filer som är relevanta för denna transaktion.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -276,8 +276,7 @@ function f_capital_raising_field_default_field_instances() {
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Ange hur många aktier som går att teckna.
-TODO: Se över hjälptexten.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -323,8 +322,7 @@ TODO: Se över hjälptexten.',
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Ange kursen per aktie.
-TODO: Se över hjälptexten.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -370,7 +368,7 @@ TODO: Se över hjälptexten.',
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'TODO: Se över hjälptexten.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -416,7 +414,7 @@ TODO: Se över hjälptexten.',
     'bundle' => 'capital_raising',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'TODO: Se över hjälptexten.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -461,16 +459,9 @@ TODO: Se över hjälptexten.',
   // Included for use with string extractors like potx.
   t('Aktier innan nyemission');
   t('Ange för vilket kundbolag denna transaktion tillhör.');
-  t('Ange hur många aktier som går att teckna.
-TODO: Se över hjälptexten.');
-  t('Ange kursen per aktie.
-TODO: Se över hjälptexten.');
-  t('Ange mellan vilka datum denna transaktion har sin teckningstid.');
-  t('Bifoga filer som är relevanta för denna transaktion.');
   t('Emissionsvolym');
   t('Filer');
   t('Kundbolag');
-  t('TODO: Se över hjälptexten.');
   t('Teckningskurs');
   t('Teckningspost');
   t('Teckningstid');
