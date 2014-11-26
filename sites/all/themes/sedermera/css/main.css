@@ -891,6 +891,11 @@ div.checker.hover.active span {
     background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
 
+div.checker.disabled {
+  background: url("../graphics/checkbox_disabled_checked.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/checkbox_disabled_checked.svg") transparent 0 0 no-repeat;
+  background-position: 0 0; }
+
 .selectboxit-container * {
   font-family: 'Roboto';
   font-size: 14px;

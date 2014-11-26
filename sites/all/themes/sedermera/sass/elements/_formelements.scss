@@ -69,6 +69,11 @@ div.checker {
   }
 }
 
+div.checker.disabled {
+    @include svg-bg(checkbox_disabled_checked);
+    background-position: 0 0;
+}
+
 .selectboxit-container {
 
   * {
