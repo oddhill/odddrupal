@@ -52,9 +52,9 @@
     &.application-pdf {
 
       a {
+        @include svg-bg(pdf);
         display: inline-block;
         height: 20px;
-        @include svg-bg(pdf);
         padding-left: 25px;
       }
     }
@@ -78,8 +78,8 @@
 .views-field-field-offer-interested {
 
   .checker {
-    margin-right: 5px;
     margin-bottom: 4px;
+    margin-right: 5px;
   }
 }
 
@@ -90,5 +90,11 @@
     padding: 0 5px 0 5px 0;
     width: 35px;
   }
+}
+
+// Add investors button
+.add-more {
+  @include button($dark-grey, add);
+  margin-bottom: 40px;
 }
 

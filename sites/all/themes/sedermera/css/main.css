@@ -2148,10 +2148,10 @@ ul.tabs {
     .transaction-information .file.application-pdf img {
       display: none; }
     .transaction-information .file.application-pdf.application-pdf a {
-      display: inline-block;
-      height: 20px;
       background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
+      display: inline-block;
+      height: 20px;
       padding-left: 25px; }
 
 .field-comp-logo {
@@ -2161,13 +2161,38 @@ ul.tabs {
   width: 200px; }
 
 .views-field-field-offer-interested .checker {
-  margin-right: 5px;
-  margin-bottom: 4px; }
+  margin-bottom: 4px;
+  margin-right: 5px; }
 
 .views-field-field-offer-amount input {
   margin-right: 5px;
   padding: 0 5px 0 5px 0;
   width: 35px; }
+
+.add-more {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0px none;
+  background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin-bottom: 40px; }
+  .add-more:hover {
+    background-color: #303030; }
 
 h2.sidebar-second-icon {
   background: #454545;
