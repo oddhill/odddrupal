@@ -26,10 +26,10 @@ p {
 // Links
 
 a {
-    color: $night;
-    border-bottom: 1px solid $wool;
-    text-decoration: none;
     @include transition (border-color 0.1s ease-in-out);
+    border-bottom: 1px solid $wool;
+    color: $night;
+    text-decoration: none;
 
     &:hover {
       border-bottom: 1px solid $night;
@@ -45,8 +45,8 @@ a {
     padding: 10px;
 
     li {
-      margin-bottom: 18px;
       font-weight: 700;
+      margin-bottom: 18px;
     }
   }
 

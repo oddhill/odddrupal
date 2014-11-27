@@ -1,21 +1,20 @@
 h2.sidebar-second-icon {
   background: $dark-grey;
   display: inline-block;
-  padding: 10px;
-  width: 100%;
-  padding: 11px 0 11px 0;
   margin-bottom: 20px;
+  padding: 11px 0 11px 0;
   text-indent: 9999;
+  width: 100%;
 
   .icon {
     @include svg-bg(progress_chart);
-    display: block;
-    margin: 0px auto;
-    width: 26px;
-    height: 20px;
-    font-size: 0;
     color: $dark-grey;
+    display: block;
+    font-size: 0;
+    height: 20px;
+    margin: 0px auto;
     overflow: hidden;
+    width: 26px;
   }
 }
 
@@ -37,23 +36,23 @@ h2.sidebar-second-icon {
   &.prospect-record {
 
     .vertical-bars {
+      border-bottom: 1px solid $dark-grey;
       height: 200px;
       margin: 10px 20px 40px;
-      border-bottom: 1px solid $dark-grey;
 
       .bar {
-        width: 50%;
         float: left;
         height: 199px;
         margin-bottom: 1px;
         position: relative;
+        width: 50%;
 
         .progress.vertical {
-          width: 80%;
-          margin: 0 10%;
           background: transparent;
-          box-shadow: none;
           border-radius: 0;
+          box-shadow: none;
+          margin: 0 10%;
+          width: 80%;
 
           .progressbar-back-text {
             display: none;
@@ -64,26 +63,25 @@ h2.sidebar-second-icon {
             overflow: visible;
 
             .progressbar-front-text {
-              height: auto;
-              position: static;
               @include font-size(2.0,1);
-              font-weight: 500;
-              line-height: 20px !important;
-              height: 20px !important;
-              margin-top: -30px;
               color: $dark-grey;
+              font-weight: 500;
+              height: 20px !important;
+              line-height: 20px !important;
+              margin-top: -30px;
+              position: static;
             }
           }
         }
 
         .text {
-          overflow: hidden;
+          @include font-size(1.4);
           bottom: -24px;
+          font-family: 'Inconsolata';
+          overflow: hidden;
+          position: absolute;
           text-align: center;
           width: 100%;
-          position: absolute;
-          @include font-size(1.4);
-          font-family: 'Inconsolata';
         }
 
         &.guaranteed-wrapper {
@@ -115,11 +113,11 @@ h2.sidebar-second-icon {
         .progress-bar {
           @include font-size(1.6);
           background-color: $snow;
+          box-shadow: none;
           color: $coffee;
-          font-family: 'Inconsolata', ;
+          font-family: 'Inconsolata';
           font-weight: 700;
           line-height: 28px;
-          box-shadow: none;
           -webkit-box-shadow: none;
         }
       }

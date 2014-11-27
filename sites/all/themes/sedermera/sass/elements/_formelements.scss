@@ -133,28 +133,28 @@ div.checker.disabled {
   }
 
   .selectboxit-options {
-    border-radius: 0px;
-    border: 0 none;
-    margin: 3px 0 0;
-    box-shadow: 0 0 3px tint($dark-grey,50%);
     background: transparent;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 0 3px tint($dark-grey,50%);
+    margin: 3px 0 0;
 
     .selectboxit-option {
 
       span,
       a {
+        border: 0 none;
         height: 32px;
         line-height: 32px;
-        border: 0 none;
       }
 
       a {
-        border-bottom: 1px solid $wool;
         background: $snow;
+        border-bottom: 1px solid $wool;
 
         &:hover {
-          border-color: $wool;
           background: $light-grey;
+          border-color: $wool;
           color: $coffee;
         }
       }
@@ -162,8 +162,8 @@ div.checker.disabled {
       &.selectboxit-focus {
 
         a {
-          border-color: $wool;
           background: $light-grey;
+          border-color: $wool;
           color: $coffee;
         }
       }

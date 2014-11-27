@@ -1,30 +1,30 @@
 // Wraps the entire table
 .filtered-table {
-  overflow: hidden;
   background: $snow;
+  overflow: hidden;
 }
 
 // Wraps the entire filter
 .table-filter {
-  float: left;
   background: $wool;
+  float: left;
   width: 280px;
 
   h2.filter-icon {
     background: $dark-grey;
-    padding: 11px 0 11px 0;
     border-bottom: 1px solid;
+    padding: 11px 0 11px 0;
 
     .icon {
       @include svg-bg(filter_icon);
-      display: block;
-      margin: 0px auto;
-      width: 20px;
-      height: 20px;
-      font-size: 0;
       color: $dark-grey;
-      text-indent: 42px;
+      display: block;
+      font-size: 0;
+      height: 20px;
+      margin: 0px auto;
       overflow: hidden;
+      text-indent: 42px;
+      width: 20px;
     }
   }
 
@@ -32,9 +32,9 @@
     padding: 0 10px 20px;
 
     .submit-wrapper {
-      position: relative;
       display: block;
       height: 34px;
+      position: relative;
 
       .form-submit {
         @include button($dark-grey);
@@ -51,18 +51,18 @@
       }
 
       .ajax-progress {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        margin: 0;
+        background: shade($dark-grey,30%);
         border-radius: 34px;
         cursor: pointer;
-        background: shade($dark-grey,30%);
+        display: block;
         height: 100%;
-        text-align: center;
+        left: 0;
+        margin: 0;
         padding-top: 9px;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
 
         .throbber {
           @include throbber;
@@ -77,18 +77,18 @@
 
       > label {
         background: $light-concrete;
-        text-align: center;
-        display: block;
-        text-transform: uppercase;
-        font-weight: 700;
-        padding: 10px 0 11px 0;
         border-bottom: 1px solid $wool;
         border-radius: 2px 2px 0 0;
+        display: block;
+        font-weight: 700;
+        padding: 10px 0 11px 0;
+        text-align: center;
+        text-transform: uppercase;
       }
 
       > .form-item {
-        padding: 10px;
         border-radius: 2px;
+        padding: 10px;
       }
     }
 
@@ -98,15 +98,15 @@
 
       &.form-type-bef-checkbox {
         height: 18px;
-        position: relative;
-        padding-left: 23px;
         line-height: 18px;
         margin-bottom: 5px;
+        padding-left: 23px;
+        position: relative;
 
         .checker {
+          left: 0;
           position: absolute;
           top: 0;
-          left: 0;
         }
 
         &:last-child {
@@ -117,8 +117,8 @@
       &.form-type-textfield {
 
         .form-text {
-          padding: 5px;
           border-radius: 2px;
+          padding: 5px;
           width: 100%;
 
           &:focus {
@@ -133,16 +133,16 @@
 // Wraps the table (all content and filtred content)
 .table-wrapper {
   overflow: hidden;
-  position: relative;
   padding-bottom: 60px;
+  position: relative;
 
   table {
     width: 100%;
 
     thead {
       background: $aluminium;
-      border-top: 1px solid $wool;
       border-bottom: 1px solid $wool;
+      border-top: 1px solid $wool;
       font-weight: 700;
 
       th {
@@ -161,13 +161,13 @@
         }
 
         a {
-          font-size: $standard;
-          color: $coffee;
           border-bottom: 0px none;
+          color: $coffee;
+          font-size: $standard;
 
           img {
-            margin-left: 5px;
             border-bottom: none;
+            margin-left: 5px;
           }
         }
       }
@@ -190,9 +190,9 @@
 
           label.option {
             display: block;
-            position: relative;
-            padding-left: 23px;
             line-height: 18px;
+            padding-left: 23px;
+            position: relative;
 
             .checker {
               position: absolute;
@@ -221,12 +221,12 @@
           }
 
           .ajax-progress {
-            position: absolute;
+            height: 100%;
             left: 0px;
+            padding-top: 3px;
+            position: absolute;
             top: 0px;
             width: 100%;
-            height: 100%;
-            padding-top: 3px;
 
             .throbber {
               @include throbber;
@@ -244,8 +244,8 @@
 
       &.even {
         background: tint($light-grey,60%);
-        border-top: 1px solid $light-grey;
         border-bottom: 1px solid $light-grey;
+        border-top: 1px solid $light-grey;
 
         .ajax-progress {
           background: tint($light-grey,60%);

@@ -3,37 +3,37 @@
   &.node-type-capital-raising {
 
     .form-sidebar {
+      background: transparent;
       float: left;
-      width: 280px;
       margin-right: 20px;
       padding: 0;
-      background: transparent;
+      width: 280px;
     }
 
     .form-body {
+      background: transparent;
       overflow: hidden;
       padding: 0;
-      background: transparent;
 
       .field-name-body {
         background: $wool;
-        padding: 10px;
         border-radius: 2px;
         margin-bottom: 20px;
+        padding: 10px;
       }
     }
 
     #title-wrapper {
       background: $wool;
-      padding: 10px;
       border-radius: 2px;
       margin-bottom: 20px;
+      padding: 10px;
     }
   }
 
   .form-actions {
-    padding-top: 20px;
     border-top: 2px solid $wool;
+    padding-top: 20px;
   }
 }
 
@@ -41,21 +41,21 @@
 .page-investor-company-edit {
 
   .form-sidebar {
+    background: transparent;
     float: left;
-    width: 280px;
     margin-right: 20px;
     padding: 0;
-    background: transparent;
+    width: 280px;
   }
 
   .form-body {
+    background: transparent;
     overflow: hidden;
     padding: 0;
-    background: transparent;
   }
 
   .form-actions {
-    padding-top: 20px;
     border-top: 2px solid $wool;
+    padding-top: 20px;
   }
 }

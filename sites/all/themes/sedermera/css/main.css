@@ -22,12 +22,12 @@ p {
   margin: 1em 0; }
 
 a {
-  color: #1a1a1a;
-  border-bottom: 1px solid #e0e2e6;
-  text-decoration: none;
   -webkit-transition: border-color 0.1s ease-in-out;
   -moz-transition: border-color 0.1s ease-in-out;
-  transition: border-color 0.1s ease-in-out; }
+  transition: border-color 0.1s ease-in-out;
+  border-bottom: 1px solid #e0e2e6;
+  color: #1a1a1a;
+  text-decoration: none; }
   a:hover {
     border-bottom: 1px solid #1a1a1a; }
 
@@ -38,8 +38,8 @@ a {
   padding: 10px; }
   .body ul li,
   .body ol li {
-    margin-bottom: 18px;
-    font-weight: 700; }
+    font-weight: 700;
+    margin-bottom: 18px; }
 .body ol {
   list-style-type: decimal; }
 
@@ -78,23 +78,23 @@ img {
   height: auto; }
 
 body {
-  height: 100%;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 18.2px;
   background: #f3f4f8;
   color: #282828;
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 18.2px; }
+  height: 100%; }
 
 #site-wrapper {
   height: 100%; }
 
 #main-sidebar {
   height: 100%;
-  width: 280px;
-  position: fixed;
   left: 0;
-  top: 0; }
+  position: fixed;
+  top: 0;
+  width: 280px; }
 
 #main-content {
   font-size: 14px;
@@ -151,44 +151,44 @@ body {
             background-color: #303030; }
 
 ul.pager {
+  bottom: 20px;
   display: inline-block;
   list-style: none;
   padding-right: 24px;
   position: absolute;
-  right: 20px;
-  bottom: 20px; }
+  right: 20px; }
   ul.pager:before {
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
-    line-height: 21px;
-    float: left;
     content: "Sida";
-    text-transform: uppercase;
+    float: left;
     font-weight: 700;
-    padding: 0 7px; }
+    line-height: 21px;
+    padding: 0 7px;
+    text-transform: uppercase; }
   ul.pager li {
-    display: inline-block;
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
+    display: inline-block;
     line-height: 21px;
     margin-right: 1px; }
     ul.pager li.pager-current {
       background: #454545;
       border-radius: 3px;
       color: #e0e2e6;
-      padding: 0 7px;
-      font-weight: 700; }
+      font-weight: 700;
+      padding: 0 7px; }
     ul.pager li a {
       background: #d5d7da;
-      display: block;
       border-bottom: 0 none;
       border-radius: 3px;
       color: #282828;
+      display: block;
       font-weight: 700;
-      padding: 0 7px;
-      line-height: 21px; }
+      line-height: 21px;
+      padding: 0 7px; }
       ul.pager li a:hover {
         background: #b2b3b6;
         color: #fff; }
@@ -218,9 +218,9 @@ ul.pager {
     font-size: 20px;
     font-size: 2rem;
     line-height: 30px;
-    text-align: center;
     font-weight: 500;
-    padding-top: 30px; }
+    padding-top: 30px;
+    text-align: center; }
 
 .label {
   font-weight: 700; }
@@ -335,8 +335,8 @@ ul.pager {
     font-size: 1.1rem;
     line-height: 16.5px;
     color: #f9a500;
-    line-height: 10px;
     font-weight: 700;
+    line-height: 10px;
     text-transform: uppercase; }
   #user .menu {
     display: none; }
@@ -359,9 +359,9 @@ ul.pager {
 #page-messages {
   margin: -40px -40px 40px; }
   #page-messages .messages {
-    padding: 20px 40px;
     color: #fff;
-    font-weight: 500; }
+    font-weight: 500;
+    padding: 20px 40px; }
     #page-messages .messages.status {
       background: #76c043; }
     #page-messages .messages.warning {
@@ -370,34 +370,34 @@ ul.pager {
       background: #c04343; }
 
 .filtered-table {
-  overflow: hidden;
-  background: #fff; }
+  background: #fff;
+  overflow: hidden; }
 
 .table-filter {
-  float: left;
   background: #e0e2e6;
+  float: left;
   width: 280px; }
   .table-filter h2.filter-icon {
     background: #454545;
-    padding: 11px 0 11px 0;
-    border-bottom: 1px solid; }
+    border-bottom: 1px solid;
+    padding: 11px 0 11px 0; }
     .table-filter h2.filter-icon .icon {
       background: url("../graphics/filter_icon.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/filter_icon.svg") transparent 0 0 no-repeat;
-      display: block;
-      margin: 0px auto;
-      width: 20px;
-      height: 20px;
-      font-size: 0;
       color: #454545;
+      display: block;
+      font-size: 0;
+      height: 20px;
+      margin: 0px auto;
+      overflow: hidden;
       text-indent: 42px;
-      overflow: hidden; }
+      width: 20px; }
   .table-filter form {
     padding: 0 10px 20px; }
     .table-filter form .submit-wrapper {
-      position: relative;
       display: block;
-      height: 34px; }
+      height: 34px;
+      position: relative; }
       .table-filter form .submit-wrapper .form-submit {
         display: inline-block;
         height: 34px;
@@ -424,18 +424,18 @@ ul.pager {
         .page-node-add .table-filter form .submit-wrapper .form-submit {
           margin: 0; }
       .table-filter form .submit-wrapper .ajax-progress {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        margin: 0;
+        background: #303030;
         border-radius: 34px;
         cursor: pointer;
-        background: #303030;
+        display: block;
         height: 100%;
+        left: 0;
+        margin: 0;
+        padding-top: 9px;
+        position: absolute;
         text-align: center;
-        padding-top: 9px; }
+        top: 0;
+        width: 100%; }
         .table-filter form .submit-wrapper .ajax-progress .throbber {
           display: inline-block;
           background: transparent;
@@ -453,48 +453,48 @@ ul.pager {
       margin: 20px 0; }
       .table-filter form .filter-item > label {
         background: #c8cacd;
-        text-align: center;
+        border-bottom: 1px solid #e0e2e6;
+        border-radius: 2px 2px 0 0;
         display: block;
-        text-transform: uppercase;
         font-weight: 700;
         padding: 10px 0 11px 0;
-        border-bottom: 1px solid #e0e2e6;
-        border-radius: 2px 2px 0 0; }
+        text-align: center;
+        text-transform: uppercase; }
       .table-filter form .filter-item > .form-item {
-        padding: 10px;
-        border-radius: 2px; }
+        border-radius: 2px;
+        padding: 10px; }
     .table-filter form .form-item {
       background: #d4d6d9;
       font-size: 12px; }
       .table-filter form .form-item.form-type-bef-checkbox {
         height: 18px;
-        position: relative;
-        padding-left: 23px;
         line-height: 18px;
-        margin-bottom: 5px; }
+        margin-bottom: 5px;
+        padding-left: 23px;
+        position: relative; }
         .table-filter form .form-item.form-type-bef-checkbox .checker {
+          left: 0;
           position: absolute;
-          top: 0;
-          left: 0; }
+          top: 0; }
         .table-filter form .form-item.form-type-bef-checkbox:last-child {
           margin-bottom: 0px; }
       .table-filter form .form-item.form-type-textfield .form-text {
-        padding: 5px;
         border-radius: 2px;
+        padding: 5px;
         width: 100%; }
         .table-filter form .form-item.form-type-textfield .form-text:focus {
           box-shadow: 0 0 3px #a2a2a2; }
 
 .table-wrapper {
   overflow: hidden;
-  position: relative;
-  padding-bottom: 60px; }
+  padding-bottom: 60px;
+  position: relative; }
   .table-wrapper table {
     width: 100%; }
     .table-wrapper table thead {
       background: #ebedf1;
-      border-top: 1px solid #e0e2e6;
       border-bottom: 1px solid #e0e2e6;
+      border-top: 1px solid #e0e2e6;
       font-weight: 700; }
       .table-wrapper table thead th {
         height: 42px;
@@ -504,12 +504,12 @@ ul.pager {
           .table-wrapper table thead th.views-field.active a {
             border-bottom: 2px solid #f9a500; }
         .table-wrapper table thead th a {
-          font-size: 1.4;
+          border-bottom: 0px none;
           color: #282828;
-          border-bottom: 0px none; }
+          font-size: 1.4; }
           .table-wrapper table thead th a img {
-            margin-left: 5px;
-            border-bottom: none; }
+            border-bottom: none;
+            margin-left: 5px; }
     .table-wrapper table td {
       height: 44px;
       padding: 10px 0 10px 10px;
@@ -522,9 +522,9 @@ ul.pager {
           padding-top: 2px; }
           .table-wrapper table td .form-item.form-type-checkbox label.option {
             display: block;
-            position: relative;
+            line-height: 18px;
             padding-left: 23px;
-            line-height: 18px; }
+            position: relative; }
             .table-wrapper table td .form-item.form-type-checkbox label.option .checker {
               position: absolute;
               left: 0;
@@ -537,12 +537,12 @@ ul.pager {
         .table-wrapper table td .editablefield-item .form-actions .submit-wrapper {
           display: block; }
         .table-wrapper table td .editablefield-item .form-actions .ajax-progress {
-          position: absolute;
-          left: 0px;
-          top: 0px;
-          width: 100%;
           height: 100%;
-          padding-top: 3px; }
+          left: 0px;
+          padding-top: 3px;
+          position: absolute;
+          top: 0px;
+          width: 100%; }
           .table-wrapper table td .editablefield-item .form-actions .ajax-progress .throbber {
             display: inline-block;
             background: transparent;
@@ -558,8 +558,8 @@ ul.pager {
             padding-left: 24px; }
     .table-wrapper table tr.even {
       background: #fafafc;
-      border-top: 1px solid #f3f4f8;
-      border-bottom: 1px solid #f3f4f8; }
+      border-bottom: 1px solid #f3f4f8;
+      border-top: 1px solid #f3f4f8; }
       .table-wrapper table tr.even .ajax-progress {
         background: #fafafc; }
     .table-wrapper table tr.odd {
@@ -936,26 +936,26 @@ div.checker.disabled span {
     -moz-animation: rotate 0.2s ease-in;
     animation: rotate 0.2s ease-in; }
 .selectboxit-container .selectboxit-options {
-  border-radius: 0px;
+  background: transparent;
   border: 0 none;
-  margin: 3px 0 0;
+  border-radius: 0px;
   box-shadow: 0 0 3px #a2a2a2;
-  background: transparent; }
+  margin: 3px 0 0; }
   .selectboxit-container .selectboxit-options .selectboxit-option span,
   .selectboxit-container .selectboxit-options .selectboxit-option a {
+    border: 0 none;
     height: 32px;
-    line-height: 32px;
-    border: 0 none; }
+    line-height: 32px; }
   .selectboxit-container .selectboxit-options .selectboxit-option a {
-    border-bottom: 1px solid #e0e2e6;
-    background: #fff; }
+    background: #fff;
+    border-bottom: 1px solid #e0e2e6; }
     .selectboxit-container .selectboxit-options .selectboxit-option a:hover {
-      border-color: #e0e2e6;
       background: #f3f4f8;
+      border-color: #e0e2e6;
       color: #282828; }
   .selectboxit-container .selectboxit-options .selectboxit-option.selectboxit-focus a {
-    border-color: #e0e2e6;
     background: #f3f4f8;
+    border-color: #e0e2e6;
     color: #282828; }
 
 .page-investerare-skapa ul.create-type-list {
@@ -965,16 +965,16 @@ div.checker.disabled span {
   .page-investerare-skapa ul.create-type-list li.type {
     display: block;
     float: left;
-    width: 50%;
+    margin-bottom: 20px;
     text-align: center;
-    margin-bottom: 20px; }
+    width: 50%; }
     .page-investerare-skapa ul.create-type-list li.type .type-container {
       margin: 0 10px; }
       .page-investerare-skapa ul.create-type-list li.type .type-container a.item {
-        padding: 20px 20px 25px;
         background: #ebedf1;
+        border-top: 1px solid #e0e2e6;
         display: block;
-        border-top: 1px solid #e0e2e6; }
+        padding: 20px 20px 25px; }
         .page-investerare-skapa ul.create-type-list li.type .type-container a.item span {
           display: block; }
         .page-investerare-skapa ul.create-type-list li.type .type-container a.item .title {
@@ -982,8 +982,8 @@ div.checker.disabled span {
           font-size: 2rem;
           line-height: 26px;
           font-weight: 500;
-          text-transform: uppercase;
-          margin-bottom: 10px; }
+          margin-bottom: 10px;
+          text-transform: uppercase; }
         .page-investerare-skapa ul.create-type-list li.type .type-container a.item:hover {
           border-top: 1px solid #1a1a1a; }
 
@@ -993,9 +993,9 @@ div.checker.disabled span {
   padding: 50px 40px 50px 40px; }
 .page-node-add-capital-raising form.node-capital_raising-form #preview-investors {
   float: right;
+  background: #e0e2e6;
   padding: 20px;
-  width: 280px;
-  background: #e0e2e6; }
+  width: 280px; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors h3 {
     font-size: 12px;
     font-size: 1.2rem;
@@ -1004,8 +1004,8 @@ div.checker.disabled span {
     border-bottom: 1px solid #e0e2e6;
     font-weight: 700;
     padding: 10px 0 10px 0;
-    text-transform: uppercase;
-    text-align: center; }
+    text-align: center;
+    text-transform: uppercase; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .form-item {
     margin-bottom: 5px; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .checker {
@@ -1013,13 +1013,13 @@ div.checker.disabled span {
     margin-right: 5px; }
   .page-node-add-capital-raising form.node-capital_raising-form #preview-investors #edit-selected-investors {
     background: #d4d6d9;
-    padding: 20px 20px 15px 20px;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    padding: 20px 20px 15px 20px; }
 .page-node-add-capital-raising form.node-capital_raising-form .form-actions {
   text-align: right; }
   .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
-    margin-right: 0;
-    margin-left: 10px; }
+    margin-left: 10px;
+    margin-right: 0; }
 .page-node-add-capital-raising ul.pager {
   margin-left: 280px; }
 
@@ -1034,45 +1034,45 @@ div.checker.disabled span {
   text-align: center; }
 
 .page-node-edit.node-type-capital-raising .form-sidebar {
+  background: transparent;
   float: left;
-  width: 280px;
   margin-right: 20px;
   padding: 0;
-  background: transparent; }
+  width: 280px; }
 .page-node-edit.node-type-capital-raising .form-body {
+  background: transparent;
   overflow: hidden;
-  padding: 0;
-  background: transparent; }
+  padding: 0; }
   .page-node-edit.node-type-capital-raising .form-body .field-name-body {
     background: #e0e2e6;
-    padding: 10px;
     border-radius: 2px;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    padding: 10px; }
 .page-node-edit.node-type-capital-raising #title-wrapper {
   background: #e0e2e6;
-  padding: 10px;
   border-radius: 2px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding: 10px; }
 .page-node-edit .form-actions {
-  padding-top: 20px;
-  border-top: 2px solid #e0e2e6; }
+  border-top: 2px solid #e0e2e6;
+  padding-top: 20px; }
 
 .page-investor-person-edit .form-sidebar,
 .page-investor-company-edit .form-sidebar {
+  background: transparent;
   float: left;
-  width: 280px;
   margin-right: 20px;
   padding: 0;
-  background: transparent; }
+  width: 280px; }
 .page-investor-person-edit .form-body,
 .page-investor-company-edit .form-body {
+  background: transparent;
   overflow: hidden;
-  padding: 0;
-  background: transparent; }
+  padding: 0; }
 .page-investor-person-edit .form-actions,
 .page-investor-company-edit .form-actions {
-  padding-top: 20px;
-  border-top: 2px solid #e0e2e6; }
+  border-top: 2px solid #e0e2e6;
+  padding-top: 20px; }
 
 form .form-sidebar {
   float: left;
@@ -2030,8 +2030,8 @@ ul.tabs {
 .page-node-erbjudna #main-content #page-content,
 .page-node-teckningslista #main-content #page-content,
 .page-node-intressenter #main-content #page-content {
-  margin-top: 0;
   background: #fff;
+  margin-top: 0;
   padding: 50px 40px 50px 40px; }
   .page-investor #main-content #page-content .title h2,
   .node-type-capital-raising #main-content #page-content .title h2,
@@ -2042,11 +2042,11 @@ ul.tabs {
     font-size: 32px;
     font-size: 3.2rem;
     line-height: 48px;
-    font-weight: 500;
-    text-align: center;
     border-bottom: 2px solid #f3f4f8;
+    font-weight: 500;
+    margin-bottom: 33px;
     padding: 0 0 33px 0;
-    margin-bottom: 33px; }
+    text-align: center; }
 .page-investor #main-content .content-wrapper,
 .node-type-capital-raising #main-content .content-wrapper,
 .node-type-company #main-content .content-wrapper,
@@ -2282,21 +2282,20 @@ ul.tabs {
 h2.sidebar-second-icon {
   background: #454545;
   display: inline-block;
-  padding: 10px;
-  width: 100%;
-  padding: 11px 0 11px 0;
   margin-bottom: 20px;
-  text-indent: 9999; }
+  padding: 11px 0 11px 0;
+  text-indent: 9999;
+  width: 100%; }
   h2.sidebar-second-icon .icon {
     background: url("../graphics/progress_chart.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/progress_chart.svg") transparent 0 0 no-repeat;
-    display: block;
-    margin: 0px auto;
-    width: 26px;
-    height: 20px;
-    font-size: 0;
     color: #454545;
-    overflow: hidden; }
+    display: block;
+    font-size: 0;
+    height: 20px;
+    margin: 0px auto;
+    overflow: hidden;
+    width: 26px; }
 
 .sidebar-block {
   background: #d4d6d9;
@@ -2313,47 +2312,46 @@ h2.sidebar-second-icon {
     padding: 10px 0 10px 0;
     text-transform: uppercase; }
   .sidebar-block.prospect-record .vertical-bars {
+    border-bottom: 1px solid #454545;
     height: 200px;
-    margin: 10px 20px 40px;
-    border-bottom: 1px solid #454545; }
+    margin: 10px 20px 40px; }
     .sidebar-block.prospect-record .vertical-bars .bar {
-      width: 50%;
       float: left;
       height: 199px;
       margin-bottom: 1px;
-      position: relative; }
+      position: relative;
+      width: 50%; }
       .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical {
-        width: 80%;
-        margin: 0 10%;
         background: transparent;
+        border-radius: 0;
         box-shadow: none;
-        border-radius: 0; }
+        margin: 0 10%;
+        width: 80%; }
         .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical .progressbar-back-text {
           display: none; }
         .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical .progress-bar {
           box-shadow: none;
           overflow: visible; }
           .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical .progress-bar .progressbar-front-text {
-            height: auto;
-            position: static;
             font-size: 20px;
             font-size: 2rem;
             line-height: 20px;
+            color: #454545;
             font-weight: 500;
-            line-height: 20px !important;
             height: 20px !important;
+            line-height: 20px !important;
             margin-top: -30px;
-            color: #454545; }
+            position: static; }
       .sidebar-block.prospect-record .vertical-bars .bar .text {
-        overflow: hidden;
-        bottom: -24px;
-        text-align: center;
-        width: 100%;
-        position: absolute;
         font-size: 14px;
         font-size: 1.4rem;
         line-height: 21px;
-        font-family: 'Inconsolata'; }
+        bottom: -24px;
+        font-family: 'Inconsolata';
+        overflow: hidden;
+        position: absolute;
+        text-align: center;
+        width: 100%; }
       .sidebar-block.prospect-record .vertical-bars .bar.guaranteed-wrapper .progress-bar {
         background-color: #d38c00; }
       .sidebar-block.prospect-record .vertical-bars .bar.committed-wrapper .progress-bar {
@@ -2371,11 +2369,11 @@ h2.sidebar-second-icon {
         font-size: 1.6rem;
         line-height: 24px;
         background-color: #fff;
+        box-shadow: none;
         color: #282828;
-        font-family: "Inconsolata";
+        font-family: 'Inconsolata';
         font-weight: 700;
         line-height: 28px;
-        box-shadow: none;
         -webkit-box-shadow: none; }
   .sidebar-block .date {
     font-size: 34px;

@@ -53,11 +53,11 @@ img {
 }
 
 body {
-  height: 100%;
+  @include font-size($standard,1.3);
   background: $light-grey;
   color: $coffee;
   font-family: $body-font;
-  @include font-size($standard,1.3);
+  height: 100%;
  }
 
 #site-wrapper {
@@ -67,10 +67,10 @@ body {
 // Wraps the entire main sidebar
 #main-sidebar {
   height: 100%;
-  width: 280px;
-  position: fixed;
   left: 0;
+  position: fixed;
   top: 0;
+  width: 280px;
 }
 
 #main-content {
@@ -128,27 +128,26 @@ body {
 
 // Pager
 ul.pager {
+  bottom: 20px;
   display: inline-block;
   list-style: none;
-  //margin: 22px 0 0 0;
   padding-right: 24px;
   position: absolute;
   right: 20px;
-  bottom: 20px;
 
   &:before {
     @include font-size(1.1);
-    line-height: 21px;
-    float: left;
     content: "Sida";
-    text-transform: uppercase;
+    float: left;
     font-weight: 700;
+    line-height: 21px;
     padding: 0 7px;
+    text-transform: uppercase;
   }
 
   li {
-    display: inline-block;
     @include font-size(1.1);
+    display: inline-block;
     line-height: 21px;
     margin-right: 1px;
 
@@ -156,19 +155,19 @@ ul.pager {
       background: $dark-grey;
       border-radius: 3px;
       color: $wool;
-      padding: 0 7px;
       font-weight: 700;
+      padding: 0 7px;
     }
 
     a {
       background: $stone;
-      display: block;
       border-bottom: 0 none;
       border-radius: 3px;
       color: $coffee;
+      display: block;
       font-weight: 700;
-      padding: 0 7px;
       line-height: 21px;
+      padding: 0 7px;
 
       &:hover {
         background: $cloudy;
@@ -199,9 +198,9 @@ ul.pager {
 
   p {
     @include font-size(2.0);
-    text-align: center;
     font-weight: 500;
     padding-top: 30px;
+    text-align: center;
   }
 }
 
