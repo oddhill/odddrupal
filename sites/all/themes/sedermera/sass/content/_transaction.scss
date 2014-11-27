@@ -97,3 +97,26 @@
   margin-bottom: 40px;
 }
 
+// Send email select box and add investors button
+#sedermera-offer-investors-add {
+  overflow: hidden;
+  text-align: right;
+
+  .form-item-send-email {
+    display: inline-block;
+    margin-right: 20px;
+
+    .checker {
+      margin-right: 5px;
+    }
+  }
+
+  .form-actions {
+    display: inline-block;
+
+    .form-submit {
+      @include button($dark-grey);
+      margin-right: 0;
+    }
+  }
+}

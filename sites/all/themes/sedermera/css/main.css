@@ -2248,6 +2248,37 @@ ul.tabs {
   .add-more:hover {
     background-color: #303030; }
 
+#sedermera-offer-investors-add {
+  overflow: hidden;
+  text-align: right; }
+  #sedermera-offer-investors-add .form-item-send-email {
+    display: inline-block;
+    margin-right: 20px; }
+    #sedermera-offer-investors-add .form-item-send-email .checker {
+      margin-right: 5px; }
+  #sedermera-offer-investors-add .form-actions {
+    display: inline-block; }
+    #sedermera-offer-investors-add .form-actions .form-submit {
+      display: inline-block;
+      height: 34px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 34px;
+      border-radius: 34px;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-bottom: 0px none;
+      background-color: #454545;
+      -webkit-transition: background-color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out;
+      margin-right: 0; }
+      #sedermera-offer-investors-add .form-actions .form-submit:hover {
+        background-color: #303030; }
+
 h2.sidebar-second-icon {
   background: #454545;
   display: inline-block;
