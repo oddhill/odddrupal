@@ -18,7 +18,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf->entity_type = 'node';
   $msnf->bundle = 'capital_raising';
   $msnf->data = array(
-    'label' => 'Steg 1',
+    'label' => '1',
     'weight' => '0',
     'children' => array(
       0 => 'group_cap_rais_1',
@@ -26,7 +26,7 @@ function f_capital_raising_msnf_step_info() {
     ),
     'format_type' => 'default',
     'format_settings' => array(
-      'label' => 'Steg 1',
+      'label' => '1',
       'instance_settings' => array(
         'skip_non_required' => 0,
         'hide_if_empty' => 0,
@@ -52,12 +52,12 @@ function f_capital_raising_msnf_step_info() {
   $msnf->entity_type = 'node';
   $msnf->bundle = 'capital_raising';
   $msnf->data = array(
-    'label' => 'Steg 2',
+    'label' => '2',
     'weight' => '1',
     'children' => array(),
     'format_type' => 'default',
     'format_settings' => array(
-      'label' => 'Steg 2',
+      'label' => '2',
       'instance_settings' => array(
         'skip_non_required' => 0,
         'hide_if_empty' => 0,
@@ -83,12 +83,12 @@ function f_capital_raising_msnf_step_info() {
   $msnf->entity_type = 'node';
   $msnf->bundle = 'capital_raising';
   $msnf->data = array(
-    'label' => 'Steg 3',
+    'label' => '3',
     'weight' => '2',
     'children' => array(),
     'format_type' => 'default',
     'format_settings' => array(
-      'label' => 'Steg 3',
+      'label' => '3',
       'instance_settings' => array(
         'skip_non_required' => 0,
         'hide_if_empty' => 0,

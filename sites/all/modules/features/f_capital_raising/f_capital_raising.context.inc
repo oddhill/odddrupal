@@ -64,5 +64,43 @@ function f_capital_raising_context_default_contexts() {
   t('node');
   $export['node_capital_raising'] = $context;
 
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'node_capital_raising_add';
+  $context->description = '';
+  $context->tag = 'node';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'node/add/capital-raising' => 'node/add/capital-raising',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'system-main' => array(
+          'module' => 'system',
+          'delta' => 'main',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+        'msnf-msnf_step_data' => array(
+          'module' => 'msnf',
+          'delta' => 'msnf_step_data',
+          'region' => 'page-head',
+          'weight' => '10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('node');
+  $export['node_capital_raising_add'] = $context;
+
   return $export;
 }

@@ -26,6 +26,7 @@ dependencies[] = token_formatters
 dependencies[] = views
 features[ccl][] = Lägg till transaktion
 features[context][] = node_capital_raising
+features[context][] = node_capital_raising_add
 features[ctools][] = context:context:3
 features[ctools][] = ds:ds:1
 features[ctools][] = field_group:field_group:1

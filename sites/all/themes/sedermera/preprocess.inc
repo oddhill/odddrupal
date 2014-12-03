@@ -23,6 +23,7 @@ function sedermera_preprocess_block(&$variables) {
   // Features doesn't export block configuration.
   switch ($variables['block']->bid) {
     case 'system-main-menu':
+    case 'msnf-msnf_step_data':
       $variables['block']->subject = '';
       break;
 
