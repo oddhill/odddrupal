@@ -85,8 +85,8 @@ function sedermera_offer_node_access($node, $op, $account) {
  * Implements hook_entity_presave().
  */
 function sedermera_offer_entity_presave($entity, $type) {
-  if ($type != 'offer') {
-    // Bail out if this isn't an offer entity.
+  if ($type != 'offer' || $entity->is_new) {
+    // Bail out if this isn't an existing offer entity.
     return;
   }
 
