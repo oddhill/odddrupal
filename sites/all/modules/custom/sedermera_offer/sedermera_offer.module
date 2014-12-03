@@ -13,7 +13,8 @@ function sedermera_offer_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('sedermera_offer_sign_confirm', 1, 3),
-    'access arguments' => array('eck administer offer offer entities'),
+    'access callback' => 'sedermera_offer_investors_admin_access',
+    'access arguments' => array(1, 'eck administer offer offer entities'),
   );
 
   $items['node/%/erbjudna/lagg-till'] = array(
@@ -23,7 +24,8 @@ function sedermera_offer_menu() {
     'title arguments' => array(1),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('sedermera_offer_investors_add', 1),
-    'access arguments' => array('eck administer offer offer entities'),
+    'access callback' => 'sedermera_offer_investors_admin_access',
+    'access arguments' => array(1, 'eck administer offer offer entities'),
   );
 
   return $items;
@@ -68,6 +70,18 @@ function sedermera_offer_sign_confirm_submit($form, &$form_state) {
 }
 
 /**
+ * Implements hook_node_access().
+ */
+function sedermera_offer_node_access($node, $op, $account) {
+  if ($node->type != 'capital_raising' || $op != 'update') {
+    // Bail out if the user isn't about to edit an existing capital raising.
+    return NODE_ACCESS_IGNORE;
+  }
+
+  return $node->status ? NODE_ACCESS_IGNORE : NODE_ACCESS_DENY;
+}
+
+/**
  * Implements hook_entity_presave().
  */
 function sedermera_offer_entity_presave($entity, $type) {
@@ -104,6 +118,25 @@ function sedermera_offer_investors_add_title($capital_raising_nid) {
   // Load the node, and return the title.
   $node = node_load($capital_raising_nid);
   return $node->title;
+}
+
+/**
+ * Access callback when modifying existing offers or when adding new investors
+ * to existing capital raisings.
+ *
+ * $param int $capital_raising_nid
+ *   The node id for the capital raisong node.
+ * $param string $permission
+ *   The regular permission that will be checked if the capital raising isn't
+ *   archived.
+ */
+function sedermera_offer_investors_admin_access($capital_raising_nid, $permission) {
+  // Load the capital raising node.
+  $node = node_load($capital_raising_nid);
+
+  // Allow access if the node isn't archived and the user has the specified
+  // permission.
+  return $node->status && user_access($permission);
 }
 
 /**
@@ -617,6 +650,11 @@ function sedermera_offer_field_access($op, $field, $entity_type, $entity, $accou
 
   // Wrap the offer in order to access the existing field values.
   $wrapper = entity_metadata_wrapper('offer', $entity);
+
+  // Never allow offers to be edited if the capital raising is archived.
+  if (!$wrapper->field_offer_cap_rais->status->value()) {
+    return FALSE;
+  }
 
   // Don't allow any fields to be edited if the offer is signed and this isn't
   // user 1.
