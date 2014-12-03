@@ -175,7 +175,7 @@ function sedermera_offer_investors_add($form, &$form_state, $capital_raising_nid
     '#default_value' => isset($form_state['values']['investors']) ? $form_state['values']['investors'] : array(),
     '#attached' => array(
       'js' => array(
-        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
+        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
       ),
     ),
     '#prefix' => '<div style="display: none;">',
@@ -481,6 +481,11 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     '#type' => 'checkboxes',
     '#options' => $available_investors,
     '#default_value' => array_keys($selected_investors),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
+      ),
+    ),
     '#prefix' => '<div style="display: none;">',
     '#suffix' => '</div>',
   );
