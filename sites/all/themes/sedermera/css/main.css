@@ -106,6 +106,12 @@ body {
     padding: 40px; }
   #main-content .page-head {
     margin-bottom: 70px; }
+    #main-content .page-head:after {
+      content: "";
+      display: table;
+      clear: both; }
+    #main-content .page-head #page-title {
+      float: left; }
   #main-content .content-wrapper {
     margin: 0; }
     #main-content .content-wrapper .content-sidebar {
@@ -224,6 +230,21 @@ ul.pager {
 
 .label {
   font-weight: 700; }
+
+.process-steps {
+  float: right; }
+  .process-steps ul {
+    list-style-type: none; }
+    .process-steps ul li {
+      font-size: 48px;
+      font-size: 4.8rem;
+      line-height: 72px;
+      font-weight: 300;
+      display: inline;
+      color: #c8cacd;
+      margin-right: 15px; }
+      .process-steps ul li.active {
+        color: #282828; }
 
 #main-sidebar {
   background-color: #282828; }

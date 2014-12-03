@@ -83,7 +83,12 @@ body {
   }
 
   .page-head {
+    @include clearfix;
     margin-bottom: 70px;
+
+    #page-title {
+      float: left;
+    }
   }
 
   .content-wrapper {
@@ -207,6 +212,27 @@ ul.pager {
 // Label
 .label {
   font-weight: 700;
+}
+
+// Process steps
+.process-steps {
+  float: right;
+
+  ul {
+  list-style-type: none;
+
+    li {
+      @include font-size(4.8);
+      font-weight: 300;
+      display: inline;
+      color: $light-concrete;
+      margin-right: 15px;
+
+      &.active {
+        color: $coffee;
+      }
+    }
+  }
 }
 
 // Import page elements
