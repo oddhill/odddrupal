@@ -154,7 +154,7 @@ function sedermera_investor_entity_view($entity, $type, $view_mode, $langcode) {
 function sedermera_investor_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
   // Add a delete button right next to the submit button. This will redirect the
   // user to the delete confirmation page.
-  $form['delete'] = array(
+  $form['actions']['delete'] = array(
     '#type' => 'submit',
     '#value' => 'Radera',
     '#weight' => $form['submit']['#weight'] + 1,
@@ -172,7 +172,7 @@ function sedermera_investor_form_eck__entity__form_edit_investor_person_alter(&$
 function sedermera_investor_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
   // Add a delete button right next to the submit button. This will redirect the
   // user to the delete confirmation page.
-  $form['delete'] = array(
+  $form['actions']['delete'] = array(
     '#type' => 'submit',
     '#value' => 'Radera',
     '#weight' => $form['submit']['#weight'] + 1,
