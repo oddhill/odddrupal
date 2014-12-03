@@ -296,6 +296,22 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['id']['exclude'] = TRUE;
   $handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['id']['separator'] = '';
+  /* Field: Tecknings-länk */
+  $handler->display->display_options['fields']['status']['id'] = 'status';
+  $handler->display->display_options['fields']['status']['table'] = 'node';
+  $handler->display->display_options['fields']['status']['field'] = 'status';
+  $handler->display->display_options['fields']['status']['relationship'] = 'field_offer_cap_rais_target_id';
+  $handler->display->display_options['fields']['status']['ui_name'] = 'Tecknings-länk';
+  $handler->display->display_options['fields']['status']['label'] = '';
+  $handler->display->display_options['fields']['status']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['status']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['status']['alter']['text'] = '<a href="[path]/intressenter/[id]/teckna">Teckna</a>';
+  $handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['status']['empty'] = 'Ej tecknad';
+  $handler->display->display_options['fields']['status']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['status']['empty_zero'] = TRUE;
+  $handler->display->display_options['fields']['status']['type'] = 'boolean';
+  $handler->display->display_options['fields']['status']['not'] = 0;
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
@@ -355,7 +371,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['field_offer_signed']['label'] = 'Teckning';
   $handler->display->display_options['fields']['field_offer_signed']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_offer_signed']['alter']['text'] = 'Tecknad';
-  $handler->display->display_options['fields']['field_offer_signed']['empty'] = '<a href="[path]/intressenter/[id]/teckna">Teckna</a>';
+  $handler->display->display_options['fields']['field_offer_signed']['empty'] = '[status]';
   $handler->display->display_options['fields']['field_offer_signed']['empty_zero'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -490,11 +506,13 @@ function f_offer_views_default_views() {
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('.'),
+    t('<a href="[path]/intressenter/[id]/teckna">Teckna</a>'),
+    t('Ej tecknad'),
     t('Intresserad sen'),
     t('Garant'),
     t('Teckning'),
     t('Tecknad'),
-    t('<a href="[path]/intressenter/[id]/teckna">Teckna</a>'),
+    t('[status]'),
     t('Teckningslista'),
     t('Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('Tecknad den'),
