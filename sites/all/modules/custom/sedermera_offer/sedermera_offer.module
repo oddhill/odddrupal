@@ -617,9 +617,26 @@ function sedermera_offer_views_bulk_operations_form_alter(&$form, &$form_state, 
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state) {
+  sedermera_offer_form_editablefields_form_alter($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_offer_form_views_form_offers_interest_alter(&$form, &$form_state) {
+  sedermera_offer_form_editablefields_form_alter($form, $form_state);
+}
+
+/**
+ * Helper function which alters various editablefields forms.
+ */
+function sedermera_offer_form_editablefields_form_alter(&$form, &$form_state) {
   // Disable access to the regular submit button since the values are changed
   // via AJAX.
   $form['actions']['#access'] = FALSE;
+
+  // Attach custom javascript which will improve the submit functionality.
+  $form['output']['#attached']['js'][] = drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_editablefields.js';
 }
 
 /**
