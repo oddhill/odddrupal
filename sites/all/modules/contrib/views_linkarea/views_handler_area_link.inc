@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_area_link.inc,v 1.1.2.2.2.1 2010/11/18 20:17:19 crell Exp $
 
 class views_handler_area_link extends views_handler_area {
 
@@ -83,6 +82,16 @@ class views_handler_area_link extends views_handler_area {
     if (!$empty || !empty($this->options['empty'])) {
 
       $tokens = $this->get_render_tokens();
+
+      // Replace any tokens in the path.
+      $path = strtr($this->options['path'], $tokens);
+
+      // Check that path is valid and user has access to it.
+      // External paths are fine.
+      if (!drupal_valid_path($path)) {
+        return '';
+      }
+
       $link_options = array();
       if (!empty($this->options['querystring'])) {
         // This is an ugly way to do it, but Drupal 7 now takes an array for
@@ -90,20 +99,16 @@ class views_handler_area_link extends views_handler_area {
         // not work.  This should get switched to a multi-value interface of
         // some kind instead of ugly string parsing. @todo
         $querystring = strtr($this->options['querystring'], $tokens);
-        foreach (explode('&', $querystring) as $fragment) {
-          list($key, $value) = explode('=', $fragment);
-          $query[$key] = $value;
-        }
-        $link_options['query'] =$query;
+        $link_options['query'] = drupal_get_query_array($querystring);
       }
       if (!empty($this->options['anchor'])) {
         $link_options['anchor'] = strtr($this->options['anchor'], $tokens);
       }
       if (!empty($this->options['class'])) {
-        $link_options['attributes'] = array('class' => strtr($this->options['class'], $tokens));
+        $link_options['attributes'] = array('class' => explode(' ', strtr($this->options['class'], $tokens)));
       }
 
-      return l(strtr($this->options['text'], $tokens), strtr($this->options['path'], $tokens), $link_options);
+      return l(strtr($this->options['text'], $tokens), $path, $link_options);
     }
     return '';
   }

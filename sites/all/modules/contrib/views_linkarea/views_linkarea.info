@@ -8,9 +8,9 @@ files[] = views_linkarea.module
 files[] = views_linkarea.views.inc
 files[] = views_handler_area_link.inc
 
-; Information added by drupal.org packaging script on 2010-11-18
-version = "7.x-1.0"
+; Information added by drupal.org packaging script on 2013-10-19
+version = "7.x-1.0+3-dev"
 core = "7.x"
 project = "views_linkarea"
-datestamp = "1290111938"
+datestamp = "1382164909"
 
