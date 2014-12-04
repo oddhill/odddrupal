@@ -6,7 +6,7 @@
 
 define('ODDDRUPAL_DEFAULT_COUNTRY', 'SE');
 define('ODDDRUPAL_DEFAULT_TIMEZONE', 'Europe/Stockholm');
-define('ODDDRUPAL_VERSION', '7.x-1.15');
+define('ODDDRUPAL_VERSION', '7.x-1.16');
 
 /**
  * Implements hook_install_tasks().

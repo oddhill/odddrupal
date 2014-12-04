@@ -261,6 +261,7 @@ class ImageToolkitGdTestCase extends DrupalWebTestCase {
    */
   function testManipulations() {
     // If GD isn't available don't bother testing this.
+    module_load_include('inc', 'system', 'image.gd');
     if (!function_exists('image_gd_check_settings') || !image_gd_check_settings()) {
       $this->pass(t('Image manipulations for the GD toolkit were skipped because the GD toolkit is not available.'));
       return;
