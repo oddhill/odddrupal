@@ -7,4 +7,3 @@ base = odddrupal
 dependencies[] = config_perms
 dependencies[] = email_registration
 dependencies[] = r4032login
-dependencies[] = realname
