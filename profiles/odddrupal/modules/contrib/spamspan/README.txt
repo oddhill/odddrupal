@@ -44,5 +44,6 @@ http://drupal.org/project/issues/spamspan
 
 Module Author
 ------------
+Original: Lawrence Akka : http://drupal.org/user/63367
+November 2014 rewrite: Peter Moulding : http://petermoulding.com/spamspan
 
-Lawrence Akka : Contact me via http://drupal.org/user/63367
