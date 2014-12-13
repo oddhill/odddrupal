@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Kontroller feature.
+ */
+
+include_once 'f_verification.features.inc';

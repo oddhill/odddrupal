@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file sedermera_verification.module
+ * Main module file for the Sedermera Verification module.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_verification_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
+  // Hide the group for "Kontroller" for the regular entity form as we want to
+  // present this at another form.
+  field_group_hide_field_groups($form, array('group_invest_pers_3'));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
+  // Hide the group for "Kontroller" for the regular entity form as we want to
+  // present this at another form.
+  field_group_hide_field_groups($form, array('group_invest_pers_3'));
+}

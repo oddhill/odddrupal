@@ -84,7 +84,7 @@ function f_investor_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'redirect' => array(
-          'weight' => '4',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
