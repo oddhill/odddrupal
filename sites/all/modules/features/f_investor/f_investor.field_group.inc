@@ -208,33 +208,6 @@ function f_investor_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_invest_pers_3|investor|person|form';
-  $field_group->group_name = 'group_invest_pers_3';
-  $field_group->entity_type = 'investor';
-  $field_group->bundle = 'person';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Kontroll',
-    'weight' => '2',
-    'children' => array(
-      0 => 'field_investor_veri_id',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'formatter' => 'collapsible',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-invest-pers-3 field-group-fieldset',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $export['group_invest_pers_3|investor|person|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_invest_pers_body|investor|person|form';
   $field_group->group_name = 'group_invest_pers_body';
   $field_group->entity_type = 'investor';

@@ -57,7 +57,6 @@ features[field_group][] = group_invest_comp_body|investor|company|form
 features[field_group][] = group_invest_comp_sidebar|investor|company|form
 features[field_group][] = group_invest_pers_1|investor|person|form
 features[field_group][] = group_invest_pers_2|investor|person|form
-features[field_group][] = group_invest_pers_3|investor|person|form
 features[field_group][] = group_invest_pers_body|investor|person|form
 features[field_group][] = group_invest_pers_sidebar|investor|person|form
 features[field_instance][] = investor-company-field_invest_comp_id
