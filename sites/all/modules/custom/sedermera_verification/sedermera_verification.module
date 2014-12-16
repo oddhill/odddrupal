@@ -9,16 +9,87 @@
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_verification_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
-  // Hide the group for "Kontroller" for the regular entity form as we want to
-  // present this at another form.
-  field_group_hide_field_groups($form, array('group_invest_pers_3'));
+  // Disable the fields for "Kontroller" for the regular entity form as we want
+  // to present this at another form.
+  sedermera_verification_disable_verification_elements($form);
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
-  // Hide the group for "Kontroller" for the regular entity form as we want to
-  // present this at another form.
-  field_group_hide_field_groups($form, array('group_invest_pers_3'));
+  // The edit form will be used for the "Kontroller" page as well. This means
+  // that we need to disable the regular form elements for that page, and
+  // disable the regular form elements otherwise.
+  if (arg(3) == 'kontroll') {
+    sedermera_verification_disable_regular_elements($form);
+  }
+  else {
+    sedermera_verification_disable_verification_elements($form);
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_verification_menu_alter(&$items) {
+  // Get info about the investor entities in order to get the bundles.
+  $entity_info = entity_get_info('investor');
+
+  // Add a "Kontroller" page for every bundle.
+  foreach ($entity_info['bundles'] as $bundle => $info) {
+    // Get the base path for this bundle.
+    $base = "investor/$bundle/%eckentity";
+
+    // Copy the info from the edit page, as we want to mimic that page.
+    $items["$base/kontroll"] = $items["$base/edit"];
+
+    // Change the title for the menu tab.
+    $items["$base/kontroll"]['title'] = 'Kontroll';
+  }
+}
+
+/**
+ * Disables the "regular" form elements for an investor form.
+ *
+ * @param array $form
+ *   A structured form array.
+ */
+function sedermera_verification_disable_regular_elements(&$form) {
+  // Determine which elements that should be preserved by merging the required
+  // elements with the verification elements.
+  $preserve = array_merge(array('entity', 'actions', 'form_build_id', 'form_token', 'form_id'), sedermera_verification_get_verification_form_elements());
+
+  // Disable access to all form elements except the ones that should be
+  // preserved.
+  foreach (array_diff(element_children($form), $preserve) as $name) {
+    $form[$name]['#access'] = FALSE;
+  }
+
+  // Disable access to the delete button. This is done here instead of within
+  // the loop above, since this is nested at the second level.
+  $form['actions']['delete']['#access'] = FALSE;
+}
+
+/**
+ * Disables the "verification" form elements for an investor form.
+ *
+ * @param array $form
+ *   A structured form array.
+ */
+function sedermera_verification_disable_verification_elements(&$form) {
+  // Loop through every investor form element and disable access to it.
+  foreach (sedermera_verification_get_verification_form_elements() as $name) {
+    $form[$name]['#access'] = FALSE;
+  }
+}
+
+/**
+ * Get the the verification fields.
+ *
+ * @return array
+ *   An array with the names of the verification fields.
+ */
+function sedermera_verification_get_verification_form_elements() {
+  return array('field_investor_veri_id');
 }
