@@ -10,6 +10,42 @@
 function f_verification_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'verification-verification-field_verification_approved'
+  $field_instances['verification-verification-field_verification_approved'] = array(
+    'bundle' => 'verification',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'verification',
+    'field_name' => 'field_verification_approved',
+    'label' => 'Godkänd',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'verification-verification-field_verification_date'
   $field_instances['verification-verification-field_verification_date'] = array(
     'bundle' => 'verification',
@@ -20,7 +56,7 @@ function f_verification_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'verification',
@@ -46,7 +82,7 @@ function f_verification_field_default_field_instances() {
         'year_range' => '-0:+10',
       ),
       'type' => 'date_popup',
-      'weight' => 0,
+      'weight' => 1,
     ),
   );
 
@@ -60,7 +96,7 @@ function f_verification_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'verification',
@@ -81,13 +117,14 @@ function f_verification_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Fil');
+  t('Godkänd');
   t('Godkänd till den');
 
   return $field_instances;

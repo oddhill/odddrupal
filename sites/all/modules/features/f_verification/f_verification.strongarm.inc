@@ -29,7 +29,7 @@ function f_verification_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'redirect' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
