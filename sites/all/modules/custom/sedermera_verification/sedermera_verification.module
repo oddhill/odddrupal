@@ -17,7 +17,31 @@ function sedermera_verification_form_eck__entity__form_add_investor_person_alter
 /**
  * Implements hook_form_FORM_ID_alter().
  */
+function sedermera_verification_form_eck__entity__form_add_company_person_alter(&$form, &$form_state, $form_id) {
+  // Disable the fields for "Kontroller" for the regular entity form as we want
+  // to present this at another form.
+  sedermera_verification_disable_verification_elements($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
+  // The edit form will be used for the "Kontroller" page as well. This means
+  // that we need to disable the regular form elements for that page, and
+  // disable the regular form elements otherwise.
+  if (arg(3) == 'kontroll') {
+    sedermera_verification_disable_regular_elements($form);
+  }
+  else {
+    sedermera_verification_disable_verification_elements($form);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_verification_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
   // The edit form will be used for the "Kontroller" page as well. This means
   // that we need to disable the regular form elements for that page, and
   // disable the regular form elements otherwise.
