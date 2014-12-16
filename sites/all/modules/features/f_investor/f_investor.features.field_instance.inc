@@ -457,6 +457,174 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'investor-company-field_shared_veri_credit'
+  $field_instances['investor-company-field_shared_veri_credit'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 14,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_credit',
+    'label' => 'Kreditkontroll',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_eu'
+  $field_instances['investor-company-field_shared_veri_eu'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 13,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_eu',
+    'label' => 'EU:s sanktionsförordningar',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_id'
+  $field_instances['investor-company-field_shared_veri_id'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 12,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_id',
+    'label' => 'Identitetskontroll',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_register'
+  $field_instances['investor-company-field_shared_veri_register'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 15,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_register',
+    'label' => 'Registreringsbevis',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'investor-person-field_invest_pers_first_name'
   $field_instances['investor-person-field_invest_pers_first_name'] = array(
     'bundle' => 'person',
@@ -1109,6 +1277,7 @@ function f_investor_field_default_field_instances() {
   t('Organisationsnummer');
   t('Personnummer');
   t('Plats');
+  t('Registreringsbevis');
   t('Telefon');
   t('Tillfällig investerare');
   t('Tillfälligt bolag');
