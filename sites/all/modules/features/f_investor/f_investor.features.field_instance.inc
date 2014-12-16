@@ -909,6 +909,132 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'investor-person-field_shared_veri_address'
+  $field_instances['investor-person-field_shared_veri_address'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 13,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_address',
+    'label' => 'Adressregister från Skatteverket',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_credit'
+  $field_instances['investor-person-field_shared_veri_credit'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 15,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_credit',
+    'label' => 'Kreditkontroll',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_eu'
+  $field_instances['investor-person-field_shared_veri_eu'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 14,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_eu',
+    'label' => 'EU:s sanktionsförordningar',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 4,
+    ),
+  );
+
   // Exported field_instance: 'investor-person-field_shared_veri_id'
   $field_instances['investor-person-field_shared_veri_id'] = array(
     'bundle' => 'person',
@@ -959,6 +1085,7 @@ function f_investor_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Adressregister från Skatteverket');
   t('Ange investerar ID för denna investerare. Detta måste vara unikt, och kräver att investeraren har godkänt avtalet.');
   t('Ange namnet på bolaget.');
   t('Ange platsinformation för bolaget. Du måste inte fylla i alla fält, om det inte är relevant.');
@@ -970,11 +1097,13 @@ function f_investor_field_default_field_instances() {
   t('Anger huruvida personen enbart ska existera för en specifik transaktion eller om hen ska finnas i registret tills vidare.');
   t('Branscher');
   t('E-post');
+  t('EU:s sanktionsförordningar');
   t('Efternamn');
   t('Fax');
   t('Förnamn');
   t('Identitetskontroll');
   t('Investerar ID');
+  t('Kreditkontroll');
   t('Mobiltelefon');
   t('Namn');
   t('Organisationsnummer');

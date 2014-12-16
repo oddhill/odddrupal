@@ -408,6 +408,135 @@ function f_investor_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
+  // Exported field_base: 'field_shared_veri_address'
+  $field_bases['field_shared_veri_address'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_shared_veri_address',
+    'foreign keys' => array(
+      'eck_verification' => array(
+        'columns' => array(
+          'target_id' => 'id',
+        ),
+        'table' => 'eck_verification',
+      ),
+    ),
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'verification' => 'verification',
+        ),
+      ),
+      'target_type' => 'verification',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_shared_veri_credit'
+  $field_bases['field_shared_veri_credit'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_shared_veri_credit',
+    'foreign keys' => array(
+      'eck_verification' => array(
+        'columns' => array(
+          'target_id' => 'id',
+        ),
+        'table' => 'eck_verification',
+      ),
+    ),
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'verification' => 'verification',
+        ),
+      ),
+      'target_type' => 'verification',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_shared_veri_eu'
+  $field_bases['field_shared_veri_eu'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_shared_veri_eu',
+    'foreign keys' => array(
+      'eck_verification' => array(
+        'columns' => array(
+          'target_id' => 'id',
+        ),
+        'table' => 'eck_verification',
+      ),
+    ),
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'verification' => 'verification',
+        ),
+      ),
+      'target_type' => 'verification',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
   // Exported field_base: 'field_shared_veri_id'
   $field_bases['field_shared_veri_id'] = array(
     'active' => 1,

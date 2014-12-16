@@ -91,5 +91,5 @@ function sedermera_verification_disable_verification_elements(&$form) {
  *   An array with the names of the verification fields.
  */
 function sedermera_verification_get_verification_form_elements() {
-  return array('field_shared_veri_id');
+  return array('field_shared_veri_id', 'field_shared_veri_address', 'field_shared_veri_eu', 'field_shared_veri_credit');
 }
