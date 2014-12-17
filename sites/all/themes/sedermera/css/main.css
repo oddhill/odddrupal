@@ -246,6 +246,298 @@ ul.pager {
       .process-steps ul li.active {
         color: #282828; }
 
+.page-investerare-skapa ul.create-type-list {
+  list-style: none;
+  margin: 0 -10px;
+  overflow: hidden; }
+  .page-investerare-skapa ul.create-type-list li.type {
+    display: block;
+    float: left;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 50%; }
+    .page-investerare-skapa ul.create-type-list li.type .type-container {
+      margin: 0 10px; }
+      .page-investerare-skapa ul.create-type-list li.type .type-container a.item {
+        background: #ebedf1;
+        border-top: 1px solid #e0e2e6;
+        display: block;
+        padding: 20px 20px 25px; }
+        .page-investerare-skapa ul.create-type-list li.type .type-container a.item span {
+          display: block; }
+        .page-investerare-skapa ul.create-type-list li.type .type-container a.item .title {
+          font-size: 20px;
+          font-size: 2rem;
+          line-height: 26px;
+          font-weight: 500;
+          margin-bottom: 10px;
+          text-transform: uppercase; }
+        .page-investerare-skapa ul.create-type-list li.type .type-container a.item:hover {
+          border-top: 1px solid #1a1a1a; }
+
+.page-node-add-capital-raising form.node-capital_raising-form #preview-transaction {
+  background: #fff;
+  overflow: hidden;
+  padding: 50px 40px 50px 40px; }
+.page-node-add-capital-raising form.node-capital_raising-form #preview-investors {
+  float: right;
+  background: #e0e2e6;
+  padding: 20px;
+  width: 280px; }
+  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors h3 {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
+    background: #c8cacd;
+    border-bottom: 1px solid #e0e2e6;
+    font-weight: 700;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    text-transform: uppercase; }
+  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .form-item {
+    margin-bottom: 5px; }
+  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .checker {
+    margin-bottom: 4px;
+    margin-right: 5px; }
+  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors #edit-selected-investors {
+    background: #d4d6d9;
+    margin-bottom: 20px;
+    padding: 20px 20px 15px 20px; }
+.page-node-add-capital-raising form.node-capital_raising-form .form-actions {
+  text-align: right; }
+  .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
+    margin-left: 10px;
+    margin-right: 0; }
+.page-node-add-capital-raising ul.pager {
+  margin-left: 280px; }
+
+.field.title h2 {
+  font-size: 32px;
+  font-size: 3.2rem;
+  line-height: 48px;
+  font-weight: 500;
+  border-bottom: 2px solid #f3f4f8;
+  margin-bottom: 33px;
+  padding: 0 0 33px 0;
+  text-align: center; }
+
+.page-node-edit.node-type-capital-raising .form-sidebar {
+  background: transparent;
+  float: left;
+  margin-right: 20px;
+  padding: 0;
+  width: 280px; }
+.page-node-edit.node-type-capital-raising .form-body {
+  background: transparent;
+  overflow: hidden;
+  padding: 0; }
+  .page-node-edit.node-type-capital-raising .form-body .field-name-body {
+    background: #e0e2e6;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    padding: 10px; }
+.page-node-edit.node-type-capital-raising #title-wrapper {
+  background: #e0e2e6;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  padding: 10px; }
+.page-node-edit .form-actions {
+  border-top: 2px solid #e0e2e6;
+  padding-top: 20px; }
+
+.page-investor-person-edit .form-sidebar,
+.page-investor-company-edit .form-sidebar {
+  background: transparent;
+  float: left;
+  margin-right: 20px;
+  padding: 0;
+  width: 280px; }
+.page-investor-person-edit .form-body,
+.page-investor-company-edit .form-body {
+  background: transparent;
+  overflow: hidden;
+  padding: 0; }
+.page-investor-person-edit .form-actions,
+.page-investor-company-edit .form-actions {
+  border-top: 2px solid #e0e2e6;
+  padding-top: 20px; }
+
+.page-investor #main-content #page-content,
+.node-type-capital-raising #main-content #page-content,
+.node-type-company #main-content #page-content,
+.page-node-erbjudna #main-content #page-content,
+.page-node-teckningslista #main-content #page-content,
+.page-node-intressenter #main-content #page-content {
+  background: #fff;
+  margin-top: 0;
+  padding: 50px 40px 50px 40px; }
+  .page-investor #main-content #page-content .title h2,
+  .node-type-capital-raising #main-content #page-content .title h2,
+  .node-type-company #main-content #page-content .title h2,
+  .page-node-erbjudna #main-content #page-content .title h2,
+  .page-node-teckningslista #main-content #page-content .title h2,
+  .page-node-intressenter #main-content #page-content .title h2 {
+    font-size: 32px;
+    font-size: 3.2rem;
+    line-height: 48px;
+    border-bottom: 2px solid #f3f4f8;
+    font-weight: 500;
+    margin-bottom: 33px;
+    padding: 0 0 33px 0;
+    text-align: center; }
+.page-investor #main-content .content-wrapper,
+.node-type-capital-raising #main-content .content-wrapper,
+.node-type-company #main-content .content-wrapper,
+.page-node-erbjudna #main-content .content-wrapper,
+.page-node-teckningslista #main-content .content-wrapper,
+.page-node-intressenter #main-content .content-wrapper {
+  background-color: #e0e2e6; }
+
+.page-node-erbjudna-lagg-till #main-content #page-content {
+  background: #f3f4f8;
+  padding: 0; }
+
+.field-shared-industries,
+.field-shared-address,
+.field-shared-email {
+  margin-bottom: 15px; }
+
+.node.view-mode-full {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .node.view-mode-full:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.node-type-company #main-content .content-column {
+  overflow: visible; }
+
+.transaction-wrapper {
+  background: #fff;
+  overflow: auto; }
+
+.transaction-text {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 65.88078%;
+  float: left; }
+  .transaction-text:last-child {
+    margin-right: 0; }
+
+.transaction-information {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 18px;
+  float: left;
+  padding: 0 0 0 25px; }
+  .transaction-information:last-child {
+    margin-right: 0; }
+  .transaction-information img {
+    height: auto;
+    width: 100%; }
+  .transaction-information .field, .transaction-information .file {
+    border-bottom: 2px solid #f3f4f8;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0; }
+    .transaction-information .field:last-child, .transaction-information .file:last-child {
+      border-bottom: 0 none; }
+    .transaction-information .field a, .transaction-information .file a {
+      border: 0 none; }
+  .transaction-information .label {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    display: block;
+    font-weight: 500; }
+  .transaction-information .file {
+    display: block;
+    font-weight: 500; }
+    .transaction-information .file.application-pdf img {
+      display: none; }
+    .transaction-information .file.application-pdf.application-pdf a {
+      background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
+      display: inline-block;
+      height: 20px;
+      padding-left: 25px; }
+
+.field-comp-logo {
+  margin-top: 10px; }
+
+.views-field.views-field-field-offer-status input {
+  width: 200px; }
+
+.views-field-field-offer-interested .checker {
+  margin-bottom: 4px;
+  margin-right: 5px; }
+
+.views-field-field-offer-amount input {
+  margin-right: 5px;
+  padding: 0 5px 0 5px 0; }
+
+.add-more {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0px none;
+  background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin-bottom: 40px; }
+  .add-more:hover {
+    background-color: #303030; }
+
+#sedermera-offer-investors-add {
+  overflow: hidden;
+  text-align: right; }
+  #sedermera-offer-investors-add .form-item-send-email {
+    display: inline-block;
+    margin-right: 20px; }
+    #sedermera-offer-investors-add .form-item-send-email .checker {
+      margin-right: 5px; }
+  #sedermera-offer-investors-add .form-actions {
+    display: inline-block; }
+    #sedermera-offer-investors-add .form-actions .form-submit {
+      display: inline-block;
+      height: 34px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 34px;
+      border-radius: 34px;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-bottom: 0px none;
+      background-color: #454545;
+      -webkit-transition: background-color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out;
+      margin-right: 0; }
+      #sedermera-offer-investors-add .form-actions .form-submit:hover {
+        background-color: #303030; }
+
 #main-sidebar {
   background-color: #282828; }
   #main-sidebar a {
@@ -979,122 +1271,6 @@ div.checker.disabled span {
     border-color: #e0e2e6;
     color: #282828; }
 
-.page-investerare-skapa ul.create-type-list {
-  list-style: none;
-  margin: 0 -10px;
-  overflow: hidden; }
-  .page-investerare-skapa ul.create-type-list li.type {
-    display: block;
-    float: left;
-    margin-bottom: 20px;
-    text-align: center;
-    width: 50%; }
-    .page-investerare-skapa ul.create-type-list li.type .type-container {
-      margin: 0 10px; }
-      .page-investerare-skapa ul.create-type-list li.type .type-container a.item {
-        background: #ebedf1;
-        border-top: 1px solid #e0e2e6;
-        display: block;
-        padding: 20px 20px 25px; }
-        .page-investerare-skapa ul.create-type-list li.type .type-container a.item span {
-          display: block; }
-        .page-investerare-skapa ul.create-type-list li.type .type-container a.item .title {
-          font-size: 20px;
-          font-size: 2rem;
-          line-height: 26px;
-          font-weight: 500;
-          margin-bottom: 10px;
-          text-transform: uppercase; }
-        .page-investerare-skapa ul.create-type-list li.type .type-container a.item:hover {
-          border-top: 1px solid #1a1a1a; }
-
-.page-node-add-capital-raising form.node-capital_raising-form #preview-transaction {
-  background: #fff;
-  overflow: hidden;
-  padding: 50px 40px 50px 40px; }
-.page-node-add-capital-raising form.node-capital_raising-form #preview-investors {
-  float: right;
-  background: #e0e2e6;
-  padding: 20px;
-  width: 280px; }
-  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors h3 {
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 18px;
-    background: #c8cacd;
-    border-bottom: 1px solid #e0e2e6;
-    font-weight: 700;
-    padding: 10px 0 10px 0;
-    text-align: center;
-    text-transform: uppercase; }
-  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .form-item {
-    margin-bottom: 5px; }
-  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors .checker {
-    margin-bottom: 4px;
-    margin-right: 5px; }
-  .page-node-add-capital-raising form.node-capital_raising-form #preview-investors #edit-selected-investors {
-    background: #d4d6d9;
-    margin-bottom: 20px;
-    padding: 20px 20px 15px 20px; }
-.page-node-add-capital-raising form.node-capital_raising-form .form-actions {
-  text-align: right; }
-  .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
-    margin-left: 10px;
-    margin-right: 0; }
-.page-node-add-capital-raising ul.pager {
-  margin-left: 280px; }
-
-.field.title h2 {
-  font-size: 32px;
-  font-size: 3.2rem;
-  line-height: 48px;
-  font-weight: 500;
-  border-bottom: 2px solid #f3f4f8;
-  margin-bottom: 33px;
-  padding: 0 0 33px 0;
-  text-align: center; }
-
-.page-node-edit.node-type-capital-raising .form-sidebar {
-  background: transparent;
-  float: left;
-  margin-right: 20px;
-  padding: 0;
-  width: 280px; }
-.page-node-edit.node-type-capital-raising .form-body {
-  background: transparent;
-  overflow: hidden;
-  padding: 0; }
-  .page-node-edit.node-type-capital-raising .form-body .field-name-body {
-    background: #e0e2e6;
-    border-radius: 2px;
-    margin-bottom: 20px;
-    padding: 10px; }
-.page-node-edit.node-type-capital-raising #title-wrapper {
-  background: #e0e2e6;
-  border-radius: 2px;
-  margin-bottom: 20px;
-  padding: 10px; }
-.page-node-edit .form-actions {
-  border-top: 2px solid #e0e2e6;
-  padding-top: 20px; }
-
-.page-investor-person-edit .form-sidebar,
-.page-investor-company-edit .form-sidebar {
-  background: transparent;
-  float: left;
-  margin-right: 20px;
-  padding: 0;
-  width: 280px; }
-.page-investor-person-edit .form-body,
-.page-investor-company-edit .form-body {
-  background: transparent;
-  overflow: hidden;
-  padding: 0; }
-.page-investor-person-edit .form-actions,
-.page-investor-company-edit .form-actions {
-  border-top: 2px solid #e0e2e6;
-  padding-top: 20px; }
-
 form .form-sidebar {
   float: left;
   width: 340px;
@@ -1130,9 +1306,6 @@ form fieldset {
   form fieldset legend {
     height: 40px;
     width: 100%; }
-@-moz-document url-prefix() {
-  form fieldset legend span.fieldset-legend {
-    margin-top: -40px; } }
     form fieldset legend .fieldset-legend {
       background: #c8cacd;
       text-align: left;
@@ -1164,7 +1337,8 @@ form fieldset {
   form fieldset .fieldset-wrapper {
     background: #d4d6d9;
     padding: 10px;
-    border-radius: 0 0 2px 2px; }
+    border-radius: 0 0 2px 2px;
+    overflow: hidden; }
     form fieldset .fieldset-wrapper fieldset {
       background: #d4d6d9;
       position: relative;
@@ -1566,11 +1740,22 @@ form .form-item {
         width: 240px;
         height: 39px;
         opacity: 0; }
+      form .form-item.form-type-managed-file .image-widget .image-widget-data .file,
+      form .form-item.form-type-managed-file .image-widget .file-widget-data .file,
+      form .form-item.form-type-managed-file .file-widget .image-widget-data .file,
+      form .form-item.form-type-managed-file .file-widget .file-widget-data .file {
+        display: inline-block;
+        padding: 0 5px 10px 5px; }
+      form .form-item.form-type-managed-file .image-widget .image-widget-data .file-size,
+      form .form-item.form-type-managed-file .image-widget .file-widget-data .file-size,
+      form .form-item.form-type-managed-file .file-widget .image-widget-data .file-size,
+      form .form-item.form-type-managed-file .file-widget .file-widget-data .file-size {
+        padding-right: 5px; }
       form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper,
       form .form-item.form-type-managed-file .image-widget .file-widget-data .submit-wrapper,
       form .form-item.form-type-managed-file .file-widget .image-widget-data .submit-wrapper,
       form .form-item.form-type-managed-file .file-widget .file-widget-data .submit-wrapper {
-        margin: 8px 8px 0 0;
+        margin: 8px 8px 8px 0;
         height: 24px;
         position: relative; }
         form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit,
@@ -1947,6 +2132,48 @@ form.confirmation {
   #edit-cancel:hover {
     background-color: #862e2e; }
 
+.page-investor-person-kontroll #eck-entity-form-edit-investor-person,
+.page-investor-person-kontroll #eck-entity-form-edit-investor-company,
+.page-investor-company-kontroll #eck-entity-form-edit-investor-person,
+.page-investor-company-kontroll #eck-entity-form-edit-investor-company {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .page-investor-person-kontroll #eck-entity-form-edit-investor-person:after,
+  .page-investor-person-kontroll #eck-entity-form-edit-investor-company:after,
+  .page-investor-company-kontroll #eck-entity-form-edit-investor-person:after,
+  .page-investor-company-kontroll #eck-entity-form-edit-investor-company:after {
+    content: "";
+    display: table;
+    clear: both; }
+.page-investor-person-kontroll .form-managed-file,
+.page-investor-company-kontroll .form-managed-file {
+  clear: both;
+  display: block;
+  width: 100%; }
+.page-investor-person-kontroll .description,
+.page-investor-company-kontroll .description {
+  margin-bottom: -20px; }
+.page-investor-person-kontroll .field-type-list-boolean,
+.page-investor-company-kontroll .field-type-list-boolean {
+  float: left;
+  display: inline-block;
+  margin-top: 20px; }
+.page-investor-person-kontroll .date-form-element-content,
+.page-investor-company-kontroll .date-form-element-content {
+  display: inline-block;
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  width: 120px; }
+.page-investor-person-kontroll .option,
+.page-investor-company-kontroll .option {
+  margin-top: 10px; }
+.page-investor-person-kontroll .checker,
+.page-investor-company-kontroll .checker {
+  margin-bottom: 2px;
+  padding-right: 25px; }
+
 ul.tabs {
   background: #ebedf1;
   border-bottom: 1px solid #e0e2e6;
@@ -2045,58 +2272,6 @@ ul.tabs {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-.page-investor #main-content #page-content,
-.node-type-capital-raising #main-content #page-content,
-.node-type-company #main-content #page-content,
-.page-node-erbjudna #main-content #page-content,
-.page-node-teckningslista #main-content #page-content,
-.page-node-intressenter #main-content #page-content {
-  background: #fff;
-  margin-top: 0;
-  padding: 50px 40px 50px 40px; }
-  .page-investor #main-content #page-content .title h2,
-  .node-type-capital-raising #main-content #page-content .title h2,
-  .node-type-company #main-content #page-content .title h2,
-  .page-node-erbjudna #main-content #page-content .title h2,
-  .page-node-teckningslista #main-content #page-content .title h2,
-  .page-node-intressenter #main-content #page-content .title h2 {
-    font-size: 32px;
-    font-size: 3.2rem;
-    line-height: 48px;
-    border-bottom: 2px solid #f3f4f8;
-    font-weight: 500;
-    margin-bottom: 33px;
-    padding: 0 0 33px 0;
-    text-align: center; }
-.page-investor #main-content .content-wrapper,
-.node-type-capital-raising #main-content .content-wrapper,
-.node-type-company #main-content .content-wrapper,
-.page-node-erbjudna #main-content .content-wrapper,
-.page-node-teckningslista #main-content .content-wrapper,
-.page-node-intressenter #main-content .content-wrapper {
-  background-color: #e0e2e6; }
-
-.page-node-erbjudna-lagg-till #main-content #page-content {
-  background: #f3f4f8;
-  padding: 0; }
-
-.field-shared-industries,
-.field-shared-address,
-.field-shared-email {
-  margin-bottom: 15px; }
-
-.node.view-mode-full {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto; }
-  .node.view-mode-full:after {
-    content: "";
-    display: table;
-    clear: both; }
-
-.node-type-company #main-content .content-column {
-  overflow: visible; }
-
 .not-logged-in.page-user {
   background: #282828;
   box-sizing: border-box; }
@@ -2176,130 +2351,6 @@ ul.tabs {
           background-color: #fac04c;
           box-shadow: 0 0 3px #222222; }
 
-.transaction-wrapper {
-  background: #fff;
-  overflow: auto; }
-
-.transaction-text {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 65.88078%;
-  float: left; }
-  .transaction-text:last-child {
-    margin-right: 0; }
-
-.transaction-information {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 31.76157%;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 18px;
-  float: left;
-  padding: 0 0 0 25px; }
-  .transaction-information:last-child {
-    margin-right: 0; }
-  .transaction-information img {
-    height: auto;
-    width: 100%; }
-  .transaction-information .field, .transaction-information .file {
-    border-bottom: 2px solid #f3f4f8;
-    margin: 0 0 20px 0;
-    padding: 0 0 20px 0; }
-    .transaction-information .field:last-child, .transaction-information .file:last-child {
-      border-bottom: 0 none; }
-    .transaction-information .field a, .transaction-information .file a {
-      border: 0 none; }
-  .transaction-information .label {
-    font-size: 14px;
-    font-size: 1.4rem;
-    line-height: 21px;
-    display: block;
-    font-weight: 500; }
-  .transaction-information .file {
-    display: block;
-    font-weight: 500; }
-    .transaction-information .file.application-pdf img {
-      display: none; }
-    .transaction-information .file.application-pdf.application-pdf a {
-      background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
-      display: inline-block;
-      height: 20px;
-      padding-left: 25px; }
-
-.field-comp-logo {
-  margin-top: 10px; }
-
-.views-field.views-field-field-offer-status input {
-  width: 200px; }
-
-.views-field-field-offer-interested .checker {
-  margin-bottom: 4px;
-  margin-right: 5px; }
-
-.views-field-field-offer-amount input {
-  margin-right: 5px;
-  padding: 0 5px 0 5px 0; }
-
-.add-more {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0px none;
-  background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin-bottom: 40px; }
-  .add-more:hover {
-    background-color: #303030; }
-
-#sedermera-offer-investors-add {
-  overflow: hidden;
-  text-align: right; }
-  #sedermera-offer-investors-add .form-item-send-email {
-    display: inline-block;
-    margin-right: 20px; }
-    #sedermera-offer-investors-add .form-item-send-email .checker {
-      margin-right: 5px; }
-  #sedermera-offer-investors-add .form-actions {
-    display: inline-block; }
-    #sedermera-offer-investors-add .form-actions .form-submit {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0px none;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out;
-      margin-right: 0; }
-      #sedermera-offer-investors-add .form-actions .form-submit:hover {
-        background-color: #303030; }
-
 h2.sidebar-second-icon {
   background: #454545;
   display: inline-block;
@@ -2321,7 +2372,7 @@ h2.sidebar-second-icon {
 .sidebar-block {
   background: #d4d6d9;
   margin-bottom: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   text-align: center; }
   .sidebar-block h3 {
     font-size: 12px;
@@ -2409,8 +2460,7 @@ h2.sidebar-second-icon {
     font-size: 14px;
     font-size: 1.4rem;
     line-height: 21px;
-    font-family: 'Inconsolata';
-    padding-bottom: 10px; }
+    font-family: 'Inconsolata'; }
   .sidebar-block #edit-archive {
     display: inline-block;
     height: 34px;
@@ -2432,7 +2482,7 @@ h2.sidebar-second-icon {
     -webkit-transition: background-color 0.1s ease-in-out;
     -moz-transition: background-color 0.1s ease-in-out;
     transition: background-color 0.1s ease-in-out;
-    margin: 10px 0 10px 0;
+    margin: 10px 0 0 0;
     text-transform: uppercase; }
     .sidebar-block #edit-archive:hover {
       background-color: #303030; }

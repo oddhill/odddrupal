@@ -60,13 +60,6 @@ form {
       height: 40px;
       width: 100%;
 
-      @-moz-document url-prefix() { // Apply FF-specific styling to legend spans.
-
-        span.fieldset-legend {
-          margin-top: -40px;
-        }
-      }
-
       .fieldset-legend {
         background: $light-concrete;
         text-align: left;
@@ -101,6 +94,7 @@ form {
       background: $steel;
       padding: 10px;
       border-radius: 0 0 2px 2px;
+      overflow: hidden;
 
       fieldset {
         background: $steel;
@@ -592,8 +586,17 @@ form {
             opacity: 0;
           }
 
+          .file {
+            display: inline-block;
+            padding: 0 5px 10px 5px;
+          }
+
+          .file-size {
+            padding-right: 5px;
+          }
+
           .submit-wrapper {
-            margin: 8px 8px 0 0;
+            margin: 8px 8px 8px 0;
             height: 24px;
             position: relative;
 
@@ -857,4 +860,50 @@ form.confirmation {
 #edit-cancel {
     @include button($wine, cancel);
     margin-left: 20px;
+}
+
+// Investor Person Control
+.page-investor-person-kontroll,
+.page-investor-company-kontroll {
+
+  #eck-entity-form-edit-investor-person,
+  #eck-entity-form-edit-investor-company {
+    @include outer-container;
+  }
+
+  // File
+  .form-managed-file {
+    clear: both;
+    display: block;
+    width: 100%;
+  }
+
+  .description {
+    margin-bottom: -20px;
+  }
+
+  // Approved checkbox
+  .field-type-list-boolean {
+    float: left;
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+   // Date
+  .date-form-element-content {
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 120px;
+  }
+
+  .option {
+    margin-top: 10px;
+  }
+
+  .checker {
+    margin-bottom: 2px;
+    padding-right: 25px;
+  }
 }

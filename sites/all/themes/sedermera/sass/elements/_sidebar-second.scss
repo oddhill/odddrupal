@@ -21,7 +21,7 @@ h2.sidebar-second-icon {
 .sidebar-block {
   background: $steel;
   margin-bottom: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   text-align: center;
 
   h3 {
@@ -136,12 +136,11 @@ h2.sidebar-second-icon {
   .total {
     @include font-size(1.4);
     font-family: 'Inconsolata';
-    padding-bottom: 10px;
   }
 
   #edit-archive {
     @include button($dark-grey, archive);
-    margin: 10px 0 10px 0;
+    margin: 10px 0 0 0;
     text-transform: uppercase;
   }
 }

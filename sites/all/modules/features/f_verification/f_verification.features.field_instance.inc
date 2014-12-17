@@ -30,7 +30,7 @@ function f_verification_field_default_field_instances() {
     ),
     'entity_type' => 'verification',
     'field_name' => 'field_verification_approved',
-    'label' => 'Godkänd',
+    'label' => 'Godkänd till den',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -42,7 +42,7 @@ function f_verification_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 0,
+      'weight' => 1,
     ),
   );
 
@@ -61,7 +61,7 @@ function f_verification_field_default_field_instances() {
     ),
     'entity_type' => 'verification',
     'field_name' => 'field_verification_date',
-    'label' => 'Godkänd till den',
+    'label' => 'Välj datum',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -83,7 +83,7 @@ function f_verification_field_default_field_instances() {
         'year_range' => '-0:+10',
       ),
       'type' => 'date_popup',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -118,15 +118,15 @@ function f_verification_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 2,
+      'weight' => 0,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Fil');
-  t('Godkänd');
   t('Godkänd till den');
+  t('Välj datum');
 
   return $field_instances;
 }
