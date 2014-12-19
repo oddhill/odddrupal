@@ -866,36 +866,60 @@ form.confirmation {
 .page-investor-person-kontroll,
 .page-investor-company-kontroll {
 
-  #eck-entity-form-edit-investor-person,
-  #eck-entity-form-edit-investor-company {
-    @include outer-container;
+  .verification-header {
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    h2 {
+      @include font-size(2.5);
+      display: inline-block;
+      float: left;
+    }
+
+    .approved {
+      color: $pear;
+    }
+
+    .not-approved {
+      color: $wine;
+    }
+
+    .expires {
+      color: $cloudy;
+      display: inline-block;
+      float: right;
+      font-weight: 500;
+      margin-top: 17px;
+      text-transform: lowercase;
+    }
   }
 
   // File
-  .form-managed-file {
-    clear: both;
-    display: block;
-    width: 100%;
-  }
-
-  .description {
-    margin-bottom: -20px;
-  }
-
-  // Approved checkbox
-  .field-type-list-boolean {
+  .form-type-managed-file {
     float: left;
     display: inline-block;
-    margin-top: 20px;
+    padding-right: 20px;
+    width: auto;
   }
 
-   // Date
-  .date-form-element-content {
-    display: inline-block;
-    float: left;
-    margin-left: 10px;
-    margin-top: 20px;
-    width: 120px;
+  .status-fields {
+    float: right;
+
+    // Approved checkbox
+    .field-type-list-boolean {
+      display: inline-block;
+      float: left;
+      margin-top: 22px;
+    }
+
+    // Date
+    .field-type-date {
+      display: inline-block;
+      float: left;
+      margin-left: 10px;
+      margin-top: 20px;
+      width: 120px;
+    }
   }
 
   .option {
@@ -905,5 +929,12 @@ form.confirmation {
   .checker {
     margin-bottom: 2px;
     padding-right: 25px;
+  }
+
+  form {
+
+    .form-item {
+      margin: 0;
+    }
   }
 }
