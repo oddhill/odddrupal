@@ -28,12 +28,15 @@ function sedermera_verification_form_eck__entity__form_add_investor_company_alte
  */
 function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
   // The edit form will be used for the "Kontroller" page as well. This means
-  // that we need to disable the regular form elements for that page, and
-  // disable the regular form elements otherwise.
+  // that we'll need to alter the form differently, depending on the current
+  // path.
   if (arg(3) == 'kontroll') {
+    // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
+    sedermera_verification_add_verification_header($form);
   }
   else {
+    // In any other case, we'll disable the verification elements.
     sedermera_verification_disable_verification_elements($form);
   }
 }
@@ -43,12 +46,15 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
  */
 function sedermera_verification_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
   // The edit form will be used for the "Kontroller" page as well. This means
-  // that we need to disable the regular form elements for that page, and
-  // disable the regular form elements otherwise.
+  // that we'll need to alter the form differently, depending on the current
+  // path.
   if (arg(3) == 'kontroll') {
+    // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
+    sedermera_verification_add_verification_header($form);
   }
   else {
+    // In any other case, we'll disable the verification elements.
     sedermera_verification_disable_verification_elements($form);
   }
 }
@@ -82,7 +88,7 @@ function sedermera_verification_menu_alter(&$items) {
 function sedermera_verification_disable_regular_elements(&$form) {
   // Determine which elements that should be preserved by merging the required
   // elements with the verification elements.
-  $preserve = array_merge(array('entity', 'actions', 'form_build_id', 'form_token', 'form_id'), sedermera_verification_get_verification_form_elements());
+  $preserve = array_merge(array('entity', 'actions', 'form_build_id', 'form_token', 'form_id'), sedermera_verification_get_verification_fields());
 
   // Disable access to all form elements except the ones that should be
   // preserved.
@@ -103,9 +109,132 @@ function sedermera_verification_disable_regular_elements(&$form) {
  */
 function sedermera_verification_disable_verification_elements(&$form) {
   // Loop through every investor form element and disable access to it.
-  foreach (sedermera_verification_get_verification_form_elements() as $name) {
+  foreach (sedermera_verification_get_verification_fields() as $name) {
     $form[$name]['#access'] = FALSE;
   }
+}
+
+/**
+ * Adds the header to the verification form.
+ *
+ * @param array $form
+ *   A structured form array.
+ */
+function sedermera_verification_add_verification_header(&$form) {
+  // Add the initial structure.
+  $form['header'] = array(
+    '#prefix' => '<div class="verification-header">',
+    '#suffix' => '</div>',
+    '#weight' => -100,
+  );
+
+  // Get the status, and determine the class for the header based on the status.
+  $status = sedermera_verification_get_status($form['entity']['#value']->id);
+  $class = $status ? 'approved' : 'not-approved';
+
+  // Add the status to the header.
+  $form['header']['status'] = array(
+    '#prefix' => '<h2 class="' . $class . '">',
+    '#markup' => $status ? 'Kontrollen är godkänd' : 'Kontrollen är inte godkänd',
+    '#suffix' => '</h2>',
+  );
+
+  // Add the expiration date to the header, if the verification is approved and
+  // an expiration date has been set.
+  if ($status && ($expire = sedermera_verification_get_expiration_date($form['entity']['#value']->id))) {
+    $form['header']['expire'] = array(
+      '#prefix' => '<span class="expires">',
+      '#markup' => format_string('Förfaller den @date', array('@date' => format_date($expire, 'custom', 'j/n Y'))),
+      '#suffix' => '</span>',
+    );
+  }
+}
+
+/**
+ * Get the status for a verification, based on the ID for an investor.
+ *
+ * @param int $id
+ *   The investor ID.
+ *
+ * @return bool
+ *   Boolean indicating whether or not the verification is approved.
+ */
+function sedermera_verification_get_status($id) {
+  // Load the investor entity.
+  $wrapper = entity_metadata_wrapper('investor', $id);
+
+  // Get the verification fields, and the available properties for this investor
+  // in order to only check the available verification fields.
+  $fields = sedermera_verification_get_verification_fields();
+  $properties = array_keys($wrapper->getPropertyInfo());
+
+  // Iterate through every available investor field.
+  foreach (array_intersect($fields, $properties) as $field) {
+    if (!$wrapper->$field->value()) {
+      // The field doesn't have a value, which means that the verification isn't
+      // approved.
+      return FALSE;
+    }
+
+    if (($expire = $wrapper->$field->field_verification_date->value()) && $expire < REQUEST_TIME) {
+      // The expire date has been set, and has been passed, which means that the
+      // verification has expired.
+      return FALSE;
+    }
+
+    if (!$wrapper->$field->field_verification_approved->value()) {
+      // The checkbox field hasn't been checked, which means that the
+      // verification hasn't been approved yet.
+      return FALSE;
+    }
+  }
+
+  // Everything passed, which means that the verification is ok.
+  return TRUE;
+}
+
+/**
+ * Get the expiration date for a verification, based on the ID for an investor.
+ *
+ * @param int $id
+ *   The investor ID.
+ *
+ * @return timestamp
+ *   A UNIX timestamp for when the verification will expire, or 0 if it won't
+ *   expire.
+ */
+function sedermera_verification_get_expiration_date($id) {
+  // Load the investor entity.
+  $wrapper = entity_metadata_wrapper('investor', $id);
+
+  // Set the initial return value.
+  $return = 0;
+
+  // Get the verification fields, and the available properties for this investor
+  // in order to only check the available verification fields.
+  $fields = sedermera_verification_get_verification_fields();
+  $properties = array_keys($wrapper->getPropertyInfo());
+
+  // Iterate through every available investor field.
+  foreach (array_intersect($fields, $properties) as $field) {
+    if (!$wrapper->$field->value()) {
+      // The field doesn't have a value, which means that there aren't a field
+      // to check.
+      continue;
+    }
+
+    if (!($expire = $wrapper->$field->field_verification_date->value())) {
+      // An expiration date hasn't been set for this verification.
+      continue;
+    }
+
+    if (empty($return) || $expire < $return) {
+      $return = $expire;
+    }
+  }
+
+  // Return the smallest expiration date.
+  return $return;
 }
 
 /**
@@ -114,6 +243,6 @@ function sedermera_verification_disable_verification_elements(&$form) {
  * @return array
  *   An array with the names of the verification fields.
  */
-function sedermera_verification_get_verification_form_elements() {
+function sedermera_verification_get_verification_fields() {
   return array('field_shared_veri_id', 'field_shared_veri_address', 'field_shared_veri_eu', 'field_shared_veri_credit', 'field_shared_veri_register');
 }
