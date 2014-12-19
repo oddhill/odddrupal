@@ -244,5 +244,11 @@ function sedermera_verification_get_expiration_date($id) {
  *   An array with the names of the verification fields.
  */
 function sedermera_verification_get_verification_fields() {
-  return array('field_shared_veri_id', 'field_shared_veri_address', 'field_shared_veri_eu', 'field_shared_veri_credit', 'field_shared_veri_register');
+  return array(
+    'field_shared_veri_id',
+    'field_shared_veri_address',
+    'field_shared_veri_eu',
+    'field_shared_veri_credit',
+    'field_shared_veri_register',
+  );
 }
