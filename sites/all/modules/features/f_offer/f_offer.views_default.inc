@@ -364,6 +364,12 @@ function f_offer_views_default_views() {
       'prefix_suffix' => 1,
     ),
   );
+  /* Field: Investerare: Status för kontrollen */
+  $handler->display->display_options['fields']['verification_status']['id'] = 'verification_status';
+  $handler->display->display_options['fields']['verification_status']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['verification_status']['field'] = 'verification_status';
+  $handler->display->display_options['fields']['verification_status']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['verification_status']['label'] = 'Kontroll';
   /* Field: Erbjudande: Tecknad */
   $handler->display->display_options['fields']['field_offer_signed']['id'] = 'field_offer_signed';
   $handler->display->display_options['fields']['field_offer_signed']['table'] = 'field_data_field_offer_signed';
@@ -510,6 +516,7 @@ function f_offer_views_default_views() {
     t('Ej tecknad'),
     t('Intresserad sen'),
     t('Garant'),
+    t('Kontroll'),
     t('Teckning'),
     t('Tecknad'),
     t('[status]'),

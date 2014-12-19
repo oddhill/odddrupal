@@ -82,7 +82,30 @@ function sedermera_verification_menu_alter(&$items) {
 
     // Change the title for the menu tab.
     $items["$base/kontroll"]['title'] = 'Kontroll';
+
+    // Callback for the verification status that is fetched via AJAX.
+    $items["$base/kontroll/check"] = array(
+      'page callback' => 'sedermera_verification_status_field_ajax',
+      'page arguments' => array(2),
+      'access callback' => $items["$base/kontroll"]['access callback'],
+      'access arguments' => $items["$base/kontroll"]['access arguments'],
+      'type' => MENU_CALLBACK,
+    );
   }
+}
+
+/**
+ * AJAX callback for the verification status field.
+ *
+ * @param int $id
+ *   The investor ID.
+ *
+ * @return bool
+ *   JSON encoded boolean which will be handled by the javascript callback.
+ */
+function sedermera_verification_status_field_ajax($id) {
+  $status = sedermera_verification_get_status($id);
+  drupal_json_output($status);
 }
 
 /**
@@ -176,6 +199,16 @@ function sedermera_verification_custom_form_submit($form, &$form_state) {
   // Get the entity, and redirect the user to the verification form.
   $entity = $form_state['values']['entity'];
   $form_state['redirect'] = "investor/{$entity->type}/{$entity->id}/kontroll";
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function sedermera_verification_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'sedermera_verification') . '/views',
+  );
 }
 
 /**
