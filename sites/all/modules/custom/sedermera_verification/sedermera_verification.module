@@ -34,6 +34,9 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
     // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
     sedermera_verification_add_verification_header($form);
+
+    // Perform minor alterations.
+    sedermera_verification_custom_form_alter($form);
   }
   else {
     // In any other case, we'll disable the verification elements.
@@ -52,6 +55,9 @@ function sedermera_verification_form_eck__entity__form_edit_investor_company_alt
     // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
     sedermera_verification_add_verification_header($form);
+
+    // Perform minor alterations.
+    sedermera_verification_custom_form_alter($form);
   }
   else {
     // In any other case, we'll disable the verification elements.
@@ -148,6 +154,28 @@ function sedermera_verification_add_verification_header(&$form) {
       '#suffix' => '</span>',
     );
   }
+}
+
+/**
+ * Minor alterations for the verification form.
+ *
+ * @param array $form
+ *   A structured form array.
+ */
+function sedermera_verification_custom_form_alter(&$form) {
+  // Add a submit button for the verification form.
+  $form['actions']['submit']['#submit'][] = 'sedermera_verification_custom_form_submit';
+}
+
+/**
+ * Submit callback for the verification form.
+ *
+ * This will be executed after the regular submit callbacks.
+ */
+function sedermera_verification_custom_form_submit($form, &$form_state) {
+  // Get the entity, and redirect the user to the verification form.
+  $entity = $form_state['values']['entity'];
+  $form_state['redirect'] = "investor/{$entity->type}/{$entity->id}/kontroll";
 }
 
 /**
