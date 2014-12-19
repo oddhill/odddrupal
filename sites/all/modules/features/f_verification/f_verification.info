@@ -12,6 +12,7 @@ dependencies[] = list
 dependencies[] = options
 dependencies[] = sedermera_verification
 dependencies[] = strongarm
+features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[eck_bundle][] = verification_verification
 features[eck_entity_type][] = verification
