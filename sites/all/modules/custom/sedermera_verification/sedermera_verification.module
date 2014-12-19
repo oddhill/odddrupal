@@ -141,7 +141,7 @@ function sedermera_verification_add_verification_header(&$form) {
   // Add the status to the header.
   $form['header']['status'] = array(
     '#prefix' => '<h2>',
-    '#markup' => '<span class="' . $class . '">' . ($status ? 'Kontrollen är godkänd' : 'Kontrollen är inte godkänd') . '</span>',
+    '#markup' => 'Kontrollen är <span class="' . $class . '">' . ($status ? 'godkänd' : 'inte godkänd') . '</span>',
     '#suffix' => '</h2>',
   );
 
