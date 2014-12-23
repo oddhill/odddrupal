@@ -489,7 +489,7 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
       '#type' => 'checkboxes',
       '#options' => $selected_investors,
       '#default_value' => array_keys($selected_investors),
-      '#prefix' => '<h3>Erbjudna investerare</h3>',
+      '#prefix' => '<h3>Kontaktlista</h3>',
     );
 
     // Build the node object based of the form values. This will be used to
