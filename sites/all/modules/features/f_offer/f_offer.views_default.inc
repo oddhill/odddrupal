@@ -168,6 +168,21 @@ function f_offer_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har lagts till för denna transaktion.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Investerare: E-post */
+  $handler->display->display_options['fields']['field_shared_email']['id'] = 'field_shared_email';
+  $handler->display->display_options['fields']['field_shared_email']['table'] = 'field_data_field_shared_email';
+  $handler->display->display_options['fields']['field_shared_email']['field'] = 'field_shared_email';
+  $handler->display->display_options['fields']['field_shared_email']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['field_shared_email']['label'] = '';
+  $handler->display->display_options['fields']['field_shared_email']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_shared_email']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_shared_email']['type'] = 'email_plain';
+  /* Field: Global: Send e-mail */
+  $handler->display->display_options['fields']['views_send']['id'] = 'views_send';
+  $handler->display->display_options['fields']['views_send']['table'] = 'views';
+  $handler->display->display_options['fields']['views_send']['field'] = 'views_send';
+  $handler->display->display_options['fields']['views_send']['label'] = '';
+  $handler->display->display_options['fields']['views_send']['element_label_colon'] = FALSE;
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
