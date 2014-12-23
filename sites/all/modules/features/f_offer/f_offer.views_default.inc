@@ -22,7 +22,7 @@ function f_offer_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Erbjudna';
+  $handler->display->display_options['title'] = 'Kontaktlista';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -105,8 +105,8 @@ function f_offer_views_default_views() {
     'capital_raising' => 'capital_raising',
   );
 
-  /* Display: Erbjudna */
-  $handler = $view->new_display('page', 'Erbjudna', 'page');
+  /* Display: Kontaktlista */
+  $handler = $view->new_display('page', 'Kontaktlista', 'page');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -165,7 +165,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har blivit erbjudna denna transaktion.';
+  $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har lagts till för denna transaktion.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Investerare: Title */
@@ -196,9 +196,9 @@ function f_offer_views_default_views() {
     'empty_text' => 'Test',
     'fallback_format' => 'list_default',
   );
-  $handler->display->display_options['path'] = 'node/%/erbjudna';
+  $handler->display->display_options['path'] = 'node/%/kontaktlista';
   $handler->display->display_options['menu']['type'] = 'tab';
-  $handler->display->display_options['menu']['title'] = 'Erbjudna';
+  $handler->display->display_options['menu']['title'] = 'Kontaktlista';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
@@ -491,7 +491,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['offers'] = array(
     t('Master'),
-    t('Erbjudna'),
+    t('Kontaktlista'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -508,7 +508,7 @@ function f_offer_views_default_views() {
     t('%1'),
     t('Lägg till fler'),
     t('Lägg till fler investerare'),
-    t('Inga investerare har blivit erbjudna denna transaktion.'),
+    t('Inga investerare har lagts till för denna transaktion.'),
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('.'),

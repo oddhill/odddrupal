@@ -365,7 +365,7 @@ ul.pager {
 .page-investor #main-content #page-content,
 .node-type-capital-raising #main-content #page-content,
 .node-type-company #main-content #page-content,
-.page-node-erbjudna #main-content #page-content,
+.page-node-kontaktlista #main-content #page-content,
 .page-node-teckningslista #main-content #page-content,
 .page-node-intressenter #main-content #page-content {
   background: #fff;
@@ -374,7 +374,7 @@ ul.pager {
   .page-investor #main-content #page-content .title h2,
   .node-type-capital-raising #main-content #page-content .title h2,
   .node-type-company #main-content #page-content .title h2,
-  .page-node-erbjudna #main-content #page-content .title h2,
+  .page-node-kontaktlista #main-content #page-content .title h2,
   .page-node-teckningslista #main-content #page-content .title h2,
   .page-node-intressenter #main-content #page-content .title h2 {
     font-size: 32px;
@@ -388,12 +388,12 @@ ul.pager {
 .page-investor #main-content .content-wrapper,
 .node-type-capital-raising #main-content .content-wrapper,
 .node-type-company #main-content .content-wrapper,
-.page-node-erbjudna #main-content .content-wrapper,
+.page-node-kontaktlista #main-content .content-wrapper,
 .page-node-teckningslista #main-content .content-wrapper,
 .page-node-intressenter #main-content .content-wrapper {
   background-color: #e0e2e6; }
 
-.page-node-erbjudna-lagg-till #main-content #page-content {
+.page-node-kontaktlista-lagg-till #main-content #page-content {
   background: #f3f4f8;
   padding: 0; }
 
