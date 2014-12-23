@@ -219,7 +219,7 @@ function sedermera_offer_investors_add_submit($form, &$form_state) {
 
   // Display a message, and redirect to the "Erbjudande" view.
   drupal_set_message('De valda investerarna har lagts till.');
-  $form_state['redirect'] = "node/{$form_state['values']['capital_raising_nid']}/erbjudna";
+  $form_state['redirect'] = "node/{$form_state['values']['capital_raising_nid']}/kontaktlista";
 }
 
 /**
