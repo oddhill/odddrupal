@@ -195,6 +195,25 @@ function f_offer_views_default_views() {
     'empty_text' => '',
     'fallback_format' => 'text_default',
   );
+  /* Field: Erbjudande: Första kontakt */
+  $handler->display->display_options['fields']['field_offer_first_contact']['id'] = 'field_offer_first_contact';
+  $handler->display->display_options['fields']['field_offer_first_contact']['table'] = 'field_data_field_offer_first_contact';
+  $handler->display->display_options['fields']['field_offer_first_contact']['field'] = 'field_offer_first_contact';
+  $handler->display->display_options['fields']['field_offer_first_contact']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_first_contact']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'date_default',
+    'fallback_settings' => array(
+      'format_type' => 'short',
+      'fromto' => 'both',
+      'multiple_number' => '',
+      'multiple_from' => '',
+      'multiple_to' => '',
+      'show_remaining_days' => 0,
+    ),
+  );
   /* Field: Erbjudande: Intresserad */
   $handler->display->display_options['fields']['field_offer_interested']['id'] = 'field_offer_interested';
   $handler->display->display_options['fields']['field_offer_interested']['table'] = 'field_data_field_offer_interested';
@@ -521,6 +540,7 @@ function f_offer_views_default_views() {
     t('Inga investerare har lagts till för denna transaktion.'),
     t('Mobiltelefon'),
     t('Telefon'),
+    t('Första kontakt'),
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('.'),
