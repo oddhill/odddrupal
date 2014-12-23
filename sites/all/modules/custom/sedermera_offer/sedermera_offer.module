@@ -375,7 +375,7 @@ function sedermera_offer_capital_raising_get_signed_commitment($node) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'offer')
     ->fieldCondition('field_offer_cap_rais', 'target_id', $node->nid)
-    ->fieldCondition('field_offer_signed', 'value', 1);
+    ->fieldCondition('field_offer_interested', 'value', 1);
   $result = $query->execute();
 
   // Increment the signed value with each offer.
@@ -407,7 +407,7 @@ function sedermera_offer_capital_raising_get_signed_guaranteed($node) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'offer')
     ->fieldCondition('field_offer_cap_rais', 'target_id', $node->nid)
-    ->fieldCondition('field_offer_signed', 'value', 1);
+    ->fieldCondition('field_offer_interested', 'value', 1);
   $result = $query->execute();
 
   // Increment the signed value with each offer.
