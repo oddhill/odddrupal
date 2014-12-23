@@ -17,7 +17,7 @@ function sedermera_offer_menu() {
     'access arguments' => array(1, 'eck administer offer offer entities'),
   );
 
-  $items['node/%/erbjudna/lagg-till'] = array(
+  $items['node/%/kontaktlista/lagg-till'] = array(
     'title' => 'Lägg till investerare',
     'type' => MENU_CALLBACK,
     'title callback' => 'sedermera_offer_investors_add_title',

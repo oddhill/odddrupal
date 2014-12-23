@@ -157,7 +157,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['header']['link']['label'] = 'Lägg till fler';
   $handler->display->display_options['header']['link']['empty'] = TRUE;
   $handler->display->display_options['header']['link']['text'] = 'Lägg till fler investerare';
-  $handler->display->display_options['header']['link']['path'] = 'node/!1/erbjudna/lagg-till';
+  $handler->display->display_options['header']['link']['path'] = 'node/!1/kontaktlista/lagg-till';
   $handler->display->display_options['header']['link']['class'] = 'add-more';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
