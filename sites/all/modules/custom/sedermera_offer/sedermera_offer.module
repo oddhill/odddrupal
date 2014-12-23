@@ -628,7 +628,7 @@ function sedermera_offer_get_investors_for_capital_raising($capital_raising_nid)
  * Implements hook_field_access().
  */
 function sedermera_offer_field_access($op, $field, $entity_type, $entity, $account) {
-  if ($entity_type != 'offer' || $op != 'edit') {
+  if ($entity_type != 'offer' || $op != 'edit' || !$entity) {
     // This is not an offer that is being edited, bail out.
     return;
   }
