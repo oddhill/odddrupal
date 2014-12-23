@@ -174,6 +174,16 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  /* Field: Investerare: Mobiltelefon */
+  $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
+  $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
+  $handler->display->display_options['fields']['field_shared_cell']['field'] = 'field_shared_cell';
+  $handler->display->display_options['fields']['field_shared_cell']['relationship'] = 'field_offer_investor_target_id';
+  /* Field: Investerare: Telefon */
+  $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
+  $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
+  $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
+  $handler->display->display_options['fields']['field_shared_phone']['relationship'] = 'field_offer_investor_target_id';
   /* Field: Erbjudande: Status */
   $handler->display->display_options['fields']['field_offer_status']['id'] = 'field_offer_status';
   $handler->display->display_options['fields']['field_offer_status']['table'] = 'field_data_field_offer_status';
@@ -509,6 +519,8 @@ function f_offer_views_default_views() {
     t('Lägg till fler'),
     t('Lägg till fler investerare'),
     t('Inga investerare har lagts till för denna transaktion.'),
+    t('Mobiltelefon'),
+    t('Telefon'),
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
     t('.'),
