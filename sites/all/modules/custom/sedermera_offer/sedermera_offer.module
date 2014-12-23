@@ -677,8 +677,4 @@ function sedermera_offer_field_access($op, $field, $entity_type, $entity, $accou
   if (!$wrapper->field_offer_cap_rais->status->value()) {
     return FALSE;
   }
-
-  // Don't allow any fields to be edited if the offer is signed and this isn't
-  // user 1.
-  return !$wrapper->field_offer_signed->value() || $GLOBALS['user']->uid == 1;
 }
