@@ -182,24 +182,11 @@ function sedermera_offer_investors_add($form, &$form_state, $capital_raising_nid
     '#suffix' => '</div>',
   );
 
-  // Add a checkbox which allows us to send the capital raising via email.
-  $settings = array('no_email' => 'Lägg till valda investerare', 'send_email' => 'Lägg till valda investerare, och skicka ut e-post');
-  $form['send_email'] = array(
-    '#type' => 'checkbox',
-    '#title' => 'Skicka erbjudandet via e-post',
-    '#attached' => array(
-      'js' => array(
-        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_email.js',
-        array('data' => array('sedermera_offer' => $settings), 'type' => 'setting'),
-      ),
-    ),
-  );
-
   // Add the submit button.
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit',
-    '#value' => $settings['no_email'],
+    '#value' => 'Lägg till valda investerare',
   );
 
   return $form;
@@ -228,11 +215,6 @@ function sedermera_offer_investors_add_submit($form, &$form_state) {
     // Create the offer, and save it.
     $offer = entity_create('offer', $values);
     entity_save('offer', $offer);
-
-    // Send an email, if this was selected.
-    if ($form_state['values']['send_mail']) {
-      // TODO: Implement.
-    }
   }
 
   // Display a message, and redirect to the "Erbjudande" view.
@@ -510,20 +492,6 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
       '#prefix' => '<h3>Erbjudna investerare</h3>',
     );
 
-    // Add a checkbox which controls whether or not the selected investors
-    // should receive an email.
-    $settings = array('no_email' => 'Skapa transaktion', 'send_email' => 'Skapa och skicka ut transaktion');
-    $form['right']['send_email'] = array(
-      '#type' => 'checkbox',
-      '#title' => 'Skicka erbjudandet via e-post',
-      '#attached' => array(
-        'js' => array(
-          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_email.js',
-          array('data' => array('sedermera_offer' => $settings), 'type' => 'setting'),
-        ),
-      ),
-    );
-
     // Build the node object based of the form values. This will be used to
     // generate the preview.
     $node = node_form_submit_build_node($form, $form_state);
@@ -544,7 +512,7 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
   );
 
   // Change the text of the submit button.
-  $form['actions']['submit']['#value'] = $settings['no_email'];
+  $form['actions']['submit']['#value'] = 'Skapa transaktion';
 }
 
 /**
@@ -575,11 +543,6 @@ function sedermera_offer_node_insert($node) {
     // Create the offer, and save it.
     $offer = entity_create('offer', $values);
     entity_save('offer', $offer);
-
-    // Send an email, if this was selected.
-    if ($node->send_email) {
-      // TODO: Implement.
-    }
   }
 }
 
