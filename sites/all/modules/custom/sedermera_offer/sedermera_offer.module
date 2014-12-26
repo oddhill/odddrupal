@@ -246,15 +246,19 @@ function sedermera_offer_block_view($delta = '') {
     return;
   }
 
-  // Get the maximum value, and the currently signed values.
+  // Get the total, guaranteed and commitment maximum values.
   $maximum = sedermera_offer_capital_raising_get_signed_max($node);
+  $guaranteed_max = sedermera_offer_capital_raising_get_signed_guaranteed_max($node);
+  $commitment_max = sedermera_offer_capital_raising_get_signed_commitment_max($node);
+
+  // Get the current values.
   $guaranteed = sedermera_offer_capital_raising_get_signed_guaranteed($node);
   $committed = sedermera_offer_capital_raising_get_signed_commitment($node);
   $total = $guaranteed + $committed;
 
   // Caluclate the different percentages.
-  $percentage_guaranteed = round($maximum ? ($guaranteed / $maximum) * 100 : 0);
-  $percentage_committed = round($maximum ? ($committed / $maximum) * 100 : 0);
+  $percentage_guaranteed = round($guaranteed_max ? ($guaranteed / $guaranteed_max) * 100 : 0);
+  $percentage_committed = round($commitment_max ? ($committed / $commitment_max) * 100 : 0);
   $percentage_total = round($maximum ? ($total / $maximum) * 100 : 0);
 
   // Create the renderable array for the guaranteed progress bar.
@@ -335,26 +339,68 @@ function sedermera_offer_block_view($delta = '') {
 }
 
 /**
- * Get the total amount that's available for a capital raising, in terms of
- * million SEK.
+ * Get the total amount that's available for a capital raising.
  *
  * @param obj $node
  *   The capital raising node object.
  *
  * @return int
- *   Returns the total amount, based on the number of stocks and price per
- *   stock.
+ *   Returns the total amount.
  */
 function sedermera_offer_capital_raising_get_signed_max($node) {
   // Wrap the node in order to get its values.
   $wrapper = entity_metadata_wrapper('node', $node);
 
-  // Get the total number of stocks, and the price per stock.
-  $number_of_stocks = $wrapper->field_cap_rais_post->value();
-  $price_per_stock = $wrapper->field_cap_rais_rate->value();
+  // Return the total amount.
+  return $wrapper->field_cap_rais_goal_tot->value();
+}
 
-  // Return the total amount, based on the above parameters.
-  return $number_of_stocks * $price_per_stock;
+/**
+ * Get the commitment amount that's available for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return int
+ *   Returns the max commitment amount.
+ */
+function sedermera_offer_capital_raising_get_signed_commitment_max($node) {
+  // Wrap the node in order to get its values.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Get the total max amount.
+  $total = sedermera_offer_capital_raising_get_signed_max($node);
+
+  // Get the commitment percentage.
+  $commitment = $wrapper->field_cap_rais_goal_com->value();
+
+  // Return the amount based on the percentage if both the max and commitment
+  // values has been provided, or 0 otherwise.
+  return ($total && $commitment) ? ($total * ($commitment / 100)) : 0;
+}
+
+/**
+ * Get the guaranteed amount that's available for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return int
+ *   Returns the max guaranteed amount.
+ */
+function sedermera_offer_capital_raising_get_signed_guaranteed_max($node) {
+  // Wrap the node in order to get its values.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Get the total max amount.
+  $total = sedermera_offer_capital_raising_get_signed_max($node);
+
+  // Get the guaranteed percentage.
+  $guaranteed = $wrapper->field_cap_rais_goal_guar->value();
+
+  // Return the amount based on the percentage if both the max and guaranteed
+  // values has been provided, or 0 otherwise.
+  return ($total && $guaranteed) ? ($total * ($guaranteed / 100)) : 0;
 }
 
 /**
