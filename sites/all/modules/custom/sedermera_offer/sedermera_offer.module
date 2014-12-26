@@ -223,6 +223,22 @@ function sedermera_offer_investors_add_submit($form, &$form_state) {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function sedermera_offer_theme() {
+  return array(
+    'sedermera_offer_block_remaining' => array(
+      'template' => 'sedermera-offer-block-remaining',
+      'variables' => array(
+        'guaranteed' => NULL,
+        'committed' => NULL,
+        'total' => array('max' => '?', 'percentage' => 0, 'amount' => 0),
+      ),
+    ),
+  );
+}
+
+/**
  * Implements hook_block_info().
  */
 function sedermera_offer_block_info() {
@@ -246,82 +262,12 @@ function sedermera_offer_block_view($delta = '') {
     return;
   }
 
-  // Get the total, guaranteed and commitment maximum values.
-  $maximum = sedermera_offer_capital_raising_get_signed_max($node);
-  $guaranteed_max = sedermera_offer_capital_raising_get_signed_guaranteed_max($node);
-  $commitment_max = sedermera_offer_capital_raising_get_signed_commitment_max($node);
-
-  // Get the current values.
-  $guaranteed = sedermera_offer_capital_raising_get_signed_guaranteed($node);
-  $committed = sedermera_offer_capital_raising_get_signed_commitment($node);
-  $total = $guaranteed + $committed;
-
-  // Caluclate the different percentages.
-  $percentage_guaranteed = round($guaranteed_max ? ($guaranteed / $guaranteed_max) * 100 : 0);
-  $percentage_committed = round($commitment_max ? ($committed / $commitment_max) * 100 : 0);
-  $percentage_total = round($maximum ? ($total / $maximum) * 100 : 0);
-
-  // Create the renderable array for the guaranteed progress bar.
-  $progress_bar_guaranteed = array(
-    '#prefix' => '<div class="progress vertical bottom guaranteed">',
-    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage_guaranteed . '"></div>',
-    '#suffix' => '</div>',
-  );
-
-  // Create the renderable array for the commited progress bar.
-  $progress_bar_committed  = array(
-    '#prefix' => '<div class="progress vertical bottom committed">',
-    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage_committed . '"></div>',
-    '#suffix' => '</div>',
-  );
-
-  // Create the renderable array for the total progress bar.
-  $progress_bar_total = array(
-    '#prefix' => '<div class="progress">',
-    '#markup' => '<div class="progress-bar" data-transitiongoal="' . $percentage_total . '"></div>',
-    '#suffix' => '</div>',
-  );
-
-  // Create the renderable array for the total progress.
-  $total_readable = preg_replace('/\,0$/u', '', number_format($total, 1, ',', ' '));
-  $maximum_readable = $maximum ? preg_replace('/\,0$/u', '', number_format($maximum, 1, ',', ' ')) : '?';
-  $progress_total = array(
-    '#prefix' => '<div class="total">',
-    '#markup' => "$total_readable av $maximum_readable SEK",
-    '#suffix' => '</div>',
-  );
-
   // Create the block structure, and attach the CSS and JS that's required for
   // the progress bar.
   $block = array(
     'subject' => 'Upptecknat',
     'content' => array(
-      'progress_guaranteed' => array(
-        '#prefix' => '<div class="vertical-bars"><div class="guaranteed-wrapper bar">',
-        'bar' => $progress_bar_guaranteed,
-        'text' => array(
-          '#prefix' => '<div class="text">',
-          '#markup' => 'Garanterat',
-          '#suffix' => '</div>',
-        ),
-        '#suffix' => '</div>',
-      ),
-      'progress_committed' => array(
-        '#prefix' => '<div class="committed-wrapper bar">',
-        'bar' => $progress_bar_committed,
-        'text' => array(
-          '#prefix' => '<div class="text">',
-          '#markup' => 'Åtaget',
-          '#suffix' => '</div>',
-        ),
-        '#suffix' => '</div></div>',
-      ),
-      'progress_total' => array(
-        '#prefix' => '<div class="total-wrapper">',
-        'bar' => $progress_bar_total,
-        'text' => $progress_total,
-        '#suffix' => '</div>',
-      ),
+      '#theme' => 'sedermera_offer_block_remaining',
       '#attached' => array(
         'css' => array(
           drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/css/bootstrap-progressbar-3.3.0.css',
@@ -333,6 +279,46 @@ function sedermera_offer_block_view($delta = '') {
       ),
     ),
   );
+
+  // Get the maximum total, guaranteed and commitment values.
+  $guaranteed_max = sedermera_offer_capital_raising_get_signed_guaranteed_max($node);
+  $commitment_max = sedermera_offer_capital_raising_get_signed_commitment_max($node);
+  $total_max = sedermera_offer_capital_raising_get_signed_total_max($node);
+
+  // Get the current total value and calculate the percentage.
+  $total_current = sedermera_offer_capital_raising_get_signed_total($node);
+  $total_percentage = round($total_max ? ($total_current / $total_max) * 100 : 0);
+
+  // Add the values to the variables.
+  $block['content']['#total']['current'] = preg_replace('/\,0$/u', '', number_format($total_current, 1, ',', ' '));
+  $block['content']['#total']['percentage'] = $total_percentage;
+  $block['content']['#total']['max'] = $total_max ? preg_replace('/\,0$/u', '', number_format($total_max, 1, ',', ' ')) : '?';
+
+  // Add the variables for the guaranteed values, if a guaranteed goal has been
+  // set.
+  if ($guaranteed_max) {
+    // Get the current amount and calculate the percentage.
+    $guaranteed_current = sedermera_offer_capital_raising_get_signed_guaranteed($node);
+    $guaranteed_percentage = round($guaranteed_max ? ($guaranteed_current / $guaranteed_max) * 100 : 0);
+
+    // Add the values to the variables.
+    $block['content']['#guaranteed']['current'] = preg_replace('/\,0$/u', '', number_format($guaranteed_current, 1, ',', ' '));
+    $block['content']['#guaranteed']['percentage'] = $guaranteed_percentage;
+    $block['content']['#guaranteed']['max'] = preg_replace('/\,0$/u', '', number_format($guaranteed_max, 1, ',', ' '));
+  }
+
+  // Add the variables for the committed values, if a commited goal has been
+  // set.
+  if ($commitment_max) {
+    // Get the current amount and calculate the percentage.
+    $committed_current = sedermera_offer_capital_raising_get_signed_commitment($node);
+    $committed_percentage = round($commitment_max ? ($committed_current / $commitment_max) * 100 : 0);
+
+    // Add the values to the variables.
+    $block['content']['#committed']['current'] = preg_replace('/\,0$/u', '', number_format($committed_current, 1, ',', ' '));
+    $block['content']['#committed']['percentage'] = $committed_percentage;
+    $block['content']['#committed']['max'] = preg_replace('/\,0$/u', '', number_format($commitment_max, 1, ',', ' '));
+  }
 
   // Return the block.
   return $block;
@@ -347,7 +333,7 @@ function sedermera_offer_block_view($delta = '') {
  * @return int
  *   Returns the total amount.
  */
-function sedermera_offer_capital_raising_get_signed_max($node) {
+function sedermera_offer_capital_raising_get_signed_total_max($node) {
   // Wrap the node in order to get its values.
   $wrapper = entity_metadata_wrapper('node', $node);
 
@@ -369,7 +355,7 @@ function sedermera_offer_capital_raising_get_signed_commitment_max($node) {
   $wrapper = entity_metadata_wrapper('node', $node);
 
   // Get the total max amount.
-  $total = sedermera_offer_capital_raising_get_signed_max($node);
+  $total = sedermera_offer_capital_raising_get_signed_total_max($node);
 
   // Get the commitment percentage.
   $commitment = $wrapper->field_cap_rais_goal_com->value();
@@ -393,7 +379,7 @@ function sedermera_offer_capital_raising_get_signed_guaranteed_max($node) {
   $wrapper = entity_metadata_wrapper('node', $node);
 
   // Get the total max amount.
-  $total = sedermera_offer_capital_raising_get_signed_max($node);
+  $total = sedermera_offer_capital_raising_get_signed_total_max($node);
 
   // Get the guaranteed percentage.
   $guaranteed = $wrapper->field_cap_rais_goal_guar->value();
@@ -401,6 +387,22 @@ function sedermera_offer_capital_raising_get_signed_guaranteed_max($node) {
   // Return the amount based on the percentage if both the max and guaranteed
   // values has been provided, or 0 otherwise.
   return ($total && $guaranteed) ? ($total * ($guaranteed / 100)) : 0;
+}
+
+/**
+ * Get the total amount that's signed for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return int
+ *   Returns the total amount.
+ */
+function sedermera_offer_capital_raising_get_signed_total($node) {
+  // Get the currently guaranteed and committed amount, and returm the sum.
+  $committed = sedermera_offer_capital_raising_get_signed_commitment($node);
+  $guaranteed = sedermera_offer_capital_raising_get_signed_guaranteed($node);
+  return $committed + $guaranteed;
 }
 
 /**
