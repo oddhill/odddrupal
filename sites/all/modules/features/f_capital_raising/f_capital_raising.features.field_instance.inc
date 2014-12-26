@@ -21,7 +21,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 11,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -94,7 +94,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 12,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -141,7 +141,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 10,
       ),
       'full' => array(
         'label' => 'above',
@@ -179,7 +179,7 @@ function f_capital_raising_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 28,
+      'weight' => 26,
     ),
   );
 
@@ -194,7 +194,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 7,
       ),
       'full' => array(
         'label' => 'above',
@@ -239,7 +239,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -271,6 +271,126 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_com'
+  $field_instances['node-capital_raising-field_cap_rais_goal_com'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Ange hur många procent av det totala målet som ska vara åtaget.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_goal_com',
+    'label' => 'Varav åtaget',
+    'required' => 0,
+    'settings' => array(
+      'max' => 100,
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => ' %',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 31,
+    ),
+  );
+
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_guar'
+  $field_instances['node-capital_raising-field_cap_rais_goal_guar'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Ange hur många procent av det totala målet som ska vara garanterat.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_goal_guar',
+    'label' => 'Varav garanterat',
+    'required' => 0,
+    'settings' => array(
+      'max' => 100,
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => ' %',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 30,
+    ),
+  );
+
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_tot'
+  $field_instances['node-capital_raising-field_cap_rais_goal_tot'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_goal_tot',
+    'label' => 'Totalt belopp',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => ' SEK',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 29,
+    ),
+  );
+
   // Exported field_instance: 'node-capital_raising-field_cap_rais_post'
   $field_instances['node-capital_raising-field_cap_rais_post'] = array(
     'bundle' => 'capital_raising',
@@ -282,7 +402,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 4,
       ),
       'full' => array(
         'label' => 'above',
@@ -328,7 +448,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 6,
       ),
       'full' => array(
         'label' => 'above',
@@ -374,7 +494,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 8,
       ),
       'full' => array(
         'label' => 'above',
@@ -425,7 +545,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -487,7 +607,7 @@ function f_capital_raising_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 5,
       ),
       'full' => array(
         'label' => 'above',
@@ -524,6 +644,8 @@ function f_capital_raising_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Ange hur många procent av det totala målet som ska vara garanterat.');
+  t('Ange hur många procent av det totala målet som ska vara åtaget.');
   t('Emissionsvolym');
   t('Filer');
   t('Kundbolag');
@@ -532,7 +654,10 @@ function f_capital_raising_field_default_field_instances() {
   t('Teckningstid');
   t('Text');
   t('Tilläggsinformation');
+  t('Totalt belopp');
   t('Units innan nyemission');
+  t('Varav garanterat');
+  t('Varav åtaget');
   t('Värdering (pre-money)');
 
   return $field_instances;

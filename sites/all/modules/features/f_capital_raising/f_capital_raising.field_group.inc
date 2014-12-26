@@ -24,8 +24,9 @@ function f_capital_raising_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_cap_rais_date',
-      1 => 'group_cap_rais_details',
-      2 => 'group_cap_rais_title',
+      1 => 'group_cap_rais_3',
+      2 => 'group_cap_rais_details',
+      3 => 'group_cap_rais_title',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -83,6 +84,40 @@ function f_capital_raising_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_cap_rais_3|node|capital_raising|form';
+  $field_group->group_name = 'group_cap_rais_3';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'capital_raising';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_cap_rais_1';
+  $field_group->data = array(
+    'label' => 'Mål för emission',
+    'weight' => '28',
+    'children' => array(
+      0 => 'field_cap_rais_goal_tot',
+      1 => 'field_cap_rais_goal_guar',
+      2 => 'field_cap_rais_goal_com',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'open',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'group-cap-rais-3 field-group-div',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_cap_rais_3|node|capital_raising|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_cap_rais_details|node|capital_raising|form';
   $field_group->group_name = 'group_cap_rais_details';
   $field_group->entity_type = 'node';
@@ -91,7 +126,7 @@ function f_capital_raising_field_group_info() {
   $field_group->parent_name = 'group_cap_rais_1';
   $field_group->data = array(
     'label' => 'Detaljer',
-    'weight' => '29',
+    'weight' => '27',
     'children' => array(
       0 => 'field_cap_rais_estim',
       1 => 'field_cap_rais_post',

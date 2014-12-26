@@ -163,6 +163,56 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'file',
   );
 
+  // Exported field_base: 'field_cap_rais_goal_com'
+  $field_bases['field_cap_rais_goal_com'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_com',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_cap_rais_goal_guar'
+  $field_bases['field_cap_rais_goal_guar'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_guar',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_cap_rais_goal_tot'
+  $field_bases['field_cap_rais_goal_tot'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_tot',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(
+      'decimal_separator' => ',',
+    ),
+    'translatable' => 0,
+    'type' => 'number_float',
+  );
+
   // Exported field_base: 'field_cap_rais_post'
   $field_bases['field_cap_rais_post'] = array(
     'active' => 1,
