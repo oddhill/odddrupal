@@ -6,6 +6,25 @@
  */
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_capital_raising_form_capital_raising_node_form_alter(&$form, &$form_state) {
+  // Add a custom validation function to the capital raising node form.
+  $form['#validate'][] = 'sedermera_capital_raising_node_form_validate';
+}
+
+function sedermera_capital_raising_node_form_validate($form, &$form_state) {
+  // Get the submitted values for the guaranteed and commited percentage.
+  $goal_guar = $form_state['values']['field_cap_rais_goal_guar'][LANGUAGE_NONE][0]['value'];
+  $goal_com = $form_state['values']['field_cap_rais_goal_com'][LANGUAGE_NONE][0]['value'];
+
+  // Trigger an error if the combined percentage doesn't match 100.
+  if ($goal_guar && $goal_com && ($goal_guar + $goal_com != 100)) {
+    form_set_error('group_cap_rais_3', 'Mål för garanterat och åtaget belopp måste tillsammans bli 100 %.');
+  }
+}
+
+/**
  * Implements hook_block_info().
  */
 function sedermera_capital_raising_block_info() {
