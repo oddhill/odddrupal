@@ -238,6 +238,15 @@ function odddrupal_themekey_rules() {
       'parent' => 0,
       'weight' => 0,
     ),
+    array(
+      'property' => 'user:role',
+      'operator' => '!',
+      'value' => 'anonymous user',
+      'theme' => 'ThemeKeyAdminTheme',
+      'enabled' => 1,
+      'parent' => 1,
+      'weight' => 0,
+    ),
   );
 
   foreach ($rules as $rule) {
