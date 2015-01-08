@@ -19,8 +19,11 @@
   <?php print $rows; ?>
 
   <?php if ($empty): ?>
-    <p><?php print $empty; ?></p>
-  <?php endif; ?>
+    <div class="empty-wrapper">
+      <div class="empty-icon"></div>
+      <p><?php print $empty; ?></p>
+    </div>
+ <?php endif; ?>
 
   <?php print $pager; ?>
   <?php print $attachment_after; ?>
