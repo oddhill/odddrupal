@@ -490,8 +490,7 @@ ul.pager {
   background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin-bottom: 40px; }
+  transition: background-color 0.1s ease-in-out; }
   .view-offers .add-more:hover {
     background-color: #303030; }
 .view-offers .views-field.views-field-field-offer-status input {
@@ -511,29 +510,31 @@ ul.pager {
 .view-offers .views-field-field-offer-interested .checker {
   margin-bottom: 4px;
   margin-right: 5px; }
-.view-offers #views-form-offers-page .form-submit#edit-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0px none;
-  background: url("../graphics/send_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/send_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  .view-offers #views-form-offers-page .form-submit#edit-submit:hover {
-    background-color: #303030; }
+.view-offers #views-form-offers-page {
+  margin-top: 25px; }
+  .view-offers #views-form-offers-page .form-submit#edit-submit {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0px none;
+    background: url("../graphics/send_small_light.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/send_small_light.svg") transparent 0 0 no-repeat;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out; }
+    .view-offers #views-form-offers-page .form-submit#edit-submit:hover {
+      background-color: #303030; }
 .view-offers .views-field-field-offer-amount input {
   margin-right: 5px;
   padding: 0 5px 0 5px 0; }

@@ -94,23 +94,19 @@ function f_capital_raising_field_group_info() {
     'label' => 'Mål för emission',
     'weight' => '28',
     'children' => array(
-      0 => 'field_cap_rais_goal_tot',
+      0 => 'field_cap_rais_goal_com',
       1 => 'field_cap_rais_goal_guar',
-      2 => 'field_cap_rais_goal_com',
+      2 => 'field_cap_rais_goal_tot',
     ),
-    'format_type' => 'div',
+    'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'open',
+      'label' => 'Mål för emission',
       'instance_settings' => array(
-        'description' => '',
-        'show_label' => 1,
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
-        'classes' => 'group-cap-rais-3 field-group-div',
         'required_fields' => 1,
-        'id' => '',
+        'classes' => '',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_cap_rais_3|node|capital_raising|form'] = $field_group;

@@ -68,7 +68,7 @@
   // Add investors button (Kontaktlista)
   .add-more {
     @include button($dark-grey, add);
-    margin-bottom: 40px;
+    //margin-bottom: 20px;
   }
 
   // Offerd investor status (Kontaktlista)
@@ -107,6 +107,7 @@
 
   // Send email button (Kontaktlista)
   #views-form-offers-page {
+    margin-top: 25px;
 
     .form-submit#edit-submit {
       @include button($dark-grey, send);
