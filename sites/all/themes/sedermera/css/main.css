@@ -413,6 +413,8 @@ ul.pager {
 
 .node-type-company #main-content .content-column {
   overflow: visible; }
+.node-type-company .field-comp-logo {
+  margin-top: 10px; }
 
 .transaction-wrapper {
   background: #fff;
@@ -468,10 +470,7 @@ ul.pager {
       height: 20px;
       padding-left: 25px; }
 
-.field-comp-logo {
-  margin-top: 10px; }
-
-.add-more {
+.view-offers .add-more {
   display: inline-block;
   height: 34px;
   font-size: 12px;
@@ -493,35 +492,26 @@ ul.pager {
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out;
   margin-bottom: 40px; }
-  .add-more:hover {
+  .view-offers .add-more:hover {
     background-color: #303030; }
-
-.views-field-field-offer-amount input {
-  margin-right: 5px;
-  padding: 0 5px 0 5px 0; }
-
-.views-field.views-field-field-offer-status input {
+.view-offers .views-field.views-field-field-offer-status input {
   width: 200px; }
-
-.views-field-field-offer-interested .checker {
-  margin-bottom: 4px;
-  margin-right: 5px; }
-
-.form-type-date-combo {
+.view-offers .form-type-date-combo {
   position: relative; }
-  .form-type-date-combo .description {
+  .view-offers .form-type-date-combo .description {
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
     background-color: #ebedf1;
-    position: absolute;
     padding: 1px 5px 2px 5px;
+    position: absolute;
     display: none; }
-
-.date-date {
-  width: 200px; }
-
-#views-form-offers-page .form-submit#edit-submit {
+  .view-offers .form-type-date-combo .date-date {
+    width: 200px; }
+.view-offers .views-field-field-offer-interested .checker {
+  margin-bottom: 4px;
+  margin-right: 5px; }
+.view-offers #views-form-offers-page .form-submit#edit-submit {
   display: inline-block;
   height: 34px;
   font-size: 12px;
@@ -542,8 +532,11 @@ ul.pager {
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out; }
-  #views-form-offers-page .form-submit#edit-submit:hover {
+  .view-offers #views-form-offers-page .form-submit#edit-submit:hover {
     background-color: #303030; }
+.view-offers .views-field-field-offer-amount input {
+  margin-right: 5px;
+  padding: 0 5px 0 5px 0; }
 
 #sedermera-offer-investors-add {
   overflow: hidden;
