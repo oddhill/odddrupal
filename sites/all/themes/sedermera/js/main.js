@@ -20,6 +20,20 @@ if (Drupal.jsAC) {
   };
 }
 
+// Run once when the DOM is ready (page load)
+$(document).ready(function() {
+
+    // Fade in the date format (kontaktlista)
+    $(".form-type-date-combo .date-date .form-text").on('focusin', function() {
+      $(this).parent().siblings(".description").fadeIn();
+    });
+
+    // Fade out the date format (kontaktlista)
+    $(".form-type-date-combo .date-date .form-text").on('focusout', function() {
+      $(this).parent().siblings(".description").fadeOut();
+    });
+});
+
 // Override module javascript and use try catch to isolate errors.
 Drupal.behaviors.form_placeholder = {
   attach: function(context, settings) {

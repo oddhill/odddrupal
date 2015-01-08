@@ -26,6 +26,12 @@
     padding-left: 42px;
   }
 
+  @if $icon == send {
+    @include svg-bg(send_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
   @if $icon == upload {
     @include svg-bg(upload);
     background-position: 20px 11px;

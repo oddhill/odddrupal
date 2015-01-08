@@ -471,17 +471,6 @@ ul.pager {
 .field-comp-logo {
   margin-top: 10px; }
 
-.views-field.views-field-field-offer-status input {
-  width: 200px; }
-
-.views-field-field-offer-interested .checker {
-  margin-bottom: 4px;
-  margin-right: 5px; }
-
-.views-field-field-offer-amount input {
-  margin-right: 5px;
-  padding: 0 5px 0 5px 0; }
-
 .add-more {
   display: inline-block;
   height: 34px;
@@ -505,6 +494,55 @@ ul.pager {
   transition: background-color 0.1s ease-in-out;
   margin-bottom: 40px; }
   .add-more:hover {
+    background-color: #303030; }
+
+.views-field-field-offer-amount input {
+  margin-right: 5px;
+  padding: 0 5px 0 5px 0; }
+
+.views-field.views-field-field-offer-status input {
+  width: 200px; }
+
+.views-field-field-offer-interested .checker {
+  margin-bottom: 4px;
+  margin-right: 5px; }
+
+.form-type-date-combo {
+  position: relative; }
+  .form-type-date-combo .description {
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px;
+    background-color: #ebedf1;
+    position: absolute;
+    padding: 1px 5px 2px 5px;
+    display: none; }
+
+.date-date {
+  width: 200px; }
+
+#views-form-offers-page .form-submit#edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0px none;
+  background: url("../graphics/send_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/send_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #views-form-offers-page .form-submit#edit-submit:hover {
     background-color: #303030; }
 
 #sedermera-offer-investors-add {

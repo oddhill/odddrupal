@@ -67,22 +67,13 @@
   margin-top: 10px;
 }
 
-// Offerd table (Kontaktlista)
-.views-field.views-field-field-offer-status {
-
-  input {
-    width: 200px;
-  }
+// Add investors button
+.add-more {
+  @include button($dark-grey, add);
+  margin-bottom: 40px;
 }
 
-.views-field-field-offer-interested {
-
-  .checker {
-    margin-bottom: 4px;
-    margin-right: 5px;
-  }
-}
-
+// Offerd amount (Intressenter)
 .views-field-field-offer-amount {
 
   input {
@@ -91,10 +82,46 @@
   }
 }
 
-// Add investors button
-.add-more {
-  @include button($dark-grey, add);
-  margin-bottom: 40px;
+// Offerd table (Kontaktlista)
+.views-field.views-field-field-offer-status {
+
+  input {
+    width: 200px;
+  }
+}
+
+// Interested check box (Kontaktlista)
+.views-field-field-offer-interested {
+
+  .checker {
+    margin-bottom: 4px;
+    margin-right: 5px;
+  }
+}
+
+// Date format description (Kontaktlista)
+.form-type-date-combo {
+  position: relative;
+
+  .description {
+    @include font-size(1.1);
+    background-color: $aluminium;
+    position: absolute;
+    padding: 1px 5px 2px 5px;
+    display: none;
+  }
+}
+
+.date-date {
+  width: 200px;
+}
+
+// Send email button
+#views-form-offers-page {
+
+  .form-submit#edit-submit {
+    @include button($dark-grey, send);
+  }
 }
 
 // Send email select box and add investors button
