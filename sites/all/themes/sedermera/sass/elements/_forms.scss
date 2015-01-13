@@ -896,14 +896,16 @@ form.confirmation {
 
   // File
   .form-type-managed-file {
+    border-right: 1px solid $light-concrete;
     float: left;
-    display: inline-block;
+    display: block;
+    margin-right: 20px;
     padding-right: 20px;
     width: auto;
   }
 
   .status-fields {
-    float: right;
+    float: left;
 
     // Approved checkbox
     .field-type-list-boolean {
@@ -934,7 +936,7 @@ form.confirmation {
   form {
 
     .form-item {
-      margin: 0;
+      margin-bottom: 5px;
     }
   }
 }

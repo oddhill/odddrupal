@@ -144,7 +144,7 @@ body {
           padding: 0 20px;
           font-weight: 500;
           text-transform: uppercase;
-          border-bottom: 0px none;
+          border-bottom: 0 none;
           background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
           background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
           background-position: 20px 11px;
@@ -485,7 +485,7 @@ ul.pager {
   padding: 0 20px;
   font-weight: 500;
   text-transform: uppercase;
-  border-bottom: 0px none;
+  border-bottom: 0 none;
   background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
   background-position: 20px 11px;
@@ -527,7 +527,7 @@ ul.pager {
     padding: 0 20px;
     font-weight: 500;
     text-transform: uppercase;
-    border-bottom: 0px none;
+    border-bottom: 0 none;
     background: url("../graphics/send_small_light.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/send_small_light.svg") transparent 0 0 no-repeat;
     background-position: 20px 11px;
@@ -541,6 +541,48 @@ ul.pager {
 .view-offers .views-field-field-offer-amount input {
   margin-right: 5px;
   padding: 0 5px 0 5px 0; }
+.view-offers a.sedermera-verification-status-check {
+  cursor: pointer; }
+  .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.approved {
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px;
+    border-radius: 28px;
+    border-bottom: 0 none;
+    display: inline-block;
+    font-weight: 500;
+    height: 28px;
+    line-height: 28px;
+    text-transform: uppercase;
+    width: 114px;
+    background: url("../graphics/approved.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
+    background-position: 5px 4px;
+    padding-left: 28px;
+    background-color: #b6e0af;
+    color: #6c9e65; }
+    .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.approved:hover {
+      background-color: #a3c99d; }
+  .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.not-approved {
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px;
+    border-radius: 28px;
+    border-bottom: 0 none;
+    display: inline-block;
+    font-weight: 500;
+    height: 28px;
+    line-height: 28px;
+    text-transform: uppercase;
+    width: 114px;
+    background: url("../graphics/unapproved.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/unapproved.svg") transparent 0 0 no-repeat;
+    background-position: 5px 4px;
+    padding-left: 28px;
+    background-color: #e0afaf;
+    color: #9e6565; }
+    .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.not-approved:hover {
+      background-color: #c99d9d; }
 
 #sedermera-offer-investors-add {
   overflow: hidden;
@@ -564,7 +606,7 @@ ul.pager {
       padding: 0 20px;
       font-weight: 500;
       text-transform: uppercase;
-      border-bottom: 0px none;
+      border-bottom: 0 none;
       background-color: #454545;
       -webkit-transition: background-color 0.1s ease-in-out;
       -moz-transition: background-color 0.1s ease-in-out;
@@ -758,7 +800,7 @@ ul.pager {
         padding: 0 20px;
         font-weight: 500;
         text-transform: uppercase;
-        border-bottom: 0px none;
+        border-bottom: 0 none;
         background-color: #454545;
         -webkit-transition: background-color 0.1s ease-in-out;
         -moz-transition: background-color 0.1s ease-in-out;
@@ -1560,7 +1602,7 @@ form fieldset {
             padding: 0 20px;
             font-weight: 500;
             text-transform: uppercase;
-            border-bottom: 0px none;
+            border-bottom: 0 none;
             background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
             background-position: 20px 11px;
@@ -1808,7 +1850,7 @@ form .form-item {
           padding: 0 20px;
           font-weight: 500;
           text-transform: uppercase;
-          border-bottom: 0px none;
+          border-bottom: 0 none;
           background: url("../graphics/upload.png") transparent 0 0 no-repeat;
           background: none, url("../graphics/upload.svg") transparent 0 0 no-repeat;
           background-position: 20px 11px;
@@ -1893,7 +1935,7 @@ form .form-item {
             padding: 0 20px;
             font-weight: 500;
             text-transform: uppercase;
-            border-bottom: 0px none;
+            border-bottom: 0 none;
             background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
             background-position: 20px 11px;
@@ -1945,7 +1987,7 @@ form .submit-wrapper {
       padding: 0 20px;
       font-weight: 500;
       text-transform: uppercase;
-      border-bottom: 0px none;
+      border-bottom: 0 none;
       background: url("../graphics/next.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/next.svg") transparent 0 0 no-repeat;
       background-position: 20px 11px;
@@ -1968,7 +2010,7 @@ form .submit-wrapper {
       padding: 0 20px;
       font-weight: 500;
       text-transform: uppercase;
-      border-bottom: 0px none;
+      border-bottom: 0 none;
       background: url("../graphics/previous.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/previous.svg") transparent 0 0 no-repeat;
       background-position: 20px 11px;
@@ -1991,7 +2033,7 @@ form .submit-wrapper {
       padding: 0 20px;
       font-weight: 500;
       text-transform: uppercase;
-      border-bottom: 0px none;
+      border-bottom: 0 none;
       background: url("../graphics/save_small_light.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/save_small_light.svg") transparent 0 0 no-repeat;
       background-position: 20px 11px;
@@ -2014,7 +2056,7 @@ form .submit-wrapper {
       padding: 0 20px;
       font-weight: 500;
       text-transform: uppercase;
-      border-bottom: 0px none;
+      border-bottom: 0 none;
       background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
       background-position: 20px 11px;
@@ -2123,7 +2165,7 @@ form.confirmation {
     padding: 0 20px;
     font-weight: 500;
     text-transform: uppercase;
-    border-bottom: 0px none;
+    border-bottom: 0 none;
     background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
     background-position: 20px 14px;
@@ -2154,7 +2196,7 @@ form.confirmation {
   padding: 0 20px;
   font-weight: 500;
   text-transform: uppercase;
-  border-bottom: 0px none;
+  border-bottom: 0 none;
   background: url("../graphics/cancel.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/cancel.svg") transparent 0 0 no-repeat;
   background-position: 20px 12px;
@@ -2194,13 +2236,15 @@ form.confirmation {
     text-transform: lowercase; }
 .page-investor-person-kontroll .form-type-managed-file,
 .page-investor-company-kontroll .form-type-managed-file {
+  border-right: 1px solid #c8cacd;
   float: left;
-  display: inline-block;
+  display: block;
+  margin-right: 20px;
   padding-right: 20px;
   width: auto; }
 .page-investor-person-kontroll .status-fields,
 .page-investor-company-kontroll .status-fields {
-  float: right; }
+  float: left; }
   .page-investor-person-kontroll .status-fields .field-type-list-boolean,
   .page-investor-company-kontroll .status-fields .field-type-list-boolean {
     display: inline-block;
@@ -2222,7 +2266,7 @@ form.confirmation {
   padding-right: 25px; }
 .page-investor-person-kontroll form .form-item,
 .page-investor-company-kontroll form .form-item {
-  margin: 0; }
+  margin-bottom: 5px; }
 
 ul.tabs {
   background: #ebedf1;
@@ -2385,7 +2429,7 @@ ul.tabs {
         padding: 0 20px;
         font-weight: 500;
         text-transform: uppercase;
-        border-bottom: 0px none;
+        border-bottom: 0 none;
         background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
         color: #282828;
@@ -2523,7 +2567,7 @@ h2.sidebar-second-icon {
     padding: 0 20px;
     font-weight: 500;
     text-transform: uppercase;
-    border-bottom: 0px none;
+    border-bottom: 0 none;
     background: url("../graphics/archive_light.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/archive_light.svg") transparent 0 0 no-repeat;
     background-position: 20px 11px;

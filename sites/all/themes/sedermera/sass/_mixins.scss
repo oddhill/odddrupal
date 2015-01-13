@@ -8,7 +8,7 @@
   padding: 0 20px;
   font-weight: 500;
   text-transform: uppercase;
-  border-bottom: 0px none;
+  border-bottom: 0 none;
 
   &:hover {
     background-color: shade($background,30%);
@@ -62,7 +62,7 @@
     padding-left: 42px;
   }
 
-   @if $icon == cancel {
+  @if $icon == cancel {
     @include svg-bg(cancel);
     background-position: 20px 12px;
     padding-left: 42px;
@@ -97,6 +97,36 @@
     padding: 0 10px 0 26px;
     margin-right: 8px;
   }
+}
+
+@mixin status-button($background: $dark-grey, $icon: default, $size: default) {
+  @include font-size(1.1);
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 500;
+  height: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  width: 114px;
+
+  @if $icon == approved {
+    @include svg-bg(approved);
+    background-position: 5px 4px;
+    padding-left: 28px;
+  }
+
+  @if $icon == unapproved {
+    @include svg-bg(unapproved);
+    background-position: 5px 4px;
+    padding-left: 28px;
+  }
+
+  &:hover {
+    background-color: shade($background,10%);
+  }
+
+  background-color: $background;
 }
 
 @mixin throbber {
