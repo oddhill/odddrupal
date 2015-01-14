@@ -1,4 +1,4 @@
-// Transaction content wrapper
+// Overview - Transaction content wrapper
 .transaction-wrapper {
   background: $snow;
   overflow: auto;
@@ -15,6 +15,7 @@
   float: left;
   padding: 0 0 0 25px;
 
+  // Logotype (Kundbolag)
   img {
     height: auto;
     width: 100%;
@@ -63,9 +64,10 @@
   }
 }
 
+// Wraps Contactlist (Kontaktlista), Stakeholders (Intressenter), Subscription list (Teckningslista)
 .view-offers {
 
-  // Add investors button (Kontaktlista)
+  // Add more investors button (Kontaktlista - Lägg till fler investerare)
   .add-more {
     @include button($dark-grey, add);
   }
@@ -140,25 +142,16 @@
   }
 }
 
-// Send email select box and add investors button
+// Send email select box and add chosen investors button (Lägg till utvalda investerare)
 #sedermera-offer-investors-add {
   overflow: hidden;
   text-align: right;
-
-  .form-item-send-email {
-    display: inline-block;
-    margin-right: 20px;
-
-    .checker {
-      margin-right: 5px;
-    }
-  }
 
   .form-actions {
     display: inline-block;
 
     .form-submit {
-      @include button($dark-grey);
+      @include button($dark-grey, add);
       margin-right: 0;
     }
   }

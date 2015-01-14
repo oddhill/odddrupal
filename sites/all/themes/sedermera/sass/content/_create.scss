@@ -1,3 +1,4 @@
+// Add investor
 .page-investerare-skapa {
 
   // Create type
@@ -42,6 +43,7 @@
   }
 }
 
+// Add capital raising (transaktion)
 .page-node-add-capital-raising {
 
   form.node-capital_raising-form {
@@ -72,9 +74,6 @@
         margin-bottom: 5px;
       }
 
-      label.option {
-      }
-
       .checker {
         margin-bottom: 4px;
         margin-right: 5px;
@@ -87,6 +86,7 @@
       }
     }
 
+    // Wraps next step/go back/create buttons
     .form-actions {
       text-align: right;
 
@@ -106,6 +106,7 @@
   }
 }
 
+// Capital Raising (transaktion) Title
 .field.title {
 
   h2 {

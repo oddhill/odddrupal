@@ -99,6 +99,7 @@
   }
 }
 
+// Status button - approved/unapproved
 @mixin status-button($background: $dark-grey, $icon: default, $size: default) {
   @include font-size(1.1);
   border-radius: 28px;

@@ -86,134 +86,6 @@ body {
   font-family: "Roboto", sans-serif;
   height: 100%; }
 
-#site-wrapper {
-  height: 100%; }
-
-#main-sidebar {
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 280px; }
-
-#main-content {
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 18.2px;
-  overflow: hidden; }
-  .logged-in #main-content {
-    margin-left: 280px;
-    padding: 40px; }
-  #main-content .page-head {
-    margin-bottom: 70px; }
-    #main-content .page-head:after {
-      content: "";
-      display: table;
-      clear: both; }
-    #main-content .page-head #page-title {
-      float: left; }
-  #main-content .content-wrapper {
-    margin: 0; }
-    #main-content .content-wrapper .content-sidebar {
-      background: #e0e2e6;
-      float: right;
-      padding-bottom: 30px;
-      width: 280px; }
-      #main-content .content-wrapper .content-sidebar .sidebar-second-content {
-        padding: 0 10px 10px 10px; }
-    #main-content .content-wrapper .content-column {
-      background-color: #fff;
-      overflow: hidden; }
-  #main-content #page-actions {
-    float: right;
-    margin-top: 16px; }
-    #main-content #page-actions ul.action-links {
-      list-style: none; }
-      #main-content #page-actions ul.action-links li {
-        display: inline;
-        margin-left: 20px; }
-        #main-content #page-actions ul.action-links li a {
-          display: inline-block;
-          height: 34px;
-          font-size: 12px;
-          font-size: 1.2rem;
-          line-height: 12px;
-          line-height: 34px;
-          border-radius: 34px;
-          color: #fff;
-          padding: 0 20px;
-          font-weight: 500;
-          text-transform: uppercase;
-          border-bottom: 0 none;
-          background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
-          background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
-          background-position: 20px 11px;
-          padding-left: 42px;
-          background-color: #454545;
-          -webkit-transition: background-color 0.1s ease-in-out;
-          -moz-transition: background-color 0.1s ease-in-out;
-          transition: background-color 0.1s ease-in-out; }
-          #main-content #page-actions ul.action-links li a:hover {
-            background-color: #303030; }
-
-ul.pager {
-  bottom: 20px;
-  display: inline-block;
-  list-style: none;
-  padding-right: 24px;
-  position: absolute;
-  right: 20px; }
-  ul.pager:before {
-    font-size: 11px;
-    font-size: 1.1rem;
-    line-height: 16.5px;
-    content: "Sida";
-    float: left;
-    font-weight: 700;
-    line-height: 21px;
-    padding: 0 7px;
-    text-transform: uppercase; }
-  ul.pager li {
-    font-size: 11px;
-    font-size: 1.1rem;
-    line-height: 16.5px;
-    display: inline-block;
-    line-height: 21px;
-    margin-right: 1px; }
-    ul.pager li.pager-current {
-      background: #454545;
-      border-radius: 3px;
-      color: #e0e2e6;
-      font-weight: 700;
-      padding: 0 7px; }
-    ul.pager li a {
-      background: #d5d7da;
-      border-bottom: 0 none;
-      border-radius: 3px;
-      color: #282828;
-      display: block;
-      font-weight: 700;
-      line-height: 21px;
-      padding: 0 7px; }
-      ul.pager li a:hover {
-        background: #b2b3b6;
-        color: #fff; }
-    ul.pager li .ajax-progress {
-      position: absolute;
-      right: 0;
-      top: 0; }
-      ul.pager li .ajax-progress .throbber {
-        display: inline-block;
-        background: transparent;
-        width: 16px;
-        height: 16px;
-        border: 2px solid #f9a500;
-        border-radius: 50%;
-        border-top-color: transparent;
-        -webkit-animation: load 0.9s linear infinite;
-        -moz-animation: load 0.9s linear infinite;
-        animation: load 0.9s linear infinite; }
-
 .empty-wrapper {
   padding: 80px 30px; }
   .empty-wrapper .empty-icon {
@@ -321,30 +193,6 @@ ul.pager {
   padding: 0 0 33px 0;
   text-align: center; }
 
-.page-node-edit.node-type-capital-raising .form-sidebar {
-  background: transparent;
-  float: left;
-  margin-right: 20px;
-  padding: 0;
-  width: 280px; }
-.page-node-edit.node-type-capital-raising .form-body {
-  background: transparent;
-  overflow: hidden;
-  padding: 0; }
-  .page-node-edit.node-type-capital-raising .form-body .field-name-body {
-    background: #e0e2e6;
-    border-radius: 2px;
-    margin-bottom: 20px;
-    padding: 10px; }
-.page-node-edit.node-type-capital-raising #title-wrapper {
-  background: #e0e2e6;
-  border-radius: 2px;
-  margin-bottom: 20px;
-  padding: 10px; }
-.page-node-edit .form-actions {
-  border-top: 2px solid #e0e2e6;
-  padding-top: 20px; }
-
 .page-investor-person-edit .form-sidebar,
 .page-investor-company-edit .form-sidebar {
   background: transparent;
@@ -359,6 +207,30 @@ ul.pager {
   padding: 0; }
 .page-investor-person-edit .form-actions,
 .page-investor-company-edit .form-actions {
+  border-top: 2px solid #e0e2e6;
+  padding-top: 20px; }
+
+.page-node-edit.node-type-capital-raising .form-sidebar {
+  background: transparent;
+  float: left;
+  margin-right: 20px;
+  padding: 0;
+  width: 280px; }
+.page-node-edit.node-type-capital-raising #title-wrapper {
+  background: #e0e2e6;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  padding: 10px; }
+.page-node-edit.node-type-capital-raising .form-body {
+  background: transparent;
+  overflow: hidden;
+  padding: 0; }
+  .page-node-edit.node-type-capital-raising .form-body .field-name-body {
+    background: #e0e2e6;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    padding: 10px; }
+.page-node-edit .form-actions {
   border-top: 2px solid #e0e2e6;
   padding-top: 20px; }
 
@@ -588,11 +460,6 @@ ul.pager {
 #sedermera-offer-investors-add {
   overflow: hidden;
   text-align: right; }
-  #sedermera-offer-investors-add .form-item-send-email {
-    display: inline-block;
-    margin-right: 20px; }
-    #sedermera-offer-investors-add .form-item-send-email .checker {
-      margin-right: 5px; }
   #sedermera-offer-investors-add .form-actions {
     display: inline-block; }
     #sedermera-offer-investors-add .form-actions .form-submit {
@@ -608,6 +475,10 @@ ul.pager {
       font-weight: 500;
       text-transform: uppercase;
       border-bottom: 0 none;
+      background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+      background-position: 20px 11px;
+      padding-left: 42px;
       background-color: #454545;
       -webkit-transition: background-color 0.1s ease-in-out;
       -moz-transition: background-color 0.1s ease-in-out;
@@ -615,6 +486,76 @@ ul.pager {
       margin-right: 0; }
       #sedermera-offer-investors-add .form-actions .form-submit:hover {
         background-color: #303030; }
+
+#site-wrapper {
+  height: 100%; }
+
+#main-sidebar {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 280px; }
+
+#main-content {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 18.2px;
+  overflow: hidden; }
+  .logged-in #main-content {
+    margin-left: 280px;
+    padding: 40px; }
+  #main-content .page-head {
+    margin-bottom: 70px; }
+    #main-content .page-head:after {
+      content: "";
+      display: table;
+      clear: both; }
+    #main-content .page-head #page-title {
+      float: left; }
+  #main-content .content-wrapper {
+    margin: 0; }
+    #main-content .content-wrapper .content-sidebar {
+      background: #e0e2e6;
+      float: right;
+      padding-bottom: 30px;
+      width: 280px; }
+      #main-content .content-wrapper .content-sidebar .sidebar-second-content {
+        padding: 0 10px 10px 10px; }
+    #main-content .content-wrapper .content-column {
+      background-color: #fff;
+      overflow: hidden; }
+  #main-content #page-actions {
+    float: right;
+    margin-top: 16px; }
+    #main-content #page-actions ul.action-links {
+      list-style: none; }
+      #main-content #page-actions ul.action-links li {
+        display: inline;
+        margin-left: 20px; }
+        #main-content #page-actions ul.action-links li a {
+          display: inline-block;
+          height: 34px;
+          font-size: 12px;
+          font-size: 1.2rem;
+          line-height: 12px;
+          line-height: 34px;
+          border-radius: 34px;
+          color: #fff;
+          padding: 0 20px;
+          font-weight: 500;
+          text-transform: uppercase;
+          border-bottom: 0 none;
+          background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+          background-position: 20px 11px;
+          padding-left: 42px;
+          background-color: #454545;
+          -webkit-transition: background-color 0.1s ease-in-out;
+          -moz-transition: background-color 0.1s ease-in-out;
+          transition: background-color 0.1s ease-in-out; }
+          #main-content #page-actions ul.action-links li a:hover {
+            background-color: #303030; }
 
 #main-sidebar {
   background-color: #282828; }
@@ -759,6 +700,64 @@ ul.pager {
       background: #f9a500; }
     #page-messages .messages.error {
       background: #c04343; }
+
+ul.pager {
+  bottom: 20px;
+  display: inline-block;
+  list-style: none;
+  padding-right: 24px;
+  position: absolute;
+  right: 20px; }
+  ul.pager:before {
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px;
+    content: "Sida";
+    float: left;
+    font-weight: 700;
+    line-height: 21px;
+    padding: 0 7px;
+    text-transform: uppercase; }
+  ul.pager li {
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px;
+    display: inline-block;
+    line-height: 21px;
+    margin-right: 1px; }
+    ul.pager li.pager-current {
+      background: #454545;
+      border-radius: 3px;
+      color: #e0e2e6;
+      font-weight: 700;
+      padding: 0 7px; }
+    ul.pager li a {
+      background: #d5d7da;
+      border-bottom: 0 none;
+      border-radius: 3px;
+      color: #282828;
+      display: block;
+      font-weight: 700;
+      line-height: 21px;
+      padding: 0 7px; }
+      ul.pager li a:hover {
+        background: #b2b3b6;
+        color: #fff; }
+    ul.pager li .ajax-progress {
+      position: absolute;
+      right: 0;
+      top: 0; }
+      ul.pager li .ajax-progress .throbber {
+        display: inline-block;
+        background: transparent;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f9a500;
+        border-radius: 50%;
+        border-top-color: transparent;
+        -webkit-animation: load 0.9s linear infinite;
+        -moz-animation: load 0.9s linear infinite;
+        animation: load 0.9s linear infinite; }
 
 .filtered-table {
   background: #fff;

@@ -1,42 +1,4 @@
-.page-node-edit {
-
-  &.node-type-capital-raising {
-
-    .form-sidebar {
-      background: transparent;
-      float: left;
-      margin-right: 20px;
-      padding: 0;
-      width: 280px;
-    }
-
-    .form-body {
-      background: transparent;
-      overflow: hidden;
-      padding: 0;
-
-      .field-name-body {
-        background: $wool;
-        border-radius: 2px;
-        margin-bottom: 20px;
-        padding: 10px;
-      }
-    }
-
-    #title-wrapper {
-      background: $wool;
-      border-radius: 2px;
-      margin-bottom: 20px;
-      padding: 10px;
-    }
-  }
-
-  .form-actions {
-    border-top: 2px solid $wool;
-    padding-top: 20px;
-  }
-}
-
+// Edit Investor Person/Company
 .page-investor-person-edit,
 .page-investor-company-edit {
 
@@ -54,6 +16,48 @@
     padding: 0;
   }
 
+  // Wraps the save and delete buttons
+  .form-actions {
+    border-top: 2px solid $wool;
+    padding-top: 20px;
+  }
+}
+
+// Edit Capital Raising (Transaktion)
+.page-node-edit {
+
+  &.node-type-capital-raising {
+
+    .form-sidebar {
+      background: transparent;
+      float: left;
+      margin-right: 20px;
+      padding: 0;
+      width: 280px;
+    }
+
+    #title-wrapper {
+      background: $wool;
+      border-radius: 2px;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    .form-body {
+      background: transparent;
+      overflow: hidden;
+      padding: 0;
+
+      .field-name-body {
+        background: $wool;
+        border-radius: 2px;
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+    }
+  }
+
+  // Wraps the save and delete buttons
   .form-actions {
     border-top: 2px solid $wool;
     padding-top: 20px;

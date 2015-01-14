@@ -1,0 +1,70 @@
+#site-wrapper {
+  height: 100%;
+}
+
+// Wraps the entire main sidebar
+#main-sidebar {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 280px;
+}
+
+#main-content {
+  @include font-size($standard,1.3);
+  overflow: hidden;
+
+  .logged-in & {
+    margin-left: 280px;
+    padding: 40px;
+  }
+
+  .page-head {
+    @include clearfix;
+    margin-bottom: 70px;
+
+    #page-title {
+      float: left;
+    }
+  }
+
+  .content-wrapper {
+    margin: 0;
+
+    .content-sidebar {
+      background: $wool;
+      float: right;
+      padding-bottom: 30px;
+      width: 280px;
+
+      .sidebar-second-content {
+        padding: 0 10px 10px 10px;
+      }
+    }
+
+    .content-column {
+      background-color: #fff;
+      overflow: hidden;
+    }
+  }
+
+  // Page action links
+  #page-actions {
+    float: right;
+    margin-top: 16px;
+
+    ul.action-links {
+      list-style: none;
+
+      li {
+        display: inline;
+        margin-left: 20px;
+
+        a {
+          @include button($dark-grey,add);
+        }
+      }
+    }
+  }
+}
