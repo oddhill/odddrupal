@@ -635,6 +635,16 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
   if (!$form_state['build_info']['args'][0]->result) {
     $form['#access'] = FALSE;
   }
+
+  // Show and enable the submit button when any of the rows has been checked.
+  $form['actions']['submit']['#states'] = array(
+    'visible' => array(
+      'td.views-field-views-send input' => array('checked' => TRUE),
+    ),
+    'enabled' => array(
+      'td.views-field-views-send input' => array('checked' => TRUE),
+    ),
+  );
 }
 
 /**
