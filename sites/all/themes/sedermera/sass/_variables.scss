@@ -56,3 +56,7 @@ $body-font: 'Roboto', sans-serif;
 
 // Header font-family
 $heading-font: 'Roboto', sans-serif;
+
+// Breakpoints
+$medium: new-breakpoint(max-width 1280px);
+

@@ -1,9 +1,28 @@
 // Main sidebar background
 #main-sidebar {
   background-color: $coffee;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 280px;
+  z-index: 599;
+
+  .toolbar & {
+    padding-top: 30px;
+  }
+
+  .admin-menu & {
+    padding-top: 29px;
+  }
 
   a {
     border-bottom: 0px none;
+  }
+
+  @include media($medium) {
+    background-color: #000;
+    width: 82px;
   }
 }
 
@@ -13,6 +32,19 @@
   padding: 25px 0 25px 0;
   text-align: center;
   width: 100%;
+
+  @include media($medium) {
+    height: 40px;
+    margin: 10px 0;
+    overflow: hidden;
+    padding: 0;
+    width: 80px;
+
+    img {
+      margin-left: -40px;
+      max-width: 160px;
+    }
+ }
 }
 
 // Main menu
@@ -138,6 +170,64 @@
       }
     }
   }
+
+  @include media($medium) {
+
+    > ul.menu {
+
+      > li {
+        padding: 20px 30px;
+
+        > a {
+          font-size: 0;
+          text-indent: 1000px;
+          overflow: hidden;
+        }
+      }
+    }
+
+    li.expanded {
+
+      ul.menu {
+        background: $coffee;
+        position: fixed;
+        margin-left: 82px;
+        margin-top: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        .toolbar & {
+          top: 30px;
+        }
+
+        .admin-menu & {
+          top: 29px;
+        }
+
+        li {
+          background: none;
+          display: block;
+          float: left;
+          padding: 0;
+
+          a {
+            background-position: 40px 24px;
+            border-right: 1px solid $dark-concrete;
+            display: block;
+            height: 60px;
+            line-height: 60px;
+            padding: 0 40px 0 70px;
+
+            &.active,
+            &.active-trail {
+              background-position: 40px 24px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // User logged in
@@ -170,14 +260,23 @@
   @include svg-bg(user_male);
   float: left;
   height: auto;
-  margin-left: 50px;
+  margin-left: 30px;
   padding-bottom: 20px;
   text-indent: -9999px;
   width: 20%;
+
+  @include media($medium) {
+    margin-left: 22px;
+    width: 100%;
+  }
 }
 
 .user-status {
   float: left;
   margin-right: 20px;
   width: 40%;
+
+  @include media($medium) {
+    display: none;
+  }
 }

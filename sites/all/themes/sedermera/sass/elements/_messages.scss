@@ -17,5 +17,8 @@
     &.error {
       background: $wine;
     }
+
+    @include media($medium) {
+    }
   }
 }

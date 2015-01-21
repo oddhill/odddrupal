@@ -57,6 +57,9 @@ html {
   font-size: 62.5%;
   min-height: 100%;
   height: 100%; }
+  html body.admin-menu {
+    padding-top: 29px;
+    margin-top: 0 !important; }
 
 input,
 form,
@@ -489,13 +492,9 @@ body {
 
 #site-wrapper {
   height: 100%; }
-
-#main-sidebar {
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 280px; }
+  @media screen and (max-width: 1280px) {
+    .not-front #site-wrapper {
+      margin-top: 60px; } }
 
 #main-content {
   font-size: 14px;
@@ -505,6 +504,9 @@ body {
   .logged-in #main-content {
     margin-left: 280px;
     padding: 40px; }
+    @media screen and (max-width: 1280px) {
+      .logged-in #main-content {
+        margin-left: 80px; } }
   #main-content .page-head {
     margin-bottom: 70px; }
     #main-content .page-head:after {
@@ -558,15 +560,39 @@ body {
             background-color: #303030; }
 
 #main-sidebar {
-  background-color: #282828; }
+  background-color: #282828;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 280px;
+  z-index: 599; }
+  .toolbar #main-sidebar {
+    padding-top: 30px; }
+  .admin-menu #main-sidebar {
+    padding-top: 29px; }
   #main-sidebar a {
     border-bottom: 0px none; }
+  @media screen and (max-width: 1280px) {
+    #main-sidebar {
+      background-color: #000;
+      width: 82px; } }
 
 .logo {
   background-color: #000;
   padding: 25px 0 25px 0;
   text-align: center;
   width: 100%; }
+  @media screen and (max-width: 1280px) {
+    .logo {
+      height: 40px;
+      margin: 10px 0;
+      overflow: hidden;
+      padding: 0;
+      width: 80px; }
+      .logo img {
+        margin-left: -40px;
+        max-width: 160px; } }
 
 #main-navigation ul.menu {
   list-style-type: none; }
@@ -650,6 +676,39 @@ body {
         background-color: #1a1a1a; }
     #main-navigation ul.menu li.last {
       margin-bottom: 0; }
+@media screen and (max-width: 1280px) {
+  #main-navigation > ul.menu > li {
+    padding: 20px 30px; }
+    #main-navigation > ul.menu > li > a {
+      font-size: 0;
+      text-indent: 1000px;
+      overflow: hidden; }
+  #main-navigation li.expanded ul.menu {
+    background: #282828;
+    position: fixed;
+    margin-left: 82px;
+    margin-top: 0;
+    top: 0;
+    left: 0;
+    width: 100%; }
+    .toolbar #main-navigation li.expanded ul.menu {
+      top: 30px; }
+    .admin-menu #main-navigation li.expanded ul.menu {
+      top: 29px; }
+    #main-navigation li.expanded ul.menu li {
+      background: none;
+      display: block;
+      float: left;
+      padding: 0; }
+      #main-navigation li.expanded ul.menu li a {
+        background-position: 40px 24px;
+        border-right: 1px solid #363636;
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 40px 0 70px; }
+        #main-navigation li.expanded ul.menu li a.active, #main-navigation li.expanded ul.menu li a.active-trail {
+          background-position: 40px 24px; } }
 
 #user {
   font-size: 16px;
@@ -678,15 +737,22 @@ body {
   background: none, url("../graphics/user_male.svg") transparent 0 0 no-repeat;
   float: left;
   height: auto;
-  margin-left: 50px;
+  margin-left: 30px;
   padding-bottom: 20px;
   text-indent: -9999px;
   width: 20%; }
+  @media screen and (max-width: 1280px) {
+    .user-image {
+      margin-left: 22px;
+      width: 100%; } }
 
 .user-status {
   float: left;
   margin-right: 20px;
   width: 40%; }
+  @media screen and (max-width: 1280px) {
+    .user-status {
+      display: none; } }
 
 #page-messages {
   margin: -40px -40px 40px; }
