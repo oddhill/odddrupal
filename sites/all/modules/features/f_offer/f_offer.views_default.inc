@@ -321,7 +321,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.';
+  $handler->display->display_options['empty']['area']['content'] = 'Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Path */
@@ -475,7 +475,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.';
+  $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Investerare: Title */
@@ -557,7 +557,7 @@ function f_offer_views_default_views() {
     t('Telefon'),
     t('Första kontakt'),
     t('Intressenter'),
-    t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
+    t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.'),
     t('.'),
     t('<a href="[path]/intressenter/[id]/teckna">Teckna</a>'),
     t('Ej tecknad'),
@@ -568,7 +568,7 @@ function f_offer_views_default_views() {
     t('Tecknad'),
     t('[status]'),
     t('Teckningslista'),
-    t('Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Erbjudna</em> för att se alla erbjudna investerare.'),
+    t('Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.'),
     t('Tecknad den'),
     t('-'),
   );
