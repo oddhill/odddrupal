@@ -40,6 +40,12 @@ function f_core_filter_default_formats() {
         'settings' => array(
           'spamspan_at' => ' [at] ',
           'spamspan_use_graphic' => 0,
+          'spamspan_dot_enable' => 0,
+          'spamspan_dot' => ' [dot] ',
+          'spamspan_use_form' => FALSE,
+          'spamspan_use_url' => '<a href="/#formname?goto=#email">#displaytext</a>',
+          'spamspan_email_encode' => TRUE,
+          'spamspan_email_default' => 'contact_us_general_enquiry',
         ),
       ),
       'filter_htmlcorrector' => array(
