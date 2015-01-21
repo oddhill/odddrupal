@@ -13,9 +13,6 @@ function oddvault_install() {
   // Reset some Odd Drupal settings.
   oddvault_odddrupal_reset();
 
-  // Create the default fields.
-  oddvault_fields();
-
   // Set up the roles and permissions.
   oddvault_roles_users();
 

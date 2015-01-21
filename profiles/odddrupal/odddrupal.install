@@ -811,3 +811,54 @@ function odddrupal_update_7149() {
     }
   }
 }
+
+/**
+ * Extend the ThemeKey rule for /user to not activate for anonymous users.
+ *
+ * This will only extend the rule if one can be found, nothing will happen
+ * otherwise.
+ */
+function odddrupal_update_7150() {
+  module_load_include('inc', 'themekey', 'themekey_build');
+
+  foreach (themekey_load_rules() as $rule) {
+    // Add a new rule as a children to this rule, if this rule is the one that
+    // activates the administration theme for the /user path.
+    if ($rule['property'] == 'drupal:path' && $rule['value'] == 'user' && $rule['theme'] == 'ThemeKeyAdminTheme') {
+      $new_rule = array(
+        'property' => 'user:role',
+        'operator' => '!',
+        'value' => 'anonymous user',
+        'theme' => 'ThemeKeyAdminTheme',
+        'enabled' => 1,
+        'parent' => $rule['id'],
+        'weight' => 0,
+      );
+      themekey_rule_set($new_rule);
+
+      // Don't look for anymore rules.
+      break;
+    }
+  }
+}
+
+/**
+ * Enable the Search Krumo module for the development environment.
+ */
+function odddrupal_update_7151() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['search_krumo'] = 1;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['search_krumo'] = 0;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['search_krumo'] = 0;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'development') {
+    module_enable(array('search_krumo'));
+  }
+}

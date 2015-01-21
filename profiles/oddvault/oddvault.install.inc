@@ -12,46 +12,12 @@ function oddvault_odddrupal_reset() {
   // Delete ThemeKey rules.
   module_load_include('inc', 'themekey', 'themekey_build');
   themekey_rule_del(1);
+  themekey_rule_del(2);
 
   // Remove permissions from the anonymous role.
   user_role_revoke_permissions(1, array(
     'access content',
   ));
-}
-
-/**
- * Create our default fields.
- */
-function oddvault_fields() {
-  // Add a Name field to the user entity.
-  $fields = array(
-    'field_user_name' => array(
-      'field' => array(
-        'field_name' => 'field_user_name',
-        'type' => 'text',
-        'translatable' => FALSE,
-      ),
-      'instance' => array(
-        'field_name' => 'field_user_name',
-        'entity_type' => 'user',
-        'bundle' => 'user',
-        'label' => 'Name',
-        'widget' => array(
-          'type' => 'text_textfield',
-          'weight' => -100,
-        ),
-        'settings' => array(
-          'text_processing' => FALSE,
-          'user_register_form' => TRUE,
-        ),
-        'required' => TRUE,
-      ),
-    ),
-  );
-  foreach ($fields as $field) {
-    field_create_field($field['field']);
-    field_create_instance($field['instance']);
-  }
 }
 
 /**
@@ -98,7 +64,6 @@ function oddvault_roles_users() {
  */
 function oddvault_set_variables() {
   variable_set('user_cancel_method', 'user_cancel_reassign');
-  variable_set('realname_pattern', '[user:field-user-name]');
   variable_set('logintoboggan_login_with_email', '0');
   variable_set('user_mail_register_admin_created_body', '[user:name],
 

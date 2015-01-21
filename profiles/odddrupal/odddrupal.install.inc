@@ -238,6 +238,15 @@ function odddrupal_themekey_rules() {
       'parent' => 0,
       'weight' => 0,
     ),
+    array(
+      'property' => 'user:role',
+      'operator' => '!',
+      'value' => 'anonymous user',
+      'theme' => 'ThemeKeyAdminTheme',
+      'enabled' => 1,
+      'parent' => 1,
+      'weight' => 0,
+    ),
   );
 
   foreach ($rules as $rule) {
@@ -332,6 +341,7 @@ function odddrupal_set_variables() {
     'letmein' => 1,
     'reroute_email' => 1,
     'rules_admin' => 1,
+    'search_krumo' => 1,
     'speedy' => 0,
     'stage_file_proxy' => 1,
     'googleanalytics' => 0,
@@ -362,6 +372,7 @@ function odddrupal_set_variables() {
     'letmein' => 1,
     'reroute_email' => 1,
     'rules_admin' => 1,
+    'search_krumo' => 0,
     'speedy' => 1,
     'stage_file_proxy' => 1,
     'googleanalytics' => 0,
@@ -393,6 +404,7 @@ function odddrupal_set_variables() {
     'letmein' => 0,
     'reroute_email' => 0,
     'rules_admin' => 0,
+    'search_krumo' => 0,
     'speedy' => 1,
     'stage_file_proxy' => 0,
     'googleanalytics' => 1,
