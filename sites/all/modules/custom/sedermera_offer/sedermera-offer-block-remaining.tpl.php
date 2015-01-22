@@ -21,13 +21,19 @@
   </div>
 <?php endif; ?>
 
+<?php if ($guaranteed && $committed): ?>
+   <div class="vertical-bars-text-wrapper">
+    <h4>Garanterat</h4>
+    <div class="total"><?php print $guaranteed['current']; ?> av <?php print $guaranteed['max']; ?> SEK</div>
+    <h4>Åtaget</h4>
+    <div class="total"><?php print $committed['current']; ?> av <?php print $committed['max']; ?> SEK</div>
+  </div>
+<?php endif; ?>
+
 <div class="total-wrapper">
   <div class="progress">
     <div class="progress-bar" data-transitiongoal="<?php print $total['percentage']; ?>"></div>
   </div>
-  <?php if ($guaranteed && $committed): ?>
-    <div class="total">Garanterat: <?php print $guaranteed['current']; ?> av <?php print $guaranteed['max']; ?> SEK</div>
-    <div class="total">Åtaget: <?php print $committed['current']; ?> av <?php print $committed['max']; ?> SEK</div>
-  <?php endif; ?>
-  <div class="total">Totalt: <?php print $total['current']; ?> av <?php print $total['max']; ?> SEK</div>
+  <h4>Totalt</h4>
+  <div class="total"><?php print $total['current']; ?> av <?php print $total['max']; ?> SEK</div>
 </div>

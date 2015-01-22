@@ -33,6 +33,12 @@ h2.sidebar-second-icon {
     text-transform: uppercase;
   }
 
+  h4 {
+    @include font-size(1.6);
+    font-family: 'Inconsolata';
+    font-weight: 700;
+  }
+
   &.prospect-record {
 
     .vertical-bars {
@@ -119,6 +125,18 @@ h2.sidebar-second-icon {
           font-weight: 700;
           line-height: 28px;
           -webkit-box-shadow: none;
+        }
+      }
+    }
+
+    .vertical-bars-text-wrapper {
+      margin: 20px 20px 10px 20px;
+
+      .total {
+        margin-bottom: 15px;
+
+        &:last-child {
+          margin-bottom: 30px;
         }
       }
     }
