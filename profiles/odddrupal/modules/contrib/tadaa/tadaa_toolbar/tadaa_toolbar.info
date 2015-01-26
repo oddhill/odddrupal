@@ -1,8 +1,7 @@
-name = "Tadaa!"
-description = "Provides a simple mechanism to switch between different environments."
+name = "Tadaa toolbar"
+description = "Provides a simple toolbar that shows current tadaa environment"
 core = 7.x
 package = Development
-configure = admin/config/development/tadaa
 
 ; Information added by Drupal.org packaging script on 2015-01-14
 version = "7.x-1.4"

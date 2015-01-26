@@ -37,22 +37,6 @@ function tadaa_menu() {
     'file' => $callback_file,
     'type' => MENU_CALLBACK,
   );
-  // Fix a module configuration.
-  $items['tadaa/module/%/fix'] = array(
-    'page callback' => 'tadaa_module_fix',
-    'page arguments' => array(2),
-    'access arguments' => array('use tadaa'),
-    'file' => $callback_file,
-    'type' => MENU_CALLBACK,
-  );
-  // Fix a variable configuration.
-  $items['tadaa/variable/%/fix'] = array(
-    'page callback' => 'tadaa_variable_fix',
-    'page arguments' => array(2),
-    'access arguments' => array('use tadaa'),
-    'file' => $callback_file,
-    'type' => MENU_CALLBACK,
-  );
   // Switch environment.
   $items['tadaa/environment/switch/%'] = array(
     'page callback' => 'tadaa_environment_switch',
@@ -85,6 +69,14 @@ function tadaa_menu() {
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'weight' => 0,
   );
+  // Fix a module configuration.
+  $items['admin/config/development/tadaa/status/modules/%/fix'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_module_status_fix', 6),
+    'access arguments' => array('use tadaa'),
+    'file' => $status_page_file,
+    'type' => MENU_CALLBACK,
+  );
   // Variable status page.
   $items['admin/config/development/tadaa/status/variables'] = array(
     'title' => 'Variables',
@@ -93,6 +85,14 @@ function tadaa_menu() {
     'file' => $status_page_file,
     'type' => MENU_LOCAL_TASK,
     'weight' => 1,
+  );
+  // Fix a variable configuration.
+  $items['admin/config/development/tadaa/status/variables/%/fix'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tadaa_variable_status_fix', 6),
+    'access arguments' => array('use tadaa'),
+    'file' => $status_page_file,
+    'type' => MENU_CALLBACK,
   );
   // Environment status page.
   $items['admin/config/development/tadaa/status/environments'] = array(
