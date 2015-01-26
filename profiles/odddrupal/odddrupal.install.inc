@@ -431,6 +431,7 @@ function odddrupal_set_variables() {
   variable_set('error_level', '2');
   variable_set('jquery_update_compression_type', 'min');
   variable_set('jquery_update_jquery_cdn', 'google');
+  variable_set('jquery_update_jquery_admin_version', 'default');
   variable_set('preprocess_css', 0);
   variable_set('preprocess_js', 0);
   variable_set('reroute_email_enable', 1);
