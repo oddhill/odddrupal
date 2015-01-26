@@ -50,6 +50,21 @@ function oddvault_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oddvault_form_user_login_alter(&$form, &$form_state) {
+  $form['#submit'][] = 'oddvault_user_login_submit';
+}
+
+/**
+ * Submit callback for the user login form.
+ */
+function oddvault_user_login_submit(&$form, &$form_state) {
+  // Redirect the user to the front page.
+  $form_state['redirect'] = '';
+}
+
+/**
  * Strip form elements.
  *
  * This function will take any form element, and set the access attribute to
