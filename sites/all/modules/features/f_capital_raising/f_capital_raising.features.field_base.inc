@@ -229,6 +229,22 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
+  // Exported field_base: 'field_cap_rais_post_units'
+  $field_bases['field_cap_rais_post_units'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_post_units',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
   // Exported field_base: 'field_cap_rais_rate'
   $field_bases['field_cap_rais_rate'] = array(
     'active' => 1,
@@ -290,6 +306,48 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_cap_rais_type'
+  $field_bases['field_cap_rais_type'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_type',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'stocks' => 'Aktier',
+        'units' => 'Units',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_cap_rais_units_no'
+  $field_bases['field_cap_rais_units_no'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_units_no',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
   // Exported field_base: 'field_cap_rais_vol'
   $field_bases['field_cap_rais_vol'] = array(
     'active' => 1,
@@ -297,6 +355,22 @@ function f_capital_raising_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_cap_rais_vol',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_cap_rais_vol_units'
+  $field_bases['field_cap_rais_vol_units'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_vol_units',
     'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,

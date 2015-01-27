@@ -25,9 +25,12 @@
       <?php print render($content['field_cap_rais_comp']); ?>
       <?php print render($content['field_cap_rais_date']); ?>
       <?php print render($content['field_cap_rais_post']); ?>
+      <?php print render($content['field_cap_rais_post_units']); ?>
       <?php print render($content['field_cap_rais_rate']); ?>
       <?php print render($content['field_cap_rais_vol']); ?>
+      <?php print render($content['field_cap_rais_vol_units']); ?>
       <?php print render($content['field_cap_rais_stock_no']); ?>
+      <?php print render($content['field_cap_rais_units_no']); ?>
       <?php print render($content['field_cap_rais_estim']); ?>
       <?php print render($content['field_cap_rais_file']); ?>
     </div>

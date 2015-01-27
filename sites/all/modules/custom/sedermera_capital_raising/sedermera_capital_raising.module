@@ -273,12 +273,60 @@ function sedermera_capital_raising_node_prepare($node) {
  * Implements hook_node_presave().
  */
 function sedermera_capital_raising_node_presave($node) {
-  // Bail out if this isn't a capital raising node, or if the end date hasn't
-  // been set.
-  if ($node->type != 'capital_raising' || !isset($node->field_cap_rais_date[LANGUAGE_NONE][0]['value2'])) {
+  // Bail out if this isn't a capital raising node.
+  if ($node->type != 'capital_raising') {
     return;
   }
 
+  // Change the end date to the end of the day, if one has been provided.
+  if (isset($node->field_cap_rais_date[LANGUAGE_NONE][0]['value2'])) {
+    sedermera_capital_raising_adjust_end_date($node);
+  }
+
+  // Delete "wrong" field values if a type has been specified.
+  if (isset($node->field_cap_rais_type[LANGUAGE_NONE][0]['value'])) {
+    sedermera_capital_raising_delete_values($node, $node->field_cap_rais_type[LANGUAGE_NONE][0]['value']);
+  }
+}
+
+/**
+ * Delete values which shouldn't exist based on the type of capital raising.
+ *
+ * This will delete the values for the stock fields if this is a units type, or
+ * the units values if this is a stock type.
+ *
+ * @param string $type
+ *   The type of capital raising, either "stocks" or "units".
+ * @param obj $node
+ *   The capital raising node.
+ */
+function sedermera_capital_raising_delete_values($node, $type) {
+  $stock_fields = array('field_cap_rais_post', 'field_cap_rais_vol', 'field_cap_rais_stock_no');
+  $unit_fields = array('field_cap_rais_post_units', 'field_cap_rais_vol_units', 'field_cap_rais_units_no');
+
+  switch ($type) {
+    case 'stocks':
+      foreach ($unit_fields as $field) {
+        $node->$field = array();
+      }
+      break;
+
+    case 'units':
+      foreach ($stock_fields as $field) {
+        $node->$field = array();
+      }
+      break;
+  }
+}
+
+/**
+ * Adjusts the end date of a capital raising so that the time of the day will
+ * point to 23.59.59.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ */
+function sedermera_capital_raising_adjust_end_date($node) {
   // Create a DateTime object based of the end date, and change the time to
   // the end of the day.
   $date = new DateTime($node->field_cap_rais_date[LANGUAGE_NONE][0]['value2']);

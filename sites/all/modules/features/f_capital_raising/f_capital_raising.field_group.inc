@@ -129,6 +129,10 @@ function f_capital_raising_field_group_info() {
       2 => 'field_cap_rais_rate',
       3 => 'field_cap_rais_stock_no',
       4 => 'field_cap_rais_vol',
+      5 => 'field_cap_rais_post_units',
+      6 => 'field_cap_rais_vol_units',
+      7 => 'field_cap_rais_units_no',
+      8 => 'field_cap_rais_type',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
