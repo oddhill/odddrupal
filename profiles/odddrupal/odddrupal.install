@@ -862,3 +862,10 @@ function odddrupal_update_7151() {
     module_enable(array('search_krumo'));
   }
 }
+
+/**
+ * Change the jQuery back-end version to the Drupal default.
+ */
+function odddrupal_update_7152() {
+  variable_set('jquery_update_jquery_admin_version', 'default');
+}

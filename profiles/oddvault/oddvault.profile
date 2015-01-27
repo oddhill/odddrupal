@@ -4,7 +4,7 @@
  * Custom installation profile for Odd Hill.
  */
 
-define('ODDVAULT_VERSION', '7.x-1.8');
+define('ODDVAULT_VERSION', '7.x-1.9');
 
 /**
  * Implements hook_boot().
@@ -47,6 +47,21 @@ function oddvault_form_alter(&$form, &$form_state, $form_id) {
     // Remove the comment settings.
     $form['comment_settings']['#access'] = FALSE;
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oddvault_form_user_login_alter(&$form, &$form_state) {
+  $form['#submit'][] = 'oddvault_user_login_submit';
+}
+
+/**
+ * Submit callback for the user login form.
+ */
+function oddvault_user_login_submit(&$form, &$form_state) {
+  // Redirect the user to the front page.
+  $form_state['redirect'] = '';
 }
 
 /**

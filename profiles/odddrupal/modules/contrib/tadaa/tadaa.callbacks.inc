@@ -64,58 +64,6 @@ function tadaa_variable_load_value($form, &$form_state) {
 }
 
 /**
- * Callback that fixes a module.
- *
- * @param string $module
- *   The module that we'd like to fix.
- */
-function tadaa_module_fix($module) {
-  // Load the modules for the active environment.
-  $modules = tadaa_get_modules(TADAA_ENVIRONMENT);
-
-  if ($modules[$module]) {
-    // Activate the module.
-    module_enable(array($module));
-  }
-  else {
-    // Disable the module.
-    module_disable(array($module));
-  }
-
-  // Go to the specified destination of one exists. Otherwise we'll go to the
-  // module status page.
-  if (isset($_GET['destination'])) {
-    drupal_goto($_GET['destination']);
-  }
-  else {
-    drupal_goto('admin/config/development/tadaa/status/modules');
-  }
-}
-
-/**
- * Callback that fixes a variable.
- *
- * @param string $variable
- *   The variable that we'd like to fix.
- */
-function tadaa_variable_fix($variable) {
-  // Load the variables for the active environment.
-  $variables = tadaa_get_variables(TADAA_ENVIRONMENT);
-
-  // Set the variable to the configured value.
-  variable_set($variable, $variables[$variable]);
-
-  // Go to the specified destination of one exists. Otherwise we'll go to the
-  // variable status page.
-  if (isset($_GET['destination'])) {
-    drupal_goto($_GET['destination']);
-  }
-  else {
-    drupal_goto('admin/config/development/tadaa/status/variables');
-  }
-}
-
-/**
  * Callback that switches environment.
  *
  * @param string $environment
