@@ -49,3 +49,30 @@ function sedermera_preprocess_date_combo(&$variables) {
   // Remove the fieldset description that gets added automatically.
   unset($variables['element']['#fieldset_description']);
 }
+
+/**
+ * Implements template_preprocess_html().
+ */
+function sedermera_preprocess_html(&$variables) {
+  // Iterate through every region in order to find the block for the main menu.
+  // This will check if any links are expanded in order to add a body class.
+  foreach (element_children($variables['page']) as $region) {
+    foreach (element_children($variables['page'][$region]) as $block) {
+      if ($block == 'system_main-menu') {
+        // Found the appropriate block. Iterate through every link in this menu.
+        foreach (element_children($variables['page'][$region][$block]) as $mlid) {
+          if (!empty($variables['page'][$region][$block][$mlid]['#below'])) {
+            // The below property contains links, which means that the link is
+            // expanded. Add the class, and stop searching.
+            $variables['classes_array'][] = 'sub-menu-active';
+            break 3;
+          }
+        }
+
+        // We have found and searched through the appropriate menu already.
+        // Don't search through any more blocks or regions.
+        break 2;
+      }
+    }
+  }
+}
