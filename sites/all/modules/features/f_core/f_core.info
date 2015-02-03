@@ -12,6 +12,7 @@ dependencies[] = ctools
 dependencies[] = eck
 dependencies[] = email
 dependencies[] = entityreference
+dependencies[] = f_activities
 dependencies[] = f_capital_raising
 dependencies[] = f_company
 dependencies[] = f_investor
