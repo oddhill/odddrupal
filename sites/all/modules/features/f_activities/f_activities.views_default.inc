@@ -86,7 +86,8 @@ function f_activities_views_default_views() {
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['field'] = 'field_shared_investor_target_id';
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['exception']['value'] = '';
-  $handler->display->display_options['arguments']['field_shared_investor_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_shared_investor_target_id']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['field_shared_investor_target_id']['default_argument_options']['index'] = '2';
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['summary_options']['items_per_page'] = '25';
