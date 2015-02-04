@@ -33,17 +33,7 @@ function f_activities_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Message: Message ID */
-  $handler->display->display_options['fields']['mid']['id'] = 'mid';
-  $handler->display->display_options['fields']['mid']['table'] = 'message';
-  $handler->display->display_options['fields']['mid']['field'] = 'mid';
-  /* Field: Message: Render message (Get text) */
-  $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['table'] = 'message';
-  $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['partials'] = 0;
-  $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
+  $handler->display->display_options['row_plugin'] = 'entity';
   /* Field: Message: Rendered Message */
   $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
   $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_message';
@@ -109,10 +99,6 @@ function f_activities_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Message ID'),
-    t('.'),
-    t(','),
-    t('Render message (Get text)'),
     t('Rendered Message'),
     t('Transaktion'),
     t('All'),

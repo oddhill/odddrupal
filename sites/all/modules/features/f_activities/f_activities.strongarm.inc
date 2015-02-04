@@ -35,7 +35,7 @@ function f_activities_strongarm() {
             'visible' => FALSE,
           ),
           'full' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => TRUE,
           ),
         ),
