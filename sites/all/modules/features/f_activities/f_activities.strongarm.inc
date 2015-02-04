@@ -31,7 +31,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full' => array(
