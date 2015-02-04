@@ -4,3 +4,38 @@
  * @file sedermera_activities.module
  * Main module file for the Sedermera Activities module.
  */
+
+/**
+ * Implements hook_entity_insert().
+ */
+function sedermera_activities_entity_insert($entity, $type) {
+  switch ($type) {
+    case 'offer':
+      // Create a message for the new offer.
+      sedermera_activities_create_offer_created($entity);
+      break;
+  }
+}
+
+/**
+ * Creates a message of the offer_created type.
+ *
+ * @param obj $offer
+ *   The offer entity that has been created.
+ */
+function sedermera_activities_create_offer_created($offer) {
+  // Wrap the offer in order to access its values.
+  $offer_wrapper = entity_metadata_wrapper('offer', $entity);
+
+  // Create the message.
+  $message = message_create('offer_created');
+  $message_wrapper = entity_metadata_wrapper('message', $message);
+
+  // Set the message values.
+  $message_wrapper->field_msg_offer_created_offer->set($entity);
+  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
+  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
+
+  // Save the message.
+  $message_wrapper->save();
+}
