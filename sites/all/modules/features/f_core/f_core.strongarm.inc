@@ -102,8 +102,10 @@ function f_core_strongarm() {
     'devel' => 1,
     'devel_generate' => 1,
     'reroute_email' => 1,
+    'search_krumo' => 1,
     'ds_ui' => 1,
     'field_validation_ui' => 1,
+    'message_ui' => 1,
     'backup_migrate' => 0,
     'letmein' => 1,
     'speedy' => 0,
@@ -113,7 +115,6 @@ function f_core_strongarm() {
     'googleanalytics' => 0,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'search_krumo' => 1,
   );
   $export['tadaa_development_modules'] = $strongarm;
 
@@ -157,8 +158,10 @@ function f_core_strongarm() {
     'devel' => 0,
     'devel_generate' => 0,
     'reroute_email' => 0,
+    'search_krumo' => 0,
     'ds_ui' => 0,
     'field_validation_ui' => 0,
+    'message_ui' => 0,
     'backup_migrate' => 1,
     'letmein' => 0,
     'speedy' => 1,
@@ -168,7 +171,6 @@ function f_core_strongarm() {
     'googleanalytics' => 1,
     'themekey_ui' => 0,
     'views_ui' => 0,
-    'search_krumo' => 0,
   );
   $export['tadaa_production_modules'] = $strongarm;
 
@@ -202,8 +204,10 @@ function f_core_strongarm() {
     'devel' => 0,
     'devel_generate' => 0,
     'reroute_email' => 1,
+    'search_krumo' => 0,
     'ds_ui' => 1,
     'field_validation_ui' => 1,
+    'message_ui' => 1,
     'backup_migrate' => 0,
     'letmein' => 1,
     'speedy' => 1,
@@ -213,7 +217,6 @@ function f_core_strongarm() {
     'googleanalytics' => 0,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'search_krumo' => 0,
   );
   $export['tadaa_staging_modules'] = $strongarm;
 
