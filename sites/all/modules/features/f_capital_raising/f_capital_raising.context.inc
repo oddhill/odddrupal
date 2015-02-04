@@ -54,6 +54,12 @@ function f_capital_raising_context_default_contexts() {
           'region' => 'sidebar-second',
           'weight' => '-9',
         ),
+        'views-aktiviteter-capital_raising' => array(
+          'module' => 'views',
+          'delta' => 'aktiviteter-capital_raising',
+          'region' => 'sidebar-second',
+          'weight' => '-8',
+        ),
       ),
     ),
   );
