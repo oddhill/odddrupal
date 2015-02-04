@@ -35,16 +35,16 @@ function f_activities_default_message_type() {
     "argument" : [],
     "category" : "message_type",
     "data" : {
-      "token options" : { "clear" : 0 },
+      "token options" : { "clear" : 1 },
       "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
     },
-    "language" : "en",
+    "language" : "sv",
     "arguments" : null,
     "message_text" : { "sv" : [
         {
-          "value" : "\\u003Cp\\u003EErbjudande har skapats.\\u003C\\/p\\u003E",
-          "format" : "filtered_html",
-          "safe_value" : "\\u003Cp\\u003EErbjudande har skapats.\\u003C\\/p\\u003E"
+          "value" : "\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E har lagts till p\\u00e5 \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E har lagts till p\\u00e5 \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
         }
       ]
     }
