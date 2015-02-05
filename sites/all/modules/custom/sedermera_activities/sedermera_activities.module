@@ -108,7 +108,7 @@ function sedermera_activities_create_offer_uninterested($offer) {
  * Checks whether or not the interested field has been changed.
  *
  * @param obj $offer
- *   The offer entity.to.
+ *   The offer entity.
  *
  * @return bool
  *   TRUE if the field has been changed, FALSE otherwise.
