@@ -28,7 +28,7 @@ function sedermera_activities_entity_update($entity, $type) {
           sedermera_activities_create_offer_interested($entity);
         }
         else {
-          //sedermera_activities_create_offer_interested($entity);
+          sedermera_activities_create_offer_uninterested($entity);
         }
       }
       break;
@@ -70,6 +70,29 @@ function sedermera_activities_create_offer_interested($offer) {
 
   // Create the message.
   $message = message_create('offer_interested');
+  $message_wrapper = entity_metadata_wrapper('message', $message);
+
+  // Set the message values.
+  $message_wrapper->field_msg_offer_created_offer->set($offer);
+  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
+  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
+
+  // Save the message.
+  $message_wrapper->save();
+}
+
+/**
+ * Creates a message of the offer_uninterested type.
+ *
+ * @param obj $offer
+ *   The offer entity that has been marked as interested.
+ */
+function sedermera_activities_create_offer_uninterested($offer) {
+  // Wrap the offer in order to access its values.
+  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
+
+  // Create the message.
+  $message = message_create('offer_uninterested');
   $message_wrapper = entity_metadata_wrapper('message', $message);
 
   // Set the message values.
