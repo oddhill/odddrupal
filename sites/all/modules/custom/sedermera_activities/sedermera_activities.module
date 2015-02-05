@@ -12,7 +12,7 @@ function sedermera_activities_entity_insert($entity, $type) {
   switch ($type) {
     case 'offer':
       // Create a message for the new offer.
-      sedermera_activities_create_offer_created($entity);
+      sedermera_activities_create_message($entity, 'offer_created');
       break;
   }
 }
@@ -24,52 +24,54 @@ function sedermera_activities_entity_update($entity, $type) {
   switch ($type) {
     case 'offer':
       // Create messages if the interested value has been changed.
-      if (sedermera_activities_offer_interested_has_changed($entity)) {
+      if (sedermera_activities_offer_field_has_changed($entity, 'field_offer_interested')) {
         if (entity_metadata_wrapper('offer', $entity)->field_offer_interested->value()) {
           // The offer has been marked as interested.
-          sedermera_activities_create_offer_interested($entity);
+          sedermera_activities_create_message($entity, 'offer_interested');
         }
         else {
           // The offer has been marked as uninterested.
-          sedermera_activities_create_offer_uninterested($entity);
+          sedermera_activities_create_message($entity, 'offer_uninterested');
         }
       }
 
       // Create a message if the offer has been contacted.
-      if (sedermera_activities_offer_interested_has_been_contacted($entity)) {
-        sedermera_activities_create_offer_first_contact($entity);
+      if (sedermera_activities_offer_field_has_value($entity, 'field_offer_first_contact') && sedermera_activities_offer_field_has_changed($entity, 'field_offer_first_contact')) {
+        sedermera_activities_create_message($entity, 'offer_first_contact');
       }
 
       // Create a message if the guaranteed amount has been changed.
-      if (sedermera_activities_offer_guaranteed_has_changed($entity)) {
-        sedermera_activities_create_offer_guar_changed($entity);
+      if (sedermera_activities_offer_field_has_changed($entity, 'field_offer_amount_guar')) {
+        sedermera_activities_create_message($entity, 'offer_guar_changed');
       }
 
       // Create a message if the committed amount has been changed.
-      if (sedermera_activities_offer_committed_has_changed($entity)) {
-        sedermera_activities_create_offer_comm_changed($entity);
+      if (sedermera_activities_offer_field_has_changed($entity, 'field_offer_amount')) {
+        sedermera_activities_create_message($entity, 'offer_comm_changed');
       }
 
       // Create a message if the offer has been signed.
-      if (sedermera_activities_offer_interested_has_been_signed($entity)) {
-        sedermera_activities_create_offer_signed($entity);
+      if (sedermera_activities_offer_field_has_value($entity, 'field_offer_signed') && sedermera_activities_offer_field_has_changed($entity, 'field_offer_signed')) {
+        sedermera_activities_create_message($entity, 'offer_signed');
       }
       break;
   }
 }
 
 /**
- * Creates a message of the offer_created type.
+ * Creates a message for an offer.
  *
  * @param obj $offer
  *   The offer entity that has been created.
+ * @param string $type
+ *   The message type.
  */
-function sedermera_activities_create_offer_created($offer) {
+function sedermera_activities_create_message($offer, $type) {
   // Wrap the offer in order to access its values.
   $offer_wrapper = entity_metadata_wrapper('offer', $offer);
 
   // Create the message.
-  $message = message_create('offer_created');
+  $message = message_create($type);
   $message_wrapper = entity_metadata_wrapper('message', $message);
 
   // Set the message values.
@@ -82,190 +84,33 @@ function sedermera_activities_create_offer_created($offer) {
 }
 
 /**
- * Creates a message of the offer_interested type.
- *
- * @param obj $offer
- *   The offer entity that has been marked as interested.
- */
-function sedermera_activities_create_offer_interested($offer) {
-  // Wrap the offer in order to access its values.
-  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
-
-  // Create the message.
-  $message = message_create('offer_interested');
-  $message_wrapper = entity_metadata_wrapper('message', $message);
-
-  // Set the message values.
-  $message_wrapper->field_msg_offer_created_offer->set($offer);
-  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
-  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
-
-  // Save the message.
-  $message_wrapper->save();
-}
-
-/**
- * Creates a message of the offer_uninterested type.
- *
- * @param obj $offer
- *   The offer entity that has been marked as interested.
- */
-function sedermera_activities_create_offer_uninterested($offer) {
-  // Wrap the offer in order to access its values.
-  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
-
-  // Create the message.
-  $message = message_create('offer_uninterested');
-  $message_wrapper = entity_metadata_wrapper('message', $message);
-
-  // Set the message values.
-  $message_wrapper->field_msg_offer_created_offer->set($offer);
-  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
-  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
-
-  // Save the message.
-  $message_wrapper->save();
-}
-
-/**
- * Creates a message of the offer_first_contact type.
- *
- * @param obj $offer
- *   The offer entity that has been contacted.
- */
-function sedermera_activities_create_offer_first_contact($offer) {
-  // Wrap the offer in order to access its values.
-  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
-
-  // Create the message.
-  $message = message_create('offer_first_contact');
-  $message_wrapper = entity_metadata_wrapper('message', $message);
-
-  // Set the message values.
-  $message_wrapper->field_msg_offer_created_offer->set($offer);
-  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
-  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
-
-  // Save the message.
-  $message_wrapper->save();
-}
-
-/**
- * Creates a message of the offer_guar_changed type.
- *
- * @param obj $offer
- *   The offer entity that has been contacted.
- */
-function sedermera_activities_create_offer_guar_changed($offer) {
-  // Wrap the offer in order to access its values.
-  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
-
-  // Create the message.
-  $message = message_create('offer_guar_changed');
-  $message_wrapper = entity_metadata_wrapper('message', $message);
-
-  // Set the message values.
-  $message_wrapper->field_msg_offer_created_offer->set($offer);
-  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
-  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
-
-  // Save the message.
-  $message_wrapper->save();
-}
-
-/**
- * Creates a message of the offer_comm_changed type.
- *
- * @param obj $offer
- *   The offer entity that has been contacted.
- */
-function sedermera_activities_create_offer_comm_changed($offer) {
-  // Wrap the offer in order to access its values.
-  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
-
-  // Create the message.
-  $message = message_create('offer_comm_changed');
-  $message_wrapper = entity_metadata_wrapper('message', $message);
-
-  // Set the message values.
-  $message_wrapper->field_msg_offer_created_offer->set($offer);
-  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
-  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
-
-  // Save the message.
-  $message_wrapper->save();
-}
-
-/**
- * Creates a message of the offer_signed type.
- *
- * @param obj $offer
- *   The offer entity that has been contacted.
- */
-function sedermera_activities_create_offer_signed($offer) {
-  // Wrap the offer in order to access its values.
-  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
-
-  // Create the message.
-  $message = message_create('offer_signed');
-  $message_wrapper = entity_metadata_wrapper('message', $message);
-
-  // Set the message values.
-  $message_wrapper->field_msg_offer_created_offer->set($offer);
-  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
-  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
-
-  // Save the message.
-  $message_wrapper->save();
-}
-
-/**
- * Checks whether or not the interested field has been changed.
+ * Checks whether or not the specified field has a value.
  *
  * @param obj $offer
  *   The offer entity.
- *
- * @return bool
- *   TRUE if the field has been changed, FALSE otherwise.
- */
-function sedermera_activities_offer_interested_has_changed($offer) {
-  if (!isset($offer->original)) {
-    // There is no original entity attached to this offer, assume unchanged.
-    return FALSE;
-  }
-
-  // Wrap both the offer and the unchanged offer.
-  $wrapper = entity_metadata_wrapper('offer', $offer);
-  $wrapper_original = entity_metadata_wrapper('offer', $offer->original);
-
-  // Return TRUE if the value has been changed.
-  return $wrapper->field_offer_interested->value() != $wrapper_original->field_offer_interested->value();
-}
-
-/**
- * Checks whether or not the contacted date has been filled.
- *
- * @param obj $offer
- *   The offer entity.
+ * @param string $field
+ *   The name of the field.
  *
  * @return bool
  *   TRUE if the field has a value, FALSE otherwise.
  */
-function sedermera_activities_offer_interested_has_been_contacted($offer) {
-  $wrapper = entity_metadata_wrapper('offer', $offer);
-  return $wrapper->field_offer_first_contact->value();
+function sedermera_activities_offer_field_has_value($offer, $field) {
+  $value = entity_metadata_wrapper('offer', $offer)->{$field}->value();
+  return !empty($value);
 }
 
 /**
- * Checks whether or not the guaranteed field has been changed.
+ * Checks whether or not the specified field has been changed.
  *
  * @param obj $offer
  *   The offer entity.
+ * @param string $field
+ *   The name of the field.
  *
  * @return bool
  *   TRUE if the field has been changed, FALSE otherwise.
  */
-function sedermera_activities_offer_guaranteed_has_changed($offer) {
+function sedermera_activities_offer_field_has_changed($offer, $field) {
   if (!isset($offer->original)) {
     // There is no original entity attached to this offer, assume unchanged.
     return FALSE;
@@ -276,42 +121,5 @@ function sedermera_activities_offer_guaranteed_has_changed($offer) {
   $wrapper_original = entity_metadata_wrapper('offer', $offer->original);
 
   // Return TRUE if the value has been changed.
-  return $wrapper->field_offer_amount_guar->value() != $wrapper_original->field_offer_amount_guar->value();
-}
-
-/**
- * Checks whether or not the committed field has been changed.
- *
- * @param obj $offer
- *   The offer entity.
- *
- * @return bool
- *   TRUE if the field has been changed, FALSE otherwise.
- */
-function sedermera_activities_offer_committed_has_changed($offer) {
-  if (!isset($offer->original)) {
-    // There is no original entity attached to this offer, assume unchanged.
-    return FALSE;
-  }
-
-  // Wrap both the offer and the unchanged offer.
-  $wrapper = entity_metadata_wrapper('offer', $offer);
-  $wrapper_original = entity_metadata_wrapper('offer', $offer->original);
-
-  // Return TRUE if the value has been changed.
-  return $wrapper->field_offer_amount->value() != $wrapper_original->field_offer_amount->value();
-}
-
-/**
- * Checks whether or not the offer has been signed.
- *
- * @param obj $offer
- *   The offer entity.
- *
- * @return bool
- *   TRUE if the field has a value, FALSE otherwise.
- */
-function sedermera_activities_offer_interested_has_been_signed($offer) {
-  $wrapper = entity_metadata_wrapper('offer', $offer);
-  return $wrapper->field_offer_signed->value();
+  return $wrapper->{$field}->value() != $wrapper_original->{$field}->value();
 }
