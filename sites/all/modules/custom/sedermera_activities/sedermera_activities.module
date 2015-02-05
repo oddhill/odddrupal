@@ -18,6 +18,24 @@ function sedermera_activities_entity_insert($entity, $type) {
 }
 
 /**
+ * Implements hook_entity_update().
+ */
+function sedermera_activities_entity_update($entity, $type) {
+  switch ($type) {
+    case 'offer':
+      if (sedermera_activities_offer_interested_has_changed($entity)) {
+        if (entity_metadata_wrapper('offer', $entity)->field_offer_interested->value()) {
+          sedermera_activities_create_offer_interested($entity);
+        }
+        else {
+          //sedermera_activities_create_offer_interested($entity);
+        }
+      }
+      break;
+  }
+}
+
+/**
  * Creates a message of the offer_created type.
  *
  * @param obj $offer
@@ -38,4 +56,50 @@ function sedermera_activities_create_offer_created($offer) {
 
   // Save the message.
   $message_wrapper->save();
+}
+
+/**
+ * Creates a message of the offer_interested type.
+ *
+ * @param obj $offer
+ *   The offer entity that has been marked as interested.
+ */
+function sedermera_activities_create_offer_interested($offer) {
+  // Wrap the offer in order to access its values.
+  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
+
+  // Create the message.
+  $message = message_create('offer_interested');
+  $message_wrapper = entity_metadata_wrapper('message', $message);
+
+  // Set the message values.
+  $message_wrapper->field_msg_offer_created_offer->set($offer);
+  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
+  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
+
+  // Save the message.
+  $message_wrapper->save();
+}
+
+/**
+ * Checks whether or not the interested field has been changed.
+ *
+ * @param obj $offer
+ *   The offer entity.to.
+ *
+ * @return bool
+ *   TRUE if the field has been changed, FALSE otherwise.
+ */
+function sedermera_activities_offer_interested_has_changed($offer) {
+  if (!isset($offer->original)) {
+    // There is no original entity attached to this offer, assume unchanged.
+    return FALSE;
+  }
+
+  // Wrap both the offer and the unchanged offer.
+  $wrapper = entity_metadata_wrapper('offer', $offer);
+  $wrapper_original = entity_metadata_wrapper('offer', $offer->original);
+
+  // Return TRUE if the value has been changed.
+  return $wrapper->field_offer_interested->value() != $wrapper_original->field_offer_interested->value();
 }
