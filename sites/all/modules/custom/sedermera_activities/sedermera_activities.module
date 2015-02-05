@@ -49,6 +49,11 @@ function sedermera_activities_entity_update($entity, $type) {
       if (sedermera_activities_offer_committed_has_changed($entity)) {
         sedermera_activities_create_offer_comm_changed($entity);
       }
+
+      // Create a message if the offer has been signed.
+      if (sedermera_activities_offer_interested_has_been_signed($entity)) {
+        sedermera_activities_create_offer_signed($entity);
+      }
       break;
   }
 }
@@ -192,6 +197,29 @@ function sedermera_activities_create_offer_comm_changed($offer) {
 }
 
 /**
+ * Creates a message of the offer_signed type.
+ *
+ * @param obj $offer
+ *   The offer entity that has been contacted.
+ */
+function sedermera_activities_create_offer_signed($offer) {
+  // Wrap the offer in order to access its values.
+  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
+
+  // Create the message.
+  $message = message_create('offer_signed');
+  $message_wrapper = entity_metadata_wrapper('message', $message);
+
+  // Set the message values.
+  $message_wrapper->field_msg_offer_created_offer->set($offer);
+  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
+  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
+
+  // Save the message.
+  $message_wrapper->save();
+}
+
+/**
  * Checks whether or not the interested field has been changed.
  *
  * @param obj $offer
@@ -272,4 +300,18 @@ function sedermera_activities_offer_committed_has_changed($offer) {
 
   // Return TRUE if the value has been changed.
   return $wrapper->field_offer_amount->value() != $wrapper_original->field_offer_amount->value();
+}
+
+/**
+ * Checks whether or not the offer has been signed.
+ *
+ * @param obj $offer
+ *   The offer entity.
+ *
+ * @return bool
+ *   TRUE if the field has a value, FALSE otherwise.
+ */
+function sedermera_activities_offer_interested_has_been_signed($offer) {
+  $wrapper = entity_metadata_wrapper('offer', $offer);
+  return $wrapper->field_offer_signed->value();
 }
