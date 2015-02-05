@@ -23,13 +23,21 @@ function sedermera_activities_entity_insert($entity, $type) {
 function sedermera_activities_entity_update($entity, $type) {
   switch ($type) {
     case 'offer':
+      // Create messages if the interested value has been changed.
       if (sedermera_activities_offer_interested_has_changed($entity)) {
         if (entity_metadata_wrapper('offer', $entity)->field_offer_interested->value()) {
+          // The offer has been marked as interested.
           sedermera_activities_create_offer_interested($entity);
         }
         else {
+          // The offer has been marked as uninterested.
           sedermera_activities_create_offer_uninterested($entity);
         }
+      }
+
+      // Create a message if the offer has been contacted.
+      if (sedermera_activities_offer_interested_has_been_contacted($entity)) {
+        sedermera_activities_create_offer_first_contact($entity);
       }
       break;
   }
@@ -105,6 +113,29 @@ function sedermera_activities_create_offer_uninterested($offer) {
 }
 
 /**
+ * Creates a message of the offer_first_contact type.
+ *
+ * @param obj $offer
+ *   The offer entity that has been contacted.
+ */
+function sedermera_activities_create_offer_first_contact($offer) {
+  // Wrap the offer in order to access its values.
+  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
+
+  // Create the message.
+  $message = message_create('offer_first_contact');
+  $message_wrapper = entity_metadata_wrapper('message', $message);
+
+  // Set the message values.
+  $message_wrapper->field_msg_offer_created_offer->set($offer);
+  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
+  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
+
+  // Save the message.
+  $message_wrapper->save();
+}
+
+/**
  * Checks whether or not the interested field has been changed.
  *
  * @param obj $offer
@@ -125,4 +156,18 @@ function sedermera_activities_offer_interested_has_changed($offer) {
 
   // Return TRUE if the value has been changed.
   return $wrapper->field_offer_interested->value() != $wrapper_original->field_offer_interested->value();
+}
+
+/**
+ * Checks whether or not the contacted date has been filled.
+ *
+ * @param obj $offer
+ *   The offer entity.
+ *
+ * @return bool
+ *   TRUE if the field has a value, FALSE otherwise.
+ */
+function sedermera_activities_offer_interested_has_been_contacted($offer) {
+  $wrapper = entity_metadata_wrapper('offer', $offer);
+  return $wrapper->field_offer_first_contact->value();
 }
