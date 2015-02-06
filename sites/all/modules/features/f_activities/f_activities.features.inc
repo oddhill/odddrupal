@@ -184,6 +184,32 @@ function f_activities_default_message_type() {
       ]
     }
   }');
+  $items['offer_status'] = entity_import('message_type', '{
+    "name" : "offer_status",
+    "description" : "Erbjudande status",
+    "argument_keys" : [],
+    "argument" : [],
+    "category" : "message_type",
+    "data" : {
+      "token options" : { "clear" : 1 },
+      "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+    },
+    "language" : "sv",
+    "arguments" : null,
+    "message_text" : { "sv" : [
+        {
+          "value" : "Status f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E: @{message:field-shared-offer:field_offer_status}",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003EStatus f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E: @{message:field-shared-offer:field_offer_status}\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "Status p\\u00e5 \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E: @{message:field-shared-offer:field_offer_status}",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003EStatus p\\u00e5 \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E: @{message:field-shared-offer:field_offer_status}\\u003C\\/p\\u003E\\n"
+        }
+      ]
+    }
+  }');
   $items['offer_uninterested'] = entity_import('message_type', '{
     "name" : "offer_uninterested",
     "description" : "Erbjudande ointresserat",
