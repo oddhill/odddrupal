@@ -14,7 +14,38 @@ function sedermera_activities_entity_insert($entity, $type) {
       // Create a message for the new offer.
       sedermera_activities_create_message($entity, 'offer_created');
       break;
+
+    case 'message':
+      // Flag the message as unread for every user.
+      foreach (sedermera_activities_get_users() as $user) {
+        flag('flag', 'unread', $entity->mid, $user, TRUE);
+      }
+      break;
   }
+}
+
+/**
+ * Get the users for the site, excluding anonymous users and user 1.
+ *
+ * @return array
+ *   An array with users, keyed by their id.
+ */
+function sedermera_activities_get_users() {
+  $users = array();
+
+  // Create and execute a query which fetches the user with a uid bigger than 1.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'user')
+    ->propertyCondition('uid', 1, '>');
+  $result = $query->execute();
+
+  // Load each user and add them to the return value.
+  foreach ($result['user'] as $row) {
+    $users[$row->uid] = user_load($row->uid);
+  }
+
+  // Return the users.
+  return $users;
 }
 
 /**

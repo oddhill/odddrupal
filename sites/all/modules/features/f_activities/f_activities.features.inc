@@ -24,6 +24,47 @@ function f_activities_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_flag_default_flags().
+ */
+function f_activities_flag_default_flags() {
+  $flags = array();
+  // Exported flag: "Oläst".
+  $flags['unread'] = array(
+    'entity_type' => 'message',
+    'title' => 'Oläst',
+    'global' => 0,
+    'types' => array(),
+    'flag_short' => 'Markera som oläst',
+    'flag_long' => '',
+    'flag_message' => '',
+    'unflag_short' => 'Markera som läst',
+    'unflag_long' => '',
+    'unflag_message' => '',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 0,
+      'diff_standard' => 0,
+      'token' => 0,
+      'msg_capital_raising' => 0,
+      'msg_investor' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => 0,
+    'api_version' => 3,
+    'module' => 'f_activities',
+    'locked' => array(
+      0 => 'name',
+    ),
+  );
+  return $flags;
+
+}
+
+/**
  * Implements hook_default_message_type().
  */
 function f_activities_default_message_type() {
