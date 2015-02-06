@@ -34,24 +34,7 @@ function f_activities_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
-  /* Field: Message: Timestamp */
-  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['table'] = 'message';
-  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['label'] = '';
-  $handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
-  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
-  /* Field: Message: Render message (Get text) */
-  $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['table'] = 'message';
-  $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['label'] = '';
-  $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['message_render']['partials'] = 0;
-  $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
+  $handler->display->display_options['row_plugin'] = 'entity';
   /* Sort criterion: Message: Timestamp */
   $handler->display->display_options['sorts']['timestamp']['id'] = 'timestamp';
   $handler->display->display_options['sorts']['timestamp']['table'] = 'message';
@@ -60,23 +43,13 @@ function f_activities_views_default_views() {
 
   /* Display: Transaktion */
   $handler = $view->new_display('block', 'Transaktion', 'capital_raising');
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Message: Timestamp */
-  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['table'] = 'message';
-  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['label'] = '';
-  $handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
-  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
-  /* Field: Message: Render message (Get text) */
-  $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['table'] = 'message';
-  $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['label'] = '';
-  $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['message_render']['partials'] = 1;
-  $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_options']['view_mode'] = 'msg_capital_raising';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Message: Transaktion (field_shared_cap_rais) */
   $handler->display->display_options['arguments']['field_shared_cap_rais_target_id']['id'] = 'field_shared_cap_rais_target_id';
@@ -96,23 +69,13 @@ function f_activities_views_default_views() {
 
   /* Display: Investerare */
   $handler = $view->new_display('block', 'Investerare', 'investor');
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Message: Timestamp */
-  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['table'] = 'message';
-  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['label'] = '';
-  $handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
-  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
-  /* Field: Message: Render message (Get text) */
-  $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['table'] = 'message';
-  $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['label'] = '';
-  $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['message_render']['partials'] = 1;
-  $handler->display->display_options['fields']['message_render']['partials_delta'] = '1';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_options']['view_mode'] = 'msg_investor';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Message: Investerare (field_shared_investor) */
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['id'] = 'field_shared_investor_target_id';

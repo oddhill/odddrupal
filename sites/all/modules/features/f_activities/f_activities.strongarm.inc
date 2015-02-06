@@ -25,6 +25,12 @@ function f_activities_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'msg_capital_raising' => array(
+        'custom_settings' => TRUE,
+      ),
+      'msg_investor' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -38,11 +44,27 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'msg_capital_raising' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'msg_investor' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'msg_capital_raising' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'msg_investor' => array(
+            'weight' => '1',
+            'visible' => TRUE,
           ),
         ),
       ),
@@ -65,6 +87,12 @@ function f_activities_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'msg_capital_raising' => array(
+        'custom_settings' => TRUE,
+      ),
+      'msg_investor' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -78,11 +106,27 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'msg_capital_raising' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'msg_investor' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'msg_capital_raising' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'msg_investor' => array(
+            'weight' => '1',
+            'visible' => TRUE,
           ),
         ),
       ),
@@ -105,6 +149,12 @@ function f_activities_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'msg_capital_raising' => array(
+        'custom_settings' => TRUE,
+      ),
+      'msg_investor' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -118,11 +168,27 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'msg_capital_raising' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'msg_investor' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'msg_capital_raising' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'msg_investor' => array(
+            'weight' => '1',
+            'visible' => TRUE,
           ),
         ),
       ),
@@ -145,6 +211,12 @@ function f_activities_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'msg_capital_raising' => array(
+        'custom_settings' => TRUE,
+      ),
+      'msg_investor' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -158,11 +230,27 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'msg_capital_raising' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'msg_investor' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'msg_capital_raising' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'msg_investor' => array(
+            'weight' => '1',
+            'visible' => TRUE,
           ),
         ),
       ),
@@ -185,6 +273,12 @@ function f_activities_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'msg_capital_raising' => array(
+        'custom_settings' => TRUE,
+      ),
+      'msg_investor' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -198,11 +292,27 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'msg_capital_raising' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'msg_investor' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'msg_capital_raising' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'msg_investor' => array(
+            'weight' => '1',
+            'visible' => TRUE,
           ),
         ),
       ),
@@ -225,6 +335,12 @@ function f_activities_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'msg_capital_raising' => array(
+        'custom_settings' => TRUE,
+      ),
+      'msg_investor' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -238,11 +354,27 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'msg_capital_raising' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'msg_investor' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'msg_capital_raising' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'msg_investor' => array(
+            'weight' => '1',
+            'visible' => TRUE,
           ),
         ),
       ),
@@ -265,6 +397,12 @@ function f_activities_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'msg_capital_raising' => array(
+        'custom_settings' => TRUE,
+      ),
+      'msg_investor' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -278,11 +416,27 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'msg_capital_raising' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+          'msg_investor' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => FALSE,
+          ),
+          'msg_capital_raising' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'msg_investor' => array(
+            'weight' => '1',
+            'visible' => TRUE,
           ),
         ),
       ),
