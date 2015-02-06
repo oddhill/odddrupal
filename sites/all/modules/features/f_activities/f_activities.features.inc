@@ -42,14 +42,14 @@ function f_activities_default_message_type() {
     "arguments" : null,
     "message_text" : { "sv" : [
         {
-          "value" : "\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount].",
+          "value" : "\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-shared-offer:field_offer_amount].",
           "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount].\\u003C\\/p\\u003E\\n"
+          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-shared-offer:field_offer_amount].\\u003C\\/p\\u003E\\n"
         },
         {
-          "value" : "L\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
+          "value" : "L\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-shared-offer:field_offer_amount] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
           "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003EL\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+          "safe_value" : "\\u003Cp\\u003EL\\u00e4mnade ett \\u00e5tagande p\\u00e5 [message:field-shared-offer:field_offer_amount] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
         }
       ]
     }
@@ -94,14 +94,14 @@ function f_activities_default_message_type() {
     "arguments" : null,
     "message_text" : { "sv" : [
         {
-          "value" : "F\\u00f6rsta kontakt med \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E togs den [message:field-msg-offer-created-offer:field_offer_first_contact].",
+          "value" : "F\\u00f6rsta kontakt med \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E togs den [message:field-shared-offer:field_offer_first_contact].",
           "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003EF\\u00f6rsta kontakt med \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E togs den [message:field-msg-offer-created-offer:field_offer_first_contact].\\u003C\\/p\\u003E\\n"
+          "safe_value" : "\\u003Cp\\u003EF\\u00f6rsta kontakt med \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E togs den [message:field-shared-offer:field_offer_first_contact].\\u003C\\/p\\u003E\\n"
         },
         {
-          "value" : "F\\u00f6rsta kontakt ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E togs den [message:field-msg-offer-created-offer:field_offer_first_contact].",
+          "value" : "F\\u00f6rsta kontakt ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E togs den [message:field-shared-offer:field_offer_first_contact].",
           "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003EF\\u00f6rsta kontakt ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E togs den [message:field-msg-offer-created-offer:field_offer_first_contact].\\u003C\\/p\\u003E\\n"
+          "safe_value" : "\\u003Cp\\u003EF\\u00f6rsta kontakt ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E togs den [message:field-shared-offer:field_offer_first_contact].\\u003C\\/p\\u003E\\n"
         }
       ]
     }
@@ -120,14 +120,14 @@ function f_activities_default_message_type() {
     "arguments" : null,
     "message_text" : { "sv" : [
         {
-          "value" : "\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade en garant p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount_guar].",
+          "value" : "\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade en garant p\\u00e5 [message:field-shared-offer:field_offer_amount_guar].",
           "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade en garant p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount_guar].\\u003C\\/p\\u003E\\n"
+          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E l\\u00e4mnade en garant p\\u00e5 [message:field-shared-offer:field_offer_amount_guar].\\u003C\\/p\\u003E\\n"
         },
         {
-          "value" : "L\\u00e4mnade en garant p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount_guar] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
+          "value" : "L\\u00e4mnade en garant p\\u00e5 [message:field-shared-offer:field_offer_amount_guar] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
           "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003EL\\u00e4mnade en garant p\\u00e5 [message:field-msg-offer-created-offer:field_offer_amount_guar] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+          "safe_value" : "\\u003Cp\\u003EL\\u00e4mnade en garant p\\u00e5 [message:field-shared-offer:field_offer_amount_guar] f\\u00f6r \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
         }
       ]
     }
