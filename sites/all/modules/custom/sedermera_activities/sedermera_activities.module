@@ -75,7 +75,7 @@ function sedermera_activities_create_message($offer, $type) {
   $message_wrapper = entity_metadata_wrapper('message', $message);
 
   // Set the message values.
-  $message_wrapper->field_msg_offer_created_offer->set($offer);
+  $message_wrapper->field_shared_offer->set($offer);
   $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
   $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
 
