@@ -56,7 +56,7 @@ function sedermera_activities_entity_update($entity, $type) {
       }
 
       // Create a message if the status has been changed.
-      if (sedermera_activities_offer_field_has_changed($entity, 'field_offer_status')) {
+      if (sedermera_activities_offer_field_has_value($entity, 'field_offer_status') && sedermera_activities_offer_field_has_changed($entity, 'field_offer_status')) {
         sedermera_activities_create_message($entity, 'offer_status');
       }
       break;
