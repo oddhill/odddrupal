@@ -570,6 +570,46 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'message-offer_interested-field_shared_offer'
+  $field_instances['message-offer_interested-field_shared_offer'] = array(
+    'bundle' => 'offer_interested',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'message',
+    'field_name' => 'field_shared_offer',
+    'label' => 'Erbjudande',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'message-offer_signed-field_shared_cap_rais'
   $field_instances['message-offer_signed-field_shared_cap_rais'] = array(
     'bundle' => 'offer_signed',
