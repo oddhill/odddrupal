@@ -71,6 +71,12 @@ function f_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'views-capital_raisings-dashboard' => array(
+          'module' => 'views',
+          'delta' => 'capital_raisings-dashboard',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'views-aktiviteter-dashboard' => array(
           'module' => 'views',
           'delta' => 'aktiviteter-dashboard',
