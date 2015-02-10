@@ -69,6 +69,11 @@
 
         &.active-trail {
 
+          &#overview {
+            @include svg-bg(overview_white);
+            color: $snow;
+          }
+
           &#investors {
             @include svg-bg(investors_white);
           }
@@ -84,6 +89,10 @@
 
         &:hover {
           color: tint($cloudy,50%);
+        }
+
+        &#overview {
+          @include svg-bg(overview_grey);
         }
 
         &#investors {

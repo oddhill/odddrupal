@@ -108,7 +108,7 @@ body {
 }
 
 // Import page content
-@import "content/create", "content/edit", "content/node", "content/transaction", "content/activities";
+@import "content/create", "content/edit", "content/node", "content/transaction";
 
 // Import page elements
-@import "elements/layouts", "elements/sidebar", "elements/messages", "elements/pager", "elements/filteredtable", "uniform", "elements/formelements", "elements/forms", "elements/tabs", "animations",  "elements/login", "elements/sidebar-second";
+@import "elements/layouts", "elements/sidebar", "elements/messages", "elements/pager", "elements/filteredtable", "uniform", "elements/formelements", "elements/forms", "elements/tabs", "animations",  "elements/login", "elements/sidebar-second", "elements/activities";
