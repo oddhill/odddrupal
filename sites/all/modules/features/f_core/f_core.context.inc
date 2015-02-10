@@ -68,7 +68,18 @@ function f_core_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array();
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-aktiviteter-dashboard' => array(
+          'module' => 'views',
+          'delta' => 'aktiviteter-dashboard',
+          'region' => 'sidebar-second',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
   $context->condition_mode = 0;
 
   // Translatables

@@ -17,6 +17,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -69,6 +75,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -121,6 +133,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -173,6 +191,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -225,6 +249,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -277,6 +307,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -329,6 +365,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -381,6 +423,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -433,6 +481,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -485,6 +539,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -537,6 +597,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -589,6 +655,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -641,6 +713,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -693,6 +771,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -745,6 +829,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -797,6 +887,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -849,6 +945,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -901,6 +1003,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -953,6 +1061,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1011,6 +1125,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1069,6 +1189,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1127,6 +1253,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1179,6 +1311,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1231,6 +1369,12 @@ function f_activities_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'dashboard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),

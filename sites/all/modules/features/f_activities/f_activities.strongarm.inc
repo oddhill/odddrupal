@@ -31,6 +31,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -52,6 +55,10 @@ function f_activities_strongarm() {
             'weight' => '2',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -65,6 +72,10 @@ function f_activities_strongarm() {
           'msg_investor' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'dashboard' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),
@@ -93,6 +104,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -114,6 +128,10 @@ function f_activities_strongarm() {
             'weight' => '4',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -127,6 +145,10 @@ function f_activities_strongarm() {
           'msg_investor' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'dashboard' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),
@@ -155,6 +177,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -176,6 +201,10 @@ function f_activities_strongarm() {
             'weight' => '2',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -189,6 +218,10 @@ function f_activities_strongarm() {
           'msg_investor' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'dashboard' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),
@@ -217,6 +250,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -238,6 +274,10 @@ function f_activities_strongarm() {
             'weight' => '2',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -251,6 +291,10 @@ function f_activities_strongarm() {
           'msg_investor' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'dashboard' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),
@@ -279,6 +323,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -300,6 +347,10 @@ function f_activities_strongarm() {
             'weight' => '2',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -313,6 +364,10 @@ function f_activities_strongarm() {
           'msg_investor' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'dashboard' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),
@@ -341,6 +396,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -362,6 +420,10 @@ function f_activities_strongarm() {
             'weight' => '3',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -375,6 +437,10 @@ function f_activities_strongarm() {
           'msg_investor' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'dashboard' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),
@@ -403,6 +469,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -424,6 +493,10 @@ function f_activities_strongarm() {
             'weight' => '1',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -440,6 +513,10 @@ function f_activities_strongarm() {
           ),
           'token' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'dashboard' => array(
+            'weight' => '3',
             'visible' => FALSE,
           ),
         ),
@@ -469,6 +546,9 @@ function f_activities_strongarm() {
       'msg_investor' => array(
         'custom_settings' => TRUE,
       ),
+      'dashboard' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -490,6 +570,10 @@ function f_activities_strongarm() {
             'weight' => '2',
             'visible' => FALSE,
           ),
+          'dashboard' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
         ),
         'message__message_text__1' => array(
           'default' => array(
@@ -503,6 +587,10 @@ function f_activities_strongarm() {
           'msg_investor' => array(
             'weight' => '1',
             'visible' => TRUE,
+          ),
+          'dashboard' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),

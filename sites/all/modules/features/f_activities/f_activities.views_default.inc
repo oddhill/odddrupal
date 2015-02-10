@@ -90,6 +90,21 @@ function f_activities_views_default_views() {
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['field_shared_investor_target_id']['validate']['type'] = 'numeric';
+
+  /* Display: Dashboard */
+  $handler = $view->new_display('block', 'Dashboard', 'dashboard');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_options']['view_mode'] = 'dashboard';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['aktiviteter'] = array(
     t('Master'),
     t('Aktivitet'),
@@ -109,6 +124,7 @@ function f_activities_views_default_views() {
     t('Transaktion'),
     t('All'),
     t('Investerare'),
+    t('Dashboard'),
   );
   $export['aktiviteter'] = $view;
 

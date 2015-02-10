@@ -12,6 +12,21 @@ function f_activities_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_comm_changed|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_comm_changed';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_comm_changed|dashboard'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'message|offer_comm_changed|msg_capital_raising';
   $ds_fieldsetting->entity_type = 'message';
   $ds_fieldsetting->bundle = 'offer_comm_changed';
@@ -39,6 +54,21 @@ function f_activities_ds_field_settings_info() {
     ),
   );
   $export['message|offer_comm_changed|msg_investor'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_created|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_created';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_created|dashboard'] = $ds_fieldsetting;
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
@@ -72,6 +102,21 @@ function f_activities_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_first_contact|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_first_contact';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_first_contact|dashboard'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'message|offer_first_contact|msg_capital_raising';
   $ds_fieldsetting->entity_type = 'message';
   $ds_fieldsetting->bundle = 'offer_first_contact';
@@ -99,6 +144,21 @@ function f_activities_ds_field_settings_info() {
     ),
   );
   $export['message|offer_first_contact|msg_investor'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_guar_changed|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_guar_changed';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_guar_changed|dashboard'] = $ds_fieldsetting;
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
@@ -132,6 +192,21 @@ function f_activities_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_interested|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_interested';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_interested|dashboard'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'message|offer_interested|msg_capital_raising';
   $ds_fieldsetting->entity_type = 'message';
   $ds_fieldsetting->bundle = 'offer_interested';
@@ -159,6 +234,21 @@ function f_activities_ds_field_settings_info() {
     ),
   );
   $export['message|offer_interested|msg_investor'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_signed|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_signed';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_signed|dashboard'] = $ds_fieldsetting;
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
@@ -192,6 +282,21 @@ function f_activities_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_status|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_status';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_status|dashboard'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'message|offer_status|msg_capital_raising';
   $ds_fieldsetting->entity_type = 'message';
   $ds_fieldsetting->bundle = 'offer_status';
@@ -219,6 +324,21 @@ function f_activities_ds_field_settings_info() {
     ),
   );
   $export['message|offer_status|msg_investor'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_uninterested|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_uninterested';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_uninterested|dashboard'] = $ds_fieldsetting;
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
@@ -288,6 +408,36 @@ function f_activities_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_comm_changed|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_comm_changed';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_comm_changed|dashboard'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'message|offer_comm_changed|msg_capital_raising';
   $ds_layout->entity_type = 'message';
   $ds_layout->bundle = 'offer_comm_changed';
@@ -345,6 +495,36 @@ function f_activities_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['message|offer_comm_changed|msg_investor'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_created|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_created';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_created|dashboard'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
@@ -408,6 +588,36 @@ function f_activities_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_first_contact|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_first_contact';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_first_contact|dashboard'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'message|offer_first_contact|msg_capital_raising';
   $ds_layout->entity_type = 'message';
   $ds_layout->bundle = 'offer_first_contact';
@@ -465,6 +675,36 @@ function f_activities_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['message|offer_first_contact|msg_investor'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_guar_changed|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_guar_changed';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_guar_changed|dashboard'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
@@ -528,6 +768,36 @@ function f_activities_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_interested|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_interested';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_interested|dashboard'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'message|offer_interested|msg_capital_raising';
   $ds_layout->entity_type = 'message';
   $ds_layout->bundle = 'offer_interested';
@@ -585,6 +855,36 @@ function f_activities_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['message|offer_interested|msg_investor'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_signed|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_signed';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_signed|dashboard'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
@@ -648,6 +948,36 @@ function f_activities_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_status|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_status';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_status|dashboard'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'message|offer_status|msg_capital_raising';
   $ds_layout->entity_type = 'message';
   $ds_layout->bundle = 'offer_status';
@@ -705,6 +1035,36 @@ function f_activities_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['message|offer_status|msg_investor'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_uninterested|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_uninterested';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_uninterested|dashboard'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
