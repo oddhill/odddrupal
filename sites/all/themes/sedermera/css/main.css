@@ -373,7 +373,7 @@ body {
   .view-offers .add-more:hover {
     background-color: #303030; }
 .view-offers .views-field.views-field-field-offer-status input {
-  width: 200px; }
+  width: 180px; }
 .view-offers .form-type-date-combo {
   position: relative; }
   .view-offers .form-type-date-combo .description {
@@ -385,7 +385,7 @@ body {
     position: absolute;
     display: none; }
   .view-offers .form-type-date-combo .date-date {
-    width: 200px; }
+    width: 140px; }
 .view-offers .views-field-field-offer-interested .checker {
   margin-bottom: 4px;
   margin-right: 5px; }
@@ -522,11 +522,29 @@ body {
       float: right;
       padding-bottom: 30px;
       width: 280px; }
+      @media screen and (max-width: 1600px) {
+        #main-content .content-wrapper .content-sidebar {
+          display: block;
+          float: left;
+          margin-bottom: 25px;
+          overflow: hidden;
+          padding-bottom: 0;
+          width: 100%; } }
       #main-content .content-wrapper .content-sidebar .sidebar-second-content {
         padding: 0 10px 10px 10px; }
+        @media screen and (max-width: 1600px) {
+          #main-content .content-wrapper .content-sidebar .sidebar-second-content {
+            overflow: hidden;
+            padding: 0 10px 0 10px; } }
     #main-content .content-wrapper .content-column {
       background-color: #fff;
       overflow: hidden; }
+      @media screen and (max-width: 1600px) {
+        #main-content .content-wrapper .content-column {
+          display: block;
+          float: left;
+          overflow: hidden;
+          width: 100%; } }
   #main-content #page-actions {
     float: right;
     margin-top: 16px; }
@@ -2518,6 +2536,9 @@ h2.sidebar-second-icon {
   padding: 11px 0 11px 0;
   text-indent: 9999;
   width: 100%; }
+  @media screen and (max-width: 1600px) {
+    h2.sidebar-second-icon {
+      margin-bottom: 10px; } }
   h2.sidebar-second-icon .icon {
     background: url("../graphics/progress_chart.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/progress_chart.svg") transparent 0 0 no-repeat;
@@ -2534,6 +2555,10 @@ h2.sidebar-second-icon {
   margin-bottom: 20px;
   padding-bottom: 20px;
   text-align: center; }
+  @media screen and (max-width: 1600px) {
+    .sidebar-block {
+      height: 170px;
+      margin-bottom: 11px; } }
   .sidebar-block h3 {
     font-size: 12px;
     font-size: 1.2rem;
@@ -2549,16 +2574,30 @@ h2.sidebar-second-icon {
     line-height: 24px;
     font-family: 'Inconsolata';
     font-weight: 700; }
+  @media screen and (max-width: 1600px) {
+    .sidebar-block.prospect-record {
+      float: left;
+      margin-right: 1%;
+      width: 75%; } }
   .sidebar-block.prospect-record .vertical-bars {
     border-bottom: 1px solid #454545;
     height: 200px;
     margin: 10px 20px 40px; }
+    @media screen and (max-width: 1600px) {
+      .sidebar-block.prospect-record .vertical-bars {
+        float: right;
+        height: 100px;
+        margin: 0 20px 0 0;
+        width: 25%; } }
     .sidebar-block.prospect-record .vertical-bars .bar {
       float: left;
       height: 199px;
       margin-bottom: 1px;
       position: relative;
       width: 50%; }
+      @media screen and (max-width: 1600px) {
+        .sidebar-block.prospect-record .vertical-bars .bar {
+          height: 99px; } }
       .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical {
         background: transparent;
         border-radius: 0;
@@ -2596,12 +2635,25 @@ h2.sidebar-second-icon {
         background-color: #ba7b00; }
   .sidebar-block.prospect-record .total-wrapper {
     clear: both; }
+    @media screen and (max-width: 1600px) {
+      .sidebar-block.prospect-record .total-wrapper {
+        clear: none;
+        float: left;
+        margin-left: 20px;
+        margin-top: 15px;
+        width: 25%; } }
+    @media screen and (max-width: 1130px) {
+      .sidebar-block.prospect-record .total-wrapper {
+        width: 22%; } }
     .sidebar-block.prospect-record .total-wrapper .progress {
       background: #454545;
       border: 2px solid #454545;
       border-radius: 16px;
       height: 32px;
       margin: 20px 10px 10px 10px; }
+      @media screen and (max-width: 1600px) {
+        .sidebar-block.prospect-record .total-wrapper .progress {
+          margin: 0 0 18px 0; } }
       .sidebar-block.prospect-record .total-wrapper .progress .progress-bar {
         font-size: 16px;
         font-size: 1.6rem;
@@ -2615,18 +2667,39 @@ h2.sidebar-second-icon {
         -webkit-box-shadow: none; }
   .sidebar-block.prospect-record .vertical-bars-text-wrapper {
     margin: 20px 20px 10px 20px; }
+    @media screen and (max-width: 1600px) {
+      .sidebar-block.prospect-record .vertical-bars-text-wrapper {
+        float: right;
+        border-left: 1px solid #c8cacd;
+        border-right: 1px solid #c8cacd;
+        margin-right: 30px;
+        margin-top: 10px;
+        padding: 0 20px 0 20px;
+        width: 37%; } }
     .sidebar-block.prospect-record .vertical-bars-text-wrapper .total {
       margin-bottom: 15px; }
+      @media screen and (max-width: 1600px) {
+        .sidebar-block.prospect-record .vertical-bars-text-wrapper .total {
+          margin-bottom: 10px; } }
       .sidebar-block.prospect-record .vertical-bars-text-wrapper .total:last-child {
         margin-bottom: 30px; }
+        @media screen and (max-width: 1600px) {
+          .sidebar-block.prospect-record .vertical-bars-text-wrapper .total:last-child {
+            margin-bottom: 0; } }
   .sidebar-block .date {
     font-size: 34px;
     font-size: 3.4rem;
     line-height: 51px;
     color: #454545;
     font-weight: 700;
-    margin: 10px 0 0 0;
+    margin-top: 20px;
     text-transform: uppercase; }
+    @media screen and (max-width: 1600px) {
+      .sidebar-block .date {
+        font-size: 28px;
+        font-size: 2.8rem;
+        line-height: 42px;
+        margin-top: 10px; } }
   .sidebar-block .remaining,
   .sidebar-block .total {
     font-size: 14px;
@@ -2658,3 +2731,8 @@ h2.sidebar-second-icon {
     text-transform: uppercase; }
     .sidebar-block #edit-archive:hover {
       background-color: #303030; }
+
+@media screen and (max-width: 1600px) {
+  .prospect-time-remaining {
+    float: left;
+    width: 24%; } }

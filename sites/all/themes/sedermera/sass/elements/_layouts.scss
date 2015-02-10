@@ -40,14 +40,35 @@
       padding-bottom: 30px;
       width: 280px;
 
+      @include media($big) {
+        display: block;
+        float: left;
+        margin-bottom: 25px;
+        overflow: hidden;
+        padding-bottom: 0;
+        width: 100%;
+      }
+
       .sidebar-second-content {
         padding: 0 10px 10px 10px;
+
+        @include media($big) {
+          overflow: hidden;
+          padding: 0 10px 0 10px;
+        }
       }
     }
 
     .content-column {
       background-color: #fff;
       overflow: hidden;
+
+      @include media($big) {
+        display: block;
+        float: left;
+        overflow: hidden;
+        width: 100%;
+      }
     }
   }
 

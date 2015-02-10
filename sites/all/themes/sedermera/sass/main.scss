@@ -1,8 +1,8 @@
 // Import Bourbon mixin lib
 @import "../assets/bourbon/dist/bourbon";
 
-// Import our variables, mixins & helpers
-@import "variables", "helpers", "mixins", "elements/typography";
+// Import our variables, mixins, helpers & typography
+@import "variables", "helpers", "mixins", "typography";
 
 // Neat should be imported after variable, reset and mixin declaration.
 // Otherwise neat overrides our variables.

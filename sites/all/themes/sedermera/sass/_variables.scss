@@ -58,5 +58,7 @@ $body-font: 'Roboto', sans-serif;
 $heading-font: 'Roboto', sans-serif;
 
 // Breakpoints
+$big: new-breakpoint(max-width 1600px);
 $medium: new-breakpoint(max-width 1280px);
+$medium-small: new-breakpoint(max-width 1130px);
 

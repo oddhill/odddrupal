@@ -6,6 +6,10 @@ h2.sidebar-second-icon {
   text-indent: 9999;
   width: 100%;
 
+  @include media($big) {
+    margin-bottom: 10px;
+  }
+
   .icon {
     @include svg-bg(progress_chart);
     color: $dark-grey;
@@ -24,6 +28,11 @@ h2.sidebar-second-icon {
   padding-bottom: 20px;
   text-align: center;
 
+  @include media($big) {
+    height: 170px;
+    margin-bottom: 11px;
+  }
+
   h3 {
     @include font-size(1.2);
     background: $light-concrete;
@@ -41,10 +50,23 @@ h2.sidebar-second-icon {
 
   &.prospect-record {
 
+    @include media($big) {
+      float: left;
+      margin-right: 1%;
+      width: 75%;
+    }
+
     .vertical-bars {
       border-bottom: 1px solid $dark-grey;
       height: 200px;
       margin: 10px 20px 40px;
+
+      @include media($big) {
+        float: right;
+        height: 100px;
+        margin: 0 20px 0 0;
+        width: 25%;
+      }
 
       .bar {
         float: left;
@@ -52,6 +74,10 @@ h2.sidebar-second-icon {
         margin-bottom: 1px;
         position: relative;
         width: 50%;
+
+        @include media($big) {
+          height: 99px;
+        }
 
         .progress.vertical {
           background: transparent;
@@ -109,12 +135,28 @@ h2.sidebar-second-icon {
     .total-wrapper {
       clear: both;
 
+      @include media($big) {
+        clear: none;
+        float: left;
+        margin-left: 20px;
+        margin-top: 15px;
+        width: 25%;
+      }
+
+      @include media($medium-small) {
+        width: 22%;
+      }
+
       .progress {
         background: $dark-grey;
         border: 2px solid $dark-grey;
         border-radius: 16px;
         height: 32px;
         margin: 20px 10px 10px 10px;
+
+        @include media($big) {
+          margin: 0 0 18px 0;
+        }
 
         .progress-bar {
           @include font-size(1.6);
@@ -132,11 +174,29 @@ h2.sidebar-second-icon {
     .vertical-bars-text-wrapper {
       margin: 20px 20px 10px 20px;
 
+      @include media($big) {
+        float: right;
+        border-left: 1px solid $light-concrete;
+        border-right: 1px solid $light-concrete;
+        margin-right: 30px;
+        margin-top: 10px;
+        padding: 0 20px 0 20px;
+        width: 37%;
+      }
+
       .total {
         margin-bottom: 15px;
 
+        @include media($big) {
+          margin-bottom: 10px;
+        }
+
         &:last-child {
           margin-bottom: 30px;
+
+         @include media($big) {
+           margin-bottom: 0;
+          }
         }
       }
     }
@@ -146,8 +206,13 @@ h2.sidebar-second-icon {
     @include font-size(3.4);
     color: $dark-grey;
     font-weight: 700;
-    margin: 10px 0 0 0;
+    margin-top: 20px;
     text-transform: uppercase;
+
+    @include media($big) {
+     @include font-size(2.8);
+     margin-top: 10px;
+    }
   }
 
   .remaining,
@@ -160,5 +225,13 @@ h2.sidebar-second-icon {
     @include button($dark-grey, archive);
     margin: 10px 0 0 0;
     text-transform: uppercase;
+  }
+}
+
+.prospect-time-remaining {
+
+  @include media($big) {
+    float: left;
+    width: 24%;
   }
 }
