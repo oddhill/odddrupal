@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file sedermera_dashboard.module
+ * Main module file for the Sedermera Dashboard module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_dashboard_menu() {
+  $items['oversikt'] = array(
+    'title' => 'Översikt',
+    'page callback' => 'sedermera_dashboard_page',
+    'access arguments' => array('access content'),
+    'menu_name' => 'main-menu',
+    'weight' => -500,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for the dashboard.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function sedermera_dashboard_page() {
+  // Set the page title. We can't set this using hook_menu() since that will
+  // alter the menu link title as well.
+  $name = format_username($GLOBALS['user']);
+  drupal_set_title("Välkommen, $name");
+
+  // Return an empty page. The actual content will be set using context.
+  return array();
+}
