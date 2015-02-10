@@ -25,6 +25,25 @@ function sedermera_activities_entity_insert($entity, $type) {
 }
 
 /**
+ * Implements template_preprocess_message().
+ */
+function sedermera_activities_preprocess_message(&$variables) {
+  // Get the flags for this message and user.
+  $unread = flag_get_user_flags('message', $variables['message']->mid);
+
+  // Exit early if there are none.
+  if (empty($unread)) {
+    return;
+  }
+
+  // Add the unread class.
+  $variables['classes_array'][] = 'unread';
+
+  // Unflag the message.
+  flag('unflag', 'unread', $variables['message']->mid);
+}
+
+/**
  * Get the users for the site, excluding anonymous users and user 1.
  *
  * @return array
