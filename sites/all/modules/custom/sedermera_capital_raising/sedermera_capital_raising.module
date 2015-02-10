@@ -25,6 +25,53 @@ function sedermera_capital_raising_node_form_validate($form, &$form_state) {
 }
 
 /**
+ * Implements hook_field_formatter_info().
+ */
+function sedermera_capital_raising_field_formatter_info() {
+  return array(
+    'sedermera_capital_raising_remaining' => array(
+      'label' => t('Remaining (Capital raising)'),
+      'field types' => array('date', 'text_long', 'text_with_summary'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function sedermera_capital_raising_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $settings = $display['settings'];
+
+  switch ($display['type']) {
+    case 'sedermera_capital_raising_remaining':
+      // Create a DateTime object based on the current time, in order to display
+      // the diff.
+      $now = new DateTime(date(DATE_ISO8601, REQUEST_TIME));
+
+      foreach ($items as $delta => $item) {
+        if (strtotime($item['value2']) <= REQUEST_TIME) {
+          // The end time has passed, add a static text and continue to the next
+          // item.
+          $element[$delta] = array('#markup' => 'Har utgått');
+          continue;
+        }
+
+        // Create a DateTime object based on the end date, and get the date
+        // difference.
+        $end = new DateTime($item['value2']);
+        $diff = $end->diff($now)->d;
+
+        // Create the markup.
+        $element[$delta] = array('#markup' => format_plural($diff, '@count dag kvar', '@count dagar kvar'));
+      }
+      break;
+  }
+
+  return $element;
+}
+
+/**
  * Implements hook_block_info().
  */
 function sedermera_capital_raising_block_info() {

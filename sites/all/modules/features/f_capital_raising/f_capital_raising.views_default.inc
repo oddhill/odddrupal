@@ -181,15 +181,8 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_cap_rais_date']['id'] = 'field_cap_rais_date';
   $handler->display->display_options['fields']['field_cap_rais_date']['table'] = 'field_data_field_cap_rais_date';
   $handler->display->display_options['fields']['field_cap_rais_date']['field'] = 'field_cap_rais_date';
-  $handler->display->display_options['fields']['field_cap_rais_date']['label'] = 'Löptid utgår';
-  $handler->display->display_options['fields']['field_cap_rais_date']['settings'] = array(
-    'format_type' => 'short',
-    'fromto' => 'value2',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_remaining_days' => 0,
-  );
+  $handler->display->display_options['fields']['field_cap_rais_date']['label'] = 'Löptid';
+  $handler->display->display_options['fields']['field_cap_rais_date']['type'] = 'sedermera_capital_raising_remaining';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Teckningstid - end date (field_cap_rais_date:value2) */
   $handler->display->display_options['sorts']['field_cap_rais_date_value2']['id'] = 'field_cap_rais_date_value2';
@@ -299,7 +292,7 @@ function f_capital_raising_views_default_views() {
     t('Arkiverade transaktioner'),
     t('Dashboard'),
     t('Utgående transaktioner'),
-    t('Löptid utgår'),
+    t('Löptid'),
     t('Date (node)'),
     t('Utgår inom'),
   );
