@@ -6,7 +6,7 @@ h2.sidebar-second-icon {
   text-indent: 9999;
   width: 100%;
 
-  @include media($big) {
+  @include media($medium) {
     margin-bottom: 10px;
   }
 
@@ -28,7 +28,7 @@ h2.sidebar-second-icon {
   padding-bottom: 20px;
   text-align: center;
 
-  @include media($big) {
+  @include media($medium) {
     height: 170px;
     margin-bottom: 11px;
   }
@@ -50,7 +50,7 @@ h2.sidebar-second-icon {
 
   &.prospect-record {
 
-    @include media($big) {
+    @include media($medium) {
       float: left;
       margin-right: 1%;
       width: 75%;
@@ -61,7 +61,7 @@ h2.sidebar-second-icon {
       height: 200px;
       margin: 10px 20px 40px;
 
-      @include media($big) {
+      @include media($medium) {
         float: right;
         height: 100px;
         margin: 0 20px 0 0;
@@ -75,7 +75,7 @@ h2.sidebar-second-icon {
         position: relative;
         width: 50%;
 
-        @include media($big) {
+        @include media($medium) {
           height: 99px;
         }
 
@@ -135,7 +135,7 @@ h2.sidebar-second-icon {
     .total-wrapper {
       clear: both;
 
-      @include media($big) {
+      @include media($medium) {
         clear: none;
         float: left;
         margin-left: 20px;
@@ -154,7 +154,7 @@ h2.sidebar-second-icon {
         height: 32px;
         margin: 20px 10px 10px 10px;
 
-        @include media($big) {
+        @include media($medium) {
           margin: 0 0 18px 0;
         }
 
@@ -174,7 +174,7 @@ h2.sidebar-second-icon {
     .vertical-bars-text-wrapper {
       margin: 20px 20px 10px 20px;
 
-      @include media($big) {
+      @include media($medium) {
         float: right;
         border-left: 1px solid $light-concrete;
         border-right: 1px solid $light-concrete;
@@ -194,7 +194,7 @@ h2.sidebar-second-icon {
         &:last-child {
           margin-bottom: 30px;
 
-         @include media($big) {
+         @include media($medium) {
            margin-bottom: 0;
           }
         }
@@ -209,7 +209,7 @@ h2.sidebar-second-icon {
     margin-top: 20px;
     text-transform: uppercase;
 
-    @include media($big) {
+    @include media($medium) {
      @include font-size(2.8);
      margin-top: 10px;
     }
@@ -230,7 +230,7 @@ h2.sidebar-second-icon {
 
 .prospect-time-remaining {
 
-  @include media($big) {
+  @include media($medium) {
     float: left;
     width: 24%;
   }

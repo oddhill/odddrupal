@@ -20,7 +20,7 @@
     border-bottom: 0px none;
   }
 
-  @include media($medium) {
+  @include media($big) {
     background-color: #000;
     width: 82px;
   }
@@ -33,7 +33,7 @@
   text-align: center;
   width: 100%;
 
-  @include media($medium) {
+  @include media($big) {
     height: 40px;
     margin: 10px 0;
     overflow: hidden;
@@ -171,7 +171,7 @@
     }
   }
 
-  @include media($medium) {
+  @include media($big) {
 
     > ul.menu {
 
@@ -265,7 +265,7 @@
   text-indent: -9999px;
   width: 20%;
 
-  @include media($medium) {
+  @include media($big) {
     margin-left: 22px;
     width: 100%;
   }
@@ -276,7 +276,7 @@
   margin-right: 20px;
   width: 40%;
 
-  @include media($medium) {
+  @include media($big) {
     display: none;
   }
 }

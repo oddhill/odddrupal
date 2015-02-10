@@ -1,7 +1,7 @@
 #site-wrapper {
   height: 100%;
 
-  @include media($medium) {
+  @include media($big) {
 
     .not-front & {
       margin-top: 60px;
@@ -17,7 +17,7 @@
     margin-left: 280px;
     padding: 40px;
 
-    @include media($medium) {
+    @include media($big) {
       margin-left: 80px;
     }
   }
@@ -40,7 +40,7 @@
       padding-bottom: 30px;
       width: 280px;
 
-      @include media($big) {
+      @include media($medium) {
         display: block;
         float: left;
         margin-bottom: 25px;
@@ -52,7 +52,7 @@
       .sidebar-second-content {
         padding: 0 10px 10px 10px;
 
-        @include media($big) {
+        @include media($medium) {
           overflow: hidden;
           padding: 0 10px 0 10px;
         }
@@ -63,7 +63,7 @@
       background-color: #fff;
       overflow: hidden;
 
-      @include media($big) {
+      @include media($medium) {
         display: block;
         float: left;
         overflow: hidden;

@@ -490,9 +490,63 @@ body {
       #sedermera-offer-investors-add .form-actions .form-submit:hover {
         background-color: #303030; }
 
+.activities-wrapper .sidebar-block {
+  background: transparent;
+  margin-bottom: 0;
+  padding-bottom: 0px; }
+  @media screen and (max-width: 1280px) {
+    .activities-wrapper .sidebar-block {
+      margin-top: 180px;
+      height: 100%; } }
+.activities-wrapper .activities .entity-message {
+  margin-top: 1px;
+  padding: 10px 10px 20px 10px; }
+  .activities-wrapper .activities .entity-message:nth-child(odd) {
+    background: #f3f4f8; }
+  .activities-wrapper .activities .entity-message:nth-child(even) {
+    background: #eaecf0; }
+  .activities-wrapper .activities .entity-message p {
+    margin: 0;
+    padding: 0; }
+  .activities-wrapper .activities .entity-message a {
+    border-bottom: 1px solid #f9a500; }
+  .activities-wrapper .activities .entity-message.unread {
+    font-weight: 500;
+    padding-left: 20px;
+    position: relative; }
+    .activities-wrapper .activities .entity-message.unread:before {
+      background: url("../graphics/feed_alert.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/feed_alert.svg") transparent 0 0 no-repeat;
+      content: '';
+      height: 20px;
+      left: 0;
+      position: absolute;
+      top: 10px;
+      width: 10px; }
+.activities-wrapper .activities ul.pager {
+  margin-top: 20px;
+  position: static;
+  padding: 0; }
+  .activities-wrapper .activities ul.pager li a {
+    background: #c8cacd; }
+.activities-wrapper .activities .activity-date {
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 18px;
+  color: #797979;
+  font-weight: 700;
+  padding-bottom: 5px; }
+.activities-wrapper .activities p {
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 18px;
+  margin: 0;
+  padding: 0;
+  text-align: left; }
+
 #site-wrapper {
   height: 100%; }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1600px) {
     .not-front #site-wrapper {
       margin-top: 60px; } }
 
@@ -504,7 +558,7 @@ body {
   .logged-in #main-content {
     margin-left: 280px;
     padding: 40px; }
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1600px) {
       .logged-in #main-content {
         margin-left: 80px; } }
   #main-content .page-head {
@@ -522,7 +576,7 @@ body {
       float: right;
       padding-bottom: 30px;
       width: 280px; }
-      @media screen and (max-width: 1600px) {
+      @media screen and (max-width: 1280px) {
         #main-content .content-wrapper .content-sidebar {
           display: block;
           float: left;
@@ -532,14 +586,14 @@ body {
           width: 100%; } }
       #main-content .content-wrapper .content-sidebar .sidebar-second-content {
         padding: 0 10px 10px 10px; }
-        @media screen and (max-width: 1600px) {
+        @media screen and (max-width: 1280px) {
           #main-content .content-wrapper .content-sidebar .sidebar-second-content {
             overflow: hidden;
             padding: 0 10px 0 10px; } }
     #main-content .content-wrapper .content-column {
       background-color: #fff;
       overflow: hidden; }
-      @media screen and (max-width: 1600px) {
+      @media screen and (max-width: 1280px) {
         #main-content .content-wrapper .content-column {
           display: block;
           float: left;
@@ -591,7 +645,7 @@ body {
     padding-top: 29px; }
   #main-sidebar a {
     border-bottom: 0px none; }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1600px) {
     #main-sidebar {
       background-color: #000;
       width: 82px; } }
@@ -601,7 +655,7 @@ body {
   padding: 25px 0 25px 0;
   text-align: center;
   width: 100%; }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1600px) {
     .logo {
       height: 40px;
       margin: 10px 0;
@@ -694,7 +748,7 @@ body {
         background-color: #1a1a1a; }
     #main-navigation ul.menu li.last {
       margin-bottom: 0; }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1600px) {
   #main-navigation > ul.menu > li {
     padding: 20px 30px; }
     #main-navigation > ul.menu > li > a {
@@ -759,7 +813,7 @@ body {
   padding-bottom: 20px;
   text-indent: -9999px;
   width: 20%; }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1600px) {
     .user-image {
       margin-left: 22px;
       width: 100%; } }
@@ -768,7 +822,7 @@ body {
   float: left;
   margin-right: 20px;
   width: 40%; }
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1600px) {
     .user-status {
       display: none; } }
 
@@ -2536,7 +2590,7 @@ h2.sidebar-second-icon {
   padding: 11px 0 11px 0;
   text-indent: 9999;
   width: 100%; }
-  @media screen and (max-width: 1600px) {
+  @media screen and (max-width: 1280px) {
     h2.sidebar-second-icon {
       margin-bottom: 10px; } }
   h2.sidebar-second-icon .icon {
@@ -2555,7 +2609,7 @@ h2.sidebar-second-icon {
   margin-bottom: 20px;
   padding-bottom: 20px;
   text-align: center; }
-  @media screen and (max-width: 1600px) {
+  @media screen and (max-width: 1280px) {
     .sidebar-block {
       height: 170px;
       margin-bottom: 11px; } }
@@ -2574,7 +2628,7 @@ h2.sidebar-second-icon {
     line-height: 24px;
     font-family: 'Inconsolata';
     font-weight: 700; }
-  @media screen and (max-width: 1600px) {
+  @media screen and (max-width: 1280px) {
     .sidebar-block.prospect-record {
       float: left;
       margin-right: 1%;
@@ -2583,7 +2637,7 @@ h2.sidebar-second-icon {
     border-bottom: 1px solid #454545;
     height: 200px;
     margin: 10px 20px 40px; }
-    @media screen and (max-width: 1600px) {
+    @media screen and (max-width: 1280px) {
       .sidebar-block.prospect-record .vertical-bars {
         float: right;
         height: 100px;
@@ -2595,7 +2649,7 @@ h2.sidebar-second-icon {
       margin-bottom: 1px;
       position: relative;
       width: 50%; }
-      @media screen and (max-width: 1600px) {
+      @media screen and (max-width: 1280px) {
         .sidebar-block.prospect-record .vertical-bars .bar {
           height: 99px; } }
       .sidebar-block.prospect-record .vertical-bars .bar .progress.vertical {
@@ -2635,7 +2689,7 @@ h2.sidebar-second-icon {
         background-color: #ba7b00; }
   .sidebar-block.prospect-record .total-wrapper {
     clear: both; }
-    @media screen and (max-width: 1600px) {
+    @media screen and (max-width: 1280px) {
       .sidebar-block.prospect-record .total-wrapper {
         clear: none;
         float: left;
@@ -2651,7 +2705,7 @@ h2.sidebar-second-icon {
       border-radius: 16px;
       height: 32px;
       margin: 20px 10px 10px 10px; }
-      @media screen and (max-width: 1600px) {
+      @media screen and (max-width: 1280px) {
         .sidebar-block.prospect-record .total-wrapper .progress {
           margin: 0 0 18px 0; } }
       .sidebar-block.prospect-record .total-wrapper .progress .progress-bar {
@@ -2667,7 +2721,7 @@ h2.sidebar-second-icon {
         -webkit-box-shadow: none; }
   .sidebar-block.prospect-record .vertical-bars-text-wrapper {
     margin: 20px 20px 10px 20px; }
-    @media screen and (max-width: 1600px) {
+    @media screen and (max-width: 1280px) {
       .sidebar-block.prospect-record .vertical-bars-text-wrapper {
         float: right;
         border-left: 1px solid #c8cacd;
@@ -2683,7 +2737,7 @@ h2.sidebar-second-icon {
           margin-bottom: 10px; } }
       .sidebar-block.prospect-record .vertical-bars-text-wrapper .total:last-child {
         margin-bottom: 30px; }
-        @media screen and (max-width: 1600px) {
+        @media screen and (max-width: 1280px) {
           .sidebar-block.prospect-record .vertical-bars-text-wrapper .total:last-child {
             margin-bottom: 0; } }
   .sidebar-block .date {
@@ -2694,7 +2748,7 @@ h2.sidebar-second-icon {
     font-weight: 700;
     margin-top: 20px;
     text-transform: uppercase; }
-    @media screen and (max-width: 1600px) {
+    @media screen and (max-width: 1280px) {
       .sidebar-block .date {
         font-size: 28px;
         font-size: 2.8rem;
@@ -2732,7 +2786,7 @@ h2.sidebar-second-icon {
     .sidebar-block #edit-archive:hover {
       background-color: #303030; }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1280px) {
   .prospect-time-remaining {
     float: left;
     width: 24%; } }
