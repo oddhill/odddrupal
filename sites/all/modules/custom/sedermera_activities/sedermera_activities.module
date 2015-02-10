@@ -16,9 +16,12 @@ function sedermera_activities_entity_insert($entity, $type) {
       break;
 
     case 'message':
-      // Flag the message as unread for every user.
+      // Flag the message as unread for every user except the one that created
+      // the message.
       foreach (sedermera_activities_get_users() as $user) {
-        flag('flag', 'unread', $entity->mid, $user);
+        if ($user->uid != $entity->uid) {
+          flag('flag', 'unread', $entity->mid, $user);
+        }
       }
       break;
   }
