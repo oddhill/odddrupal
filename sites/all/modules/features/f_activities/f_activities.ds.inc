@@ -417,12 +417,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -507,12 +507,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -597,12 +597,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -687,12 +687,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -777,12 +777,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -867,12 +867,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -957,12 +957,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -1047,12 +1047,12 @@ function f_activities_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'msg_created',
-        1 => 'message__message_text__0',
+        1 => 'message__message_text__2',
       ),
     ),
     'fields' => array(
       'msg_created' => 'ds_content',
-      'message__message_text__0' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

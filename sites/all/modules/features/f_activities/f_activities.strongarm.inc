@@ -40,7 +40,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full' => array(
@@ -62,7 +62,7 @@ function f_activities_strongarm() {
         ),
         'message__message_text__1' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -75,6 +75,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
@@ -113,7 +119,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'full' => array(
@@ -135,7 +141,7 @@ function f_activities_strongarm() {
         ),
         'message__message_text__1' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -148,6 +154,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
@@ -186,7 +198,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full' => array(
@@ -208,7 +220,7 @@ function f_activities_strongarm() {
         ),
         'message__message_text__1' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -221,6 +233,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
@@ -259,7 +277,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full' => array(
@@ -281,7 +299,7 @@ function f_activities_strongarm() {
         ),
         'message__message_text__1' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -294,6 +312,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
@@ -332,7 +356,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full' => array(
@@ -354,7 +378,7 @@ function f_activities_strongarm() {
         ),
         'message__message_text__1' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -367,6 +391,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
@@ -405,7 +435,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full' => array(
@@ -427,7 +457,7 @@ function f_activities_strongarm() {
         ),
         'message__message_text__1' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -440,6 +470,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
@@ -478,7 +514,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -517,6 +553,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '3',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
@@ -555,7 +597,7 @@ function f_activities_strongarm() {
       'display' => array(
         'message__message_text__0' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full' => array(
@@ -577,7 +619,7 @@ function f_activities_strongarm() {
         ),
         'message__message_text__1' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'msg_capital_raising' => array(
@@ -590,6 +632,12 @@ function f_activities_strongarm() {
           ),
           'dashboard' => array(
             'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+        'message__message_text__2' => array(
+          'default' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),
