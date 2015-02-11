@@ -105,6 +105,14 @@ function f_activities_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'entity';
   $handler->display->display_options['row_options']['view_mode'] = 'dashboard';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns ingen aktivitet än.';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $translatables['aktiviteter'] = array(
     t('Master'),
     t('Aktivitet'),
@@ -125,6 +133,7 @@ function f_activities_views_default_views() {
     t('All'),
     t('Investerare'),
     t('Dashboard'),
+    t('Det finns ingen aktivitet än.'),
   );
   $export['aktiviteter'] = $view;
 
