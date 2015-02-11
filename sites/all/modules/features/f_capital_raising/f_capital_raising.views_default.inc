@@ -204,11 +204,18 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Content: Teckningstid - end date (field_cap_rais_date:value2) */
+  $handler->display->display_options['filters']['field_cap_rais_date_value2']['id'] = 'field_cap_rais_date_value2';
+  $handler->display->display_options['filters']['field_cap_rais_date_value2']['table'] = 'field_data_field_cap_rais_date';
+  $handler->display->display_options['filters']['field_cap_rais_date_value2']['field'] = 'field_cap_rais_date_value2';
+  $handler->display->display_options['filters']['field_cap_rais_date_value2']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_cap_rais_date_value2']['group'] = 1;
   /* Filter criterion: Date: Date (node) */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'node';
   $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['operator'] = '<=';
+  $handler->display->display_options['filters']['date_filter']['group'] = 1;
   $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
   $handler->display->display_options['filters']['date_filter']['expose']['label'] = 'Date (node)';
   $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
