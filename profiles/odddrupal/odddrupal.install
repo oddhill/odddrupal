@@ -878,3 +878,10 @@ function odddrupal_update_7153() {
   variable_set('views_ui_show_preview_information', 1);
   variable_set('views_ui_show_sql_query', 1);
 }
+
+/**
+ * Enable the Embed views display.
+ */
+function odddrupal_update_7154() {
+  variable_set('views_ui_display_embed', 1);
+}
