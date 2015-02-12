@@ -481,4 +481,7 @@ function odddrupal_set_variables() {
     'opera' => array(),
   ));
   variable_set('jreject_enable', 1);
+  variable_set('devel_error_handlers', array(1 => '1', 2 => '2'));
+  variable_set('devel_memory', 1);
+  variable_set('dev_timer', 1);
 }
