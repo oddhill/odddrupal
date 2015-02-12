@@ -38,8 +38,8 @@ function f_investor_context_default_contexts() {
         'views-aktiviteter-investor' => array(
           'module' => 'views',
           'delta' => 'aktiviteter-investor',
-          'region' => 'content',
-          'weight' => '-9',
+          'region' => 'sidebar-second',
+          'weight' => '-10',
         ),
       ),
     ),

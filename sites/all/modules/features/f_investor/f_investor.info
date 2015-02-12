@@ -8,6 +8,7 @@ dependencies[] = context
 dependencies[] = ctools
 dependencies[] = ds
 dependencies[] = eck
+dependencies[] = eck
 dependencies[] = email
 dependencies[] = entityreference
 dependencies[] = features
