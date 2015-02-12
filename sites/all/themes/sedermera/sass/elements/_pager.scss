@@ -9,11 +9,11 @@ ul.pager {
 
   &:before {
     @include font-size(1.1);
-    content: "Sida";
+    content: "";
     float: left;
     font-weight: 700;
     line-height: 21px;
-    padding: 0 7px;
+    padding: 0 0px;
     text-transform: uppercase;
   }
 

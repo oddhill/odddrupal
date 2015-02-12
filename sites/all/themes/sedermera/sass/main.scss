@@ -91,7 +91,7 @@ body {
   float: right;
 
   ul {
-  list-style-type: none;
+    list-style-type: none;
 
     li {
       @include font-size(4.8);
@@ -111,4 +111,4 @@ body {
 @import "content/create", "content/edit", "content/node", "content/transaction";
 
 // Import page elements
-@import "elements/layouts", "elements/sidebar", "elements/messages", "elements/pager", "elements/filteredtable", "uniform", "elements/formelements", "elements/forms", "elements/tabs", "animations",  "elements/login", "elements/sidebar-second", "elements/activities";
+@import "elements/layouts", "elements/sidebar", "elements/messages", "elements/pager", "elements/filteredtable", "uniform", "elements/formelements", "elements/forms", "elements/tabs", "animations",  "elements/login", "elements/sidebar-second", "elements/activities", "elements/dashboard";

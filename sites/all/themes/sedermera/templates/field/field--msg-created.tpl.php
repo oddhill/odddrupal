@@ -44,7 +44,6 @@
  * @ingroup themeable
  */
 ?>
-
 <div class="activity-date">
   <?php if (!$label_hidden): ?>
     <span class="label" <?php print $title_attributes; ?>><?php print $label ?>:&nbsp;</span>

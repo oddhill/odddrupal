@@ -21,6 +21,12 @@ h3 {
 p {
   margin: 1em 0; }
 
+em {
+  font-style: italic; }
+
+strong {
+  font-weight: 700; }
+
 a {
   -webkit-transition: border-color 0.1s ease-in-out;
   -moz-transition: border-color 0.1s ease-in-out;
@@ -522,6 +528,11 @@ body {
       float: right;
       padding-bottom: 30px;
       width: 280px; }
+      .page-oversikt #main-content .content-wrapper .content-sidebar {
+        background: transparent;
+        float: right;
+        padding-bottom: 30px;
+        width: 320px; }
       @media screen and (max-width: 1280px) {
         #main-content .content-wrapper .content-sidebar {
           display: block;
@@ -803,11 +814,11 @@ ul.pager {
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
-    content: "Sida";
+    content: "";
     float: left;
     font-weight: 700;
     line-height: 21px;
-    padding: 0 7px;
+    padding: 0 0px;
     text-transform: uppercase; }
   ul.pager li {
     font-size: 11px;
@@ -2797,3 +2808,88 @@ h2.sidebar-second-icon {
   margin: 0;
   padding: 0;
   text-align: left; }
+
+.page-oversikt #main-content .content-wrapper .content-column {
+  background-color: #f3f4f8; }
+.page-oversikt .table-wrapper {
+  margin-right: 30px; }
+.page-oversikt .content-sidebar {
+  margin-top: 8px; }
+  .page-oversikt .content-sidebar .sidebar-second-icon {
+    display: none; }
+.page-oversikt h2 {
+  text-transform: uppercase; }
+.page-oversikt .capital-rasing-db-wrapper h2.captial-rasing-db {
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 10px; }
+  .page-oversikt .capital-rasing-db-wrapper h2.captial-rasing-db:before {
+    background: url("../graphics/transaction_dark_grey.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/transaction_dark_grey.svg") transparent 0 0 no-repeat;
+    content: '';
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 6px;
+    width: 20px; }
+.page-oversikt .capital-rasing-db-wrapper ul.pager {
+  padding-right: 0px;
+  right: 0px; }
+  .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-next, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-last {
+    display: none; }
+.page-oversikt .capital-rasing-db-wrapper .date-display-single {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 500;
+  height: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  width: 114px;
+  background-color: #fbc966;
+  font-weight: 700;
+  text-align: center;
+  width: 90px; }
+  .page-oversikt .capital-rasing-db-wrapper .date-display-single:hover {
+    background-color: #e1b45b; }
+.page-oversikt .activities-wrapper {
+  width: 320px; }
+  .page-oversikt .activities-wrapper .sidebar-block h3 {
+    font-size: 20px;
+    font-size: 2rem;
+    line-height: 30px;
+    background: url("../graphics/activity.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
+    background: transparent;
+    border-bottom: 1px solid #e0e2e6;
+    padding: 0 0 15px 0;
+    text-align: left;
+    position: relative;
+    padding-left: 30px;
+    line-height: 18px; }
+    .page-oversikt .activities-wrapper .sidebar-block h3:before {
+      background: url("../graphics/activity.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
+      content: '';
+      height: 20px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 20px; }
+  .page-oversikt .activities-wrapper .activities .entity-message {
+    margin-top: 1px; }
+    .page-oversikt .activities-wrapper .activities .entity-message:nth-child(odd) {
+      background: #fff; }
+    .page-oversikt .activities-wrapper .activities .entity-message:nth-child(even) {
+      background: #fafbfc; }
+    .page-oversikt .activities-wrapper .activities .entity-message p {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px; }
+    .page-oversikt .activities-wrapper .activities .entity-message .activity-date p {
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 18px; }

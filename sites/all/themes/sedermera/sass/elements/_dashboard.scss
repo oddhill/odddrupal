@@ -1,0 +1,133 @@
+.page-oversikt {
+
+  #main-content {
+
+    .content-wrapper {
+
+      .content-column {
+        background-color: #f3f4f8;
+      }
+    }
+  }
+
+  .table-wrapper {
+    margin-right: 30px;
+  }
+
+  .content-sidebar {
+    margin-top: 8px;
+
+    .sidebar-second-icon {
+      display: none;
+    }
+  }
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  // Expiring transaction (Utgående transaktion)
+  .capital-rasing-db-wrapper {
+
+    h2 {
+
+      &.captial-rasing-db {
+        padding-left: 30px;
+        position: relative;
+        margin-bottom: 10px;
+
+        // Expiring transaction icon
+        &:before {
+          @include svg-bg(transaction_dark_grey);
+          content: '';
+          height: 20px;
+          left: 0;
+          position: absolute;
+          top: 6px;
+          width: 20px;
+        }
+      }
+    }
+
+    // Pager
+    ul.pager {
+      padding-right: 0px;
+      right: 0px;
+
+    li {
+
+      // Don't show next and last links
+      &.pager-next,
+      &.pager-last {
+        display: none;
+      }
+    }
+  }
+
+    // Time remaning date (Löptid utgår)
+    .date-display-single {
+      @include status-button($honey);
+      font-weight: 700;
+      text-align: center;
+      width: 90px;
+    }
+  }
+
+  .activities-wrapper {
+    width: 320px;
+
+    .sidebar-block {
+
+      h3 {
+        @include font-size(2.0);
+        @include svg-bg(activity);
+        background: transparent;
+        border-bottom: 1px solid $wool;
+        padding: 0 0 15px 0;
+        text-align: left;
+        position: relative;
+        padding-left: 30px;
+        line-height: 18px;
+
+        // Activity icon
+        &:before {
+          @include svg-bg(activity);
+          content: '';
+          height: 20px;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 20px;
+        }
+      }
+    }
+
+    .activities {
+
+      .entity-message {
+        margin-top: 1px;
+
+        &:nth-child(odd) {
+          background: $snow;
+        }
+
+        &:nth-child(even) {
+          background: #fafbfc;
+        }
+
+        p {
+          @include font-size(1.4);
+        }
+
+        // Activity date
+        .activity-date {
+
+          p {
+           @include font-size(1.2);
+          }
+        }
+      }
+    }
+  }
+}
+

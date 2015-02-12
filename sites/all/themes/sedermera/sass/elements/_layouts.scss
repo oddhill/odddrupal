@@ -40,6 +40,13 @@
       padding-bottom: 30px;
       width: 280px;
 
+      .page-oversikt & {
+        background: transparent;
+        float: right;
+        padding-bottom: 30px;
+        width: 320px;
+      }
+
       @include media($medium) {
         display: block;
         float: left;
