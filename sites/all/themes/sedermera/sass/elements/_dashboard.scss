@@ -64,12 +64,14 @@
     }
   }
 
-    // Time remaning date (Löptid utgår)
-    .date-display-single {
-      @include status-button($honey);
-      font-weight: 700;
-      text-align: center;
-      width: 90px;
+    // Time remaning date (Löptid)
+    .views-field-field-cap-rais-date {
+
+      a {
+        @include status-button($honey);
+        font-weight: 700;
+        text-align: center;
+      }
     }
   }
 

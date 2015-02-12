@@ -158,7 +158,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['title'] = 'Utgående transaktioner';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '7';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -172,8 +172,8 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga utgående transaktioner.';
-  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['empty']['area']['content'] = '<div class="empty-container">Det finns inga utgående transaktioner.</div>';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
@@ -196,7 +196,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_cap_rais_date']['label'] = 'Löptid';
   $handler->display->display_options['fields']['field_cap_rais_date']['type'] = 'sedermera_capital_raising_remaining';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Teckningstid - end date (field_cap_rais_date:value2) */
+  /* Sort criterion: Content: Teckningstid (field_cap_rais_date:value2) */
   $handler->display->display_options['sorts']['field_cap_rais_date_value2']['id'] = 'field_cap_rais_date_value2';
   $handler->display->display_options['sorts']['field_cap_rais_date_value2']['table'] = 'field_data_field_cap_rais_date';
   $handler->display->display_options['sorts']['field_cap_rais_date_value2']['field'] = 'field_cap_rais_date_value2';
@@ -216,13 +216,13 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
-  /* Filter criterion: Content: Teckningstid - end date (field_cap_rais_date:value2) */
+  /* Filter criterion: Content: Teckningstid (field_cap_rais_date:value2) */
   $handler->display->display_options['filters']['field_cap_rais_date_value2']['id'] = 'field_cap_rais_date_value2';
   $handler->display->display_options['filters']['field_cap_rais_date_value2']['table'] = 'field_data_field_cap_rais_date';
   $handler->display->display_options['filters']['field_cap_rais_date_value2']['field'] = 'field_cap_rais_date_value2';
   $handler->display->display_options['filters']['field_cap_rais_date_value2']['operator'] = 'not empty';
   $handler->display->display_options['filters']['field_cap_rais_date_value2']['group'] = 1;
-  /* Filter criterion: Date: Date (node) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'node';
   $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
@@ -281,11 +281,6 @@ function f_capital_raising_views_default_views() {
       ),
     ),
   );
-  $handler->display->display_options['filters']['date_filter']['default_date'] = '+14 days';
-  $handler->display->display_options['filters']['date_filter']['year_range'] = '-0:+3';
-  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
-    'field_data_field_cap_rais_date.field_cap_rais_date_value2' => 'field_data_field_cap_rais_date.field_cap_rais_date_value2',
-  );
   $translatables['capital_raisings'] = array(
     t('Master'),
     t('Alla transaktioner'),
@@ -311,7 +306,7 @@ function f_capital_raising_views_default_views() {
     t('Arkiverade transaktioner'),
     t('Dashboard'),
     t('Utgående transaktioner'),
-    t('Det finns inga utgående transaktioner.'),
+    t('<div class="empty-container">Det finns inga utgående transaktioner.</div>'),
     t('Löptid'),
     t('Date (node)'),
     t('Utgår inom'),

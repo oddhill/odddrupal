@@ -95,20 +95,6 @@ body {
   font-family: "Roboto", sans-serif;
   height: 100%; }
 
-.empty-wrapper {
-  padding: 80px 30px; }
-  .empty-wrapper .empty-icon {
-    background: url("../graphics/sad_computer.png") transparent center top no-repeat;
-    background: none, url("../graphics/sad_computer.svg") transparent center top no-repeat;
-    height: 93px; }
-  .empty-wrapper p {
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 30px;
-    font-weight: 500;
-    padding-top: 30px;
-    text-align: center; }
-
 .label {
   font-weight: 700; }
 
@@ -2837,7 +2823,7 @@ h2.sidebar-second-icon {
   right: 0px; }
   .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-next, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-last {
     display: none; }
-.page-oversikt .capital-rasing-db-wrapper .date-display-single {
+.page-oversikt .capital-rasing-db-wrapper .views-field-field-cap-rais-date a {
   font-size: 11px;
   font-size: 1.1rem;
   line-height: 16.5px;
@@ -2851,9 +2837,8 @@ h2.sidebar-second-icon {
   width: 114px;
   background-color: #fbc966;
   font-weight: 700;
-  text-align: center;
-  width: 90px; }
-  .page-oversikt .capital-rasing-db-wrapper .date-display-single:hover {
+  text-align: center; }
+  .page-oversikt .capital-rasing-db-wrapper .views-field-field-cap-rais-date a:hover {
     background-color: #e1b45b; }
 .page-oversikt .activities-wrapper {
   width: 320px; }
@@ -2893,3 +2878,21 @@ h2.sidebar-second-icon {
       font-size: 12px;
       font-size: 1.2rem;
       line-height: 18px; }
+
+.empty-wrapper {
+  padding: 80px 30px; }
+  .empty-wrapper .empty-icon {
+    background: url("../graphics/sad_computer.png") transparent center top no-repeat;
+    background: none, url("../graphics/sad_computer.svg") transparent center top no-repeat;
+    height: 93px; }
+  .empty-wrapper p {
+    font-size: 20px;
+    font-size: 2rem;
+    line-height: 30px;
+    font-weight: 500;
+    padding-top: 30px;
+    text-align: center; }
+
+.empty-container {
+  background: #fff;
+  padding: 20px; }
