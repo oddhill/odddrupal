@@ -50,10 +50,18 @@ function sedermera_capital_raising_field_formatter_view($entity_type, $entity, $
       $now = new DateTime(date(DATE_ISO8601, REQUEST_TIME));
 
       foreach ($items as $delta => $item) {
+        // Link this item.
+        $uri = entity_uri($entity_type, $entity);
+        $element[$delta] = array(
+          '#theme' => 'link',
+          '#path' => $uri['path'],
+          '#options' => array('attributes' => array()),
+        );
+
         if (strtotime($item['value2']) <= REQUEST_TIME) {
           // The end time has passed, add a static text and continue to the next
           // item.
-          $element[$delta] = array('#markup' => 'Har utgått');
+          $element[$delta]['#text'] = 'Har utgått';
           continue;
         }
 
@@ -63,7 +71,7 @@ function sedermera_capital_raising_field_formatter_view($entity_type, $entity, $
         $diff = $end->diff($now)->d;
 
         // Create the markup.
-        $element[$delta] = array('#markup' => format_plural($diff, '@count dag kvar', '@count dagar kvar'));
+        $element[$delta]['#text'] = format_plural($diff, '@count dag kvar', '@count dagar kvar');
       }
       break;
   }
