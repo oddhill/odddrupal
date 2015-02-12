@@ -12,7 +12,7 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div class="table-wrapper">
+<div class="<?php print $classes; ?> table-wrapper">
   <?php print $header; ?>
   <?php print $exposed; ?>
   <?php print $attachment_before; ?>
