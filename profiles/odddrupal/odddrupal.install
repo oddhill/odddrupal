@@ -869,3 +869,12 @@ function odddrupal_update_7151() {
 function odddrupal_update_7152() {
   variable_set('jquery_update_jquery_admin_version', 'default');
 }
+
+/**
+ * Set the Views query statistic settings.
+ */
+function odddrupal_update_7153() {
+  variable_set('views_ui_show_performance_statistics', 1);
+  variable_set('views_ui_show_preview_information', 1);
+  variable_set('views_ui_show_sql_query', 1);
+}
