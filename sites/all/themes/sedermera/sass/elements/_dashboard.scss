@@ -36,7 +36,7 @@
         position: relative;
         margin-bottom: 10px;
 
-        // Expiring transaction icon
+        // Expiring transaction icon (Utgående transaktion)
         &:before {
           @include svg-bg(transaction_dark_grey);
           content: '';
@@ -49,16 +49,17 @@
       }
     }
 
-    // Pager
+    // Pager (Utgående transaktion)
     ul.pager {
-      padding-right: 0px;
-      right: 0px;
+      margin-right: 0px;
 
     li {
 
-      // Don't show next and last links
+      // Don't show next, last, first and previous links - must be disabled for the ajax throbber to show correctly
       &.pager-next,
-      &.pager-last {
+      &.pager-last,
+      &.pager-previous,
+      &.pager-first {
         display: none;
       }
     }
@@ -75,6 +76,7 @@
     }
   }
 
+  // Activity (Aktivitet)
   .activities-wrapper {
     width: 320px;
 
@@ -106,6 +108,7 @@
 
     .activities {
 
+      // Activity message
       .entity-message {
         margin-top: 1px;
 

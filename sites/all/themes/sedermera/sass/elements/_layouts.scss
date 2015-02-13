@@ -3,7 +3,7 @@
 
   @include media($big) {
 
-    .not-front & {
+    .sub-menu-active & {
       margin-top: 60px;
     }
   }

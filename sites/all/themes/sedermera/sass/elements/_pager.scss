@@ -1,21 +1,11 @@
 // Pager
 ul.pager {
-  bottom: 20px;
   display: inline-block;
+  float: right;
   list-style: none;
-  padding-right: 24px;
-  position: absolute;
-  right: 20px;
-
-  &:before {
-    @include font-size(1.1);
-    content: "";
-    float: left;
-    font-weight: 700;
-    line-height: 21px;
-    padding: 0 0px;
-    text-transform: uppercase;
-  }
+  margin-right: 20px;
+  margin-top: 20px;
+  position: relative;
 
   li {
     @include font-size(1.1);
@@ -23,17 +13,18 @@ ul.pager {
     line-height: 21px;
     margin-right: 1px;
 
+    // Current page number
     &.pager-current {
       background: $dark-grey;
       border-radius: 3px;
       color: $wool;
       font-weight: 700;
-      padding: 0 7px;
+      padding: 0px 7px;
     }
 
     a {
       background: $stone;
-      border-bottom: 0 none;
+      border-bottom: 0px none;
       border-radius: 3px;
       color: $coffee;
       display: block;
@@ -47,11 +38,13 @@ ul.pager {
       }
     }
 
+    // Ajax progress
     .ajax-progress {
       position: absolute;
-      right: 0;
-      top: 0;
+      left: -27px;
+      top: 0px;
 
+      // Throbber
       .throbber {
         @include throbber;
       }

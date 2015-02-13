@@ -485,7 +485,7 @@ body {
 #site-wrapper {
   height: 100%; }
   @media screen and (max-width: 1600px) {
-    .not-front #site-wrapper {
+    .sub-menu-active #site-wrapper {
       margin-top: 60px; } }
 
 #main-content {
@@ -790,22 +790,12 @@ body {
       background: #c04343; }
 
 ul.pager {
-  bottom: 20px;
   display: inline-block;
+  float: right;
   list-style: none;
-  padding-right: 24px;
-  position: absolute;
-  right: 20px; }
-  ul.pager:before {
-    font-size: 11px;
-    font-size: 1.1rem;
-    line-height: 16.5px;
-    content: "";
-    float: left;
-    font-weight: 700;
-    line-height: 21px;
-    padding: 0 0px;
-    text-transform: uppercase; }
+  margin-right: 20px;
+  margin-top: 20px;
+  position: relative; }
   ul.pager li {
     font-size: 11px;
     font-size: 1.1rem;
@@ -818,10 +808,10 @@ ul.pager {
       border-radius: 3px;
       color: #e0e2e6;
       font-weight: 700;
-      padding: 0 7px; }
+      padding: 0px 7px; }
     ul.pager li a {
       background: #d5d7da;
-      border-bottom: 0 none;
+      border-bottom: 0px none;
       border-radius: 3px;
       color: #282828;
       display: block;
@@ -833,8 +823,8 @@ ul.pager {
         color: #fff; }
     ul.pager li .ajax-progress {
       position: absolute;
-      right: 0;
-      top: 0; }
+      left: -27px;
+      top: 0px; }
       ul.pager li .ajax-progress .throbber {
         display: inline-block;
         background: transparent;
@@ -2774,12 +2764,13 @@ h2.sidebar-second-icon {
       position: absolute;
       top: 10px;
       width: 10px; }
-.activities-wrapper .activities ul.pager {
-  margin-top: 20px;
-  position: static;
-  padding: 0; }
-  .activities-wrapper .activities ul.pager li a {
-    background: #c8cacd; }
+.activities-wrapper .activities ul {
+  float: none;
+  margin: 20px auto 0 auto; }
+  .activities-wrapper .activities ul.pager {
+    margin-right: 0px; }
+    .activities-wrapper .activities ul.pager li a {
+      background: #c8cacd; }
 .activities-wrapper .activities .activity-date {
   font-size: 12px;
   font-size: 1.2rem;
@@ -2819,9 +2810,8 @@ h2.sidebar-second-icon {
     top: 6px;
     width: 20px; }
 .page-oversikt .capital-rasing-db-wrapper ul.pager {
-  padding-right: 0px;
-  right: 0px; }
-  .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-next, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-last {
+  margin-right: 0px; }
+  .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-next, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-last, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-previous, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-first {
     display: none; }
 .page-oversikt .capital-rasing-db-wrapper .views-field-field-cap-rais-date a {
   font-size: 11px;

@@ -52,12 +52,13 @@
       }
     }
 
+    // Activity pager
     ul {
+      float: none;
+      margin: 20px auto 0 auto;
 
       &.pager {
-        margin-top: 20px;
-        position: static;
-        padding: 0;
+       margin-right: 0px;
 
         li {
 
