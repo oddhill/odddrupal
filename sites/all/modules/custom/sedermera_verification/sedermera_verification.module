@@ -5,6 +5,12 @@
  * Main module file for the Sedermera Verification module.
  */
 
+// Constants for the different verification statuses.
+define('SEDERMERA_VERIFICATION_NOT_APPROVED', 0);
+define('SEDERMERA_VERIFICATION_EXPIRED', 1);
+define('SEDERMERA_VERIFICATION_EXPIRING', 2);
+define('SEDERMERA_VERIFICATION_APPROVED', 3);
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
@@ -165,20 +171,36 @@ function sedermera_verification_add_verification_header(&$form) {
     '#weight' => -100,
   );
 
-  // Get the status, and determine the class for the header based on the status.
+  // Get the status.
   $status = sedermera_verification_get_status($form['entity']['#value']->id);
-  $class = $status ? 'approved' : 'not-approved';
+
+  // Determine the class and text based on the status.
+  switch ($status) {
+    case SEDERMERA_VERIFICATION_NOT_APPROVED:
+      $class = 'not-approved';
+      $text = 'inte godkänd';
+      break;
+
+    case SEDERMERA_VERIFICATION_EXPIRED:
+      $class = 'expired';
+      $text = 'utgången';
+      break;
+
+    default:
+      $class = 'approved';
+      $text = 'godkänd';
+  }
 
   // Add the status to the header.
   $form['header']['status'] = array(
     '#prefix' => '<h2>',
-    '#markup' => 'Kontrollen är <span class="' . $class . '">' . ($status ? 'godkänd' : 'inte godkänd') . '</span>',
+    '#markup' => "Kontrollen är <span class=\"$class\">$text</span>",
     '#suffix' => '</h2>',
   );
 
-  // Add the expiration date to the header, if the verification is approved and
-  // an expiration date has been set.
-  if ($status && ($expire = sedermera_verification_get_expiration_date($form['entity']['#value']->id))) {
+  // Add the expiration date to the header, if the verification is approved or
+  // about to expire.
+  if (in_array($status, array(SEDERMERA_VERIFICATION_EXPIRING, SEDERMERA_VERIFICATION_APPROVED)) && ($expire = sedermera_verification_get_expiration_date($form['entity']['#value']->id))) {
     $form['header']['expire'] = array(
       '#prefix' => '<span class="expires">',
       '#markup' => format_string('Förfaller den @date', array('@date' => format_date($expire, 'custom', 'j/n Y'))),
@@ -225,12 +247,31 @@ function sedermera_verification_views_api() {
  * @param int $id
  *   The investor ID.
  *
- * @return bool
- *   Boolean indicating whether or not the status is approved and hasn't
- *   expired.
+ * @return int
+ *   A constant which indicates the status for the verification.
  */
 function sedermera_verification_get_status($id) {
-  return sedermera_verification_get_approved($id) && sedermera_verification_get_expiration_date($id) > REQUEST_TIME;
+  // Get the approved boolan and expiration date.
+  $approved = sedermera_verification_get_approved($id);
+  $expire = sedermera_verification_get_expiration_date($id);
+
+  // Check if the verification is approved.
+  if (!$approved) {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+
+  // Check if the verification has expired.
+  if ($expire < REQUEST_TIME) {
+    return SEDERMERA_VERIFICATION_EXPIRED;
+  }
+
+  // Check if the verification is about to expire.
+  if ($expire < REQUEST_TIME + (60 * 60 * 24 * 2)) {
+    return SEDERMERA_VERIFICATION_EXPIRING;
+  }
+
+  // Everything has been checked, which means that the verification is approved.
+  return SEDERMERA_VERIFICATION_APPROVED;
 }
 
 /**

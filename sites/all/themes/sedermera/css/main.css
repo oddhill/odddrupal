@@ -2302,7 +2302,9 @@ form.confirmation {
   .page-investor-company-kontroll .verification-header .approved {
     color: #6c9e65; }
   .page-investor-person-kontroll .verification-header .not-approved,
-  .page-investor-company-kontroll .verification-header .not-approved {
+  .page-investor-person-kontroll .verification-header .expired,
+  .page-investor-company-kontroll .verification-header .not-approved,
+  .page-investor-company-kontroll .verification-header .expired {
     color: #c04343; }
   .page-investor-person-kontroll .verification-header .expires,
   .page-investor-company-kontroll .verification-header .expires {
