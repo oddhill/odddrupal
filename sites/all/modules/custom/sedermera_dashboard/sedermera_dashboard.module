@@ -96,8 +96,7 @@ function sedermera_dashboard_block_view($delta = '') {
 
   // Extend the query in order to enable pagination.
   $query = $query->extend('PagerDefault')
-    ->limit(5)
-    ->element(1);
+    ->limit(5);
 
   // Execute the query.
   $result = $query->execute();
@@ -136,7 +135,6 @@ function sedermera_dashboard_block_view($delta = '') {
   $pager = array(
     '#theme' => 'pager',
     '#tags' => array('', '', '', '', ''),
-    '#element' => 1,
   );
 
   // Add the table and pager to the block content.
