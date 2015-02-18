@@ -35,3 +35,116 @@ function sedermera_dashboard_page() {
   // Return an empty page. The actual content will be set using context.
   return array();
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function sedermera_dashboard_block_info() {
+  $blocks['verifications'] = array(
+    'info' => 'Utgående kontroller'
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sedermera_dashboard_block_view($delta = '') {
+  $block = array(
+    'subject' => 'Utgående kontroller',
+    'content' => array('#markup' => 'Det finns inga utgående kontroller.'),
+  );
+
+  // Start of from the investor table.
+  $query = db_select('eck_investor', 'investor');
+
+  // Join the capital raisings via the offer entity, in order to filter on the
+  // published capital raisings and to get their expiration date.
+  $query->join('field_data_field_offer_investor', 'offer_investor', 'investor.id = offer_investor.field_offer_investor_target_id');
+  $query->join('field_data_field_offer_cap_rais', 'offer_capital_raising', 'offer_investor.entity_id = offer_capital_raising.entity_id');
+  $query->join('node', 'node_capital_raising', 'offer_capital_raising.field_offer_cap_rais_target_id = node_capital_raising.nid');
+  $query->join('field_data_field_cap_rais_date', 'capital_raising_expire', 'node_capital_raising.nid = capital_raising_expire.entity_id');
+
+  // Join the verification expiration date and status for the investors.
+  $query->join('field_data_field_shared_veri_expire', 'investor_verification_expire', 'investor.id = investor_verification_expire.entity_id');
+  $query->join('field_data_field_shared_veri_appr', 'investor_verification_approved', 'investor.id = investor_verification_approved.entity_id');
+
+  // Add the relevant fields.
+  $query->addField('investor', 'id', 'id');
+  $query->addField('investor', 'type', 'type');
+  $query->addField('investor', 'title', 'name');
+  $query->addField('investor_verification_expire', 'field_shared_veri_expire_value', 'verification');
+  $query->addField('investor_verification_approved', 'field_shared_veri_appr_value', 'approved');
+
+  // Filter on published capital raisings.
+  $query->condition('node_capital_raising.status', 1);
+
+  // Add a filter which gets the verification that are going to expire before or
+  // on the same day as the capital raising, or where the verification isn't
+  // approved.
+  $condition = db_or();
+  $condition->condition('field_shared_veri_appr_value', 0);
+  $condition->where('field_shared_veri_expire_value <= field_cap_rais_date_value2');
+  $query->condition($condition);
+
+  // Order by the verification status and expiration date, and group by the
+  // investor names.
+  $query->orderBy('field_shared_veri_appr_value')
+    ->orderBy('verification')
+    ->groupBy('name');
+
+  // Extend the query in order to enable pagination.
+  $query = $query->extend('PagerDefault')
+    ->limit(5)
+    ->element(1);
+
+  // Execute the query.
+  $result = $query->execute();
+
+  // Return the block if there aren't anything to display.
+  if (!$result->rowCount()) {
+    return $block;
+  }
+
+  // Create the header for the table, and add each row.
+  $header = array('Namn', 'Utgår', 'Kontroll');
+  $rows = array();
+  foreach ($result as $row) {
+    $rows[] = array(
+      $row->name,
+      $row->approved ? format_date(strtotime($row->verification), 'custom', 'Y-m-d') : '',
+      l('Visa', "investor/{$row->type}/{$row->id}/kontroll", array('attributes' => array('class' => array('sedermera-verification-status-check')))),
+    );
+  }
+
+  // Create the table. Attach the javascript in order to fetch the status for
+  // each verification.
+  $table = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_verification') . '/sedmera_verification_status_field.js',
+      ),
+    ),
+  );
+
+  // Create the pager. We'll set empty tags in order to not display the first,
+  // previous, next and last links.
+  $pager = array(
+    '#theme' => 'pager',
+    '#tags' => array('', '', '', '', ''),
+    '#element' => 1,
+  );
+
+  // Add the table and pager to the block content.
+  $block['content'] = array(
+    'table' => $table,
+    'pager' => $pager,
+  );
+
+  // Return the block.
+  return $block;
+}

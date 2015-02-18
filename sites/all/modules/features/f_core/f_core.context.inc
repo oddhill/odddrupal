@@ -77,6 +77,12 @@ function f_core_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
+        'sedermera_dashboard-verifications' => array(
+          'module' => 'sedermera_dashboard',
+          'delta' => 'verifications',
+          'region' => 'content',
+          'weight' => '-9',
+        ),
         'views-aktiviteter-dashboard' => array(
           'module' => 'views',
           'delta' => 'aktiviteter-dashboard',

@@ -12,6 +12,10 @@ function sedermera_verification_form_eck__entity__form_add_investor_person_alter
   // Disable the fields for "Kontroller" for the regular entity form as we want
   // to present this at another form.
   sedermera_verification_disable_verification_elements($form);
+
+  // Disable access to the verification approved and expiration field.
+  $form['field_shared_veri_appr']['#access'] = FALSE;
+  $form['field_shared_veri_expire']['#access'] = FALSE;
 }
 
 /**
@@ -21,6 +25,10 @@ function sedermera_verification_form_eck__entity__form_add_investor_company_alte
   // Disable the fields for "Kontroller" for the regular entity form as we want
   // to present this at another form.
   sedermera_verification_disable_verification_elements($form);
+
+  // Disable access to the verification approved and expiration field.
+  $form['field_shared_veri_appr']['#access'] = FALSE;
+  $form['field_shared_veri_expire']['#access'] = FALSE;
 }
 
 /**
@@ -218,9 +226,23 @@ function sedermera_verification_views_api() {
  *   The investor ID.
  *
  * @return bool
- *   Boolean indicating whether or not the verification is approved.
+ *   Boolean indicating whether or not the status is approved and hasn't
+ *   expired.
  */
 function sedermera_verification_get_status($id) {
+  return sedermera_verification_get_approved($id) && sedermera_verification_get_expiration_date($id) > REQUEST_TIME;
+}
+
+/**
+ * Get the approved status for a verification, based on the ID for an investor.
+ *
+ * @param int $id
+ *   The investor ID.
+ *
+ * @return bool
+ *   Boolean indicating whether or not the verification is approved.
+ */
+function sedermera_verification_get_approved($id) {
   // Load the investor entity.
   $wrapper = entity_metadata_wrapper('investor', $id);
 
@@ -234,12 +256,6 @@ function sedermera_verification_get_status($id) {
     if (!$wrapper->$field->value()) {
       // The field doesn't have a value, which means that the verification isn't
       // approved.
-      return FALSE;
-    }
-
-    if (($expire = $wrapper->$field->field_verification_date->value()) && $expire < REQUEST_TIME) {
-      // The expire date has been set, and has been passed, which means that the
-      // verification has expired.
       return FALSE;
     }
 
@@ -312,4 +328,22 @@ function sedermera_verification_get_verification_fields() {
     'field_shared_veri_credit',
     'field_shared_veri_register',
   );
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function sedermera_verification_entity_presave($entity, $type) {
+  if ($type == 'investor') {
+    // Get the expiration status for this investor, and save the status to the
+    // investor entity if it has been set.
+    $approved = sedermera_verification_get_approved($entity->id);
+    $entity->field_shared_veri_appr = array(LANGUAGE_NONE => array(array('value' => intval($approved))));
+
+    // Get the expiration date for this investor, and save the date to the
+    // investor entity if it has been set.
+    $expire = sedermera_verification_get_expiration_date($entity->id);
+    $date = new DateObject($expire);
+    $entity->field_shared_veri_expire = array(LANGUAGE_NONE => array(array('value' => $date->format(DATE_FORMAT_ISO))));
+  }
 }

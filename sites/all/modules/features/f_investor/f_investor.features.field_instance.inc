@@ -457,6 +457,43 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'investor-company-field_shared_veri_appr'
+  $field_instances['investor-company-field_shared_veri_appr'] = array(
+    'bundle' => 'company',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 17,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_appr',
+    'label' => 'Kontroll godkänd',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'investor-company-field_shared_veri_credit'
   $field_instances['investor-company-field_shared_veri_credit'] = array(
     'bundle' => 'company',
@@ -495,7 +532,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -537,7 +574,56 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 4,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_expire'
+  $field_instances['investor-company-field_shared_veri_expire'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 16,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_expire',
+    'label' => 'Kontroll utgår',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_text',
+      'weight' => 3,
     ),
   );
 
@@ -579,7 +665,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 2,
+      'weight' => 4,
     ),
   );
 
@@ -621,7 +707,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 3,
+      'weight' => 5,
     ),
   );
 
@@ -1115,7 +1201,44 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 3,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_appr'
+  $field_instances['investor-person-field_shared_veri_appr'] = array(
+    'bundle' => 'person',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 17,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_appr',
+    'label' => 'Kontroll godkänd',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
     ),
   );
 
@@ -1157,7 +1280,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -1199,7 +1322,56 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 4,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_expire'
+  $field_instances['investor-person-field_shared_veri_expire'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 16,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_expire',
+    'label' => 'Kontroll utgår',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_text',
+      'weight' => 3,
     ),
   );
 
@@ -1247,7 +1419,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 2,
+      'weight' => 4,
     ),
   );
 
@@ -1271,6 +1443,8 @@ function f_investor_field_default_field_instances() {
   t('Förnamn');
   t('Identitetskontroll');
   t('Investerar ID');
+  t('Kontroll godkänd');
+  t('Kontroll utgår');
   t('Kreditkontroll');
   t('Mobiltelefon');
   t('Namn');
