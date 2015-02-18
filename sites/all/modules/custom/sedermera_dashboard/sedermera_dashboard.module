@@ -135,6 +135,11 @@ function sedermera_dashboard_block_view($delta = '') {
   $pager = array(
     '#theme' => 'pager',
     '#tags' => array('', '', '', '', ''),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_dashboard') . '/sedermera_dashboard.js',
+      ),
+    ),
   );
 
   // Add the table and pager to the block content.
