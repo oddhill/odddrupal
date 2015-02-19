@@ -29,9 +29,8 @@
 
     .sidebar-block {
 
-      h3 {
+      h2 {
         @include font-size(2.0);
-        @include svg-bg(activity);
         background: transparent;
         border-bottom: 1px solid $wool;
         padding: 0 0 15px 0;
@@ -111,3 +110,30 @@
   }
 }
 
+// Expiring controls (Utgående kontroller)
+.block-sedermera-dashboard-verifications {
+
+  h2 {
+    @include font-size(2.0);
+    padding: 0 0 15px 0;
+    text-align: left;
+    position: relative;
+    padding-left: 30px;
+    line-height: 18px;
+
+    // Activity icon
+    &:before {
+      @include svg-bg(clock);
+      content: '';
+      height: 20px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 20px;
+    }
+  }
+
+  th {
+    padding: 10px 0px 10px 10px;
+  }
+}

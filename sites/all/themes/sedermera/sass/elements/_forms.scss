@@ -941,3 +941,13 @@ form.confirmation {
     }
   }
 }
+
+// Approved button
+.approved {
+  @include status-button($avocado, approved);
+}
+
+// Not approved button
+.not-approved {
+  @include status-button($bubblegum, unapproved);
+}

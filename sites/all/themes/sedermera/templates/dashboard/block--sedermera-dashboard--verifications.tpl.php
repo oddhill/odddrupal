@@ -20,13 +20,12 @@
  * @see template_process()
  */
 ?>
-<div class="activities-wrapper">
-  <div class="activities sidebar-block">
-    <?php if ($block->subject): ?>
-      <h2<?php print $title_attributes; ?>><?php print $block->subject ?></h2>
-    <?php endif;?>
+<div class="<?php print $block_html_id; ?>" <?php print $attributes; ?>>
+  <?php if ($block->subject): ?>
+    <h2<?php print $title_attributes; ?>><?php print $block->subject ?></h2>
+  <?php endif;?>
 
+  <div class="table-wrapper">
     <?php print $content ?>
   </div>
 </div>
-

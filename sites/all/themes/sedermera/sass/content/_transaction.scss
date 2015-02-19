@@ -127,18 +127,6 @@
 // Verification-status-check (Intressenter)
   a.sedermera-verification-status-check {
     cursor: pointer;
-
-    // Approved button
-    &.sedermera-verification-status-check.approved {
-      @include status-button($avocado, approved);
-      color: $pear;
-    }
-
-    // Unapproved button
-    &.sedermera-verification-status-check.not-approved {
-      @include status-button($bubblegum, unapproved);
-      color: $dark-rose;
-    }
   }
 }
 

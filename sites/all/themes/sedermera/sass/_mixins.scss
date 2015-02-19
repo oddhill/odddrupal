@@ -99,8 +99,8 @@
   }
 }
 
-// Status button - approved/unapproved
-@mixin status-button($background: $dark-grey, $icon: default, $size: default) {
+// Status button - approved/unapproved/expiring/expired
+@mixin status-button($background: default, $icon: default) {
   @include font-size(1.1);
   border-radius: 28px;
   border-bottom: 0 none;
@@ -114,17 +114,26 @@
   @if $icon == approved {
     @include svg-bg(approved);
     background-position: 5px 4px;
+    color: $pear;
     padding-left: 28px;
   }
 
   @if $icon == unapproved {
     @include svg-bg(unapproved);
     background-position: 5px 4px;
+    color: $dark-rose;
+    padding-left: 28px;
+  }
+
+  @if $icon == expiring {
+    @include svg-bg(exclamation);
+    background-position: 5px 4px;
     padding-left: 28px;
   }
 
   &:hover {
     background-color: shade($background,10%);
+    border: 0 none;
   }
 
   background-color: $background;

@@ -410,46 +410,6 @@ body {
   padding: 0 5px 0 5px 0; }
 .view-offers a.sedermera-verification-status-check {
   cursor: pointer; }
-  .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.approved {
-    font-size: 11px;
-    font-size: 1.1rem;
-    line-height: 16.5px;
-    border-radius: 28px;
-    border-bottom: 0 none;
-    display: inline-block;
-    font-weight: 500;
-    height: 28px;
-    line-height: 28px;
-    text-transform: uppercase;
-    width: 114px;
-    background: url("../graphics/approved.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
-    background-position: 5px 4px;
-    padding-left: 28px;
-    background-color: #b6e0af;
-    color: #6c9e65; }
-    .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.approved:hover {
-      background-color: #a3c99d; }
-  .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.not-approved {
-    font-size: 11px;
-    font-size: 1.1rem;
-    line-height: 16.5px;
-    border-radius: 28px;
-    border-bottom: 0 none;
-    display: inline-block;
-    font-weight: 500;
-    height: 28px;
-    line-height: 28px;
-    text-transform: uppercase;
-    width: 114px;
-    background: url("../graphics/unapproved.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/unapproved.svg") transparent 0 0 no-repeat;
-    background-position: 5px 4px;
-    padding-left: 28px;
-    background-color: #e0afaf;
-    color: #9e6565; }
-    .view-offers a.sedermera-verification-status-check.sedermera-verification-status-check.not-approved:hover {
-      background-color: #c99d9d; }
 
 #sedermera-offer-investors-add {
   overflow: hidden;
@@ -837,9 +797,14 @@ body {
     -moz-animation: load 0.9s linear infinite;
     animation: load 0.9s linear infinite; }
 
-.capital-rasing-db-wrapper .pager {
+.capital-rasing-db-wrapper .pager,
+.block-sedermera-dashboard-verifications .pager {
   margin-right: 0px; }
-  .capital-rasing-db-wrapper .pager li.pager-next, .capital-rasing-db-wrapper .pager li.pager-last, .capital-rasing-db-wrapper .pager li.pager-previous, .capital-rasing-db-wrapper .pager li.pager-first {
+  .capital-rasing-db-wrapper .pager li.pager-next, .capital-rasing-db-wrapper .pager li.pager-last, .capital-rasing-db-wrapper .pager li.pager-previous, .capital-rasing-db-wrapper .pager li.pager-first,
+  .block-sedermera-dashboard-verifications .pager li.pager-next,
+  .block-sedermera-dashboard-verifications .pager li.pager-last,
+  .block-sedermera-dashboard-verifications .pager li.pager-previous,
+  .block-sedermera-dashboard-verifications .pager li.pager-first {
     display: none; }
 
 .activities-wrapper ul {
@@ -2361,6 +2326,50 @@ form.confirmation {
 .page-investor-company-kontroll form .form-item {
   margin-bottom: 5px; }
 
+.approved {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 500;
+  height: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  width: 114px;
+  background: url("../graphics/approved.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  color: #6c9e65;
+  padding-left: 28px;
+  background-color: #b6e0af; }
+  .approved:hover {
+    background-color: #a3c99d;
+    border: 0 none; }
+
+.not-approved {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 500;
+  height: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  width: 114px;
+  background: url("../graphics/unapproved.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/unapproved.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  color: #9e6565;
+  padding-left: 28px;
+  background-color: #e0afaf; }
+  .not-approved:hover {
+    background-color: #c99d9d;
+    border: 0 none; }
+
 ul.tabs {
   background: #ebedf1;
   border-bottom: 1px solid #e0e2e6;
@@ -2815,12 +2824,10 @@ h2.sidebar-second-icon {
     display: none; }
 .page-oversikt h2 {
   text-transform: uppercase; }
-.page-oversikt .activities-wrapper .sidebar-block h3 {
+.page-oversikt .activities-wrapper .sidebar-block h2 {
   font-size: 20px;
   font-size: 2rem;
   line-height: 30px;
-  background: url("../graphics/activity.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
   background: transparent;
   border-bottom: 1px solid #e0e2e6;
   padding: 0 0 15px 0;
@@ -2828,7 +2835,7 @@ h2.sidebar-second-icon {
   position: relative;
   padding-left: 30px;
   line-height: 18px; }
-  .page-oversikt .activities-wrapper .sidebar-block h3:before {
+  .page-oversikt .activities-wrapper .sidebar-block h2:before {
     background: url("../graphics/activity.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
     content: '';
@@ -2882,7 +2889,29 @@ h2.sidebar-second-icon {
   font-weight: 700;
   text-align: center; }
   .views-field-field-cap-rais-date a:hover {
-    background-color: #e1b45b; }
+    background-color: #e1b45b;
+    border: 0 none; }
+
+.block-sedermera-dashboard-verifications h2 {
+  font-size: 20px;
+  font-size: 2rem;
+  line-height: 30px;
+  padding: 0 0 15px 0;
+  text-align: left;
+  position: relative;
+  padding-left: 30px;
+  line-height: 18px; }
+  .block-sedermera-dashboard-verifications h2:before {
+    background: url("../graphics/clock.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/clock.svg") transparent 0 0 no-repeat;
+    content: '';
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 20px; }
+.block-sedermera-dashboard-verifications th {
+  padding: 10px 0px 10px 10px; }
 
 .empty-wrapper {
   padding: 80px 30px; }
