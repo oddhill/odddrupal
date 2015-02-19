@@ -56,43 +56,8 @@ function sedermera_dashboard_block_view($delta = '') {
     'content' => array('#markup' => 'Det finns inga utgående kontroller.'),
   );
 
-  // Start of from the investor table.
-  $query = db_select('eck_investor', 'investor');
-
-  // Join the capital raisings via the offer entity, in order to filter on the
-  // published capital raisings and to get their expiration date.
-  $query->join('field_data_field_offer_investor', 'offer_investor', 'investor.id = offer_investor.field_offer_investor_target_id');
-  $query->join('field_data_field_offer_cap_rais', 'offer_capital_raising', 'offer_investor.entity_id = offer_capital_raising.entity_id');
-  $query->join('node', 'node_capital_raising', 'offer_capital_raising.field_offer_cap_rais_target_id = node_capital_raising.nid');
-  $query->join('field_data_field_cap_rais_date', 'capital_raising_expire', 'node_capital_raising.nid = capital_raising_expire.entity_id');
-
-  // Join the verification expiration date and status for the investors.
-  $query->join('field_data_field_shared_veri_expire', 'investor_verification_expire', 'investor.id = investor_verification_expire.entity_id');
-  $query->join('field_data_field_shared_veri_appr', 'investor_verification_approved', 'investor.id = investor_verification_approved.entity_id');
-
-  // Add the relevant fields.
-  $query->addField('investor', 'id', 'id');
-  $query->addField('investor', 'type', 'type');
-  $query->addField('investor', 'title', 'name');
-  $query->addField('investor_verification_expire', 'field_shared_veri_expire_value', 'verification');
-  $query->addField('investor_verification_approved', 'field_shared_veri_appr_value', 'approved');
-
-  // Filter on published capital raisings.
-  $query->condition('node_capital_raising.status', 1);
-
-  // Add a filter which gets the verification that are going to expire before or
-  // on the same day as the capital raising, or where the verification isn't
-  // approved.
-  $condition = db_or();
-  $condition->condition('field_shared_veri_appr_value', 0);
-  $condition->where('field_shared_veri_expire_value <= field_cap_rais_date_value2');
-  $query->condition($condition);
-
-  // Order by the verification status and expiration date, and group by the
-  // investor names.
-  $query->orderBy('field_shared_veri_appr_value')
-    ->orderBy('verification')
-    ->groupBy('name');
+  // Get the query which will return every expiring verification.
+  $query = sedermera_verification_get_expiring_query();
 
   // Extend the query in order to enable pagination.
   $query = $query->extend('PagerDefault')
