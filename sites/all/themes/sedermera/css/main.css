@@ -175,8 +175,6 @@ body {
   .page-node-add-capital-raising form.node-capital_raising-form .form-actions .submit-wrapper .form-submit {
     margin-left: 10px;
     margin-right: 0; }
-.page-node-add-capital-raising ul.pager {
-  margin-left: 280px; }
 
 .field.title h2 {
   font-size: 32px;
@@ -274,9 +272,10 @@ body {
   margin-bottom: 15px; }
 
 .node.view-mode-full {
-  max-width: 800px;
+  max-width: 1800px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  max-width: 800px; }
   .node.view-mode-full:after {
     content: "";
     display: table;
@@ -789,27 +788,27 @@ body {
     #page-messages .messages.error {
       background: #c04343; }
 
-ul.pager {
+.pager {
   display: inline-block;
   float: right;
   list-style: none;
   margin-right: 20px;
   margin-top: 20px;
   position: relative; }
-  ul.pager li {
+  .pager li {
     font-size: 11px;
     font-size: 1.1rem;
     line-height: 16.5px;
     display: inline-block;
     line-height: 21px;
     margin-right: 1px; }
-    ul.pager li.pager-current {
+    .pager li.pager-current {
       background: #454545;
       border-radius: 3px;
       color: #e0e2e6;
       font-weight: 700;
       padding: 0px 7px; }
-    ul.pager li a {
+    .pager li a {
       background: #d5d7da;
       border-bottom: 0px none;
       border-radius: 3px;
@@ -818,24 +817,38 @@ ul.pager {
       font-weight: 700;
       line-height: 21px;
       padding: 0 7px; }
-      ul.pager li a:hover {
+      .pager li a:hover {
         background: #b2b3b6;
         color: #fff; }
-    ul.pager li .ajax-progress {
-      position: absolute;
-      left: -27px;
-      top: 0px; }
-      ul.pager li .ajax-progress .throbber {
-        display: inline-block;
-        background: transparent;
-        width: 16px;
-        height: 16px;
-        border: 2px solid #f9a500;
-        border-radius: 50%;
-        border-top-color: transparent;
-        -webkit-animation: load 0.9s linear infinite;
-        -moz-animation: load 0.9s linear infinite;
-        animation: load 0.9s linear infinite; }
+
+.ajax-progress {
+  position: absolute;
+  left: -27px;
+  top: 0px; }
+  .ajax-progress .throbber {
+    display: inline-block;
+    background: transparent;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f9a500;
+    border-radius: 50%;
+    border-top-color: transparent;
+    -webkit-animation: load 0.9s linear infinite;
+    -moz-animation: load 0.9s linear infinite;
+    animation: load 0.9s linear infinite; }
+
+.capital-rasing-db-wrapper .pager {
+  margin-right: 0px; }
+  .capital-rasing-db-wrapper .pager li.pager-next, .capital-rasing-db-wrapper .pager li.pager-last, .capital-rasing-db-wrapper .pager li.pager-previous, .capital-rasing-db-wrapper .pager li.pager-first {
+    display: none; }
+
+.activities-wrapper ul {
+  float: none;
+  margin: 20px auto 0 auto; }
+  .activities-wrapper ul.pager {
+    margin-right: 0px; }
+    .activities-wrapper ul.pager a {
+      background: #c8cacd; }
 
 .filtered-table {
   background: #fff;
@@ -2741,23 +2754,28 @@ h2.sidebar-second-icon {
     .activities-wrapper .sidebar-block {
       margin-top: 180px;
       height: 100%; } }
-.activities-wrapper .activities .entity-message {
+
+.entity-message {
   margin-top: 1px;
   padding: 10px 10px 20px 10px; }
-  .activities-wrapper .activities .entity-message:nth-child(odd) {
+  .entity-message:nth-child(odd) {
     background: #f3f4f8; }
-  .activities-wrapper .activities .entity-message:nth-child(even) {
+  .entity-message:nth-child(even) {
     background: #eaecf0; }
-  .activities-wrapper .activities .entity-message p {
+  .entity-message p {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
     margin: 0;
-    padding: 0; }
-  .activities-wrapper .activities .entity-message a {
+    padding: 0;
+    text-align: left; }
+  .entity-message a {
     border-bottom: 1px solid #f9a500; }
-  .activities-wrapper .activities .entity-message.unread {
+  .entity-message.unread {
     font-weight: 500;
     padding-left: 20px;
     position: relative; }
-    .activities-wrapper .activities .entity-message.unread:before {
+    .entity-message.unread:before {
       background: url("../graphics/feed_alert.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/feed_alert.svg") transparent 0 0 no-repeat;
       content: '';
@@ -2766,43 +2784,79 @@ h2.sidebar-second-icon {
       position: absolute;
       top: 10px;
       width: 10px; }
-.activities-wrapper .activities ul {
-  float: none;
-  margin: 20px auto 0 auto; }
-  .activities-wrapper .activities ul.pager {
-    margin-right: 0px; }
-    .activities-wrapper .activities ul.pager li a {
-      background: #c8cacd; }
-.activities-wrapper .activities .activity-date {
+
+.activity-date {
   font-size: 12px;
   font-size: 1.2rem;
   line-height: 18px;
   color: #797979;
   font-weight: 700;
   padding-bottom: 5px; }
-.activities-wrapper .activities p {
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 18px;
-  margin: 0;
-  padding: 0;
-  text-align: left; }
 
-.page-oversikt #main-content .content-wrapper .content-column {
+.page-oversikt #main-content .content-column {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 74.41059%;
+  padding: 0 40px 0 0;
   background-color: #f3f4f8; }
-.page-oversikt .table-wrapper {
-  margin-right: 30px; }
+  .page-oversikt #main-content .content-column:last-child {
+    margin-right: 0; }
 .page-oversikt .content-sidebar {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 23.23176%;
+  margin-right: 0;
   margin-top: 8px; }
+  .page-oversikt .content-sidebar:last-child {
+    margin-right: 0; }
   .page-oversikt .content-sidebar .sidebar-second-icon {
     display: none; }
 .page-oversikt h2 {
   text-transform: uppercase; }
-.page-oversikt .capital-rasing-db-wrapper h2.captial-rasing-db {
+.page-oversikt .activities-wrapper .sidebar-block h3 {
+  font-size: 20px;
+  font-size: 2rem;
+  line-height: 30px;
+  background: url("../graphics/activity.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
+  background: transparent;
+  border-bottom: 1px solid #e0e2e6;
+  padding: 0 0 15px 0;
+  text-align: left;
+  position: relative;
+  padding-left: 30px;
+  line-height: 18px; }
+  .page-oversikt .activities-wrapper .sidebar-block h3:before {
+    background: url("../graphics/activity.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
+    content: '';
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 20px; }
+.page-oversikt .activities-wrapper .entity-message {
+  margin-top: 1px; }
+  .page-oversikt .activities-wrapper .entity-message:nth-child(odd) {
+    background: #fff; }
+  .page-oversikt .activities-wrapper .entity-message:nth-child(even) {
+    background: #fafbfc; }
+  .page-oversikt .activities-wrapper .entity-message p {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px; }
+  .page-oversikt .activities-wrapper .entity-message .activity-date p {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px; }
+
+.capital-rasing-db-wrapper .captial-rasing-db {
   padding-left: 30px;
   position: relative;
   margin-bottom: 10px; }
-  .page-oversikt .capital-rasing-db-wrapper h2.captial-rasing-db:before {
+  .capital-rasing-db-wrapper .captial-rasing-db:before {
     background: url("../graphics/transaction_dark_grey.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/transaction_dark_grey.svg") transparent 0 0 no-repeat;
     content: '';
@@ -2811,11 +2865,8 @@ h2.sidebar-second-icon {
     position: absolute;
     top: 6px;
     width: 20px; }
-.page-oversikt .capital-rasing-db-wrapper ul.pager {
-  margin-right: 0px; }
-  .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-next, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-last, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-previous, .page-oversikt .capital-rasing-db-wrapper ul.pager li.pager-first {
-    display: none; }
-.page-oversikt .capital-rasing-db-wrapper .views-field-field-cap-rais-date a {
+
+.views-field-field-cap-rais-date a {
   font-size: 11px;
   font-size: 1.1rem;
   line-height: 16.5px;
@@ -2830,46 +2881,8 @@ h2.sidebar-second-icon {
   background-color: #fbc966;
   font-weight: 700;
   text-align: center; }
-  .page-oversikt .capital-rasing-db-wrapper .views-field-field-cap-rais-date a:hover {
+  .views-field-field-cap-rais-date a:hover {
     background-color: #e1b45b; }
-.page-oversikt .activities-wrapper {
-  width: 320px; }
-  .page-oversikt .activities-wrapper .sidebar-block h3 {
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 30px;
-    background: url("../graphics/activity.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
-    background: transparent;
-    border-bottom: 1px solid #e0e2e6;
-    padding: 0 0 15px 0;
-    text-align: left;
-    position: relative;
-    padding-left: 30px;
-    line-height: 18px; }
-    .page-oversikt .activities-wrapper .sidebar-block h3:before {
-      background: url("../graphics/activity.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/activity.svg") transparent 0 0 no-repeat;
-      content: '';
-      height: 20px;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 20px; }
-  .page-oversikt .activities-wrapper .activities .entity-message {
-    margin-top: 1px; }
-    .page-oversikt .activities-wrapper .activities .entity-message:nth-child(odd) {
-      background: #fff; }
-    .page-oversikt .activities-wrapper .activities .entity-message:nth-child(even) {
-      background: #fafbfc; }
-    .page-oversikt .activities-wrapper .activities .entity-message p {
-      font-size: 14px;
-      font-size: 1.4rem;
-      line-height: 21px; }
-    .page-oversikt .activities-wrapper .activities .entity-message .activity-date p {
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 18px; }
 
 .empty-wrapper {
   padding: 80px 30px; }

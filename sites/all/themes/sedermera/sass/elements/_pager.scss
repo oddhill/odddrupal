@@ -1,5 +1,5 @@
-// Pager
-ul.pager {
+// General pager styling
+.pager {
   display: inline-block;
   float: right;
   list-style: none;
@@ -37,16 +37,52 @@ ul.pager {
         color: $snow;
       }
     }
+  }
+}
 
-    // Ajax progress
-    .ajax-progress {
-      position: absolute;
-      left: -27px;
-      top: 0px;
+// Ajax progress
+.ajax-progress {
+  position: absolute;
+  left: -27px;
+  top: 0px;
 
-      // Throbber
-      .throbber {
-        @include throbber;
+  // Throbber
+  .throbber {
+    @include throbber;
+  }
+}
+
+// Dashboard pager (Utgående transaktion)
+.capital-rasing-db-wrapper {
+
+  .pager {
+    margin-right: 0px;
+
+    li {
+
+      // Don't show next, last, first and previous links - must be disabled for the ajax throbber to show correctly
+      &.pager-next,
+      &.pager-last,
+      &.pager-previous,
+      &.pager-first {
+        display: none;
+      }
+    }
+  }
+}
+
+// Activity pager (Aktivitet)
+.activities-wrapper {
+
+  ul {
+    float: none;
+    margin: 20px auto 0 auto;
+
+    &.pager {
+      margin-right: 0px;
+
+      a {
+        background: $light-concrete;
       }
     }
   }
