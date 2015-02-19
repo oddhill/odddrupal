@@ -2277,6 +2277,18 @@ form.confirmation {
     display: inline-block;
     float: left; }
   .page-investor-person-kontroll .verification-header .approved,
+  .page-investor-person-kontroll .verification-header .not-approved,
+  .page-investor-person-kontroll .verification-header .expired,
+  .page-investor-company-kontroll .verification-header .approved,
+  .page-investor-company-kontroll .verification-header .not-approved,
+  .page-investor-company-kontroll .verification-header .expired {
+    font-size: 25px;
+    font-size: 2.5rem;
+    line-height: 37.5px;
+    background: none;
+    padding: 0;
+    text-transform: lowercase; }
+  .page-investor-person-kontroll .verification-header .approved,
   .page-investor-company-kontroll .verification-header .approved {
     color: #6c9e65; }
   .page-investor-person-kontroll .verification-header .not-approved,
@@ -2333,7 +2345,7 @@ form.confirmation {
   border-radius: 28px;
   border-bottom: 0 none;
   display: inline-block;
-  font-weight: 500;
+  font-weight: 700;
   height: 28px;
   line-height: 28px;
   text-transform: uppercase;
@@ -2355,7 +2367,7 @@ form.confirmation {
   border-radius: 28px;
   border-bottom: 0 none;
   display: inline-block;
-  font-weight: 500;
+  font-weight: 700;
   height: 28px;
   line-height: 28px;
   text-transform: uppercase;
@@ -2368,6 +2380,50 @@ form.confirmation {
   background-color: #e0afaf; }
   .not-approved:hover {
     background-color: #c99d9d;
+    border: 0 none; }
+
+.expiring {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  width: 114px;
+  background: url("../graphics/exclamation.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/exclamation.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  padding-left: 28px;
+  color: #454545;
+  background-color: #fbc966; }
+  .expiring:hover {
+    background-color: #e1b45b;
+    border: 0 none; }
+
+.expired {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  width: 114px;
+  background: url("../graphics/expired.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/expired.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  padding-left: 28px;
+  color: #454545;
+  background-color: #fbc966; }
+  .expired:hover {
+    background-color: #e1b45b;
     border: 0 none; }
 
 ul.tabs {
@@ -2880,7 +2936,7 @@ h2.sidebar-second-icon {
   border-radius: 28px;
   border-bottom: 0 none;
   display: inline-block;
-  font-weight: 500;
+  font-weight: 700;
   height: 28px;
   line-height: 28px;
   text-transform: uppercase;

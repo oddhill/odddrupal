@@ -105,7 +105,7 @@
   border-radius: 28px;
   border-bottom: 0 none;
   display: inline-block;
-  font-weight: 500;
+  font-weight: 700;
   height: 28px;
   line-height: 28px;
   text-transform: uppercase;
@@ -129,6 +129,14 @@
     @include svg-bg(exclamation);
     background-position: 5px 4px;
     padding-left: 28px;
+    color: $dark-grey;
+  }
+
+  @if $icon == expired {
+    @include svg-bg(expired);
+    background-position: 5px 4px;
+    padding-left: 28px;
+    color: $dark-grey;
   }
 
   &:hover {

@@ -876,6 +876,15 @@ form.confirmation {
       float: left;
     }
 
+    .approved,
+    .not-approved,
+    .expired {
+      @include font-size(2.5);
+      background: none;
+      padding: 0;
+      text-transform: lowercase;
+    }
+
     .approved {
       color: $pear;
     }
@@ -950,4 +959,14 @@ form.confirmation {
 // Not approved button
 .not-approved {
   @include status-button($bubblegum, unapproved);
+}
+
+// Expiring button
+.expiring {
+  @include status-button($honey, expiring);
+}
+
+// Expired button
+.expired {
+  @include status-button($honey, expired);
 }
