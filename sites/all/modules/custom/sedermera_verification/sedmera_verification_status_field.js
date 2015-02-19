@@ -17,9 +17,27 @@ Drupal.behaviors.sedermeraVerificationStatusField = {
 
       // Perform the AJAX request.
       $.get(url, function(data) {
-        // Set the text and class depending on the status for the verification.
-        var statusText = data ? 'Godkänd' : 'Ej godkänd';
-        var statusClass = data ? 'approved' : 'not-approved';
+        // Set the status text and class depending on the retrieved status.
+        switch (data) {
+          case settings.sedermeraVerification.notApproved:
+            var statusText = 'Ej godkänd';
+            var statusClass = 'not-approved';
+            break;
+
+          case settings.sedermeraVerification.expired:
+            var statusText = 'Utgången';
+            var statusClass = 'expired';
+            break;
+
+          case settings.sedermeraVerification.expiring:
+            var statusText = 'Utgående';
+            var statusClass = 'expiring';
+            break;
+
+          default:
+            var statusText = 'Godkänd';
+            var statusClass = 'approved';
+        }
 
         // Change the text and status.
         $link.text(statusText);

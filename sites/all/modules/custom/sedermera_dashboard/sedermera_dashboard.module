@@ -138,6 +138,15 @@ function sedermera_dashboard_block_view($delta = '') {
     '#attached' => array(
       'js' => array(
         drupal_get_path('module', 'sedermera_dashboard') . '/sedermera_dashboard.js',
+        array(
+          'data' => array('sedermeraVerification' => array(
+            'notApproved' => SEDERMERA_VERIFICATION_NOT_APPROVED,
+            'expired' => SEDERMERA_VERIFICATION_EXPIRED,
+            'expiring' => SEDERMERA_VERIFICATION_EXPIRING,
+            'approved' => SEDERMERA_VERIFICATION_APPROVED,
+          )),
+          'type' => 'setting',
+        ),
       ),
     ),
   );

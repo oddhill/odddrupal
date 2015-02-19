@@ -40,6 +40,15 @@ class sedermera_verificaton_views_handler_status_field extends views_handler_fie
       '#attached' => array(
         'js' => array(
           drupal_get_path('module', 'sedermera_verification') . '/sedmera_verification_status_field.js',
+          array(
+            'data' => array('sedermeraVerification' => array(
+              'notApproved' => SEDERMERA_VERIFICATION_NOT_APPROVED,
+              'expired' => SEDERMERA_VERIFICATION_EXPIRED,
+              'expiring' => SEDERMERA_VERIFICATION_EXPIRING,
+              'approved' => SEDERMERA_VERIFICATION_APPROVED,
+            )),
+            'type' => 'setting',
+          ),
         ),
       ),
     );
