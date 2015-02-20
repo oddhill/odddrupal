@@ -2421,9 +2421,9 @@ form.confirmation {
   background-position: 5px 4px;
   padding-left: 28px;
   color: #454545;
-  background-color: #fbc966; }
+  background-color: #d4d6d9; }
   .expired:hover {
-    background-color: #e1b45b;
+    background-color: #bec0c3;
     border: 0 none; }
 
 ul.tabs {
