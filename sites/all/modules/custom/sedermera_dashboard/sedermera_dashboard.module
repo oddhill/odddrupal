@@ -53,7 +53,7 @@ function sedermera_dashboard_block_info() {
 function sedermera_dashboard_block_view($delta = '') {
   $block = array(
     'subject' => 'Utgående kontroller',
-    'content' => array('#markup' => 'Det finns inga utgående kontroller.'),
+    'content' => array('#markup' => '<div class="empty-container">Det finns inga utgående kontroller.</div>'),
   );
 
   // Get the query which will return every expiring verification.
@@ -93,6 +93,8 @@ function sedermera_dashboard_block_view($delta = '') {
         drupal_get_path('module', 'sedermera_verification') . '/sedmera_verification_status_field.js',
       ),
     ),
+    '#prefix' => '<div class="table-wrapper">',
+    '#suffix' => '</div>',
   );
 
   // Create the pager. We'll set empty tags in order to not display the first,
