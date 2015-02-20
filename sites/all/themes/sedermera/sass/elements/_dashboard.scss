@@ -77,10 +77,16 @@
       }
     }
   }
+
+  .table-wrapper {
+    padding-bottom: 0px;
+    overflow: visible;
+  }
 }
 
 // Expiring transaction (Utgående transaktion)
 .capital-rasing-db-wrapper {
+  margin-bottom: 70px;
 
  .captial-rasing-db {
     padding-left: 30px;

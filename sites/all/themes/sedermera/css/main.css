@@ -2841,20 +2841,25 @@ h2.sidebar-second-icon {
     font-size: 12px;
     font-size: 1.2rem;
     line-height: 18px; }
+.page-oversikt .table-wrapper {
+  padding-bottom: 0px;
+  overflow: visible; }
 
-.capital-rasing-db-wrapper .captial-rasing-db {
-  padding-left: 30px;
-  position: relative;
-  margin-bottom: 10px; }
-  .capital-rasing-db-wrapper .captial-rasing-db:before {
-    background: url("../graphics/transaction_dark_grey.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/transaction_dark_grey.svg") transparent 0 0 no-repeat;
-    content: '';
-    height: 20px;
-    left: 0;
-    position: absolute;
-    top: 6px;
-    width: 20px; }
+.capital-rasing-db-wrapper {
+  margin-bottom: 70px; }
+  .capital-rasing-db-wrapper .captial-rasing-db {
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 10px; }
+    .capital-rasing-db-wrapper .captial-rasing-db:before {
+      background: url("../graphics/transaction_dark_grey.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/transaction_dark_grey.svg") transparent 0 0 no-repeat;
+      content: '';
+      height: 20px;
+      left: 0;
+      position: absolute;
+      top: 6px;
+      width: 20px; }
 
 .views-field-field-cap-rais-date a {
   font-size: 11px;
@@ -2912,7 +2917,8 @@ h2.sidebar-second-icon {
 
 .empty-container {
   background: #fff;
-  padding: 20px; }
+  padding: 5px 5px 5px 20px;
+  text-align: left; }
 
 .page-investor-person-kontroll .verification-header,
 .page-investor-company-kontroll .verification-header {

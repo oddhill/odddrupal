@@ -111,7 +111,7 @@ function f_activities_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = '<div class="empty-container">Det finns ingen aktivitet än.</div>';
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns ingen aktivitet än.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $translatables['aktiviteter'] = array(
     t('Master'),
@@ -133,7 +133,7 @@ function f_activities_views_default_views() {
     t('All'),
     t('Investerare'),
     t('Dashboard'),
-    t('<div class="empty-container">Det finns ingen aktivitet än.</div>'),
+    t('Det finns ingen aktivitet än.'),
   );
   $export['aktiviteter'] = $view;
 
