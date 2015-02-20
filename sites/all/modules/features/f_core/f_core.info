@@ -54,6 +54,7 @@ features[user_permission][] = view any unpublished content
 features[user_permission][] = view own unpublished content
 features[variable][] = blockify_blocks
 features[variable][] = date_format_medium
+features[variable][] = file_private_path
 features[variable][] = form_placeholder_exclude
 features[variable][] = form_placeholder_include
 features[variable][] = form_placeholder_required_indicator

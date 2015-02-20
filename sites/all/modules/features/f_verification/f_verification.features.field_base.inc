@@ -91,7 +91,7 @@ function f_verification_field_default_field_bases() {
     'settings' => array(
       'display_default' => 0,
       'display_field' => 0,
-      'uri_scheme' => 'public',
+      'uri_scheme' => 'private',
     ),
     'translatable' => 0,
     'type' => 'file',
