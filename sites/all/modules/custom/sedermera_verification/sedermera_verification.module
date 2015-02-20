@@ -55,6 +55,10 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
   else {
     // In any other case, we'll disable the verification elements.
     sedermera_verification_disable_verification_elements($form);
+
+    // Disable access to the verification approved and expiration field.
+    $form['field_shared_veri_appr']['#access'] = FALSE;
+    $form['field_shared_veri_expire']['#access'] = FALSE;
   }
 }
 
@@ -76,6 +80,10 @@ function sedermera_verification_form_eck__entity__form_edit_investor_company_alt
   else {
     // In any other case, we'll disable the verification elements.
     sedermera_verification_disable_verification_elements($form);
+
+    // Disable access to the verification approved and expiration field.
+    $form['field_shared_veri_appr']['#access'] = FALSE;
+    $form['field_shared_veri_expire']['#access'] = FALSE;
   }
 }
 
