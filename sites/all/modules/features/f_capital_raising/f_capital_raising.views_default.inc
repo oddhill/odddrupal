@@ -77,7 +77,6 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['relationship'] = 'field_cap_rais_comp_target_id';
   $handler->display->display_options['fields']['title_1']['label'] = 'Bolag';
-  $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -181,7 +180,6 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['relationship'] = 'field_cap_rais_comp_target_id';
   $handler->display->display_options['fields']['title_1']['label'] = 'Bolag';
-  $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';

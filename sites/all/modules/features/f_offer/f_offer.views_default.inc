@@ -183,12 +183,32 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['views_send']['field'] = 'views_send';
   $handler->display->display_options['fields']['views_send']['label'] = '';
   $handler->display->display_options['fields']['views_send']['element_label_colon'] = FALSE;
+  /* Field: Investerare: Id */
+  $handler->display->display_options['fields']['id']['id'] = 'id';
+  $handler->display->display_options['fields']['id']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['id']['field'] = 'id';
+  $handler->display->display_options['fields']['id']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['id']['label'] = '';
+  $handler->display->display_options['fields']['id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['id']['separator'] = '';
+  /* Field: Investerare: investor type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['machine_name'] = TRUE;
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id]';
   /* Field: Investerare: Mobiltelefon */
   $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
   $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
@@ -356,12 +376,32 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['status']['empty_zero'] = TRUE;
   $handler->display->display_options['fields']['status']['type'] = 'boolean';
   $handler->display->display_options['fields']['status']['not'] = 0;
+  /* Field: Investerare: Id */
+  $handler->display->display_options['fields']['id_1']['id'] = 'id_1';
+  $handler->display->display_options['fields']['id_1']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['id_1']['field'] = 'id';
+  $handler->display->display_options['fields']['id_1']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['id_1']['label'] = '';
+  $handler->display->display_options['fields']['id_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['id_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['id_1']['separator'] = '';
+  /* Field: Investerare: investor type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['machine_name'] = TRUE;
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id]';
   /* Field: Erbjudande: Intresserad den */
   $handler->display->display_options['fields']['field_offer_interested_date']['id'] = 'field_offer_interested_date';
   $handler->display->display_options['fields']['field_offer_interested_date']['table'] = 'field_data_field_offer_interested_date';
@@ -478,12 +518,31 @@ function f_offer_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Investerare: Id */
+  $handler->display->display_options['fields']['id']['id'] = 'id';
+  $handler->display->display_options['fields']['id']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['id']['field'] = 'id';
+  $handler->display->display_options['fields']['id']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['id']['label'] = '';
+  $handler->display->display_options['fields']['id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
+  /* Field: Investerare: investor type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'eck_investor';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['relationship'] = 'field_offer_investor_target_id';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['machine_name'] = TRUE;
   /* Field: Investerare: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'eck_investor';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id]';
   /* Field: Erbjudande: Tecknat den */
   $handler->display->display_options['fields']['field_offer_signed_date']['id'] = 'field_offer_signed_date';
   $handler->display->display_options['fields']['field_offer_signed_date']['table'] = 'field_data_field_offer_signed_date';
@@ -553,12 +612,12 @@ function f_offer_views_default_views() {
     t('Lägg till fler'),
     t('Lägg till fler investerare'),
     t('Inga investerare har lagts till för denna transaktion.'),
+    t('.'),
     t('Mobiltelefon'),
     t('Telefon'),
     t('Första kontakt'),
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.'),
-    t('.'),
     t('<a href="[path]/intressenter/[id]/teckna">Teckna</a>'),
     t('Ej tecknad'),
     t('Intresserad sen'),
@@ -569,6 +628,7 @@ function f_offer_views_default_views() {
     t('[status]'),
     t('Teckningslista'),
     t('Inga investerare har tecknats för denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.'),
+    t(','),
     t('Tecknad den'),
     t('-'),
   );

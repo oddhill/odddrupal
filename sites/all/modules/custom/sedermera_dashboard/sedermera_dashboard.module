@@ -76,7 +76,7 @@ function sedermera_dashboard_block_view($delta = '') {
   $rows = array();
   foreach ($result as $row) {
     $rows[] = array(
-      $row->name,
+      l($row->name, "investor/{$row->type}/{$row->id}"),
       $row->approved ? format_date(strtotime($row->verification), 'custom', 'Y-m-d') : '',
       l('Visa', "investor/{$row->type}/{$row->id}/kontroll", array('attributes' => array('class' => array('sedermera-verification-status-check')))),
     );
