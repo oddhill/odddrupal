@@ -25,7 +25,7 @@ function sedermera_offer_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('sedermera_offer_investors_add', 1),
     'access callback' => 'sedermera_offer_investors_admin_access',
-    'access arguments' => array(1, 'eck administer offer offer entities'),
+    'access arguments' => array(1, 'eck add offer offer entities'),
   );
 
   return $items;

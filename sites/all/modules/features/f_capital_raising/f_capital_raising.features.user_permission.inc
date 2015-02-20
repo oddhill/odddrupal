@@ -22,9 +22,7 @@ function f_capital_raising_user_default_permissions() {
   // Exported permission: 'delete any capital_raising content'.
   $permissions['delete any capital_raising content'] = array(
     'name' => 'delete any capital_raising content',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 

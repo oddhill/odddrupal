@@ -22,9 +22,7 @@ function f_company_user_default_permissions() {
   // Exported permission: 'delete any company content'.
   $permissions['delete any company content'] = array(
     'name' => 'delete any company content',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 

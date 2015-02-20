@@ -22,18 +22,14 @@ function f_investor_user_default_permissions() {
   // Exported permission: 'eck administer investor company entities'.
   $permissions['eck administer investor company entities'] = array(
     'name' => 'eck administer investor company entities',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'eck',
   );
 
   // Exported permission: 'eck administer investor person entities'.
   $permissions['eck administer investor person entities'] = array(
     'name' => 'eck administer investor person entities',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'eck',
   );
 
