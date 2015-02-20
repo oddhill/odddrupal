@@ -652,6 +652,10 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
  */
 function sedermera_offer_form_views_form_offers_interest_alter(&$form, &$form_state) {
   sedermera_offer_form_editablefields_form_alter($form, $form_state);
+
+  // Remove access to the Save button since the editable fields are saved via
+  // AJAX.
+  $form['actions']['#access'] = FALSE;
 }
 
 /**
