@@ -1,0 +1,31 @@
+# PROJECT instructions
+
+The purpose of this README is to give everyone a brief description of the
+architecture and the projects specific features.
+
+You should use this file as the starting point for documentation, by copying it
+to README.md and changing its content entirely. The different sections are only a
+starting point.
+
+## Nodes
+
+### News
+
+Used to foo, and are accessible at baz.
+
+### Blog posts
+
+Used to foo, and are accessible at bar.
+
+## Taxonomy terms
+
+### News category
+
+Referenceable from foo.
+
+
+## Requirements
+
+PHP > 5.3
+MySQL
+Apache Solr

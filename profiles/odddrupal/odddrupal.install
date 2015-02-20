@@ -869,3 +869,28 @@ function odddrupal_update_7151() {
 function odddrupal_update_7152() {
   variable_set('jquery_update_jquery_admin_version', 'default');
 }
+
+/**
+ * Set the Views query statistic settings.
+ */
+function odddrupal_update_7153() {
+  variable_set('views_ui_show_performance_statistics', 1);
+  variable_set('views_ui_show_preview_information', 1);
+  variable_set('views_ui_show_sql_query', 1);
+}
+
+/**
+ * Enable the Embed views display.
+ */
+function odddrupal_update_7154() {
+  variable_set('views_ui_display_embed', 1);
+}
+
+/**
+ * Apply new configuraiton for Devel.
+ */
+function odddrupal_update_7155() {
+  variable_set('devel_error_handlers', array(1 => '1', 2 => '2'));
+  variable_set('devel_memory', 1);
+  variable_set('dev_timer', 1);
+}
