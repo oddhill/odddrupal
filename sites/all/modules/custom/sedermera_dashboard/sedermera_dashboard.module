@@ -72,13 +72,26 @@ function sedermera_dashboard_block_view($delta = '') {
   }
 
   // Create the header for the table, and add each row.
-  $header = array('Namn', 'Utgår', 'Kontroll');
+  $header = array(
+    array('data' => 'Namn', 'class' => array('investor-name')),
+    array('data' => 'Utgår', 'class' => array('verification-expire')),
+    array('data' => 'Kontroll', 'class' => array('verification-status')),
+  );
   $rows = array();
   foreach ($result as $row) {
     $rows[] = array(
-      l($row->name, "investor/{$row->type}/{$row->id}"),
-      $row->approved ? format_date(strtotime($row->verification), 'custom', 'Y-m-d') : '',
-      l('Visa', "investor/{$row->type}/{$row->id}/kontroll", array('attributes' => array('class' => array('sedermera-verification-status-check')))),
+      array(
+        'data' => l($row->name, "investor/{$row->type}/{$row->id}"),
+        'class' => array('investor-name'),
+      ),
+      array(
+        'data' => $row->approved ? format_date(strtotime($row->verification), 'custom', 'Y-m-d') : '',
+        'class' => array('verification-expire'),
+      ),
+       array(
+        'data' => l('Visa', "investor/{$row->type}/{$row->id}/kontroll", array('attributes' => array('class' => array('sedermera-verification-status-check')))),
+        'class' => array('verification-status'),
+      ),
     );
   }
 

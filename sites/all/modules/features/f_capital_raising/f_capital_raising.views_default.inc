@@ -180,6 +180,8 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['relationship'] = 'field_cap_rais_comp_target_id';
   $handler->display->display_options['fields']['title_1']['label'] = 'Bolag';
+  $handler->display->display_options['fields']['title_1']['element_class'] = 'cap-rais-company';
+  $handler->display->display_options['fields']['title_1']['element_label_class'] = 'cap-rais-company';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -187,11 +189,15 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Titel';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_class'] = 'cap-rais-title';
+  $handler->display->display_options['fields']['title']['element_label_class'] = 'cap-rais-title';
   /* Field: Content: Teckningstid */
   $handler->display->display_options['fields']['field_cap_rais_date']['id'] = 'field_cap_rais_date';
   $handler->display->display_options['fields']['field_cap_rais_date']['table'] = 'field_data_field_cap_rais_date';
   $handler->display->display_options['fields']['field_cap_rais_date']['field'] = 'field_cap_rais_date';
   $handler->display->display_options['fields']['field_cap_rais_date']['label'] = 'Löptid';
+  $handler->display->display_options['fields']['field_cap_rais_date']['element_class'] = 'cap-rais-date';
+  $handler->display->display_options['fields']['field_cap_rais_date']['element_label_class'] = 'cap-rais-date';
   $handler->display->display_options['fields']['field_cap_rais_date']['type'] = 'sedermera_capital_raising_remaining';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Teckningstid (field_cap_rais_date:value2) */
