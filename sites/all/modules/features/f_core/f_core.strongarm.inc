@@ -65,6 +65,13 @@ function f_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'mail_logger_log_maximum_age';
+  $strongarm->value = '0';
+  $export['mail_logger_log_maximum_age'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'mimemail_format';
   $strongarm->value = 'full_html';
   $export['mimemail_format'] = $strongarm;
