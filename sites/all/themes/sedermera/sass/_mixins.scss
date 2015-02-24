@@ -108,8 +108,10 @@
   font-weight: 700;
   height: 28px;
   line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
-  width: 114px;
+  width: auto;
 
   @if $icon == approved {
     @include svg-bg(approved);

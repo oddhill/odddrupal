@@ -2281,8 +2281,10 @@ form.confirmation {
   font-weight: 700;
   height: 28px;
   line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
-  width: 114px;
+  width: auto;
   background: url("../graphics/approved.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
   background-position: 5px 4px;
@@ -2303,8 +2305,10 @@ form.confirmation {
   font-weight: 700;
   height: 28px;
   line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
-  width: 114px;
+  width: auto;
   background: url("../graphics/unapproved.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/unapproved.svg") transparent 0 0 no-repeat;
   background-position: 5px 4px;
@@ -2325,8 +2329,10 @@ form.confirmation {
   font-weight: 700;
   height: 28px;
   line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
-  width: 114px;
+  width: auto;
   background: url("../graphics/exclamation.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/exclamation.svg") transparent 0 0 no-repeat;
   background-position: 5px 4px;
@@ -2347,8 +2353,10 @@ form.confirmation {
   font-weight: 700;
   height: 28px;
   line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
-  width: 114px;
+  width: auto;
   background: url("../graphics/expired.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/expired.svg") transparent 0 0 no-repeat;
   background-position: 5px 4px;
@@ -2881,24 +2889,28 @@ form.confirmation {
     top: 6px;
     width: 20px; }
 
-.views-field-field-cap-rais-date a {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  text-transform: uppercase;
-  width: 114px;
-  background-color: #fbc966;
-  font-weight: 700;
-  text-align: center; }
-  .views-field-field-cap-rais-date a:hover {
-    background-color: #e1b45b;
-    border: 0 none; }
+.views-field-field-cap-rais-date {
+  width: 20%; }
+  .views-field-field-cap-rais-date a {
+    font-size: 11px;
+    font-size: 1.1rem;
+    line-height: 16.5px;
+    border-radius: 28px;
+    border-bottom: 0 none;
+    display: inline-block;
+    font-weight: 700;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-transform: uppercase;
+    width: auto;
+    background-color: #fbc966;
+    font-weight: 700;
+    text-align: center; }
+    .views-field-field-cap-rais-date a:hover {
+      background-color: #e1b45b;
+      border: 0 none; }
 
 .block-sedermera-dashboard-verifications h2 {
   font-size: 20px;
@@ -2920,6 +2932,9 @@ form.confirmation {
     width: 20px; }
 .block-sedermera-dashboard-verifications th {
   padding: 10px 0px 10px 10px; }
+
+.verification-status {
+  width: 20%; }
 
 .empty-wrapper {
   padding: 80px 30px; }
