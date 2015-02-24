@@ -35,6 +35,15 @@ function f_offer_user_default_permissions() {
     'module' => 'eck',
   );
 
+  // Exported permission: 'mass mailing with views_send'.
+  $permissions['mass mailing with views_send'] = array(
+    'name' => 'mass mailing with views_send',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'views_send',
+  );
+
   // Exported permission: 'use editablefields'.
   $permissions['use editablefields'] = array(
     'name' => 'use editablefields',
