@@ -286,59 +286,37 @@ body {
 .node-type-company .field-comp-logo {
   margin-top: 10px; }
 
-.transaction-wrapper {
-  background: #fff;
-  overflow: auto; }
-
-.transaction-text {
-  float: left;
+.transaction-information img {
+  height: auto;
+  width: 100%; }
+.transaction-information .field,
+.transaction-information .file {
+  border-bottom: 2px solid #f3f4f8;
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0; }
+  .transaction-information .field:last-child,
+  .transaction-information .file:last-child {
+    border-bottom: 0 none; }
+  .transaction-information .field a,
+  .transaction-information .file a {
+    border: 0 none; }
+.transaction-information .label {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px;
   display: block;
-  margin-right: 2.35765%;
-  width: 65.88078%;
-  float: left; }
-  .transaction-text:last-child {
-    margin-right: 0; }
-
-.transaction-information {
-  float: left;
+  font-weight: 500; }
+.transaction-information .file {
   display: block;
-  margin-right: 2.35765%;
-  width: 31.76157%;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 18px;
-  float: left;
-  padding: 0 0 0 25px; }
-  .transaction-information:last-child {
-    margin-right: 0; }
-  .transaction-information img {
-    height: auto;
-    width: 100%; }
-  .transaction-information .field, .transaction-information .file {
-    border-bottom: 2px solid #f3f4f8;
-    margin: 0 0 20px 0;
-    padding: 0 0 20px 0; }
-    .transaction-information .field:last-child, .transaction-information .file:last-child {
-      border-bottom: 0 none; }
-    .transaction-information .field a, .transaction-information .file a {
-      border: 0 none; }
-  .transaction-information .label {
-    font-size: 14px;
-    font-size: 1.4rem;
-    line-height: 21px;
-    display: block;
-    font-weight: 500; }
-  .transaction-information .file {
-    display: block;
-    font-weight: 500; }
-    .transaction-information .file.application-pdf img {
-      display: none; }
-    .transaction-information .file.application-pdf.application-pdf a {
-      background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
-      display: inline-block;
-      height: 20px;
-      padding-left: 25px; }
+  font-weight: 500; }
+  .transaction-information .file.application-pdf img {
+    display: none; }
+  .transaction-information .file.application-pdf.application-pdf a {
+    background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
+    display: inline-block;
+    height: 20px;
+    padding-left: 25px; }
 
 .view-offers .add-more {
   display: inline-block;
@@ -441,8 +419,16 @@ body {
       #sedermera-offer-investors-add .form-actions .form-submit:hover {
         background-color: #303030; }
 
+.form-item-views-send-carbon-copy .checker {
+  padding-right: 25px; }
+
+.page-node-kontakt-lista .submit-wrapper {
+  border: 1px solid blue; }
+  .page-node-kontakt-lista .submit-wrapper a {
+    border: 1px solid red; }
+
 .site-wrapper {
-  height: 100%; }
+  height: auto; }
   @media screen and (max-width: 1600px) {
     .sub-menu-active .site-wrapper {
       margin-top: 60px; } }
@@ -3022,3 +3008,29 @@ form.confirmation {
     font-weight: 500;
     margin-top: 17px;
     text-transform: lowercase; }
+
+.transaction-wrapper {
+  background: #fff;
+  overflow: auto; }
+
+.transaction-text {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 65.88078%;
+  float: left; }
+  .transaction-text:last-child {
+    margin-right: 0; }
+
+.transaction-information {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 18px;
+  float: left;
+  padding: 0 0 0 25px; }
+  .transaction-information:last-child {
+    margin-right: 0; }

@@ -1,0 +1,19 @@
+// Overview - Transaction content wrapper
+.transaction-wrapper {
+  background: $snow;
+  overflow: auto;
+}
+
+ // Transaction-text (to the left)
+.transaction-text {
+  @include span-columns(8);
+  float: left;
+}
+
+// Transaction-info (image and fields to the right)
+.transaction-information {
+  @include span-columns(4);
+  @include font-size(1.2);
+  float: left;
+  padding: 0 0 0 25px;
+}
