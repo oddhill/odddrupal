@@ -2,7 +2,7 @@
   background: $coffee;
   box-sizing: border-box;
 
-  #page-messages {
+  .page-messages {
     position: absolute;
     left: 0px;
     top: 0;
@@ -11,7 +11,7 @@
     text-align: center;
   }
 
-  #main-content {
+  .main-content {
     max-width: 400px;
     margin: 0px auto;
     padding-top: 100px;

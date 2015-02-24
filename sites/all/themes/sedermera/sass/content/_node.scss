@@ -6,7 +6,7 @@
 .page-node-teckningslista,
 .page-node-intressenter {
 
-  #main-content {
+  .main-content {
 
     #page-content {
       background: $snow;
@@ -39,7 +39,7 @@
 
 .page-node-kontaktlista-lagg-till {
 
-  #main-content {
+  .main-content {
 
     #page-content {
       background: $light-grey;
@@ -62,7 +62,7 @@
 // Node type company
 .node-type-company {
 
-   #main-content {
+   .main-content {
 
     .content-column {
       overflow: visible;

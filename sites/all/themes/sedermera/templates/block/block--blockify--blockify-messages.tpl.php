@@ -20,6 +20,6 @@
  * @see template_process()
  */
 ?>
-<div id="page-messages">
+<div class="page-messages">
   <?php print $content ?>
 </div>

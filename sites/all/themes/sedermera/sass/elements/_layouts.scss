@@ -1,4 +1,4 @@
-#site-wrapper {
+.site-wrapper {
   height: 100%;
 
   @include media($big) {
@@ -9,7 +9,8 @@
   }
 }
 
-#main-content {
+// Main content wrapper
+.main-content {
   @include font-size($standard,1.3);
   overflow: hidden;
 
@@ -21,80 +22,87 @@
       margin-left: 80px;
     }
   }
+}
 
-  .page-head {
-    @include clearfix;
-    margin-bottom: 70px;
+// Page head
+.page-head {
+  @include clearfix;
+  margin-bottom: 70px;
+}
 
-    #page-title {
-      float: left;
-    }
-  }
+// Page title
+.page-title {
+  float: left;
+}
 
-  .content-wrapper {
-    margin: 0;
+// Content wrapper
+.content-wrapper {
+  margin: 0;
 
-    .content-sidebar {
-      background: $wool;
+  // Sidebar second main wrapper
+  .content-sidebar {
+    background: $wool;
+    float: right;
+    padding-bottom: 30px;
+    width: 280px;
+
+    // Dashboard page
+    .page-oversikt & {
+      background: transparent;
       float: right;
       padding-bottom: 30px;
-      width: 280px;
-
-      .page-oversikt & {
-        background: transparent;
-        float: right;
-        padding-bottom: 30px;
-        width: 320px;
-      }
-
-      @include media($medium) {
-        display: block;
-        float: left;
-        margin-bottom: 25px;
-        overflow: hidden;
-        padding-bottom: 0;
-        width: 100%;
-      }
-
-      .sidebar-second-content {
-        padding: 0 10px 10px 10px;
-
-        @include media($medium) {
-          overflow: hidden;
-          padding: 0 10px 0 10px;
-        }
-      }
+      width: 320px;
     }
 
-    .content-column {
-      background-color: #fff;
+    @include media($medium) {
+      display: block;
+      float: left;
+      margin-bottom: 25px;
       overflow: hidden;
+      padding-bottom: 0;
+      width: 100%;
+    }
+
+    // Sidebar second content wrapper
+    .sidebar-second-content {
+      padding: 0 10px 10px 10px;
 
       @include media($medium) {
-        display: block;
-        float: left;
         overflow: hidden;
-        width: 100%;
+        padding: 0 10px 0 10px;
       }
     }
   }
+}
 
-  // Page action links
-  #page-actions {
-    float: right;
-    margin-top: 16px;
+// Left content column (when sidebar second second exists)
+.content-column {
+  background-color: #fff;
+  overflow: hidden;
 
-    ul.action-links {
-      list-style: none;
+  @include media($medium) {
+    display: block;
+    float: left;
+    overflow: hidden;
+    width: 100%;
+  }
+}
 
-      li {
-        display: inline;
-        margin-left: 20px;
+// Page action links
+.page-actions {
+  float: right;
+  margin-top: 16px;
 
-        a {
-          @include button($dark-grey,add);
-        }
-      }
+  .action-links {
+    list-style: none;
+  }
+
+  li {
+    display: inline;
+    margin-left: 20px;
+
+    a {
+      @include button($dark-grey,add);
     }
   }
 }

@@ -20,6 +20,6 @@
  * @see template_process()
  */
 ?>
-<div id="page-actions">
+<div class="page-actions">
   <?php print $content ?>
 </div>

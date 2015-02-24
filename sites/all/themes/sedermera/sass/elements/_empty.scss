@@ -2,17 +2,18 @@
 .empty-wrapper {
   padding: 80px 30px;
 
-  .empty-icon {
-    @include svg-bg(sad_computer, $background-color: transparent, $background-position: center top);
-    height: 93px;
-  }
-
   p {
     @include font-size(2.0);
     font-weight: 500;
     padding-top: 30px;
     text-align: center;
   }
+}
+
+// Empty icon
+.empty-icon {
+  @include svg-bg(sad_computer, $background-color: transparent, $background-position: center top);
+  height: 93px;
 }
 
 // Empty message

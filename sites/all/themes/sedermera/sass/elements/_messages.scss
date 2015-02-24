@@ -1,24 +1,25 @@
-#page-messages {
+// Page messages wrapper
+.page-messages {
   margin: -40px -40px 40px;
+}
 
-  .messages {
-    color: $snow;
-    font-weight: 500;
-    padding: 20px 40px;
+.messages {
+  color: $snow;
+  font-weight: 500;
+  padding: 20px 40px;
 
-    &.status {
-      background: $cactus;
-    }
+  &.status {
+    background: $cactus;
+  }
 
-    &.warning {
-      background: $mustard;
-    }
+  &.warning {
+    background: $mustard;
+  }
 
-    &.error {
-      background: $wine;
-    }
+  &.error {
+    background: $wine;
+  }
 
-    @include media($medium) {
-    }
+  @include media($medium) {
   }
 }

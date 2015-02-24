@@ -1,46 +1,6 @@
-// Investor Person Control
+// Investor Person/Company Control (Kontroll)
 .page-investor-person-kontroll,
 .page-investor-company-kontroll {
-
-  .verification-header {
-    margin-bottom: 20px;
-    overflow: hidden;
-
-    h2 {
-      @include font-size(2.5);
-      display: inline-block;
-      float: left;
-    }
-
-    .approved,
-    .not-approved,
-    .expired {
-      @include font-size(2.5);
-      background: none;
-      height: auto;
-      padding: 0;
-      text-transform: lowercase;
-      width: auto;
-    }
-
-    .approved {
-      color: $pear;
-    }
-
-    .not-approved,
-    .expired {
-      color: $wine;
-    }
-
-    .expires {
-      color: $cloudy;
-      display: inline-block;
-      float: right;
-      font-weight: 500;
-      margin-top: 17px;
-      text-transform: lowercase;
-    }
-  }
 
   // File
   .form-type-managed-file {
@@ -54,22 +14,22 @@
 
   .status-fields {
     float: left;
+  }
 
-    // Approved checkbox
-    .field-type-list-boolean {
-      display: inline-block;
-      float: left;
-      margin-top: 22px;
-    }
+  // Approved checkbox
+  .field-type-list-boolean {
+    display: inline-block;
+    float: left;
+    margin-top: 22px;
+  }
 
-    // Date
-    .field-type-date {
-      display: inline-block;
-      float: left;
-      margin-left: 10px;
-      margin-top: 20px;
-      width: 120px;
-    }
+  // Date
+  .field-type-date {
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 120px;
   }
 
   .option {
@@ -86,5 +46,48 @@
     .form-item {
       margin-bottom: 5px;
     }
+  }
+}
+
+// Verification header
+.verification-header {
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  h2 {
+    @include font-size(2.5);
+    display: inline-block;
+    float: left;
+  }
+
+  // Approved, not approved, expired text
+  .approved,
+  .not-approved,
+  .expired {
+    @include font-size(2.5);
+    background: none;
+    height: auto;
+    padding: 0;
+    text-transform: lowercase;
+    width: auto;
+  }
+
+  .approved {
+    color: $pear;
+  }
+
+  .not-approved,
+  .expired {
+    color: $wine;
+  }
+
+  // Expiring date
+  .expires {
+    color: $cloudy;
+    display: inline-block;
+    float: right;
+    font-weight: 500;
+    margin-top: 17px;
+    text-transform: lowercase;
   }
 }

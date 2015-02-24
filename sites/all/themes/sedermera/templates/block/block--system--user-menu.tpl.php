@@ -20,7 +20,7 @@
  * @see template_process()
  */
 ?>
-<div id="user">
+<div class="user">
   <div class="user-image">User</div>
     <div class="user-status">
       <h2>Inloggad som</h2>

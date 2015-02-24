@@ -1,5 +1,5 @@
-// Tabs
-ul.tabs {
+// General tab styling
+.tabs {
   background: $aluminium;
   border-bottom: 1px solid $wool;
   border-top: 1px solid $wool;
@@ -11,34 +11,6 @@ ul.tabs {
     display: block;
     float: left;
     text-align: center;
-
-    &.edit,
-    &.redigera {
-      border-left: 1px solid $wool;
-      float: right;
-
-      a.edit,
-      a.redigera {
-        @include svg-bg(edit);
-        background-position: 20px 13px;
-        padding-left: 40px;
-
-        &:hover {
-          background-color: $stone;
-        }
-
-         &.active {
-          background-color: $snow;
-          border-bottom: 0 none;
-          border-left: 0 none;
-          border-right: 0 none;
-          border-top: 2px solid $mustard;
-          font-weight: 700;
-          height: 42px;
-          margin-top: -1px;
-         }
-      }
-    }
 
     a {
       border-right: 1px solid $wool;
@@ -56,6 +28,7 @@ ul.tabs {
       }
     }
 
+    // Active tab
     &.active {
 
       a {
@@ -67,10 +40,39 @@ ul.tabs {
         height: 42px;
         margin-top: -1px;
 
-         &:hover {
+        &:hover {
           background-color: $snow;
           border-bottom: 0 none;
         }
+      }
+    }
+  }
+
+  // Edit button (Redigera)
+  .edit,
+  .redigera {
+    border-left: 1px solid $wool;
+    float: right;
+
+    .edit,
+    .redigera {
+      @include svg-bg(edit);
+      background-position: 20px 13px;
+      padding-left: 40px;
+
+      &:hover {
+        background-color: $stone;
+      }
+
+       &.active {
+        background-color: $snow;
+        border-bottom: 0 none;
+        border-left: 0 none;
+        border-right: 0 none;
+        border-top: 2px solid $mustard;
+        font-weight: 700;
+        height: 42px;
+        margin-top: -1px;
       }
     }
   }

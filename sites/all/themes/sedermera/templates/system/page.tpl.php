@@ -17,14 +17,14 @@
  */
 ?>
 
-<div id="site-wrapper">
+<div class="site-wrapper">
   <?php if($page['header']): ?>
-    <aside id="main-sidebar">
+    <aside class="main-sidebar">
     	<?php print render($page['header']); ?>
     </aside>
   <?php endif; ?>
 
-  <main id="main-content">
+  <main class="main-content">
 
    <?php if($page['page-head']): ?>
       <div class="page-head">

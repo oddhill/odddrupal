@@ -20,6 +20,6 @@
  * @see template_process()
  */
 ?>
-<div id="page-title">
+<div class="page-title">
   <?php print $content ?>
 </div>

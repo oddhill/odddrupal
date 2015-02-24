@@ -20,6 +20,6 @@
  * @see template_process()
  */
 ?>
-<div id="tabs-wrapper">
+<div class="tabs-wrapper">
   <?php print $content ?>
 </div>

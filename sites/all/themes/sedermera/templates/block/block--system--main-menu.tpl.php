@@ -20,6 +20,6 @@
  * @see template_process()
  */
 ?>
-<nav id="main-navigation">
+<nav class="main-navigation">
   <?php print $content ?>
 </nav>

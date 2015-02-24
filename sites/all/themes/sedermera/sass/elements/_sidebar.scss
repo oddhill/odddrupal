@@ -1,5 +1,5 @@
 // Main sidebar background
-#main-sidebar {
+.main-sidebar {
   background-color: $coffee;
   height: 100%;
   left: 0;
@@ -44,13 +44,13 @@
       margin-left: -40px;
       max-width: 160px;
     }
- }
+  }
 }
 
 // Main menu
-#main-navigation {
+.main-navigation {
 
-  ul.menu {
+  .menu {
     list-style-type: none;
 
     li {
@@ -240,9 +240,7 @@
 }
 
 // User logged in
-
-// Wraps the entire user-logged-in section
-#user {
+.user {
   @include font-size(1.6);
   background-color: $medium-grey;
   bottom: 0;
@@ -252,19 +250,20 @@
   position: absolute;
   right: 0;
 
-    h2 {
-      @include font-size(1.1);
-      color: $mustard;
-      font-weight: 700;
-      line-height: 10px;
-      text-transform: uppercase;
-    }
+  h2 {
+    @include font-size(1.1);
+    color: $mustard;
+    font-weight: 700;
+    line-height: 10px;
+    text-transform: uppercase;
+  }
 
-    .menu {
-      display: none;
+  .menu {
+    display: none;
   }
 }
 
+// User image
 .user-image {
   @include svg-bg(user_male);
   float: left;
@@ -280,6 +279,7 @@
   }
 }
 
+// User status
 .user-status {
   float: left;
   margin-right: 20px;
