@@ -638,15 +638,34 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
       $form['#access'] = FALSE;
     }
 
-    // Show and enable the submit button when any of the rows has been checked.
-    $form['actions']['submit']['#states'] = array(
-      'visible' => array(
-        'td.views-field-views-send input' => array('checked' => TRUE),
-      ),
-      'enabled' => array(
-        'td.views-field-views-send input' => array('checked' => TRUE),
-      ),
-    );
+    // Remove the send checkbox for investors that doesn't have an email
+    // address.
+    foreach ($form_state['build_info']['args'][0]->result as $key => $row) {
+      if (empty($row->field_field_shared_email)) {
+        $form['views_send'][$key]['#access'] = FALSE;
+      }
+      else {
+        // Set a variable which indicates that the send button should be
+        // enabled.
+        $enable_send = TRUE;
+      }
+    }
+
+    if (isset($enable_send) && $enable_send) {
+      // Show and enable the submit button when any of the rows has been checked.
+      $form['actions']['submit']['#states'] = array(
+        'visible' => array(
+          'td.views-field-views-send input' => array('checked' => TRUE),
+        ),
+        'enabled' => array(
+          'td.views-field-views-send input' => array('checked' => TRUE),
+        ),
+      );
+    }
+    else {
+      // There are no email address available, disable the button.
+      $form['actions']['#access'] = FALSE;
+    }
   }
 
   // Alter the form when configuring the email.
