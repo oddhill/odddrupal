@@ -62,6 +62,7 @@ features[variable][] = file_private_path
 features[variable][] = form_placeholder_exclude
 features[variable][] = form_placeholder_include
 features[variable][] = form_placeholder_required_indicator
+features[variable][] = mimemail_format
 features[variable][] = node_admin_theme
 features[variable][] = realname_pattern
 features[variable][] = rh_user_action_user
