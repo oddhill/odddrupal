@@ -706,7 +706,7 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
 
     // Load the capital raising node in order to set the values for the email.
     $capital_raising_node = node_load(arg(1));
-    $capital_raising_render = node_view($capital_raising_node);
+    $capital_raising_render = node_view($capital_raising_node, 'mail');
 
     // Set the subject to the node of the title, and the message to the fully
     // rendered node.
