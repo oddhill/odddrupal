@@ -770,6 +770,39 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
     );
     $form['#prefix'] = render($process);
 
+    // Build a list of the recipients in order to create a HTML list instead of
+    // the regular text. Most if the code in order to build the array with names
+    // and email addresses has been taken from views_send_confirm_form().
+    $recipients = array();
+    $to_name_field = $form_state['configuration']['views_send_tokens'][$form_state['configuration']['views_send_to_name']];
+    $to_mail_field = $form_state['configuration']['views_send_tokens'][$form_state['configuration']['views_send_to_mail']];
+
+    foreach ($form_state['selection'] as $row_id) {
+      list($to_name) = _views_send_get_raw_field_from_views_row($form_state['build_info']['args'][0], $row_id, $to_name_field);
+      $mail_addresses = _views_send_get_raw_field_from_views_row($form_state['build_info']['args'][0], $row_id, $to_mail_field);
+      foreach ($mail_addresses as $mail_address) {
+        $recipients[] = check_plain(trim($to_name) . ' <' .  $mail_address . '>');
+      }
+    }
+
+    // Append a counter to the list if there are more than one recipients.
+    if (count($recipients) > 1) {
+      $item = array(
+        'data' => format_string('@count investerare', array('@count' => count($recipients))),
+        'class' => array('recipients-counter'),
+      );
+      array_unshift($recipients, $item);
+    }
+
+    // Create the list.
+    $recipients_list = array(
+      '#prefix' => '<div class="views-send-preview-value">',
+      '#theme' => 'item_list',
+      '#items' => $recipients,
+      '#suffix' => '</div>',
+    );
+    $form['to']['#markup'] = render($recipients_list);
+
     // Disable access to the header information since this isn't relevant.
     $form['headers']['#access'] = FALSE;
 
