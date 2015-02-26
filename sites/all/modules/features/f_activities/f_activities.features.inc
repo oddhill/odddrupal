@@ -314,6 +314,55 @@ function f_activities_default_message_type() {
       ]
     }
   }');
+  $items['offer_mail'] = entity_import('message_type', '{
+    "name" : "offer_mail",
+    "description" : "Erbjudande mailat",
+    "argument_keys" : [],
+    "argument" : [],
+    "category" : "message_type",
+    "data" : {
+      "token options" : { "clear" : 1 },
+      "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+    },
+    "language" : "en",
+    "arguments" : null,
+    "message_text" : {
+      "en" : [
+        {
+          "value" : "Skickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E.",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003ESkickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "Har f\\u00e5tt e-post ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003EHar f\\u00e5tt e-post ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "Skickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003ESkickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+        }
+      ],
+      "sv" : [
+        {
+          "value" : "Skickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E.",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003ESkickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "Har f\\u00e5tt e-post ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003EHar f\\u00e5tt e-post ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "Skickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003ESkickade e-post till \\u003Ca href=\\u0022[message:field-shared-investor:url]\\u0022\\u003E[message:field-shared-investor:title]\\u003C\\/a\\u003E ang\\u00e5ende \\u003Ca href=\\u0022[message:field-shared-cap-rais:url]\\u0022\\u003E[message:field-shared-cap-rais:title]\\u003C\\/a\\u003E.\\u003C\\/p\\u003E\\n"
+        }
+      ]
+    }
+  }');
   $items['offer_signed'] = entity_import('message_type', '{
     "name" : "offer_signed",
     "description" : "Erbjudande tecknat",

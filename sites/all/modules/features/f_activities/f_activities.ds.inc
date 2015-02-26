@@ -237,6 +237,51 @@ function f_activities_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_mail|dashboard';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_mail';
+  $ds_fieldsetting->view_mode = 'dashboard';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_mail|dashboard'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_mail|msg_capital_raising';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_mail';
+  $ds_fieldsetting->view_mode = 'msg_capital_raising';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_mail|msg_capital_raising'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'message|offer_mail|msg_investor';
+  $ds_fieldsetting->entity_type = 'message';
+  $ds_fieldsetting->bundle = 'offer_mail';
+  $ds_fieldsetting->view_mode = 'msg_investor';
+  $ds_fieldsetting->settings = array(
+    'msg_created' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['message|offer_mail|msg_investor'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'message|offer_signed|dashboard';
   $ds_fieldsetting->entity_type = 'message';
   $ds_fieldsetting->bundle = 'offer_signed';
@@ -855,6 +900,96 @@ function f_activities_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['message|offer_interested|msg_investor'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_mail|dashboard';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_mail';
+  $ds_layout->view_mode = 'dashboard';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__2',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__2' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_mail|dashboard'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_mail|msg_capital_raising';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_mail';
+  $ds_layout->view_mode = 'msg_capital_raising';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__0',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__0' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_mail|msg_capital_raising'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'message|offer_mail|msg_investor';
+  $ds_layout->entity_type = 'message';
+  $ds_layout->bundle = 'offer_mail';
+  $ds_layout->view_mode = 'msg_investor';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'msg_created',
+        1 => 'message__message_text__1',
+      ),
+    ),
+    'fields' => array(
+      'msg_created' => 'ds_content',
+      'message__message_text__1' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['message|offer_mail|msg_investor'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
