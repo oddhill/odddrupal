@@ -30,6 +30,13 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'mail' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -107,6 +114,17 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'token_formatters_entity_reference',
         'weight' => 3,
       ),
+      'mail' => array(
+        'label' => 'hidden',
+        'module' => 'token_formatters',
+        'settings' => array(
+          'check_access' => 1,
+          'link' => '',
+          'text' => '[node:field_comp_logo:medium:render]',
+        ),
+        'type' => 'token_formatters_entity_reference',
+        'weight' => 3,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_comp',
@@ -144,6 +162,18 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 14,
       ),
       'full' => array(
+        'label' => 'above',
+        'module' => 'date_range_formatter',
+        'settings' => array(
+          'one_month' => 'j - {j} F Y',
+          'several_months' => 'j F - {j} {F} Y',
+          'several_years' => 'j F Y - {j} {F} {Y}',
+          'single' => 'j F Y',
+        ),
+        'type' => 'date_range_without_time',
+        'weight' => 4,
+      ),
+      'mail' => array(
         'label' => 'above',
         'module' => 'date_range_formatter',
         'settings' => array(
@@ -208,6 +238,18 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'number_decimal',
         'weight' => 12,
       ),
+      'mail' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => ',',
+          'prefix_suffix' => 1,
+          'scale' => 1,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 12,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_estim',
@@ -242,6 +284,13 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 13,
       ),
       'full' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 13,
+      ),
+      'mail' => array(
         'label' => 'hidden',
         'module' => 'file',
         'settings' => array(),
@@ -290,6 +339,12 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 23,
       ),
+      'mail' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_goal_com',
@@ -325,6 +380,12 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 6,
       ),
       'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
+      ),
+      'mail' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -370,6 +431,12 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 21,
       ),
+      'mail' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_goal_tot',
@@ -405,6 +472,18 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 8,
       ),
       'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => 1,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 5,
+      ),
+      'mail' => array(
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
@@ -462,6 +541,18 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'number_integer',
         'weight' => 6,
       ),
+      'mail' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => 1,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 6,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_post_units',
@@ -497,6 +588,18 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 10,
       ),
       'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => ',',
+          'prefix_suffix' => 1,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 7,
+      ),
+      'mail' => array(
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
@@ -554,6 +657,18 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'number_integer',
         'weight' => 10,
       ),
+      'mail' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 10,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_stock_no',
@@ -594,6 +709,13 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 5,
       ),
       'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+      'mail' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
@@ -665,6 +787,12 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 20,
       ),
+      'mail' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_type',
@@ -696,6 +824,18 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 3,
       ),
       'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 11,
+      ),
+      'mail' => array(
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
@@ -753,6 +893,18 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'number_integer',
         'weight' => 8,
       ),
+      'mail' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 8,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_vol',
@@ -788,6 +940,18 @@ function f_capital_raising_field_default_field_instances() {
         'weight' => 2,
       ),
       'full' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 9,
+      ),
+      'mail' => array(
         'label' => 'above',
         'module' => 'number',
         'settings' => array(

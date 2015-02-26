@@ -48,6 +48,7 @@ features[ctools][] = context:context:3
 features[ctools][] = ds:ds:1
 features[ctools][] = strongarm:strongarm:1
 features[ds_view_modes][] = dashboard
+features[ds_view_modes][] = mail
 features[features_api][] = api:2
 features[filter][] = filtered_html
 features[menu_links][] = main-menu_versikt:oversikt
