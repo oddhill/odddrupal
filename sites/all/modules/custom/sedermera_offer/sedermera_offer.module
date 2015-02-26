@@ -677,10 +677,10 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
     // Make the name field required and set its default value to the name of the
     // current user.
     $form['from']['views_send_from_name']['#required'] = TRUE;
-    $form['from']['views_send_from_name']['#default_value'] = format_username($GLOBALS['user']);
+    $form['from']['views_send_from_name']['#default_value'] = isset($form_state['configuration']['views_send_from_name']) ? $form_state['configuration']['views_send_from_name'] : format_username($GLOBALS['user']);
 
     // Set the default from email to the email of the current user.
-    $form['from']['views_send_from_mail']['#default_value'] = $GLOBALS['user']->mail;
+    $form['from']['views_send_from_mail']['#default_value'] = isset($form_state['configuration']['views_send_from_mail']) ? $form_state['configuration']['views_send_from_mail'] : $GLOBALS['user']->mail;
 
     // Remove the description for the name and email fields.
     unset($form['from']['views_send_from_name']['#description']);
@@ -722,15 +722,69 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
     $form['views_send_remember']['#type'] = 'value';
     $form['views_send_remember']['#value'] = FALSE;
 
-    // Alter the title for the carbon copy checkbox.
+    // Alter the title and default value for the carbon copy checkbox.
     $form['views_send_carbon_copy']['#title'] = 'Skicka en kopia till avsändaren';
+    $form['views_send_carbon_copy']['#default_value'] = isset($form_state['configuration']['views_send_carbon_copy']) ? $form_state['configuration']['views_send_carbon_copy'] : TRUE;
+
+    // Add a previous button which will redirect the user back to the view.
+    $form['actions']['previous'] = array(
+      '#type' => 'submit',
+      '#value' => 'Tillbaka',
+      '#attributes' => array(
+        '#id' => 'edit-previous',
+      ),
+      '#weight' => -10,
+      '#submit' => array('sedermera_offer_views_send_form_back'),
+    );
+
+    // Change the text and id attribute for the next button, and remove the
+    // cancel link since the back button will take care of that.
+    $form['actions']['submit']['#value'] = 'Nästa steg';
+    $form['actions']['submit']['#attributes']['id'] = 'edit-next';
+    unset($form['actions']['submit']['#suffix']);
   }
 
   // Alter the form when confirming the email.
   if ($form_state['step'] == 'views_send_confirm_form') {
     // Disable access to the header information since this isn't relevant.
     $form['headers']['#access'] = FALSE;
+
+    // Add a previous button which will redirect the user back to the view.
+    $form['actions']['previous'] = array(
+      '#type' => 'submit',
+      '#value' => 'Tillbaka',
+      '#attributes' => array(
+        '#id' => 'edit-previous',
+      ),
+      '#weight' => -10,
+      '#submit' => array('sedermera_offer_views_send_form_back'),
+    );
+
+    // Remove the cancel link since the back button will take care of that.
+    unset($form['actions']['submit']['#suffix']);
   }
+}
+
+/**
+ * Submit callback for the "back" button on the Views send form.
+ */
+function sedermera_offer_views_send_form_back($form, &$form_state) {
+  // Send the user to another step, based on which step that was submitted.
+  switch ($form_state['step']) {
+    case 'views_send_config_form':
+      // The user submitted the config form. Set an empty step since this means
+      // that the user should return to the view.
+      $form_state['step'] = '';
+      break;
+
+    case 'views_send_confirm_form':
+      // The user submitted the confirm step. Go back to the config step.
+      $form_state['step'] = 'views_send_config_form';
+      break;
+  }
+
+  // Always rebuild the form since the current step has been changed.
+  $form_state['rebuild'] = TRUE;
 }
 
 /**
