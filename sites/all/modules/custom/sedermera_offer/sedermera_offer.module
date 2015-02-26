@@ -804,11 +804,9 @@ function sedermera_offer_views_send_form_back($form, &$form_state) {
     case 'views_send_confirm_form':
       // The user submitted the confirm step. Go back to the config step.
       $form_state['step'] = 'views_send_config_form';
+      $form_state['rebuild'] = TRUE;
       break;
   }
-
-  // Always rebuild the form since the current step has been changed.
-  $form_state['rebuild'] = TRUE;
 }
 
 /**
