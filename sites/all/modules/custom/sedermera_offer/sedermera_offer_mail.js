@@ -17,6 +17,11 @@ Drupal.behaviors.sedermeraOfferMail= {
       });
     });
 
+    // Open the preview in a magnific popup.
+    $('#message-preview-link').once().magnificPopup({
+      type:'inline'
+    });
+
   }
 };
 

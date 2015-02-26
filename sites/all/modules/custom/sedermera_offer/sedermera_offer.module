@@ -808,6 +808,24 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
     );
     $form['to']['#markup'] = render($recipients_list);
 
+    // Add a preview link which opens the message in a magnific popup.
+    $preview_link = array(
+      '#prefix' => '<div class="views-send-preview-value">',
+      '#markup' => '<a href="#message-preview" id="message-preview-link">Visa förhandsgranskning</a>',
+      '#suffix' => '</div>',
+      '#attached' => array(
+        'js' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/bower_components/magnific-popup/dist/jquery.magnific-popup.js',
+          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_mail.js',
+        ),
+        'css' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/bower_components/magnific-popup/dist/magnific-popup.css',
+        ),
+      ),
+    );
+    $form['message']['#markup'] = render($preview_link);
+    $form['message']['#suffix'] = '<div id="message-preview" class="mfp-hide">' . check_markup($form_state['configuration']['views_send_message']['value'], $form_state['configuration']['views_send_message']['format']) . '</div>';
+
     // Disable access to the header information since this isn't relevant.
     $form['headers']['#access'] = FALSE;
 
