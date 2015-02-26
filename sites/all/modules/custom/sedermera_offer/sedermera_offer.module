@@ -670,6 +670,18 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
 
   // Alter the form when configuring the email.
   if ($form_state['step'] == 'views_send_config_form') {
+    // Add a step counter as a prefix to the form.
+    $process = array(
+      '#prefix' => '<div class="process-steps">',
+      '#theme' => 'item_list',
+      '#items' => array(
+        array('data' => '1', 'class' => array('first', 'active')),
+        array('data' => '2', 'class' => array('last')),
+      ),
+      '#suffix' => '</div>',
+    );
+    $form['#prefix'] = render($process);
+
     // Alter the fieldset for the sender details.
     $form['from']['#title'] = 'Avsändare';
     $form['from']['#collapsible'] = FALSE;
@@ -746,6 +758,18 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
 
   // Alter the form when confirming the email.
   if ($form_state['step'] == 'views_send_confirm_form') {
+    // Add a step counter as a prefix to the form.
+    $process = array(
+      '#prefix' => '<div class="process-steps">',
+      '#theme' => 'item_list',
+      '#items' => array(
+        array('data' => '1', 'class' => array('first')),
+        array('data' => '2', 'class' => array('last', 'active')),
+      ),
+      '#suffix' => '</div>',
+    );
+    $form['#prefix'] = render($process);
+
     // Disable access to the header information since this isn't relevant.
     $form['headers']['#access'] = FALSE;
 
