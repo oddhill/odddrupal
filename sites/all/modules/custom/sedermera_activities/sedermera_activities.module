@@ -28,6 +28,20 @@ function sedermera_activities_entity_insert($entity, $type) {
 }
 
 /**
+ * Implements hook_views_send_mail_queued().
+ */
+function sedermera_activities_views_send_mail_queued($message, $view, $row_id) {
+  // Create messages when mail has been sent from the "Kontaktlista" view.
+  if ($view->name == 'offers' && $view->current_display == 'page') {
+    // Load the offer entity.
+    $offer = entity_load_single('offer', $view->result[$row_id]->id);
+
+    // Create the message.
+    sedermera_activities_create_message($offer, 'offer_mail');
+  }
+}
+
+/**
  * Implements template_preprocess_message().
  */
 function sedermera_activities_preprocess_message(&$variables) {
