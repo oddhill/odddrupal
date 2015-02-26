@@ -800,6 +800,11 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
       '#theme' => 'item_list',
       '#items' => $recipients,
       '#suffix' => '</div>',
+      '#attached' => array(
+        'js' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_mail.js',
+        )
+      ),
     );
     $form['to']['#markup'] = render($recipients_list);
 
