@@ -19,6 +19,22 @@ function f_core_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'administer own yubikeys'.
+  $permissions['administer own yubikeys'] = array(
+    'name' => 'administer own yubikeys',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'yubikey',
+  );
+
+  // Exported permission: 'administer yubikeys'.
+  $permissions['administer yubikeys'] = array(
+    'name' => 'administer yubikeys',
+    'roles' => array(),
+    'module' => 'yubikey',
+  );
+
   // Exported permission: 'use text format filtered_html'.
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',

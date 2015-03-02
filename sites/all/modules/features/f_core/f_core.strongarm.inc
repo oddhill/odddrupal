@@ -137,6 +137,7 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_development_modules';
   $strongarm->value = array(
+    'yubikey' => 0,
     'context_ui' => 1,
     'field_ui' => 1,
     'help' => 1,
@@ -192,6 +193,7 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_production_modules';
   $strongarm->value = array(
+    'yubikey' => 1,
     'context_ui' => 0,
     'field_ui' => 0,
     'help' => 0,
@@ -237,6 +239,7 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_staging_modules';
   $strongarm->value = array(
+    'yubikey' => 0,
     'context_ui' => 1,
     'field_ui' => 1,
     'help' => 0,
@@ -283,6 +286,180 @@ function f_core_strongarm() {
   $strongarm->name = 'theme_default';
   $strongarm->value = 'sedermera';
   $export['theme_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_authscheme';
+  $strongarm->value = 'un_pwd_yk';
+  $export['yubikey_authscheme'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_enabled';
+  $strongarm->value = 1;
+  $export['yubikey_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_mail_yubikey_lost_body';
+  $strongarm->value = 'Hello !username,
+
+Someone, (probably you) has reported loss of YubiKey associated with your account at !site.
+
+To confirm the authenticity of the request and to prevent any possible misuse of the lost YubiKey by an unauthorized person at !site, please click on the link below or copy and paste it in your browser address bar:
+
+!yubikey_lost_confirmation_url
+
+This is a one-time link, so it can be used only once. It expires after one day and nothing will happen if it is not used.
+
+Please note, once you confirm by clicking the above link, all the YubiKeys associated with your account will be temporarily blocked.';
+  $export['yubikey_mail_yubikey_lost_body'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_mail_yubikey_lost_confirmed_body';
+  $strongarm->value = 'Hello,
+
+!username has reported and confirmed loss of YubiKey and hence, all the YubiKeys associated with user account !username have been blocked.';
+  $export['yubikey_mail_yubikey_lost_confirmed_body'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_mail_yubikey_lost_confirmed_recipients';
+  $strongarm->value = 'hans.nilsson@sedermera.se';
+  $export['yubikey_mail_yubikey_lost_confirmed_recipients'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_mail_yubikey_lost_confirmed_subject';
+  $strongarm->value = 'Confirmation of loss of YubiKey for !username at !site';
+  $export['yubikey_mail_yubikey_lost_confirmed_subject'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_mail_yubikey_lost_subject';
+  $strongarm->value = 'Confirm loss of YubiKey for !username at !site';
+  $export['yubikey_mail_yubikey_lost_subject'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_optional';
+  $strongarm->value = 1;
+  $export['yubikey_optional'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_optional_if_lost';
+  $strongarm->value = 0;
+  $export['yubikey_optional_if_lost'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver';
+  $strongarm->value = array(
+    'urls' => array(
+      'type' => 'online',
+      1 => '',
+      2 => '',
+      3 => '',
+      4 => '',
+      5 => '',
+    ),
+    'api' => array(
+      'key' => 'YDruIhKdv+MH5G+dwYFF2ZPxKDY=',
+      'id' => '21344',
+      'https' => 0,
+      'timeout' => '10',
+    ),
+  );
+  $export['yubikey_valserver'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_api_https';
+  $strongarm->value = 0;
+  $export['yubikey_valserver_api_https'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_api_id';
+  $strongarm->value = '21344';
+  $export['yubikey_valserver_api_id'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_api_key';
+  $strongarm->value = 'YDruIhKdv+MH5G+dwYFF2ZPxKDY=';
+  $export['yubikey_valserver_api_key'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_api_timeout';
+  $strongarm->value = '10';
+  $export['yubikey_valserver_api_timeout'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_urls';
+  $strongarm->value = ',,';
+  $export['yubikey_valserver_urls'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_urls_1';
+  $strongarm->value = '';
+  $export['yubikey_valserver_urls_1'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_urls_2';
+  $strongarm->value = '';
+  $export['yubikey_valserver_urls_2'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_urls_3';
+  $strongarm->value = '';
+  $export['yubikey_valserver_urls_3'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_urls_4';
+  $strongarm->value = '';
+  $export['yubikey_valserver_urls_4'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_urls_5';
+  $strongarm->value = '';
+  $export['yubikey_valserver_urls_5'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yubikey_valserver_urls_type';
+  $strongarm->value = 'online';
+  $export['yubikey_valserver_urls_type'] = $strongarm;
 
   return $export;
 }
