@@ -137,7 +137,6 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_development_modules';
   $strongarm->value = array(
-    'yubikey' => 0,
     'context_ui' => 1,
     'field_ui' => 1,
     'help' => 1,
@@ -174,6 +173,7 @@ function f_core_strongarm() {
     'preprocess_js' => 0,
     'reroute_email_enable' => 1,
     'reroute_email_enable_message' => 1,
+    'yubikey_enabled' => 0,
   );
   $export['tadaa_development_variables'] = $strongarm;
 
@@ -193,7 +193,6 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_production_modules';
   $strongarm->value = array(
-    'yubikey' => 1,
     'context_ui' => 0,
     'field_ui' => 0,
     'help' => 0,
@@ -231,6 +230,7 @@ function f_core_strongarm() {
     'reroute_email_enable' => 0,
     'reroute_email_enable_message' => 0,
     'speedy_js_production' => 1,
+    'yubikey_enabled' => 1,
   );
   $export['tadaa_production_variables'] = $strongarm;
 
@@ -239,7 +239,6 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_staging_modules';
   $strongarm->value = array(
-    'yubikey' => 0,
     'context_ui' => 1,
     'field_ui' => 1,
     'help' => 0,
@@ -277,6 +276,7 @@ function f_core_strongarm() {
     'reroute_email_enable' => 1,
     'reroute_email_enable_message' => 0,
     'speedy_js_production' => 1,
+    'yubikey_enabled' => 0,
   );
   $export['tadaa_staging_variables'] = $strongarm;
 
@@ -298,7 +298,7 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'yubikey_enabled';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['yubikey_enabled'] = $strongarm;
 
   $strongarm = new stdClass();
