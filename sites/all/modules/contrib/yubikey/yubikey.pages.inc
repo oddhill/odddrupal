@@ -142,7 +142,7 @@ function yubikey_lost_confirm($form, &$form_state, $uid, $timestamp, $hashed_pas
         // User has associated YubiKeys.
 
         // Check if link has been already used.
-        $max_created = db_query("SELECT MAX(created) FROM {yubikey_blocked} WHERE uid = :uid", array(':uid' => $account->uid))-fetchField();
+        $max_created = db_query("SELECT MAX(created) FROM {yubikey_blocked} WHERE uid = :uid", array(':uid' => $account->uid))->fetchField();
         if ($max_created == '') $max_created = 0;
         if ($timestamp > $max_created) {
           db_delete('yubikey_blocked')
