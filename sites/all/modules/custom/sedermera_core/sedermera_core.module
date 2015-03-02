@@ -33,3 +33,17 @@ function sedermera_core_form_user_login_alter(&$form, &$form_state) {
     '#weight' => 500,
   );
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_core_form_yubikey_lost_alter(&$form, &$form_state) {
+  // Don't enable the password field when reporting a lost YubiKey. There are
+  // two reasons for this:
+  // 1. The validation doesn't work since the YubiKey module queries the
+  // database using the password in plain text.
+  // 2. The user still needs to confirm this via a confirmation email.
+  $form['yubikey_forgot_pass']['#type'] = 'value';
+  $form['yubikey_forgot_pass']['#value'] = TRUE;
+  $form['pass']['#access'] = FALSE;
+}
