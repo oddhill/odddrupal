@@ -359,7 +359,7 @@ Please note, once you confirm by clicking the above link, all the YubiKeys assoc
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'yubikey_optional_if_lost';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['yubikey_optional_if_lost'] = $strongarm;
 
   $strongarm = new stdClass();
