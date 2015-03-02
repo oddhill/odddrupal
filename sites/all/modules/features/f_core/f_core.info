@@ -35,6 +35,8 @@ dependencies[] = sedermera_dashboard
 dependencies[] = spamspan
 dependencies[] = strongarm
 dependencies[] = taxonomy
+dependencies[] = themekey
+dependencies[] = themekey_features
 dependencies[] = user
 dependencies[] = view_unpublished
 dependencies[] = views
@@ -53,6 +55,7 @@ features[features_api][] = api:2
 features[filter][] = filtered_html
 features[menu_links][] = main-menu_versikt:oversikt
 features[taxonomy][] = industries
+features[themekey_features_rule_chain][] = drupal:path = user/%/yubikey >>> ThemeKeyAdminTheme
 features[user_permission][] = access user profiles
 features[user_permission][] = administer own yubikeys
 features[user_permission][] = administer yubikeys
