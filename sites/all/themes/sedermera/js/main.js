@@ -161,4 +161,12 @@ Drupal.behaviors.sedermera = {
   }
 };
 
+/**
+ * Override the Views AJAX scroll behavior when loading new content with an
+ * empty function in order to disable the scrolling.
+ */
+Drupal.ajax.prototype.commands.viewsScrollTop = function (ajax, response, status) {
+
+};
+
 })(jQuery);
