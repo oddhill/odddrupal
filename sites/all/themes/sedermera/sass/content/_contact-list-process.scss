@@ -1,0 +1,98 @@
+.page-node-kontaktlista {
+
+  // Process steps
+  .process-steps {
+    background: $snow;
+    margin-bottom: 30px;
+    text-align: right;
+    width: 100%;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        @include font-size(1.8);
+        border: 2px solid $steel;
+        border-radius: 100px;
+        font-weight: 500;
+        display: inline;
+        margin-right: 15px;
+        padding: 4px 10px 4px 10px;
+
+        // Active step
+        &.active {
+          border: 2px solid $mustard;
+        }
+      }
+    }
+  }
+}
+
+// Views form - Step 2 - Send Email - Contact List
+#views-form-offers-page {
+  clear: both;
+}
+
+// Form - Step 2 - Send Email - Contact List
+form.views-send-preview {
+
+  .views-send-preview-value {
+    border: none;
+  }
+
+  .form-type-item {
+    border-top: 1px solid $light-grey;
+    padding: 10px;
+
+    &:nth-child(even) {
+      background: #fff;
+    }
+
+    &:nth-child(odd) {
+      background: #fafafc;
+    }
+  }
+
+  .form-item {
+    margin-bottom: 0;
+  }
+
+  .form-actions {
+    margin-top: 40px;
+  }
+}
+
+// Preview button
+#message-preview-link {
+  @include status-button($honey, preview);
+  background-position: 95% 7px;
+  padding-right: 28px;
+  margin-top: -2px;
+}
+
+// Recipients counter (Step 2 - Send Email - Contact List)
+.recipients-counter {
+  cursor: pointer;
+  position: relative;
+
+  // Tooggle icon
+  &:after {
+    @include svg-bg(arrow-down);
+    display: inline-block;
+    background-repeat: no-repeat;
+    content: '';
+    width: 20px;
+    height: 20px;
+    right: 0;
+    position: absolute;
+    top: 0;
+  }
+}
+
+// Send copy to sender wrapper (Skicka en kopia till avsändaren)
+.form-item-views-send-carbon-copy {
+
+  .checker {
+    padding-right: 25px;
+  }
+}

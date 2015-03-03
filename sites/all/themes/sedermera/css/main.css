@@ -113,6 +113,85 @@ body {
       .process-steps ul li.active {
         color: #282828; }
 
+.page-node-kontaktlista .process-steps {
+  background: #fff;
+  margin-bottom: 30px;
+  text-align: right;
+  width: 100%; }
+  .page-node-kontaktlista .process-steps ul {
+    list-style-type: none; }
+    .page-node-kontaktlista .process-steps ul li {
+      font-size: 18px;
+      font-size: 1.8rem;
+      line-height: 27px;
+      border: 2px solid #d4d6d9;
+      border-radius: 100px;
+      font-weight: 500;
+      display: inline;
+      margin-right: 15px;
+      padding: 4px 10px 4px 10px; }
+      .page-node-kontaktlista .process-steps ul li.active {
+        border: 2px solid #f9a500; }
+
+#views-form-offers-page {
+  clear: both; }
+
+form.views-send-preview .views-send-preview-value {
+  border: none; }
+form.views-send-preview .form-type-item {
+  border-top: 1px solid #f3f4f8;
+  padding: 10px; }
+  form.views-send-preview .form-type-item:nth-child(even) {
+    background: #fff; }
+  form.views-send-preview .form-type-item:nth-child(odd) {
+    background: #fafafc; }
+form.views-send-preview .form-item {
+  margin-bottom: 0; }
+form.views-send-preview .form-actions {
+  margin-top: 40px; }
+
+#message-preview-link {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+  background: url("../graphics/magnifier.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/magnifier.svg") transparent 0 0 no-repeat;
+  background-color: #fbc966;
+  background-position: 95% 7px;
+  padding-right: 28px;
+  margin-top: -2px; }
+  #message-preview-link:hover {
+    background-color: #e1b45b;
+    border: 0 none; }
+
+.recipients-counter {
+  cursor: pointer;
+  position: relative; }
+  .recipients-counter:after {
+    background: url("../graphics/arrow-down.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/arrow-down.svg") transparent 0 0 no-repeat;
+    display: inline-block;
+    background-repeat: no-repeat;
+    content: '';
+    width: 20px;
+    height: 20px;
+    right: 0;
+    position: absolute;
+    top: 0; }
+
+.form-item-views-send-carbon-copy .checker {
+  padding-right: 25px; }
+
 .page-investerare-skapa .create-type-list {
   list-style: none;
   margin: 0 -10px;
@@ -418,14 +497,6 @@ body {
       margin-right: 0; }
       #sedermera-offer-investors-add .form-actions .form-submit:hover {
         background-color: #303030; }
-
-.form-item-views-send-carbon-copy .checker {
-  padding-right: 25px; }
-
-.page-node-kontakt-lista .submit-wrapper {
-  border: 1px solid blue; }
-  .page-node-kontakt-lista .submit-wrapper a {
-    border: 1px solid red; }
 
 .site-wrapper {
   height: auto; }
