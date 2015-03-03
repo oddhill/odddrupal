@@ -26,6 +26,7 @@ dependencies[] = mail_logger
 dependencies[] = menu
 dependencies[] = menu_attributes
 dependencies[] = menu_firstchild
+dependencies[] = menu_trail_by_path
 dependencies[] = node
 dependencies[] = realname
 dependencies[] = rh_taxonomy
