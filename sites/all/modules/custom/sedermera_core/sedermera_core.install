@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file sedermera_core.install
+ * Install and update instructions for the Sedermera Core module.
+ */
+
+/**
+ * Delete and generate new path aliases.
+ */
+function sedermera_core_update_7001() {
+  // Delete all aliases.
+  foreach (db_select('url_alias')->fields('url_alias', array('pid'))->execute() as $row) {
+    path_delete($row->pid);
+  }
+
+  // Generate for investor entities.
+  foreach (entity_load('investor') as $investor) {
+    pathauto_entity_update_alias('investor', $investor, 'insert');
+  }
+
+  // Generate for node entities.
+  foreach (entity_load('node') as $node) {
+    pathauto_node_update_alias($node, 'insert');
+  }
+}
