@@ -102,6 +102,7 @@ features[variable][] = menu_parent_capital_raising
 features[variable][] = node_options_capital_raising
 features[variable][] = node_preview_capital_raising
 features[variable][] = node_submitted_capital_raising
+features[variable][] = pathauto_node_capital_raising_pattern
 features[views_view][] = capital_raisings
 features_exclude[dependencies][f_investor] = f_investor
 project path = sites/all/modules/features

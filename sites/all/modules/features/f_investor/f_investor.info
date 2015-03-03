@@ -124,5 +124,6 @@ features[variable][] = auto_entitylabel_pattern_investor_company
 features[variable][] = auto_entitylabel_pattern_investor_person
 features[variable][] = field_bundle_settings_investor__company
 features[variable][] = field_bundle_settings_investor__person
+features[variable][] = pathauto_investor_pattern
 features[variable][] = rh_taxonomy_term_action_industries
 features[views_view][] = investors
