@@ -1,0 +1,3 @@
+name = Sedermera Paths
+description = Implements custom path alterations for the site.
+core = 7.x
