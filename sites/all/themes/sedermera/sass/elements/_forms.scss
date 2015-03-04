@@ -857,6 +857,7 @@ form.confirmation {
   }
 }
 
+// Cancel button
 #edit-cancel {
     @include button($wine, cancel);
     margin-left: 20px;

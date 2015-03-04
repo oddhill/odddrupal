@@ -1,0 +1,67 @@
+// Login button (User log in page)
+form#user-login {
+
+  #edit-submit {
+    margin: 10px 0 0;
+    @include button($mustard, login);
+  }
+}
+
+// Sumbit button for reset password & lost Yubikey
+#user-pass,
+#yubikey-lost {
+
+  #edit-submit {
+    @include button($mustard, arrow-right);
+    margin: 10px 0 0;
+    color: $night;
+  }
+}
+
+// Form submit confirmation styling
+form.confirmation {
+  @include font-size(1.6);
+  display: inline-block;
+  font-weight: 700;
+
+  input {
+    @include button($dark-grey, confirm);
+    display: inline;
+  }
+
+  .form-actions.form-wrapper {
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%;
+
+    .submit-wrapper {
+      display: inline;
+    }
+  }
+}
+
+// Cancel button
+#edit-cancel {
+  @include button($wine, cancel);
+  margin-left: 20px;
+}
+
+// Approved button
+.approved {
+  @include status-button($avocado, approved);
+}
+
+// Not approved button
+.not-approved {
+  @include status-button($bubblegum, unapproved);
+}
+
+// Expiring button
+.expiring {
+  @include status-button($honey, expiring);
+}
+
+// Expired button
+.expired {
+  @include status-button($steel, expired);
+}

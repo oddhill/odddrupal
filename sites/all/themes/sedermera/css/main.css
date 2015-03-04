@@ -595,6 +595,221 @@ form.views-send-preview .form-actions {
       .page-actions li a:hover {
         background-color: #303030; }
 
+form#user-login #edit-submit {
+  margin: 10px 0 0;
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
+  color: #282828;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #f9a500;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  form#user-login #edit-submit:hover {
+    background-color: #ae7300; }
+  form#user-login #edit-submit:hover {
+    background-color: #fac04c;
+    box-shadow: 0 0 3px #222222; }
+
+#user-pass #edit-submit,
+#yubikey-lost #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/arrow-right.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/arrow-right.svg") transparent 0 0 no-repeat;
+  background-position: 16px 11px;
+  padding-left: 42px;
+  background-color: #f9a500;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin: 10px 0 0;
+  color: #1a1a1a; }
+  #user-pass #edit-submit:hover,
+  #yubikey-lost #edit-submit:hover {
+    background-color: #ae7300; }
+
+form.confirmation {
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px;
+  display: inline-block;
+  font-weight: 700; }
+  form.confirmation input {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+    background-position: 20px 14px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    display: inline; }
+    form.confirmation input:hover {
+      background-color: #303030; }
+  form.confirmation .form-actions.form-wrapper {
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%; }
+    form.confirmation .form-actions.form-wrapper .submit-wrapper {
+      display: inline; }
+
+#edit-cancel {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/cancel.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/cancel.svg") transparent 0 0 no-repeat;
+  background-position: 20px 12px;
+  padding-left: 42px;
+  background-color: #c04343;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin-left: 20px; }
+  #edit-cancel:hover {
+    background-color: #862e2e; }
+
+.approved {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+  background: url("../graphics/approved.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  color: #6c9e65;
+  padding-left: 28px;
+  background-color: #b6e0af; }
+  .approved:hover {
+    background-color: #a3c99d;
+    border: 0 none; }
+
+.not-approved {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+  background: url("../graphics/unapproved.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/unapproved.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  color: #9e6565;
+  padding-left: 28px;
+  background-color: #e0afaf; }
+  .not-approved:hover {
+    background-color: #c99d9d;
+    border: 0 none; }
+
+.expiring {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+  background: url("../graphics/exclamation.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/exclamation.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  padding-left: 28px;
+  color: #454545;
+  background-color: #fbc966; }
+  .expiring:hover {
+    background-color: #e1b45b;
+    border: 0 none; }
+
+.expired {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+  background: url("../graphics/expired.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/expired.svg") transparent 0 0 no-repeat;
+  background-position: 5px 4px;
+  padding-left: 28px;
+  color: #454545;
+  background-color: #d4d6d9; }
+  .expired:hover {
+    background-color: #bec0c3;
+    border: 0 none; }
+
 .main-sidebar {
   background-color: #282828;
   height: 100%;
@@ -2539,71 +2754,88 @@ form.confirmation {
   .not-logged-in.page-user .main-content {
     max-width: 400px;
     margin: 0px auto;
-    padding-top: 100px; }
+    padding-top: 140px; }
     .not-logged-in.page-user .main-content .logo {
-      padding: 0;
-      background: transparent; }
-      .not-logged-in.page-user .main-content .logo a {
-        border: 0px none; }
-        .not-logged-in.page-user .main-content .logo a img {
-          width: 300px;
-          height: 117px; }
-    .not-logged-in.page-user .main-content form#user-login {
-      padding: 10px; }
-      .not-logged-in.page-user .main-content form#user-login .form-required {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 12px;
-        left: auto;
-        background-color: transparent;
-        background-position: 0 0;
-        width: 15px;
-        height: 15px; }
-      .not-logged-in.page-user .main-content form#user-login .form-text {
-        background: #1a1a1a;
-        padding: 10px 10px 10px 41px;
-        width: 100%;
-        color: #fff; }
-        .not-logged-in.page-user .main-content form#user-login .form-text#edit-name {
-          background: url("../graphics/envelope.png") #1a1a1a 11px 10px no-repeat;
-          background: none, url("../graphics/envelope.svg") #1a1a1a 11px 10px no-repeat; }
-        .not-logged-in.page-user .main-content form#user-login .form-text#edit-pass {
-          background: url("../graphics/padlock.png") #1a1a1a 11px 9px no-repeat;
-          background: none, url("../graphics/padlock.svg") #1a1a1a 11px 9px no-repeat; }
-        .not-logged-in.page-user .main-content form#user-login .form-text:focus {
-          background: #121212;
-          box-shadow: 0 0 5px #3d3d3d; }
-      .not-logged-in.page-user .main-content form#user-login .description {
-        color: #e0e2e6; }
-      .not-logged-in.page-user .main-content form#user-login #edit-submit {
-        margin: 10px 0 0;
-        display: inline-block;
-        height: 34px;
-        font-size: 12px;
-        font-size: 1.2rem;
-        line-height: 12px;
-        line-height: 34px;
-        border-radius: 34px;
-        color: #fff;
-        padding: 0 20px;
-        font-weight: 500;
-        text-transform: uppercase;
-        border-bottom: 0 none;
-        background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
-        color: #282828;
-        background-position: 20px 11px;
-        padding-left: 42px;
-        background-color: #f9a500;
-        -webkit-transition: background-color 0.1s ease-in-out;
-        -moz-transition: background-color 0.1s ease-in-out;
-        transition: background-color 0.1s ease-in-out; }
-        .not-logged-in.page-user .main-content form#user-login #edit-submit:hover {
-          background-color: #ae7300; }
-        .not-logged-in.page-user .main-content form#user-login #edit-submit:hover {
-          background-color: #fac04c;
-          box-shadow: 0 0 3px #222222; }
+      background: transparent;
+      margin-bottom: 15px;
+      padding: 0; }
+      @media screen and (max-width: 1600px) {
+        .not-logged-in.page-user .main-content .logo {
+          height: auto;
+          overflow: hidden;
+          padding: 0;
+          width: 100%; } }
+      .not-logged-in.page-user .main-content .logo img {
+        width: 300px;
+        height: 117px; }
+        @media screen and (max-width: 1600px) {
+          .not-logged-in.page-user .main-content .logo img {
+            margin: 0 auto;
+            max-width: 300px; } }
+  .not-logged-in.page-user ul {
+    color: #fff;
+    margin-top: 100px; }
+    .not-logged-in.page-user ul li {
+      font-size: 13px;
+      font-size: 1.3rem;
+      line-height: 19.5px;
+      display: inline-block;
+      margin-right: 45px; }
+      .not-logged-in.page-user ul li:last-child {
+        margin-right: 0; }
+  .not-logged-in.page-user a {
+    border: 0;
+    color: #fff; }
+    .not-logged-in.page-user a:hover {
+      text-decoration: underline; }
+
+form#user-login,
+#user-pass,
+#yubikey-lost {
+  padding: 10px; }
+  form#user-login .form-required,
+  #user-pass .form-required,
+  #yubikey-lost .form-required {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    left: auto;
+    background-color: transparent;
+    background-position: 0 0;
+    width: 15px;
+    height: 15px; }
+  form#user-login .form-text,
+  #user-pass .form-text,
+  #yubikey-lost .form-text {
+    background: #1a1a1a;
+    padding: 10px 10px 10px 41px;
+    width: 100%;
+    color: #fff; }
+    form#user-login .form-text#edit-name,
+    #user-pass .form-text#edit-name,
+    #yubikey-lost .form-text#edit-name {
+      background: url("../graphics/envelope.png") #1a1a1a 11px 10px no-repeat;
+      background: none, url("../graphics/envelope.svg") #1a1a1a 11px 10px no-repeat; }
+    form#user-login .form-text#edit-pass,
+    #user-pass .form-text#edit-pass,
+    #yubikey-lost .form-text#edit-pass {
+      background: url("../graphics/padlock.png") #1a1a1a 11px 9px no-repeat;
+      background: none, url("../graphics/padlock.svg") #1a1a1a 11px 9px no-repeat; }
+    form#user-login .form-text#edit-yubikey-otp,
+    #user-pass .form-text#edit-yubikey-otp,
+    #yubikey-lost .form-text#edit-yubikey-otp {
+      background: url("../graphics/key.png") #1a1a1a 15px 9px no-repeat;
+      background: none, url("../graphics/key.svg") #1a1a1a 15px 9px no-repeat; }
+    form#user-login .form-text:focus,
+    #user-pass .form-text:focus,
+    #yubikey-lost .form-text:focus {
+      background: #121212;
+      box-shadow: 0 0 5px #3d3d3d; }
+  form#user-login .description,
+  #user-pass .description,
+  #yubikey-lost .description {
+    color: #e0e2e6; }
 
 .sidebar-second-icon {
   background: #454545;

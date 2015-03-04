@@ -1,3 +1,4 @@
+// Login page
 .not-logged-in.page-user {
   background: $coffee;
   box-sizing: border-box;
@@ -14,65 +15,108 @@
   .main-content {
     max-width: 400px;
     margin: 0px auto;
-    padding-top: 100px;
+    padding-top: 140px;
 
+    // Sedermera logotype
     .logo {
-      padding: 0;
       background: transparent;
+      margin-bottom: 15px;
+      padding: 0;
 
-      a {
-        border: 0px none;
-
-        img {
-          width: 300px;
-          height: 117px;
-        }
-      }
-    }
-
-    form#user-login {
-      padding: 10px;
-
-      .form-required {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 12px;
-        left: auto;
-        background-color: transparent;
-        background-position: 0 0;
-        width: 15px;
-        height: 15px;
-      }
-
-      .form-text {
-        background: $night;
-        padding: 10px 10px 10px 41px;
+      @include media($big) {
+        height: auto;
+        overflow: hidden;
+        padding: 0;
         width: 100%;
-        color: $snow;
-
-        &#edit-name {
-          @include svg-bg(envelope,$night,11px 10px);
         }
 
-        &#edit-pass {
-          @include svg-bg(padlock,$night,11px 9px);
+      img {
+        width: 300px;
+        height: 117px;
+
+        @include media($big) {
+          margin: 0 auto;
+          max-width: 300px;
         }
-
-        &:focus {
-          background: shade($night,30%);
-          box-shadow: 0 0 5px tint($coffee,10%);
-        }
-      }
-
-      .description {
-        color: $wool;
-      }
-
-      #edit-submit {
-        margin: 10px 0 0;
-        @include button($mustard,login);
       }
     }
+  }
+
+  // Reset password & Lost Yubikey
+  ul {
+    color: #fff;
+    margin-top: 100px;
+
+    li {
+      @include font-size(1.3);
+      display: inline-block;
+      margin-right: 45px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // Links
+  a {
+    border: 0;
+    color: #fff;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// User login form / Password reset
+form#user-login,
+#user-pass,
+#yubikey-lost {
+  padding: 10px;
+
+  .form-required {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    left: auto;
+    background-color: transparent;
+    background-position: 0 0;
+    width: 15px;
+    height: 15px;
+  }
+
+  // Input field
+  .form-text {
+    background: $night;
+    padding: 10px 10px 10px 41px;
+    width: 100%;
+    color: $snow;
+
+    // E-mail field
+    &#edit-name {
+      @include svg-bg(envelope,$night,11px 10px);
+    }
+
+    // Password field
+    &#edit-pass {
+      @include svg-bg(padlock,$night,11px 9px);
+    }
+
+    // Yubikey field
+    &#edit-yubikey-otp {
+      @include svg-bg(key,$night,15px 9px);
+    }
+
+    &:focus {
+      background: shade($night,30%);
+      box-shadow: 0 0 5px tint($coffee,10%);
+    }
+  }
+
+  // Description field
+  .description {
+    color: $wool;
   }
 }
