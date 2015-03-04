@@ -76,6 +76,7 @@ features[variable][] = form_placeholder_required_indicator
 features[variable][] = mail_logger_log_maximum_age
 features[variable][] = mimemail_format
 features[variable][] = node_admin_theme
+features[variable][] = pathauto_entity_available_entity_types
 features[variable][] = realname_pattern
 features[variable][] = rh_user_action_user
 features[variable][] = rh_user_redirect_response_user

@@ -86,6 +86,18 @@ function f_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_entity_available_entity_types';
+  $strongarm->value = array(
+    'investor' => 'investor',
+    'offer' => 0,
+    'verification' => 0,
+    'file' => 0,
+  );
+  $export['pathauto_entity_available_entity_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'realname_pattern';
   $strongarm->value = '[user:field-user-name]';
   $export['realname_pattern'] = $strongarm;
