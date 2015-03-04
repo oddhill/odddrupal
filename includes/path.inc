@@ -233,6 +233,13 @@ function drupal_cache_system_paths() {
  *   found.
  */
 function drupal_get_path_alias($path = NULL, $path_language = NULL) {
+  // Custom code which has been added added based on the installation
+  // instructions for the Extended Path Aliases module.
+  // @see https://www.drupal.org/project/path_alias_xt
+  if (module_exists('path_alias_xt')) {
+    return path_alias_xt_get_path_alias($path, $path_language);
+  }
+
   // If no path is specified, use the current page's path.
   if ($path == NULL) {
     $path = $_GET['q'];
