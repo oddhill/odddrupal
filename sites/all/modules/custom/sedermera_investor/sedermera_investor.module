@@ -122,51 +122,6 @@ function sedermera_investor_field_widget_form_alter(&$element, &$form_state, $co
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function sedermera_investor_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
-  // Set the active menu trail.
-  menu_tree_set_path('main-menu', 'investerare/skapa');
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_investor_form_eck__entity__form_add_investor_company_alter(&$form, &$form_state, $form_id) {
-  // Set the active menu trail.
-  menu_tree_set_path('main-menu', 'investerare/skapa');
-}
-
-/**
- * Implements hook_entity_view().
- */
-function sedermera_investor_entity_view($entity, $type, $view_mode, $langcode) {
-  // Bail out if this isn't an investor entity that's viewed on its own page.
-  if ($type != 'investor' || $view_mode != 'full') {
-    return;
-  }
-
-  // Set the active menu trail.
-  menu_tree_set_path('main-menu', 'investerare');
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_investor_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
-  // Set the active menu trail.
-  menu_tree_set_path('main-menu', 'investerare');
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_investor_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
-  // Set the active menu trail.
-  menu_tree_set_path('main-menu', 'investerare');
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
 function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
   // Alter the exposed form for the investor page and offer embed displays.
   if (in_array($form['#id'], array('views-exposed-form-investors-page', 'views-exposed-form-investors-offer-embed'))) {
