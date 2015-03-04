@@ -2021,13 +2021,13 @@ form .form-item {
         animation: load 0.9s linear infinite; }
       form .form-item.form-type-select .ajax-progress .message {
         display: none; }
-  form .form-item.form-type-textfield {
+  form .form-item.form-type-textfield, form .form-item.form-type-password {
     position: relative; }
-    form .form-item.form-type-textfield label {
+    form .form-item.form-type-textfield label, form .form-item.form-type-password label {
       position: absolute;
       top: 11px;
       left: 10px; }
-    form .form-item.form-type-textfield .form-required {
+    form .form-item.form-type-textfield .form-required, form .form-item.form-type-password .form-required {
       display: inline-block;
       width: 24px;
       height: 39px;
@@ -2042,26 +2042,26 @@ form .form-item {
       text-indent: 100px;
       line-height: 0px;
       border-radius: 2px 0 0 2px; }
-    form .form-item.form-type-textfield #autocomplete {
+    form .form-item.form-type-textfield #autocomplete, form .form-item.form-type-password #autocomplete {
       border: 0 none;
       margin: 3px 0 0;
       box-shadow: 0 0 3px #a2a2a2; }
-      form .form-item.form-type-textfield #autocomplete ul li {
+      form .form-item.form-type-textfield #autocomplete ul li, form .form-item.form-type-password #autocomplete ul li {
         height: 32px;
         line-height: 32px;
         border-bottom: 1px solid #e0e2e6;
         cursor: pointer;
         padding: 0 10px; }
-        form .form-item.form-type-textfield #autocomplete ul li:hover {
+        form .form-item.form-type-textfield #autocomplete ul li:hover, form .form-item.form-type-password #autocomplete ul li:hover {
           background: #f3f4f8; }
-    form .form-item.form-type-textfield .throbber {
+    form .form-item.form-type-textfield .throbber, form .form-item.form-type-password .throbber {
       display: inline-block;
       width: 10px;
       height: 10px;
       border: 2px solid #e0e2e6;
       margin-left: -23px;
       border-radius: 50%; }
-      form .form-item.form-type-textfield .throbber.throbbing {
+      form .form-item.form-type-textfield .throbber.throbbing, form .form-item.form-type-password .throbber.throbbing {
         margin: -3px -3px -3px -26px;
         width: 16px;
         height: 16px;

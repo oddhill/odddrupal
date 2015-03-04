@@ -437,7 +437,8 @@ form {
       }
     }
 
-    &.form-type-textfield {
+    &.form-type-textfield,
+    &.form-type-password {
       position: relative;
 
       label {
