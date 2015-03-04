@@ -14,3 +14,32 @@ function sedermera_core_update_7001() {
     path_delete($row->pid);
   }
 }
+
+/**
+ * Create aliases for forms.
+ */
+function sedermera_core_update_7002() {
+  $path = array(
+    'source' => 'node/add/company',
+    'alias' => 'kundbolag/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/capital-raising',
+    'alias' => 'transaktioner/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'admin/structure/entity-type/investor/company/add',
+    'alias' => 'investerare/skapa/bolag',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'admin/structure/entity-type/investor/person/add',
+    'alias' => 'investerare/skapa/privatperson',
+  );
+  path_save($path);
+}
