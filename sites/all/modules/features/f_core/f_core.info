@@ -34,7 +34,6 @@ dependencies[] = rh_taxonomy
 dependencies[] = rh_user
 dependencies[] = sedermera_core
 dependencies[] = sedermera_dashboard
-dependencies[] = sedermera_paths
 dependencies[] = spamspan
 dependencies[] = strongarm
 dependencies[] = taxonomy
