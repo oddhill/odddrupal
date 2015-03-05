@@ -10,14 +10,14 @@
 function f_investor_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-investerare:investerare
-  $menu_links['main-menu_alla-investerare:investerare'] = array(
+  // Exported menu link: main-menu_alla-investerare:investerare/lista
+  $menu_links['main-menu_alla-investerare:investerare/lista'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'investerare',
-    'router_path' => 'investerare',
+    'link_path' => 'investerare/lista',
+    'router_path' => 'investerare/lista',
     'link_title' => 'Alla investerare',
     'options' => array(
-      'identifier' => 'main-menu_alla-investerare:investerare',
+      'identifier' => 'main-menu_alla-investerare:investerare/lista',
       'attributes' => array(
         'class' => array(
           0 => 'all',

@@ -348,7 +348,7 @@ function f_investor_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'investerare';
+  $handler->display->display_options['path'] = 'investerare/lista';
 
   /* Display: Skicka ut erbjudande */
   $handler = $view->new_display('embed', 'Skicka ut erbjudande', 'offer_embed');

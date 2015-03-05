@@ -10,14 +10,14 @@
 function f_company_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-kundbolag:kundbolag
-  $menu_links['main-menu_alla-kundbolag:kundbolag'] = array(
+  // Exported menu link: main-menu_alla-kundbolag:kundbolag/lista
+  $menu_links['main-menu_alla-kundbolag:kundbolag/lista'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'kundbolag',
-    'router_path' => 'kundbolag',
+    'link_path' => 'kundbolag/lista',
+    'router_path' => 'kundbolag/lista',
     'link_title' => 'Alla kundbolag',
     'options' => array(
-      'identifier' => 'main-menu_alla-kundbolag:kundbolag',
+      'identifier' => 'main-menu_alla-kundbolag:kundbolag/lista',
       'attributes' => array(
         'class' => array(
           0 => 'all',

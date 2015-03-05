@@ -114,7 +114,10 @@ function f_capital_raising_views_default_views() {
 
   /* Display: Alla */
   $handler = $view->new_display('page', 'Alla', 'page');
-  $handler->display->display_options['path'] = 'transaktioner';
+  $handler->display->display_options['path'] = 'transaktioner/lista';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Arkiverade */
   $handler = $view->new_display('page', 'Arkiverade', 'archived');

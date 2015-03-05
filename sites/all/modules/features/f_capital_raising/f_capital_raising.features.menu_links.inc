@@ -10,14 +10,14 @@
 function f_capital_raising_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-transaktioner:transaktioner
-  $menu_links['main-menu_alla-transaktioner:transaktioner'] = array(
+  // Exported menu link: main-menu_alla-transaktioner:transaktioner/lista
+  $menu_links['main-menu_alla-transaktioner:transaktioner/lista'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'transaktioner',
-    'router_path' => 'transaktioner',
+    'link_path' => 'transaktioner/lista',
+    'router_path' => 'transaktioner/lista',
     'link_title' => 'Alla transaktioner',
     'options' => array(
-      'identifier' => 'main-menu_alla-transaktioner:transaktioner',
+      'identifier' => 'main-menu_alla-transaktioner:transaktioner/lista',
       'attributes' => array(
         'class' => array(
           0 => 'all',

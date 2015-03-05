@@ -98,7 +98,7 @@ function f_company_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'kundbolag';
+  $handler->display->display_options['path'] = 'kundbolag/lista';
   $translatables['company'] = array(
     t('Master'),
     t('Alla kundbolag'),

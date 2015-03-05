@@ -96,7 +96,7 @@ function f_investor_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_investor_pattern';
-  $strongarm->value = 'investerare/[investor:title]';
+  $strongarm->value = 'investerare/lista/[investor:title]';
   $export['pathauto_investor_pattern'] = $strongarm;
 
   $strongarm = new stdClass();

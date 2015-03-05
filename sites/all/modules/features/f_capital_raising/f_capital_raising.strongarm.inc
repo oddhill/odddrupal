@@ -130,7 +130,7 @@ function f_capital_raising_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_capital_raising_pattern';
-  $strongarm->value = 'transaktioner/[node:title]';
+  $strongarm->value = 'transaktioner/lista/[node:title]';
   $export['pathauto_node_capital_raising_pattern'] = $strongarm;
 
   return $export;
