@@ -174,10 +174,13 @@ function odddrupal_form_views_exposed_form_alter(&$form, $form_state) {
     // fieldset itself.
     foreach (element_children($form) as $key) {
       if ($form[$key]['#type'] != 'fieldset') {
-        // Add the element to the filters fieldset, and set its title based on
-        // the configuration.
+        // Add the element to the filters fieldset.
         $form['filters'][$key] = $form[$key];
-        $form['filters'][$key]['#title'] = $form['#info']["filter-$key"]['label'];
+
+        // Set the title to the configured label, if there is one.
+        if (isset($form['#info']["filter-$key"]['label'])) {
+          $form['filters'][$key]['#title'] = $form['#info']["filter-$key"]['label'];
+        }
 
         // Remove the original element.
         unset($form[$key]);
