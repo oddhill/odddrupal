@@ -401,7 +401,7 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['title']['relationship'] = 'field_offer_investor_target_id';
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
   $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id]';
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id_1]';
   /* Field: Erbjudande: Intresserad den */
   $handler->display->display_options['fields']['field_offer_interested_date']['id'] = 'field_offer_interested_date';
   $handler->display->display_options['fields']['field_offer_interested_date']['table'] = 'field_data_field_offer_interested_date';
