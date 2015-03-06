@@ -9,7 +9,6 @@ dependencies[] = ctools
 dependencies[] = date
 dependencies[] = ds
 dependencies[] = eck
-dependencies[] = eck
 dependencies[] = email
 dependencies[] = entityreference
 dependencies[] = features

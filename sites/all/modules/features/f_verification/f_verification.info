@@ -4,7 +4,6 @@ package = Features
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = eck
-dependencies[] = eck
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = file
