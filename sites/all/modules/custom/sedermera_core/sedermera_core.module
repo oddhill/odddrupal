@@ -30,8 +30,12 @@ function sedermera_core_form_user_login_alter(&$form, &$form_state) {
         'href' => 'user/yubikey/lost',
       ),
     ),
-    '#weight' => 500,
+    '#weight' => 501,
   );
+
+  // Set the weight for the action buttons in order to guarantee the appropriate
+  // order.
+  $form['actions']['#weight'] = 500;
 }
 
 /**
