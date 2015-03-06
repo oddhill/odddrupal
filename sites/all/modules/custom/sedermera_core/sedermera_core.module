@@ -18,7 +18,7 @@ function sedermera_core_menu_alter(&$items) {
 function sedermera_core_form_user_login_alter(&$form, &$form_state) {
   // Add links to the user login form which lets the user reset the password
   // and report a lost YubiKey.
-  $form['links'] = array(
+  $form['reset-links'] = array(
     '#theme' => 'links',
     '#links' => array(
       'password-reset' => array(
