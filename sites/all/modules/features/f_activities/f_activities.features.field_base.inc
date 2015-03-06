@@ -17,14 +17,6 @@ function f_activities_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_shared_cap_rais',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -60,14 +52,6 @@ function f_activities_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_shared_investor',
-    'foreign keys' => array(
-      'eck_investor' => array(
-        'columns' => array(
-          'target_id' => 'id',
-        ),
-        'table' => 'eck_investor',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -101,14 +85,6 @@ function f_activities_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_shared_offer',
-    'foreign keys' => array(
-      'eck_offer' => array(
-        'columns' => array(
-          'target_id' => 'id',
-        ),
-        'table' => 'eck_offer',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
