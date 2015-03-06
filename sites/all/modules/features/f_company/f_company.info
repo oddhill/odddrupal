@@ -7,7 +7,6 @@ dependencies[] = features
 dependencies[] = field_group
 dependencies[] = image
 dependencies[] = menu
-dependencies[] = sedermera_company
 dependencies[] = strongarm
 features[ccl][] = Lägg till kundbolag
 features[ctools][] = ds:ds:1
