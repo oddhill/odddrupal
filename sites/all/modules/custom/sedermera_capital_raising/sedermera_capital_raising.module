@@ -25,6 +25,23 @@ function sedermera_capital_raising_node_form_validate($form, &$form_state) {
 }
 
 /**
+ * Implements hook_pathauto_alias_alter().
+ */
+function sedermera_capital_raising_pathauto_alias_alter(&$alias, array &$context) {
+  // Change the alias for capital raisings when updating or generating aliases.
+  if (in_array($context['op'], array('update', 'bulkupdate')) && $context['type'] == 'capital_raising') {
+    if ($context['data']['node']->status) {
+      // The node is published, change archive to list.
+      $alias = str_replace('/arkiverade/', '/lista/', $alias);
+    }
+    else {
+      // The node is unpublished, change list to archive.
+      $alias = str_replace('/lista/', '/arkiverade/', $alias);
+    }
+  }
+}
+
+/**
  * Implements hook_field_formatter_info().
  */
 function sedermera_capital_raising_field_formatter_info() {
