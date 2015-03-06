@@ -25,7 +25,6 @@ dependencies[] = form_placeholder
 dependencies[] = mail_logger
 dependencies[] = menu
 dependencies[] = menu_attributes
-dependencies[] = menu_firstchild
 dependencies[] = menu_trail_by_path
 dependencies[] = node
 dependencies[] = path_alias_xt

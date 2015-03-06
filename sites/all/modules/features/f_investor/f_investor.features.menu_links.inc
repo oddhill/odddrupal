@@ -31,18 +31,17 @@ function f_investor_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_investerare:<firstchild>',
+    'parent_identifier' => 'main-menu_:investerare',
   );
-  // Exported menu link: main-menu_investerare:<firstchild>
-  $menu_links['main-menu_investerare:<firstchild>'] = array(
+  // Exported menu link: main-menu_investerare:investerare
+  $menu_links['main-menu_investerare:investerare'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => '<firstchild>',
-    'router_path' => '<firstchild>',
+    'link_path' => 'investerare',
+    'router_path' => 'investerare',
     'link_title' => 'Investerare',
     'options' => array(
       'alter' => TRUE,
-      'unaltered_hidden' => 0,
-      'identifier' => 'main-menu_investerare:<firstchild>',
+      'identifier' => 'main-menu_investerare:investerare',
       'attributes' => array(
         'id' => 'investors',
       ),
@@ -76,7 +75,7 @@ function f_investor_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_investerare:<firstchild>',
+    'parent_identifier' => 'main-menu_:investerare',
   );
   // Translatables
   // Included for use with string extractors like potx.

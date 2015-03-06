@@ -31,7 +31,7 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_transaktioner:<firstchild>',
+    'parent_identifier' => 'main-menu_:transaktioner',
   );
   // Exported menu link: main-menu_arkiverade-transaktioner:transaktioner/arkiverade
   $menu_links['main-menu_arkiverade-transaktioner:transaktioner/arkiverade'] = array(
@@ -54,7 +54,7 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_transaktioner:<firstchild>',
+    'parent_identifier' => 'main-menu_:transaktioner',
   );
   // Exported menu link: main-menu_lgg-till-transaktion:node/add/capital-raising
   $menu_links['main-menu_lgg-till-transaktion:node/add/capital-raising'] = array(
@@ -80,18 +80,17 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 20,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_transaktioner:<firstchild>',
+    'parent_identifier' => 'main-menu_:transaktioner',
   );
-  // Exported menu link: main-menu_transaktioner:<firstchild>
-  $menu_links['main-menu_transaktioner:<firstchild>'] = array(
+  // Exported menu link: main-menu_transaktioner:transaktioner
+  $menu_links['main-menu_transaktioner:transaktioner'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => '<firstchild>',
-    'router_path' => '<firstchild>',
+    'link_path' => 'transaktioner',
+    'router_path' => 'transaktioner',
     'link_title' => 'Transaktioner',
     'options' => array(
       'alter' => TRUE,
-      'unaltered_hidden' => 0,
-      'identifier' => 'main-menu_transaktioner:<firstchild>',
+      'identifier' => 'main-menu_transaktioner:transaktioner',
       'attributes' => array(
         'id' => 'transactions',
       ),

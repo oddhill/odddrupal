@@ -31,18 +31,17 @@ function f_company_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_kundbolag:<firstchild>',
+    'parent_identifier' => 'main-menu_:kundbolag',
   );
-  // Exported menu link: main-menu_kundbolag:<firstchild>
-  $menu_links['main-menu_kundbolag:<firstchild>'] = array(
+  // Exported menu link: main-menu_kundbolag:kundbolag
+  $menu_links['main-menu_kundbolag:kundbolag'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => '<firstchild>',
-    'router_path' => '<firstchild>',
+    'link_path' => 'kundbolag',
+    'router_path' => 'kundbolag',
     'link_title' => 'Kundbolag',
     'options' => array(
       'alter' => TRUE,
-      'unaltered_hidden' => 0,
-      'identifier' => 'main-menu_kundbolag:<firstchild>',
+      'identifier' => 'main-menu_kundbolag:kundbolag',
       'attributes' => array(
         'id' => 'companies',
       ),
@@ -79,7 +78,7 @@ function f_company_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_kundbolag:<firstchild>',
+    'parent_identifier' => 'main-menu_:kundbolag',
   );
   // Translatables
   // Included for use with string extractors like potx.
