@@ -95,7 +95,6 @@ features[variable][] = tadaa_staging_modules
 features[variable][] = tadaa_staging_variables
 features[variable][] = theme_default
 features[variable][] = yubikey_authscheme
-features[variable][] = yubikey_enabled
 features[variable][] = yubikey_mail_yubikey_lost_body
 features[variable][] = yubikey_mail_yubikey_lost_confirmed_body
 features[variable][] = yubikey_mail_yubikey_lost_confirmed_recipients

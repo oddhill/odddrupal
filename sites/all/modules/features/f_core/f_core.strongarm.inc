@@ -323,13 +323,6 @@ function f_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'yubikey_enabled';
-  $strongarm->value = 0;
-  $export['yubikey_enabled'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'yubikey_mail_yubikey_lost_body';
   $strongarm->value = 'Hello !username,
 
