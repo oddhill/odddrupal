@@ -1,0 +1,3 @@
+name = Sedermera Parent Paths
+description = Provide parent paths which will simply redirect to a child link.
+core = 7.x
