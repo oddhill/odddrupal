@@ -37,8 +37,6 @@ $plugin = array(
 /**
  * Retrieves the user info from the context.
  *
- * @link https://drupal.org/node/2178335
- *
  * @param bool $context
  *  The current contexts.
  * @param array $conf
@@ -74,7 +72,6 @@ function masquerade_ctools_user_from_masquerade_context($context, $conf) {
       ->condition('uid_as', $argument, '=')
       ->range(0,1)
       ->execute();
-	$result = $query->fetchCol();
   }
 
   // NOTE: If we want to know who the masqueradee is,
@@ -86,15 +83,15 @@ function masquerade_ctools_user_from_masquerade_context($context, $conf) {
       ->condition('uid_from', $argument, '=')
       ->range(0,1)
       ->execute();
-	$result = $query->fetchCol();
   }
 
-  // If we didnt get a result, return an empty user context.
-  if (empty($result)) {
+  // If you're not masquerading or being masqueraded,
+  // there won't be a query generated. So, return empty.
+  if (!isset($query)) {
     return ctools_context_create_empty('user', NULL);
   }
 
-  $account = user_load($result[0]);
+  $account = user_load($query->fetchCol());
   return ctools_context_create('user', $account);
 }
 

@@ -33,7 +33,7 @@ function masquerade_drush_drush_command() {
         'Initializes a masquerade for <username|user ID|email address>.' . "\n"
         . 'On the next page, they will become the "target" account.',
     ),
-    'bootstrap' => DRUPAL_BOOTSTRAP_FULL,
+    'bootstrap' => DRUSH_BOOTSTRAP_SITE,
   );
   $items['sessions'] = array(
     'description' => 'Manipulates user sessions.',
@@ -49,7 +49,7 @@ function masquerade_drush_drush_command() {
     'aliases' => array(
       'sess',
     ),
-    'bootstrap' => DRUPAL_BOOTSTRAP_FULL,
+    'bootstrap' => DRUSH_BOOTSTRAP_SITE,
   );
   return $items;
 }

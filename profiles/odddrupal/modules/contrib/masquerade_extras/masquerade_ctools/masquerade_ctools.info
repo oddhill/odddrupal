@@ -4,9 +4,9 @@ core = 7.x
 dependencies[] = masquerade
 dependencies[] = ctools
 
-; Information added by Drupal.org packaging script on 2014-01-22
-version = "7.x-2.0-beta4+2-dev"
+; Information added by drupal.org packaging script on 2012-07-26
+version = "7.x-2.0-beta4"
 core = "7.x"
 project = "masquerade_extras"
-datestamp = "1390365207"
+datestamp = "1343339861"
 

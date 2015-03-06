@@ -894,3 +894,24 @@ function odddrupal_update_7155() {
   variable_set('devel_memory', 1);
   variable_set('dev_timer', 1);
 }
+
+/**
+ * Enable the Devel Debug Log module for the development environment.
+ */
+function odddrupal_update_7156() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['devel_debug_log'] = 1;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['devel_debug_log'] = 0;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['devel_debug_log'] = 0;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'development') {
+    module_enable(array('devel_debug_log'));
+  }
+}
