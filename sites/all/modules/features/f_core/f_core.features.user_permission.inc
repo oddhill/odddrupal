@@ -65,9 +65,7 @@ function f_core_user_default_permissions() {
   // Exported permission: 'view own unpublished content'.
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
