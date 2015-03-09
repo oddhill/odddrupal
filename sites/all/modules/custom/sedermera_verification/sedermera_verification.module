@@ -109,8 +109,7 @@ function sedermera_verification_menu_alter(&$items) {
     $items["$base/kontroll/check"] = array(
       'page callback' => 'sedermera_verification_status_field_ajax',
       'page arguments' => array(2),
-      'access callback' => $items["$base/kontroll"]['access callback'],
-      'access arguments' => $items["$base/kontroll"]['access arguments'],
+      'access callback' => 'user_is_logged_in',
       'type' => MENU_CALLBACK,
     );
   }
