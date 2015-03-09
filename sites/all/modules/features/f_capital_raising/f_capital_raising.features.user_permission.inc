@@ -14,7 +14,7 @@ function f_capital_raising_user_default_permissions() {
   $permissions['create capital_raising content'] = array(
     'name' => 'create capital_raising content',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'node',
   );
@@ -30,7 +30,7 @@ function f_capital_raising_user_default_permissions() {
   $permissions['edit any capital_raising content'] = array(
     'name' => 'edit any capital_raising content',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'node',
   );

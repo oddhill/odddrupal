@@ -14,7 +14,7 @@ function f_verification_user_default_permissions() {
   $permissions['eck add verification verification entities'] = array(
     'name' => 'eck add verification verification entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -23,7 +23,7 @@ function f_verification_user_default_permissions() {
   $permissions['eck edit verification verification entities'] = array(
     'name' => 'eck edit verification verification entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );

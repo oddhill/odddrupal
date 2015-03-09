@@ -14,7 +14,7 @@ function f_core_user_default_permissions() {
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'user',
   );
@@ -57,7 +57,7 @@ function f_core_user_default_permissions() {
   $permissions['view any unpublished content'] = array(
     'name' => 'view any unpublished content',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'view_unpublished',
   );
@@ -66,7 +66,7 @@ function f_core_user_default_permissions() {
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'node',
   );

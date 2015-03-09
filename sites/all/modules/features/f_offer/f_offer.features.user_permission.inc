@@ -14,7 +14,7 @@ function f_offer_user_default_permissions() {
   $permissions['eck add offer offer entities'] = array(
     'name' => 'eck add offer offer entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -30,7 +30,7 @@ function f_offer_user_default_permissions() {
   $permissions['eck edit offer offer entities'] = array(
     'name' => 'eck edit offer offer entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -48,7 +48,7 @@ function f_offer_user_default_permissions() {
   $permissions['use editablefields'] = array(
     'name' => 'use editablefields',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'editablefields',
   );

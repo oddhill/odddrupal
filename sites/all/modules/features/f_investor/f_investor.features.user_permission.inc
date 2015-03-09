@@ -14,7 +14,7 @@ function f_investor_user_default_permissions() {
   $permissions['administer investors'] = array(
     'name' => 'administer investors',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'sedermera_investor',
   );
@@ -23,7 +23,7 @@ function f_investor_user_default_permissions() {
   $permissions['eck add investor company entities'] = array(
     'name' => 'eck add investor company entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -32,7 +32,7 @@ function f_investor_user_default_permissions() {
   $permissions['eck add investor person entities'] = array(
     'name' => 'eck add investor person entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -55,7 +55,7 @@ function f_investor_user_default_permissions() {
   $permissions['eck edit investor company entities'] = array(
     'name' => 'eck edit investor company entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -64,7 +64,7 @@ function f_investor_user_default_permissions() {
   $permissions['eck edit investor person entities'] = array(
     'name' => 'eck edit investor person entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -73,7 +73,7 @@ function f_investor_user_default_permissions() {
   $permissions['eck view investor company entities'] = array(
     'name' => 'eck view investor company entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );
@@ -82,7 +82,7 @@ function f_investor_user_default_permissions() {
   $permissions['eck view investor person entities'] = array(
     'name' => 'eck view investor person entities',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );

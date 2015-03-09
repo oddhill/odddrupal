@@ -14,7 +14,7 @@ function f_company_user_default_permissions() {
   $permissions['create company content'] = array(
     'name' => 'create company content',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'node',
   );
@@ -30,7 +30,7 @@ function f_company_user_default_permissions() {
   $permissions['edit any company content'] = array(
     'name' => 'edit any company content',
     'roles' => array(
-      'administrator' => 'administrator',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'node',
   );
