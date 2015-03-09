@@ -2772,17 +2772,8 @@ form.confirmation {
           .not-logged-in.page-user .main-content .logo img {
             margin: 0 auto;
             max-width: 300px; } }
-  .not-logged-in.page-user ul {
-    color: #fff;
-    margin-top: 100px; }
-    .not-logged-in.page-user ul li {
-      font-size: 13px;
-      font-size: 1.3rem;
-      line-height: 19.5px;
-      display: inline-block;
-      margin-right: 45px; }
-      .not-logged-in.page-user ul li:last-child {
-        margin-right: 0; }
+    .not-logged-in.page-user .main-content ul {
+      list-style-type: none; }
   .not-logged-in.page-user a {
     border: 0;
     color: #fff; }
@@ -2836,6 +2827,23 @@ form#user-login,
   #user-pass .description,
   #yubikey-lost .description {
     color: #e0e2e6; }
+  form#user-login ul,
+  #user-pass ul,
+  #yubikey-lost ul {
+    color: #fff;
+    margin-top: 100px; }
+    form#user-login ul li,
+    #user-pass ul li,
+    #yubikey-lost ul li {
+      font-size: 13px;
+      font-size: 1.3rem;
+      line-height: 19.5px;
+      display: inline-block;
+      margin-right: 45px; }
+      form#user-login ul li:last-child,
+      #user-pass ul li:last-child,
+      #yubikey-lost ul li:last-child {
+        margin-right: 0; }
 
 .sidebar-second-icon {
   background: #454545;
