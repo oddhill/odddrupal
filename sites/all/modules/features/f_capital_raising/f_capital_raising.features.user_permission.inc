@@ -15,6 +15,7 @@ function f_capital_raising_user_default_permissions() {
     'name' => 'create capital_raising content',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'node',
   );
@@ -31,6 +32,7 @@ function f_capital_raising_user_default_permissions() {
     'name' => 'edit any capital_raising content',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'node',
   );
