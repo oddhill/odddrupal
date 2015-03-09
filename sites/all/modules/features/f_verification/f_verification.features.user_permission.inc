@@ -15,6 +15,7 @@ function f_verification_user_default_permissions() {
     'name' => 'eck add verification verification entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -24,6 +25,7 @@ function f_verification_user_default_permissions() {
     'name' => 'eck edit verification verification entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );

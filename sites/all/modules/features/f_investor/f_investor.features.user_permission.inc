@@ -15,6 +15,7 @@ function f_investor_user_default_permissions() {
     'name' => 'administer investors',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'sedermera_investor',
   );
@@ -24,6 +25,7 @@ function f_investor_user_default_permissions() {
     'name' => 'eck add investor company entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -33,6 +35,7 @@ function f_investor_user_default_permissions() {
     'name' => 'eck add investor person entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -56,6 +59,7 @@ function f_investor_user_default_permissions() {
     'name' => 'eck edit investor company entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -65,6 +69,7 @@ function f_investor_user_default_permissions() {
     'name' => 'eck edit investor person entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -74,6 +79,7 @@ function f_investor_user_default_permissions() {
     'name' => 'eck view investor company entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -83,6 +89,7 @@ function f_investor_user_default_permissions() {
     'name' => 'eck view investor person entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );

@@ -15,6 +15,7 @@ function f_offer_user_default_permissions() {
     'name' => 'eck add offer offer entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -31,6 +32,7 @@ function f_offer_user_default_permissions() {
     'name' => 'eck edit offer offer entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
   );
@@ -49,6 +51,7 @@ function f_offer_user_default_permissions() {
     'name' => 'use editablefields',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'editablefields',
   );
