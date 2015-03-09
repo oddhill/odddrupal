@@ -37,11 +37,23 @@ function f_offer_user_default_permissions() {
     'module' => 'eck',
   );
 
+  // Exported permission: 'eck view offer offer entities'.
+  $permissions['eck view offer offer entities'] = array(
+    'name' => 'eck view offer offer entities',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'eck',
+  );
+
   // Exported permission: 'mass mailing with views_send'.
   $permissions['mass mailing with views_send'] = array(
     'name' => 'mass mailing with views_send',
     'roles' => array(
-      'authenticated user' => 'authenticated user',
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'views_send',
   );

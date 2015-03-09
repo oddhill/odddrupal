@@ -79,6 +79,7 @@ function f_investor_user_default_permissions() {
     'name' => 'eck view investor company entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
@@ -89,9 +90,21 @@ function f_investor_user_default_permissions() {
     'name' => 'eck view investor person entities',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
+  );
+
+  // Exported permission: 'view investors'.
+  $permissions['view investors'] = array(
+    'name' => 'view investors',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'sedermera_investor',
   );
 
   return $permissions;

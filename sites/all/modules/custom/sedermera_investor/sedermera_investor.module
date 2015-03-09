@@ -10,9 +10,13 @@
  */
 function sedermera_investor_permission() {
   return array(
+    'view investors' => array(
+      'title' => t('View investors'),
+      'description' => t('Access the administration list for investors.'),
+    ),
     'administer investors' => array(
       'title' => t('Administer investors'),
-      'description' => t('Administer any investor bundle and access the administration list.'),
+      'description' => t('Add entities of any investor bundles.'),
     ),
   );
 }

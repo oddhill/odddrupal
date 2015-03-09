@@ -30,5 +30,16 @@ function f_verification_user_default_permissions() {
     'module' => 'eck',
   );
 
+  // Exported permission: 'eck view verification verification entities'.
+  $permissions['eck view verification verification entities'] = array(
+    'name' => 'eck view verification verification entities',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'eck',
+  );
+
   return $permissions;
 }
