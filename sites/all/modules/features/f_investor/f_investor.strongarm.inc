@@ -53,6 +53,9 @@ function f_investor_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'investor_verification' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -79,6 +82,9 @@ function f_investor_strongarm() {
       ),
       'token' => array(
         'custom_settings' => FALSE,
+      ),
+      'investor_verification' => array(
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(

@@ -45,6 +45,14 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
   // that we'll need to alter the form differently, depending on the current
   // path.
   if (arg(3) == 'kontroll') {
+    // Replace the form with the rendered verifications if the user doesn't have
+    // the permissions to edit the entities.
+    if (!user_access('eck edit verification verification entities')) {
+      sedermera_verification_view_rendered_verification($form);
+      sedermera_verification_add_verification_header($form);
+      return;
+    }
+
     // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
     sedermera_verification_add_verification_header($form);
@@ -70,6 +78,14 @@ function sedermera_verification_form_eck__entity__form_edit_investor_company_alt
   // that we'll need to alter the form differently, depending on the current
   // path.
   if (arg(3) == 'kontroll') {
+    // Replace the form with the rendered verifications if the user doesn't have
+    // the permissions to edit the entities.
+    if (!user_access('eck edit verification verification entities')) {
+      sedermera_verification_view_rendered_verification($form);
+      sedermera_verification_add_verification_header($form);
+      return;
+    }
+
     // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
     sedermera_verification_add_verification_header($form);
@@ -102,6 +118,10 @@ function sedermera_verification_menu_alter(&$items) {
     // Copy the info from the edit page, as we want to mimic that page.
     $items["$base/kontroll"] = $items["$base/edit"];
 
+    // Change the access callback into our own.
+    $items["$base/kontroll"]['access callback'] = 'sedermera_verification_page_access';
+    $items["$base/kontroll"]['access arguments'][] = $items["$base/edit"]['access callback'];
+
     // Change the title for the menu tab.
     $items["$base/kontroll"]['title'] = 'Kontroll';
 
@@ -116,6 +136,27 @@ function sedermera_verification_menu_alter(&$items) {
 }
 
 /**
+ * Access callback for the verification form.
+ *
+ * This will allow access if the regular access check approves it, but will
+ * also allow users with the view permission to access the page.
+ *
+ * return bool
+ *   TRUE or FALSE depending on whether or not the user should have access to
+ *   the page.
+ */
+function sedermera_verification_page_access() {
+  // Get the arguments for this function, and pop of the regular access
+  // callback.
+  $args = func_get_args();
+  $regular = array_pop($args);
+
+  // Return TRUE if the regular access callback does it, or fallback to the view
+  // permission.
+  return call_user_func_array($regular, $args) ? TRUE : user_access('eck view verification verification entities');
+}
+
+/**
  * AJAX callback for the verification status field.
  *
  * @param obj $investor
@@ -127,6 +168,22 @@ function sedermera_verification_menu_alter(&$items) {
 function sedermera_verification_status_field_ajax($investor) {
   $status = sedermera_verification_get_status($investor->id);
   drupal_json_output($status);
+}
+
+/**
+ * Replaces the form with the rendered investor.
+ *
+ * @param array $form
+ *   A structured form array.
+ */
+function sedermera_verification_view_rendered_verification(&$form) {
+  // Disable access to the regular form elements.
+  foreach (element_children($form) as $key) {
+    $form[$key]['#access'] = FALSE;
+  }
+
+  // Add the rendered investor using the investor_verification view mode.
+  $form['verification'] = entity_view('investor', array($form['entity']['#value']), 'investor_verification');
 }
 
 /**
