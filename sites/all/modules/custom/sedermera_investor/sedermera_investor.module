@@ -56,6 +56,16 @@ function sedermera_investor_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function sedermera_investor_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'sedermera_investor') . '/views',
+  );
+}
+
+/**
  * Title callback for the entity pages for investor bundles.
  */
 function sedermera_investor_entity_page_title($entity) {
