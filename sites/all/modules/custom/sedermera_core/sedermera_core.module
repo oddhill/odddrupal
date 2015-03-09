@@ -59,4 +59,7 @@ function sedermera_core_form_user_register_form_alter(&$form, &$form_state) {
   // Disable access to the administration language and language settings.
   $form['admin_language']['#access'] = FALSE;
   $form['locale']['#access'] = FALSE;
+
+  // Set the default language to sv.
+  $form['locale']['language']['#value'] = 'sv';
 }
