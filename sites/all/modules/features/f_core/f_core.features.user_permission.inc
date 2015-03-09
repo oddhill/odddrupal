@@ -57,7 +57,7 @@ function f_core_user_default_permissions() {
   $permissions['view any unpublished content'] = array(
     'name' => 'view any unpublished content',
     'roles' => array(
-      'Administratör' => 'Administratör',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'view_unpublished',
   );
