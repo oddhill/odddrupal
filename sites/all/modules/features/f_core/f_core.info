@@ -68,6 +68,7 @@ features[user_permission][] = use text format full_html
 features[user_permission][] = view any unpublished content
 features[user_permission][] = view own unpublished content
 features[user_role][] = Administratör
+features[user_role][] = Granskare
 features[user_role][] = Redaktör
 features[variable][] = blockify_blocks
 features[variable][] = date_format_medium

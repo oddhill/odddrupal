@@ -16,6 +16,12 @@ function f_core_user_default_roles() {
     'weight' => 2,
   );
 
+  // Exported role: Granskare.
+  $roles['Granskare'] = array(
+    'name' => 'Granskare',
+    'weight' => 4,
+  );
+
   // Exported role: Redaktör.
   $roles['Redaktör'] = array(
     'name' => 'Redaktör',
