@@ -159,16 +159,7 @@ function f_investor_field_default_field_instances() {
   // Exported field_instance: 'investor-company-field_shared_address'
   $field_instances['investor-company-field_shared_address'] = array(
     'bundle' => 'company',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'investor|company|field_shared_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'postal_code' => '',
-        'locality' => '',
-        'country' => 'SE',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => 'Ange platsinformation för bolaget. Du måste inte fylla i alla fält, om det inte är relevant.',
     'display' => array(
@@ -203,12 +194,16 @@ function f_investor_field_default_field_instances() {
       'module' => 'addressfield',
       'settings' => array(
         'available_countries' => array(),
+        'default_country' => 'SE',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
           'organisation' => 0,
           'name-full' => 0,
           'name-oneline' => 0,
+          'address-optional' => 0,
         ),
       ),
       'type' => 'addressfield_standard',
@@ -960,16 +955,7 @@ function f_investor_field_default_field_instances() {
   // Exported field_instance: 'investor-person-field_shared_address'
   $field_instances['investor-person-field_shared_address'] = array(
     'bundle' => 'person',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'investor|person|field_shared_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'postal_code' => '',
-        'locality' => '',
-        'country' => 'SE',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => 'Ange platsinformation för investeraren. Du måste inte fylla i alla fält, om det inte är relevant.',
     'display' => array(
@@ -1004,12 +990,16 @@ function f_investor_field_default_field_instances() {
       'module' => 'addressfield',
       'settings' => array(
         'available_countries' => array(),
+        'default_country' => 'SE',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
           'organisation' => 0,
           'name-full' => 0,
           'name-oneline' => 0,
+          'address-optional' => 0,
         ),
       ),
       'type' => 'addressfield_standard',
