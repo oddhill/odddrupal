@@ -46,6 +46,9 @@ function f_core_context_default_contexts() {
         ),
       ),
     ),
+    'theme_html' => array(
+      'class' => 'sedermera-theme',
+    ),
   );
   $context->condition_mode = 1;
 
@@ -164,6 +167,9 @@ function f_core_context_default_contexts() {
           'weight' => '-8',
         ),
       ),
+    ),
+    'theme_html' => array(
+      'class' => 'sedermera-theme',
     ),
   );
   $context->condition_mode = 1;
