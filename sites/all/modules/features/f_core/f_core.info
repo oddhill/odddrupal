@@ -26,6 +26,7 @@ dependencies[] = mail_logger
 dependencies[] = menu
 dependencies[] = menu_attributes
 dependencies[] = menu_trail_by_path
+dependencies[] = navigation404
 dependencies[] = node
 dependencies[] = path_alias_xt
 dependencies[] = pathauto_entity
