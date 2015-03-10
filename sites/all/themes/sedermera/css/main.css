@@ -365,6 +365,38 @@ form.views-send-preview .form-actions {
 .node-type-company .field-comp-logo {
   margin-top: 10px; }
 
+#user-pass-reset {
+  color: #fff;
+  margin-top: 30px; }
+  #user-pass-reset #edit-submit {
+    margin: 10px 0 0;
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
+    color: #282828;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #f9a500;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out; }
+    #user-pass-reset #edit-submit:hover {
+      background-color: #ae7300; }
+    #user-pass-reset #edit-submit:hover {
+      background-color: #fac04c;
+      box-shadow: 0 0 3px #222222; }
+
 .transaction-information img {
   height: auto;
   width: 100%; }

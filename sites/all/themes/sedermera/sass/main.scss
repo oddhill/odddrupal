@@ -92,7 +92,7 @@ body {
 }
 
 // Import page content
-@import "content/contact-list-process", "content/create", "content/edit", "content/node", "content/transaction";
+@import "content/contact-list-process", "content/create", "content/edit", "content/node", "content/user", "content/transaction";
 
 // Import page elements
 @import "elements/layouts", "elements/form-buttons", "elements/sidebar", "elements/messages", "elements/pager",

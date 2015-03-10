@@ -1,0 +1,9 @@
+#user-pass-reset {
+  color: $snow;
+  margin-top: 30px;
+
+  #edit-submit {
+  margin: 10px 0 0;
+  @include button($mustard, login);
+ }
+}
