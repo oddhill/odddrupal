@@ -114,7 +114,6 @@ function f_core_context_default_contexts() {
     ),
     'user' => array(
       'values' => array(
-        'administrator' => 'administrator',
         'authenticated user' => 'authenticated user',
       ),
     ),
