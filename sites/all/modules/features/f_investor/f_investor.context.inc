@@ -22,7 +22,7 @@ function f_investor_context_default_contexts() {
         'investor' => 'investor',
       ),
       'options' => array(
-        'entity_form' => '0',
+        'entity_form' => '1',
       ),
     ),
   );
