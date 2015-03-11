@@ -76,3 +76,18 @@ function sedermera_preprocess_html(&$variables) {
     }
   }
 }
+
+/**
+ * Implements template_preprocess_field().
+ */
+function sedermera_preprocess_field(&$variables) {
+  // Append the view mode to every template suggestion. This loop will create a
+  // new array where the view mode will be appended and inserted right after
+  // every existing suggestion.
+  $suggestions = array();
+  foreach ($variables['theme_hook_suggestions'] as $suggestion) {
+    $suggestions[] = $suggestion;
+    $suggestions[] = "{$suggestion}__{$variables['element']['#view_mode']}";
+  }
+  $variables['theme_hook_suggestions'] = $suggestions;
+}
