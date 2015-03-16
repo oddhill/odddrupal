@@ -1,0 +1,53 @@
+// Transaction-info (image and fields to the right)
+.transaction-information {
+
+  // Logotype (Kundbolag)
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  .field,
+  .file {
+    border-bottom: 2px solid $light-grey;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+
+    &:last-child  {
+      border-bottom: 0 none;
+    }
+
+    a {
+      border: 0 none;
+    }
+  }
+
+  .label {
+    @include font-size(1.4);
+    display: block;
+    font-weight: 500;
+  }
+
+  .file {
+    display: block;
+    font-weight: 500;
+
+   &.application-pdf {
+
+    img {
+      display: none;
+    }
+
+    // PDF-icon
+    &.application-pdf {
+
+    a {
+      @include svg-bg(pdf);
+      display: inline-block;
+      height: 20px;
+      padding-left: 25px;
+    }
+   }
+  }
+ }
+}

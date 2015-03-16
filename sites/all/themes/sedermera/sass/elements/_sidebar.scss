@@ -232,6 +232,10 @@
             &.active-trail {
               background-position: 40px 24px;
             }
+
+            &.add {
+              display: none;
+            }
           }
         }
       }

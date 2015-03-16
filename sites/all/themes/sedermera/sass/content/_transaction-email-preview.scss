@@ -1,0 +1,41 @@
+// Transaction E-mail preview (Magnific Popup)
+.mfp-container {
+
+}
+
+.mfp-content {
+  background: $snow;
+  margin: 0 auto;
+  width: 600px;
+
+  #message-preview {
+
+    hr {
+      //display: none;
+    }
+
+    h2 {
+      @include font-size(3.2);
+      font-weight: 700;
+      padding-bottom: 10px;
+      padding-top: 5px;
+
+      .field-title {
+        border-bottom: 2px solid $light-grey;
+      }
+    }
+
+    .field-cap-rais-date,
+    .field-cap-rais-post,
+    .field-cap-rais-rate,
+    .field-cap-rais-vol,
+    .field-cap-rais-vol-units,
+    .field-cap-rais-stock-no,
+    .field-cap-rais-units-no,
+    .field-cap-rais-estim,
+    .field-cap-rais-file {
+
+      padding-left: 20px;
+    }
+  }
+}

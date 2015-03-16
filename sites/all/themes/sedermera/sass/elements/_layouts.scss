@@ -1,5 +1,4 @@
 .site-wrapper {
-  height: auto;
 
   @include media($big) {
 
@@ -88,12 +87,12 @@
   }
 }
 
-// Page action links
+// Page action links wrapper
 .page-actions {
   float: right;
   margin-top: 16px;
 
-  .action-links {
+  ul {
     list-style: none;
   }
 
@@ -102,7 +101,7 @@
     margin-left: 20px;
 
     a {
-      @include button($dark-grey,add);
+      @include button($dark-grey, add);
     }
   }
 }

@@ -1,0 +1,66 @@
+// Add transaction (capital raising) (Lägg till transaktion)
+.node-capital_raising-form {
+
+  // Wraps next step/go back/create buttons
+  .form-actions {
+    text-align: right;
+
+    .form-submit {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+  }
+
+  // Transaction title - Step 3
+  .field.title {
+
+    h2 {
+      @include font-size(3.2);
+      font-weight: 500;
+      border-bottom: 2px solid $light-grey;
+      margin-bottom: 33px;
+      padding: 0 0 33px 0;
+      text-align: center;
+    }
+  }
+
+  // Transaction preview - Step 3
+  #preview-transaction {
+    background: $snow;
+    overflow: hidden;
+    padding: 50px 40px 50px 40px;
+  }
+
+  // Preview investors - Step 3 (Kontaktlista)
+  #preview-investors {
+    float: right;
+    background: $wool;
+    padding: 20px;
+    width: 280px;
+
+    h3 {
+      @include font-size(1.2);
+      background: $light-concrete;
+      border-bottom: 1px solid $wool;
+      font-weight: 700;
+      padding: 10px 0 10px 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .form-item {
+      margin-bottom: 5px;
+    }
+
+    .checker {
+      margin-bottom: 4px;
+      margin-right: 5px;
+    }
+
+    #edit-selected-investors {
+      background: $steel;
+      margin-bottom: 20px;
+      padding: 20px 20px 15px 20px;
+    }
+  }
+}

@@ -17,3 +17,24 @@
   float: left;
   padding: 0 0 0 25px;
 }
+
+// Transaction process steps (1,2,3)
+.process-steps {
+  float: right;
+
+  ul {
+    list-style-type: none;
+
+    li {
+      @include font-size(4.8);
+      font-weight: 300;
+      display: inline;
+      color: $light-concrete;
+      margin-right: 15px;
+
+      &.active {
+        color: $coffee;
+      }
+    }
+  }
+}

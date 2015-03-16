@@ -1,3 +1,8 @@
+// When an user is created and when an email is sent to the user
+// - the user will get an email with a link.
+// When the user clicks on the link he/she will be sent to a page
+// where a new password can be set for the first time.
+
 #user-pass-reset {
   color: $snow;
   margin-top: 30px;

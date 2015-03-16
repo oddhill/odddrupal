@@ -70,32 +70,41 @@ body {
   font-weight: 700;
 }
 
-// Transaction process steps (1,2,3)
-.process-steps {
-  float: right;
-
-  ul {
-    list-style-type: none;
-
-    li {
-      @include font-size(4.8);
-      font-weight: 300;
-      display: inline;
-      color: $light-concrete;
-      margin-right: 15px;
-
-      &.active {
-        color: $coffee;
-      }
-    }
-  }
-}
+// Import
+@import
+"animations",
+"uniform";
 
 // Import page content
-@import "content/contact-list-process", "content/create", "content/edit", "content/node", "content/user", "content/transaction";
+@import
+"content/transaction-email-process",
+"content/create-investor",
+"content/create-transaction",
+"content/edit",
+"content/node",
+"content/investor",
+"content/company",
+"content/user",
+"content/transaction-contactlist",
+"content/transaction-email-preview",
+"content/transaction-overview",
+"content/transaction-stakeholders";
 
 // Import page elements
-@import "elements/layouts", "elements/form-buttons", "elements/sidebar", "elements/messages", "elements/pager",
-"elements/filteredtable", "uniform", "elements/formelements", "elements/forms", "elements/tabs",
-"animations",  "elements/login", "elements/sidebar-second", "elements/activities", "elements/dashboard",
-"elements/empty", "elements/controls", "elements/transaction";
+@import
+"elements/layouts",
+"elements/form-buttons",
+"elements/sidebar",
+"elements/messages",
+"elements/pager",
+"elements/filteredtable",
+"elements/formelements",
+"elements/forms",
+"elements/tabs",
+"elements/login",
+"elements/sidebar-second",
+"elements/activities",
+"elements/dashboard",
+"elements/empty",
+"elements/controls",
+"elements/transaction";

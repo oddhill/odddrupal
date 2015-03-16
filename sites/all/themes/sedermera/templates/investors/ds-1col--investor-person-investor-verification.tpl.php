@@ -13,32 +13,39 @@
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
 
-  Identitetskontroll:
-  <?php if ($content['field_shared_veri_id']): ?>
-    <?php print render($content['field_shared_veri_id']); ?>
-  <?php else: ?>
-    Ej genomförd
-  <?php endif; ?>
+  <div class="title-container">Identitetskontroll:</div>
+  <div class="content-container">
+    <?php if ($content['field_shared_veri_id']): ?>
+      <?php print render($content['field_shared_veri_id']); ?>
+    <?php else: ?>
+      Ej genomförd
+    <?php endif; ?>
+  </div>
 
-  Adressregister från Skatteverket:
-  <?php if ($content['field_shared_veri_address']): ?>
-    <?php print render($content['field_shared_veri_address']); ?>
-  <?php else: ?>
-    Ej genomförd
-  <?php endif; ?>
+  <div class="title-container">Adressregister från Skatteverket:</div>
+  <div class="content-container">
+    <?php if ($content['field_shared_veri_address']): ?>
+      <?php print render($content['field_shared_veri_address']); ?>
+    <?php else: ?>
+      Ej genomförd
+    <?php endif; ?>
+  </div>
 
-  EU:s sanktionsförordningar:
-  <?php if ($content['field_shared_veri_eu']): ?>
-    <?php print render($content['field_shared_veri_eu']); ?>
-  <?php else: ?>
-    Ej genomförd
-  <?php endif; ?>
+  <div class="title-container">EU:s sanktionsförordningar:</div>
+  <div class="content-container">
+    <?php if ($content['field_shared_veri_eu']): ?>
+      <?php print render($content['field_shared_veri_eu']); ?>
+    <?php else: ?>
+      Ej genomförd
+    <?php endif; ?>
+  </div>
 
-  Kreditkontroll:
-  <?php if ($content['field_shared_veri_credit']): ?>
-    <?php print render($content['field_shared_veri_credit']); ?>
-  <?php else: ?>
-    Ej genomförd
-  <?php endif; ?>
-
+  <div class="title-container">Kreditkontroll:</div>
+    <div class="content-container">
+      <?php if ($content['field_shared_veri_credit']): ?>
+        <?php print render($content['field_shared_veri_credit']); ?>
+      <?php else: ?>
+        Ej genomförd
+      <?php endif; ?>
+  </div>
 </div>

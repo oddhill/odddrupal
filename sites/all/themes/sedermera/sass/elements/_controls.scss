@@ -1,6 +1,6 @@
 // Investor Person/Company Control (Kontroll)
-.page-investor-person-kontroll,
-.page-investor-company-kontroll {
+#eck-entity-form-edit-investor-person,
+#eck-entity-form-edit-investor-company {
 
   // File
   .form-type-managed-file {
@@ -90,4 +90,22 @@
     margin-top: 17px;
     text-transform: lowercase;
   }
+}
+
+// When logged in as inspector (granskare) styling
+.title-container {
+  background: $light-concrete;
+  border-bottom: 1px solid $wool;
+  border-radius: 2px 2px 0 0;
+  display: block;
+  font-weight: 500;
+  padding: 10px 0 11px 10px;
+}
+
+// When logged in as inspector (granskare) styling
+.content-container {
+  background: #eaecf0;
+  border-radius: 0 0 2px 2px;
+  padding: 10px;
+  margin-bottom: 20px;
 }

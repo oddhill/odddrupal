@@ -697,21 +697,21 @@ form {
     .form-submit {
       margin-right: 10px;
 
-      &#edit-next {
-        @include button($dark-grey,next);
-      }
+      // &#edit-next {
+      //   @include button($dark-grey,next);
+      // }
 
-      &#edit-previous {
-        @include button($dark-grey,previous);
-      }
+      // &#edit-previous {
+      //   @include button($dark-grey,previous);
+      // }
 
-      &#edit-submit {
-        @include button($dark-grey,save);
-      }
+      // &#edit-submit {
+      //   @include button($dark-grey,save);
+      // }
 
-      &#edit-delete {
-        @include button($wine,delete);
-      }
+      // &#edit-delete {
+      //   @include button($wine,delete);
+      // }
     }
   }
 }
@@ -836,7 +836,7 @@ form {
   }
 }
 
-// Form submit confirmation styling
+// Form submit confirmation styling / Delete (Page node delete)
 form.confirmation {
   @include font-size(1.6);
   display: inline-block;
@@ -855,31 +855,9 @@ form.confirmation {
     .submit-wrapper {
       display: inline;
     }
+
+    #edit-submit {
+      @include button($dark-grey, delete);
+    }
   }
-}
-
-// Cancel button
-#edit-cancel {
-    @include button($wine, cancel);
-    margin-left: 20px;
-}
-
-// Approved button
-.approved {
-  @include status-button($avocado, approved);
-}
-
-// Not approved button
-.not-approved {
-  @include status-button($bubblegum, unapproved);
-}
-
-// Expiring button
-.expiring {
-  @include status-button($honey, expiring);
-}
-
-// Expired button
-.expired {
-  @include status-button($steel, expired);
 }

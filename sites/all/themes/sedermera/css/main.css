@@ -39,13 +39,13 @@ a {
 
 .body ul,
 .body ol {
-  list-style-type: disc;
   margin: 10px;
   padding: 10px; }
-  .body ul li,
-  .body ol li {
-    font-weight: 700;
-    margin-bottom: 18px; }
+.body li {
+  font-weight: 700;
+  margin-bottom: 18px; }
+.body ul {
+  list-style-type: disc; }
 .body ol {
   list-style-type: decimal; }
 
@@ -98,20 +98,320 @@ body {
 .label {
   font-weight: 700; }
 
-.process-steps {
-  float: right; }
-  .process-steps ul {
-    list-style-type: none; }
-    .process-steps ul li {
-      font-size: 48px;
-      font-size: 4.8rem;
-      line-height: 72px;
-      font-weight: 300;
-      display: inline;
-      color: #c8cacd;
-      margin-right: 15px; }
-      .process-steps ul li.active {
-        color: #282828; }
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(-180deg); } }
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(-180deg); } }
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg); } }
+@-webkit-keyframes load {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes load {
+  100% {
+    -moz-transform: rotate(360deg); } }
+@keyframes load {
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+/* General settings */
+div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {
+  background-image: url("../graphics/sprite.png");
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased; }
+div.selector, div.checker, div.button, div.radio, div.uploader {
+  display: -moz-inline-box;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+  /* Keeping this as :focus to remove browser styles */ }
+  div.selector:focus, div.checker:focus, div.button:focus, div.radio:focus, div.uploader:focus {
+    outline: 0; }
+div.selector, div.selector *, div.radio, div.radio *, div.checker, div.checker *, div.uploader, div.uploader *, div.button, div.button * {
+  margin: 0;
+  padding: 0; }
+
+.highContrastDetect {
+  background: url("../images/bg-input.png") repeat-x 0 0;
+  width: 0px;
+  height: 0px; }
+
+/* Input & Textarea */
+input.uniform-input,
+select.uniform-multiselect,
+textarea.uniform {
+  padding: 3px;
+  background: url("../images/bg-input.png") repeat-x 0 0;
+  outline: 0; }
+  input.uniform-input.active,
+  select.uniform-multiselect.active,
+  textarea.uniform.active {
+    background: url("../images/bg-input-focus.png") repeat-x 0 0; }
+
+/* Remove default webkit and possible mozilla .search styles.
+ * Keeping this as :active to remove browser styles */
+div.checker input,
+input[type="search"],
+input[type="search"]:active {
+  -moz-appearance: none;
+  -webkit-appearance: none; }
+
+/* Select */
+div.selector {
+  background-position: 0 -130px;
+  line-height: 26px;
+  height: 26px;
+  padding: 0 0 0 10px;
+  position: relative;
+  overflow: hidden; }
+  div.selector span {
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    background-position: right 0;
+    height: 26px;
+    line-height: 26px;
+    padding-right: 25px;
+    cursor: pointer;
+    width: 100%;
+    display: block; }
+  div.selector.fixedWidth {
+    width: 190px; }
+    div.selector.fixedWidth span {
+      width: 155px; }
+  div.selector select {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    position: absolute;
+    height: 22px;
+    top: 2px;
+    left: 0px;
+    width: 100%; }
+  div.selector.active {
+    background-position: 0 -156px; }
+    div.selector.active span {
+      background-position: right -26px; }
+  div.selector.hover, div.selector.focus {
+    background-position: 0 -182px; }
+    div.selector.hover span, div.selector.focus span {
+      background-position: right -52px; }
+    div.selector.hover.active, div.selector.focus.active {
+      background-position: 0 -208px; }
+      div.selector.hover.active span, div.selector.focus.active span {
+        background-position: right -78px; }
+  div.selector.disabled, div.selector.disabled.active {
+    background-position: 0 -234px; }
+    div.selector.disabled span, div.selector.disabled.active span {
+      background-position: right -104px; }
+
+/* Checkbox */
+div.checker {
+  position: relative; }
+  div.checker, div.checker span, div.checker input {
+    width: 18px;
+    height: 18px; }
+  div.checker span {
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center;
+    background-position: 0 -260px; }
+    div.checker span.checked {
+      background-position: -72px -260px; }
+  div.checker input {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1; }
+  div.checker.active span {
+    background-position: -18px -260px; }
+    div.checker.active span.checked {
+      background-position: -90px -260px; }
+  div.checker.hover span, div.checker.focus span {
+    background-position: -36px -260px; }
+    div.checker.hover span.checked, div.checker.focus span.checked {
+      background-position: -108px -260px; }
+  div.checker.hover.active span, div.checker.focus.active span {
+    background-position: -54px -260px; }
+    div.checker.hover.active span.checked, div.checker.focus.active span.checked {
+      background-position: -126px -260px; }
+  div.checker.disabled, div.checker.disabled.active {
+    background-position: -144px -260px; }
+    div.checker.disabled span.checked, div.checker.disabled.active span.checked {
+      background-position: -162px -260px; }
+
+/* Radio */
+div.radio {
+  position: relative; }
+  div.radio, div.radio span, div.radio input {
+    width: 18px;
+    height: 18px; }
+  div.radio span {
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center;
+    background-position: 0 -278px; }
+    div.radio span.checked {
+      background-position: -72px -278px; }
+  div.radio input {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center; }
+  div.radio.active span {
+    background-position: -36px -278px; }
+    div.radio.active span.checked {
+      background-position: -90px -278px; }
+  div.radio.hover span, div.radio.focus span {
+    background-position: -72px -278px; }
+    div.radio.hover span.checked, div.radio.focus span.checked {
+      background-position: -108px -278px; }
+  div.radio.hover.active span, div.radio.focus.active span {
+    background-position: -54px -278px; }
+    div.radio.hover.active span.checked, div.radio.focus.active span.checked {
+      background-position: -126px -278px; }
+  div.radio.disabled span, div.radio.disabled.active span {
+    background-position: -144px -278px; }
+    div.radio.disabled span.checked, div.radio.disabled.active span.checked {
+      background-position: -162px -278px; }
+
+/* Uploader */
+div.uploader {
+  background-position: 0 -296px;
+  height: 28px;
+  width: 190px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden; }
+  div.uploader span.action {
+    background-position: right -408px;
+    height: 28px;
+    line-height: 28px;
+    width: 85px;
+    text-align: center;
+    float: left;
+    display: inline;
+    overflow: hidden;
+    cursor: pointer; }
+  div.uploader span.filename {
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    float: left;
+    cursor: default;
+    height: 24px;
+    margin: 2px 0 2px 2px;
+    line-height: 24px;
+    width: 82px;
+    padding: 0 10px; }
+  div.uploader input {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: right;
+    cursor: default;
+    width: 100%;
+    height: 100%; }
+  div.uploader.active span.action {
+    background-position: right -464px; }
+  div.uploader.hover, div.uploader.focus {
+    background-position: 0 -352px; }
+    div.uploader.hover span.action, div.uploader.focus span.action {
+      background-position: right -436px; }
+    div.uploader.hover.active span.action, div.uploader.focus.active span.action {
+      background-position: right -492px; }
+  div.uploader.disabled, div.uploader.disabled.active {
+    background-position: 0 -324px; }
+    div.uploader.disabled span.action, div.uploader.disabled.active span.action {
+      background-position: right -380px; }
+
+/* Buttons */
+div.button {
+  background-position: 0 -640px;
+  height: 30px;
+  cursor: pointer;
+  position: relative;
+  /* Keep buttons barely visible so they can get focus */ }
+  div.button a, div.button button, div.button input {
+    opacity: 0.01;
+    filter: alpha(opacity=1);
+    -moz-opacity: 0.01;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute; }
+  div.button span {
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    line-height: 30px;
+    text-align: center;
+    background-position: right -520px;
+    height: 30px;
+    margin-left: 13px;
+    padding: 0; }
+  div.button.active {
+    background-position: 0 -670px; }
+    div.button.active span {
+      background-position: right -550px;
+      cursor: default; }
+  div.button.hover, div.button.focus {
+    background-position: 0 -700px; }
+    div.button.hover span, div.button.focus span {
+      background-position: right -580px; }
+  div.button.disabled, div.button.disabled.active {
+    background-position: 0 -730px; }
+    div.button.disabled span, div.button.disabled.active span {
+      background-position: right -610px;
+      cursor: default; }
 
 .page-node-kontaktlista .process-steps {
   background: #fff;
@@ -223,6 +523,20 @@ form.views-send-preview .form-actions {
 .type-container {
   margin: 0 10px; }
 
+.node-capital_raising-form .form-actions {
+  text-align: right; }
+  .node-capital_raising-form .form-actions .form-submit {
+    margin-left: 10px;
+    margin-right: 0; }
+.node-capital_raising-form .field.title h2 {
+  font-size: 32px;
+  font-size: 3.2rem;
+  line-height: 48px;
+  font-weight: 500;
+  border-bottom: 2px solid #f3f4f8;
+  margin-bottom: 33px;
+  padding: 0 0 33px 0;
+  text-align: center; }
 .node-capital_raising-form #preview-transaction {
   background: #fff;
   overflow: hidden;
@@ -251,21 +565,6 @@ form.views-send-preview .form-actions {
     background: #d4d6d9;
     margin-bottom: 20px;
     padding: 20px 20px 15px 20px; }
-.node-capital_raising-form .form-actions {
-  text-align: right; }
-  .node-capital_raising-form .form-actions .form-submit {
-    margin-left: 10px;
-    margin-right: 0; }
-
-.field.title h2 {
-  font-size: 32px;
-  font-size: 3.2rem;
-  line-height: 48px;
-  font-weight: 500;
-  border-bottom: 2px solid #f3f4f8;
-  margin-bottom: 33px;
-  padding: 0 0 33px 0;
-  text-align: center; }
 
 .page-investor-person-edit .form-sidebar,
 .page-investor-company-edit .form-sidebar {
@@ -345,11 +644,6 @@ form.views-send-preview .form-actions {
   background: #f3f4f8;
   padding: 0; }
 
-.field-shared-industries,
-.field-shared-address,
-.field-shared-email {
-  margin-bottom: 15px; }
-
 .node.view-mode-full {
   max-width: 1800px;
   margin-left: auto;
@@ -360,8 +654,11 @@ form.views-send-preview .form-actions {
     display: table;
     clear: both; }
 
-.node-type-company .main-content .content-column {
-  overflow: visible; }
+.field-shared-industries,
+.field-shared-address,
+.field-shared-email {
+  margin-bottom: 15px; }
+
 .node-type-company .field-comp-logo {
   margin-top: 10px; }
 
@@ -396,38 +693,6 @@ form.views-send-preview .form-actions {
     #user-pass-reset #edit-submit:hover {
       background-color: #fac04c;
       box-shadow: 0 0 3px #222222; }
-
-.transaction-information img {
-  height: auto;
-  width: 100%; }
-.transaction-information .field,
-.transaction-information .file {
-  border-bottom: 2px solid #f3f4f8;
-  margin: 0 0 20px 0;
-  padding: 0 0 20px 0; }
-  .transaction-information .field:last-child,
-  .transaction-information .file:last-child {
-    border-bottom: 0 none; }
-  .transaction-information .field a,
-  .transaction-information .file a {
-    border: 0 none; }
-.transaction-information .label {
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 21px;
-  display: block;
-  font-weight: 500; }
-.transaction-information .file {
-  display: block;
-  font-weight: 500; }
-  .transaction-information .file.application-pdf img {
-    display: none; }
-  .transaction-information .file.application-pdf.application-pdf a {
-    background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
-    display: inline-block;
-    height: 20px;
-    padding-left: 25px; }
 
 .view-offers .add-more {
   display: inline-block;
@@ -466,7 +731,8 @@ form.views-send-preview .form-actions {
     position: absolute;
     display: none; }
   .view-offers .form-type-date-combo .date-date {
-    width: 145px; }
+    width: 145px;
+    border: 10px solid red; }
 .view-offers .views-field-field-offer-interested .checker {
   margin-bottom: 4px;
   margin-right: 5px; }
@@ -493,11 +759,6 @@ form.views-send-preview .form-actions {
   transition: background-color 0.1s ease-in-out; }
   .view-offers #views-form-offers-page .form-submit#edit-submit:hover {
     background-color: #303030; }
-.view-offers .views-field-field-offer-amount input {
-  margin-right: 5px;
-  padding: 0 5px 0 5px 0; }
-.view-offers a.sedermera-verification-status-check {
-  cursor: pointer; }
 
 #sedermera-offer-investors-add {
   overflow: hidden;
@@ -529,11 +790,95 @@ form.views-send-preview .form-actions {
       #sedermera-offer-investors-add .form-actions .form-submit:hover {
         background-color: #303030; }
 
-.site-wrapper {
-  height: auto; }
-  @media screen and (max-width: 1600px) {
-    .sub-menu-active .site-wrapper {
-      margin-top: 60px; } }
+.mfp-content {
+  background: #fff;
+  margin: 0 auto;
+  width: 600px; }
+  .mfp-content #message-preview h2 {
+    font-size: 32px;
+    font-size: 3.2rem;
+    line-height: 48px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    padding-top: 5px; }
+    .mfp-content #message-preview h2 .field-title {
+      border-bottom: 2px solid #f3f4f8; }
+  .mfp-content #message-preview .field-cap-rais-date,
+  .mfp-content #message-preview .field-cap-rais-post,
+  .mfp-content #message-preview .field-cap-rais-rate,
+  .mfp-content #message-preview .field-cap-rais-vol,
+  .mfp-content #message-preview .field-cap-rais-vol-units,
+  .mfp-content #message-preview .field-cap-rais-stock-no,
+  .mfp-content #message-preview .field-cap-rais-units-no,
+  .mfp-content #message-preview .field-cap-rais-estim,
+  .mfp-content #message-preview .field-cap-rais-file {
+    padding-left: 20px; }
+
+.transaction-information img {
+  height: auto;
+  width: 100%; }
+.transaction-information .field,
+.transaction-information .file {
+  border-bottom: 2px solid #f3f4f8;
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0; }
+  .transaction-information .field:last-child,
+  .transaction-information .file:last-child {
+    border-bottom: 0 none; }
+  .transaction-information .field a,
+  .transaction-information .file a {
+    border: 0 none; }
+.transaction-information .label {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px;
+  display: block;
+  font-weight: 500; }
+.transaction-information .file {
+  display: block;
+  font-weight: 500; }
+  .transaction-information .file.application-pdf img {
+    display: none; }
+  .transaction-information .file.application-pdf.application-pdf a {
+    background: url("../graphics/pdf.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/pdf.svg") transparent 0 0 no-repeat;
+    display: inline-block;
+    height: 20px;
+    padding-left: 25px; }
+
+.view-offers .views-field-field-offer-amount input {
+  margin-right: 5px;
+  padding: 0 5px 0 5px 0; }
+.view-offers a.sedermera-verification-status-check {
+  cursor: pointer; }
+
+#sedermera-offer-sign-confirm #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+  background-position: 20px 14px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #sedermera-offer-sign-confirm #edit-submit:hover {
+    background-color: #303030; }
+
+@media screen and (max-width: 1600px) {
+  .sub-menu-active .site-wrapper {
+    margin-top: 60px; } }
 
 .main-content {
   font-size: 14px;
@@ -597,7 +942,7 @@ form.views-send-preview .form-actions {
 .page-actions {
   float: right;
   margin-top: 16px; }
-  .page-actions .action-links {
+  .page-actions ul {
     list-style: none; }
   .page-actions li {
     display: inline;
@@ -626,8 +971,7 @@ form.views-send-preview .form-actions {
       .page-actions li a:hover {
         background-color: #303030; }
 
-form#user-login #edit-submit {
-  margin: 10px 0 0;
+#edit-submit {
   display: inline-block;
   height: 34px;
   font-size: 12px;
@@ -640,23 +984,18 @@ form#user-login #edit-submit {
   font-weight: 500;
   text-transform: uppercase;
   border-bottom: 0 none;
-  background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
-  color: #282828;
+  background: url("../graphics/save_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/save_small_light.svg") transparent 0 0 no-repeat;
   background-position: 20px 11px;
   padding-left: 42px;
-  background-color: #f9a500;
+  background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out; }
-  form#user-login #edit-submit:hover {
-    background-color: #ae7300; }
-  form#user-login #edit-submit:hover {
-    background-color: #fac04c;
-    box-shadow: 0 0 3px #222222; }
+  #edit-submit:hover {
+    background-color: #303030; }
 
-#user-pass #edit-submit,
-#yubikey-lost #edit-submit {
+#edit-delete {
   display: inline-block;
   height: 34px;
   font-size: 12px;
@@ -669,56 +1008,16 @@ form#user-login #edit-submit {
   font-weight: 500;
   text-transform: uppercase;
   border-bottom: 0 none;
-  background: url("../graphics/arrow-right.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/arrow-right.svg") transparent 0 0 no-repeat;
-  background-position: 16px 11px;
+  background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
   padding-left: 42px;
-  background-color: #f9a500;
+  background-color: #c04343;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin: 10px 0 0;
-  color: #1a1a1a; }
-  #user-pass #edit-submit:hover,
-  #yubikey-lost #edit-submit:hover {
-    background-color: #ae7300; }
-
-form.confirmation {
-  font-size: 16px;
-  font-size: 1.6rem;
-  line-height: 24px;
-  display: inline-block;
-  font-weight: 700; }
-  form.confirmation input {
-    display: inline-block;
-    height: 34px;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 12px;
-    line-height: 34px;
-    border-radius: 34px;
-    color: #fff;
-    padding: 0 20px;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-bottom: 0 none;
-    background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
-    background-position: 20px 14px;
-    padding-left: 42px;
-    background-color: #454545;
-    -webkit-transition: background-color 0.1s ease-in-out;
-    -moz-transition: background-color 0.1s ease-in-out;
-    transition: background-color 0.1s ease-in-out;
-    display: inline; }
-    form.confirmation input:hover {
-      background-color: #303030; }
-  form.confirmation .form-actions.form-wrapper {
-    display: inline-block;
-    margin-top: 20px;
-    width: 100%; }
-    form.confirmation .form-actions.form-wrapper .submit-wrapper {
-      display: inline; }
+  transition: background-color 0.1s ease-in-out; }
+  #edit-delete:hover {
+    background-color: #862e2e; }
 
 #edit-cancel {
   display: inline-block;
@@ -740,10 +1039,57 @@ form.confirmation {
   background-color: #c04343;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin-left: 20px; }
+  transition: background-color 0.1s ease-in-out; }
   #edit-cancel:hover {
     background-color: #862e2e; }
+
+#edit-next {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/next.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/next.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #edit-next:hover {
+    background-color: #303030; }
+
+#edit-previous {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/previous.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/previous.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #edit-previous:hover {
+    background-color: #303030; }
 
 .approved {
   font-size: 11px;
@@ -840,6 +1186,63 @@ form.confirmation {
   .expired:hover {
     background-color: #bec0c3;
     border: 0 none; }
+
+form#user-login #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
+  color: #282828;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #f9a500;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin: 10px 0 0; }
+  form#user-login #edit-submit:hover {
+    background-color: #ae7300; }
+  form#user-login #edit-submit:hover {
+    background-color: #fac04c;
+    box-shadow: 0 0 3px #222222; }
+
+#user-pass #edit-submit,
+#yubikey-lost #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/arrow-right.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/arrow-right.svg") transparent 0 0 no-repeat;
+  background-position: 16px 11px;
+  padding-left: 42px;
+  background-color: #f9a500;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin: 10px 0 0;
+  color: #1a1a1a; }
+  #user-pass #edit-submit:hover,
+  #yubikey-lost #edit-submit:hover {
+    background-color: #ae7300; }
 
 .main-sidebar {
   background-color: #282828;
@@ -997,7 +1400,9 @@ form.confirmation {
         line-height: 60px;
         padding: 0 40px 0 70px; }
         .main-navigation li.expanded ul.menu li a.active, .main-navigation li.expanded ul.menu li a.active-trail {
-          background-position: 40px 24px; } }
+          background-position: 40px 24px; }
+        .main-navigation li.expanded ul.menu li a.add {
+          display: none; } }
 
 .user {
   font-size: 16px;
@@ -1325,285 +1730,6 @@ form.confirmation {
       color: #363636; }
   .table-wrapper input {
     border: 1px solid #c8cacd; }
-
-/* General settings */
-div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {
-  background-image: url("../graphics/sprite.png");
-  background-repeat: no-repeat;
-  -webkit-font-smoothing: antialiased; }
-div.selector, div.checker, div.button, div.radio, div.uploader {
-  display: -moz-inline-box;
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
-  vertical-align: middle;
-  /* Keeping this as :focus to remove browser styles */ }
-  div.selector:focus, div.checker:focus, div.button:focus, div.radio:focus, div.uploader:focus {
-    outline: 0; }
-div.selector, div.selector *, div.radio, div.radio *, div.checker, div.checker *, div.uploader, div.uploader *, div.button, div.button * {
-  margin: 0;
-  padding: 0; }
-
-.highContrastDetect {
-  background: url("../images/bg-input.png") repeat-x 0 0;
-  width: 0px;
-  height: 0px; }
-
-/* Input & Textarea */
-input.uniform-input,
-select.uniform-multiselect,
-textarea.uniform {
-  padding: 3px;
-  background: url("../images/bg-input.png") repeat-x 0 0;
-  outline: 0; }
-  input.uniform-input.active,
-  select.uniform-multiselect.active,
-  textarea.uniform.active {
-    background: url("../images/bg-input-focus.png") repeat-x 0 0; }
-
-/* Remove default webkit and possible mozilla .search styles.
- * Keeping this as :active to remove browser styles */
-div.checker input,
-input[type="search"],
-input[type="search"]:active {
-  -moz-appearance: none;
-  -webkit-appearance: none; }
-
-/* Select */
-div.selector {
-  background-position: 0 -130px;
-  line-height: 26px;
-  height: 26px;
-  padding: 0 0 0 10px;
-  position: relative;
-  overflow: hidden; }
-  div.selector span {
-    text-overflow: ellipsis;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    background-position: right 0;
-    height: 26px;
-    line-height: 26px;
-    padding-right: 25px;
-    cursor: pointer;
-    width: 100%;
-    display: block; }
-  div.selector.fixedWidth {
-    width: 190px; }
-    div.selector.fixedWidth span {
-      width: 155px; }
-  div.selector select {
-    opacity: 0;
-    filter: alpha(opacity=0);
-    -moz-opacity: 0;
-    border: none;
-    background: none;
-    position: absolute;
-    height: 22px;
-    top: 2px;
-    left: 0px;
-    width: 100%; }
-  div.selector.active {
-    background-position: 0 -156px; }
-    div.selector.active span {
-      background-position: right -26px; }
-  div.selector.hover, div.selector.focus {
-    background-position: 0 -182px; }
-    div.selector.hover span, div.selector.focus span {
-      background-position: right -52px; }
-    div.selector.hover.active, div.selector.focus.active {
-      background-position: 0 -208px; }
-      div.selector.hover.active span, div.selector.focus.active span {
-        background-position: right -78px; }
-  div.selector.disabled, div.selector.disabled.active {
-    background-position: 0 -234px; }
-    div.selector.disabled span, div.selector.disabled.active span {
-      background-position: right -104px; }
-
-/* Checkbox */
-div.checker {
-  position: relative; }
-  div.checker, div.checker span, div.checker input {
-    width: 18px;
-    height: 18px; }
-  div.checker span {
-    display: -moz-inline-box;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    text-align: center;
-    background-position: 0 -260px; }
-    div.checker span.checked {
-      background-position: -72px -260px; }
-  div.checker input {
-    opacity: 0;
-    filter: alpha(opacity=0);
-    -moz-opacity: 0;
-    border: none;
-    background: none;
-    display: -moz-inline-box;
-    display: inline-block;
-    *display: inline;
-    zoom: 1; }
-  div.checker.active span {
-    background-position: -18px -260px; }
-    div.checker.active span.checked {
-      background-position: -90px -260px; }
-  div.checker.hover span, div.checker.focus span {
-    background-position: -36px -260px; }
-    div.checker.hover span.checked, div.checker.focus span.checked {
-      background-position: -108px -260px; }
-  div.checker.hover.active span, div.checker.focus.active span {
-    background-position: -54px -260px; }
-    div.checker.hover.active span.checked, div.checker.focus.active span.checked {
-      background-position: -126px -260px; }
-  div.checker.disabled, div.checker.disabled.active {
-    background-position: -144px -260px; }
-    div.checker.disabled span.checked, div.checker.disabled.active span.checked {
-      background-position: -162px -260px; }
-
-/* Radio */
-div.radio {
-  position: relative; }
-  div.radio, div.radio span, div.radio input {
-    width: 18px;
-    height: 18px; }
-  div.radio span {
-    display: -moz-inline-box;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    text-align: center;
-    background-position: 0 -278px; }
-    div.radio span.checked {
-      background-position: -72px -278px; }
-  div.radio input {
-    opacity: 0;
-    filter: alpha(opacity=0);
-    -moz-opacity: 0;
-    border: none;
-    background: none;
-    display: -moz-inline-box;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    text-align: center; }
-  div.radio.active span {
-    background-position: -36px -278px; }
-    div.radio.active span.checked {
-      background-position: -90px -278px; }
-  div.radio.hover span, div.radio.focus span {
-    background-position: -72px -278px; }
-    div.radio.hover span.checked, div.radio.focus span.checked {
-      background-position: -108px -278px; }
-  div.radio.hover.active span, div.radio.focus.active span {
-    background-position: -54px -278px; }
-    div.radio.hover.active span.checked, div.radio.focus.active span.checked {
-      background-position: -126px -278px; }
-  div.radio.disabled span, div.radio.disabled.active span {
-    background-position: -144px -278px; }
-    div.radio.disabled span.checked, div.radio.disabled.active span.checked {
-      background-position: -162px -278px; }
-
-/* Uploader */
-div.uploader {
-  background-position: 0 -296px;
-  height: 28px;
-  width: 190px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden; }
-  div.uploader span.action {
-    background-position: right -408px;
-    height: 28px;
-    line-height: 28px;
-    width: 85px;
-    text-align: center;
-    float: left;
-    display: inline;
-    overflow: hidden;
-    cursor: pointer; }
-  div.uploader span.filename {
-    text-overflow: ellipsis;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    float: left;
-    cursor: default;
-    height: 24px;
-    margin: 2px 0 2px 2px;
-    line-height: 24px;
-    width: 82px;
-    padding: 0 10px; }
-  div.uploader input {
-    opacity: 0;
-    filter: alpha(opacity=0);
-    -moz-opacity: 0;
-    border: none;
-    background: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    float: right;
-    cursor: default;
-    width: 100%;
-    height: 100%; }
-  div.uploader.active span.action {
-    background-position: right -464px; }
-  div.uploader.hover, div.uploader.focus {
-    background-position: 0 -352px; }
-    div.uploader.hover span.action, div.uploader.focus span.action {
-      background-position: right -436px; }
-    div.uploader.hover.active span.action, div.uploader.focus.active span.action {
-      background-position: right -492px; }
-  div.uploader.disabled, div.uploader.disabled.active {
-    background-position: 0 -324px; }
-    div.uploader.disabled span.action, div.uploader.disabled.active span.action {
-      background-position: right -380px; }
-
-/* Buttons */
-div.button {
-  background-position: 0 -640px;
-  height: 30px;
-  cursor: pointer;
-  position: relative;
-  /* Keep buttons barely visible so they can get focus */ }
-  div.button a, div.button button, div.button input {
-    opacity: 0.01;
-    filter: alpha(opacity=1);
-    -moz-opacity: 0.01;
-    display: block;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute; }
-  div.button span {
-    display: -moz-inline-box;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    line-height: 30px;
-    text-align: center;
-    background-position: right -520px;
-    height: 30px;
-    margin-left: 13px;
-    padding: 0; }
-  div.button.active {
-    background-position: 0 -670px; }
-    div.button.active span {
-      background-position: right -550px;
-      cursor: default; }
-  div.button.hover, div.button.focus {
-    background-position: 0 -700px; }
-    div.button.hover span, div.button.focus span {
-      background-position: right -580px; }
-  div.button.disabled, div.button.disabled.active {
-    background-position: 0 -730px; }
-    div.button.disabled span, div.button.disabled.active span {
-      background-position: right -610px;
-      cursor: default; }
 
 div.checker span {
   background: url("../graphics/checkbox_unchecked.png") transparent 0 0 no-repeat;
@@ -2340,98 +2466,6 @@ form .submit-wrapper {
   display: inline-block; }
   form .submit-wrapper .form-submit {
     margin-right: 10px; }
-    form .submit-wrapper .form-submit#edit-next {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0 none;
-      background: url("../graphics/next.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/next.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
-      padding-left: 42px;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out; }
-      form .submit-wrapper .form-submit#edit-next:hover {
-        background-color: #303030; }
-    form .submit-wrapper .form-submit#edit-previous {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0 none;
-      background: url("../graphics/previous.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/previous.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
-      padding-left: 42px;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out; }
-      form .submit-wrapper .form-submit#edit-previous:hover {
-        background-color: #303030; }
-    form .submit-wrapper .form-submit#edit-submit {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0 none;
-      background: url("../graphics/save_small_light.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/save_small_light.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
-      padding-left: 42px;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out; }
-      form .submit-wrapper .form-submit#edit-submit:hover {
-        background-color: #303030; }
-    form .submit-wrapper .form-submit#edit-delete {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0 none;
-      background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
-      padding-left: 42px;
-      background-color: #c04343;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out; }
-      form .submit-wrapper .form-submit#edit-delete:hover {
-        background-color: #862e2e; }
 
 #ui-datepicker-div {
   font-family: "Roboto", sans-serif;
@@ -2548,127 +2582,29 @@ form.confirmation {
     width: 100%; }
     form.confirmation .form-actions.form-wrapper .submit-wrapper {
       display: inline; }
-
-#edit-cancel {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/cancel.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/cancel.svg") transparent 0 0 no-repeat;
-  background-position: 20px 12px;
-  padding-left: 42px;
-  background-color: #c04343;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin-left: 20px; }
-  #edit-cancel:hover {
-    background-color: #862e2e; }
-
-.approved {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/approved.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  color: #6c9e65;
-  padding-left: 28px;
-  background-color: #b6e0af; }
-  .approved:hover {
-    background-color: #a3c99d;
-    border: 0 none; }
-
-.not-approved {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/unapproved.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/unapproved.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  color: #9e6565;
-  padding-left: 28px;
-  background-color: #e0afaf; }
-  .not-approved:hover {
-    background-color: #c99d9d;
-    border: 0 none; }
-
-.expiring {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/exclamation.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/exclamation.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  padding-left: 28px;
-  color: #454545;
-  background-color: #fbc966; }
-  .expiring:hover {
-    background-color: #e1b45b;
-    border: 0 none; }
-
-.expired {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/expired.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/expired.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  padding-left: 28px;
-  color: #454545;
-  background-color: #d4d6d9; }
-  .expired:hover {
-    background-color: #bec0c3;
-    border: 0 none; }
+    form.confirmation .form-actions.form-wrapper #edit-submit {
+      display: inline-block;
+      height: 34px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 34px;
+      border-radius: 34px;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-bottom: 0 none;
+      background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+      background-position: 20px 11px;
+      padding-left: 42px;
+      background-color: #454545;
+      -webkit-transition: background-color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out; }
+      form.confirmation .form-actions.form-wrapper #edit-submit:hover {
+        background-color: #303030; }
 
 .tabs {
   background: #ebedf1;
@@ -2736,42 +2672,6 @@ form.confirmation {
         height: 42px;
         margin-top: -1px; }
 
-@-webkit-keyframes rotate {
-  from {
-    -webkit-transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(-180deg); } }
-@-moz-keyframes rotate {
-  from {
-    -moz-transform: rotate(0deg); }
-  to {
-    -moz-transform: rotate(-180deg); } }
-@keyframes rotate {
-  from {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(-180deg);
-    -moz-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    transform: rotate(-180deg); } }
-@-webkit-keyframes load {
-  100% {
-    -webkit-transform: rotate(360deg); } }
-@-moz-keyframes load {
-  100% {
-    -moz-transform: rotate(360deg); } }
-@keyframes load {
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg); } }
 .not-logged-in.page-user {
   background: #282828;
   box-sizing: border-box; }
@@ -3284,38 +3184,38 @@ form#user-login,
   padding: 5px 5px 5px 20px;
   text-align: left; }
 
-.page-investor-person-kontroll .form-type-managed-file,
-.page-investor-company-kontroll .form-type-managed-file {
+#eck-entity-form-edit-investor-person .form-type-managed-file,
+#eck-entity-form-edit-investor-company .form-type-managed-file {
   border-right: 1px solid #c8cacd;
   float: left;
   display: block;
   margin-right: 20px;
   padding-right: 20px;
   width: auto; }
-.page-investor-person-kontroll .status-fields,
-.page-investor-company-kontroll .status-fields {
+#eck-entity-form-edit-investor-person .status-fields,
+#eck-entity-form-edit-investor-company .status-fields {
   float: left; }
-.page-investor-person-kontroll .field-type-list-boolean,
-.page-investor-company-kontroll .field-type-list-boolean {
+#eck-entity-form-edit-investor-person .field-type-list-boolean,
+#eck-entity-form-edit-investor-company .field-type-list-boolean {
   display: inline-block;
   float: left;
   margin-top: 22px; }
-.page-investor-person-kontroll .field-type-date,
-.page-investor-company-kontroll .field-type-date {
+#eck-entity-form-edit-investor-person .field-type-date,
+#eck-entity-form-edit-investor-company .field-type-date {
   display: inline-block;
   float: left;
   margin-left: 10px;
   margin-top: 20px;
   width: 120px; }
-.page-investor-person-kontroll .option,
-.page-investor-company-kontroll .option {
+#eck-entity-form-edit-investor-person .option,
+#eck-entity-form-edit-investor-company .option {
   margin-top: 10px; }
-.page-investor-person-kontroll .checker,
-.page-investor-company-kontroll .checker {
+#eck-entity-form-edit-investor-person .checker,
+#eck-entity-form-edit-investor-company .checker {
   margin-bottom: 2px;
   padding-right: 25px; }
-.page-investor-person-kontroll form .form-item,
-.page-investor-company-kontroll form .form-item {
+#eck-entity-form-edit-investor-person form .form-item,
+#eck-entity-form-edit-investor-company form .form-item {
   margin-bottom: 5px; }
 
 .verification-header {
@@ -3351,6 +3251,20 @@ form#user-login,
     margin-top: 17px;
     text-transform: lowercase; }
 
+.title-container {
+  background: #c8cacd;
+  border-bottom: 1px solid #e0e2e6;
+  border-radius: 2px 2px 0 0;
+  display: block;
+  font-weight: 500;
+  padding: 10px 0 11px 10px; }
+
+.content-container {
+  background: #eaecf0;
+  border-radius: 0 0 2px 2px;
+  padding: 10px;
+  margin-bottom: 20px; }
+
 .transaction-wrapper {
   background: #fff;
   overflow: auto; }
@@ -3376,3 +3290,18 @@ form#user-login,
   padding: 0 0 0 25px; }
   .transaction-information:last-child {
     margin-right: 0; }
+
+.process-steps {
+  float: right; }
+  .process-steps ul {
+    list-style-type: none; }
+    .process-steps ul li {
+      font-size: 48px;
+      font-size: 4.8rem;
+      line-height: 72px;
+      font-weight: 300;
+      display: inline;
+      color: #c8cacd;
+      margin-right: 15px; }
+      .process-steps ul li.active {
+        color: #282828; }

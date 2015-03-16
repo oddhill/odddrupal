@@ -48,29 +48,7 @@
   }
 }
 
-.field-shared-industries,
-.field-shared-address,
-.field-shared-email {
-  margin-bottom: 15px;
-}
-
 .node.view-mode-full {
   @include outer-container;
   max-width: 800px;
-}
-
-// Node type company
-.node-type-company {
-
-   .main-content {
-
-    .content-column {
-      overflow: visible;
-    }
-  }
-
-  // Company logo
-  .field-comp-logo {
-    margin-top: 10px;
-  }
 }

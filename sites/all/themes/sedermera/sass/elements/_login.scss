@@ -28,7 +28,7 @@
         overflow: hidden;
         padding: 0;
         width: 100%;
-        }
+      }
 
       img {
         width: 300px;
@@ -57,7 +57,7 @@
   }
 }
 
-// User login form / Password reset
+// User login form / Password reset / Lost YubiKey
 form#user-login,
 #user-pass,
 #yubikey-lost {
@@ -108,7 +108,7 @@ form#user-login,
     color: $wool;
   }
 
-  // Reset password & Lost Yubikey
+  // List with links to Reset password & Lost Yubikey
   ul {
     color: #fff;
     margin-top: 100px;
