@@ -18,7 +18,7 @@
     <td>
 
       <!-- Table Wrapper width 600 -->
-      <table cellspacing="0" cellpadding="0" border="0" width="600">
+      <table width="600" cellspacing="0" cellpadding="0" border="0">
         <tr>
           <td>
 
@@ -83,7 +83,7 @@
           <td>
 
             <!-- Table Fields -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 0 20px 0 20px;">
+            <table class="html-mail-fields" width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 0 20px 0 20px;">
 
               <tr>
                 <td><?php print render($content['field_cap_rais_date']); ?></td>
@@ -127,7 +127,6 @@
 
             </table>
             <!-- End Table Fields -->
-
 
           </td>
         </tr>

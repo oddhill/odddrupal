@@ -794,25 +794,28 @@ form.views-send-preview .form-actions {
   background: #fff;
   margin: 0 auto;
   width: 600px; }
-  .mfp-content #message-preview h2 {
-    font-size: 32px;
-    font-size: 3.2rem;
-    line-height: 48px;
-    font-weight: 700;
-    padding-bottom: 10px;
-    padding-top: 5px; }
-    .mfp-content #message-preview h2 .field-title {
-      border-bottom: 2px solid #f3f4f8; }
-  .mfp-content #message-preview .field-cap-rais-date,
-  .mfp-content #message-preview .field-cap-rais-post,
-  .mfp-content #message-preview .field-cap-rais-rate,
-  .mfp-content #message-preview .field-cap-rais-vol,
-  .mfp-content #message-preview .field-cap-rais-vol-units,
-  .mfp-content #message-preview .field-cap-rais-stock-no,
-  .mfp-content #message-preview .field-cap-rais-units-no,
-  .mfp-content #message-preview .field-cap-rais-estim,
-  .mfp-content #message-preview .field-cap-rais-file {
-    padding-left: 20px; }
+  .mfp-content #message-preview {
+    background: #fff;
+    margin: 0 auto;
+    width: 600px; }
+    .mfp-content #message-preview h2 {
+      font-size: 32px;
+      font-size: 3.2rem;
+      line-height: 48px;
+      font-weight: 700;
+      padding-bottom: 10px;
+      padding-top: 5px; }
+      .mfp-content #message-preview h2 .field-title {
+        border-bottom: 2px solid #f3f4f8; }
+
+.mfp-inline-holder .mfp-content,
+.mfp-ajax-holder .mfp-content {
+  padding-bottom: 45px;
+  padding-top: 40px;
+  width: 660px; }
+
+.html-mail-fields p {
+  display: inline-block; }
 
 .transaction-information img {
   height: auto;

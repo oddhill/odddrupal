@@ -1,18 +1,13 @@
 // Transaction E-mail preview (Magnific Popup)
-.mfp-container {
-
-}
-
 .mfp-content {
   background: $snow;
   margin: 0 auto;
   width: 600px;
 
   #message-preview {
-
-    hr {
-      //display: none;
-    }
+    background: $snow;
+    margin: 0 auto;
+    width: 600px;
 
     h2 {
       @include font-size(3.2);
@@ -24,18 +19,19 @@
         border-bottom: 2px solid $light-grey;
       }
     }
+  }
+}
 
-    .field-cap-rais-date,
-    .field-cap-rais-post,
-    .field-cap-rais-rate,
-    .field-cap-rais-vol,
-    .field-cap-rais-vol-units,
-    .field-cap-rais-stock-no,
-    .field-cap-rais-units-no,
-    .field-cap-rais-estim,
-    .field-cap-rais-file {
+// Makes magnific pop up width 650px
+.mfp-inline-holder .mfp-content,
+.mfp-ajax-holder .mfp-content {
+  padding-bottom: 45px;
+  padding-top: 40px;
+  width: 660px;
+}
 
-      padding-left: 20px;
-    }
+.html-mail-fields {
+  p {
+    display: inline-block;
   }
 }
