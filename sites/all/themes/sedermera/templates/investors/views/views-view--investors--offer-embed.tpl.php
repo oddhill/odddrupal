@@ -23,7 +23,7 @@
 
     <?php print $attachment_before; ?>
 
-    <div class="table-wrapper column">
+    <div class="table-wrapper">
 
       <?php print $rows; ?>
 

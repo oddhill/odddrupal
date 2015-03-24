@@ -16,6 +16,15 @@ h3 {
   font-weight: 500;
 }
 
+.title h2 {
+  @include font-size(3.2);
+  border-bottom: 2px solid $light-grey;
+  font-weight: 500;
+  margin-bottom: 33px;
+  padding: 0 0 33px 0;
+  text-align: center;
+}
+
 // Paragraph
 p {
   margin: 1em 0;
@@ -33,15 +42,15 @@ strong {
 
 // Links
 a {
-    @include transition (border-color 0.1s ease-in-out);
-    border-bottom: 1px solid $wool;
-    color: $night;
-    text-decoration: none;
+  @include transition (border-color 0.1s ease-in-out);
+  border-bottom: 1px solid $wool;
+  color: $night;
+  text-decoration: none;
 
-    &:hover {
-      border-bottom: 1px solid $night;
-    }
+  &:hover {
+    border-bottom: 1px solid $night;
   }
+}
 
 // Lists
 .body {

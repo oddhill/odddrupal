@@ -4,16 +4,16 @@
   .main-content {
 
     .content-column {
-      @include span-columns(9 of 12);
-      @include pad(0 40px 0 0);
-      background-color: #f3f4f8;
+      background-color: transparent;
+      margin-right: 30px;
+      width: 70%;
     }
   }
 
   .content-sidebar {
-    @include span-columns(3 of 12);
-    @include omega();
+    background: transparent;
     margin-top: 8px;
+    width: 20%;
 
     .sidebar-second-icon {
       display: none;
@@ -22,6 +22,11 @@
 
   h2 {
     text-transform: uppercase;
+  }
+
+  .table-wrapper {
+    overflow: visible;
+    width: 100%;
   }
 
   // Activity (Aktivitet)
@@ -73,11 +78,6 @@
         }
       }
     }
-  }
-
-  .table-wrapper {
-    padding-bottom: 0px;
-    overflow: visible;
   }
 }
 

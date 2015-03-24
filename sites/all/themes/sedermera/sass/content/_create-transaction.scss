@@ -4,11 +4,18 @@
   // Wraps next step/go back/create buttons
   .form-actions {
     text-align: right;
+    width: 100%;
 
     .form-submit {
       margin-left: 10px;
       margin-right: 0;
     }
+  }
+
+  .submit-wrapper {
+    // bottom: 0;
+    // position: absolute;
+    // right: 0;
   }
 
   // Transaction title - Step 3
@@ -29,14 +36,14 @@
     background: $snow;
     overflow: hidden;
     padding: 50px 40px 50px 40px;
+    width: 75%
   }
 
   // Preview investors - Step 3 (Kontaktlista)
   #preview-investors {
-    float: right;
     background: $wool;
     padding: 20px;
-    width: 280px;
+    width: 25%;
 
     h3 {
       @include font-size(1.2);

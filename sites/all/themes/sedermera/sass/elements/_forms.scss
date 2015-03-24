@@ -1,10 +1,9 @@
 form {
 
   .form-sidebar {
-    float: left;
-    width: 340px;
     background: $wool;
     padding: 20px;
+    width: 30%;
 
     .form-text {
       width: 100%;
@@ -19,9 +18,10 @@ form {
   }
 
   .form-body {
-    overflow: hidden;
     background: $snow;
+    overflow: hidden;
     padding: 20px;
+    width: 70%;
   }
 
   .form-actions {
@@ -825,6 +825,7 @@ form.confirmation {
   @include font-size(1.6);
   display: inline-block;
   font-weight: 700;
+  padding: 50px 40px 20px 40px;
 
   input {
     @include button($dark-grey, confirm);

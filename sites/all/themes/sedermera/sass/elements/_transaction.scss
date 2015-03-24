@@ -38,3 +38,21 @@
     }
   }
 }
+
+// Transaction padding
+.node-capital_raising-form {
+  padding: 50px 40px 40px 40px;
+}
+
+// Wraps Contactlist (Kontaktlista), Stakeholders (Intressenter), Subscription list (Teckningslista)
+.transction-table-wrapper {
+  width: 100%;
+}
+
+.page-node-add-capital-raising {
+
+  // No padding on add transaction form
+  .node-capital_raising-form {
+      padding: 0;
+  }
+}

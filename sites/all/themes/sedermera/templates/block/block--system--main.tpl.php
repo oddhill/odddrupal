@@ -20,6 +20,5 @@
  * @see template_process()
  */
 ?>
-<section id="page-content">
-  <?php print $content ?>
-</section>
+<?php print $content ?>
+

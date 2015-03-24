@@ -41,35 +41,18 @@
   // Sidebar second main wrapper
   .content-sidebar {
     background: $wool;
-    float: right;
     padding-bottom: 30px;
-    width: 280px;
+    width: 23%;
 
     // Dashboard page
     .page-oversikt & {
-      background: transparent;
-      float: right;
       padding-bottom: 30px;
-      width: 320px;
-    }
-
-    @include media($medium) {
-      display: block;
-      float: left;
-      margin-bottom: 25px;
-      overflow: hidden;
-      padding-bottom: 0;
-      width: 100%;
+      width: 25%;
     }
 
     // Sidebar second content wrapper
     .sidebar-second-content {
       padding: 0 10px 10px 10px;
-
-      @include media($medium) {
-        overflow: hidden;
-        padding: 0 10px 0 10px;
-      }
     }
   }
 }
@@ -78,13 +61,7 @@
 .content-column {
   background-color: #fff;
   overflow: hidden;
-
-  @include media($medium) {
-    display: block;
-    float: left;
-    overflow: hidden;
-    width: 100%;
-  }
+  width: 77%;
 }
 
 // Page action links wrapper
@@ -104,4 +81,61 @@
       @include button($dark-grey, add);
     }
   }
+}
+
+// CSS3 Flexible Box
+// Defines the element as a flex container and its children as flex items.
+// The flex value makes the flex container a block-level element.
+// The inline-flex value makes the flex container an atomic inline-level element.
+.flex-box {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// Flex-box for forms
+#capital-raising-node-form,
+#eck-entity-form-add-investor-person,
+#eck-entity-form-add-investor-company {
+
+  > div {
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    -ms-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.page-investor-company-edit,
+.page-investor-person-edit {
+
+  #eck-entity-form-edit-investor-company,
+  #eck-entity-form-edit-investor-person {
+
+    > div {
+      display: -ms-flexbox;
+      -ms-flex-direction: column;
+      -ms-flex-wrap: wrap;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+// Background color
+.bg {
+  background: $snow;
+}
+
+// Padding
+.padding {
+  padding: 50px 40px 40px 40px;
+}
+
+.node.view-mode-full {
+   @include outer-container;
+   max-width: 800px;
 }

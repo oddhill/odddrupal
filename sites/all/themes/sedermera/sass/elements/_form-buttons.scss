@@ -52,14 +52,3 @@ form#user-login {
     margin: 10px 0 0;
   }
 }
-
-// Sumbit button for reset password & lost Yubikey
-#user-pass,
-#yubikey-lost {
-
-  #edit-submit {
-    @include button($mustard, arrow-right);
-    margin: 10px 0 0;
-    color: $night;
-  }
-}

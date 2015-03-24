@@ -23,7 +23,7 @@
           <td>
 
             <!-- Image Table-->
-            <table width="100%" cellpadding="40">
+            <table width="100%" cellpadding="40" style="margin: 0 auto">
               <tr>
                 <td cellspacing="0" border="0" align="center"><?php print render($content['field_cap_rais_comp']); ?></td>
               </tr>

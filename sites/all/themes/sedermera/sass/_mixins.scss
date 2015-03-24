@@ -46,8 +46,8 @@
 
   @if $icon == next {
     @include svg-bg(next);
-    background-position: 20px 11px;
-    padding-left: 42px;
+    background-position: 100px 11px;
+    padding-right: 42px;
   }
 
   @if $icon == previous {

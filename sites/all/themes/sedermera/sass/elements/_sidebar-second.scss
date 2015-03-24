@@ -7,10 +7,6 @@
   text-indent: 9999;
   width: 100%;
 
-  @include media($medium) {
-    margin-bottom: 10px;
-  }
-
   // Second sidebar top icon
   .icon {
     @include svg-bg(progress_chart);
@@ -30,11 +26,6 @@
   margin-bottom: 20px;
   padding-bottom: 20px;
   text-align: center;
-
-  @include media($medium) {
-    height: 170px;
-    margin-bottom: 11px;
-  }
 
   h3 {
     @include font-size(1.2);
@@ -59,11 +50,6 @@
     font-weight: 700;
     margin-top: 20px;
     text-transform: uppercase;
-
-    @include media($medium) {
-     @include font-size(2.8);
-     margin-top: 10px;
-    }
   }
 }
 
@@ -74,28 +60,11 @@
   font-family: 'Inconsolata';
 }
 
-// Transaction record wrapper (Upptecknat)
-.transaction-record {
-
-  @include media($medium) {
-    float: left;
-    margin-right: 1%;
-    width: 75%;
-  }
-}
-
 // Vertical bars wrapper
 .vertical-bars {
   border-bottom: 1px solid $dark-grey;
   height: 200px;
   margin: 10px 20px 40px;
-
-  @include media($medium) {
-    float: right;
-    height: 100px;
-    margin: 0 20px 0 0;
-    width: 25%;
-  }
 }
 
 // Single vertical bar wrapper
@@ -105,10 +74,6 @@
   margin-bottom: 1px;
   position: relative;
   width: 50%;
-
-  @include media($medium) {
-    height: 99px;
-  }
 
   .progress.vertical {
     background: transparent;
@@ -167,16 +132,6 @@
 // Guaranteed and undertaken wrapper (Garanterat och Åtaget)
 .vertical-bars-text-wrapper {
   margin: 20px 20px 10px 20px;
-
-  @include media($medium) {
-    float: right;
-    border-left: 1px solid $light-concrete;
-    border-right: 1px solid $light-concrete;
-    margin-right: 30px;
-    margin-top: 10px;
-    padding: 0 20px 0 20px;
-    width: 37%;
-  }
 }
 
 // The sum of Guaranteed and Undertaken (Summan av garanterat och åtaget i SEK)
@@ -189,28 +144,12 @@
 
   &:last-child {
     margin-bottom: 30px;
-
-   @include media($medium) {
-     margin-bottom: 0;
-    }
   }
 }
 
 // Total wrapper (Totalt)
 .total-wrapper {
   clear: both;
-
-  @include media($medium) {
-    clear: none;
-    float: left;
-    margin-left: 20px;
-    margin-top: 15px;
-    width: 25%;
-  }
-
-  @include media($medium-small) {
-    width: 22%;
-  }
 
   // Total bar
   .progress {
@@ -219,10 +158,6 @@
     border-radius: 16px;
     height: 32px;
     margin: 20px 10px 10px 10px;
-
-    @include media($medium) {
-      margin: 0 0 18px 0;
-    }
 
     // The grand total in % (Totalsumman i %)
     .progress-bar {
@@ -235,15 +170,6 @@
       line-height: 28px;
       -webkit-box-shadow: none;
     }
-  }
-}
-
-// Time-remaining wrapper
-.transaction-time-remaining {
-
-  @include media($medium) {
-    float: left;
-    width: 24%;
   }
 }
 

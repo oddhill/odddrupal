@@ -16,11 +16,10 @@
  * @see template_process()
  */
 ?>
-
 <div class="site-wrapper">
   <?php if($page['header']): ?>
     <aside class="main-sidebar">
-    	<?php print render($page['header']); ?>
+      <?php print render($page['header']); ?>
     </aside>
   <?php endif; ?>
 
@@ -35,19 +34,23 @@
     <div class="content-wrapper">
 
       <?php if($page['sidebar-second']): ?>
-        <aside class="content-sidebar column">
-          <h2 class="sidebar-second-icon"><span class="icon">Information</span></h2>
+        <div class="flex-box">
+          <div class="content-column">
+            <?php print render($page['content']); ?>
+          </div>
+
+          <aside class="content-sidebar">
+            <h2 class="sidebar-second-icon"><span class="icon">Information</span></h2>
             <div class="sidebar-second-content">
               <?php print render($page['sidebar-second']); ?>
             </div>
-        </aside>
-
-        <div class="content-column column">
-          <?php print render($page['content']); ?>
+          </aside>
         </div>
+
       <?php else: ?>
         <?php print render($page['content']); ?>
       <?php endif; ?>
+
     </div>
   </main>
 </div>

@@ -1,6 +1,6 @@
 // Wraps the entire table
 .filtered-table {
-  background: $snow;
+  background: #fff;
   overflow: hidden;
 }
 
@@ -8,7 +8,8 @@
 .table-filter {
   background: $wool;
   float: left;
-  width: 280px;
+  //width: 280px;
+  width: 23%;
 
   h2.filter-icon {
     background: $dark-grey;
@@ -132,138 +133,140 @@
 
 // Wraps the table (all content and filtred content)
 .table-wrapper {
+  background: $snow;
   overflow: hidden;
-  padding-bottom: 60px;
+  //padding-bottom: 60px;
   position: relative;
+  width: 77%;
+}
 
-  table {
-    width: 100%;
+table {
+  width: 100%;
 
-    thead {
-      background: $aluminium;
-      border-bottom: 1px solid $wool;
-      border-top: 1px solid $wool;
-      font-weight: 700;
+  thead {
+    background: $aluminium;
+    border-bottom: 1px solid $wool;
+    border-top: 1px solid $wool;
+    font-weight: 700;
 
-      th {
-        height: 42px;
-        text-align: left;
+    th {
+      height: 42px;
+      text-align: left;
 
-        &.views-field {
-          padding: 10px 0px 10px 10px;
+      &.views-field {
+        padding: 10px 0px 10px 10px;
 
-          &.active {
+        &.active {
 
-            a {
-              border-bottom: 2px solid $mustard;
-            }
+          a {
+            border-bottom: 2px solid $mustard;
           }
         }
+      }
 
-        a {
-          border-bottom: 0px none;
-          color: $coffee;
-          font-size: $standard;
+      a {
+        border-bottom: 0px none;
+        color: $coffee;
+        font-size: $standard;
 
-          img {
-            border-bottom: none;
-            margin-left: 5px;
+        img {
+          border-bottom: none;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  td {
+    height: 44px;
+    padding: 10px 0 10px 10px;
+    vertical-align: middle;
+
+    .form-actions {
+      margin: 0;
+    }
+
+    .form-item {
+      margin-bottom: 0;
+
+      &.form-type-checkbox {
+        padding-top: 2px;
+
+        label.option {
+          display: block;
+          line-height: 18px;
+          padding-left: 23px;
+          position: relative;
+
+          .checker {
+            position: absolute;
+            left: 0;
+            top: 0;
           }
+        }
+      }
+
+      &.form-type-textfield {
+
+        .form-text {
+          margin: 0;
+          padding: 0 2px;
         }
       }
     }
 
-    td {
-      height: 44px;
-      padding: 10px 0 10px 10px;
-      vertical-align: middle;
+    .editablefield-item {
+      position: relative;
 
       .form-actions {
-        margin: 0;
-      }
 
-      .form-item {
-        margin-bottom: 0;
-
-        &.form-type-checkbox {
-          padding-top: 2px;
-
-          label.option {
-            display: block;
-            line-height: 18px;
-            padding-left: 23px;
-            position: relative;
-
-            .checker {
-              position: absolute;
-              left: 0;
-              top: 0;
-            }
-          }
+        .submit-wrapper {
+          display: block;
         }
 
-        &.form-type-textfield {
+        .ajax-progress {
+          height: 100%;
+          left: 0px;
+          padding-top: 3px;
+          position: absolute;
+          top: 0px;
+          width: 100%;
 
-          .form-text {
-            margin: 0;
-            padding: 0 2px;
-          }
-        }
-      }
-
-      .editablefield-item {
-        position: relative;
-
-        .form-actions {
-
-          .submit-wrapper {
-            display: block;
+          .throbber {
+            @include throbber;
           }
 
-          .ajax-progress {
-            height: 100%;
-            left: 0px;
-            padding-top: 3px;
-            position: absolute;
-            top: 0px;
-            width: 100%;
-
-            .throbber {
-              @include throbber;
-            }
-
-            .message {
-              padding-left: 24px;
-            }
+          .message {
+            padding-left: 24px;
           }
         }
       }
     }
+  }
 
-    tr {
+  tr {
 
-      &.even {
+    &.even {
+      background: tint($light-grey,60%);
+      border-bottom: 1px solid $light-grey;
+      border-top: 1px solid $light-grey;
+
+      .ajax-progress {
         background: tint($light-grey,60%);
-        border-bottom: 1px solid $light-grey;
-        border-top: 1px solid $light-grey;
-
-        .ajax-progress {
-          background: tint($light-grey,60%);
-        }
       }
+    }
 
-      &.odd {
+    &.odd {
+      background: $snow;
+
+      .ajax-progress {
         background: $snow;
-
-        .ajax-progress {
-          background: $snow;
-        }
       }
     }
+  }
 
-    td {
-      color: $dark-concrete;
-    }
+  td {
+    color: $dark-concrete;
   }
 
   input {

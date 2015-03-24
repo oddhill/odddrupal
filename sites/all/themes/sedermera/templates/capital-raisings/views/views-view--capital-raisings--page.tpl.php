@@ -13,17 +13,17 @@
  */
 ?>
 <div class="<?php print $classes; ?>">
-  <div id="investor-table" class="filtered-table">
+  <div id="capital-raising" class="flex-box">
     <?php print $header; ?>
 
-    <div class="table-filter column">
+    <div class="table-filter">
       <h2 class="filter-icon"><span class="icon">Filtrera</span></h2>
       <?php print $exposed; ?>
     </div>
 
     <?php print $attachment_before; ?>
 
-    <div class="table-wrapper column">
+      <div class="table-wrapper">
 
       <?php print $rows; ?>
 

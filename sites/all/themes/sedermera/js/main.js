@@ -89,14 +89,6 @@ Drupal.behaviors.form_placeholder = {
 };
 
 /**
- * Sets equal heights to columns.
- */
-columnHeightMatch = function() {
-  var $groups = $('.column');
-  $groups.matchHeight();
-};
-
-/**
  * Function that sets the value of the image field to the new
  * text field that is used as a substitute.
  */
@@ -132,9 +124,6 @@ Drupal.behaviors.sedermera = {
 
     // Use selectBoxit on our select lists.
     $('select').selectBoxIt();
-
-    // Set equal heights to columns.
-    columnHeightMatch();
 
     // Add the file field value to the substitute text field when
     // we've chosen a file from the file browser.

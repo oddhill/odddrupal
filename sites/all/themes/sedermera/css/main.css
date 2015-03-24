@@ -18,6 +18,16 @@ h3 {
   line-height: 20.8px;
   font-weight: 500; }
 
+.title h2 {
+  font-size: 32px;
+  font-size: 3.2rem;
+  line-height: 48px;
+  border-bottom: 2px solid #f3f4f8;
+  font-weight: 500;
+  margin-bottom: 33px;
+  padding: 0 0 33px 0;
+  text-align: center; }
+
 p {
   margin: 1em 0; }
 
@@ -524,7 +534,8 @@ form.views-send-preview .form-actions {
   margin: 0 10px; }
 
 .node-capital_raising-form .form-actions {
-  text-align: right; }
+  text-align: right;
+  width: 100%; }
   .node-capital_raising-form .form-actions .form-submit {
     margin-left: 10px;
     margin-right: 0; }
@@ -540,12 +551,12 @@ form.views-send-preview .form-actions {
 .node-capital_raising-form #preview-transaction {
   background: #fff;
   overflow: hidden;
-  padding: 50px 40px 50px 40px; }
+  padding: 50px 40px 50px 40px;
+  width: 75%; }
 .node-capital_raising-form #preview-investors {
-  float: right;
   background: #e0e2e6;
   padding: 20px;
-  width: 280px; }
+  width: 25%; }
   .node-capital_raising-form #preview-investors h3 {
     font-size: 12px;
     font-size: 1.2rem;
@@ -569,10 +580,7 @@ form.views-send-preview .form-actions {
 .page-investor-person-edit .form-sidebar,
 .page-investor-company-edit .form-sidebar {
   background: transparent;
-  float: left;
-  margin-right: 20px;
-  padding: 0;
-  width: 280px; }
+  padding: 0 20px 0 0; }
 .page-investor-person-edit .form-body,
 .page-investor-company-edit .form-body {
   background: transparent;
@@ -584,10 +592,7 @@ form.views-send-preview .form-actions {
 
 .page-node-edit.node-type-capital-raising .form-sidebar {
   background: transparent;
-  float: left;
-  margin-right: 20px;
-  padding: 0;
-  width: 280px; }
+  padding: 0 20px 0 0; }
 .page-node-edit.node-type-capital-raising #title-wrapper {
   background: #e0e2e6;
   border-radius: 2px;
@@ -605,62 +610,23 @@ form.views-send-preview .form-actions {
 .page-node-edit .form-actions {
   padding-top: 20px; }
 
-.page-investor .main-content #page-content,
-.node-type-capital-raising .main-content #page-content,
-.node-type-company .main-content #page-content,
-.page-node-kontaktlista .main-content #page-content,
-.page-node-teckningslista .main-content #page-content,
-.page-node-intressenter .main-content #page-content {
-  background: #fff;
-  margin-top: 0;
-  padding: 50px 40px 50px 40px; }
-  .page-investor .main-content #page-content .title h2,
-  .node-type-capital-raising .main-content #page-content .title h2,
-  .node-type-company .main-content #page-content .title h2,
-  .page-node-kontaktlista .main-content #page-content .title h2,
-  .page-node-teckningslista .main-content #page-content .title h2,
-  .page-node-intressenter .main-content #page-content .title h2 {
-    font-size: 32px;
-    font-size: 3.2rem;
-    line-height: 48px;
-    border-bottom: 2px solid #f3f4f8;
-    font-weight: 500;
-    margin-bottom: 33px;
-    padding: 0 0 33px 0;
-    text-align: center; }
-.page-investor .main-content .content-wrapper,
-.node-type-capital-raising .main-content .content-wrapper,
-.node-type-company .main-content .content-wrapper,
-.page-node-kontaktlista .main-content .content-wrapper,
-.page-node-teckningslista .main-content .content-wrapper,
-.page-node-intressenter .main-content .content-wrapper {
-  background-color: #e0e2e6; }
-
-.page-node-kontaktlista .table-wrapper,
-.page-node-intressenter .table-wrapper {
-  padding-bottom: 0; }
-
-.page-node-kontaktlista-lagg-till .main-content #page-content {
-  background: #f3f4f8;
-  padding: 0; }
-
-.node.view-mode-full {
-  max-width: 1800px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px; }
-  .node.view-mode-full:after {
-    content: "";
-    display: table;
-    clear: both; }
-
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {
   margin-bottom: 15px; }
 
-.node-type-company .field-comp-logo {
+.node-type-company .content-wrapper {
+  background: #fff;
+  padding-bottom: 40px; }
+
+.field-comp-logo {
   margin-top: 10px; }
+
+.node-company-form {
+  padding: 50px 40px 0 40px; }
+
+.page-node-add-company #company-node-form {
+  padding: 0; }
 
 #user-pass-reset {
   color: #fff;
@@ -693,6 +659,34 @@ form.views-send-preview .form-actions {
     #user-pass-reset #edit-submit:hover {
       background-color: #fac04c;
       box-shadow: 0 0 3px #222222; }
+
+#user-pass #edit-submit,
+#yubikey-lost #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/arrow-right.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/arrow-right.svg") transparent 0 0 no-repeat;
+  background-position: 16px 11px;
+  padding-left: 42px;
+  background-color: #f9a500;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin: 10px 0 0;
+  color: #1a1a1a; }
+  #user-pass #edit-submit:hover,
+  #yubikey-lost #edit-submit:hover {
+    background-color: #ae7300; }
 
 .view-offers .add-more {
   display: inline-block;
@@ -731,8 +725,7 @@ form.views-send-preview .form-actions {
     position: absolute;
     display: none; }
   .view-offers .form-type-date-combo .date-date {
-    width: 145px;
-    border: 10px solid red; }
+    width: 145px; }
 .view-offers .views-field-field-offer-interested .checker {
   margin-bottom: 4px;
   margin-right: 5px; }
@@ -802,11 +795,17 @@ form.views-send-preview .form-actions {
       font-size: 32px;
       font-size: 3.2rem;
       line-height: 48px;
+      border: 0;
       font-weight: 700;
-      padding-bottom: 10px;
-      padding-top: 5px; }
+      padding-bottom: 0;
+      padding-top: 10px; }
       .mfp-content #message-preview h2 .field-title {
-        border-bottom: 2px solid #f3f4f8; }
+        border-bottom: 0px solid #f3f4f8; }
+    .mfp-content #message-preview table {
+      width: auto; }
+      .mfp-content #message-preview table td {
+        height: 0;
+        padding: 0; }
 
 .mfp-inline-holder .mfp-content,
 .mfp-ajax-holder .mfp-content {
@@ -909,38 +908,18 @@ form.views-send-preview .form-actions {
   margin: 0; }
   .content-wrapper .content-sidebar {
     background: #e0e2e6;
-    float: right;
     padding-bottom: 30px;
-    width: 280px; }
+    width: 23%; }
     .page-oversikt .content-wrapper .content-sidebar {
-      background: transparent;
-      float: right;
       padding-bottom: 30px;
-      width: 320px; }
-    @media screen and (max-width: 1280px) {
-      .content-wrapper .content-sidebar {
-        display: block;
-        float: left;
-        margin-bottom: 25px;
-        overflow: hidden;
-        padding-bottom: 0;
-        width: 100%; } }
+      width: 25%; }
     .content-wrapper .content-sidebar .sidebar-second-content {
       padding: 0 10px 10px 10px; }
-      @media screen and (max-width: 1280px) {
-        .content-wrapper .content-sidebar .sidebar-second-content {
-          overflow: hidden;
-          padding: 0 10px 0 10px; } }
 
 .content-column {
   background-color: #fff;
-  overflow: hidden; }
-  @media screen and (max-width: 1280px) {
-    .content-column {
-      display: block;
-      float: left;
-      overflow: hidden;
-      width: 100%; } }
+  overflow: hidden;
+  width: 77%; }
 
 .page-actions {
   float: right;
@@ -973,6 +952,48 @@ form.views-send-preview .form-actions {
       transition: background-color 0.1s ease-in-out; }
       .page-actions li a:hover {
         background-color: #303030; }
+
+.flex-box {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap; }
+
+#capital-raising-node-form > div,
+#eck-entity-form-add-investor-person > div,
+#eck-entity-form-add-investor-company > div {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap; }
+
+.page-investor-company-edit #eck-entity-form-edit-investor-company > div,
+.page-investor-company-edit #eck-entity-form-edit-investor-person > div,
+.page-investor-person-edit #eck-entity-form-edit-investor-company > div,
+.page-investor-person-edit #eck-entity-form-edit-investor-person > div {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap; }
+
+.bg {
+  background: #fff; }
+
+.padding {
+  padding: 50px 40px 40px 40px; }
+
+.node.view-mode-full {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px; }
+  .node.view-mode-full:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 #edit-submit {
   display: inline-block;
@@ -1061,8 +1082,8 @@ form.views-send-preview .form-actions {
   border-bottom: 0 none;
   background: url("../graphics/next.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/next.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
+  background-position: 100px 11px;
+  padding-right: 42px;
   background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
@@ -1218,34 +1239,6 @@ form#user-login #edit-submit {
   form#user-login #edit-submit:hover {
     background-color: #fac04c;
     box-shadow: 0 0 3px #222222; }
-
-#user-pass #edit-submit,
-#yubikey-lost #edit-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/arrow-right.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/arrow-right.svg") transparent 0 0 no-repeat;
-  background-position: 16px 11px;
-  padding-left: 42px;
-  background-color: #f9a500;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin: 10px 0 0;
-  color: #1a1a1a; }
-  #user-pass #edit-submit:hover,
-  #yubikey-lost #edit-submit:hover {
-    background-color: #ae7300; }
 
 .main-sidebar {
   background-color: #282828;
@@ -1539,7 +1532,7 @@ form#user-login #edit-submit {
 .table-filter {
   background: #e0e2e6;
   float: left;
-  width: 280px; }
+  width: 23%; }
   .table-filter h2.filter-icon {
     background: #454545;
     border-bottom: 1px solid;
@@ -1649,89 +1642,91 @@ form#user-login #edit-submit {
           box-shadow: 0 0 3px #a2a2a2; }
 
 .table-wrapper {
+  background: #fff;
   overflow: hidden;
-  padding-bottom: 60px;
-  position: relative; }
-  .table-wrapper table {
-    width: 100%; }
-    .table-wrapper table thead {
-      background: #ebedf1;
-      border-bottom: 1px solid #e0e2e6;
-      border-top: 1px solid #e0e2e6;
-      font-weight: 700; }
-      .table-wrapper table thead th {
-        height: 42px;
-        text-align: left; }
-        .table-wrapper table thead th.views-field {
-          padding: 10px 0px 10px 10px; }
-          .table-wrapper table thead th.views-field.active a {
-            border-bottom: 2px solid #f9a500; }
-        .table-wrapper table thead th a {
-          border-bottom: 0px none;
-          color: #282828;
-          font-size: 1.4; }
-          .table-wrapper table thead th a img {
-            border-bottom: none;
-            margin-left: 5px; }
-    .table-wrapper table td {
-      height: 44px;
-      padding: 10px 0 10px 10px;
-      vertical-align: middle; }
-      .table-wrapper table td .form-actions {
-        margin: 0; }
-      .table-wrapper table td .form-item {
-        margin-bottom: 0; }
-        .table-wrapper table td .form-item.form-type-checkbox {
-          padding-top: 2px; }
-          .table-wrapper table td .form-item.form-type-checkbox label.option {
-            display: block;
-            line-height: 18px;
-            padding-left: 23px;
-            position: relative; }
-            .table-wrapper table td .form-item.form-type-checkbox label.option .checker {
-              position: absolute;
-              left: 0;
-              top: 0; }
-        .table-wrapper table td .form-item.form-type-textfield .form-text {
-          margin: 0;
-          padding: 0 2px; }
-      .table-wrapper table td .editablefield-item {
-        position: relative; }
-        .table-wrapper table td .editablefield-item .form-actions .submit-wrapper {
-          display: block; }
-        .table-wrapper table td .editablefield-item .form-actions .ajax-progress {
-          height: 100%;
-          left: 0px;
-          padding-top: 3px;
-          position: absolute;
-          top: 0px;
-          width: 100%; }
-          .table-wrapper table td .editablefield-item .form-actions .ajax-progress .throbber {
-            display: inline-block;
-            background: transparent;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #f9a500;
-            border-radius: 50%;
-            border-top-color: transparent;
-            -webkit-animation: load 0.9s linear infinite;
-            -moz-animation: load 0.9s linear infinite;
-            animation: load 0.9s linear infinite; }
-          .table-wrapper table td .editablefield-item .form-actions .ajax-progress .message {
-            padding-left: 24px; }
-    .table-wrapper table tr.even {
-      background: #fafafc;
-      border-bottom: 1px solid #f3f4f8;
-      border-top: 1px solid #f3f4f8; }
-      .table-wrapper table tr.even .ajax-progress {
-        background: #fafafc; }
-    .table-wrapper table tr.odd {
+  position: relative;
+  width: 77%; }
+
+table {
+  width: 100%; }
+  table thead {
+    background: #ebedf1;
+    border-bottom: 1px solid #e0e2e6;
+    border-top: 1px solid #e0e2e6;
+    font-weight: 700; }
+    table thead th {
+      height: 42px;
+      text-align: left; }
+      table thead th.views-field {
+        padding: 10px 0px 10px 10px; }
+        table thead th.views-field.active a {
+          border-bottom: 2px solid #f9a500; }
+      table thead th a {
+        border-bottom: 0px none;
+        color: #282828;
+        font-size: 1.4; }
+        table thead th a img {
+          border-bottom: none;
+          margin-left: 5px; }
+  table td {
+    height: 44px;
+    padding: 10px 0 10px 10px;
+    vertical-align: middle; }
+    table td .form-actions {
+      margin: 0; }
+    table td .form-item {
+      margin-bottom: 0; }
+      table td .form-item.form-type-checkbox {
+        padding-top: 2px; }
+        table td .form-item.form-type-checkbox label.option {
+          display: block;
+          line-height: 18px;
+          padding-left: 23px;
+          position: relative; }
+          table td .form-item.form-type-checkbox label.option .checker {
+            position: absolute;
+            left: 0;
+            top: 0; }
+      table td .form-item.form-type-textfield .form-text {
+        margin: 0;
+        padding: 0 2px; }
+    table td .editablefield-item {
+      position: relative; }
+      table td .editablefield-item .form-actions .submit-wrapper {
+        display: block; }
+      table td .editablefield-item .form-actions .ajax-progress {
+        height: 100%;
+        left: 0px;
+        padding-top: 3px;
+        position: absolute;
+        top: 0px;
+        width: 100%; }
+        table td .editablefield-item .form-actions .ajax-progress .throbber {
+          display: inline-block;
+          background: transparent;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #f9a500;
+          border-radius: 50%;
+          border-top-color: transparent;
+          -webkit-animation: load 0.9s linear infinite;
+          -moz-animation: load 0.9s linear infinite;
+          animation: load 0.9s linear infinite; }
+        table td .editablefield-item .form-actions .ajax-progress .message {
+          padding-left: 24px; }
+  table tr.even {
+    background: #fafafc;
+    border-bottom: 1px solid #f3f4f8;
+    border-top: 1px solid #f3f4f8; }
+    table tr.even .ajax-progress {
+      background: #fafafc; }
+  table tr.odd {
+    background: #fff; }
+    table tr.odd .ajax-progress {
       background: #fff; }
-      .table-wrapper table tr.odd .ajax-progress {
-        background: #fff; }
-    .table-wrapper table td {
-      color: #363636; }
-  .table-wrapper input {
+  table td {
+    color: #363636; }
+  table input {
     border: 1px solid #c8cacd; }
 
 div.checker span {
@@ -1843,18 +1838,18 @@ div.checker.disabled span {
     color: #282828; }
 
 form .form-sidebar {
-  float: left;
-  width: 340px;
   background: #e0e2e6;
-  padding: 20px; }
+  padding: 20px;
+  width: 30%; }
   form .form-sidebar .form-text {
     width: 100%; }
   form .form-sidebar .group-cap-rais-details .form-text {
     width: 65%; }
 form .form-body {
-  overflow: hidden;
   background: #fff;
-  padding: 20px; }
+  overflow: hidden;
+  padding: 20px;
+  width: 70%; }
 form .form-actions {
   margin-top: 20px; }
 form .messages {
@@ -2554,7 +2549,8 @@ form.confirmation {
   font-size: 1.6rem;
   line-height: 24px;
   display: inline-block;
-  font-weight: 700; }
+  font-weight: 700;
+  padding: 50px 40px 20px 40px; }
   form.confirmation input {
     display: inline-block;
     height: 34px;
@@ -2786,9 +2782,6 @@ form#user-login,
   padding: 11px 0 11px 0;
   text-indent: 9999;
   width: 100%; }
-  @media screen and (max-width: 1280px) {
-    .sidebar-second-icon {
-      margin-bottom: 10px; } }
   .sidebar-second-icon .icon {
     background: url("../graphics/progress_chart.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/progress_chart.svg") transparent 0 0 no-repeat;
@@ -2805,10 +2798,6 @@ form#user-login,
   margin-bottom: 20px;
   padding-bottom: 20px;
   text-align: center; }
-  @media screen and (max-width: 1280px) {
-    .sidebar-block {
-      height: 170px;
-      margin-bottom: 11px; } }
   .sidebar-block h3 {
     font-size: 12px;
     font-size: 1.2rem;
@@ -2832,12 +2821,6 @@ form#user-login,
     font-weight: 700;
     margin-top: 20px;
     text-transform: uppercase; }
-    @media screen and (max-width: 1280px) {
-      .sidebar-block .date {
-        font-size: 28px;
-        font-size: 2.8rem;
-        line-height: 42px;
-        margin-top: 10px; } }
 
 .remaining,
 .total {
@@ -2846,22 +2829,10 @@ form#user-login,
   line-height: 21px;
   font-family: 'Inconsolata'; }
 
-@media screen and (max-width: 1280px) {
-  .transaction-record {
-    float: left;
-    margin-right: 1%;
-    width: 75%; } }
-
 .vertical-bars {
   border-bottom: 1px solid #454545;
   height: 200px;
   margin: 10px 20px 40px; }
-  @media screen and (max-width: 1280px) {
-    .vertical-bars {
-      float: right;
-      height: 100px;
-      margin: 0 20px 0 0;
-      width: 25%; } }
 
 .bar {
   float: left;
@@ -2869,9 +2840,6 @@ form#user-login,
   margin-bottom: 1px;
   position: relative;
   width: 50%; }
-  @media screen and (max-width: 1280px) {
-    .bar {
-      height: 99px; } }
   .bar .progress.vertical {
     background: transparent;
     border-radius: 0;
@@ -2910,15 +2878,6 @@ form#user-login,
 
 .vertical-bars-text-wrapper {
   margin: 20px 20px 10px 20px; }
-  @media screen and (max-width: 1280px) {
-    .vertical-bars-text-wrapper {
-      float: right;
-      border-left: 1px solid #c8cacd;
-      border-right: 1px solid #c8cacd;
-      margin-right: 30px;
-      margin-top: 10px;
-      padding: 0 20px 0 20px;
-      width: 37%; } }
 
 .total {
   margin-bottom: 15px; }
@@ -2927,31 +2886,15 @@ form#user-login,
       margin-bottom: 10px; } }
   .total:last-child {
     margin-bottom: 30px; }
-    @media screen and (max-width: 1280px) {
-      .total:last-child {
-        margin-bottom: 0; } }
 
 .total-wrapper {
   clear: both; }
-  @media screen and (max-width: 1280px) {
-    .total-wrapper {
-      clear: none;
-      float: left;
-      margin-left: 20px;
-      margin-top: 15px;
-      width: 25%; } }
-  @media screen and (max-width: 1130px) {
-    .total-wrapper {
-      width: 22%; } }
   .total-wrapper .progress {
     background: #454545;
     border: 2px solid #454545;
     border-radius: 16px;
     height: 32px;
     margin: 20px 10px 10px 10px; }
-    @media screen and (max-width: 1280px) {
-      .total-wrapper .progress {
-        margin: 0 0 18px 0; } }
     .total-wrapper .progress .progress-bar {
       font-size: 16px;
       font-size: 1.6rem;
@@ -2963,11 +2906,6 @@ form#user-login,
       font-weight: 700;
       line-height: 28px;
       -webkit-box-shadow: none; }
-
-@media screen and (max-width: 1280px) {
-  .transaction-time-remaining {
-    float: left;
-    width: 24%; } }
 
 #edit-archive {
   display: inline-block;
@@ -2999,10 +2937,6 @@ form#user-login,
   background: transparent;
   margin-bottom: 0;
   padding-bottom: 0px; }
-  @media screen and (max-width: 1280px) {
-    .activities-wrapper .sidebar-block {
-      margin-top: 180px;
-      height: 100%; } }
 
 .entity-message {
   margin-top: 1px;
@@ -3044,27 +2978,20 @@ form#user-login,
     width: 10px; }
 
 .page-oversikt .main-content .content-column {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 74.41059%;
-  padding: 0 40px 0 0;
-  background-color: #f3f4f8; }
-  .page-oversikt .main-content .content-column:last-child {
-    margin-right: 0; }
+  background-color: transparent;
+  margin-right: 30px;
+  width: 70%; }
 .page-oversikt .content-sidebar {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 23.23176%;
-  margin-right: 0;
-  margin-top: 8px; }
-  .page-oversikt .content-sidebar:last-child {
-    margin-right: 0; }
+  background: transparent;
+  margin-top: 8px;
+  width: 20%; }
   .page-oversikt .content-sidebar .sidebar-second-icon {
     display: none; }
 .page-oversikt h2 {
   text-transform: uppercase; }
+.page-oversikt .table-wrapper {
+  overflow: visible;
+  width: 100%; }
 .page-oversikt .activities-wrapper h2 {
   font-size: 20px;
   font-size: 2rem;
@@ -3099,9 +3026,6 @@ form#user-login,
     font-size: 12px;
     font-size: 1.2rem;
     line-height: 18px; }
-.page-oversikt .table-wrapper {
-  padding-bottom: 0px;
-  overflow: visible; }
 
 .capital-rasing-db-wrapper {
   margin-bottom: 70px; }
@@ -3187,39 +3111,43 @@ form#user-login,
   padding: 5px 5px 5px 20px;
   text-align: left; }
 
-#eck-entity-form-edit-investor-person .form-type-managed-file,
-#eck-entity-form-edit-investor-company .form-type-managed-file {
-  border-right: 1px solid #c8cacd;
-  float: left;
-  display: block;
-  margin-right: 20px;
-  padding-right: 20px;
-  width: auto; }
-#eck-entity-form-edit-investor-person .status-fields,
-#eck-entity-form-edit-investor-company .status-fields {
-  float: left; }
-#eck-entity-form-edit-investor-person .field-type-list-boolean,
-#eck-entity-form-edit-investor-company .field-type-list-boolean {
-  display: inline-block;
-  float: left;
-  margin-top: 22px; }
-#eck-entity-form-edit-investor-person .field-type-date,
-#eck-entity-form-edit-investor-company .field-type-date {
-  display: inline-block;
-  float: left;
-  margin-left: 10px;
-  margin-top: 20px;
-  width: 120px; }
-#eck-entity-form-edit-investor-person .option,
-#eck-entity-form-edit-investor-company .option {
-  margin-top: 10px; }
-#eck-entity-form-edit-investor-person .checker,
-#eck-entity-form-edit-investor-company .checker {
-  margin-bottom: 2px;
-  padding-right: 25px; }
-#eck-entity-form-edit-investor-person form .form-item,
-#eck-entity-form-edit-investor-company form .form-item {
-  margin-bottom: 5px; }
+#eck-entity-form-edit-investor-person,
+#eck-entity-form-edit-investor-company {
+  background: #fff;
+  padding: 50px 40px 20px 40px; }
+  #eck-entity-form-edit-investor-person .form-type-managed-file,
+  #eck-entity-form-edit-investor-company .form-type-managed-file {
+    border-right: 1px solid #c8cacd;
+    float: left;
+    display: block;
+    margin-right: 20px;
+    padding-right: 20px;
+    width: auto; }
+  #eck-entity-form-edit-investor-person .status-fields,
+  #eck-entity-form-edit-investor-company .status-fields {
+    float: left; }
+  #eck-entity-form-edit-investor-person .field-type-list-boolean,
+  #eck-entity-form-edit-investor-company .field-type-list-boolean {
+    display: inline-block;
+    float: left;
+    margin-top: 22px; }
+  #eck-entity-form-edit-investor-person .field-type-date,
+  #eck-entity-form-edit-investor-company .field-type-date {
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 120px; }
+  #eck-entity-form-edit-investor-person .option,
+  #eck-entity-form-edit-investor-company .option {
+    margin-top: 10px; }
+  #eck-entity-form-edit-investor-person .checker,
+  #eck-entity-form-edit-investor-company .checker {
+    margin-bottom: 2px;
+    padding-right: 25px; }
+  #eck-entity-form-edit-investor-person form .form-item,
+  #eck-entity-form-edit-investor-company form .form-item {
+    margin-bottom: 5px; }
 
 .verification-header {
   margin-bottom: 20px;
@@ -3308,3 +3236,12 @@ form#user-login,
       margin-right: 15px; }
       .process-steps ul li.active {
         color: #282828; }
+
+.node-capital_raising-form {
+  padding: 50px 40px 40px 40px; }
+
+.transction-table-wrapper {
+  width: 100%; }
+
+.page-node-add-capital-raising .node-capital_raising-form {
+  padding: 0; }
