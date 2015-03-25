@@ -1462,8 +1462,7 @@ form#user-login #edit-submit {
   display: inline-block;
   float: right;
   list-style: none;
-  margin-right: 20px;
-  margin-top: 20px;
+  margin: 20px 20px 20px 0;
   position: relative; }
   .pager li {
     font-size: 11px;
@@ -1658,7 +1657,7 @@ table {
       height: 42px;
       text-align: left; }
       table thead th.views-field {
-        padding: 10px 0px 10px 10px; }
+        padding: 10px; }
         table thead th.views-field.active a {
           border-bottom: 2px solid #f9a500; }
       table thead th a {
