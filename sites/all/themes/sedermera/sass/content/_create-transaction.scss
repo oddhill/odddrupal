@@ -84,7 +84,8 @@
   }
 
   // Remove button
-  input[value="Remove"] {
+  input[value="Remove"],
+  input[value="Ta bort"] {
     margin-top: 9px;
   }
 }

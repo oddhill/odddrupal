@@ -584,7 +584,8 @@ form.views-send-preview .form-actions {
   top: 21px; }
 #edit-field-cap-rais-file input {
   border: 0; }
-#edit-field-cap-rais-file input[value="Remove"] {
+#edit-field-cap-rais-file input[value="Remove"],
+#edit-field-cap-rais-file input[value="Ta bort"] {
   margin-top: 9px; }
 
 a.tabledrag-handle {
@@ -1909,7 +1910,7 @@ form fieldset {
         font-size: 0px;
         overflow: hidden;
         text-indent: 100px;
-        line-height: 0px;
+        line-height: 0;
         margin-right: 12px;
         margin-left: -10px; }
   form fieldset .fieldset-wrapper {
@@ -1943,7 +1944,7 @@ form fieldset {
           background: url("../graphics/required.png") transparent 5px center no-repeat;
           background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
           color: transparent;
-          font-size: 0px;
+          font-size: 0;
           overflow: hidden;
           text-indent: 100px;
           line-height: 0px;
@@ -1984,7 +1985,7 @@ form fieldset {
           background: url("../graphics/required.png") transparent 0 center no-repeat;
           background: none, url("../graphics/required.svg") transparent 0 center no-repeat;
           color: transparent;
-          font-size: 0px;
+          font-size: 0;
           overflow: hidden;
           text-indent: 100px;
           line-height: 0px; }
@@ -2465,7 +2466,8 @@ form .form-text {
       .js form .form-text.form-autocomplete.throbbing {
         background-image: none; }
   form .form-text.required {
-    padding: 10px 30px; }
+    padding: 10px 30px;
+    height: 39px; }
   form .form-text:focus {
     box-shadow: 0 0 3px #a2a2a2; }
 form .submit-wrapper {

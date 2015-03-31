@@ -83,7 +83,7 @@ form {
           font-size: 0px;
           overflow: hidden;
           text-indent: 100px;
-          line-height: 0px;
+          line-height: 0;
           margin-right: 12px;
           margin-left: -10px;
         }
@@ -123,7 +123,7 @@ form {
             height: 18px;
             @include svg-bg(required, transparent, 5px center);
             color: transparent;
-            font-size: 0px;
+            font-size: 0;
             overflow: hidden;
             text-indent: 100px;
             line-height: 0px;
@@ -177,7 +177,7 @@ form {
             height: 18px;
             @include svg-bg(required, transparent, 0 center);
             color: transparent;
-            font-size: 0px;
+            font-size: 0;
             overflow: hidden;
             text-indent: 100px;
             line-height: 0px;
@@ -682,6 +682,7 @@ form {
 
     &.required {
       padding: 10px 30px;
+      height: 39px;
     }
 
     &:focus {
