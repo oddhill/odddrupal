@@ -1945,10 +1945,7 @@ form fieldset {
   form fieldset .fieldset-description {
     margin-bottom: 10px;
     font-style: italic;
-    background: #ecedf0;
-    color: #282828;
-    padding: 10px;
-    border-radius: 2px; }
+    padding: 0 10px 0 0; }
   form fieldset .container-inline-date {
     position: relative;
     width: 100%;
