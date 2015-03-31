@@ -288,7 +288,7 @@ form {
             .file-widget {
 
               .file-widget-data {
-                padding-left: 15px;
+                //padding-left: 15px;
               }
             }
 
@@ -350,7 +350,7 @@ form {
                 display: block;
                 position: absolute;
                 left: 0;
-                top: 0;
+                top: 9px;
                 width: 100%;
                 margin: 0 8px 0 0;
                 border-radius: 24px;
@@ -406,6 +406,7 @@ form {
     .description {
       @include font-size(1.2,1.3);
       font-style: italic;
+      margin-top: 5px;
     }
 
     &.form-type-select {
@@ -843,3 +844,15 @@ form.confirmation {
     }
   }
 }
+
+#edit-field-cap-rais-file {
+
+  input[value="Remove"] {
+    margin-top: 9px;
+  }
+}
+
+a.tabledrag-handle  {
+  display: none;
+}
+

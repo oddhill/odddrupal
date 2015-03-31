@@ -12,12 +12,6 @@
     }
   }
 
-  .submit-wrapper {
-    // bottom: 0;
-    // position: absolute;
-    // right: 0;
-  }
-
   // Transaction title - Step 3
   .field.title {
 
@@ -69,5 +63,28 @@
       margin-bottom: 20px;
       padding: 20px 20px 15px 20px;
     }
+  }
+}
+
+// Create transaction/ Edit transaction - File information
+#edit-field-cap-rais-file {
+
+  .form-type-textfield {
+
+    label {
+      color: #a9a9a9;
+      left: 10px;
+      position: absolute;
+      top: 21px;
+    }
+  }
+
+  input {
+    border: 0;
+  }
+
+  // Remove button
+  input[value="remove"] {
+    margin-top: 15px;
   }
 }

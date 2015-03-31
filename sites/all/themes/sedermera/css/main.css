@@ -577,6 +577,16 @@ form.views-send-preview .form-actions {
     margin-bottom: 20px;
     padding: 20px 20px 15px 20px; }
 
+#edit-field-cap-rais-file .form-type-textfield label {
+  color: #a9a9a9;
+  left: 10px;
+  position: absolute;
+  top: 21px; }
+#edit-field-cap-rais-file input {
+  border: 0; }
+#edit-field-cap-rais-file input[value="remove"] {
+  margin-top: 15px; }
+
 .page-investor-person-edit .form-sidebar,
 .page-investor-company-edit .form-sidebar {
   background: transparent;
@@ -2034,8 +2044,6 @@ form fieldset {
       form fieldset table.tabledrag-processed tbody tr td {
         padding: 10px;
         position: relative; }
-        form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data {
-          padding-left: 15px; }
         form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle {
           margin-top: 1px;
           margin-left: -5px;
@@ -2109,7 +2117,7 @@ form fieldset {
             display: block;
             position: absolute;
             left: 0;
-            top: 0;
+            top: 9px;
             width: 100%;
             margin: 0 8px 0 0;
             border-radius: 24px;
@@ -2146,7 +2154,8 @@ form .form-item {
     font-size: 12px;
     font-size: 1.2rem;
     line-height: 15.6px;
-    font-style: italic; }
+    font-style: italic;
+    margin-top: 5px; }
   form .form-item.form-type-select {
     position: relative; }
     form .form-item.form-type-select label {
@@ -2600,6 +2609,12 @@ form.confirmation {
       transition: background-color 0.1s ease-in-out; }
       form.confirmation .form-actions.form-wrapper #edit-submit:hover {
         background-color: #303030; }
+
+#edit-field-cap-rais-file input[value="Remove"] {
+  margin-top: 9px; }
+
+a.tabledrag-handle {
+  display: none; }
 
 .tabs {
   background: #ebedf1;
