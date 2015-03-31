@@ -84,7 +84,12 @@
   }
 
   // Remove button
-  input[value="remove"] {
-    margin-top: 15px;
+  input[value="Remove"] {
+    margin-top: 9px;
   }
+}
+
+// Don't show tabledrag handle
+a.tabledrag-handle  {
+  display: none;
 }

@@ -584,8 +584,11 @@ form.views-send-preview .form-actions {
   top: 21px; }
 #edit-field-cap-rais-file input {
   border: 0; }
-#edit-field-cap-rais-file input[value="remove"] {
-  margin-top: 15px; }
+#edit-field-cap-rais-file input[value="Remove"] {
+  margin-top: 9px; }
+
+a.tabledrag-handle {
+  display: none; }
 
 .page-investor-person-edit .form-sidebar,
 .page-investor-company-edit .form-sidebar {
@@ -2609,12 +2612,6 @@ form.confirmation {
       transition: background-color 0.1s ease-in-out; }
       form.confirmation .form-actions.form-wrapper #edit-submit:hover {
         background-color: #303030; }
-
-#edit-field-cap-rais-file input[value="Remove"] {
-  margin-top: 9px; }
-
-a.tabledrag-handle {
-  display: none; }
 
 .tabs {
   background: #ebedf1;
