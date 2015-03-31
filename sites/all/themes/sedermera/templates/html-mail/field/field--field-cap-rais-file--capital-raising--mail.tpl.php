@@ -48,12 +48,8 @@
 <tr>
   <table width="auto" cellpadding="0" cellspacing="0" border="0">
     <tr>
-      <?php if (!$label_hidden): ?>
-        <td style="font-weight: bold; padding: 0 5px 0 20px;"><?php print $label ?>:</td>
-      <?php endif; ?>
-
       <?php foreach ($items as $delta => $item): ?>
-        <td><?php print render($item); ?></td>
+        <td style="padding: 5px 5px 0 20px;"><?php print render($item); ?></td>
       <?php endforeach; ?>
     </tr>
  </table>
