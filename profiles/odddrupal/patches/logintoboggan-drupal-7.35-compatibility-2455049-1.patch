@@ -1,0 +1,32 @@
+diff --git a/logintoboggan.module b/logintoboggan.module
+index 494cd46..55b93fe 100755
+--- a/logintoboggan.module
++++ b/logintoboggan.module
+@@ -1054,11 +1054,11 @@ function logintoboggan_process_login($account, &$edit, $redirect = array()){
+ 
+ function logintoboggan_eml_validate_url($account, $url_options){
+   $timestamp = REQUEST_TIME;
+-  return url("user/validate/$account->uid/$timestamp/". logintoboggan_eml_rehash($account->pass, $timestamp, $account->mail), $url_options);
++  return url("user/validate/$account->uid/$timestamp/". logintoboggan_eml_rehash($account->pass, $timestamp, $account->mail, $account->uid), $url_options);
+ }
+ 
+-function logintoboggan_eml_rehash($password, $timestamp, $mail) {
+-  return user_pass_rehash($password, $timestamp, $mail);
++function logintoboggan_eml_rehash($password, $timestamp, $mail, $uid) {
++  return user_pass_rehash($password, $timestamp, $mail, $uid);
+ }
+ 
+ /**
+diff --git a/logintoboggan.validation.inc b/logintoboggan.validation.inc
+index 3ce08bb..9d576ee 100644
+--- a/logintoboggan.validation.inc
++++ b/logintoboggan.validation.inc
+@@ -22,7 +22,7 @@ function logintoboggan_validate_email($account, $timestamp, $hashed_pass, $actio
+   // - the user is still in the pre-auth role or didn't set
+   //   their own password.
+   // - the hashed password is correct.
+-  if (((variable_get('user_email_verification', TRUE) && empty($account->login)) || ($pre_auth && array_key_exists($validating_id, $account->roles))) && $hashed_pass == logintoboggan_eml_rehash($account->pass, $timestamp, $account->mail)) {
++  if (((variable_get('user_email_verification', TRUE) && empty($account->login)) || ($pre_auth && array_key_exists($validating_id, $account->roles))) && $hashed_pass == logintoboggan_eml_rehash($account->pass, $timestamp, $account->mail, $account->uid)) {
+     watchdog('user', 'E-mail validation URL used for %name with timestamp @timestamp.', array('%name' => $account->name, '@timestamp' => $timestamp));
+ 
+     _logintoboggan_process_validation($account);
