@@ -334,6 +334,7 @@ function odddrupal_set_variables() {
     'backup_migrate' => 0,
     'bad_judgement' => 1,
     'context_ui' => 1,
+    'dblog' => 1,
     'devel' => 1,
     'devel_debug_log' => 1,
     'devel_generate' => 1,
@@ -341,6 +342,7 @@ function odddrupal_set_variables() {
     'field_ui' => 1,
     'help' => 1,
     'letmein' => 1,
+    'logentries' => 0,
     'reroute_email' => 1,
     'rules_admin' => 1,
     'search_krumo' => 1,
@@ -366,6 +368,7 @@ function odddrupal_set_variables() {
     'backup_migrate' => 0,
     'bad_judgement' => 1,
     'context_ui' => 1,
+    'dblog' => 1,
     'devel' => 0,
     'devel_debug_log' => 0,
     'devel_generate' => 0,
@@ -373,6 +376,7 @@ function odddrupal_set_variables() {
     'field_ui' => 1,
     'help' => 0,
     'letmein' => 1,
+    'logentries' => 0,
     'reroute_email' => 1,
     'rules_admin' => 1,
     'search_krumo' => 0,
@@ -399,6 +403,7 @@ function odddrupal_set_variables() {
     'backup_migrate' => 1,
     'bad_judgement' => 0,
     'context_ui' => 0,
+    'dblog' => 0,
     'devel' => 0,
     'devel_debug_log' => 0,
     'devel_generate' => 0,
@@ -406,6 +411,7 @@ function odddrupal_set_variables() {
     'field_ui' => 0,
     'help' => 0,
     'letmein' => 0,
+    'logentries' => 1,
     'reroute_email' => 0,
     'rules_admin' => 0,
     'search_krumo' => 0,
@@ -487,4 +493,5 @@ function odddrupal_set_variables() {
   variable_set('devel_error_handlers', array(1 => '1', 2 => '2'));
   variable_set('devel_memory', 1);
   variable_set('dev_timer', 1);
+  variable_set('logentries_severity', '7');
 }
