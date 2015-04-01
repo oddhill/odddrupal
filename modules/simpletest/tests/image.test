@@ -261,7 +261,6 @@ class ImageToolkitGdTestCase extends DrupalWebTestCase {
    */
   function testManipulations() {
     // If GD isn't available don't bother testing this.
-    module_load_include('inc', 'system', 'image.gd');
     if (!function_exists('image_gd_check_settings') || !image_gd_check_settings()) {
       $this->pass(t('Image manipulations for the GD toolkit were skipped because the GD toolkit is not available.'));
       return;
@@ -452,8 +451,7 @@ class ImageToolkitGdTestCase extends DrupalWebTestCase {
 
         $directory = file_default_scheme() . '://imagetests';
         file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
-        $file_path = $directory . '/' . $op . '.' . $image->info['extension'];
-        image_save($image, $file_path);
+        image_save($image, $directory . '/' . $op . '.' . $image->info['extension']);
 
         $this->assertTrue($correct_dimensions_real, format_string('Image %file after %action action has proper dimensions.', array('%file' => $file, '%action' => $op)));
         $this->assertTrue($correct_dimensions_object, format_string('Image %file object after %action action is reporting the proper height and width values.', array('%file' => $file, '%action' => $op)));
@@ -462,10 +460,8 @@ class ImageToolkitGdTestCase extends DrupalWebTestCase {
           $this->assertTrue($correct_colors, format_string('Image %file object after %action action has the correct color placement.', array('%file' => $file, '%action' => $op)));
         }
       }
-
-      // Check that saved image reloads without raising PHP errors.
-      $image_reloaded = image_load($file_path);
     }
+
   }
 }
 
