@@ -915,3 +915,53 @@ function odddrupal_update_7156() {
     module_enable(array('devel_debug_log'));
   }
 }
+
+/**
+ * Configure the Logentries module.
+ */
+function odddrupal_update_7157() {
+  variable_set('logentries_severity', '7');
+}
+
+/**
+ * Enable the Logentries module for the production environment.
+ */
+function odddrupal_update_7158() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['logentries'] = 0;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['logentries'] = 0;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['logentries'] = 1;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'production') {
+    module_enable(array('logentries'));
+  }
+}
+
+/**
+ * Disable and uninstall the DBlog module for the production environment.
+ */
+function odddrupal_update_7159() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['dblog'] = 1;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['dblog'] = 1;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['dblog'] = 0;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'production') {
+    module_disable(array('dblog'));
+    drupal_uninstall_modules(array('dblog'));
+  }
+}
