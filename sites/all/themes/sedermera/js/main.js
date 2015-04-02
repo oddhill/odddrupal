@@ -50,10 +50,11 @@ Drupal.behaviors.form_placeholder = {
       }
       exclude += '.form-placeholder-exclude-children *';
       exclude += ', .form-placeholder-exclude';
+      exclude += ', .form-placeholder-processed';
 
       var required_indicator = settings.form_placeholder.required_indicator;
 
-      $(include, context).not(exclude).each(function() {
+      $(include).not(exclude).each(function() {
         $textfield = $(this);
 
         // Check if element is a textfield.
@@ -83,7 +84,7 @@ Drupal.behaviors.form_placeholder = {
             $textfield.placeholder();
           }
         }
-      });
+      }).addClass('form-placeholder-processed');
     } catch(err) {}
   }
 };
