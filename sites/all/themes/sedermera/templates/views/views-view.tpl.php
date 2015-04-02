@@ -14,7 +14,9 @@
 ?>
 <div class="<?php print $classes; ?>">
   <?php print $header; ?>
-  <?php print $exposed; ?>
+  <div class="view-filters">
+    <?php print $exposed; ?>
+  </div>
   <?php print $attachment_before; ?>
   <?php print $rows; ?>
   <?php print $empty; ?>
