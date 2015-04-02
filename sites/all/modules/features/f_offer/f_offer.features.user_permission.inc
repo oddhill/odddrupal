@@ -23,7 +23,10 @@ function f_offer_user_default_permissions() {
   // Exported permission: 'eck administer offer offer entities'.
   $permissions['eck administer offer offer entities'] = array(
     'name' => 'eck administer offer offer entities',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'eck',
   );
 
