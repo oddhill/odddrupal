@@ -2,7 +2,7 @@ Installation
 ------------------
 1. Unpack and move directory "form_placeholder" to your modules directory.
 2. Enable it in the modules list of your site.
-3. Go to configuraction page at "admin/config/user-interface/form-placeholder".
+3. Go to configuration page at "admin/config/user-interface/form-placeholder".
 4. Specify CSS selectors for textfields you want to add a placeholder.
 5. For older browsers not supporting "placeholder" attribute you have to:
   1. Install Libraries module (http://drupal.org/project/libraries)
@@ -13,7 +13,7 @@ Installation
 
 Usage
 ------------------
-// Convert all childrens in given form
+// Convert all children in given form
 function MY_MODULE_form_FORM_ID_alter(&$form, &$form_state, $form_id) {
   $form['#form_placeholder'] = TRUE;
 }

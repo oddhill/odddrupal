@@ -10,6 +10,11 @@
 
   Drupal.behaviors.form_placeholder = {
     attach: function(context, settings) {
+      // In some cases settings after ajax form submit could contain only
+      // settings from response but not all Drupal.settings data.
+      if (!settings.hasOwnProperty('form_placeholder')) {
+        settings = Drupal.settings;
+      }
       var include = settings.form_placeholder.include;
       if (include) {
         include += ', ';
@@ -26,7 +31,7 @@
       var required_indicator = settings.form_placeholder.required_indicator;
 
       $(include, context).not(exclude).each(function() {
-        $textfield = $(this);
+        var $textfield = $(this);
 
         // Check if element is a textfield.
         if (!$textfield.is('input[type=text], input[type=email], input[type=password], textarea')) {
@@ -34,8 +39,8 @@
         }
         // Placeholder is supported.
         else if (Drupal.form_placeholder.placeholderIsSupported() || settings.form_placeholder.fallback_support) {
-          $form = $textfield.closest('form');
-          $label = $form.find('label[for=' + this.id + ']');
+          var $form = $textfield.closest('form');
+          var $label = $form.find('label[for=' + this.id + ']');
 
           if (required_indicator === 'append') {
             $label.find('.form-required').insertAfter($textfield).prepend('&nbsp;');
@@ -47,8 +52,10 @@
             $label.find('.form-required').text('(' + Drupal.t('required') + ')');
           }
 
-          $textfield.attr('placeholder', $.trim($label.text()));
-          $label.hide();
+          if (!$textfield.attr('placeholder')) {
+            $textfield.attr('placeholder', $.trim($label.text()));
+            $label.hide();
+          }
 
           // Fallback support for older browsers.
           if (!Drupal.form_placeholder.placeholderIsSupported() && settings.form_placeholder.fallback_support) {

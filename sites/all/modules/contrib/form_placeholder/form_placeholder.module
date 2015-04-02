@@ -12,7 +12,7 @@ function form_placeholder_menu() {
   $items = array();
   $items['admin/config/user-interface/form-placeholder'] = array(
     'title' => 'Form Placeholder',
-    'description' => 'Use field label as placeholder for all elements in choosen form.',
+    'description' => 'Use field label as placeholder for all elements in chosen form.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('form_placeholder_admin_settings'),
     'access arguments' => array('administer form placeholder'),
