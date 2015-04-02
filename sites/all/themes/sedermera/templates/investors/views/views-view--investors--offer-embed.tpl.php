@@ -13,18 +13,13 @@
  */
 ?>
 <div class="<?php print $classes; ?>">
-  <div id="investor-table" class="filtered-table">
     <?php print $header; ?>
-
-    <div class="table-filter">
+    <div class="view-filters table-filter">
       <h2 class="filter-icon"><span class="icon">Filtrera</span></h2>
       <?php print $exposed; ?>
     </div>
-
     <?php print $attachment_before; ?>
-
     <div class="table-wrapper">
-
       <?php print $rows; ?>
 
       <?php if ($empty): ?>
@@ -38,9 +33,5 @@
       <?php print $more; ?>
       <?php print $footer; ?>
       <?php print $pager; ?>
-
     </div>
-
-  </div>
-
 </div>
