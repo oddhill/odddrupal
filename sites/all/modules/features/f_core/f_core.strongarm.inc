@@ -183,6 +183,8 @@ function f_core_strongarm() {
     'themekey_ui' => 1,
     'views_ui' => 1,
     'devel_debug_log' => 1,
+    'logentries' => 0,
+    'dblog' => 1,
   );
   $export['tadaa_development_modules'] = $strongarm;
 
@@ -240,6 +242,8 @@ function f_core_strongarm() {
     'themekey_ui' => 0,
     'views_ui' => 0,
     'devel_debug_log' => 0,
+    'logentries' => 1,
+    'dblog' => 0,
   );
   $export['tadaa_production_modules'] = $strongarm;
 
@@ -287,6 +291,8 @@ function f_core_strongarm() {
     'themekey_ui' => 1,
     'views_ui' => 1,
     'devel_debug_log' => 0,
+    'logentries' => 0,
+    'dblog' => 1,
   );
   $export['tadaa_staging_modules'] = $strongarm;
 
