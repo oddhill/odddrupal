@@ -412,14 +412,14 @@ Please note, once you confirm by clicking the above link, all the YubiKeys assoc
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'yubikey_optional';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['yubikey_optional'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'yubikey_optional_if_lost';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['yubikey_optional_if_lost'] = $strongarm;
 
   $strongarm = new stdClass();
