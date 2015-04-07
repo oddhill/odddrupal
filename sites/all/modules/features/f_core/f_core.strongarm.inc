@@ -161,6 +161,41 @@ function f_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'stage_file_proxy_hotlink';
+  $strongarm->value = 0;
+  $export['stage_file_proxy_hotlink'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'stage_file_proxy_origin';
+  $strongarm->value = 'http://176.58.107.201';
+  $export['stage_file_proxy_origin'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'stage_file_proxy_origin_dir';
+  $strongarm->value = 'sites/all/files';
+  $export['stage_file_proxy_origin_dir'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'stage_file_proxy_sslversion';
+  $strongarm->value = '3';
+  $export['stage_file_proxy_sslversion'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'stage_file_proxy_use_imagecache_root';
+  $strongarm->value = 1;
+  $export['stage_file_proxy_use_imagecache_root'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_development_modules';
   $strongarm->value = array(
     'context_ui' => 1,
