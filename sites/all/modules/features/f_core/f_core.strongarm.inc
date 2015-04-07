@@ -199,10 +199,12 @@ function f_core_strongarm() {
   $strongarm->name = 'tadaa_development_modules';
   $strongarm->value = array(
     'context_ui' => 1,
+    'dblog' => 1,
     'field_ui' => 1,
     'help' => 1,
     'update' => 1,
     'devel' => 1,
+    'devel_debug_log' => 1,
     'devel_generate' => 1,
     'reroute_email' => 1,
     'search_krumo' => 1,
@@ -210,16 +212,13 @@ function f_core_strongarm() {
     'field_validation_ui' => 1,
     'backup_migrate' => 0,
     'letmein' => 1,
+    'logentries' => 0,
     'speedy' => 0,
     'stage_file_proxy' => 1,
     'bad_judgement' => 1,
     'rules_admin' => 1,
-    'googleanalytics' => 0,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'devel_debug_log' => 1,
-    'logentries' => 0,
-    'dblog' => 1,
   );
   $export['tadaa_development_modules'] = $strongarm;
 
@@ -258,10 +257,12 @@ function f_core_strongarm() {
   $strongarm->name = 'tadaa_production_modules';
   $strongarm->value = array(
     'context_ui' => 0,
+    'dblog' => 0,
     'field_ui' => 0,
     'help' => 0,
     'update' => 0,
     'devel' => 0,
+    'devel_debug_log' => 0,
     'devel_generate' => 0,
     'reroute_email' => 0,
     'search_krumo' => 0,
@@ -269,16 +270,13 @@ function f_core_strongarm() {
     'field_validation_ui' => 0,
     'backup_migrate' => 1,
     'letmein' => 0,
+    'logentries' => 1,
     'speedy' => 1,
     'stage_file_proxy' => 0,
     'bad_judgement' => 0,
     'rules_admin' => 0,
-    'googleanalytics' => 1,
     'themekey_ui' => 0,
     'views_ui' => 0,
-    'devel_debug_log' => 0,
-    'logentries' => 1,
-    'dblog' => 0,
   );
   $export['tadaa_production_modules'] = $strongarm;
 
@@ -307,10 +305,12 @@ function f_core_strongarm() {
   $strongarm->name = 'tadaa_staging_modules';
   $strongarm->value = array(
     'context_ui' => 1,
+    'dblog' => 1,
     'field_ui' => 1,
     'help' => 0,
     'update' => 0,
     'devel' => 0,
+    'devel_debug_log' => 0,
     'devel_generate' => 0,
     'reroute_email' => 1,
     'search_krumo' => 0,
@@ -318,16 +318,13 @@ function f_core_strongarm() {
     'field_validation_ui' => 1,
     'backup_migrate' => 0,
     'letmein' => 1,
+    'logentries' => 0,
     'speedy' => 1,
     'stage_file_proxy' => 1,
     'bad_judgement' => 1,
     'rules_admin' => 1,
-    'googleanalytics' => 0,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'devel_debug_log' => 0,
-    'logentries' => 0,
-    'dblog' => 1,
   );
   $export['tadaa_staging_modules'] = $strongarm;
 
