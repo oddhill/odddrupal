@@ -23,7 +23,7 @@ function f_core_user_default_permissions() {
   $permissions['administer own yubikeys'] = array(
     'name' => 'administer own yubikeys',
     'roles' => array(
-      'authenticated user' => 'authenticated user',
+      'Administratör' => 'Administratör',
     ),
     'module' => 'yubikey',
   );
