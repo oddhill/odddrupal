@@ -69,9 +69,13 @@ function sedermera_core_form_user_register_form_alter(&$form, &$form_state) {
  */
 function sedermera_core_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   foreach ($data['actions']['output'] as &$link) {
+    // Check if action link refers to the page 'admin/people/create' and
+    // if link is on the page 'admin/people'.
     if (strcmp($link['#link']['path'], 'admin/people/create') == 0 &&
-      strcmp(drupal_get_destination()['destination'], 'admin/people') == 0 ){
+      strcmp(current_path(), 'admin/people') == 0 ){
 
+      // Modify the return location for 'admin/people/create' to 'admin/people'
+      // for better workflow when adding users.
       $link['#link']['localized_options']['query'] = drupal_get_destination();
     }
   }
