@@ -30,9 +30,6 @@ function odddrupal_install() {
 
   // Set various variables.
   odddrupal_set_variables();
-
-  // Delete log messages that was created during the installation.
-  db_delete('watchdog')->execute();
 }
 
 /**
