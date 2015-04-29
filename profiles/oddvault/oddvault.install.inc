@@ -11,8 +11,8 @@
 function oddvault_odddrupal_reset() {
   // Delete ThemeKey rules.
   module_load_include('inc', 'themekey', 'themekey_build');
-  themekey_rule_del(1);
   themekey_rule_del(2);
+  themekey_rule_del(1);
 
   // Remove permissions from the anonymous role.
   user_role_revoke_permissions(1, array(
