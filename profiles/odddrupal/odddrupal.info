@@ -5,6 +5,7 @@ core = 7.x
 ; Core modules
 dependencies[] = block
 dependencies[] = contextual
+dependencies[] = dblog
 dependencies[] = field_ui
 dependencies[] = help
 dependencies[] = image
@@ -29,6 +30,7 @@ dependencies[] = context_layouts
 dependencies[] = context_ui
 dependencies[] = ctools
 dependencies[] = devel
+dependencies[] = devel_debug_log
 dependencies[] = devel_generate
 dependencies[] = diff
 dependencies[] = ds
