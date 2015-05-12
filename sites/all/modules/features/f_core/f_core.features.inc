@@ -23,6 +23,24 @@ function f_core_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_node_info().
+ */
+function f_core_node_info() {
+  $items = array(
+    'document' => array(
+      'name' => t('Dokument'),
+      'base' => 'node_content',
+      'description' => t('Dokument som skall visas på sidan.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+  );
+  drupal_alter('node_info', $items);
+  return $items;
+}
+
+/**
  * Implements hook_themekey_features_rule_chain().
  */
 function f_core_themekey_features_rule_chain() {

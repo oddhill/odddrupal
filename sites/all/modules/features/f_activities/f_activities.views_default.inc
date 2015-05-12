@@ -113,6 +113,23 @@ function f_activities_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Det finns ingen aktivitet än.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Message: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'message';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'offer_guar_changed' => 'offer_guar_changed',
+    'offer_interested' => 'offer_interested',
+    'offer_first_contact' => 'offer_first_contact',
+    'offer_mail' => 'offer_mail',
+    'offer_uninterested' => 'offer_uninterested',
+    'offer_created' => 'offer_created',
+    'offer_status' => 'offer_status',
+    'offer_signed' => 'offer_signed',
+    'offer_comm_changed' => 'offer_comm_changed',
+  );
   $translatables['aktiviteter'] = array(
     t('Master'),
     t('Aktivitet'),

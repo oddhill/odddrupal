@@ -35,6 +35,15 @@ function f_core_user_default_permissions() {
     'module' => 'yubikey',
   );
 
+  // Exported permission: 'generate pdf using mpdf'.
+  $permissions['generate pdf using mpdf'] = array(
+    'name' => 'generate pdf using mpdf',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'pdf_using_mpdf',
+  );
+
   // Exported permission: 'use text format filtered_html'.
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',

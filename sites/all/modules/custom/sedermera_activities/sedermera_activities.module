@@ -199,3 +199,23 @@ function sedermera_activities_offer_field_has_changed($offer, $field) {
   // Return TRUE if the value has been changed.
   return $wrapper->{$field}->value() != $wrapper_original->{$field}->value();
 }
+
+/**
+ * Implements hook_node_access().
+ */
+function sedermera_activities_node_access($node, $op, $account) {
+  if ($node->type == "document" && $op == 'view') {
+    sedermera_activities_create_message_document($node, 'document_view');
+  }
+  return NODE_ACCESS_IGNORE;
+}
+
+function sedermera_activities_create_message_document($node, $type) {
+  // Create the message.
+  $message = message_create($type);
+
+  $wrapper = entity_metadata_wrapper('message', $message);
+
+  $wrapper->field_message_reference->set($node);
+  $wrapper->save();
+}
