@@ -100,7 +100,7 @@ function f_capital_raising_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => 2,
+    'weight' => -47,
     'customized' => 1,
   );
   // Translatables

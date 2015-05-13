@@ -10,6 +10,53 @@
 function f_core_menu_default_menu_links() {
   $menu_links = array();
 
+  // Exported menu link: main-menu_dokument:dokument/lista
+  $menu_links['main-menu_dokument:dokument/lista'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/lista',
+    'router_path' => 'dokument/lista',
+    'link_title' => 'Dokument',
+    'options' => array(
+      'attributes' => array(),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_dokument:dokument/lista',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+  );
+  // Exported menu link: main-menu_lgg-till-dokument:node/add/document
+  $menu_links['main-menu_lgg-till-dokument:node/add/document'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'node/add/document',
+    'router_path' => 'node/add/document',
+    'link_title' => 'Lägg till dokument',
+    'options' => array(
+      'attributes' => array(),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_lgg-till-dokument:node/add/document',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument/lista',
+  );
   // Exported menu link: main-menu_versikt:oversikt
   $menu_links['main-menu_versikt:oversikt'] = array(
     'menu_name' => 'main-menu',
@@ -32,6 +79,8 @@ function f_core_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
+  t('Dokument');
+  t('Lägg till dokument');
   t('Översikt');
 
 

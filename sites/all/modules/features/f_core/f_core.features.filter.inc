@@ -46,6 +46,12 @@ function f_core_filter_default_formats() {
           'spamspan_use_url' => '<a href="/#formname?goto=#email">#displaytext</a>',
           'spamspan_email_encode' => TRUE,
           'spamspan_email_default' => 'contact_us_general_enquiry',
+          'use_form' => array(
+            'spamspan_use_form' => 0,
+            'spamspan_use_url' => '<a href="/#formname?goto=#email">#displaytext</a>',
+            'spamspan_email_encode' => 1,
+            'spamspan_email_default' => 'contact_us_general_enquiry',
+          ),
         ),
       ),
       'filter_htmlcorrector' => array(
