@@ -10,12 +10,36 @@
 function f_core_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_administrera-dokument:dokument/lista/admin
-  $menu_links['main-menu_administrera-dokument:dokument/lista/admin'] = array(
+  // Exported menu link: main-menu_administrera-dokument:dokument/admin
+  $menu_links['main-menu_administrera-dokument:dokument/admin'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/lista/admin',
-    'router_path' => 'dokument/lista',
+    'link_path' => 'dokument/admin',
+    'router_path' => 'dokument/admin',
     'link_title' => 'Administrera dokument',
+    'options' => array(
+      'identifier' => 'main-menu_administrera-dokument:dokument/admin',
+      'attributes' => array(),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
+  );
+  // Exported menu link: main-menu_alla-dokument:dokument/lista
+  $menu_links['main-menu_alla-dokument:dokument/lista'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/lista',
+    'router_path' => 'dokument/lista',
+    'link_title' => 'Alla dokument',
     'options' => array(
       'attributes' => array(),
       'item_attributes' => array(
@@ -23,25 +47,25 @@ function f_core_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_administrera-dokument:dokument/lista/admin',
+      'identifier' => 'main-menu_alla-dokument:dokument/lista',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -50,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument/lista',
+    'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_dokument:dokument/lista
-  $menu_links['main-menu_dokument:dokument/lista'] = array(
+  // Exported menu link: main-menu_dokument:dokument
+  $menu_links['main-menu_dokument:dokument'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/lista',
-    'router_path' => 'dokument/lista',
+    'link_path' => 'dokument',
+    'router_path' => 'dokument',
     'link_title' => 'Dokument',
     'options' => array(
-      'identifier' => 'main-menu_dokument:dokument/lista',
+      'identifier' => 'main-menu_dokument:dokument',
       'attributes' => array(
         'id' => 'documents',
       ),
@@ -50,7 +74,6 @@ function f_core_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_dokument:dokument/lista',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -78,16 +101,15 @@ function f_core_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_lgg-till-dokument:node/add/document',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -49,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument/lista',
+    'parent_identifier' => 'main-menu_dokument:dokument',
   );
   // Exported menu link: main-menu_versikt:oversikt
   $menu_links['main-menu_versikt:oversikt'] = array(
@@ -112,6 +134,7 @@ function f_core_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Administrera dokument');
+  t('Alla dokument');
   t('Dokument');
   t('Lägg till dokument');
   t('Översikt');

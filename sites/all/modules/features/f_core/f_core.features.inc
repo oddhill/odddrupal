@@ -5,6 +5,20 @@
  */
 
 /**
+ * Implements hook_ccl_features_preset().
+ */
+function f_core_ccl_features_preset() {
+  return array(
+    'Lägg till dokument' => array(
+      'type' => 'local_action',
+      'title' => 'Lägg till dokument',
+      'link' => 'node/add/document',
+      'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:8:"document";s:7:"node_id";s:0:"";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:14:"dokument/lista";s:8:"la_types";a:3:{s:8:"document";i:0;s:7:"company";i:0;s:15:"capital_raising";i:0;}s:8:"la_roles";a:7:{i:1;i:0;i:2;i:0;i:3;i:0;i:5;i:0;i:4;i:0;i:6;i:0;i:7;i:0;}}',
+    ),
+  );
+}
+
+/**
  * Implements hook_ctools_plugin_api().
  */
 function f_core_ctools_plugin_api($module = NULL, $api = NULL) {

@@ -165,6 +165,41 @@ function f_core_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'view any capital_raising content'.
+  $permissions['view any capital_raising content'] = array(
+    'name' => 'view any capital_raising content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any company content'.
+  $permissions['view any company content'] = array(
+    'name' => 'view any company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any document content'.
+  $permissions['view any document content'] = array(
+    'name' => 'view any document content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
   // Exported permission: 'view any unpublished content'.
   $permissions['view any unpublished content'] = array(
     'name' => 'view any unpublished content',
@@ -183,6 +218,41 @@ function f_core_user_default_permissions() {
       'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view own capital_raising content'.
+  $permissions['view own capital_raising content'] = array(
+    'name' => 'view own capital_raising content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own company content'.
+  $permissions['view own company content'] = array(
+    'name' => 'view own company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own document content'.
+  $permissions['view own document content'] = array(
+    'name' => 'view own document content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
   );
 
   // Exported permission: 'view own unpublished content'.

@@ -14,6 +14,7 @@ function sedermera_parent_paths_menu_alter(&$items) {
     'investerare' => 'investerare/lista',
     'kundbolag' => 'kundbolag/lista',
     'transaktioner' => 'transaktioner/lista',
+    'dokument' => 'dokument/lista',
   );
 
   // Register each path based on its redirect path. We'll change the type in

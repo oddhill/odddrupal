@@ -25,6 +25,7 @@ function f_core_views_default_views() {
   $handler->display->display_options['title'] = 'Dokument';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'publish revisions';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['disable_sql_rewrite'] = TRUE;
@@ -96,7 +97,7 @@ function f_core_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'document' => 'document',
   );
-  $handler->display->display_options['path'] = 'dokument/lista/admin';
+  $handler->display->display_options['path'] = 'dokument/admin';
   $translatables['dokument'] = array(
     t('Master'),
     t('Dokument'),

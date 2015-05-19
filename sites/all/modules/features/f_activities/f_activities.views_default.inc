@@ -93,6 +93,8 @@ function f_activities_views_default_views() {
 
   /* Display: Dashboard */
   $handler = $view->new_display('block', 'Dashboard', 'dashboard');
+  $handler->display->display_options['defaults']['access'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'mini';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
