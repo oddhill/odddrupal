@@ -17,13 +17,15 @@ function f_core_menu_default_menu_links() {
     'router_path' => 'dokument/lista',
     'link_title' => 'Dokument',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_dokument:dokument/lista',
+      'attributes' => array(
+        'id' => 'documents',
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_dokument:dokument/lista',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -40,13 +42,17 @@ function f_core_menu_default_menu_links() {
     'router_path' => 'node/add/document',
     'link_title' => 'Lägg till dokument',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_lgg-till-dokument:node/add/document',
+      'attributes' => array(
+        'class' => array(
+          0 => 'add',
+        ),
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_lgg-till-dokument:node/add/document',
     ),
     'module' => 'menu',
     'hidden' => 0,
