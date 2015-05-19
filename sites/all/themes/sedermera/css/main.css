@@ -1318,6 +1318,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a.active-trail#transactions {
         background: url("../graphics/transaction_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/transaction_white.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a.active-trail#documents {
+        background: url("../graphics/documents_white.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/documents_white.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a:hover {
         color: #d8d9da; }
       .main-navigation .menu li a#overview {
@@ -1341,6 +1344,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a.add {
         background: url("../graphics/add_small_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/add_small_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#documents {
+        background: url("../graphics/documents_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/documents_grey.svg") transparent 0 0 no-repeat; }
     .main-navigation .menu li ul {
       margin-top: 3px; }
     .main-navigation .menu li li {

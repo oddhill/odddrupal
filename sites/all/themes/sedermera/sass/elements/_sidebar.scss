@@ -85,6 +85,10 @@
           &#transactions {
             @include svg-bg(transaction_white);
           }
+
+          &#documents {
+            @include svg-bg(documents_white);
+          }
         }
 
         &:hover {
@@ -117,6 +121,10 @@
 
          &.add {
           @include svg-bg(add_small_grey);
+        }
+
+        &#documents {
+          @include svg-bg(documents_grey);
         }
       }
 
