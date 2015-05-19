@@ -624,6 +624,9 @@ a.tabledrag-handle {
 .page-node-edit .form-actions {
   padding-top: 20px; }
 
+.node-type-document .content-wrapper {
+  background: #fff; }
+
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {
