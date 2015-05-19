@@ -2,3 +2,4 @@ name = Sedermera Investor
 description = Alterations and improvements related to the investor feature.
 core = 7.x
 files[] = views/sedermera_investor_views_handler_sign_field.inc
+package = Sedermera

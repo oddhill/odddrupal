@@ -54,9 +54,9 @@ function node_view_permissions_node_access($node, $op, $account) {
   if (node_view_permissions_check_node_type_activation($type)) {
     if ($op == 'view') {
       if (user_access('view any ' . $type . ' content', $account) || (user_access('view own ' . $type . ' content', $account) && ($account->uid == $node->uid))) {
-        if (!$node->status && !(user_access('view own unpublished content') && ($account->uid == $node->uid))) {
+        if (!$node->status && !user_access('view any unpublished content') && !(user_access('view own unpublished content') && ($account->uid == $node->uid))) {
           return NODE_ACCESS_DENY;
-        } 
+        }
         return NODE_ACCESS_ALLOW;
       }
       if (!count(module_implements('node_grants'))) {
@@ -123,13 +123,13 @@ function node_view_permissions_query_node_access_alter(QueryAlterableInterface $
         break;
       }
     }
-    
+
     if (!$node_table_alias) {
       // If the query has 'node_access' meta tag, we can assume that there should be a nid field.
       $query->join('node', 'n', 'n.nid = ' . key($tables) . '.nid');
       $node_table_alias = 'n';
     }
-    
+
     if ($node_table_alias) {
       $alias = $node_table_alias;
       foreach (node_view_permissions_get_configured_types() as $type) {

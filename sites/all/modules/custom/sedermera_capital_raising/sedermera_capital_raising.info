@@ -1,3 +1,4 @@
 name = Sedermera Capital Raising
 description = Alterations and functionality related to the Capital Raising feature.
 core = 7.x
+package = Sedermera

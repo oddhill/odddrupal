@@ -30,52 +30,6 @@ function f_core_views_api($module = NULL, $api = NULL) {
 }
 
 /**
- * Implements hook_flag_default_flags().
- */
-function f_core_flag_default_flags() {
-  $flags = array();
-  // Exported flag: "Document check".
-  $flags['document_check'] = array(
-    'entity_type' => 'node',
-    'title' => 'Document check',
-    'global' => 0,
-    'types' => array(
-      0 => 'document',
-    ),
-    'flag_short' => 'Ja, jag har läst och godkänner detta dokument',
-    'flag_long' => '',
-    'flag_message' => '',
-    'unflag_short' => 'U',
-    'unflag_long' => '',
-    'unflag_message' => '',
-    'unflag_denied_text' => 'Du har redan signerat läst detta dokument',
-    'link_type' => 'normal',
-    'weight' => 0,
-    'show_in_links' => array(
-      'full' => 'full',
-      'teaser' => 0,
-      'rss' => 0,
-      'diff_standard' => 0,
-      'token' => 0,
-      'mail' => 0,
-      'revision' => 0,
-    ),
-    'show_as_field' => 1,
-    'show_on_form' => 0,
-    'access_author' => '',
-    'show_contextual_link' => 0,
-    'i18n' => 0,
-    'module' => 'f_core',
-    'locked' => array(
-      0 => 'name',
-    ),
-    'api_version' => 3,
-  );
-  return $flags;
-
-}
-
-/**
  * Implements hook_default_message_type().
  */
 function f_core_default_message_type() {
@@ -120,7 +74,7 @@ function f_core_node_info() {
     'document' => array(
       'name' => t('Dokument'),
       'base' => 'node_content',
-      'description' => t('Dokument som skall visas på sidan.'),
+      'description' => t('Grundläggande dokument'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

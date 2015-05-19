@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file sedermera_document_sign.module
+ * Main module file for the Sedermera Document Sign module.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_document_sign_form_document_node_form_alter(&$form, &$form_state) {
+  $form['field_document_user_read']['#access'] = 0;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_document_sign_menu() {
+  $items['node/%/sign'] = array(
+    'page callback' => 'sedermera_document_sign_doc',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Adds the current user to document signed list.
+ * @param $nid Node id of the node to add current user.
+ */
+function sedermera_document_sign_doc($nid) {
+  $node = node_load($nid);
+  $user = $GLOBALS['user'];
+  // If correct node type add the user to document signed list.
+  if ($node->type == 'document') {
+    $node->field_document_user_read[LANGUAGE_NONE][]['target_id'] = $user->uid;
+    node_save($node);
+  }
+  drupal_goto('/node/' . $nid);
+}
+
+/**
+ * Implements hook_revision_publish().
+ */
+function sedermera_document_sign_revision_publish($node) {
+  // TODO Notification to user of new revision of document. Use list form node.
+  // Notification to unsigned users that there is a new document to read.
+  $node->field_document_user_read = array();
+  node_save($node);
+}

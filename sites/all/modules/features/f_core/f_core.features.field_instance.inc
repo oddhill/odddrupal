@@ -194,6 +194,45 @@ function f_core_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-document-field_document_user_read'
+  $field_instances['node-document-field_document_user_read'] = array(
+    'bundle' => 'document',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 2,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_document_user_read',
+    'label' => 'User read',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 43,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
@@ -201,6 +240,7 @@ function f_core_field_default_field_instances() {
   t('Reference');
   t('This is the text of all messages of this type.');
   t('Typ');
+  t('User read');
 
   return $field_instances;
 }

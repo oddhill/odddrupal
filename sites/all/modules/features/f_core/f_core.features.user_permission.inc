@@ -169,7 +169,8 @@ function f_core_user_default_permissions() {
   $permissions['view any unpublished content'] = array(
     'name' => 'view any unpublished content',
     'roles' => array(
-      'authenticated user' => 'authenticated user',
+      'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'view_unpublished',
   );
@@ -179,6 +180,7 @@ function f_core_user_default_permissions() {
     'name' => 'view any unpublished document content',
     'roles' => array(
       'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'view_unpublished',
   );
@@ -187,6 +189,7 @@ function f_core_user_default_permissions() {
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
     'roles' => array(
+      'Dokument moderator' => 'Dokument moderator',
       'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'node',
