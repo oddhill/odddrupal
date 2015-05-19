@@ -627,6 +627,44 @@ a.tabledrag-handle {
 .node-type-document .content-wrapper {
   background: #fff; }
 
+.flag-outer-document-check {
+  display: block;
+  margin: 40px 0 20px 0;
+  text-align: right; }
+
+.flag-document-check a {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+  background-color: #fbc966;
+  border-bottom: none;
+  font-weight: 700;
+  padding-left: 25px;
+  position: relative;
+  text-align: center; }
+  .flag-document-check a:hover {
+    background-color: #e1b45b;
+    border: 0 none; }
+  .flag-document-check a:before {
+    background: url("../graphics/confirm_dark.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/confirm_dark.svg") transparent 0 0 no-repeat;
+    content: '';
+    height: 9px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 11px; }
+
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {

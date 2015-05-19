@@ -5,3 +5,33 @@
     background: $snow;
   }
 }
+
+.flag-outer-document-check {
+  display: block;
+  margin: 40px 0 20px 0;
+  text-align: right;
+}
+
+// Approve/sign button
+.flag-document-check {
+
+  a {
+    @include status-button($honey);
+    border-bottom: none;
+    font-weight: 700;
+    padding-left: 25px;
+    position: relative;
+    text-align: center;
+
+    // Approve icon
+    &:before {
+      @include svg-bg(confirm_dark);
+      content: '';
+      height: 9px;
+      left: 10px;
+      position: absolute;
+      top: 10px;
+      width: 11px;
+    }
+  }
+}
