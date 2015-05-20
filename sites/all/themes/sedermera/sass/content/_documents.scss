@@ -6,14 +6,11 @@
   }
 }
 
-.flag-outer-document-check {
-  display: block;
+// Approve/sign button (godkänn dokument)
+.sign {
+  background-color: transparent;
+  float: right;
   margin: 40px 0 20px 0;
-  text-align: right;
-}
-
-// Approve/sign button
-.flag-document-check {
 
   a {
     @include status-button($honey);
