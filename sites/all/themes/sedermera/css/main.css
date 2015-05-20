@@ -1388,6 +1388,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a#documents {
         background: url("../graphics/documents_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/documents_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#administer {
+        background: url("../graphics/administer_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/administer_grey.svg") transparent 0 0 no-repeat; }
     .main-navigation .menu li ul {
       margin-top: 3px; }
     .main-navigation .menu li li {
@@ -1413,6 +1416,9 @@ form#user-login #edit-submit {
           .main-navigation .menu li li a.active.archive, .main-navigation .menu li li a.active-trail.archive {
             background: url("../graphics/archive_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/archive_yellow.svg") transparent 0 0 no-repeat; }
+          .main-navigation .menu li li a.active#administer, .main-navigation .menu li li a.active-trail#administer {
+            background: url("../graphics/administer_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/administer_yellow.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li li.last {
         background: url("../graphics/tree_two.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/tree_two.svg") transparent 0 0 no-repeat;
@@ -1459,7 +1465,9 @@ form#user-login #edit-submit {
         .main-navigation li.expanded ul.menu li a.active, .main-navigation li.expanded ul.menu li a.active-trail {
           background-position: 40px 24px; }
         .main-navigation li.expanded ul.menu li a.add {
-          display: none; } }
+          display: none; }
+        .main-navigation li.expanded ul.menu li a#administer {
+          background-position: 44px 23px; } }
 
 .user {
   font-size: 16px;

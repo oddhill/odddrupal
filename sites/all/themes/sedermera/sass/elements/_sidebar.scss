@@ -126,6 +126,10 @@
         &#documents {
           @include svg-bg(documents_grey);
         }
+
+        &#administer {
+          @include svg-bg(administer_grey);
+        }
       }
 
       ul {
@@ -157,6 +161,10 @@
 
             &.archive {
               @include svg-bg(archive_yellow);
+            }
+
+            &#administer {
+              @include svg-bg(administer_yellow);
             }
           }
         }
@@ -243,6 +251,10 @@
 
             &.add {
               display: none;
+            }
+
+            &#administer {
+              background-position: 44px 23px;
             }
           }
         }
