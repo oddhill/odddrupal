@@ -664,6 +664,11 @@ a.tabledrag-handle {
       top: 10px;
       width: 11px; }
 
+.node-type-document .node-document-form {
+  padding: 50px 40px 40px 40px; }
+  .node-type-document .node-document-form .form-body {
+    padding: 0 20px 40px 20px; }
+
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {
