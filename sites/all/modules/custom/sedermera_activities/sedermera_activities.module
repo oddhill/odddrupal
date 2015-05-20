@@ -201,21 +201,29 @@ function sedermera_activities_offer_field_has_changed($offer, $field) {
 }
 
 /**
- * Implements hook_node_access().
+ * Implements hook_node_view().
  */
-function sedermera_activities_node_access($node, $op, $account) {
-  if ($node->type == "document" && $op == 'view') {
+function sedermera_activities_node_view($node, $view_mode) {
+  if ($node->type == "document" && $view_mode == 'full') {
     sedermera_activities_create_message_document($node, 'document_view');
   }
-  return NODE_ACCESS_IGNORE;
 }
 
+/**
+ * Creates a message that a user have opened a document.
+ * @param  $node The node to reference in message
+ * @param  $type The message type to be sent
+ */
 function sedermera_activities_create_message_document($node, $type) {
   // Create the message.
   $message = message_create($type);
 
+  // Wrap to access fields
   $wrapper = entity_metadata_wrapper('message', $message);
 
+  // Add node as reference in message
   $wrapper->field_message_reference->set($node);
+
+  // Save message
   $wrapper->save();
 }

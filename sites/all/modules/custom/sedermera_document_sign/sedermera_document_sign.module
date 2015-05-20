@@ -9,7 +9,19 @@
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_document_sign_form_document_node_form_alter(&$form, &$form_state) {
+  // Hide user signed list
   $form['field_document_user_read']['#access'] = 0;
+
+  // Move the Revision tab:
+  $form['#group_children']['revision_information'] = 'group_doc_2';
+  $form['revision_information']['#group'] = 'group_doc_2';
+
+  // Set required on node revision
+  $form['revision_information']['log']['#required'] = '1';
+
+  // And very importantly, hide the original containing group of these now moved tabs
+  // (otherwise path alias will render twice, for some reason)
+  $form['additional_settings']['#access'] = false;
 }
 
 /**
