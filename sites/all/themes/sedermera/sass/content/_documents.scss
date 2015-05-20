@@ -43,3 +43,11 @@
     }
   }
 }
+
+input[value="Compare"] {
+
+ &#edit-submit {
+  @include button($dark-grey, compare);
+ }
+
+}

@@ -669,6 +669,30 @@ a.tabledrag-handle {
   .node-type-document .node-document-form .form-body {
     padding: 0 20px 40px 20px; }
 
+input[value="Compare"]#edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/compare_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/compare_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  input[value="Compare"]#edit-submit:hover {
+    background-color: #303030; }
+
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {
