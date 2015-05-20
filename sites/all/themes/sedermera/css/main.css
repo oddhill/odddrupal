@@ -1016,7 +1016,8 @@ a.tabledrag-handle {
 
 #capital-raising-node-form > div,
 #eck-entity-form-add-investor-person > div,
-#eck-entity-form-add-investor-company > div {
+#eck-entity-form-add-investor-company > div,
+#document-node-form > div {
   display: -ms-flexbox;
   -ms-flex-direction: column;
   -ms-flex-wrap: wrap;
