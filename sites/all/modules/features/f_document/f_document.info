@@ -1,6 +1,8 @@
 name = Dokument
 core = 7.x
 package = Features
+dependencies[] = ccl
+dependencies[] = ccl_local_actions
 dependencies[] = ctools
 dependencies[] = ds
 dependencies[] = entity
