@@ -13,4 +13,5 @@
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding">
   <?php print $ds_content; ?>
+  <?php print $sign; ?>
 </div>
