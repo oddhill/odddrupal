@@ -18,7 +18,9 @@ function f_document_menu_default_menu_links() {
     'link_title' => 'Administrera dokument',
     'options' => array(
       'identifier' => 'main-menu_administrera-dokument:dokument/admin',
-      'attributes' => array(),
+      'attributes' => array(
+        'id' => 'administer',
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
@@ -41,13 +43,17 @@ function f_document_menu_default_menu_links() {
     'router_path' => 'dokument/lista',
     'link_title' => 'Alla dokument',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_alla-dokument:dokument/lista',
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_alla-dokument:dokument/lista',
     ),
     'module' => 'menu',
     'hidden' => 0,

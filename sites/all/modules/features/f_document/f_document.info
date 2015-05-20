@@ -43,7 +43,6 @@ features[menu_links][] = main-menu_administrera-dokument:dokument/admin
 features[menu_links][] = main-menu_alla-dokument:dokument/lista
 features[menu_links][] = main-menu_dokument:dokument
 features[menu_links][] = main-menu_lgg-till-dokument:node/add/document
-features[message_type][] = document_view
 features[node][] = document
 features[taxonomy][] = document_type
 features[user_permission][] = create document content

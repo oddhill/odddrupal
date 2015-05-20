@@ -41,43 +41,6 @@ function f_document_views_api($module = NULL, $api = NULL) {
 }
 
 /**
- * Implements hook_default_message_type().
- */
-function f_document_default_message_type() {
-  $items = array();
-  $items['document_view'] = entity_import('message_type', '{
-    "name" : "document_view",
-    "description" : "Dokument visning",
-    "argument_keys" : [],
-    "argument" : [],
-    "category" : "message_type",
-    "data" : {
-      "token options" : { "clear" : 1 },
-      "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
-    },
-    "language" : "en",
-    "arguments" : null,
-    "message_text" : {
-      "en" : [
-        {
-          "value" : "[message:user:name] \\u00f6ppnade dokumentet \\u003Ca href=\\u0022[message:field-message-reference:url]\\u0022\\u003E[message:field-message-reference:title]\\u003C\\/a\\u003E den [current-date:short]",
-          "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003E[message:user:name] \\u00f6ppnade dokumentet \\u003Ca href=\\u0022[message:field-message-reference:url]\\u0022\\u003E[message:field-message-reference:title]\\u003C\\/a\\u003E den [current-date:short]\\u003C\\/p\\u003E\\n"
-        }
-      ],
-      "sv" : [
-        {
-          "value" : "[message:user:name] \\u00f6ppnade dokumentet \\u003Ca href=\\u0022[message:field-message-reference:url]\\u0022\\u003E[message:field-message-reference:title]\\u003C\\/a\\u003E den [current-date:short]",
-          "format" : "full_html",
-          "safe_value" : "\\u003Cp\\u003E[message:user:name] \\u00f6ppnade dokumentet \\u003Ca href=\\u0022[message:field-message-reference:url]\\u0022\\u003E[message:field-message-reference:title]\\u003C\\/a\\u003E den [current-date:short]\\u003C\\/p\\u003E\\n"
-        }
-      ]
-    }
-  }');
-  return $items;
-}
-
-/**
  * Implements hook_node_info().
  */
 function f_document_node_info() {
