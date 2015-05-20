@@ -144,6 +144,13 @@ function f_company_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_company';
+  $strongarm->value = 1;
+  $export['node_view_permissions_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_company_pattern';
   $strongarm->value = 'kundbolag/lista/[node:title]';
   $export['pathauto_node_company_pattern'] = $strongarm;

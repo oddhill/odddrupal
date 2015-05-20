@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * f_core.views_default.inc
+ * f_document.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function f_core_views_default_views() {
+function f_document_views_default_views() {
   $export = array();
 
   $view = new view();

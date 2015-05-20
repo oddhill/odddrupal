@@ -37,5 +37,27 @@ function f_company_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'view any company content'.
+  $permissions['view any company content'] = array(
+    'name' => 'view any company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own company content'.
+  $permissions['view own company content'] = array(
+    'name' => 'view own company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
   return $permissions;
 }
