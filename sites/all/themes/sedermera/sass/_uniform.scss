@@ -374,6 +374,7 @@ div#{$class-wrapper}#{$class-checkbox} {
 
 div#{$class-wrapper}#{$class-radio} {
 	position: relative;
+	padding-right: 20px;
 
 	&, span, input {
 		width: $radio-width;
