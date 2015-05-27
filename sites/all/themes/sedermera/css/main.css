@@ -694,6 +694,9 @@ input[value="Compare"]#edit-submit {
   input[value="Compare"]#edit-submit:hover {
     background-color: #303030; }
 
+.block-sedermera-document-view-read-all .table-wrapper {
+  width: 100%; }
+
 .field-shared-industries,
 .field-shared-address,
 .field-shared-email {

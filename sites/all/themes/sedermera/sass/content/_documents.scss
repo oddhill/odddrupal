@@ -50,3 +50,10 @@ input[value="Compare"] {
   @include button($dark-grey, compare);
  }
 }
+
+.block-sedermera-document-view-read-all {
+
+  .table-wrapper {
+    width: 100%;
+  }
+}
