@@ -3376,3 +3376,6 @@ form#user-login,
 
 .page-node-add-capital-raising .node-capital_raising-form {
   padding: 0; }
+
+th {
+  padding: 10px; }
