@@ -44,6 +44,16 @@ function f_document_menu_default_menu_links() {
     'link_title' => 'Alla dokument',
     'options' => array(
       'identifier' => 'main-menu_alla-dokument:dokument/lista',
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'system',
     'hidden' => 0,
