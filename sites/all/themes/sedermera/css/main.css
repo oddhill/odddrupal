@@ -641,16 +641,9 @@ a.tabledrag-handle {
   height: 34px;
   line-height: 34px;
   margin: 40px 0 20px 0;
-  padding: 0 20px;
   position: relative;
-  text-transform: uppercase; }
-  .sign:before {
-    content: '';
-    height: 9px;
-    left: 10px;
-    position: absolute;
-    top: 10px;
-    width: 11px; }
+  text-transform: uppercase;
+  width: 400px; }
   .sign a {
     font-size: 11px;
     font-size: 1.1rem;
@@ -669,7 +662,8 @@ a.tabledrag-handle {
     cursor: pointer;
     height: 34px;
     line-height: 34px;
-    margin: 0; }
+    margin: 0;
+    width: 400px; }
     .sign a:hover {
       background-color: #e1b45b;
       border: 0 none; }
@@ -705,6 +699,11 @@ input[value="Compare"]#edit-submit {
 
 .block-sedermera-document-view-read-all .table-wrapper {
   width: 100%; }
+.block-sedermera-document-view-read-all table td {
+  height: 28px;
+  margin: 10px 0;
+  padding: 0 15px 0 28px;
+  vertical-align: middle; }
 
 .field-shared-industries,
 .field-shared-address,
