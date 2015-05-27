@@ -140,10 +140,10 @@ function sedermera_document_view_block_view($delta = '') {
         $rows = array();
         foreach ($documents as $doc) {
           $class = 'noread';
-          $read = '0';
+          $read = 'Nej';
           if (userHasRead($doc->field_document_user_read, $get['selected'])) {
             $class = 'read';
-            $read = '1';
+            $read = 'Ja';
           }
           $rows[] = array(
             array(
@@ -198,10 +198,10 @@ function sedermera_document_view_block_view($delta = '') {
         $node = node_load(NULL, $get['selected']);
         foreach ($users as $uid => $user) {
           $class = 'noread';
-          $read = '0';
+          $read = 'Nej';
          if (userHasRead($node->field_document_user_read, $uid)) {
             $class = 'read';
-            $read = '1';
+            $read = 'Ja';
           }
           $rows[] = array(
             array(
@@ -241,10 +241,10 @@ function sedermera_document_view_block_view($delta = '') {
       $rows = array();
       foreach ($documents as $doc) {
         $class = 'noread';
-        $read = '0';
+        $read = 'Nej';
         if (userHasRead($doc->field_document_user_read, $user->uid)) {
           $class = 'read';
-          $read = '1';
+          $read = 'Ja';
         }
         $rows[] = array(
           array(
