@@ -125,6 +125,14 @@ function f_document_menu_default_menu_links() {
     'link_title' => 'Läst per användare',
     'options' => array(
       'identifier' => 'main-menu_lst-per-anvndare:dokument/read_user',
+      'attributes' => array(
+        'id' => 'read-per-user',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'system',
     'hidden' => 0,
@@ -143,6 +151,14 @@ function f_document_menu_default_menu_links() {
     'link_title' => 'Läst per dokument',
     'options' => array(
       'identifier' => 'main-menu_lst-per-dokument:dokument/read_doc',
+      'attributes' => array(
+        'id' => 'read-per-doc',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'system',
     'hidden' => 0,
