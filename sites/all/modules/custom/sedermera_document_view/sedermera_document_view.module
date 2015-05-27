@@ -248,7 +248,7 @@ function sedermera_document_view_block_view($delta = '') {
         }
         $rows[] = array(
           array(
-            'data' => $doc->title,
+            'data' => l($doc->title, 'node/' . $doc->nid),
             'class' => $class,
           ),
           array(

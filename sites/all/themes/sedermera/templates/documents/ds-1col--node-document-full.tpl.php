@@ -13,7 +13,13 @@
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding">
   <?php print $ds_content; ?>
-  <button class="sign">
-    <?php print $sign; ?>
-  </button>
+  <?php if ($sign_status) : ?>
+    <p class="signed">
+      <?php print $sign; ?>
+    </p>
+  <?php else : ?>
+    <button class="sign">
+      <?php print $sign; ?>
+    </button>
+  <?php endif; ?>
 </div>

@@ -12,7 +12,7 @@ function sedermera_dashboard_menu() {
   $items['oversikt'] = array(
     'title' => 'Översikt',
     'page callback' => 'sedermera_dashboard_page',
-    'access arguments' => array('access content'),
+    'access arguments' => array('access dashboard'),
     'menu_name' => 'main-menu',
     'weight' => -500,
   );
