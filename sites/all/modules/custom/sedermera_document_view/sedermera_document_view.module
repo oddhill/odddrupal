@@ -139,20 +139,18 @@ function sedermera_document_view_block_view($delta = '') {
         );
         $rows = array();
         foreach ($documents as $doc) {
-          $class = 'noread';
+          $class = 'not-approved';
           $read = 'Nej';
           if (userHasRead($doc->field_document_user_read, $get['selected'])) {
-            $class = 'read';
+            $class = 'approved';
             $read = 'Ja';
           }
           $rows[] = array(
             array(
               'data' => $doc->title,
-              'class' => $class,
             ),
             array(
               'data' => $doc->num_revisions,
-              'class' => $class,
             ),
             array(
               'data' => $read,
@@ -197,16 +195,15 @@ function sedermera_document_view_block_view($delta = '') {
         $rows = array();
         $node = node_load(NULL, $get['selected']);
         foreach ($users as $uid => $user) {
-          $class = 'noread';
+          $class = 'not-approved';
           $read = 'Nej';
          if (userHasRead($node->field_document_user_read, $uid)) {
-            $class = 'read';
+            $class = 'approved';
             $read = 'Ja';
           }
           $rows[] = array(
             array(
               'data' => $user,
-              'class' => $class,
             ),
             array(
               'data' => $read,
@@ -240,20 +237,18 @@ function sedermera_document_view_block_view($delta = '') {
       );
       $rows = array();
       foreach ($documents as $doc) {
-        $class = 'noread';
+        $class = 'not-approved';
         $read = 'Nej';
         if (userHasRead($doc->field_document_user_read, $user->uid)) {
-          $class = 'read';
+          $class = 'approved';
           $read = 'Ja';
         }
         $rows[] = array(
           array(
             'data' => l($doc->title, 'node/' . $doc->nid),
-            'class' => $class,
           ),
           array(
             'data' => $doc->num_revisions,
-            'class' => $class,
           ),
           array(
             'data' => $read,
