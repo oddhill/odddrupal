@@ -130,6 +130,14 @@
         &#administer {
           @include svg-bg(administer_grey);
         }
+
+        &#read-per-user {
+          @include svg-bg(user_small_grey);
+        }
+
+        &#read-per-doc {
+          @include svg-bg(document_small_grey);
+        }
       }
 
       ul {
@@ -165,6 +173,14 @@
 
             &#administer {
               @include svg-bg(administer_yellow);
+            }
+
+            &#read-per-user {
+              @include svg-bg(user_small_yellow);
+            }
+
+            &#read-per-doc {
+              @include svg-bg(document_small_yellow);
             }
           }
         }
@@ -254,6 +270,14 @@
             }
 
             &#administer {
+              background-position: 44px 23px;
+            }
+
+            &#read-per-user {
+              background-position: 44px 23px;
+            }
+
+            &#read-per-doc {
               background-position: 44px 23px;
             }
           }

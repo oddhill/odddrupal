@@ -629,9 +629,28 @@ a.tabledrag-handle {
   background: #fff; }
 
 .sign {
-  background-color: transparent;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  background-color: #b6e0af;
+  border-radius: 34px;
+  color: #6c9e65;
+  cursor: default;
   float: right;
-  margin: 40px 0 20px 0; }
+  font-weight: 700;
+  height: 34px;
+  line-height: 34px;
+  margin: 40px 0 20px 0;
+  padding: 0 20px;
+  position: relative;
+  text-transform: uppercase; }
+  .sign:before {
+    content: '';
+    height: 9px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 11px; }
   .sign a {
     font-size: 11px;
     font-size: 1.1rem;
@@ -647,23 +666,13 @@ a.tabledrag-handle {
     text-transform: uppercase;
     width: auto;
     background-color: #fbc966;
-    border-bottom: none;
-    font-weight: 700;
-    padding-left: 25px;
-    position: relative;
-    text-align: center; }
+    cursor: pointer;
+    height: 34px;
+    line-height: 34px;
+    margin: 0; }
     .sign a:hover {
       background-color: #e1b45b;
       border: 0 none; }
-    .sign a:before {
-      background: url("../graphics/confirm_dark.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/confirm_dark.svg") transparent 0 0 no-repeat;
-      content: '';
-      height: 9px;
-      left: 10px;
-      position: absolute;
-      top: 10px;
-      width: 11px; }
 
 .node-type-document .node-document-form {
   padding: 50px 40px 40px 40px; }
@@ -1424,6 +1433,12 @@ form#user-login #edit-submit {
       .main-navigation .menu li a#administer {
         background: url("../graphics/administer_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/administer_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#read-per-user {
+        background: url("../graphics/user_small_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/user_small_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#read-per-doc {
+        background: url("../graphics/document_small_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/document_small_grey.svg") transparent 0 0 no-repeat; }
     .main-navigation .menu li ul {
       margin-top: 3px; }
     .main-navigation .menu li li {
@@ -1452,6 +1467,12 @@ form#user-login #edit-submit {
           .main-navigation .menu li li a.active#administer, .main-navigation .menu li li a.active-trail#administer {
             background: url("../graphics/administer_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/administer_yellow.svg") transparent 0 0 no-repeat; }
+          .main-navigation .menu li li a.active#read-per-user, .main-navigation .menu li li a.active-trail#read-per-user {
+            background: url("../graphics/user_small_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/user_small_yellow.svg") transparent 0 0 no-repeat; }
+          .main-navigation .menu li li a.active#read-per-doc, .main-navigation .menu li li a.active-trail#read-per-doc {
+            background: url("../graphics/document_small_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/document_small_yellow.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li li.last {
         background: url("../graphics/tree_two.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/tree_two.svg") transparent 0 0 no-repeat;
@@ -1500,6 +1521,10 @@ form#user-login #edit-submit {
         .main-navigation li.expanded ul.menu li a.add {
           display: none; }
         .main-navigation li.expanded ul.menu li a#administer {
+          background-position: 44px 23px; }
+        .main-navigation li.expanded ul.menu li a#read-per-user {
+          background-position: 44px 23px; }
+        .main-navigation li.expanded ul.menu li a#read-per-doc {
           background-position: 44px 23px; } }
 
 .user {
