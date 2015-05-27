@@ -95,6 +95,9 @@ function f_document_views_default_views() {
   $handler->display->display_options['fields']['status']['table'] = 'node';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['label'] = 'Publiserad';
+  $handler->display->display_options['fields']['status']['type'] = 'custom';
+  $handler->display->display_options['fields']['status']['type_custom_true'] = 'Ja';
+  $handler->display->display_options['fields']['status']['type_custom_false'] = 'Nej';
   $handler->display->display_options['fields']['status']['not'] = 0;
   /* Field: Content revision: Updated date */
   $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
@@ -142,6 +145,8 @@ function f_document_views_default_views() {
     t('Admin document list'),
     t('Titel'),
     t('Publiserad'),
+    t('Ja'),
+    t('Nej'),
     t('Datum'),
     t('Revision'),
     t('Editera'),
