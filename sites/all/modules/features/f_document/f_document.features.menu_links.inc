@@ -44,18 +44,8 @@ function f_document_menu_default_menu_links() {
     'link_title' => 'Alla dokument',
     'options' => array(
       'identifier' => 'main-menu_alla-dokument:dokument/lista',
-      'attributes' => array(
-        'class' => array(
-          0 => 'all',
-        ),
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
     ),
-    'module' => 'menu',
+    'module' => 'system',
     'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
@@ -117,12 +107,50 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
+  // Exported menu link: main-menu_lst-per-anvndare:dokument/read_user
+  $menu_links['main-menu_lst-per-anvndare:dokument/read_user'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/read_user',
+    'router_path' => 'dokument/read_user',
+    'link_title' => 'Läst per användare',
+    'options' => array(
+      'identifier' => 'main-menu_lst-per-anvndare:dokument/read_user',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
+  );
+  // Exported menu link: main-menu_lst-per-dokument:dokument/read_doc
+  $menu_links['main-menu_lst-per-dokument:dokument/read_doc'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/read_doc',
+    'router_path' => 'dokument/read_doc',
+    'link_title' => 'Läst per dokument',
+    'options' => array(
+      'identifier' => 'main-menu_lst-per-dokument:dokument/read_doc',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Administrera dokument');
   t('Alla dokument');
   t('Dokument');
   t('Lägg till dokument');
+  t('Läst per användare');
+  t('Läst per dokument');
 
 
   return $menu_links;

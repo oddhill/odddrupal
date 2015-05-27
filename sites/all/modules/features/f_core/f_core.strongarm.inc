@@ -364,6 +364,7 @@ function f_core_strongarm() {
     'search_krumo' => 1,
     'ds_ui' => 1,
     'field_validation_ui' => 1,
+    'autologout' => 0,
     'backup_migrate' => 0,
     'letmein' => 1,
     'logentries' => 0,
@@ -422,6 +423,7 @@ function f_core_strongarm() {
     'search_krumo' => 0,
     'ds_ui' => 0,
     'field_validation_ui' => 0,
+    'autologout' => 1,
     'backup_migrate' => 1,
     'letmein' => 0,
     'logentries' => 1,
@@ -450,6 +452,7 @@ function f_core_strongarm() {
     'reroute_email_enable_message' => 0,
     'speedy_js_production' => 1,
     'yubikey_enabled' => 1,
+    'autologout_timeout' => '300',
   );
   $export['tadaa_production_variables'] = $strongarm;
 
@@ -470,6 +473,7 @@ function f_core_strongarm() {
     'search_krumo' => 0,
     'ds_ui' => 1,
     'field_validation_ui' => 1,
+    'autologout' => 1,
     'backup_migrate' => 0,
     'letmein' => 1,
     'logentries' => 0,
@@ -498,6 +502,7 @@ function f_core_strongarm() {
     'reroute_email_enable_message' => 0,
     'speedy_js_production' => 1,
     'yubikey_enabled' => 0,
+    'autologout_timeout' => '300',
   );
   $export['tadaa_staging_variables'] = $strongarm;
 

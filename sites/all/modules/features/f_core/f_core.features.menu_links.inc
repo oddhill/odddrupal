@@ -9,6 +9,7 @@
  */
 function f_core_menu_default_menu_links() {
   $menu_links = array();
+
   // Exported menu link: main-menu_versikt:oversikt
   $menu_links['main-menu_versikt:oversikt'] = array(
     'menu_name' => 'main-menu',

@@ -22,6 +22,9 @@ function f_document_ccl_features_preset() {
  * Implements hook_ctools_plugin_api().
  */
 function f_document_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "context" && $api == "context") {
+    return array("version" => "3");
+  }
   if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }
