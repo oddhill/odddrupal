@@ -710,7 +710,7 @@ a.tabledrag-handle {
   background: #fff;
   border: 0;
   float: right;
-  margin: 35px 0; }
+  margin: 35px 0 25px 0; }
   .tabs.secondary li {
     font-size: 13px;
     font-size: 1.3rem;
@@ -2850,6 +2850,8 @@ form.confirmation {
   display: inline-block;
   font-weight: 700;
   padding: 50px 40px 20px 40px; }
+  .page-node-revisions form.confirmation {
+    padding: 0 40px 60px 40px; }
   form.confirmation input {
     display: inline-block;
     height: 34px;
