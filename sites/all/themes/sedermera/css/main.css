@@ -695,9 +695,13 @@ a.tabledrag-handle {
 .page-node-revisions .node-document.view-mode-full {
   padding-top: 15px; }
 
-.block-sedermera-document-view-read-all .table-wrapper {
+.block-sedermera-document-view-read-all .table-wrapper,
+.block-sedermera-document-view-read-per-doc .table-wrapper,
+.block-sedermera-document-view-read-per-user .table-wrapper {
   width: 100%; }
-.block-sedermera-document-view-read-all table td {
+.block-sedermera-document-view-read-all table td,
+.block-sedermera-document-view-read-per-doc table td,
+.block-sedermera-document-view-read-per-user table td {
   height: 28px;
   margin: 10px 0;
   padding: 0 15px 0 28px;
@@ -881,6 +885,10 @@ input[value="Jämför"]#edit-submit {
     text-transform: uppercase; }
     #revisioning-ux-delete-all input:hover {
       background-color: #303030; }
+
+.page-dokument-read-user .main-content,
+.page-dokument-read-doc .main-content {
+  overflow: visible; }
 
 .field-shared-industries,
 .field-shared-address,

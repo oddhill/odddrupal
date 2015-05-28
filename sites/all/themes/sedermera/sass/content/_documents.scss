@@ -82,7 +82,9 @@
 }
 
 // All documents list wrapper
-.block-sedermera-document-view-read-all {
+.block-sedermera-document-view-read-all,
+.block-sedermera-document-view-read-per-doc,
+.block-sedermera-document-view-read-per-user {
 
   .table-wrapper {
     width: 100%;
@@ -203,5 +205,13 @@ input[value="Jämför"]{
     &:hover {
      background-color: shade($dark-grey,30%);
     }
+  }
+}
+
+.page-dokument-read-user,
+.page-dokument-read-doc {
+
+  .main-content {
+    overflow: visible;
   }
 }
