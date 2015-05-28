@@ -798,7 +798,7 @@ input[value="Jämför"]#edit-submit {
   border-bottom: 0 none;
   background: url("../graphics/publish_small_light.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/publish_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
+  background-position: 22px 13px;
   padding-left: 42px;
   background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
@@ -882,9 +882,12 @@ input[value="Jämför"]#edit-submit {
     background-color: #303030; }
   #revisioning-ux-delete-all input {
     background: #454545;
+    padding: 0;
     text-transform: uppercase; }
     #revisioning-ux-delete-all input:hover {
       background-color: #303030; }
+  #revisioning-ux-delete-all .form .submit-wrapper.form-submit {
+    margin-right: 0; }
 
 .page-dokument-read-user .main-content,
 .page-dokument-read-doc .main-content {

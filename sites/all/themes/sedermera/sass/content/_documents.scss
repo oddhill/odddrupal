@@ -200,11 +200,16 @@ input[value="Jämför"]{
 
   input {
     background: $dark-grey;
+    padding: 0;
     text-transform: uppercase;
 
     &:hover {
      background-color: shade($dark-grey,30%);
     }
+  }
+
+  .form .submit-wrapper.form-submit {
+    margin-right: 0;
   }
 }
 
