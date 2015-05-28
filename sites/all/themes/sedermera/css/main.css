@@ -693,6 +693,61 @@ a.tabledrag-handle {
   .page-node-revisions .node-document-form .form-body {
     padding: 0 20px 40px 20px; }
 
+.block-sedermera-document-view-read-all .table-wrapper {
+  width: 100%; }
+.block-sedermera-document-view-read-all table td {
+  height: 28px;
+  margin: 10px 0;
+  padding: 0 15px 0 28px;
+  vertical-align: middle; }
+
+.tabs.secondary {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px;
+  background: #fff;
+  border: 0;
+  float: right;
+  margin: 25px 0; }
+  .tabs.secondary li {
+    font-size: 13px;
+    font-size: 1.3rem;
+    line-height: 19.5px;
+    background: #d5d7da;
+    border-radius: 34px;
+    margin-right: 10px; }
+    .tabs.secondary li:last-child {
+      margin-right: 20px; }
+    .tabs.secondary li a {
+      border-right: 0;
+      border-bottom: 0 none;
+      color: #282828;
+      display: inline-block;
+      font-weight: 500;
+      height: 25px;
+      line-height: 25px; }
+      .tabs.secondary li a:hover {
+        background-color: #cacccf;
+        border-bottom: 0 none;
+        border-radius: 34px;
+        height: 25px; }
+    .tabs.secondary li.active a {
+      background: #fbc966;
+      border-bottom: 0 none;
+      border-left: 0 none;
+      border-radius: 34px;
+      border-top: 0;
+      font-weight: 700;
+      height: 25px;
+      line-height: 25px;
+      margin-top: 0; }
+      .tabs.secondary li.active a:hover {
+        background-color: #eebe60;
+        border-bottom: 0 none; }
+
+#revisioning-revisions-summary {
+  padding: 0 20px 60px 20px; }
+
 .revisioning-ux-buttons {
   margin-top: 30px; }
 
@@ -824,61 +879,6 @@ input[value="Jämför"]#edit-submit {
     text-transform: uppercase; }
     #revisioning-ux-delete-all input:hover {
       background-color: #303030; }
-
-.block-sedermera-document-view-read-all .table-wrapper {
-  width: 100%; }
-.block-sedermera-document-view-read-all table td {
-  height: 28px;
-  margin: 10px 0;
-  padding: 0 15px 0 28px;
-  vertical-align: middle; }
-
-.tabs.secondary {
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 21px;
-  background: #fff;
-  border: 0;
-  float: right;
-  margin: 25px 0; }
-  .tabs.secondary li {
-    font-size: 13px;
-    font-size: 1.3rem;
-    line-height: 19.5px;
-    background: #d5d7da;
-    border-radius: 34px;
-    margin-right: 10px; }
-    .tabs.secondary li:last-child {
-      margin-right: 20px; }
-    .tabs.secondary li a {
-      border-right: 0;
-      border-bottom: 0 none;
-      color: #282828;
-      display: inline-block;
-      font-weight: 500;
-      height: 25px;
-      line-height: 25px; }
-      .tabs.secondary li a:hover {
-        background-color: #cacccf;
-        border-bottom: 0 none;
-        border-radius: 34px;
-        height: 25px; }
-    .tabs.secondary li.active a {
-      background: #fbc966;
-      border-bottom: 0 none;
-      border-left: 0 none;
-      border-radius: 34px;
-      border-top: 0;
-      font-weight: 700;
-      height: 25px;
-      line-height: 25px;
-      margin-top: 0; }
-      .tabs.secondary li.active a:hover {
-        background-color: #eebe60;
-        border-bottom: 0 none; }
-
-#revisioning-revisions-summary {
-  padding: 0 20px 60px 20px; }
 
 .field-shared-industries,
 .field-shared-address,

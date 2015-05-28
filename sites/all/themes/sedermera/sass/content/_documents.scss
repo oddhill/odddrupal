@@ -45,6 +45,7 @@
   }
 }
 
+// Document node
 .node-document.view-mode-full {
   padding-bottom: 60px;
 }
@@ -64,6 +65,7 @@
   }
 }
 
+// Revision operation - edit document form
 .page-node-revisions {
 
   .node-document-form {
@@ -71,50 +73,6 @@
 
     .form-body {
       padding: 0 20px 40px 20px;
-    }
-  }
-}
-
-.revisioning-ux-buttons {
-  margin-top: 30px;
-}
-
-input[value="Compare"],
-input[value="Jämför"]{
-
- &#edit-submit {
-  @include button($dark-grey, compare);
- }
-}
-
-#revisioning-ux-publish {
-
-  #edit-submit {
-    @include button($dark-grey, publish);
-  }
-}
-
-#revisioning-ux-unpublish {
-
-  #edit-submit,
-  #edit-submit--2 {
-    @include button($dark-grey, unpublish);
-  }
-}
-
-#edit-submit--3 {
-  @include button($dark-grey, delete);
-}
-
-#revisioning-ux-delete-all {
-  @include button($dark-grey, delete);
-
-  input {
-    background: $dark-grey;
-    text-transform: uppercase;
-
-    &:hover {
-     background-color: shade($dark-grey,30%);
     }
   }
 }
@@ -199,3 +157,47 @@ input[value="Jämför"]{
   padding: 0 20px 60px 20px;
 }
 
+// Revisioning buttons wrapper
+.revisioning-ux-buttons {
+  margin-top: 30px;
+}
+
+input[value="Compare"],
+input[value="Jämför"]{
+
+ &#edit-submit {
+  @include button($dark-grey, compare);
+ }
+}
+
+#revisioning-ux-publish {
+
+  #edit-submit {
+    @include button($dark-grey, publish);
+  }
+}
+
+#revisioning-ux-unpublish {
+
+  #edit-submit,
+  #edit-submit--2 {
+    @include button($dark-grey, unpublish);
+  }
+}
+
+#edit-submit--3 {
+  @include button($dark-grey, delete);
+}
+
+#revisioning-ux-delete-all {
+  @include button($dark-grey, delete);
+
+  input {
+    background: $dark-grey;
+    text-transform: uppercase;
+
+    &:hover {
+     background-color: shade($dark-grey,30%);
+    }
+  }
+}
