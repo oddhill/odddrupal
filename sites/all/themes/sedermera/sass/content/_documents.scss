@@ -45,10 +45,29 @@
   }
 }
 
+.node-document.view-mode-full {
+  padding-bottom: 60px;
+}
+
 .node-type-document {
 
   .node-document-form {
     padding: 50px 40px 40px 40px;
+
+    .form-body {
+      padding: 0 20px 40px 20px;
+    }
+  }
+
+  .node-document.view-mode-full {
+    padding-top: 60px;
+  }
+}
+
+.page-node-revisions {
+
+  .node-document-form {
+    padding: 0 0 40px 20px;
 
     .form-body {
       padding: 0 20px 40px 20px;
@@ -99,7 +118,6 @@ input[value="Jämför"]{
     }
   }
 }
-
 
 // All documents list wrapper
 .block-sedermera-document-view-read-all {
@@ -174,13 +192,6 @@ input[value="Jämför"]{
         }
       }
     }
-  }
-}
-
-.page-node-revisions {
-
-  .content-wrapper {
-    //padding-bottom: 60px;
   }
 }
 

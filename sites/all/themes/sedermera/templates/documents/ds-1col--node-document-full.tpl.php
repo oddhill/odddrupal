@@ -11,7 +11,7 @@
  * Have a look at the example_layout folder in the DS folder for guidance.
  */
 ?>
-<div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding">
+<div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
   <?php print $ds_content; ?>
   <?php if ($sign_status) : ?>
     <span class="signed">
