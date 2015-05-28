@@ -628,7 +628,7 @@ a.tabledrag-handle {
 .node-type-document .content-wrapper {
   background: #fff; }
 
-.sign {
+.signed {
   font-size: 12px;
   font-size: 1.2rem;
   line-height: 12px;
@@ -641,32 +641,41 @@ a.tabledrag-handle {
   height: 34px;
   line-height: 34px;
   margin: 40px 0 20px 0;
+  padding: 0 10px 0 35px;
   position: relative;
+  text-transform: uppercase; }
+  .signed:before {
+    background: url("../graphics/approved.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
+    content: '';
+    height: 20px;
+    left: 10px;
+    position: absolute;
+    top: 7px;
+    width: 20px; }
+
+.sign a {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
-  width: 400px; }
-  .sign a {
-    font-size: 11px;
-    font-size: 1.1rem;
-    line-height: 16.5px;
-    border-radius: 28px;
-    border-bottom: 0 none;
-    display: inline-block;
-    font-weight: 700;
-    height: 28px;
-    line-height: 28px;
-    padding-left: 10px;
-    padding-right: 10px;
-    text-transform: uppercase;
-    width: auto;
-    background-color: #fbc966;
-    cursor: pointer;
-    height: 34px;
-    line-height: 34px;
-    margin: 0;
-    width: 400px; }
-    .sign a:hover {
-      background-color: #e1b45b;
-      border: 0 none; }
+  width: auto;
+  background-color: #fbc966;
+  margin: 40px 0 20px 0;
+  float: right;
+  height: auto;
+  padding: 2px 13px 2px 13px; }
+  .sign a:hover {
+    background-color: #e1b45b;
+    border: 0 none; }
 
 .node-type-document .node-document-form {
   padding: 50px 40px 40px 40px; }

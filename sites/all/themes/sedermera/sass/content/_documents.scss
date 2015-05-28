@@ -6,8 +6,8 @@
   }
 }
 
-// Approve/sign button (godkänn dokument)
-.sign {
+// Signed (godkänn dokument)
+.signed {
   @include font-size(1.2,1);
   background-color: $avocado;
   border-radius: 34px;
@@ -18,49 +18,31 @@
   height: 34px;
   line-height: 34px;
   margin: 40px 0 20px 0;
-  //padding: 0 20px;
+  padding: 0 10px 0 35px;
   position: relative;
   text-transform: uppercase;
-  width: 400px;
 
   &:before{
-    //@include svg-bg(confirm_dark);
-    // content: '';
-    // height: 9px;
-    // left: 10px;
-    // position: absolute;
-    // top: 10px;
-    // width: 11px;
+    @include svg-bg(approved);
+    content: '';
+    height: 20px;
+    left: 10px;
+    position: absolute;
+    top: 7px;
+    width: 20px
   }
+}
+
+// Sign button
+.sign {
 
   a {
     @include status-button($honey);
-    cursor: pointer;
-    height: 34px;
-    line-height: 34px;
-    margin: 0;
-    width: 400px;
+    margin: 40px 0 20px 0;
+    float: right;
+    height: auto;
+    padding: 2px 13px 2px 13px;
   }
-
-  // a {
-  //   @include status-button($honey);
-  //   border-bottom: none;
-  //   font-weight: 700;
-  //   padding-left: 25px;
-  //   position: relative;
-  //   text-align: center;
-
-  //   // Approve icon
-  //   &:before {
-  //     @include svg-bg(confirm_dark);
-  //     content: '';
-  //     height: 9px;
-  //     left: 10px;
-  //     position: absolute;
-  //     top: 10px;
-  //     width: 11px;
-  //   }
-  // }
 }
 
 .node-type-document {

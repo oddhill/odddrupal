@@ -14,12 +14,12 @@
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding">
   <?php print $ds_content; ?>
   <?php if ($sign_status) : ?>
-    <p class="signed">
+    <span class="signed">
       <?php print $sign; ?>
-    </p>
+    </span>
   <?php else : ?>
-    <button class="sign">
+    <span class="sign">
       <?php print $sign; ?>
-    </button>
+    </span>
   <?php endif; ?>
 </div>
