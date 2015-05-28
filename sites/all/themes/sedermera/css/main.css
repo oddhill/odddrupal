@@ -692,6 +692,8 @@ a.tabledrag-handle {
   padding: 0 0 40px 20px; }
   .page-node-revisions .node-document-form .form-body {
     padding: 0 20px 40px 20px; }
+.page-node-revisions .node-document.view-mode-full {
+  padding-top: 15px; }
 
 .block-sedermera-document-view-read-all .table-wrapper {
   width: 100%; }
@@ -708,7 +710,7 @@ a.tabledrag-handle {
   background: #fff;
   border: 0;
   float: right;
-  margin: 25px 0; }
+  margin: 35px 0; }
   .tabs.secondary li {
     font-size: 13px;
     font-size: 1.3rem;
