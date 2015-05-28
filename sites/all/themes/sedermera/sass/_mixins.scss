@@ -32,6 +32,18 @@
     padding-left: 42px;
   }
 
+  @if $icon == publish {
+    @include svg-bg(publish_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == unpublish {
+    @include svg-bg(unpublish_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
   @if $icon == send {
     @include svg-bg(send_small_light);
     background-position: 20px 11px;

@@ -33,7 +33,7 @@
   }
 }
 
-// Sign button
+// Sign button (godkänt dokument)
 .sign {
 
   a {
@@ -56,12 +56,50 @@
   }
 }
 
-input[value="Compare"] {
+.revisioning-ux-buttons {
+  margin-top: 30px;
+}
+
+input[value="Compare"],
+input[value="Jämför"]{
 
  &#edit-submit {
   @include button($dark-grey, compare);
  }
 }
+
+#revisioning-ux-publish {
+
+  #edit-submit {
+    @include button($dark-grey, publish);
+  }
+}
+
+#revisioning-ux-unpublish {
+
+  #edit-submit,
+  #edit-submit--2 {
+    @include button($dark-grey, unpublish);
+  }
+}
+
+#edit-submit--3 {
+  @include button($dark-grey, delete);
+}
+
+#revisioning-ux-delete-all {
+  @include button($dark-grey, delete);
+
+  input {
+    background: $dark-grey;
+    text-transform: uppercase;
+
+    &:hover {
+     background-color: shade($dark-grey,30%);
+    }
+  }
+}
+
 
 // All documents list wrapper
 .block-sedermera-document-view-read-all {
@@ -77,3 +115,76 @@ input[value="Compare"] {
     vertical-align: middle;
   }
 }
+
+// Document - Revision Operations menu buttons
+.tabs {
+
+  &.secondary {
+    @include font-size(1.4);
+    background: $snow;
+    border: 0;
+    float: right;
+    margin: 25px 0;
+
+    li {
+      @include font-size(1.3);
+      background: $stone;
+      border-radius: 34px;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 20px;
+      }
+
+      a {
+        border-right: 0;
+        border-bottom: 0 none;
+        color: $coffee;
+        display: inline-block;
+        font-weight: 500;
+        height: 25px;
+        line-height: 25px;
+
+        &:hover {
+          background-color: shade($stone,5%);
+          border-bottom: 0 none;
+          border-radius: 34px;
+          height: 25px;
+        }
+      }
+
+      // Active tab
+      &.active {
+
+        a {
+          background: $honey;
+          border-bottom: 0 none;
+          border-left: 0 none;
+          border-radius: 34px;
+          border-top: 0;
+          font-weight: 700;
+          height: 25px;
+          line-height: 25px;
+          margin-top: 0;
+
+          &:hover {
+            background-color: shade($honey,5%);
+            border-bottom: 0 none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-node-revisions {
+
+  .content-wrapper {
+    //padding-bottom: 60px;
+  }
+}
+
+#revisioning-revisions-summary {
+  padding: 0 20px 60px 20px;
+}
+

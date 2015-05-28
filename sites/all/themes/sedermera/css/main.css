@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("http://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto:400,300,500,700,400italic,500italic,700italic,300italic");
 @import url("http://gregfranko.com/jquery.selectBoxIt.js/css/jquery.selectBoxIt.css");
 h1 {
@@ -682,7 +683,11 @@ a.tabledrag-handle {
   .node-type-document .node-document-form .form-body {
     padding: 0 20px 40px 20px; }
 
-input[value="Compare"]#edit-submit {
+.revisioning-ux-buttons {
+  margin-top: 30px; }
+
+input[value="Compare"]#edit-submit,
+input[value="Jämför"]#edit-submit {
   display: inline-block;
   height: 34px;
   font-size: 12px;
@@ -703,8 +708,112 @@ input[value="Compare"]#edit-submit {
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out; }
-  input[value="Compare"]#edit-submit:hover {
+  input[value="Compare"]#edit-submit:hover,
+  input[value="Jämför"]#edit-submit:hover {
     background-color: #303030; }
+
+#revisioning-ux-publish #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/publish_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/publish_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #revisioning-ux-publish #edit-submit:hover {
+    background-color: #303030; }
+
+#revisioning-ux-unpublish #edit-submit,
+#revisioning-ux-unpublish #edit-submit--2 {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/unpublish_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/unpublish_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #revisioning-ux-unpublish #edit-submit:hover,
+  #revisioning-ux-unpublish #edit-submit--2:hover {
+    background-color: #303030; }
+
+#edit-submit--3 {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #edit-submit--3:hover {
+    background-color: #303030; }
+
+#revisioning-ux-delete-all {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #revisioning-ux-delete-all:hover {
+    background-color: #303030; }
+  #revisioning-ux-delete-all input {
+    background: #454545;
+    text-transform: uppercase; }
+    #revisioning-ux-delete-all input:hover {
+      background-color: #303030; }
 
 .block-sedermera-document-view-read-all .table-wrapper {
   width: 100%; }
@@ -713,6 +822,53 @@ input[value="Compare"]#edit-submit {
   margin: 10px 0;
   padding: 0 15px 0 28px;
   vertical-align: middle; }
+
+.tabs.secondary {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px;
+  background: #fff;
+  border: 0;
+  float: right;
+  margin: 25px 0; }
+  .tabs.secondary li {
+    font-size: 13px;
+    font-size: 1.3rem;
+    line-height: 19.5px;
+    background: #d5d7da;
+    border-radius: 34px;
+    margin-right: 10px; }
+    .tabs.secondary li:last-child {
+      margin-right: 20px; }
+    .tabs.secondary li a {
+      border-right: 0;
+      border-bottom: 0 none;
+      color: #282828;
+      display: inline-block;
+      font-weight: 500;
+      height: 25px;
+      line-height: 25px; }
+      .tabs.secondary li a:hover {
+        background-color: #cacccf;
+        border-bottom: 0 none;
+        border-radius: 34px;
+        height: 25px; }
+    .tabs.secondary li.active a {
+      background: #fbc966;
+      border-bottom: 0 none;
+      border-left: 0 none;
+      border-radius: 34px;
+      border-top: 0;
+      font-weight: 700;
+      height: 25px;
+      line-height: 25px;
+      margin-top: 0; }
+      .tabs.secondary li.active a:hover {
+        background-color: #eebe60;
+        border-bottom: 0 none; }
+
+#revisioning-revisions-summary {
+  padding: 0 20px 60px 20px; }
 
 .field-shared-industries,
 .field-shared-address,
