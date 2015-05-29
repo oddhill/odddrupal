@@ -31,14 +31,6 @@ function f_document_user_default_permissions() {
     'name' => 'edit any document content',
     'roles' => array(
       'Dokument moderator' => 'Dokument moderator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'edit own document content'.
-  $permissions['edit own document content'] = array(
-    'name' => 'edit own document content',
-    'roles' => array(
       'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'node',
@@ -49,7 +41,6 @@ function f_document_user_default_permissions() {
     'name' => 'edit revisions',
     'roles' => array(
       'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'revisioning',
   );
@@ -82,15 +73,6 @@ function f_document_user_default_permissions() {
   // Exported permission: 'publish revisions of any document content'.
   $permissions['publish revisions of any document content'] = array(
     'name' => 'publish revisions of any document content',
-    'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-    ),
-    'module' => 'revisioning',
-  );
-
-  // Exported permission: 'publish revisions of own document content'.
-  $permissions['publish revisions of own document content'] = array(
-    'name' => 'publish revisions of own document content',
     'roles' => array(
       'Dokument moderator' => 'Dokument moderator',
     ),
@@ -143,32 +125,8 @@ function f_document_user_default_permissions() {
     'name' => 'view any unpublished document content',
     'roles' => array(
       'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'view_unpublished',
-  );
-
-  // Exported permission: 'view own document content'.
-  $permissions['view own document content'] = array(
-    'name' => 'view own document content',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
-      'Granskare' => 'Granskare',
-      'Redaktör' => 'Redaktör',
-    ),
-    'module' => 'node_view_permissions',
-  );
-
-  // Exported permission: 'view own unpublished content'.
-  $permissions['view own unpublished content'] = array(
-    'name' => 'view own unpublished content',
-    'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
-    ),
-    'module' => 'node',
   );
 
   // Exported permission: 'view revision status messages'.
@@ -185,6 +143,7 @@ function f_document_user_default_permissions() {
     'name' => 'view revisions',
     'roles' => array(
       'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'node',
   );
@@ -194,15 +153,7 @@ function f_document_user_default_permissions() {
     'name' => 'view revisions of any document content',
     'roles' => array(
       'Dokument moderator' => 'Dokument moderator',
-    ),
-    'module' => 'revisioning',
-  );
-
-  // Exported permission: 'view revisions of own document content'.
-  $permissions['view revisions of own document content'] = array(
-    'name' => 'view revisions of own document content',
-    'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
     ),
     'module' => 'revisioning',
   );

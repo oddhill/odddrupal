@@ -15,6 +15,7 @@ function sedermera_document_sign_form_document_node_form_alter(&$form, &$form_st
   // Move the Revision tab:
   $form['#group_children']['revision_information'] = 'group_doc_2';
   $form['revision_information']['#group'] = 'group_doc_2';
+  $form['revision_information']['#weight'] = 500;
 
   // Set required on node revision
   $form['revision_information']['log']['#required'] = '1';

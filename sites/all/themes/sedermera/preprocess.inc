@@ -113,14 +113,53 @@ function sedermera_preprocess_node(&$variables) {
             // Creates text to display that the user have already signed the document.
             $variables['sign'] = 'Du har läst och godkänt detta dokument';
             $variables['sign_status'] = TRUE;
-            return;
+          }
+        }
+      } else {
+        // User have not signed the document.
+        // Creates link for the user to sign the document.
+        $variables['sign'] = l('Ja, jag har läst och godkänner detta dokument', url('node/' . $variables['nid'] . '/sign'));
+        $variables['sign_status'] = FALSE;
+      }
+    }
+
+    $doc_rel_link = "";
+    $doc_app_link = "";
+
+    foreach (getDocuments() as $doc) {
+      if (!empty($doc->field_dokument_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_dokument_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $doc_rel_link .= l($doc->title, url('node/' . $doc->nid)) . " ";
           }
         }
       }
-      // User have not signed the document.
-      // Creates link for the user to sign the document.
-      $variables['sign'] = l('Ja, jag har läst och godkänner detta dokument', url('node/' . $variables['nid'] . '/sign'));
-      $variables['sign_status'] = FALSE;
+      if (!empty($doc->field_document_appendix)) {
+        // List documents appendix to this document
+        foreach ($doc->field_document_appendix[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $doc_app_link .= l($doc->title, url('node/' . $doc->nid)) . " ";
+          }
+        }
+      }
+    }
+
+    // List documents related from this document
+    if (!empty($variables['field_dokument_relation'])) {
+      foreach ($variables['field_dokument_relation'] as $relation) {
+        $doc_rel_link .= l($relation['entity']->title, url('node/' . $relation['entity']->nid)) . " ";
+      }
+    }
+
+    // Create variable for related documents
+    if ($doc_rel_link != "") {
+      $variables['related'] = "<div class='field field-dokument-relation'><span class='label'>Relaterade dokument:&nbsp;</span>" . $doc_rel_link . "</div>";
+    }
+
+    // Create variable for appendix documents
+    if ($doc_app_link != "") {
+      $variables['appendix'] = "<div class='field field-dokument-appendix'><span class='label'>Bilaga:&nbsp;</span>" . $doc_app_link . "</div>";
     }
   }
 }

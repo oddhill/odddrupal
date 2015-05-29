@@ -1,0 +1,12 @@
+diff -rup a/views/entityreference_plugin_style.inc b/views/entityreference_plugin_style.inc
+--- a/views/entityreference_plugin_style.inc	Mon Dec 10 18:36:24 2012
++++ b/views/entityreference_plugin_style.inc	Mon Dec 17 14:01:29 2012
+@@ -26,7 +26,7 @@ class entityreference_plugin_style exten
+         '#title' => t('Search fields'),
+         '#options' => $options,
+         '#required' => TRUE,
+-        '#default_value' => $this->options['search_fields'],
++        '#default_value' => isset($this->options['search_fields']) ? $this->options['search_fields'] : array(),
+         '#description' => t('Select the field(s) that will be searched when using the autocomplete widget.'),
+         '#weight' => -3,
+       );

@@ -12,14 +12,30 @@
  */
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
-  <?php print $ds_content; ?>
-  <?php if ($sign_status) : ?>
-    <span class="signed">
-      <?php print $sign; ?>
-    </span>
-  <?php else : ?>
-    <span class="sign">
-      <?php print $sign; ?>
-    </span>
-  <?php endif; ?>
+  <div class="document-content">
+    <?php print render($content['title']); ?>
+    <?php print render($content['body']); ?>
+
+    <?php if ($sign_status) : ?>
+      <span class="signed">
+        <?php print $sign; ?>
+      </span>
+    <?php else : ?>
+      <span class="sign">
+        <?php print $sign; ?>
+      </span>
+    <?php endif; ?>
+  </div>
+</div>
+<div class="sidebar">
+  <?php if (!empty($related)) : ?>
+    <div class="document-related">
+      <?php print $related; ?>
+    </div>
+  <?php endif;?>
+  <?php if (!empty($appendix)) : ?>
+    <div class="document-appendix">
+      <?php print $appendix; ?>
+    </div>
+  <?php endif;?>
 </div>

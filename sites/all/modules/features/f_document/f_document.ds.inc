@@ -91,13 +91,15 @@ function f_document_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'title',
         1 => 'body',
-        2 => 'flag_document_check',
+        2 => 'field_dokument_relation',
+        3 => 'field_document_appendix',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
       'body' => 'ds_content',
-      'flag_document_check' => 'ds_content',
+      'field_dokument_relation' => 'ds_content',
+      'field_document_appendix' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
