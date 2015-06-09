@@ -154,12 +154,12 @@ function sedermera_preprocess_node(&$variables) {
 
     // Create variable for related documents
     if ($doc_rel_link != "") {
-      $variables['related'] = "<div class='field field-dokument-relation'><span class='label'>Relaterade dokument:&nbsp;</span>" . $doc_rel_link . "</div>";
+      $variables['related'] = "<div class='field field-dokument-relation'><span class='label'>Relaterade dokument&nbsp;</span>" . $doc_rel_link . "</div>";
     }
 
     // Create variable for appendix documents
     if ($doc_app_link != "") {
-      $variables['appendix'] = "<div class='field field-dokument-appendix'><span class='label'>Bilaga:&nbsp;</span>" . $doc_app_link . "</div>";
+      $variables['appendix'] = "<div class='field field-dokument-appendix'><span class='label'>Bilaga&nbsp;</span>" . $doc_app_link . "</div>";
     }
   }
 }
