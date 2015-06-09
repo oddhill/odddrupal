@@ -248,7 +248,9 @@ function sedermera_document_view_block_view($delta = '') {
       );
       $rows = array();
       foreach ($documents as $doc) {
-        generateRows($rows, '', $doc, $appendix, 'document');
+        if (empty($doc->field_document_appendix)) {
+          generateRows($rows, '', $doc, $appendix, 'document');
+        }
       }
       // Create table.
       $table = generateTable($header, $rows);
