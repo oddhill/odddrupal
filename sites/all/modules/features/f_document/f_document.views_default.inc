@@ -52,80 +52,6 @@ function f_document_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
 
-  /* Display: Admin document list */
-  $handler = $view->new_display('page', 'Admin document list', 'document_list_admin');
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'title' => 'title',
-    'status' => 'status',
-  );
-  $handler->display->display_options['style_options']['default'] = '-1';
-  $handler->display->display_options['style_options']['info'] = array(
-    'title' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'status' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Titel';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Published */
-  $handler->display->display_options['fields']['status']['id'] = 'status';
-  $handler->display->display_options['fields']['status']['table'] = 'node';
-  $handler->display->display_options['fields']['status']['field'] = 'status';
-  $handler->display->display_options['fields']['status']['label'] = 'Publiserad';
-  $handler->display->display_options['fields']['status']['type'] = 'custom';
-  $handler->display->display_options['fields']['status']['type_custom_true'] = 'Ja';
-  $handler->display->display_options['fields']['status']['type_custom_false'] = 'Nej';
-  $handler->display->display_options['fields']['status']['not'] = 0;
-  /* Field: Content revision: Updated date */
-  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
-  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['label'] = 'Datum';
-  $handler->display->display_options['fields']['timestamp']['date_format'] = 'long';
-  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
-  /* Field: Content: Revisions */
-  $handler->display->display_options['fields']['number_of_revisions']['id'] = 'number_of_revisions';
-  $handler->display->display_options['fields']['number_of_revisions']['table'] = 'node';
-  $handler->display->display_options['fields']['number_of_revisions']['field'] = 'number_of_revisions';
-  $handler->display->display_options['fields']['number_of_revisions']['label'] = 'Revision';
-  /* Field: Content: Edit link */
-  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Editera';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'document' => 'document',
-  );
-  $handler->display->display_options['path'] = 'dokument/admin';
-
   /* Display: Entity Reference */
   $handler = $view->new_display('entityreference', 'Entity Reference', 'entityreference_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -179,14 +105,6 @@ function f_document_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Admin document list'),
-    t('Titel'),
-    t('Publiserad'),
-    t('Ja'),
-    t('Nej'),
-    t('Datum'),
-    t('Revision'),
-    t('Editera'),
     t('Entity Reference'),
   );
   $export['dokument'] = $view;

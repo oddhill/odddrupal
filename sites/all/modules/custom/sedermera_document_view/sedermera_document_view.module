@@ -36,6 +36,15 @@ function sedermera_document_view_menu() {
     'weight' => 0,
   );
 
+  $items['dokument/admin'] = array(
+    'title' => 'Administrera dokument',
+    'page callback' => 'admin_doc',
+    'access arguments' => array('access content'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_dokument:dokument',
+    'weight' => 0,
+  );
+
   return $items;
 }
 
@@ -93,6 +102,19 @@ function view_page_user() {
 }
 
 /**
+ * Page callback for the admin document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function admin_doc() {
+  drupal_set_title("Administrera dokument");
+
+  // Return an empty page. The actual content will be set using context.
+  return array();
+}
+
+/**
  * Implements hook_block_info().
  */
 function sedermera_document_view_block_info() {
@@ -104,6 +126,9 @@ function sedermera_document_view_block_info() {
   );
   $blocks['read_all'] = array(
     'info' => 'Alla dokument',
+  );
+  $blocks['admin_doc'] = array(
+    'info' => 'Administrera dokument',
   );
   return $blocks;
 }
@@ -261,6 +286,47 @@ function sedermera_document_view_block_view($delta = '') {
       );
       return $block;
       break;
+    case 'admin_doc':
+      $block = setupBlock('Admin dokument');
+
+      // Get list of documents
+      $documents = getDocuments();
+
+      $appendix = array();
+
+      // Appendix list (documents that are appendix to other documents)
+      foreach ($documents as $doc) {
+        if (!empty($doc->field_document_appendix)) {
+          $appendix[] = $doc;
+        }
+      }
+
+      $documents = getDocuments();
+
+      // Create the header for the table. Add rows
+      $header = array(
+        array('data' => 'Titel', 'class' => array('table-head')),
+        array('data' => 'Publiserad', 'class' => array('table-head')),
+        array('data' => 'Datum', 'class' => array('table-head')),
+        array('data' => 'Version', 'class' => array('table-head')),
+        array('data' => 'Senaste', 'class' => array('table-head')),
+        array('data' => 'Administrera', 'class' => array('table-head')),
+      );
+      $rows = array();
+      foreach ($documents as $doc) {
+        if (empty($doc->field_document_appendix)) {
+          generateAdminRows($rows, '', $doc, $appendix, 'document');
+        }
+      }
+      // Create table.
+      $table = generateTable($header, $rows);
+
+      // Add table to block content.
+      $block['content'] = array(
+        'table' => $table,
+      );
+      return $block;
+      break;
   }
 }
 
@@ -284,7 +350,7 @@ function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
       'class' => $rowClass,
     ),
     array(
-      'data' => $doc->num_revisions,
+      'data' => currentRevision($doc),
       'class' => $rowClass,
     ),
     array(
@@ -297,6 +363,88 @@ function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
   foreach ($docAppendix as $app) {
     generateRows($rows, $prefix . '- ', $app, $appendix, 'appendix');
   }
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $prefix Current level of tabbing
+ * @param  $doc    The document to look at
+ * @param  $appendix List of the document appendix
+ */
+function generateAdminRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
+  $class = 'not-approved';
+  $latest = 'Nej';
+  $ok = FALSE;
+  if (latestRevsion($doc)) {
+    $class = 'approved';
+    $latest = 'Ja';
+    $ok = TRUE;
+  }
+  $row = array(
+    array(
+      'data' => $prefix . $doc->title,
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $doc->status,
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => format_date($doc->revision_timestamp, 'long', '', 'Europe/Stockholm'),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => currentRevision($doc),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $latest,
+      'class' => $rowClass . ' ' . $class,
+    ),
+    array(
+      'data' => l('Redigera', 'node/' . $doc->nid . '/revisions/'),
+      'class' => $rowClass,
+    ),
+  );
+
+  // IF not newest revision add first. else last.
+  if ($ok) {
+    $rows[] = $row;
+  }
+  else {
+    array_unshift($rows, $row);
+  }
+
+
+  $docAppendix = getDocAppendix($doc, $appendix);
+  foreach ($docAppendix as $app) {
+    generateAdminRows($rows, $prefix . '- ', $app, $appendix, 'appendix');
+  }
+}
+
+function currentRevision($doc) {
+  $result = db_query("SELECT vid FROM node_revision WHERE nid = $doc->nid ORDER BY vid ASC");
+  $revision = 1;
+
+  foreach ($result->fetchAll() as $rev) {
+    if ($rev->vid == $doc->vid) {
+      return $revision;
+    }
+    $revision++;
+  }
+}
+
+function latestRevsion($doc) {
+  $result = db_query("SELECT vid FROM node_revision WHERE nid = $doc->nid ORDER BY vid DESC");
+
+  $res = $result->fetch();
+
+  if ($res->vid == $doc->vid) {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 /**
@@ -483,19 +631,3 @@ function getDocOptions() {
     return $return;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
