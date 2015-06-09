@@ -174,6 +174,49 @@ function f_document_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-document-field_document_files'
+  $field_instances['node-document-field_document_files'] = array(
+    'bundle' => 'document',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 5,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_document_files',
+    'label' => 'Filer',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => 'document/files',
+      'file_extensions' => 'txt pdf jpg doc docx',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'node-document-field_document_type'
   $field_instances['node-document-field_document_type'] = array(
     'bundle' => 'document',
@@ -192,7 +235,7 @@ function f_document_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 11,
       ),
     ),
     'entity_type' => 'node',
@@ -231,7 +274,7 @@ function f_document_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 12,
       ),
     ),
     'entity_type' => 'node',
@@ -301,6 +344,7 @@ function f_document_field_default_field_instances() {
   t('Bilaga till');
   t('Body');
   t('Dokument relaterat till');
+  t('Filer');
   t('Reference');
   t('Typ');
   t('User read');

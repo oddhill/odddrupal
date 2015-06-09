@@ -93,6 +93,7 @@ function f_document_ds_layout_settings_info() {
         1 => 'body',
         2 => 'field_dokument_relation',
         3 => 'field_document_appendix',
+        4 => 'field_document_files',
       ),
     ),
     'fields' => array(
@@ -100,6 +101,7 @@ function f_document_ds_layout_settings_info() {
       'body' => 'ds_content',
       'field_dokument_relation' => 'ds_content',
       'field_document_appendix' => 'ds_content',
+      'field_document_files' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

@@ -24,8 +24,9 @@ function f_document_field_group_info() {
     'weight' => '11',
     'children' => array(
       0 => 'field_document_type',
-      1 => 'title',
-      2 => 'group_document_rel',
+      1 => 'field_document_files',
+      2 => 'title',
+      3 => 'group_document_rel',
     ),
     'format_type' => 'div',
     'format_settings' => array(
