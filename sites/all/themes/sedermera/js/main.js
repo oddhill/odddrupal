@@ -32,6 +32,10 @@ $(document).ready(function() {
   $(".form-type-date-combo .date-date .form-text").on('focusout', function() {
     $(this).parent().siblings(".description").fadeOut();
   });
+
+  // Move revisioning-ux-buttons to .main-content (after form #revisioning-revisions-summary)
+  $(".revisioning-ux-buttons").appendTo(".main-content");
+
 });
 
 // Override module javascript and use try catch to isolate errors.
