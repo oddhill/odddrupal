@@ -86,7 +86,7 @@ function view_page_per_doc() {
  *   A renderable array for the page.
  */
 function view_page_user() {
-  drupal_set_title("Dina lästa dokument");
+  drupal_set_title("Dina dokument");
 
   // Return an empty page. The actual content will be set using context.
   return array();
@@ -224,9 +224,20 @@ function sedermera_document_view_block_view($delta = '') {
       break;
     case 'read_all':
       global $user;
-      $block = setupBlock('Dina lästa dokument');
+      $block = setupBlock('Dina dokument');
 
       // Get list of documents
+      $documents = getDocuments();
+
+      $appendix = array();
+
+      // Appendix list (documents that are appendix to other documents)
+      foreach ($documents as $doc) {
+        if (!empty($doc->field_document_appendix)) {
+          $appendix[] = $doc;
+        }
+      }
+
       $documents = getDocuments();
 
       // Create the header for the table. Add rows
@@ -237,24 +248,7 @@ function sedermera_document_view_block_view($delta = '') {
       );
       $rows = array();
       foreach ($documents as $doc) {
-        $class = 'not-approved';
-        $read = 'Nej';
-        if (userHasRead($doc->field_document_user_read, $user->uid)) {
-          $class = 'approved';
-          $read = 'Ja';
-        }
-        $rows[] = array(
-          array(
-            'data' => l($doc->title, 'node/' . $doc->nid),
-          ),
-          array(
-            'data' => $doc->num_revisions,
-          ),
-          array(
-            'data' => $read,
-            'class' => $class,
-          ),
-        );
+        generateRows($rows, '', $doc, $appendix, 'document');
       }
       // Create table.
       $table = generateTable($header, $rows);
@@ -266,6 +260,61 @@ function sedermera_document_view_block_view($delta = '') {
       return $block;
       break;
   }
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $prefix Current level of tabbing
+ * @param  $doc    The document to look at
+ * @param  $appendix List of the document appendix
+ */
+function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
+  $class = 'not-approved';
+  $read = 'Nej';
+  if (userHasRead($doc->field_document_user_read, $user->uid)) {
+    $class = 'approved';
+    $read = 'Ja';
+  }
+  $rows[] = array(
+    array(
+      'data' => $prefix . l($doc->title, 'node/' . $doc->nid),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $doc->num_revisions,
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $read,
+      'class' => $rowClass . ' ' . $class,
+    ),
+  );
+
+  $docAppendix = getDocAppendix($doc, $appendix);
+  foreach ($docAppendix as $app) {
+    generateRows($rows, $prefix . '- ', $app, $appendix, 'appendix');
+  }
+}
+
+/**
+ * Helper function for recursive function
+ * @param  $doc      Document to check if got appendix
+ * @param  $appendix List of appendix
+ * @return Array of appednix if any else empty array
+ */
+function getDocAppendix($doc, $appendix) {
+  $ret = array();
+  foreach ($appendix as $app) {
+    if (!empty($app->field_document_appendix)) {
+      foreach ($app->field_document_appendix['und'] as $x) {
+        if ($x['target_id'] == $doc->nid) {
+          $ret[] = $app;
+        }
+      }
+    }
+  }
+  return $ret;
 }
 
 /**
