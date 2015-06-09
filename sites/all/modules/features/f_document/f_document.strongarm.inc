@@ -84,16 +84,16 @@ function f_document_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '2',
         ),
         'title' => array(
           'weight' => '12',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '0',
         ),
         'redirect' => array(
-          'weight' => '3',
+          'weight' => '1',
         ),
         'additional_settings' => array(
           'weight' => '8',
