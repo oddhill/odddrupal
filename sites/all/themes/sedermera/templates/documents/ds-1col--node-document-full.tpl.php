@@ -38,4 +38,9 @@
       <?php print $appendix; ?>
     </div>
   <?php endif;?>
+  <?php if (!empty($content['field_document_files'])) : ?>
+    <div class="document-files">
+      <?php print render($content['field_document_files']); ?>
+    </div>
+  <?php endif; ?>
 </div>
