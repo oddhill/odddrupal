@@ -12,6 +12,14 @@
  */
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
+  <div class="document-head">
+    <?php if (!empty($content['field_doc_head_img'])): ?>
+      <?php print render($content['field_doc_head_img']); ?>
+    <?php else: ?>
+      <?php print render($content['field_doc_head_text']); ?>
+    <?php endif; ?>
+    <?php print render($content['field_doc_head_free']); ?>
+  </div>
   <div class="document-content">
     <?php print render($content['title']); ?>
     <?php print render($content['body']); ?>
@@ -25,6 +33,17 @@
         <?php print $sign; ?>
       </span>
     <?php endif; ?>
+  </div>
+  <div class="document-footer">
+    <?php print render($content['field_doc_foot_address']); ?>
+    <?php print render($content['field_doc_foot_tel']); ?>
+    <?php print render($content['field_doc_foot_fax']); ?>
+    <?php print render($content['field_doc_foot_bg']); ?>
+    <?php print render($content['field_doc_foot_moms']); ?>
+    <?php print render($content['field_doc_foot_vat']); ?>
+    <?php print render($content['field_doc_foot_webb']); ?>
+    <?php print render($content['field_doc_foot_mail']); ?>
+    <?php print render($content['field_doc_foot_free']); ?>
   </div>
 </div>
 <div class="sidebar">
