@@ -80,3 +80,10 @@ function sedermera_core_menu_local_tasks_alter(&$data, $router_item, $root_path)
     }
   }
 }
+
+/**
+ * Implements hook_user_logout().
+ */
+function sedermera_core_user_logout($account) {
+  setcookie('popup_message_displayed', '', 1, '/');
+}
