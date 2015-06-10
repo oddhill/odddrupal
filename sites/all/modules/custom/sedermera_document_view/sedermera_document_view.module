@@ -175,7 +175,7 @@ function sedermera_document_view_block_view($delta = '') {
               'data' => $doc->title,
             ),
             array(
-              'data' => $doc->num_revisions,
+              'data' => currentRevision($doc),
             ),
             array(
               'data' => $read,
