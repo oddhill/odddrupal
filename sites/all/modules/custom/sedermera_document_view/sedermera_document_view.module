@@ -314,9 +314,7 @@ function sedermera_document_view_block_view($delta = '') {
       );
       $rows = array();
       foreach ($documents as $doc) {
-        if (empty($doc->field_document_appendix)) {
-          generateAdminRows($rows, '', $doc, $appendix, 'document');
-        }
+        generateAdminRows($rows, '', $doc, $appendix, 'document');
       }
       // Create table.
       $table = generateTable($header, $rows);
@@ -414,12 +412,6 @@ function generateAdminRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
   }
   else {
     array_unshift($rows, $row);
-  }
-
-
-  $docAppendix = getDocAppendix($doc, $appendix);
-  foreach ($docAppendix as $app) {
-    generateAdminRows($rows, $prefix . '- ', $app, $appendix, 'appendix');
   }
 }
 
