@@ -35,6 +35,15 @@ function f_core_user_default_permissions() {
     'module' => 'yubikey',
   );
 
+  // Exported permission: 'display popup message'.
+  $permissions['display popup message'] = array(
+    'name' => 'display popup message',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'popup_message',
+  );
+
   // Exported permission: 'use text format filtered_html'.
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',
