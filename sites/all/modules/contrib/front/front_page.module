@@ -123,11 +123,14 @@ function front_page_init() {
   }
 
   if (user_access('administer menu') && preg_match('@^front_page/preview/([0-9]+)$@', $_GET['q'], $match)) {
-    $_front_page = front_page_get_by_rid($match[1]);
+    $role = user_role_load($match[1]);
+    if ($role) {
+      $_front_page = front_page_get_by_role_name($role->name);
+    }
   }
 
   if ($_front_page) {
-    switch ($_front_page['mode']) {
+    switch ($_front_page->mode) {
       case 'themed':
       case 'full':
         $_GET['q'] = 'front_page';
@@ -136,12 +139,12 @@ function front_page_init() {
         break;
 
       case 'redirect':
-        $url = front_page_parse_url($_front_page['data']);
+        $url = front_page_parse_url($_front_page->data);
         drupal_goto($url['path'], $url['options']);
         break;
 
       case 'alias':
-        $url = front_page_parse_url($_front_page['data']);
+        $url = front_page_parse_url($_front_page->data);
         $_GET['q'] = drupal_get_normal_path($url['path']);
         // need to set variable site_frontpage to current path so that it thinks it is the front page.
         $conf['site_frontpage'] = $_GET['q'];
@@ -161,12 +164,12 @@ function front_page() {
   global $_front_page;
 
   if ($_front_page) {
-    switch ($_front_page['mode']) {
+    switch ($_front_page->mode) {
       case 'themed':
-        return check_markup($_front_page['data'], $_front_page['filter_format']);
+        return check_markup($_front_page->data, $_front_page->filter_format);
 
       case 'full':
-        print check_markup($_front_page['data'], $_front_page['filter_format']);
+        print check_markup($_front_page->data, $_front_page->filter_format);
         exit;
     }
   }
@@ -203,42 +206,29 @@ function front_page_parse_url($path) {
  */
 function front_page_get_by_role($index = 0, $number = 1) {
   global $user;
-  $result = db_select('front_page', 'fp')
-          ->fields('fp')
-          ->condition('rid', array_keys($user->roles))
-          ->condition('mode', '', '<>')
-          ->orderBy('weight', 'ASC')
-          ->orderBy('rid', 'DESC')
-          ->range($index, $number)
-          ->execute()
-          ->fetchAssoc();
-  return $result;
+  $roles = $user->roles;
+  ctools_include('export');
+  $result = ctools_export_load_object('front_page', 'names', $user->roles);
+  uasort($result, 'front_page_sort_weight');
+  return reset($result);
 }
 
 /**
  * Function to return the first role enabled in front page, ordered by weight.
  */
-function front_page_get_by_rid($rid) {
-  $result = db_select('front_page', 'fp')
-          ->fields('fp')
-          ->condition('rid', $rid)
-          ->condition('mode', '', '<>')
-          ->execute()
-          ->fetchAssoc();
-  return $result;
+function front_page_get_by_role_name($role_name) {
+  ctools_include('export');
+  $result = ctools_export_load_object('front_page', 'names', array($role_name));
+  return isset($result[$role_name]) ? $result[$role_name] : FALSE;
 }
 
 /**
  * Function to return all the roles in front page, ordered by weight.
  */
 function front_page_get_all() {
-  global $user;
-  $result = db_select('front_page', 'fp')
-          ->fields('fp')
-          ->orderBy('weight', 'ASC')
-          ->orderBy('rid', 'DESC')
-          ->execute()
-          ->fetchAllAssoc('rid', PDO::FETCH_ASSOC);
+  ctools_include('export');
+  $result = ctools_export_load_object('front_page');
+  uasort($result, 'front_page_sort_weight');
   return $result;
 }
 
@@ -276,8 +266,22 @@ function front_page_theme() {
  * Implements hook_user_role_delete().
  */
 function front_page_user_role_delete($role) {
-  // Delete Front configuration for the role being deleted.
-  db_delete('front_page')
-    ->condition('rid', $role->rid)
-    ->execute();
+  ctools_include('export');
+  ctools_export_crud_delete('front_page', $role->name);
+}
+
+function front_page_sort_weight($a, $b) {
+  if ($a->weight != $b->weight) {
+    return $a->weight - $b->weight;
+  }
+  $a_role = user_role_load_by_name($a->role);
+  $b_role = user_role_load_by_name($b->role);
+  return $b_role->rid - $a_role->rid;
+}
+
+function front_page_get_roles_untranslated() {
+  return db_select('role', 'r')
+    ->fields('r')
+    ->execute()
+    ->fetchAllAssoc('rid', PDO::FETCH_OBJ);
 }

@@ -30,11 +30,18 @@ function front_page_schema() {
   $schema['front_page'] = array(
     'description' => 'Stores Front Page settings.',
     'fields' => array(
-      'rid' => array(
-        'type' => 'int',
-        'not null' => TRUE,
+      'id' => array(
+        'type' => 'serial',
         'unsigned' => TRUE,
-        'description' => 'Primary Key: Role ID.',
+        'not null' => TRUE,
+        'description' => 'Primary key',
+      ),
+      'role' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Unique role name.',
       ),
       'mode' => array(
         'type' => 'varchar',
@@ -62,9 +69,22 @@ function front_page_schema() {
         'description' => 'The weight of the front page setting.',
       )
     ),
-    'primary key' => array('rid'),
+    'primary key' => array('id'),
     'indexes' => array(
       'weight' => array('weight'),
+    ),
+    'export' => array(
+      'key' => 'role',
+      'key name' => 'Role name',
+      'primary key' => 'id',
+      'identifier' => 'front_page_preset', // Exports will be as $myobj
+      'default hook' => 'default_front_page_presets',  // Function hook name.
+      'api' => array(
+        'owner' => 'front_page',
+        'api' => 'default_front_page_presets',  // Base name for api include files.
+        'minimum_version' => 2,
+        'current_version' => 2,
+      ),
     ),
   );
 
@@ -143,4 +163,39 @@ function front_page_update_7201() {
   $path = variable_get('front_page_breadcrumb_redirect', '');
   variable_set('front_page_home_link_path', $path);
   variable_del('front_page_breadcrumb_redirect');
+}
+
+/**
+ * Use role names in stead of rids.
+ */
+function front_page_update_7202() {
+  db_change_field('front_page', 'rid', 'rid', array(
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+  ));
+  db_drop_primary_key('front_page');
+  db_add_field('front_page', 'id', array(
+    'type' => 'serial',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+    'description' => 'Primary key',
+  ), array('indexes' => array('temp_index' => array('id'))));
+  db_add_field('front_page', 'role', array(
+    'type' => 'varchar',
+    'length' => 64,
+    'not null' => TRUE,
+    'default' => '',
+    'description' => 'Unique role name.',
+  ));
+  $roles = db_select('role', 'r')
+    ->fields('r', array('rid', 'name'))
+    ->execute()
+    ->fetchAllKeyed();
+  foreach ($roles as $rid => $name) {
+    db_update('front_page')->fields(array('role' => $name))->condition('rid', $rid)->execute();
+  }
+  db_drop_field('front_page', 'rid');
+  db_add_primary_key('front_page', array('id'));
+  db_drop_index('front_page', 'temp_index');
 }

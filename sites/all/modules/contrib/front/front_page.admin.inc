@@ -27,7 +27,7 @@ function front_page_admin($form, &$form_state) {
   );
 
   // build the form for roles
-  $roles = user_roles();
+  $roles = front_page_get_roles_untranslated();
   $front_page_data = front_page_get_all();
 
   // Map the available modes common for all roles.
@@ -55,20 +55,20 @@ function front_page_admin($form, &$form_state) {
   }
 
   // Iterate each role
-  foreach ($roles as $rid => $role) {
+  foreach ($roles as $role) {
 
     // Determine the mode for this role
-    $mode = isset($front_page_data[$rid]['mode']) ? $front_page_data[$rid]['mode'] : '';
+    $mode = isset($front_page_data[$role->name]) ? $front_page_data[$role->name]->mode : '';
 
-    $form['roles'][$rid] = array(
+    $form['roles'][$role->name] = array(
       '#type' => 'fieldset',
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
-      '#title' => t('Front Page for !rolename (%mode)', array('!rolename' => $role, '%mode' => $modes[$mode])),
-      '#weight' => isset($front_page_data[$rid]['weight']) ? $front_page_data[$rid]['weight'] : 0,
+      '#title' => t('Front Page for !rolename (%mode)', array('!rolename' => $role->name, '%mode' => $modes[$mode])),
+      '#weight' => isset($front_page_data[$role->name]) ? $front_page_data[$role->name]->weight : 0,
     );
 
-    $form['roles'][$rid]['mode'] = array(
+    $form['roles'][$role->name]['mode'] = array(
       '#type' => 'radios',
       '#title' => t('Select mode'),
       '#default_value' => $mode,
@@ -78,11 +78,11 @@ function front_page_admin($form, &$form_state) {
     // We need a wrapper because of a core bug that prevents the visible
     // #state from properly hiding text_format widgets:
     // @see: https://drupal.org/node/997826
-    $form['roles'][$rid]['data_wrapper'] = array(
+    $form['roles'][$role->name]['data_wrapper'] = array(
       '#type' => 'container',
       '#states' => array(
         'visible' => array(
-          ':input[name="roles[' . $rid . '][mode]"]' => array(
+          ':input[name="roles[' . $role->name . '][mode]"]' => array(
             array('value' => 'full'),
             array('value' => 'themed')
           ),
@@ -90,24 +90,24 @@ function front_page_admin($form, &$form_state) {
       ),
     );
 
-    $form['roles'][$rid]['data_wrapper']['data'] = array(
+    $form['roles'][$role->name]['data_wrapper']['data'] = array(
       '#type' => 'text_format',
       '#title' => t('Data'),
-      '#default_value' => (isset($front_page_data[$rid]['data']) && isset($front_page_data[$rid]['mode']) && ($front_page_data[$rid]['mode'] == 'themed' || $front_page_data[$rid]['mode'] == 'full')) ? $front_page_data[$rid]['data'] : NULL,
-      '#format' => !empty($front_page_data[$rid]['filter_format']) ? $front_page_data[$rid]['filter_format'] : NULL,
+      '#default_value' => (isset($front_page_data[$role->name]) && ($front_page_data[$role->name]->mode == 'themed' || $front_page_data[$role->name]->mode == 'full')) ? $front_page_data[$role->name]->data : NULL,
+      '#format' => !empty($front_page_data[$role->name]) && $front_page_data[$role->name]->filter_format ? $front_page_data[$role->name]->filter_format : filter_default_format(),
       '#description' => t('Paste your HTML or TEXT here.') . '<br /><br />' . t('You can paste in the full HTML code for a complete page and include a different style sheet in the HEAD of the document if you want a completely different layout and style to the rest of your site.'),
     );
 
-    $form['roles'][$rid]['path'] = array(
+    $form['roles'][$role->name]['path'] = array(
       '#type' => 'textfield',
       '#title' => t('Path'),
-      '#default_value' => (isset($front_page_data[$rid]['data']) && isset($front_page_data[$rid]['mode']) && ($front_page_data[$rid]['mode'] == 'redirect' || $front_page_data[$rid]['mode'] == 'alias')) ? $front_page_data[$rid]['data'] : NULL,
+      '#default_value' => (isset($front_page_data[$role->name]) && ($front_page_data[$role->name]->mode == 'redirect' || $front_page_data[$role->name]->mode == 'alias')) ? $front_page_data[$role->name]->data : NULL,
       '#cols' => 20,
       '#rows' => 1,
       '#description' => t('If you are using <strong>Redirect</strong> or <strong>Alias</strong> you need to specify the path. An alias path should only include the URL part of a URL (eg "node/51"). A redirect path can contain a full URL including get parameters and fragment string (eg "node/51?page=5#anchor").'),
       '#states' => array(
         'visible' => array(
-          ':input[name="roles[' . $rid . '][mode]"]' => array(
+          ':input[name="roles[' . $role->name . '][mode]"]' => array(
             array('value' => 'redirect'),
             array('value' => 'alias')
           ),
@@ -129,25 +129,25 @@ function front_page_admin($form, &$form_state) {
  */
 function front_page_admin_validate($form, &$form_state) {
   if (is_array($form_state['values']['roles'])) {
-    foreach ($form_state['values']['roles'] as $rid => $role) {
+    foreach ($form_state['values']['roles'] as $role_name => $role) {
       switch ($role['mode']) {
         case 'themed':
         case 'full':
           if (empty($role['data_wrapper']['data']['value'])) {
-            form_set_error('roles][' . $rid . '][data][value', 'You must set the data field for ' . $role['mode'] . ' mode.');
+            form_set_error('roles][' . $role_name . '][data][value', 'You must set the data field for ' . $role['mode'] . ' mode.');
           }
           break;
         case 'redirect':
           if (empty($role['path'])) {
-            form_set_error('roles][' . $rid . '][path', 'You must set the path field for redirect mode.');
+            form_set_error('roles][' . $role_name . '][path', 'You must set the path field for redirect mode.');
           }
           break;
         case 'alias':
           if (empty($role['path'])) {
-            form_set_error('roles][' . $rid . '][path', 'You must set the path field for alias mode.');
+            form_set_error('roles][' . $role_name . '][path', 'You must set the path field for alias mode.');
           }
           elseif (!preg_match('@^[^?#]+$@', $role['path'])) {
-            form_set_error('roles][' . $rid . '][path', 'You must set only the URI part of a URL in alias mode.');
+            form_set_error('roles][' . $role_name . '][path', 'You must set only the URI part of a URL in alias mode.');
           }
           break;
       }
@@ -160,44 +160,34 @@ function front_page_admin_validate($form, &$form_state) {
  */
 function front_page_admin_submit($form, &$form_state) {
   variable_set('front_page_enable', $form_state['values']['front_page_enable']);
-
-  db_query("UPDATE {front_page} SET mode=''");
   if (is_array($form_state['values']['roles'])) {
-    foreach ($form_state['values']['roles'] as $rid => $role) {
+    foreach ($form_state['values']['roles'] as $role_name => $role) {
+      $setting = front_page_get_by_role_name($role_name);
+      if (!$setting) {
+        $setting = new stdClass();
+        $setting->role = $role_name;
+        $setting->export_type = EXPORT_IN_CODE;
+      }
       switch ($role['mode']) {
         case 'themed':
         case 'full':
-          db_merge('front_page')
-              ->key(array('rid' => $rid))
-              ->fields(array(
-                'mode' => $role['mode'],
-                'data' => $role['data_wrapper']['data']['value'],
-                'filter_format' => $role['data_wrapper']['data']['format'],
-              ))
-              ->execute();
+          $setting->mode = $role['mode'];
+          $setting->data = $role['data_wrapper']['data']['value'];
+          $setting->filter_format = $role['data_wrapper']['data']['format'];
           break;
         case 'redirect':
         case 'alias':
-          db_merge('front_page')
-              ->key(array('rid' => $rid))
-              ->fields(array(
-                'mode' => $role['mode'],
-                'data' => $role['path'],
-                'filter_format' => '',
-              ))
-              ->execute();
+          $setting->mode = $role['mode'];
+          $setting->data = $role['path'];
+          $setting->filter_format = '';
           break;
         default:
-          db_merge('front_page')
-              ->key(array('rid' => $rid))
-              ->fields(array(
-                'mode' => '',
-                'data' => '',
-                'filter_format' => '',
-              ))
-              ->execute();
+          $setting->mode = '';
+          $setting->data = '';
+          $setting->filter_format = '';
           break;
       }
+      ctools_export_crud_save('front_page', $setting);
     }
   }
   drupal_set_message(t('Your settings have been saved.'));
@@ -207,21 +197,18 @@ function front_page_admin_submit($form, &$form_state) {
  * Form for arranging the roles according to what order the roles should be processed.
  */
 function front_page_admin_arrange_form($form, &$form_state) {
-  $roles = user_roles();
   $front_page_data = front_page_get_all();
-  foreach ($roles as $rid => $role) {
-    $front_page_data[$rid]['name'] = $role;
-  }
 
   $form['roles'] = array(
     '#tree' => TRUE,
   );
-  foreach ($front_page_data as $role_id => $role) {
-    $form['roles'][$role_id]['title']['#markup'] = $role['name'];
-    $form['roles'][$role_id]['mode']['#markup'] = !empty($role['mode']) ? $role['mode'] : 'skip';
-    $form['roles'][$role_id]['preview']['#markup'] = !empty($role['mode']) ? l(t('preview'), 'front_page/preview/' . $role_id, array('attributes' => array('target' => '_blank'))) : '';
-    if (!empty($role['mode'])) {
-      $form['roles'][$role_id]['enabled'] = array(
+  foreach ($front_page_data as $role_name => $role) {
+    $loaded_role = user_role_load_by_name($role_name);
+    $form['roles'][$role_name]['title']['#markup'] = $role->role;
+    $form['roles'][$role_name]['mode']['#markup'] = !empty($role->mode) ? $role->mode : 'skip';
+    $form['roles'][$role_name]['preview']['#markup'] = !empty($role->mode) ? l(t('preview'), 'front_page/preview/' . $loaded_role->rid, array('attributes' => array('target' => '_blank'))) : '';
+    if (!empty($role->mode)) {
+      $form['roles'][$role_name]['enabled'] = array(
         '#type' => 'checkbox',
         '#title' => t('Enable'),
         '#title_display' => 'invisible',
@@ -229,14 +216,14 @@ function front_page_admin_arrange_form($form, &$form_state) {
       );
     }
     else {
-      $form['roles'][$role_id]['enabled']['#markup'] = 'disabled';
+      $form['roles'][$role_name]['enabled']['#markup'] = 'disabled';
     }
-    $form['roles'][$role_id]['weight'] = array(
+    $form['roles'][$role_name]['weight'] = array(
       '#type' => 'weight',
       '#title' => t('Weight'),
       '#title_display' => 'invisible',
       '#delta' => 10,
-      '#default_value' => isset($role['weight']) ? $role['weight'] : 0,
+      '#default_value' => isset($role->weight) ? $role->weight : 0,
     );
   }
 
@@ -252,25 +239,20 @@ function front_page_admin_arrange_form($form, &$form_state) {
  */
 function front_page_admin_arrange_form_submit($form, &$form_state) {
   $front_page_data = front_page_get_all();
-  foreach ($form_state['values']['roles'] as $rid => $role) {
-    if (isset($role['mode']) && !$role['mode'] || !isset($front_page_data[$rid])) {
-      db_merge('front_page')
-          ->key(array('rid' => $rid))
-          ->fields(array(
-            'mode' => '',
-            'data' => '',
-            'filter_format' => '',
-            'weight' => $role['weight'],
-          ))
-          ->execute();
+  foreach ($form_state['values']['roles'] as $role_name => $role) {
+    if (isset($role['mode']) && !$role['mode'] || !isset($front_page_data[$role_name])) {
+      $setting = isset($front_page_data[$role_name]) ? $front_page_data[$role_name] : new stdClass();
+      $setting->role = $role_name;
+      $setting->mode = '';
+      $setting->data = '';
+      $setting->fielter_format = '';
+      $setting->weight = $role['weight'];
+      ctools_export_crud_save('front_page', $setting);
     }
     else {
-      db_merge('front_page')
-          ->key(array('rid' => $rid))
-          ->fields(array(
-            'weight' => $role['weight'],
-          ))
-          ->execute();
+      $setting = $front_page_data[$role_name];
+      $setting->weight = $role['weight'];
+      ctools_export_crud_save('front_page', $setting);
     }
   }
 }
@@ -313,8 +295,8 @@ function theme_front_page_admin_arrange_form($variables) {
   );
 
   $rows = array();
-  foreach (element_children($form['roles']) as $rid) {
-    $element = &$form['roles'][$rid];
+  foreach (element_children($form['roles']) as $role_name) {
+    $element = &$form['roles'][$role_name];
 
     // Add special classes to be used for tabledrag.js.
     $element['weight']['#attributes']['class'] = array('front-page-weight');
