@@ -342,9 +342,13 @@ function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
     $class = 'approved';
     $read = 'Ja';
   }
+
+  $app = getDocAppendix($doc, $appendix);
+  $pre = (!empty($app) && $prefix == '') ? '* ' : '';
+
   $rows[] = array(
     array(
-      'data' => $prefix . l($doc->title, 'node/' . $doc->nid),
+      'data' => $pre . $prefix . l($doc->title, 'node/' . $doc->nid),
       'class' => $rowClass,
     ),
     array(
