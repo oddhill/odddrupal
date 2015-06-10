@@ -169,7 +169,7 @@ function sedermera_preprocess_node(&$variables) {
       $doc_file = "<ul>";
 
       foreach ($variables['field_document_files'] as $file) {
-        $doc_file .= "<li><span class='file'>" . getIcon($file) . " " . l($file['filename'], file_create_url($file['uri'])) . "</span></li>";
+        $doc_file .= "<li>" . getIcon($file) . " " . l($file['filename'], file_create_url($file['uri'])) . "</li>";
       }
 
       $doc_file .= "</ul>";
