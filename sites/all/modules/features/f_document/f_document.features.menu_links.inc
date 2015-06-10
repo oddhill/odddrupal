@@ -18,6 +18,14 @@ function f_document_menu_default_menu_links() {
     'link_title' => 'Administrera dokument',
     'options' => array(
       'identifier' => 'main-menu_administrera-dokument:dokument/admin',
+      'attributes' => array(
+        'id' => 'administer',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'system',
     'hidden' => 0,
