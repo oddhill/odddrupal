@@ -13,6 +13,38 @@ function f_document_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'admin_documents';
+  $context->description = '';
+  $context->tag = 'document_view';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'dokument/admin' => 'dokument/admin',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'sedermera_document_view-admin_doc' => array(
+          'module' => 'sedermera_document_view',
+          'delta' => 'admin_doc',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('document_view');
+  $export['admin_documents'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'read_all';
   $context->description = '';
   $context->tag = 'document_view';

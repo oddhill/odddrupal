@@ -969,7 +969,7 @@ function f_document_field_default_field_instances() {
   $field_instances['node-document-field_document_files'] = array(
     'bundle' => 'document',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Filer som är kopplade till dokument',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -980,9 +980,15 @@ function f_document_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
+        'module' => 'editablefields',
+        'settings' => array(
+          'click_to_edit' => 0,
+          'click_to_edit_style' => 'button',
+          'empty_text' => '',
+          'fallback_format' => 'file_default',
+          'fallback_settings' => array(),
+        ),
+        'type' => 'editable',
         'weight' => 4,
       ),
     ),
@@ -1148,6 +1154,7 @@ function f_document_field_default_field_instances() {
   t('Fax');
   t('Faxnummer som visas i sidfot');
   t('Filer');
+  t('Filer som är kopplade till dokument');
   t('Fritextfält som visas i sidfot');
   t('Fritextfält som visas i sidhuvud');
   t('Företags logotyp');
