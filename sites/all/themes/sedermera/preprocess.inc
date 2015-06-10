@@ -111,14 +111,14 @@ function sedermera_preprocess_node(&$variables) {
           if ($value['target_id'] == $user_id) {
             // User have signed the document.
             // Creates text to display that the user have already signed the document.
-            $variables['sign'] = 'Du har läst och godkänt detta dokument';
+            $variables['sign'] = 'Du har läst och förstått detta dokument';
             $variables['sign_status'] = TRUE;
           }
         }
       } else {
         // User have not signed the document.
         // Creates link for the user to sign the document.
-        $variables['sign'] = l('Ja, jag har läst och godkänner detta dokument', url('node/' . $variables['nid'] . '/sign'));
+        $variables['sign'] = l('Ja, jag har läst och förstått detta dokument', url('node/' . $variables['nid'] . '/sign'));
         $variables['sign_status'] = FALSE;
       }
     }
