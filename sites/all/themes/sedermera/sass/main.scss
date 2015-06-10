@@ -82,6 +82,7 @@ body {
 "content/create-transaction",
 "content/edit",
 "content/documents",
+"content/document-revision",
 "content/investor",
 "content/company",
 "content/user",
@@ -93,6 +94,7 @@ body {
 // Import page elements
 @import
 "elements/layouts",
+"elements/documents",
 "elements/form-buttons",
 "elements/sidebar",
 "elements/messages",

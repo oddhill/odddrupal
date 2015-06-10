@@ -626,9 +626,6 @@ a.tabledrag-handle {
 .page-node-edit .form-actions {
   padding-top: 20px; }
 
-.node-type-document .content-wrapper {
-  background: #fff; }
-
 .signed {
   font-size: 12px;
   font-size: 1.2rem;
@@ -678,22 +675,44 @@ a.tabledrag-handle {
     background-color: #e1b45b;
     border: 0 none; }
 
-.node-document.view-mode-full {
-  padding-bottom: 60px; }
-
-.node-type-document .node-document-form {
-  padding: 50px 40px 40px 40px; }
-  .node-type-document .node-document-form .form-body {
-    padding: 0 20px 40px 20px; }
-.node-type-document .node-document.view-mode-full {
-  padding-top: 60px; }
-
-.page-node-revisions .node-document-form {
-  padding: 0 0 40px 20px; }
-  .page-node-revisions .node-document-form .form-body {
-    padding: 0 20px 40px 20px; }
-.page-node-revisions .node-document.view-mode-full {
-  padding-top: 15px; }
+.document-related,
+.document-appendix,
+.document-files {
+  background: #edeeef;
+  margin-bottom: 20px;
+  padding-bottom: 20px; }
+  .document-related .label,
+  .document-appendix .label,
+  .document-files .label {
+    display: block;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
+    background: #dddfe1;
+    border-bottom: 1px solid #fff;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    text-transform: uppercase; }
+  .document-related .file img,
+  .document-appendix .file img,
+  .document-files .file img {
+    display: none; }
+  .document-related li,
+  .document-appendix li,
+  .document-files li {
+    display: block;
+    list-style: none;
+    margin: 0 0 10px 20px; }
+  .document-related a,
+  .document-appendix a,
+  .document-files a {
+    border-bottom: 1px solid #ccc; }
+    .document-related a:hover,
+    .document-appendix a:hover,
+    .document-files a:hover {
+      border-bottom: 1px solid #282828; }
 
 .block-sedermera-document-view-read-all .table-wrapper,
 .block-sedermera-document-view-read-per-doc .table-wrapper,
@@ -707,6 +726,35 @@ a.tabledrag-handle {
   padding: 0 15px 0 28px;
   vertical-align: middle; }
 
+.full-document-wrapper {
+  background: #fff;
+  padding: 0 60px 0 60px;
+  overflow: hidden; }
+
+.document-title-wrapper {
+  width: 70%; }
+
+.document-content-wrapper {
+  float: left;
+  width: 70%; }
+
+.document-sidebar {
+  float: right;
+  margin-top: 15px;
+  padding-left: 60px;
+  width: 30%; }
+  .page-node-revisions .document-sidebar {
+    margin-top: 30px; }
+
+.document-files .label {
+  display: block; }
+
+.document-head-content {
+  margin: 50px 0 20px 0;
+  width: 70%; }
+  .page-node-revisions .document-head-content {
+    margin-top: 0; }
+
 .tabs.secondary {
   font-size: 14px;
   font-size: 1.4rem;
@@ -714,7 +762,7 @@ a.tabledrag-handle {
   background: #fff;
   border: 0;
   float: right;
-  margin: 35px 0 25px 0; }
+  margin: 35px 15px 10px 0; }
   .tabs.secondary li {
     font-size: 13px;
     font-size: 1.3rem;
@@ -722,8 +770,6 @@ a.tabledrag-handle {
     background: #d5d7da;
     border-radius: 34px;
     margin-right: 10px; }
-    .tabs.secondary li:last-child {
-      margin-right: 20px; }
     .tabs.secondary li a {
       border-right: 0;
       border-bottom: 0 none;
@@ -750,6 +796,17 @@ a.tabledrag-handle {
       .tabs.secondary li.active a:hover {
         background-color: #eebe60;
         border-bottom: 0 none; }
+    .tabs.secondary li.edit a {
+      background: none;
+      border: 0;
+      padding-left: 15px; }
+
+.page-node-revisions .node-document-form {
+  padding: 0 0 40px 20px; }
+  .page-node-revisions .node-document-form .form-body {
+    padding: 0 20px 40px 20px; }
+.page-node-revisions .node-document.view-mode-full {
+  padding-top: 15px; }
 
 #revisioning-revisions-summary {
   padding: 0 20px 60px 20px; }
@@ -888,10 +945,6 @@ input[value="Jämför"]#edit-submit {
       background-color: #303030; }
   #revisioning-ux-delete-all .form .submit-wrapper.form-submit {
     margin-right: 0; }
-
-.page-dokument-read-user .main-content,
-.page-dokument-read-doc .main-content {
-  overflow: visible; }
 
 .field-shared-industries,
 .field-shared-address,
@@ -1278,6 +1331,21 @@ input[value="Jämför"]#edit-submit {
     content: "";
     display: table;
     clear: both; }
+
+.node-type-document .content-wrapper {
+  background: #fff; }
+
+.node-document.view-mode-full {
+  padding-bottom: 60px; }
+
+.node-type-document .node-document-form {
+  padding: 50px 40px 40px 40px; }
+  .node-type-document .node-document-form .form-body {
+    padding: 0 20px 40px 20px; }
+
+.page-dokument-read-user .main-content,
+.page-dokument-read-doc .main-content {
+  overflow: visible; }
 
 #edit-submit {
   display: inline-block;

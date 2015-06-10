@@ -1,11 +1,3 @@
-// Company node
-.node-type-document {
-
-  .content-wrapper {
-    background: $snow;
-  }
-}
-
 // Signed (godkänn dokument)
 .signed {
   @include font-size(1.2,1);
@@ -45,39 +37,46 @@
   }
 }
 
-// Document node
-.node-document.view-mode-full {
-  padding-bottom: 60px;
-}
+.document-related,
+.document-appendix,
+.document-files {
+  background: #edeeef;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 
-.node-type-document {
+  .label {
+    display: block;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
+    background: #dddfe1;
+    border-bottom: 1px solid #fff;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
 
-  .node-document-form {
-    padding: 50px 40px 40px 40px;
+  .file {
 
-    .form-body {
-      padding: 0 20px 40px 20px;
+    img {
+      display: none;
     }
   }
 
-  .node-document.view-mode-full {
-    padding-top: 60px;
+  li {
+    display: block;
+    list-style: none;
+    margin: 0 0 10px 20px;
   }
-}
 
-// Revision operation - edit document form
-.page-node-revisions {
+  a {
+    border-bottom: 1px solid #ccc;
 
-  .node-document-form {
-    padding: 0 0 40px 20px;
-
-    .form-body {
-      padding: 0 20px 40px 20px;
+    &:hover {
+      border-bottom: 1px solid $coffee;
     }
-  }
-
-  .node-document.view-mode-full {
-    padding-top: 15px;
   }
 }
 
@@ -98,125 +97,50 @@
   }
 }
 
-// Document - Revision Operations menu buttons
-.tabs {
+// Wraps the entire document
+.full-document-wrapper {
+  background: #fff;
+  padding: 0 60px 0 60px;
+  overflow: hidden;
+}
 
-  &.secondary {
-    @include font-size(1.4);
-    background: $snow;
-    border: 0;
-    float: right;
-    margin: 35px 0 25px 0;
+// Wraps document title
+.document-title-wrapper {
+  width: 70%;
+}
 
-    li {
-      @include font-size(1.3);
-      background: $stone;
-      border-radius: 34px;
-      margin-right: 10px;
+// Right document column
+.document-content-wrapper {
+  float: left;
+  width: 70%;
+}
 
-      &:last-child {
-        margin-right: 20px;
-      }
+// Document sidebar (contains related documents/appendix/files)
+.document-sidebar {
+  float: right;
+  margin-top: 15px;
+  padding-left: 60px;
+  width: 30%;
 
-      a {
-        border-right: 0;
-        border-bottom: 0 none;
-        color: $coffee;
-        display: inline-block;
-        font-weight: 500;
-        height: 25px;
-        line-height: 25px;
-
-        &:hover {
-          background-color: shade($stone,5%);
-          border-bottom: 0 none;
-          border-radius: 34px;
-          height: 25px;
-        }
-      }
-
-      // Active tab
-      &.active {
-
-        a {
-          background: $honey;
-          border-bottom: 0 none;
-          border-left: 0 none;
-          border-radius: 34px;
-          border-top: 0;
-          font-weight: 700;
-          height: 25px;
-          line-height: 25px;
-          margin-top: 0;
-
-          &:hover {
-            background-color: shade($honey,5%);
-            border-bottom: 0 none;
-          }
-        }
-      }
-    }
+  .page-node-revisions & {
+    margin-top: 30px;
   }
 }
 
-#revisioning-revisions-summary {
-  padding: 0 20px 60px 20px;
+// Document related document/appendif/file lable
+.document-files {
+
+   .label {
+    display: block;
+   }
 }
 
-// Revisioning buttons wrapper
-.revisioning-ux-buttons {
-  margin-top: 30px;
-}
+// Wraps document head
+.document-head-content {
+  margin: 50px 0 20px 0;
+  width: 70%;
 
-input[value="Compare"],
-input[value="Jämför"]{
-
- &#edit-submit {
-  @include button($dark-grey, compare);
- }
-}
-
-#revisioning-ux-publish {
-
-  #edit-submit {
-    @include button($dark-grey, publish);
-  }
-}
-
-#revisioning-ux-unpublish {
-
-  #edit-submit,
-  #edit-submit--2 {
-    @include button($dark-grey, unpublish);
-  }
-}
-
-#edit-submit--3 {
-  @include button($dark-grey, delete);
-}
-
-#revisioning-ux-delete-all {
-  @include button($dark-grey, delete);
-
-  input {
-    background: $dark-grey;
-    padding: 0;
-    text-transform: uppercase;
-
-    &:hover {
-     background-color: shade($dark-grey,30%);
-    }
-  }
-
-  .form .submit-wrapper.form-submit {
-    margin-right: 0;
-  }
-}
-
-.page-dokument-read-user,
-.page-dokument-read-doc {
-
-  .main-content {
-    overflow: visible;
+  .page-node-revisions & {
+    margin-top: 0;
   }
 }

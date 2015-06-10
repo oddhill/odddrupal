@@ -1,0 +1,141 @@
+// Document - Revision Operations menu buttons
+.tabs {
+
+  &.secondary {
+    @include font-size(1.4);
+    background: $snow;
+    border: 0;
+    float: right;
+    margin: 35px 15px 10px 0;
+
+    li {
+      @include font-size(1.3);
+      background: $stone;
+      border-radius: 34px;
+      margin-right: 10px;
+
+      a {
+        border-right: 0;
+        border-bottom: 0 none;
+        color: $coffee;
+        display: inline-block;
+        font-weight: 500;
+        height: 25px;
+        line-height: 25px;
+
+        &:hover {
+          background-color: shade($stone,5%);
+          border-bottom: 0 none;
+          border-radius: 34px;
+          height: 25px;
+        }
+      }
+
+      // Active tab
+      &.active {
+
+        a {
+          background: $honey;
+          border-bottom: 0 none;
+          border-left: 0 none;
+          border-radius: 34px;
+          border-top: 0;
+          font-weight: 700;
+          height: 25px;
+          line-height: 25px;
+          margin-top: 0;
+
+          &:hover {
+            background-color: shade($honey,5%);
+            border-bottom: 0 none;
+          }
+        }
+      }
+
+      &.edit {
+
+        a {
+          background: none;
+          border: 0;
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+}
+
+// Revision operation - edit document form
+.page-node-revisions {
+
+  .node-document-form {
+    padding: 0 0 40px 20px;
+
+    .form-body {
+      padding: 0 20px 40px 20px;
+    }
+  }
+
+  .node-document.view-mode-full {
+    padding-top: 15px;
+  }
+}
+
+// Revision summary
+#revisioning-revisions-summary {
+  padding: 0 20px 60px 20px;
+}
+
+// Revisioning buttons wrapper
+.revisioning-ux-buttons {
+  margin-top: 30px;
+}
+
+// Compare button
+input[value="Compare"],
+input[value="Jämför"]{
+
+ &#edit-submit {
+  @include button($dark-grey, compare);
+ }
+}
+
+// Publish button
+#revisioning-ux-publish {
+
+  #edit-submit {
+    @include button($dark-grey, publish);
+  }
+}
+
+// Unpublish button
+#revisioning-ux-unpublish {
+
+  #edit-submit,
+  #edit-submit--2 {
+    @include button($dark-grey, unpublish);
+  }
+}
+
+// Submit button
+#edit-submit--3 {
+  @include button($dark-grey, delete);
+}
+
+// Delete all button
+#revisioning-ux-delete-all {
+  @include button($dark-grey, delete);
+
+  input {
+    background: $dark-grey;
+    padding: 0;
+    text-transform: uppercase;
+
+    &:hover {
+     background-color: shade($dark-grey,30%);
+    }
+  }
+
+  .form .submit-wrapper.form-submit {
+    margin-right: 0;
+  }
+}
