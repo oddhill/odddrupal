@@ -123,15 +123,15 @@ function sedermera_preprocess_node(&$variables) {
       }
     }
 
-    $doc_rel_link = "";
-    $doc_app_link = "";
+    $doc_rel_link = "<ul>";
+    $doc_app_link = "<ul>";
 
     foreach (getDocuments() as $doc) {
       if (!empty($doc->field_dokument_relation)) {
         // List documents related to this document
         foreach ($doc->field_dokument_relation[LANGUAGE_NONE] as $relation) {
           if ($relation['target_id'] == $variables['nid']) {
-            $doc_rel_link .= l($doc->title, url('node/' . $doc->nid)) . " ";
+            $doc_rel_link .= "<li>" . l($doc->title, url('node/' . $doc->nid)) . "</li>";
           }
         }
       }
@@ -139,7 +139,7 @@ function sedermera_preprocess_node(&$variables) {
         // List documents appendix to this document
         foreach ($doc->field_document_appendix[LANGUAGE_NONE] as $relation) {
           if ($relation['target_id'] == $variables['nid']) {
-            $doc_app_link .= l($doc->title, url('node/' . $doc->nid)) . " ";
+            $doc_app_link .= "<li>" . l($doc->title, url('node/' . $doc->nid)) . "</li>";
           }
         }
       }
@@ -148,17 +148,20 @@ function sedermera_preprocess_node(&$variables) {
     // List documents related from this document
     if (!empty($variables['field_dokument_relation'])) {
       foreach ($variables['field_dokument_relation'] as $relation) {
-        $doc_rel_link .= l($relation['entity']->title, url('node/' . $relation['entity']->nid)) . " ";
+        $doc_rel_link .= "<li>" . l($relation['entity']->title, url('node/' . $relation['entity']->nid)) . "</li>";
       }
     }
 
+    $doc_rel_link .= "</ul>";
+    $doc_app_link .= "</ul>";
+
     // Create variable for related documents
-    if ($doc_rel_link != "") {
+    if ($doc_rel_link != "<ul></ul>") {
       $variables['related'] = "<div class='field field-dokument-relation'><span class='label'>Relaterade dokument&nbsp;</span>" . $doc_rel_link . "</div>";
     }
 
     // Create variable for appendix documents
-    if ($doc_app_link != "") {
+    if ($doc_app_link != "<ul></ul>") {
       $variables['appendix'] = "<div class='field field-dokument-appendix'><span class='label'>Bilaga&nbsp;</span>" . $doc_app_link . "</div>";
     }
   }
