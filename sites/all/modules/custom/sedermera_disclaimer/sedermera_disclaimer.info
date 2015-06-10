@@ -1,4 +1,0 @@
-name = Sedermera Disclaimer
-description = Force user to accept disclaimer on login before accessing site
-core = 7.x
-package = Sedermera
