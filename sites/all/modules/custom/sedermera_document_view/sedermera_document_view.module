@@ -290,7 +290,7 @@ function sedermera_document_view_block_view($delta = '') {
       $block = setupBlock('Admin dokument');
 
       // Get list of documents
-      $documents = getDocuments();
+      $documents = getAdminDocuments();
 
       $appendix = array();
 
@@ -301,7 +301,7 @@ function sedermera_document_view_block_view($delta = '') {
         }
       }
 
-      $documents = getDocuments();
+      $documents = getAdminDocuments();
 
       // Create the header for the table. Add rows
       $header = array(
@@ -389,8 +389,8 @@ function generateAdminRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
       'class' => $rowClass,
     ),
     array(
-      'data' => $doc->status,
-      'class' => $rowClass,
+      'data' => ($doc->status) ? 'Ja' : 'Nej',
+      'class' => $rowClass . (($doc->status) ? ' approved' : ' not-approved'),
     ),
     array(
       'data' => format_date($doc->revision_timestamp, 'long', '', 'Europe/Stockholm'),
@@ -436,7 +436,7 @@ function latestRevsion($doc) {
 
   $res = $result->fetch();
 
-  if ($res->vid == $doc->vid) {
+  if ($res->vid == $doc->vid && $doc->status == 1) {
     return TRUE;
   }
 
@@ -528,6 +528,24 @@ function getDocuments() {
   }
 }
 
+/**
+ * Get documents
+ * @return entity loaded documents
+ */
+function getAdminDocuments() {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'document')
+    ->propertyOrderBy('title', 'ASC');
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $document_nids = array_keys($result['node']);
+    return entity_load('node', $document_nids);
+  }
+}
 /**
  * Form user filter
  */
