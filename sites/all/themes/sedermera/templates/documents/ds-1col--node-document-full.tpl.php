@@ -67,9 +67,9 @@
         <?php print $appendix; ?>
       </div>
     <?php endif;?>
-    <?php if (!empty($content['field_document_files'])) : ?>
+    <?php if (!empty($files)) : ?>
       <div class="document-files">
-        <?php print render($content['field_document_files']); ?>
+        <?php print $files; ?>
       </div>
     <?php endif; ?>
   </aside>

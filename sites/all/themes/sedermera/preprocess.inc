@@ -164,5 +164,39 @@ function sedermera_preprocess_node(&$variables) {
     if ($doc_app_link != "<ul></ul>") {
       $variables['appendix'] = "<div class='field field-dokument-appendix'><span class='label'>Bilaga&nbsp;</span>" . $doc_app_link . "</div>";
     }
+
+    if (!empty($variables['field_document_files'])) {
+      $doc_file = "<ul>";
+
+      foreach ($variables['field_document_files'] as $file) {
+        $doc_file .= "<li><span class='file'>" . getIcon($file) . " " . l($file['filename'], file_create_url($file['uri'])) . "</span></li>";
+      }
+
+      $doc_file .= "</ul>";
+
+      // Create variable for document files
+      if ($doc_file != "<ul></ul>") {
+        $variables['files'] = "<div class='field field-document-files'><span class='label'>Filer&nbsp;</span>" . $doc_file . "</div>";
+      }
+    }
   }
+}
+
+function getIcon($file) {
+  $title = $file['filemime'];
+  $src = 'text-plain.png';
+
+  switch ($title) {
+    case 'application/pdf':
+      $src = 'application-pdf.png';
+      break;
+    case 'application/msword':
+      $src = 'x-office-document.png';
+      break;
+    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+      $src = 'x-office-document.png';
+      break;
+  }
+
+  return "<img class='file-icon' alt='' title='" . $title . "' src='/modules/file/icons/" . $src . "'>";
 }
