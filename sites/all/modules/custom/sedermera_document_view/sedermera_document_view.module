@@ -344,7 +344,7 @@ function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
   }
 
   $app = getDocAppendix($doc, $appendix);
-  $pre = (!empty($app) && $prefix == '') ? '* ' : '';
+  $pre = (!empty($app) && $prefix == '') ? '<span class="show-appendix"></span> ' : '';
 
   $rows[] = array(
     array(
