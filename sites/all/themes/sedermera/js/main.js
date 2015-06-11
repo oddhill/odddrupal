@@ -33,6 +33,15 @@ $(document).ready(function() {
     $(this).parent().siblings(".description").fadeOut();
   });
 
+  // Hide/show appendix in Document list (Dina dokument)
+  $(".appendix").hide();
+  $(".show-appendix").click(function () {
+    $(".appendix").slideToggle("1000");
+  });
+
+  // Move/replace revision tab buttons on page-node-revisions-view
+  $('.secondary').insertBefore('.document-head-wrapper');
+
   // Move revisioning-ux-buttons to .main-content (after form #revisioning-revisions-summary)
   $(".revisioning-ux-buttons").appendTo(".main-content");
 
