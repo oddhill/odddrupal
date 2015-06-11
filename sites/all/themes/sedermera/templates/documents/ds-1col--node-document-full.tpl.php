@@ -13,48 +13,56 @@
 ?>
 <div class="full-document-wrapper">
 
-  <div class="document-head-wrapper">
-    <div class="document-head-content">
-      <?php if (!empty($content['field_doc_head_img'])): ?>
-        <?php print render($content['field_doc_head_img']); ?>
-      <?php else: ?>
-        <?php print render($content['field_doc_head_text']); ?>
-      <?php endif; ?>
-      <?php print render($content['field_doc_head_free']); ?>
-    </div>
+  <div class="document-right-column">
 
-    <div class="document-title-wrapper">
-        <?php print render($content['title']); ?>
+    <div class="document-head-wrapper">
+
+      <div class="document-head-content">
+        <?php if (!empty($content['field_doc_head_img'])): ?>
+          <?php print render($content['field_doc_head_img']); ?>
+        <?php else: ?>
+          <?php print render($content['field_doc_head_text']); ?>
+        <?php endif; ?>
+        <?php print render($content['field_doc_head_free']); ?>
       </div>
-  </div>
 
-  <div class="document-content-wrapper <?php print $classes; ?> <?php print $ds_content_classes; ?>">
-    <div class="document-content">
-      <?php print render($content['body']); ?>
+      <div class="document-title-wrapper">
+          <?php print render($content['title']); ?>
+      </div>
 
-      <?php if ($sign_status) : ?>
-        <span class="signed">
-          <?php print $sign; ?>
-        </span>
-      <?php else : ?>
-        <span class="sign">
-          <?php print $sign; ?>
-        </span>
-      <?php endif; ?>
     </div>
 
-    <div class="document-footer">
-      <?php print render($content['field_doc_foot_address']); ?>
-      <?php print render($content['field_doc_foot_tel']); ?>
-      <?php print render($content['field_doc_foot_fax']); ?>
-      <?php print render($content['field_doc_foot_bg']); ?>
-      <?php print render($content['field_doc_foot_moms']); ?>
-      <?php print render($content['field_doc_foot_vat']); ?>
-      <?php print render($content['field_doc_foot_webb']); ?>
-      <?php print render($content['field_doc_foot_mail']); ?>
-      <?php print render($content['field_doc_foot_free']); ?>
+    <div class="document-content-wrapper <?php print $classes; ?> <?php print $ds_content_classes; ?>">
+
+      <div class="document-content">
+        <?php print render($content['body']); ?>
+      </div>
+
+      <div class="document-footer">
+
+        <div class="document-footer-content">
+          <?php print render($content['field_doc_foot_address']); ?>
+          <?php print render($content['field_doc_foot_tel']); ?>
+          <?php print render($content['field_doc_foot_fax']); ?>
+        </div>
+
+        <div class="document-footer-content">
+          <?php print render($content['field_doc_foot_bg']); ?>
+          <?php print render($content['field_doc_foot_moms']); ?>
+          <?php print render($content['field_doc_foot_vat']); ?>
+        </div>
+
+        <div class="document-footer-content">
+          <?php print render($content['field_doc_foot_webb']); ?>
+          <?php print render($content['field_doc_foot_mail']); ?>
+          <?php print render($content['field_doc_foot_free']); ?>
+        </div>
+
+      </div>
+
     </div>
-  </div>
+
+  </div><!-- End .document-right-column -->
 
   <aside class="document-sidebar">
     <?php if (!empty($related)) : ?>
@@ -74,4 +82,14 @@
     <?php endif; ?>
   </aside>
 
-</div>
+</div><!-- End .full-document-wrapper -->
+
+<?php if ($sign_status) : ?>
+  <span class="signed">
+    <?php print $sign; ?>
+  </span>
+<?php else : ?>
+  <span class="sign">
+    <?php print $sign; ?>
+  </span>
+<?php endif; ?>
