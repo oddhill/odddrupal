@@ -15,7 +15,7 @@
 .node-type-document {
 
   .node-document-form {
-    padding: 50px 40px 40px 40px;
+    padding: 0 10px 40px 20px;
 
     .form-body {
       padding: 0 20px 40px 20px;
@@ -29,4 +29,8 @@
   .main-content {
     overflow: visible;
   }
+}
+
+.block-system-help {
+  display: none;
 }

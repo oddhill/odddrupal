@@ -60,6 +60,16 @@ a {
 .body ol {
   list-style-type: decimal; }
 
+.yes,
+.no {
+  font-weight: 500; }
+
+.yes {
+  color: #1c6e0f; }
+
+.no {
+  color: #b43636; }
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -626,6 +636,131 @@ a.tabledrag-handle {
 .page-node-edit .form-actions {
   padding-top: 20px; }
 
+.document-related,
+.document-appendix,
+.document-files {
+  background: #EAECF0;
+  margin-bottom: 20px;
+  padding-bottom: 20px; }
+  .document-related .label,
+  .document-appendix .label,
+  .document-files .label {
+    display: block;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
+    background: #C8CACD;
+    border-bottom: 1px solid #fff;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    text-transform: uppercase; }
+  .document-related .file img,
+  .document-appendix .file img,
+  .document-files .file img {
+    display: none; }
+  .document-related .file-icon,
+  .document-appendix .file-icon,
+  .document-files .file-icon {
+    display: none; }
+  .document-related li,
+  .document-appendix li,
+  .document-files li {
+    display: block;
+    list-style: none;
+    margin: 0 0 10px 20px; }
+  .document-related a,
+  .document-appendix a,
+  .document-files a {
+    border-bottom: 1px solid #ccc; }
+    .document-related a:hover,
+    .document-appendix a:hover,
+    .document-files a:hover {
+      border-bottom: 1px solid #282828; }
+
+.block-sedermera-document-view-read-all .table-wrapper,
+.block-sedermera-document-view-read-per-doc .table-wrapper,
+.block-sedermera-document-view-read-per-user .table-wrapper,
+.block-sedermera-document-view-admin-doc .table-wrapper {
+  width: 100%; }
+
+.full-document-wrapper {
+  background: #fff;
+  display: flex; }
+
+.document-right-column {
+  padding: 0 5%;
+  width: 74%; }
+
+.document-head-wrapper {
+  margin-top: 50px; }
+  .page-node-revisions .document-head-wrapper {
+    margin-top: 0; }
+
+.document-head-content {
+  border-bottom: 2px solid #f3f4f8;
+  margin: 40px 0 30px 0;
+  padding-bottom: 30px; }
+  .page-node-revisions .document-head-content {
+    margin-top: 0; }
+
+.field-doc-head-text {
+  font-size: 22px;
+  font-size: 2.2rem;
+  line-height: 33px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 30%; }
+
+.field-doc-head-free {
+  font-size: 13px;
+  font-size: 1.3rem;
+  line-height: 19.5px; }
+
+.field-doc-head-img {
+  clear: both;
+  margin-bottom: 20px; }
+  .field-doc-head-img img {
+    height: auto;
+    max-width: 100%; }
+
+.document-title-wrapper h2 {
+  text-align: left; }
+
+.document-content-wrapper {
+  float: left; }
+
+.document-sidebar {
+  background: #e0e2e6;
+  flex: 1;
+  float: right;
+  padding: 15px;
+  width: 26%; }
+
+.document-files .label {
+  display: block; }
+
+.document-footer {
+  clear: both;
+  border-top: 2px solid #f3f4f8;
+  margin-top: 50px;
+  padding-top: 40px; }
+  .document-footer .field {
+    font-size: 13px;
+    font-size: 1.3rem;
+    line-height: 19.5px;
+    margin: 10px 0 10px 0; }
+
+.document-footer-content {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  margin-right: 0; }
+  .document-footer-content:last-child {
+    margin-right: 0; }
+
 .signed {
   font-size: 12px;
   font-size: 1.2rem;
@@ -634,14 +769,15 @@ a.tabledrag-handle {
   border-radius: 34px;
   color: #6c9e65;
   cursor: default;
-  float: right;
   font-weight: 700;
   height: 34px;
   line-height: 34px;
   margin: 40px 0 20px 0;
   padding: 0 10px 0 35px;
   position: relative;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  text-align: center;
+  float: left; }
   .signed:before {
     background: url("../graphics/approved.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
@@ -667,7 +803,7 @@ a.tabledrag-handle {
   text-transform: uppercase;
   width: auto;
   background-color: #fbc966;
-  margin: 40px 0 20px 0;
+  margin: 30px 0 20px 0;
   float: right;
   height: auto;
   padding: 2px 13px 2px 13px; }
@@ -675,85 +811,22 @@ a.tabledrag-handle {
     background-color: #e1b45b;
     border: 0 none; }
 
-.document-related,
-.document-appendix,
-.document-files {
-  background: #edeeef;
-  margin-bottom: 20px;
-  padding-bottom: 20px; }
-  .document-related .label,
-  .document-appendix .label,
-  .document-files .label {
-    display: block;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 18px;
-    background: #dddfe1;
-    border-bottom: 1px solid #fff;
-    font-weight: 700;
-    margin-bottom: 15px;
-    padding: 10px 0 10px 0;
-    text-align: center;
-    text-transform: uppercase; }
-  .document-related .file img,
-  .document-appendix .file img,
-  .document-files .file img {
-    display: none; }
-  .document-related li,
-  .document-appendix li,
-  .document-files li {
-    display: block;
-    list-style: none;
-    margin: 0 0 10px 20px; }
-  .document-related a,
-  .document-appendix a,
-  .document-files a {
-    border-bottom: 1px solid #ccc; }
-    .document-related a:hover,
-    .document-appendix a:hover,
-    .document-files a:hover {
-      border-bottom: 1px solid #282828; }
-
-.block-sedermera-document-view-read-all .table-wrapper,
-.block-sedermera-document-view-read-per-doc .table-wrapper,
-.block-sedermera-document-view-read-per-user .table-wrapper {
-  width: 100%; }
-.block-sedermera-document-view-read-all table td,
-.block-sedermera-document-view-read-per-doc table td,
-.block-sedermera-document-view-read-per-user table td {
-  height: 28px;
-  margin: 10px 0;
-  padding: 0 15px 0 28px;
-  vertical-align: middle; }
-
-.full-document-wrapper {
-  background: #fff;
-  padding: 0 60px 0 60px;
-  overflow: hidden; }
-
-.document-title-wrapper {
-  width: 70%; }
-
-.document-content-wrapper {
-  float: left;
-  width: 70%; }
-
-.document-sidebar {
-  float: right;
-  margin-top: 15px;
-  padding-left: 60px;
-  width: 30%; }
-  .page-node-revisions .document-sidebar {
-    margin-top: 30px; }
-
-.document-files .label {
-  display: block; }
-
-.document-head-content {
-  margin: 50px 0 20px 0;
-  width: 70%; }
-  .page-node-revisions .document-head-content {
-    margin-top: 0; }
+.show-appendix {
+  cursor: pointer;
+  margin-right: 10px;
+  padding-right: 20px;
+  position: relative; }
+  .show-appendix:after {
+    background: url("../graphics/arrow-down.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/arrow-down.svg") transparent 0 0 no-repeat;
+    display: inline-block;
+    background-repeat: no-repeat;
+    content: '';
+    width: 20px;
+    height: 20px;
+    right: 0;
+    position: absolute;
+    top: 0; }
 
 .tabs.secondary {
   font-size: 14px;
@@ -761,8 +834,10 @@ a.tabledrag-handle {
   line-height: 21px;
   background: #fff;
   border: 0;
-  float: right;
-  margin: 35px 15px 10px 0; }
+  float: left;
+  margin: 50px 0 20px 20px; }
+  .page-node-revisions-view .tabs.secondary {
+    margin: 40px 0 55px 0; }
   .tabs.secondary li {
     font-size: 13px;
     font-size: 1.3rem;
@@ -805,8 +880,6 @@ a.tabledrag-handle {
   padding: 0 0 40px 20px; }
   .page-node-revisions .node-document-form .form-body {
     padding: 0 20px 40px 20px; }
-.page-node-revisions .node-document.view-mode-full {
-  padding-top: 15px; }
 
 #revisioning-revisions-summary {
   padding: 0 20px 60px 20px; }
@@ -1339,13 +1412,16 @@ input[value="Jämför"]#edit-submit {
   padding-bottom: 60px; }
 
 .node-type-document .node-document-form {
-  padding: 50px 40px 40px 40px; }
+  padding: 0 10px 40px 20px; }
   .node-type-document .node-document-form .form-body {
     padding: 0 20px 40px 20px; }
 
 .page-dokument-read-user .main-content,
 .page-dokument-read-doc .main-content {
   overflow: visible; }
+
+.block-system-help {
+  display: none; }
 
 #edit-submit {
   display: inline-block;

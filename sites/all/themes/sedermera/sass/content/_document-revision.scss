@@ -5,8 +5,12 @@
     @include font-size(1.4);
     background: $snow;
     border: 0;
-    float: right;
-    margin: 35px 15px 10px 0;
+    float: left;
+    margin: 50px 0 20px 20px;
+
+    .page-node-revisions-view &{
+      margin: 40px 0 55px 0;
+    }
 
     li {
       @include font-size(1.3);
@@ -76,7 +80,7 @@
   }
 
   .node-document.view-mode-full {
-    padding-top: 15px;
+    //padding-top: 15px;
   }
 }
 
