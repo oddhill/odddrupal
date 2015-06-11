@@ -164,10 +164,10 @@ function sedermera_document_view_block_view($delta = '') {
         );
         $rows = array();
         foreach ($documents as $doc) {
-          $class = 'not-approved';
+          $class = 'no';
           $read = 'Nej';
           if (userHasRead($doc->field_document_user_read, $get['selected'])) {
-            $class = 'approved';
+            $class = 'yes';
             $read = 'Ja';
           }
           $rows[] = array(
@@ -220,10 +220,10 @@ function sedermera_document_view_block_view($delta = '') {
         $rows = array();
         $node = node_load(NULL, $get['selected']);
         foreach ($users as $uid => $user) {
-          $class = 'not-approved';
+          $class = 'no';
           $read = 'Nej';
          if (userHasRead($node->field_document_user_read, $uid)) {
-            $class = 'approved';
+            $class = 'yes';
             $read = 'Ja';
           }
           $rows[] = array(
@@ -336,10 +336,10 @@ function sedermera_document_view_block_view($delta = '') {
  * @param  $appendix List of the document appendix
  */
 function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
-  $class = 'not-approved';
+  $class = 'no';
   $read = 'Nej';
   if (userHasRead($doc->field_document_user_read, $user->uid)) {
-    $class = 'approved';
+    $class = 'yes';
     $read = 'Ja';
   }
 
@@ -375,11 +375,11 @@ function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
  * @param  $appendix List of the document appendix
  */
 function generateAdminRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
-  $class = 'not-approved';
+  $class = 'no';
   $latest = 'Nej';
   $ok = FALSE;
   if (latestRevsion($doc)) {
-    $class = 'approved';
+    $class = 'yes';
     $latest = 'Ja';
     $ok = TRUE;
   }
@@ -390,7 +390,7 @@ function generateAdminRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
     ),
     array(
       'data' => ($doc->status) ? 'Ja' : 'Nej',
-      'class' => $rowClass . (($doc->status) ? ' approved' : ' not-approved'),
+      'class' => $rowClass . (($doc->status) ? ' yes' : ' no'),
     ),
     array(
       'data' => format_date($doc->revision_timestamp, 'long', '', 'Europe/Stockholm'),
