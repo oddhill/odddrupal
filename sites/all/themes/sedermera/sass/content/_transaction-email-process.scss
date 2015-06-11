@@ -75,7 +75,7 @@ form.views-send-preview {
   cursor: pointer;
   position: relative;
 
-  // Tooggle icon
+  // Toggle icon
   &:after {
     @include svg-bg(arrow-down);
     display: inline-block;
