@@ -74,3 +74,17 @@ a {
     list-style-type: decimal;
   }
 }
+
+// Yes and no
+.yes,
+.no {
+  font-weight: 500;
+}
+
+.yes {
+  color: #1c6e0f;
+}
+
+.no {
+  color: #b43636;
+}
