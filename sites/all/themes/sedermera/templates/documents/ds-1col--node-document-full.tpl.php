@@ -65,6 +65,26 @@
   </div><!-- End .document-right-column -->
 
   <aside class="document-sidebar">
+
+    <div class="document-related">
+      <div class="field-dokument-relation">
+        <span class="label">Bekräfta dokument</span>
+
+        <?php if ($sign_status) : ?>
+          <span class="sign-text"><?php print $signtext; ?></span>
+          <span class="signed">
+            <?php print $sign; ?>
+          </span>
+        <?php else : ?>
+          <span class="sign-text"><?php print $signtext; ?></span>
+          <span class="sign">
+            <?php print $sign; ?>
+          </span>
+        <?php endif; ?>
+
+      </div>
+    </div>
+
     <?php if (!empty($related)) : ?>
       <div class="document-related">
         <?php print $related; ?>
@@ -83,13 +103,3 @@
   </aside>
 
 </div><!-- End .full-document-wrapper -->
-
-<?php if ($sign_status) : ?>
-  <span class="signed">
-    <?php print $sign; ?>
-  </span>
-<?php else : ?>
-  <span class="sign">
-    <?php print $sign; ?>
-  </span>
-<?php endif; ?>
