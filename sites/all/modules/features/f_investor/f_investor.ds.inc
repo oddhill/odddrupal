@@ -103,6 +103,11 @@ function f_investor_ds_layout_settings_info() {
         1 => 'field_shared_veri_register',
         2 => 'field_shared_veri_eu',
         3 => 'field_shared_veri_credit',
+        4 => 'field_shared_veri_upp',
+        5 => 'field_shared_veri_ovr',
+        6 => 'field_shared_veri_ptv',
+        7 => 'field_shared_veri_id_real',
+        8 => 'field_shared_veri_komp',
       ),
     ),
     'fields' => array(
@@ -110,6 +115,11 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_veri_register' => 'ds_content',
       'field_shared_veri_eu' => 'ds_content',
       'field_shared_veri_credit' => 'ds_content',
+      'field_shared_veri_upp' => 'ds_content',
+      'field_shared_veri_ovr' => 'ds_content',
+      'field_shared_veri_ptv' => 'ds_content',
+      'field_shared_veri_id_real' => 'ds_content',
+      'field_shared_veri_komp' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -173,17 +183,25 @@ function f_investor_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'field_shared_veri_id',
-        1 => 'field_shared_veri_address',
-        2 => 'field_shared_veri_eu',
-        3 => 'field_shared_veri_credit',
+        0 => 'field_shared_veri_upp',
+        1 => 'field_shared_veri_ptv',
+        2 => 'field_shared_veri_id',
+        3 => 'field_shared_veri_address',
+        4 => 'field_shared_veri_eu',
+        5 => 'field_shared_veri_credit',
+        6 => 'field_shared_veri_komp',
+        7 => 'field_shared_veri_ovr',
       ),
     ),
     'fields' => array(
+      'field_shared_veri_upp' => 'ds_content',
+      'field_shared_veri_ptv' => 'ds_content',
       'field_shared_veri_id' => 'ds_content',
       'field_shared_veri_address' => 'ds_content',
       'field_shared_veri_eu' => 'ds_content',
       'field_shared_veri_credit' => 'ds_content',
+      'field_shared_veri_komp' => 'ds_content',
+      'field_shared_veri_ovr' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

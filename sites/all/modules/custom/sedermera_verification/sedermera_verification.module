@@ -57,8 +57,10 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
     sedermera_verification_disable_regular_elements($form);
     sedermera_verification_add_verification_header($form);
 
+    // dprint_r($form); die;
+
     // Perform minor alterations.
-    sedermera_verification_custom_form_alter($form);
+    sedermera_verification_custom_form_alter($form); // TODO Here
   }
   else {
     // In any other case, we'll disable the verification elements.
@@ -429,11 +431,16 @@ function sedermera_verification_get_expiration_date($id) {
  */
 function sedermera_verification_get_verification_fields() {
   return array(
+    'field_shared_veri_upp',
+    'field_shared_veri_ptv',
     'field_shared_veri_id',
+    'field_shared_veri_id_real',
     'field_shared_veri_address',
     'field_shared_veri_eu',
     'field_shared_veri_credit',
     'field_shared_veri_register',
+    'field_shared_veri_komp',
+    'field_shared_veri_ovr',
   );
 }
 

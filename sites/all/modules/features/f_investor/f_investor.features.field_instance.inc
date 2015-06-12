@@ -27,7 +27,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 20,
       ),
     ),
     'entity_type' => 'investor',
@@ -88,7 +88,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -133,7 +133,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 18,
       ),
     ),
     'entity_type' => 'investor',
@@ -179,7 +179,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 11,
       ),
     ),
     'entity_type' => 'investor',
@@ -229,7 +229,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 13,
       ),
     ),
     'entity_type' => 'investor',
@@ -269,7 +269,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 12,
       ),
     ),
     'entity_type' => 'investor',
@@ -308,7 +308,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 15,
       ),
     ),
     'entity_type' => 'investor',
@@ -351,7 +351,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'investor',
@@ -390,7 +390,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 19,
       ),
     ),
     'entity_type' => 'investor',
@@ -452,7 +452,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 14,
       ),
     ),
     'entity_type' => 'investor',
@@ -495,7 +495,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 17,
       ),
     ),
     'entity_type' => 'investor',
@@ -537,7 +537,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 22,
       ),
     ),
     'entity_type' => 'investor',
@@ -603,7 +603,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 7,
+      'weight' => 10,
     ),
   );
 
@@ -652,7 +652,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 6,
+      'weight' => 9,
     ),
   );
 
@@ -672,7 +672,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 21,
       ),
     ),
     'entity_type' => 'investor',
@@ -748,7 +748,215 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 4,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_id_real'
+  $field_instances['investor-company-field_shared_veri_id_real'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 22,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_id_real',
+    'label' => 'ID-kontroll, verklig huvudman',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_komp'
+  $field_instances['investor-company-field_shared_veri_komp'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 20,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_komp',
+    'label' => 'Kompletterande fråga till investerare',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_ovr'
+  $field_instances['investor-company-field_shared_veri_ovr'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 21,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_ovr',
+    'label' => 'Övriga dokument/tillägg',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_ptv'
+  $field_instances['investor-company-field_shared_veri_ptv'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 19,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_ptv',
+    'label' => 'PTV-blankett',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 5,
     ),
   );
 
@@ -797,7 +1005,59 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 5,
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_veri_upp'
+  $field_instances['investor-company-field_shared_veri_upp'] = array(
+    'bundle' => 'company',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 18,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_upp',
+    'label' => 'Uppdragsavtal',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 4,
     ),
   );
 
@@ -818,7 +1078,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -863,7 +1123,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 19,
       ),
     ),
     'entity_type' => 'investor',
@@ -924,7 +1184,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 17,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -975,7 +1235,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'investor',
@@ -1025,7 +1285,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 12,
       ),
     ),
     'entity_type' => 'investor',
@@ -1065,7 +1325,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 11,
       ),
     ),
     'entity_type' => 'investor',
@@ -1104,7 +1364,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 14,
       ),
     ),
     'entity_type' => 'investor',
@@ -1147,7 +1407,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 9,
       ),
     ),
     'entity_type' => 'investor',
@@ -1186,7 +1446,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 18,
       ),
     ),
     'entity_type' => 'investor',
@@ -1248,7 +1508,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 13,
       ),
     ),
     'entity_type' => 'investor',
@@ -1291,7 +1551,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 16,
       ),
     ),
     'entity_type' => 'investor',
@@ -1332,7 +1592,7 @@ function f_investor_field_default_field_instances() {
           'view_mode' => 'default',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 1,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'investor',
@@ -1357,7 +1617,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -1382,7 +1642,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 21,
       ),
     ),
     'entity_type' => 'investor',
@@ -1423,7 +1683,7 @@ function f_investor_field_default_field_instances() {
           'view_mode' => 'default',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 3,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'investor',
@@ -1448,7 +1708,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 7,
+      'weight' => 9,
     ),
   );
 
@@ -1472,7 +1732,7 @@ function f_investor_field_default_field_instances() {
           'view_mode' => 'default',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 2,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'investor',
@@ -1497,7 +1757,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -1517,7 +1777,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 20,
       ),
     ),
     'entity_type' => 'investor',
@@ -1574,7 +1834,7 @@ function f_investor_field_default_field_instances() {
           'view_mode' => 'default',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 0,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'investor',
@@ -1592,6 +1852,214 @@ function f_investor_field_default_field_instances() {
         'type_settings' => array(
           'allow_existing' => FALSE,
           'delete_references' => 1,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_komp'
+  $field_instances['investor-person-field_shared_veri_komp'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 20,
+      ),
+      'investor_verification' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_komp',
+    'label' => 'Kompletterande fråga till investerare',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_ovr'
+  $field_instances['investor-person-field_shared_veri_ovr'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 21,
+      ),
+      'investor_verification' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_ovr',
+    'label' => 'Övriga dokument/tillägg',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_ptv'
+  $field_instances['investor-person-field_shared_veri_ptv'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 19,
+      ),
+      'investor_verification' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_ptv',
+    'label' => 'PTV-blankett',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_veri_upp'
+  $field_instances['investor-person-field_shared_veri_upp'] = array(
+    'bundle' => 'person',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 18,
+      ),
+      'investor_verification' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_veri_upp',
+    'label' => 'Uppdragsavtal',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
           'label_plural' => 'entities',
           'label_singular' => 'entity',
           'match_operator' => 'CONTAINS',
@@ -1621,21 +2089,26 @@ function f_investor_field_default_field_instances() {
   t('Externt register');
   t('Fax');
   t('Förnamn');
+  t('ID-kontroll, verklig huvudman');
   t('Identitetskontroll');
   t('Investerar ID');
+  t('Kompletterande fråga till investerare');
   t('Kontroll godkänd');
   t('Kontroll utgår');
   t('Kreditkontroll');
   t('Mobiltelefon');
   t('Namn');
   t('Organisationsnummer');
+  t('PTV-blankett');
   t('Personnummer');
   t('Plats');
   t('Registreringsbevis');
   t('Telefon');
   t('Tillfällig investerare');
   t('Tillfälligt bolag');
+  t('Uppdragsavtal');
   t('Ägare');
+  t('Övriga dokument/tillägg');
 
   return $field_instances;
 }
