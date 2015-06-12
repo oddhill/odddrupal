@@ -139,6 +139,11 @@ function f_company_views_default_views() {
     2 => '2',
     1 => 0,
     3 => 0,
+    5 => 0,
+    4 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
   );
 
   /* Display: Page */
