@@ -97,6 +97,17 @@ function f_document_user_default_permissions() {
     'module' => 'revisioning',
   );
 
+  // Exported permission: 'use text format document_html'.
+  $permissions['use text format document_html'] = array(
+    'name' => 'use text format document_html',
+    'roles' => array(
+      'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'filter',
+  );
+
   // Exported permission: 'view any document content'.
   $permissions['view any document content'] = array(
     'name' => 'view any document content',
