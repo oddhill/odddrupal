@@ -30,13 +30,19 @@ $(document).ready(function() {
 
   // Fade out the date format (Kontaktlista)
   $(".form-type-date-combo .date-date .form-text").on('focusout', function() {
-    $(this).parent().siblings(".description").fadeOut();
+    $(this).siblings(".description").fadeOut();
   });
 
   // Hide/show appendix in Document list (Dina dokument)
-  $(".appendix").hide();
+  $(".appendix").parent().hide();
   $(".show-appendix").click(function () {
-    $(".appendix").slideToggle("1000");
+    var elem = $(this).parent().parent();
+
+    elem.siblings().removeClass("open");
+    elem.toggleClass("open").nextUntil('tr:has(.document)').slideToggle();
+
+    elem.prevAll('tr:has(.appendix)').hide();
+    elem.nextUntil('tr:has(.document)').last().nextAll('tr:has(.appendix)').hide();
   });
 
   // Move/replace revision tab buttons on page-node-revisions-view
