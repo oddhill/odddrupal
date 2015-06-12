@@ -31,6 +31,9 @@ function f_document_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
+  if ($module == "front_page" && $api == "default_front_page_presets") {
+    return array("version" => "2");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
