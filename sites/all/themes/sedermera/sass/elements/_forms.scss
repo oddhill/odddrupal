@@ -242,6 +242,10 @@ form {
         tr {
           border-bottom: 1px solid $wool;
 
+          .page-node-add-document & {
+            border: 0;
+          }
+
           &.even {
             background: tint($wool,30%);
 
@@ -257,6 +261,10 @@ form {
 
           &.odd {
             background: tint($wool,50%);
+
+            .page-node-add-document & {
+              background: $steel;
+            }
 
             a.tabledrag-handle {
               background-color: tint($wool,50%);
@@ -284,6 +292,10 @@ form {
           td {
             padding: 10px;
             position: relative;
+
+            .page-node-add-document & {
+              padding: 0;
+            }
 
             .file-widget {
 
@@ -333,6 +345,10 @@ form {
                 padding: 5px;
                 margin-top: 15px;
                 width: 100%;
+
+                .page-node-add-document & {
+                  margin-top: 0;
+                }
               }
             }
 
