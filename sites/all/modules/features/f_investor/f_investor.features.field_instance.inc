@@ -1337,7 +1337,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'investor',
     'field_name' => 'field_shared_veri_address',
-    'label' => 'Adressregister från Skatteverket',
+    'label' => 'Externt register',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1605,7 +1605,6 @@ function f_investor_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Adressregister från Skatteverket');
   t('Ange investerar ID för denna investerare. Detta måste vara unikt, och kräver att investeraren har godkänt avtalet.');
   t('Ange namnet på bolaget.');
   t('Ange platsinformation för bolaget. Du måste inte fylla i alla fält, om det inte är relevant.');
@@ -1619,6 +1618,7 @@ function f_investor_field_default_field_instances() {
   t('E-post');
   t('EU:s sanktionsförordningar');
   t('Efternamn');
+  t('Externt register');
   t('Fax');
   t('Förnamn');
   t('Identitetskontroll');

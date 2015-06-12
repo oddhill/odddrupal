@@ -25,6 +25,9 @@ function f_verification_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
