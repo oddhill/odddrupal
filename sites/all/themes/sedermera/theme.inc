@@ -97,17 +97,17 @@ function sedermera_form_element($variables) {
 
       // Don't add the element if this is a checkbox or radiobutton. In those
       // cases, the element will be added inside the label.
-      // if (!in_array($element['#type'], array('checkbox', 'radio'))) {
+      if (!in_array($element['#type'], array('checkbox', 'radio'))) {
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
-      // }
+      }
       break;
 
     case 'after':
       // Don't add the element if this is a checkbox or radiobutton. In those
       // cases, the element will be added inside the label.
-      // if (!in_array($element['#type'], array('checkbox', 'radio'))) {
+      if (!in_array($element['#type'], array('checkbox', 'radio'))) {
         $output .= ' ' . $prefix . $element['#children'] . $suffix;
-      // }
+      }
 
       $output .= ' ' . theme('form_element_label', $variables) . "\n";
       break;
