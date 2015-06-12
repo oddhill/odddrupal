@@ -3494,6 +3494,11 @@ form#user-login,
   #edit-archive:hover {
     background-color: #303030; }
 
+.other {
+  font-size: 13px;
+  padding: 15px 15px 5px 15px;
+  text-align: left; }
+
 .activities-wrapper .sidebar-block {
   background: transparent;
   margin-bottom: 0;
