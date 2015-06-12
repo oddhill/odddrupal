@@ -103,6 +103,17 @@ input[value="Jämför"]{
  }
 }
 
+// Submit button
+#edit-submit--3 {
+  @include button($dark-grey, delete);
+  border: 2px solid red;
+}
+
+// Don't display revisioning-ux-buttons
+.revisioning-ux-buttons {
+  display: none;
+}
+
 // Publish button
 #revisioning-ux-publish {
 
@@ -118,11 +129,6 @@ input[value="Jämför"]{
   #edit-submit--2 {
     @include button($dark-grey, unpublish);
   }
-}
-
-// Submit button
-#edit-submit--3 {
-  @include button($dark-grey, delete);
 }
 
 // Delete all button

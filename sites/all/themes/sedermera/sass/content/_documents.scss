@@ -33,7 +33,7 @@
   li {
     display: block;
     list-style: none;
-    margin: 0 0 10px 20px;
+    margin: 0 0 7px 20px;
   }
 
   a {
@@ -127,6 +127,7 @@
 
 // Document sidebar (contains related documents/appendix/files)
 .document-sidebar {
+  @include font-size(1.3);
   background: $wool;
   flex: 1;
   float: right;

@@ -42,9 +42,7 @@ $(document).ready(function() {
   // Move/replace revision tab buttons on page-node-revisions-view
   $('.secondary').insertBefore('.document-head-wrapper');
 
-  // Move revisioning-ux-buttons to .main-content (after form #revisioning-revisions-summary)
-  $(".revisioning-ux-buttons").appendTo(".main-content");
-
+  // Don't show document header if no header content
   if (!$('.document-head-content').children().length)$('.document-head-content').hide();
 });
 
