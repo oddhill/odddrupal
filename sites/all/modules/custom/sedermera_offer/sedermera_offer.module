@@ -246,6 +246,10 @@ function sedermera_offer_block_info() {
     'info' => 'Units för transaktion',
     'cache' => DRUPAL_NO_CACHE
   );
+  $blocks['other'] = array(
+    'info' => 'Övrigt',
+    'cache' => DRUPAL_NO_CACHE
+  );
 
   return $blocks;
 }
@@ -254,74 +258,108 @@ function sedermera_offer_block_info() {
  * Implements hook_block_view().
  */
 function sedermera_offer_block_view($delta = '') {
-  // Load the node based on the second argument.
-  $node = node_load(arg(1));
+  switch ($delta) {
+    case  'stock_remaining':
+      // Load the node based on the second argument.
+      $node = node_load(arg(1));
 
-  // Bail out if this isn't a capital raising node.
-  if (!$node || $node->type != 'capital_raising') {
-    return;
-  }
+      // Bail out if this isn't a capital raising node.
+      if (!$node || $node->type != 'capital_raising') {
+        return;
+      }
 
-  // Create the block structure, and attach the CSS and JS that's required for
-  // the progress bar.
-  $block = array(
-    'subject' => 'Upptecknat',
-    'content' => array(
-      '#theme' => 'sedermera_offer_block_remaining',
-      '#attached' => array(
-        'css' => array(
-          drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/css/bootstrap-progressbar-3.3.0.css',
+      // Create the block structure, and attach the CSS and JS that's required for
+      // the progress bar.
+      $block = array(
+        'subject' => 'Upptecknat',
+        'content' => array(
+          '#theme' => 'sedermera_offer_block_remaining',
+          '#attached' => array(
+            'css' => array(
+              drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/css/bootstrap-progressbar-3.3.0.css',
+            ),
+            'js' => array(
+              drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/bootstrap-progressbar.js',
+              drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_block.js',
+            ),
+          ),
         ),
-        'js' => array(
-          drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/bootstrap-progressbar.js',
-          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_block.js',
+      );
+
+      // Get the maximum total, guaranteed and commitment values.
+      $guaranteed_max = sedermera_offer_capital_raising_get_signed_guaranteed_max($node);
+      $commitment_max = sedermera_offer_capital_raising_get_signed_commitment_max($node);
+      $total_max = sedermera_offer_capital_raising_get_signed_total_max($node);
+
+      // Get the current total value and calculate the percentage.
+      $total_current = sedermera_offer_capital_raising_get_signed_total($node);
+      $total_percentage = round($total_max ? ($total_current / $total_max) * 100 : 0);
+
+      // Add the values to the variables.
+      $block['content']['#total']['current'] = preg_replace('/\,0$/u', '', number_format($total_current, 1, ',', ' '));
+      $block['content']['#total']['percentage'] = $total_percentage;
+      $block['content']['#total']['max'] = $total_max ? preg_replace('/\,0$/u', '', number_format($total_max, 1, ',', ' ')) : '?';
+
+      // Add the variables for the guaranteed values, if a guaranteed goal has been
+      // set.
+      if ($guaranteed_max) {
+        // Get the current amount and calculate the percentage.
+        $guaranteed_current = sedermera_offer_capital_raising_get_signed_guaranteed($node);
+        $guaranteed_percentage = round($guaranteed_max ? ($guaranteed_current / $guaranteed_max) * 100 : 0);
+
+        // Add the values to the variables.
+        $block['content']['#guaranteed']['current'] = preg_replace('/\,0$/u', '', number_format($guaranteed_current, 1, ',', ' '));
+        $block['content']['#guaranteed']['percentage'] = $guaranteed_percentage;
+        $block['content']['#guaranteed']['max'] = preg_replace('/\,0$/u', '', number_format($guaranteed_max, 1, ',', ' '));
+      }
+
+      // Add the variables for the committed values, if a commited goal has been
+      // set.
+      if ($commitment_max) {
+        // Get the current amount and calculate the percentage.
+        $committed_current = sedermera_offer_capital_raising_get_signed_commitment($node);
+        $committed_percentage = round($commitment_max ? ($committed_current / $commitment_max) * 100 : 0);
+
+        // Add the values to the variables.
+        $block['content']['#committed']['current'] = preg_replace('/\,0$/u', '', number_format($committed_current, 1, ',', ' '));
+        $block['content']['#committed']['percentage'] = $committed_percentage;
+        $block['content']['#committed']['max'] = preg_replace('/\,0$/u', '', number_format($commitment_max, 1, ',', ' '));
+      }
+
+      // Return the block.
+      return $block;
+      break;
+    case 'other';
+      // Load the node based on the second argument.
+      $node = node_load(arg(1));
+
+      // Bail out if this isn't a capital raising node.
+      if (!$node || $node->type != 'capital_raising') {
+        return;
+      }
+
+      // dprint_r($node->field_cap_rais_goal_oth); die;
+
+      $block = array(
+        'subject' => 'Övrigt',
+        'content' => array(
+          '#theme' => 'sedermera_offer_block_other',
+          '#markup' => '<div class="empty-container"><p>Det finns inga dokument</p></div>',
         ),
-      ),
-    ),
-  );
+      );
 
-  // Get the maximum total, guaranteed and commitment values.
-  $guaranteed_max = sedermera_offer_capital_raising_get_signed_guaranteed_max($node);
-  $commitment_max = sedermera_offer_capital_raising_get_signed_commitment_max($node);
-  $total_max = sedermera_offer_capital_raising_get_signed_total_max($node);
+      // Change the content of the block to the actual end date.
+      $block['content'] = array(
+        array(
+          '#prefix' => '<div class="other">',
+          '#markup' => check_plain($node->field_cap_rais_goal_oth[LANGUAGE_NONE][0]['value']),
+          '#suffix' => '</div>',
+        ),
+      );
 
-  // Get the current total value and calculate the percentage.
-  $total_current = sedermera_offer_capital_raising_get_signed_total($node);
-  $total_percentage = round($total_max ? ($total_current / $total_max) * 100 : 0);
-
-  // Add the values to the variables.
-  $block['content']['#total']['current'] = preg_replace('/\,0$/u', '', number_format($total_current, 1, ',', ' '));
-  $block['content']['#total']['percentage'] = $total_percentage;
-  $block['content']['#total']['max'] = $total_max ? preg_replace('/\,0$/u', '', number_format($total_max, 1, ',', ' ')) : '?';
-
-  // Add the variables for the guaranteed values, if a guaranteed goal has been
-  // set.
-  if ($guaranteed_max) {
-    // Get the current amount and calculate the percentage.
-    $guaranteed_current = sedermera_offer_capital_raising_get_signed_guaranteed($node);
-    $guaranteed_percentage = round($guaranteed_max ? ($guaranteed_current / $guaranteed_max) * 100 : 0);
-
-    // Add the values to the variables.
-    $block['content']['#guaranteed']['current'] = preg_replace('/\,0$/u', '', number_format($guaranteed_current, 1, ',', ' '));
-    $block['content']['#guaranteed']['percentage'] = $guaranteed_percentage;
-    $block['content']['#guaranteed']['max'] = preg_replace('/\,0$/u', '', number_format($guaranteed_max, 1, ',', ' '));
-  }
-
-  // Add the variables for the committed values, if a commited goal has been
-  // set.
-  if ($commitment_max) {
-    // Get the current amount and calculate the percentage.
-    $committed_current = sedermera_offer_capital_raising_get_signed_commitment($node);
-    $committed_percentage = round($commitment_max ? ($committed_current / $commitment_max) * 100 : 0);
-
-    // Add the values to the variables.
-    $block['content']['#committed']['current'] = preg_replace('/\,0$/u', '', number_format($committed_current, 1, ',', ' '));
-    $block['content']['#committed']['percentage'] = $committed_percentage;
-    $block['content']['#committed']['max'] = preg_replace('/\,0$/u', '', number_format($commitment_max, 1, ',', ' '));
-  }
-
-  // Return the block.
-  return $block;
+      return $block;
+      break;
+    }
 }
 
 /**

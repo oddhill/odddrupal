@@ -362,7 +362,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 32,
+      'weight' => 31,
     ),
   );
 
@@ -408,7 +408,79 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 31,
+      'weight' => 30,
+    ),
+  );
+
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_oth'
+  $field_instances['node-capital_raising-field_cap_rais_goal_oth'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Använd detta fält om inget specifikt mål finns eller annat mål',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 17,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'mail' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_goal_oth',
+    'label' => 'Övrigt',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'document_html' => 'document_html',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 32,
     ),
   );
 
@@ -989,6 +1061,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Aktier innan nyemission');
   t('Ange hur många procent av det totala målet som ska vara garanterat.');
   t('Ange hur många procent av det totala målet som ska vara åtaget.');
+  t('Använd detta fält om inget specifikt mål finns eller annat mål');
   t('Emissionsvolym');
   t('Filer');
   t('Kundbolag');
@@ -1003,6 +1076,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Varav garanterat');
   t('Varav åtaget');
   t('Värdering (pre-money)');
+  t('Övrigt');
 
   return $field_instances;
 }

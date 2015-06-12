@@ -97,6 +97,7 @@ function f_capital_raising_field_group_info() {
       0 => 'field_cap_rais_goal_com',
       1 => 'field_cap_rais_goal_guar',
       2 => 'field_cap_rais_goal_tot',
+      3 => 'field_cap_rais_goal_oth',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -130,9 +131,9 @@ function f_capital_raising_field_group_info() {
       3 => 'field_cap_rais_stock_no',
       4 => 'field_cap_rais_vol',
       5 => 'field_cap_rais_post_units',
-      6 => 'field_cap_rais_vol_units',
+      6 => 'field_cap_rais_type',
       7 => 'field_cap_rais_units_no',
-      8 => 'field_cap_rais_type',
+      8 => 'field_cap_rais_vol_units',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
