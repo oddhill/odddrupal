@@ -96,6 +96,7 @@ features[node][] = capital_raising
 features[user_permission][] = create capital_raising content
 features[user_permission][] = delete any capital_raising content
 features[user_permission][] = edit any capital_raising content
+features[user_permission][] = edit own capital_raising content
 features[user_permission][] = view any capital_raising content
 features[user_permission][] = view own capital_raising content
 features[variable][] = diff_enable_revisions_page_node_capital_raising

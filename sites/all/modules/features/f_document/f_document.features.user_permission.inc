@@ -36,6 +36,15 @@ function f_document_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit own document content'.
+  $permissions['edit own document content'] = array(
+    'name' => 'edit own document content',
+    'roles' => array(
+      'Dokument skapare' => 'Dokument skapare',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit revisions'.
   $permissions['edit revisions'] = array(
     'name' => 'edit revisions',
@@ -138,6 +147,19 @@ function f_document_user_default_permissions() {
       'Dokument moderator' => 'Dokument moderator',
     ),
     'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view own document content'.
+  $permissions['view own document content'] = array(
+    'name' => 'view own document content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Dokument moderator' => 'Dokument moderator',
+      'Dokument skapare' => 'Dokument skapare',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
   );
 
   // Exported permission: 'view revision status messages'.

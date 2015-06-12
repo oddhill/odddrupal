@@ -15,8 +15,8 @@ function f_core_default_front_page_presets() {
   $front_page_preset->api_version = 2;
   $front_page_preset->id = '1';
   $front_page_preset->role = 'Administratör';
-  $front_page_preset->mode = 'redirect';
-  $front_page_preset->data = 'oversikt';
+  $front_page_preset->mode = '';
+  $front_page_preset->data = '';
   $front_page_preset->filter_format = '';
   $front_page_preset->weight = 0;
   $export['Administratör'] = $front_page_preset;
@@ -37,8 +37,8 @@ function f_core_default_front_page_presets() {
   $front_page_preset->api_version = 2;
   $front_page_preset->id = '7';
   $front_page_preset->role = 'Granskare';
-  $front_page_preset->mode = 'redirect';
-  $front_page_preset->data = 'oversikt';
+  $front_page_preset->mode = '';
+  $front_page_preset->data = '';
   $front_page_preset->filter_format = '';
   $front_page_preset->weight = 0;
   $export['Granskare'] = $front_page_preset;
@@ -48,8 +48,8 @@ function f_core_default_front_page_presets() {
   $front_page_preset->api_version = 2;
   $front_page_preset->id = '8';
   $front_page_preset->role = 'Redaktör';
-  $front_page_preset->mode = 'redirect';
-  $front_page_preset->data = 'oversikt';
+  $front_page_preset->mode = '';
+  $front_page_preset->data = '';
   $front_page_preset->filter_format = '';
   $front_page_preset->weight = 0;
   $export['Redaktör'] = $front_page_preset;

@@ -37,6 +37,13 @@ function f_capital_raising_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit own capital_raising content'.
+  $permissions['edit own capital_raising content'] = array(
+    'name' => 'edit own capital_raising content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'view any capital_raising content'.
   $permissions['view any capital_raising content'] = array(
     'name' => 'view any capital_raising content',

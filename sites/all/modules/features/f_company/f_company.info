@@ -32,6 +32,7 @@ features[node][] = company
 features[user_permission][] = create company content
 features[user_permission][] = delete any company content
 features[user_permission][] = edit any company content
+features[user_permission][] = edit own company content
 features[user_permission][] = view any company content
 features[user_permission][] = view own company content
 features[variable][] = auto_entitylabel_node_company

@@ -37,6 +37,13 @@ function f_company_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit own company content'.
+  $permissions['edit own company content'] = array(
+    'name' => 'edit own company content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'view any company content'.
   $permissions['view any company content'] = array(
     'name' => 'view any company content',
