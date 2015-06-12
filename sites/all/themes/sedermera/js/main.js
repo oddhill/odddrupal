@@ -45,6 +45,7 @@ $(document).ready(function() {
   // Move revisioning-ux-buttons to .main-content (after form #revisioning-revisions-summary)
   $(".revisioning-ux-buttons").appendTo(".main-content");
 
+  if (!$('.document-head-content').children().length)$('.document-head-content').hide();
 });
 
 // Override module javascript and use try catch to isolate errors.
