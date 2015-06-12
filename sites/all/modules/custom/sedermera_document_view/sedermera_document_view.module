@@ -306,7 +306,7 @@ function sedermera_document_view_block_view($delta = '') {
       // Create the header for the table. Add rows
       $header = array(
         array('data' => 'Titel', 'class' => array('table-head')),
-        array('data' => 'Publiserad', 'class' => array('table-head')),
+        array('data' => 'Publicerad', 'class' => array('table-head')),
         array('data' => 'Datum', 'class' => array('table-head')),
         array('data' => 'Version', 'class' => array('table-head')),
         array('data' => 'Senaste', 'class' => array('table-head')),

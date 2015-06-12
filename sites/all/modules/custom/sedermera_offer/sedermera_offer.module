@@ -338,26 +338,26 @@ function sedermera_offer_block_view($delta = '') {
         return;
       }
 
-      // dprint_r($node->field_cap_rais_goal_oth); die;
+      if (!empty($node->field_cap_rais_goal_oth)) {
+        $block = array(
+          'subject' => 'Övrigt',
+          'content' => array(
+            '#theme' => 'sedermera_offer_block_other',
+            '#markup' => '<div class="empty-container"><p>Det finns inga dokument</p></div>',
+          ),
+        );
 
-      $block = array(
-        'subject' => 'Övrigt',
-        'content' => array(
-          '#theme' => 'sedermera_offer_block_other',
-          '#markup' => '<div class="empty-container"><p>Det finns inga dokument</p></div>',
-        ),
-      );
+        // Change the content of the block to the actual end date.
+        $block['content'] = array(
+          array(
+            '#prefix' => '<div class="other">',
+            '#markup' => check_plain($node->field_cap_rais_goal_oth[LANGUAGE_NONE][0]['value']),
+            '#suffix' => '</div>',
+          ),
+        );
 
-      // Change the content of the block to the actual end date.
-      $block['content'] = array(
-        array(
-          '#prefix' => '<div class="other">',
-          '#markup' => check_plain($node->field_cap_rais_goal_oth[LANGUAGE_NONE][0]['value']),
-          '#suffix' => '</div>',
-        ),
-      );
-
-      return $block;
+        return $block;
+      }
       break;
     }
 }
