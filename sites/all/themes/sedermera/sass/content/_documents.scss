@@ -212,20 +212,26 @@
 // Show appendix
 .show-appendix {
   cursor: pointer;
-  margin-right: 10px;
-  padding-right: 20px;
   position: relative;
 
   // Toggle icon
   &:after {
-    @include svg-bg(arrow-down);
+    @include svg-bg(add_mini_grey);
     display: inline-block;
     background-repeat: no-repeat;
     content: '';
-    width: 20px;
-    height: 20px;
-    right: 0;
+    width: 15px;
+    height: 15px;
+    left: 270px;
     position: absolute;
-    top: 0;
+    top: 2px;
+
+    .open & {
+      @include svg-bg(minus_mini_grey);
+    }
   }
+}
+
+.appendix {
+  @include font-size(1.3);
 }

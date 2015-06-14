@@ -828,20 +828,26 @@ a.tabledrag-handle {
 
 .show-appendix {
   cursor: pointer;
-  margin-right: 10px;
-  padding-right: 20px;
   position: relative; }
   .show-appendix:after {
-    background: url("../graphics/arrow-down.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/arrow-down.svg") transparent 0 0 no-repeat;
+    background: url("../graphics/add_mini_grey.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/add_mini_grey.svg") transparent 0 0 no-repeat;
     display: inline-block;
     background-repeat: no-repeat;
     content: '';
-    width: 20px;
-    height: 20px;
-    right: 0;
+    width: 15px;
+    height: 15px;
+    left: 270px;
     position: absolute;
-    top: 0; }
+    top: 2px; }
+    .open .show-appendix:after {
+      background: url("../graphics/minus_mini_grey.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/minus_mini_grey.svg") transparent 0 0 no-repeat; }
+
+.appendix {
+  font-size: 13px;
+  font-size: 1.3rem;
+  line-height: 19.5px; }
 
 .tabs.secondary {
   font-size: 14px;
