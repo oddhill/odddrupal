@@ -50,15 +50,19 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
     if (!user_access('eck edit verification verification entities')) {
       sedermera_verification_view_rendered_verification($form);
       sedermera_verification_add_verification_header($form);
+      sedermera_verification_mark_not_ok($form);
       return;
     }
 
     // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
     sedermera_verification_add_verification_header($form);
+    sedermera_verification_mark_not_ok($form);
+
+    // dprint_r($form); die;
 
     // Perform minor alterations.
-    sedermera_verification_custom_form_alter($form);
+    sedermera_verification_custom_form_alter($form); // TODO Here
   }
   else {
     // In any other case, we'll disable the verification elements.
@@ -83,12 +87,14 @@ function sedermera_verification_form_eck__entity__form_edit_investor_company_alt
     if (!user_access('eck edit verification verification entities')) {
       sedermera_verification_view_rendered_verification($form);
       sedermera_verification_add_verification_header($form);
+      sedermera_verification_mark_not_ok($form);
       return;
     }
 
     // Disable the regular form elements and add the verification header.
     sedermera_verification_disable_regular_elements($form);
     sedermera_verification_add_verification_header($form);
+    sedermera_verification_mark_not_ok($form);
 
     // Perform minor alterations.
     sedermera_verification_custom_form_alter($form);
@@ -218,6 +224,19 @@ function sedermera_verification_disable_verification_elements(&$form) {
   // Loop through every investor form element and disable access to it.
   foreach (sedermera_verification_get_verification_fields() as $name) {
     $form[$name]['#access'] = FALSE;
+  }
+}
+
+function sedermera_verification_mark_not_ok(&$form) {
+  $fields = sedermera_verification_get_verification_fields();
+
+  foreach ($fields as $field) {
+    if ($form[$field]) {
+
+      if($form[$field][LANGUAGE_NONE]['form']['field_verification_approved'][LANGUAGE_NONE]['#entity']->field_verification_approved[LANGUAGE_NONE][0]['value'] == 0) {
+        $form[$field][LANGUAGE_NONE]['#prefix'] = substr_replace($form[$field][LANGUAGE_NONE]['#prefix'], ' class="not-approved-control"', -1, 0);
+      }
+    }
   }
 }
 
@@ -429,11 +448,16 @@ function sedermera_verification_get_expiration_date($id) {
  */
 function sedermera_verification_get_verification_fields() {
   return array(
+    'field_shared_veri_upp',
+    'field_shared_veri_ptv',
     'field_shared_veri_id',
+    'field_shared_veri_id_real',
     'field_shared_veri_address',
     'field_shared_veri_eu',
     'field_shared_veri_credit',
     'field_shared_veri_register',
+    'field_shared_veri_komp',
+    'field_shared_veri_ovr',
   );
 }
 
