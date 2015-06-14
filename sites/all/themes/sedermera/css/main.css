@@ -849,6 +849,9 @@ a.tabledrag-handle {
   font-size: 1.3rem;
   line-height: 19.5px; }
 
+.block-sedermera-document-view-read-all table tr.odd {
+  border-bottom: 1px solid #f3f4f8; }
+
 .tabs.secondary {
   font-size: 14px;
   font-size: 1.4rem;

@@ -235,3 +235,10 @@
 .appendix {
   @include font-size(1.3);
 }
+
+.block-sedermera-document-view-read-all {
+
+  table tr.odd {
+    border-bottom: 1px solid $light-grey;
+  }
+}
