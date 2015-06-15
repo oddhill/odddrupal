@@ -326,15 +326,14 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'popup_message_visibility';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['popup_message_visibility'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'popup_message_visibility_pages';
-  $strongarm->value = '<front>
-dokument/lista';
+  $strongarm->value = '';
   $export['popup_message_visibility_pages'] = $strongarm;
 
   $strongarm = new stdClass();
