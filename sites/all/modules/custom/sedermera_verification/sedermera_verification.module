@@ -41,6 +41,10 @@ function sedermera_verification_form_eck__entity__form_add_investor_company_alte
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
+  if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
+    return;
+  }
+
   // The edit form will be used for the "Kontroller" page as well. This means
   // that we'll need to alter the form differently, depending on the current
   // path.
@@ -76,6 +80,10 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
  * Implements hook_form_FORM_ID_alter().
  */
 function sedermera_verification_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
+  if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
+    return;
+  }
+
   // The edit form will be used for the "Kontroller" page as well. This means
   // that we'll need to alter the form differently, depending on the current
   // path.
