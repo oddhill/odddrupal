@@ -843,9 +843,9 @@ a.tabledrag-handle {
     content: '';
     width: 15px;
     height: 15px;
-    left: 270px;
+    left: 20px;
     position: absolute;
-    top: 2px; }
+    top: 15px; }
     .open .show-appendix:after {
       background: url("../graphics/minus_mini_grey.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/minus_mini_grey.svg") transparent 0 0 no-repeat; }

@@ -223,9 +223,9 @@
     content: '';
     width: 15px;
     height: 15px;
-    left: 270px;
+    left: 20px;
     position: absolute;
-    top: 2px;
+    top: 15px;
 
     .open & {
       @include svg-bg(minus_mini_grey);
