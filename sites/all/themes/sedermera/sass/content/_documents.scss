@@ -122,6 +122,7 @@
 
 // Document content wrapper
 .document-content-wrapper {
+  @include span-columns(12);
   float: left;
 }
 

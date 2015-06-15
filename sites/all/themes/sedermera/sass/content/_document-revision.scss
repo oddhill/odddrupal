@@ -16,7 +16,7 @@
       @include font-size(1.3);
       background: $stone;
       border-radius: 34px;
-      margin-right: 10px;
+      margin: 0 10px 20px 0;
 
       a {
         border-right: 0;
@@ -77,10 +77,6 @@
     .form-body {
       padding: 0 20px 40px 20px;
     }
-  }
-
-  .node-document.view-mode-full {
-    //padding-top: 15px;
   }
 }
 

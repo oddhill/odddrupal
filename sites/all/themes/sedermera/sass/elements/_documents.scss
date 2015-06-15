@@ -15,11 +15,18 @@
 .node-type-document {
 
   .node-document-form {
-    padding: 0 10px 40px 20px;
+    padding: 20px 0 40px 20px;
 
     .form-body {
       padding: 0 20px 40px 20px;
     }
+  }
+}
+
+.page-node-revisions-edit {
+
+  .node-document-form {
+    padding: 0 0 40px 20px;
   }
 }
 
@@ -37,7 +44,7 @@
 
 
 #edit-field-document-files-und-0-upload {
-  width: 200px;
+  width: 190px;
 }
 
 .field-type-entityreference {

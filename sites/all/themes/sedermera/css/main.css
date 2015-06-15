@@ -732,7 +732,13 @@ a.tabledrag-handle {
     text-align: left; }
 
 .document-content-wrapper {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
   float: left; }
+  .document-content-wrapper:last-child {
+    margin-right: 0; }
 
 .document-sidebar {
   font-size: 13px;
@@ -868,7 +874,7 @@ a.tabledrag-handle {
     line-height: 19.5px;
     background: #d5d7da;
     border-radius: 34px;
-    margin-right: 10px; }
+    margin: 0 10px 20px 0; }
     .tabs.secondary li a {
       border-right: 0;
       border-bottom: 0 none;
@@ -1440,9 +1446,12 @@ input[value="Jämför"]#edit-submit {
   padding-bottom: 60px; }
 
 .node-type-document .node-document-form {
-  padding: 0 10px 40px 20px; }
+  padding: 20px 0 40px 20px; }
   .node-type-document .node-document-form .form-body {
     padding: 0 20px 40px 20px; }
+
+.page-node-revisions-edit .node-document-form {
+  padding: 0 0 40px 20px; }
 
 .page-dokument-read-user .main-content,
 .page-dokument-read-doc .main-content {
@@ -1452,7 +1461,7 @@ input[value="Jämför"]#edit-submit {
   display: none; }
 
 #edit-field-document-files-und-0-upload {
-  width: 200px; }
+  width: 190px; }
 
 .field-type-entityreference .submit-wrapper input {
   display: inline-block;
