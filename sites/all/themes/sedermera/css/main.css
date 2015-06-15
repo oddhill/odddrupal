@@ -963,8 +963,7 @@ input[value="Jämför"]#edit-submit {
   background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  border: 2px solid red; }
+  transition: background-color 0.1s ease-in-out; }
   #edit-submit--3:hover {
     background-color: #303030; }
 
