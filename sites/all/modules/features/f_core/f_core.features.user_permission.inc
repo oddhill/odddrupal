@@ -35,6 +35,13 @@ function f_core_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'administer message types'.
+  $permissions['administer message types'] = array(
+    'name' => 'administer message types',
+    'roles' => array(),
+    'module' => 'message',
+  );
+
   // Exported permission: 'administer own yubikeys'.
   $permissions['administer own yubikeys'] = array(
     'name' => 'administer own yubikeys',
@@ -49,6 +56,13 @@ function f_core_user_default_permissions() {
     'name' => 'administer yubikeys',
     'roles' => array(),
     'module' => 'yubikey',
+  );
+
+  // Exported permission: 'create messages'.
+  $permissions['create messages'] = array(
+    'name' => 'create messages',
+    'roles' => array(),
+    'module' => 'message',
   );
 
   // Exported permission: 'display popup message'.
