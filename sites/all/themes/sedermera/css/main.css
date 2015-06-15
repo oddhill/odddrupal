@@ -1849,6 +1849,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a#read-per-doc {
         background: url("../graphics/document_small_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/document_small_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#document-log {
+        background: url("../graphics/log_small_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/log_small_grey.svg") transparent 0 0 no-repeat; }
     .main-navigation .menu li ul {
       margin-top: 3px; }
     .main-navigation .menu li li {
@@ -1883,6 +1886,9 @@ form#user-login #edit-submit {
           .main-navigation .menu li li a.active#read-per-doc, .main-navigation .menu li li a.active-trail#read-per-doc {
             background: url("../graphics/document_small_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/document_small_yellow.svg") transparent 0 0 no-repeat; }
+          .main-navigation .menu li li a.active#document-log, .main-navigation .menu li li a.active-trail#document-log {
+            background: url("../graphics/log_small_yellow.png") transparent 0 0 no-repeat;
+            background: none, url("../graphics/log_small_yellow.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li li.last {
         background: url("../graphics/tree_two.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/tree_two.svg") transparent 0 0 no-repeat;
@@ -1935,6 +1941,8 @@ form#user-login #edit-submit {
         .main-navigation li.expanded ul.menu li a#read-per-user {
           background-position: 44px 23px; }
         .main-navigation li.expanded ul.menu li a#read-per-doc {
+          background-position: 44px 23px; }
+        .main-navigation li.expanded ul.menu li a#document-log {
           background-position: 44px 23px; } }
 
 .user {

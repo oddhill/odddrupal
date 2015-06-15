@@ -138,6 +138,10 @@
         &#read-per-doc {
           @include svg-bg(document_small_grey);
         }
+
+        &#document-log {
+          @include svg-bg(log_small_grey);
+        }
       }
 
       ul {
@@ -181,6 +185,10 @@
 
             &#read-per-doc {
               @include svg-bg(document_small_yellow);
+            }
+
+            &#document-log {
+              @include svg-bg(log_small_yellow);
             }
           }
         }
@@ -278,6 +286,10 @@
             }
 
             &#read-per-doc {
+              background-position: 44px 23px;
+            }
+
+            &#document-log {
               background-position: 44px 23px;
             }
           }
