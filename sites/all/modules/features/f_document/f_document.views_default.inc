@@ -24,7 +24,7 @@ function f_document_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'input_required';
@@ -65,6 +65,7 @@ function f_document_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  $handler->display->display_options['style_options']['override'] = FALSE;
   /* Relationship: Message: User uid */
   $handler->display->display_options['relationships']['user']['id'] = 'user';
   $handler->display->display_options['relationships']['user']['table'] = 'message';
@@ -128,7 +129,7 @@ function f_document_views_default_views() {
   );
 
   /* Display: Document log */
-  $handler = $view->new_display('page', 'Document log', 'page');
+  $handler = $view->new_display('page', 'Document log', 'document_log');
   $handler->display->display_options['path'] = 'dokument/log';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Dokument logg';
