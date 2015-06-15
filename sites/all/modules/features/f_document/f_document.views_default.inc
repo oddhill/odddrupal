@@ -30,7 +30,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'input_required';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Visa';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
-  $handler->display->display_options['exposed_form']['options']['text_input_required'] = 'Sök anvädare för att visa logg';
+  $handler->display->display_options['exposed_form']['options']['text_input_required'] = 'Sök användare för att visa logg';
   $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '30';
@@ -115,6 +115,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['filters']['uid']['expose']['label'] = 'Användare';
   $handler->display->display_options['filters']['uid']['expose']['operator'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
+  $handler->display->display_options['filters']['uid']['expose']['required'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -143,7 +144,7 @@ function f_document_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Sök anvädare för att visa logg'),
+    t('Sök användare för att visa logg'),
     t('Items per page'),
     t('- All -'),
     t('Offset'),
