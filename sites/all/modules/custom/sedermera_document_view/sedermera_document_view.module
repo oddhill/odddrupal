@@ -268,6 +268,7 @@ function sedermera_document_view_block_view($delta = '') {
       // Create the header for the table. Add rows
       $header = array(
         array('data' => 'Titel', 'class' => array('table-head')),
+        array('data' => 'Bilaga', 'class' => array('table-head')),
         array('data' => 'Revision', 'class' => array('table-head')),
         array('data' => 'Läst', 'class' => array('table-head')),
       );
@@ -348,7 +349,11 @@ function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
 
   $rows[] = array(
     array(
-      'data' => $pre . $prefix . l($doc->title, 'node/' . $doc->nid),
+      'data' => $prefix . l($doc->title, 'node/' . $doc->nid),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $pre,
       'class' => $rowClass,
     ),
     array(
