@@ -243,3 +243,7 @@
     border-bottom: 1px solid $light-grey;
   }
 }
+
+#edit-submit-document-log {
+  @include button($dark-grey);
+}

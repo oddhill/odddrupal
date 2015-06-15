@@ -858,6 +858,26 @@ a.tabledrag-handle {
 .block-sedermera-document-view-read-all table tr.odd {
   border-bottom: 1px solid #f3f4f8; }
 
+#edit-submit-document-log {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #edit-submit-document-log:hover {
+    background-color: #303030; }
+
 .tabs.secondary {
   font-size: 14px;
   font-size: 1.4rem;
