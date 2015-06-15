@@ -72,6 +72,14 @@ function f_document_menu_default_menu_links() {
     'link_title' => 'Dokument logg',
     'options' => array(
       'identifier' => 'main-menu_dokument-logg:dokument/log',
+      'attributes' => array(
+        'id' => 'document-log',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'system',
     'hidden' => 0,
