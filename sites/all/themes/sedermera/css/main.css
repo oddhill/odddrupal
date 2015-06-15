@@ -858,6 +858,9 @@ a.tabledrag-handle {
 .block-sedermera-document-view-read-all table tr.odd {
   border-bottom: 1px solid #f3f4f8; }
 
+#views-exposed-form-document-log-document-log .description {
+  display: none; }
+
 #edit-submit-document-log {
   display: inline-block;
   height: 34px;
@@ -874,7 +877,8 @@ a.tabledrag-handle {
   background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
+  transition: background-color 0.1s ease-in-out;
+  margin-bottom: 25px; }
   #edit-submit-document-log:hover {
     background-color: #303030; }
 

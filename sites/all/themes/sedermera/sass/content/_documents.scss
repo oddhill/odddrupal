@@ -244,7 +244,16 @@
   }
 }
 
+// Don't show description text for document log search input field
+#views-exposed-form-document-log-document-log {
+
+  .description {
+    display: none;
+  }
+}
+
 // Document log show button
 #edit-submit-document-log {
   @include button($dark-grey);
+  margin-bottom: 25px;
 }
