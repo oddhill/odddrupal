@@ -111,3 +111,11 @@
   padding: 10px;
   margin-bottom: 20px;
 }
+
+// Not approved control
+.not-approved-control {
+
+  .fieldset-legend {
+    background: $bubblegum;
+  }
+}

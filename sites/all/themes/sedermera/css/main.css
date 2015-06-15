@@ -3780,6 +3780,9 @@ form#user-login,
   padding: 10px;
   margin-bottom: 20px; }
 
+.not-approved-control .fieldset-legend {
+  background: #e0afaf; }
+
 .transaction-wrapper {
   background: #fff;
   overflow: auto; }
