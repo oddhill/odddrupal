@@ -59,10 +59,8 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
     sedermera_verification_add_verification_header($form);
     sedermera_verification_mark_not_ok($form);
 
-    // dprint_r($form); die;
-
     // Perform minor alterations.
-    sedermera_verification_custom_form_alter($form); // TODO Here
+    sedermera_verification_custom_form_alter($form);
   }
   else {
     // In any other case, we'll disable the verification elements.
