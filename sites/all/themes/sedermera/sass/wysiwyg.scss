@@ -5,10 +5,15 @@ html {
 }
 
 body {
+  @include font-size($standard,1.3);
   background: $snow;
   color: $coffee;
   font-family: $body-font;
-  @include font-size($standard,1.3);
+}
+
+h1 {
+  @include font-size(4.8,1.3);
+  font-weight: 300;
 }
 
 h2 {

@@ -2,12 +2,18 @@ html {
   font-size: 62.5%; }
 
 body {
-  background: #fff;
-  color: #282828;
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-size: 1.4rem;
-  line-height: 18.2px; }
+  line-height: 18.2px;
+  background: #fff;
+  color: #282828;
+  font-family: "Roboto", sans-serif; }
+
+h1 {
+  font-size: 48px;
+  font-size: 4.8rem;
+  line-height: 62.4px;
+  font-weight: 300; }
 
 h2 {
   font-size: 20px;
