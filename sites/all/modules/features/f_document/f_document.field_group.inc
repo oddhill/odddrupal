@@ -60,8 +60,8 @@ function f_document_field_group_info() {
     'weight' => '5',
     'children' => array(
       0 => 'body',
-      1 => 'group_document_head',
-      2 => 'group_document_footer',
+      1 => 'group_document_footer',
+      2 => 'group_document_head',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -92,7 +92,7 @@ function f_document_field_group_info() {
   $field_group->parent_name = 'group_doc_2';
   $field_group->data = array(
     'label' => 'Sidfot',
-    'weight' => '20',
+    'weight' => '36',
     'children' => array(
       0 => 'field_doc_foot_address',
       1 => 'field_doc_foot_tel',
@@ -126,8 +126,8 @@ function f_document_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_doc_2';
   $field_group->data = array(
-    'label' => 'SIdhuvud',
-    'weight' => '18',
+    'label' => 'Sidhuvud',
+    'weight' => '34',
     'children' => array(
       0 => 'field_doc_head_img',
       1 => 'field_doc_head_text',
