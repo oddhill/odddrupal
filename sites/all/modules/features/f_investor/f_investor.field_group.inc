@@ -88,7 +88,8 @@ function f_investor_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_shared_address',
-      1 => 'group_invest_comp_2',
+      1 => 'field_shared_notes',
+      2 => 'group_invest_comp_2',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -219,7 +220,8 @@ function f_investor_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_shared_address',
-      1 => 'group_invest_pers_2',
+      1 => 'field_shared_notes',
+      2 => 'group_invest_pers_2',
     ),
     'format_type' => 'div',
     'format_settings' => array(
