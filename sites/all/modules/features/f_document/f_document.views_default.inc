@@ -131,7 +131,7 @@ function f_document_views_default_views() {
   $handler = $view->new_display('page', 'Document log', 'document_log');
   $handler->display->display_options['path'] = 'dokument/log';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Dokument logg';
+  $handler->display->display_options['menu']['title'] = 'Dokumentlogg';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;

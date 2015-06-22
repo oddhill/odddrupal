@@ -64,32 +64,6 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_dokument-logg:dokument/log
-  $menu_links['main-menu_dokument-logg:dokument/log'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'dokument/log',
-    'router_path' => 'dokument/log',
-    'link_title' => 'Dokument logg',
-    'options' => array(
-      'identifier' => 'main-menu_dokument-logg:dokument/log',
-      'attributes' => array(
-        'id' => 'document-log',
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -45,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
-  );
   // Exported menu link: main-menu_dokument:dokument
   $menu_links['main-menu_dokument:dokument'] = array(
     'menu_name' => 'main-menu',
@@ -114,6 +88,32 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -46,
     'customized' => 1,
+  );
+  // Exported menu link: main-menu_dokumentlogg:dokument/log
+  $menu_links['main-menu_dokumentlogg:dokument/log'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/log',
+    'router_path' => 'dokument/log',
+    'link_title' => 'Dokumentlogg',
+    'options' => array(
+      'identifier' => 'main-menu_dokumentlogg:dokument/log',
+      'attributes' => array(
+        'id' => 'document-log',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
   );
   // Exported menu link: main-menu_lgg-till-dokument:node/add/document
   $menu_links['main-menu_lgg-till-dokument:node/add/document'] = array(
@@ -200,7 +200,7 @@ function f_document_menu_default_menu_links() {
   t('Administrera dokument');
   t('Alla dokument');
   t('Dokument');
-  t('Dokument logg');
+  t('Dokumentlogg');
   t('Lägg till dokument');
   t('Läst per användare');
   t('Läst per dokument');
