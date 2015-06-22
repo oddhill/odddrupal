@@ -10,15 +10,15 @@
 function f_document_user_default_roles() {
   $roles = array();
 
-  // Exported role: Dokument moderator.
-  $roles['Dokument moderator'] = array(
-    'name' => 'Dokument moderator',
+  // Exported role: Dokumentmoderator.
+  $roles['Dokumentmoderator'] = array(
+    'name' => 'Dokumentmoderator',
     'weight' => 6,
   );
 
-  // Exported role: Dokument skapare.
-  $roles['Dokument skapare'] = array(
-    'name' => 'Dokument skapare',
+  // Exported role: Dokumentskapare.
+  $roles['Dokumentskapare'] = array(
+    'name' => 'Dokumentskapare',
     'weight' => 5,
   );
 

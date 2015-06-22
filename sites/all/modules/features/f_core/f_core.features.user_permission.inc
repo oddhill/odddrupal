@@ -78,8 +78,8 @@ function f_core_user_default_permissions() {
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
@@ -98,8 +98,8 @@ function f_core_user_default_permissions() {
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );

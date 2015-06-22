@@ -14,7 +14,7 @@ function f_document_user_default_permissions() {
   $permissions['create document content'] = array(
     'name' => 'create document content',
     'roles' => array(
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );
@@ -30,8 +30,8 @@ function f_document_user_default_permissions() {
   $permissions['edit any document content'] = array(
     'name' => 'edit any document content',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );
@@ -40,7 +40,7 @@ function f_document_user_default_permissions() {
   $permissions['edit own document content'] = array(
     'name' => 'edit own document content',
     'roles' => array(
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );
@@ -49,7 +49,7 @@ function f_document_user_default_permissions() {
   $permissions['edit revisions'] = array(
     'name' => 'edit revisions',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
   );
@@ -74,7 +74,7 @@ function f_document_user_default_permissions() {
   $permissions['publish revisions'] = array(
     'name' => 'publish revisions',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
   );
@@ -83,7 +83,7 @@ function f_document_user_default_permissions() {
   $permissions['publish revisions of any document content'] = array(
     'name' => 'publish revisions of any document content',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
   );
@@ -92,7 +92,7 @@ function f_document_user_default_permissions() {
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'node',
   );
@@ -101,7 +101,7 @@ function f_document_user_default_permissions() {
   $permissions['unpublish current revision'] = array(
     'name' => 'unpublish current revision',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
   );
@@ -110,8 +110,8 @@ function f_document_user_default_permissions() {
   $permissions['use text format document_html'] = array(
     'name' => 'use text format document_html',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
@@ -122,8 +122,8 @@ function f_document_user_default_permissions() {
     'name' => 'view any document content',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
       'Granskare' => 'Granskare',
       'Redaktör' => 'Redaktör',
     ),
@@ -134,8 +134,8 @@ function f_document_user_default_permissions() {
   $permissions['view any unpublished content'] = array(
     'name' => 'view any unpublished content',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'view_unpublished',
   );
@@ -144,7 +144,7 @@ function f_document_user_default_permissions() {
   $permissions['view any unpublished document content'] = array(
     'name' => 'view any unpublished document content',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'view_unpublished',
   );
@@ -154,8 +154,8 @@ function f_document_user_default_permissions() {
     'name' => 'view own document content',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
       'Granskare' => 'Granskare',
       'Redaktör' => 'Redaktör',
     ),
@@ -166,7 +166,7 @@ function f_document_user_default_permissions() {
   $permissions['view revision status messages'] = array(
     'name' => 'view revision status messages',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
   );
@@ -175,8 +175,8 @@ function f_document_user_default_permissions() {
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );
@@ -185,8 +185,8 @@ function f_document_user_default_permissions() {
   $permissions['view revisions of any document content'] = array(
     'name' => 'view revisions of any document content',
     'roles' => array(
-      'Dokument moderator' => 'Dokument moderator',
-      'Dokument skapare' => 'Dokument skapare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'revisioning',
   );
