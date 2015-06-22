@@ -441,7 +441,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cap_rais_goal_oth',
-    'label' => 'Övrigt',
+    'label' => 'Tecknat',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1065,6 +1065,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Emissionsvolym');
   t('Filer');
   t('Kundbolag');
+  t('Tecknat');
   t('Teckningskurs');
   t('Teckningspost');
   t('Teckningstid');
@@ -1076,7 +1077,6 @@ function f_capital_raising_field_default_field_instances() {
   t('Varav garanterat');
   t('Varav åtaget');
   t('Värdering (pre-money)');
-  t('Övrigt');
 
   return $field_instances;
 }
