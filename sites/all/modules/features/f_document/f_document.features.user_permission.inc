@@ -122,6 +122,7 @@ function f_document_user_default_permissions() {
     'name' => 'view any document content',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Användare' => 'Användare',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
       'Granskare' => 'Granskare',
@@ -154,6 +155,7 @@ function f_document_user_default_permissions() {
     'name' => 'view own document content',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Användare' => 'Användare',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
       'Granskare' => 'Granskare',
