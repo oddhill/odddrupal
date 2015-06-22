@@ -248,7 +248,6 @@ function sedermera_document_view_block_view($delta = '') {
       }
       break;
     case 'read_all':
-      global $user;
       $block = setupBlock('Dina dokument');
 
       // Get list of documents
@@ -337,6 +336,7 @@ function sedermera_document_view_block_view($delta = '') {
  * @param  $appendix List of the document appendix
  */
 function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
+  global $user;
   $class = 'no';
   $read = 'Nej';
   if (userHasRead($doc->field_document_user_read, $user->uid)) {
