@@ -1597,7 +1597,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'investor',
     'field_name' => 'field_shared_veri_address',
-    'label' => 'Externt register',
+    'label' => 'Externt register (för adressuppgift)',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2086,7 +2086,7 @@ function f_investor_field_default_field_instances() {
   t('E-post');
   t('EU:s sanktionsförordningar');
   t('Efternamn');
-  t('Externt register');
+  t('Externt register (för adressuppgift)');
   t('Fax');
   t('Förnamn');
   t('ID-kontroll, verklig huvudman');
