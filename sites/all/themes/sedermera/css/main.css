@@ -1543,7 +1543,7 @@ input[value="Jämför"]#edit-submit {
   overflow: visible; }
 
 .block-system-help {
-  display: none; }
+  color: red; }
 
 #edit-field-document-files-und-0-upload {
   width: 190px; }
