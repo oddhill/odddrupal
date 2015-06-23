@@ -9,24 +9,6 @@
  * Implements hook_menu().
  */
 function sedermera_document_view_menu() {
-  $items['dokument/read_user'] = array(
-    'title' => 'Läst per användare',
-    'page callback' => 'view_page_per_user',
-    'access arguments' => array('access content'),
-    'menu_name' => 'main-menu',
-    'parent_identifier' => 'main-menu_dokument:dokument',
-    'weight' => 49,
-  );
-
-  $items['dokument/read_doc'] = array(
-    'title' => 'Läst per dokument',
-    'page callback' => 'view_page_per_doc',
-    'access arguments' => array('access content'),
-    'menu_name' => 'main-menu',
-    'parent_identifier' => 'main-menu_dokument:dokument',
-    'weight' => 50,
-  );
-
   $items['dokument/lista'] = array(
     'title' => 'Alla dokument',
     'page callback' => 'view_page_user',
@@ -39,10 +21,28 @@ function sedermera_document_view_menu() {
   $items['dokument/admin'] = array(
     'title' => 'Administrera dokument',
     'page callback' => 'admin_doc',
-    'access arguments' => array('access content'),
+    'access arguments' => array('document admin'),
     'menu_name' => 'main-menu',
     'parent_identifier' => 'main-menu_dokument:dokument',
     'weight' => 0,
+  );
+
+  $items['dokument/read_user'] = array(
+    'title' => 'Lästa dokument per användare',
+    'page callback' => 'view_page_per_user',
+    'access arguments' => array('document read per user'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_dokument:dokument',
+    'weight' => 49,
+  );
+
+  $items['dokument/read_doc'] = array(
+    'title' => 'Lästa dokument per dokument',
+    'page callback' => 'view_page_per_doc',
+    'access arguments' => array('document read per document'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_dokument:dokument',
+    'weight' => 50,
   );
 
   return $items;
