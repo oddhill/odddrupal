@@ -104,6 +104,12 @@ function sedermera_preprocess_node(&$variables) {
       // Get list of users who have signed the document.
       $user_sign = $variables['node']->field_document_user_read[LANGUAGE_NONE];
 
+      // User have not signed the document.
+      // Creates link for the user to sign the document.
+      $variables['sign'] = l('Bekräfta', url('node/' . $variables['nid'] . '/sign'));
+      $variables['sign_status'] = FALSE;
+      $variables['signtext'] = 'Ja, jag har läst och förstått detta dokument';
+
       // If any user have signed the document proceed.
       if (isset($user_sign)) {
         foreach ($user_sign as $key => $value) {
@@ -116,12 +122,6 @@ function sedermera_preprocess_node(&$variables) {
             $variables['signtext'] = 'Du har läst och förstått detta dokument';
           }
         }
-      } else {
-        // User have not signed the document.
-        // Creates link for the user to sign the document.
-        $variables['sign'] = l('Bekräfta', url('node/' . $variables['nid'] . '/sign'));
-        $variables['sign_status'] = FALSE;
-        $variables['signtext'] = 'Ja, jag har läst och förstått detta dokument';
       }
     }
 
