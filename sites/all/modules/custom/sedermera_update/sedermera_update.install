@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ * A update module that brings sedermera intranät up to date
+ */
+
+/**
+ * Runs all update functions on install.
+ */
+function sedermera_update_install() {
+  sedermera_update_update_7001();
+}
+
+/**
+ * Menu items, removes no longer used.
+ * @return string message of success.
+ */
+function sedermera_update_update_7001() {
+  $result = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = :menu_name", array(':menu_name' => 'main-menu'));
+  $done = FALSE;
+
+  foreach ($result as $record) {
+    if ($link = menu_link_load($record->mlid)) {
+      if (strcmp($link['link_title'], 'Administrera dokument') == 0 && strcmp($link['link_path'], 'dokument/admin') == 0) {
+        if (!$done) {
+          menu_link_delete($record->mlid);
+          $done = TRUE;
+        }
+      }
+      elseif (strcmp($link['link_title'], 'Dokument logg') == 0 && strcmp($link['link_path'], 'dokument/log') == 0) {
+        menu_link_delete($record->mlid);
+      }
+    }
+  }
+
+  return t('Menu links removed successfully');
+}
