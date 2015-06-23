@@ -26,8 +26,6 @@ function f_document_wysiwyg_default_profiles() {
           'Bold' => 1,
           'Italic' => 1,
           'Underline' => 1,
-          'JustifyLeft' => 1,
-          'JustifyCenter' => 1,
           'BulletedList' => 1,
           'NumberedList' => 1,
           'Link' => 1,
@@ -48,7 +46,7 @@ function f_document_wysiwyg_default_profiles() {
       'css_path' => '%b%t/css/wysiwyg.css',
       'stylesSet' => '',
       'block_formats' => 'p,h1,h2,h3,h4,h5',
-      'advanced__active_tab' => 'edit-css',
+      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
   );
