@@ -739,33 +739,6 @@ a.tabledrag-handle {
   float: left; }
   .document-content-wrapper:last-child {
     margin-right: 0; }
-  .document-content-wrapper h1 {
-    font-size: 30px;
-    font-size: 3rem;
-    line-height: 45px;
-    font-weight: 500; }
-  .document-content-wrapper h2 {
-    font-size: 24px;
-    font-size: 2.4rem;
-    line-height: 36px;
-    font-weight: 500; }
-  .document-content-wrapper h3 {
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 30px;
-    font-weight: 500; }
-  .document-content-wrapper h4 {
-    font-size: 17px;
-    font-size: 1.7rem;
-    line-height: 25.5px;
-    font-weight: 500; }
-  .document-content-wrapper h5 {
-    font-size: 14px;
-    font-size: 1.4rem;
-    line-height: 21px;
-    font-weight: 700; }
-  .document-content-wrapper li {
-    margin-bottom: 5px; }
 
 .document-sidebar {
   font-size: 13px;
@@ -1102,6 +1075,60 @@ input[value="Jämför"]#edit-submit {
       background-color: #303030; }
   #revisioning-ux-delete-all .form .submit-wrapper.form-submit {
     margin-right: 0; }
+
+.document-content-wrapper h1 {
+  font-size: 30px;
+  font-size: 3rem;
+  line-height: 45px;
+  font-weight: 500; }
+.document-content-wrapper h2 {
+  font-size: 24px;
+  font-size: 2.4rem;
+  line-height: 36px;
+  font-weight: 500; }
+.document-content-wrapper h3 {
+  font-size: 20px;
+  font-size: 2rem;
+  line-height: 30px;
+  font-weight: 500; }
+.document-content-wrapper h4 {
+  font-size: 17px;
+  font-size: 1.7rem;
+  line-height: 25.5px;
+  font-weight: 500; }
+.document-content-wrapper h5 {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px;
+  font-weight: 700; }
+.document-content-wrapper p {
+  margin: 1em 0; }
+.document-content-wrapper li {
+  margin-bottom: 5px; }
+.document-content-wrapper a {
+  color: #f99d1c;
+  font-weight: 500; }
+.document-content-wrapper hr {
+  background-color: #f3f4f8;
+  border: 0;
+  color: #f3f4f8;
+  height: 2px;
+  margin: 25px 0; }
+.document-content-wrapper table {
+  margin: 10px 0 30px 0; }
+  .document-content-wrapper table caption {
+    font-size: 15px;
+    font-size: 1.5rem;
+    line-height: 22.5px;
+    font-weight: 500;
+    margin-bottom: 15px; }
+  .document-content-wrapper table td {
+    border: 1px solid #e0e2e6; }
+  .document-content-wrapper table thead {
+    background: #f3f4f8;
+    border: 0; }
+  .document-content-wrapper table th {
+    border: 1px solid #e0e2e6; }
 
 .field-shared-industries,
 .field-shared-address,

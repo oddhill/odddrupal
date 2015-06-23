@@ -124,35 +124,6 @@
 .document-content-wrapper {
   @include span-columns(12);
   float: left;
-
-  h1 {
-   @include font-size(3.0);
-   font-weight: 500;
-  }
-
-  h2 {
-    @include font-size(2.4);
-    font-weight: 500;
-  }
-
-  h3 {
-    @include font-size(2.0);
-    font-weight: 500;
-  }
-
-  h4 {
-    @include font-size(1.7);
-    font-weight: 500;
-  }
-
-  h5 {
-    @include font-size($standard);
-    font-weight: 700;
-  }
-
-  li {
-    margin-bottom: 5px;
-  }
 }
 
 // Document sidebar (contains related documents/appendix/files)
