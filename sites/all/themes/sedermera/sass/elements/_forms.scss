@@ -414,7 +414,7 @@ form {
     margin-bottom: 20px;
 
     label {
-      display: block;
+      display: inline-block;
       font-weight: 500;
       margin-bottom: 3px;
     }
@@ -909,3 +909,9 @@ form.confirmation {
   border-radius: 0 0 2px 2px;
   padding: 20px 0px 5px 10px;
 }
+
+// Document files label
+.form-type-managed-file.form-item label{
+  display: block;
+}
+

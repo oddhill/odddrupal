@@ -2312,9 +2312,8 @@ table {
       table td .form-item.form-type-checkbox {
         padding-top: 2px; }
         table td .form-item.form-type-checkbox label.option {
-          display: block;
+          display: inline-block;
           line-height: 18px;
-          padding-left: 23px;
           position: relative; }
           table td .form-item.form-type-checkbox label.option .checker {
             position: absolute;
@@ -2779,7 +2778,7 @@ form .field-type-text-long .filter-wrapper {
 form .form-item {
   margin-bottom: 20px; }
   form .form-item label {
-    display: block;
+    display: inline-block;
     font-weight: 500;
     margin-bottom: 3px; }
   form .form-item .description {
@@ -3280,6 +3279,9 @@ form.confirmation {
   background: #fff;
   border-radius: 0 0 2px 2px;
   padding: 20px 0px 5px 10px; }
+
+.form-type-managed-file.form-item label {
+  display: block; }
 
 .tabs {
   background: #ebedf1;
