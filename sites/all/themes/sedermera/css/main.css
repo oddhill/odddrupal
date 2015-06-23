@@ -2076,6 +2076,8 @@ form#user-login #edit-submit {
 
 .page-messages {
   margin: -40px -40px 40px; }
+  .main-sidebar .page-messages {
+    display: none; }
 
 .messages {
   color: #fff;
@@ -2087,6 +2089,8 @@ form#user-login #edit-submit {
     background: #f9a500; }
   .messages.error {
     background: #c04343; }
+  .messages.help {
+    background: #f9a500; }
 
 .pager {
   display: inline-block;

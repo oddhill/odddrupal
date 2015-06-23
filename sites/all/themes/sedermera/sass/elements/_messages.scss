@@ -1,6 +1,11 @@
 // Page messages wrapper
 .page-messages {
   margin: -40px -40px 40px;
+
+  // Don't display block system help message in main sidebar (Revion operations - View Current)
+  .main-sidebar & {
+    display: none;
+  }
 }
 
 .messages {
@@ -18,6 +23,11 @@
 
   &.error {
     background: $wine;
+  }
+
+  // Block system help message
+  &.help {
+    background: $mustard;
   }
 
   @include media($medium) {
