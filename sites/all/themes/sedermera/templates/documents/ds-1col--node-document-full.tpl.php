@@ -13,7 +13,7 @@
 ?>
 <div class="full-document-wrapper">
 
-  <div class="document-right-column">
+  <div class="document-left-column">
 
     <div class="document-head-wrapper">
 
