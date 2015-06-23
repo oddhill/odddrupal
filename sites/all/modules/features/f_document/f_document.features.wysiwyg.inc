@@ -31,6 +31,7 @@ function f_document_wysiwyg_default_profiles() {
           'Link' => 1,
           'Unlink' => 1,
           'Image' => 1,
+          'BGColor' => 1,
           'HorizontalRule' => 1,
           'Format' => 1,
           'Table' => 1,
