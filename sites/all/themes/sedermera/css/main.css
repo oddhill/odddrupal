@@ -1128,7 +1128,9 @@ input[value="Jämför"]#edit-submit {
     background: #f3f4f8;
     border: 0; }
   .document-content-wrapper table th {
-    border: 1px solid #e0e2e6; }
+    background: #f3f4f8;
+    border: 1px solid #e0e2e6;
+    font-weight: 500; }
 
 .field-shared-industries,
 .field-shared-address,

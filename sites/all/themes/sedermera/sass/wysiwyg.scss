@@ -80,6 +80,8 @@ thead {
 }
 
 th {
+  background: $light-grey;
   border: 1px solid $wool;
+  font-weight: 500;
   padding: 10px;
 }

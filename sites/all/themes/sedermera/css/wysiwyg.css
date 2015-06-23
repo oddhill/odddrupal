@@ -76,5 +76,7 @@ thead {
   border: 0; }
 
 th {
+  background: #f3f4f8;
   border: 1px solid #e0e2e6;
+  font-weight: 500;
   padding: 10px; }
