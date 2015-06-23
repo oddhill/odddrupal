@@ -47,6 +47,8 @@ li {
 a {
   color: $orange;
   font-weight: 500;
+  border-bottom: 1px solid #e0e2e6;
+  text-decoration: none;
 }
 
 hr {
@@ -65,7 +67,7 @@ table {
   caption {
     @include font-size(1.5);
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 }
 
