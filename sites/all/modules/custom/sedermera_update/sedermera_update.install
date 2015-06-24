@@ -9,6 +9,8 @@
  */
 function sedermera_update_install() {
   sedermera_update_update_7001();
+  sedermera_update_update_7002();
+  sedermera_update_update_7003();
 }
 
 /**
@@ -45,4 +47,23 @@ function sedermera_update_update_7002() {
   user_role_delete('Dokument skapare');
 
   return t('User roles removed successfully');
+}
+
+/**
+ * Menu items, removes no longer used.
+ * @return string message of success.
+ */
+function sedermera_update_update_7003() {
+  $result = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = :menu_name", array(':menu_name' => 'main-menu'));
+  $done = FALSE;
+
+  foreach ($result as $record) {
+    if ($link = menu_link_load($record->mlid)) {
+      if ($link['hidden']) {
+        menu_link_delete($record->mlid);
+      }
+    }
+  }
+
+  return t('Menu links removed successfully');
 }
