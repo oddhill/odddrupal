@@ -37,6 +37,27 @@ function f_core_user_default_permissions() {
     'module' => 'config_perms',
   );
 
+  // Exported permission: 'access the permission overview page'.
+  $permissions['access the permission overview page'] = array(
+    'name' => 'access the permission overview page',
+    'roles' => array(),
+    'module' => 'config_perms',
+  );
+
+  // Exported permission: 'access the user overview page'.
+  $permissions['access the user overview page'] = array(
+    'name' => 'access the user overview page',
+    'roles' => array(),
+    'module' => 'config_perms',
+  );
+
+  // Exported permission: 'access user display settings'.
+  $permissions['access user display settings'] = array(
+    'name' => 'access user display settings',
+    'roles' => array(),
+    'module' => 'config_perms',
+  );
+
   // Exported permission: 'access user profiles'.
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
@@ -44,6 +65,13 @@ function f_core_user_default_permissions() {
       'Administratör' => 'Administratör',
     ),
     'module' => 'user',
+  );
+
+  // Exported permission: 'administer custom permissions'.
+  $permissions['administer custom permissions'] = array(
+    'name' => 'administer custom permissions',
+    'roles' => array(),
+    'module' => 'config_perms',
   );
 
   // Exported permission: 'administer message types'.
@@ -60,6 +88,13 @@ function f_core_user_default_permissions() {
       'Administratör' => 'Administratör',
     ),
     'module' => 'yubikey',
+  );
+
+  // Exported permission: 'administer user roles'.
+  $permissions['administer user roles'] = array(
+    'name' => 'administer user roles',
+    'roles' => array(),
+    'module' => 'config_perms',
   );
 
   // Exported permission: 'administer yubikeys'.
