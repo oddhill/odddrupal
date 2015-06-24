@@ -248,6 +248,13 @@
 
   table tr.odd {
     border-bottom: 1px solid $light-grey;
-    border: 10px solid red;
+  }
+}
+
+// Document log
+.view-document-log {
+
+  .form-text.required {
+    padding: 10px 12px;
   }
 }

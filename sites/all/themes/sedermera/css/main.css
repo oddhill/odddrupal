@@ -866,8 +866,10 @@ a.tabledrag-handle {
   line-height: 19.5px; }
 
 .block-sedermera-document-view-read-all table tr.odd {
-  border-bottom: 1px solid #f3f4f8;
-  border: 10px solid red; }
+  border-bottom: 1px solid #f3f4f8; }
+
+.view-document-log .form-text.required {
+  padding: 10px 12px; }
 
 #views-exposed-form-document-log-document-log .description {
   display: none; }
