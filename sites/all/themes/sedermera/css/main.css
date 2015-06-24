@@ -1585,8 +1585,8 @@ input[value="Jämför"]#edit-submit {
 .page-dokument-read-doc .main-content {
   overflow: visible; }
 
-.block-system-help {
-  color: red; }
+.page-dokument .table-wrapper {
+  width: 100%; }
 
 #edit-field-document-files-und-0-upload {
   width: 190px; }
