@@ -26,6 +26,17 @@ function f_core_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'access dashboard'.
+  $permissions['access dashboard'] = array(
+    'name' => 'access dashboard',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'config_perms',
+  );
+
   // Exported permission: 'access user profiles'.
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',

@@ -100,9 +100,7 @@ function f_document_user_default_permissions() {
   // Exported permission: 'generate pdf using mpdf'.
   $permissions['generate pdf using mpdf'] = array(
     'name' => 'generate pdf using mpdf',
-    'roles' => array(
-      'authenticated user' => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'pdf_using_mpdf',
   );
 
@@ -118,6 +116,15 @@ function f_document_user_default_permissions() {
   // Exported permission: 'publish revisions of any document content'.
   $permissions['publish revisions of any document content'] = array(
     'name' => 'publish revisions of any document content',
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
+    ),
+    'module' => 'revisioning',
+  );
+
+  // Exported permission: 'publish revisions of own document content'.
+  $permissions['publish revisions of own document content'] = array(
+    'name' => 'publish revisions of own document content',
     'roles' => array(
       'Dokumentmoderator' => 'Dokumentmoderator',
     ),
@@ -182,6 +189,7 @@ function f_document_user_default_permissions() {
     'name' => 'view any unpublished document content',
     'roles' => array(
       'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'view_unpublished',
   );
@@ -189,14 +197,7 @@ function f_document_user_default_permissions() {
   // Exported permission: 'view own document content'.
   $permissions['view own document content'] = array(
     'name' => 'view own document content',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-      'Användare' => 'Användare',
-      'Dokumentmoderator' => 'Dokumentmoderator',
-      'Dokumentskapare' => 'Dokumentskapare',
-      'Granskare' => 'Granskare',
-      'Redaktör' => 'Redaktör',
-    ),
+    'roles' => array(),
     'module' => 'node_view_permissions',
   );
 
@@ -225,6 +226,15 @@ function f_document_user_default_permissions() {
     'roles' => array(
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
+    ),
+    'module' => 'revisioning',
+  );
+
+  // Exported permission: 'view revisions of own document content'.
+  $permissions['view revisions of own document content'] = array(
+    'name' => 'view revisions of own document content',
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
   );

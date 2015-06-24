@@ -58,11 +58,7 @@ function f_company_user_default_permissions() {
   // Exported permission: 'view own company content'.
   $permissions['view own company content'] = array(
     'name' => 'view own company content',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-      'Granskare' => 'Granskare',
-      'Redaktör' => 'Redaktör',
-    ),
+    'roles' => array(),
     'module' => 'node_view_permissions',
   );
 
