@@ -35,3 +35,14 @@ function sedermera_update_update_7001() {
 
   return t('Menu links removed successfully');
 }
+
+/**
+ * User roles, removes no longer used.
+ * @return string message of success.
+ */
+function sedermera_update_update_7002() {
+  user_role_delete('Dokument moderator');
+  user_role_delete('Dokument skapare');
+
+  return t('User roles removed successfully');
+}
