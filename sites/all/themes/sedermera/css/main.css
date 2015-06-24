@@ -866,7 +866,8 @@ a.tabledrag-handle {
   line-height: 19.5px; }
 
 .block-sedermera-document-view-read-all table tr.odd {
-  border-bottom: 1px solid #f3f4f8; }
+  border-bottom: 1px solid #f3f4f8;
+  border: 10px solid red; }
 
 #views-exposed-form-document-log-document-log .description {
   display: none; }
@@ -912,6 +913,23 @@ a.tabledrag-handle {
   #edit-field-dokument-relation .tabledrag-processed tbody tr,
   #edit-field-document-appendix .tabledrag-processed tbody tr {
     border: 0; }
+
+.field-type-entityreference .ajax-progress {
+  left: 0;
+  position: relative; }
+
+.node-form-revision-information .form-type-textarea {
+  margin-top: 0; }
+
+.form-item label[for=edit-revision-operation] {
+  font-weight: 700;
+  padding: 0px 0 15px 0; }
+
+.form-item.form-type-textarea label {
+  border-bottom: 0; }
+
+.cke_chrome {
+  border: 0 !important; }
 
 .tabs.secondary {
   font-size: 14px;

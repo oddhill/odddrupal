@@ -248,53 +248,6 @@
 
   table tr.odd {
     border-bottom: 1px solid $light-grey;
-  }
-}
-
-// Don't show description text for document log search input field
-#views-exposed-form-document-log-document-log {
-
-  .description {
-    display: none;
-  }
-}
-
-// Document log show button
-#edit-submit-document-log {
-  @include button($dark-grey);
-  margin-bottom: 25px;
-}
-
-// Relation document/appendix input field
-#edit-field-dokument-relation,
-#edit-field-document-appendix {
-
-  th {
-    height: auto;
-    padding: 0;
-  }
-
-  td {
-    padding: 0;
-  }
-
- .draggable {
-    background: none;
- }
-
-  .form-item {
-
-    .form-text {
-      margin-top: 0;
-    }
-  }
-
-  .tabledrag-processed {
-    margin-bottom: 5px;
-    border-bottom: 0;
-
-    tbody tr {
-      border: 0;
-    }
+    border: 10px solid red;
   }
 }
