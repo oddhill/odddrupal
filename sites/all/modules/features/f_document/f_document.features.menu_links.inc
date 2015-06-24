@@ -10,32 +10,6 @@
 function f_document_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_administrera-dokument:dokument/admin
-  $menu_links['main-menu_administrera-dokument:dokument/admin'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'dokument/admin',
-    'router_path' => 'dokument',
-    'link_title' => 'Administrera dokument',
-    'options' => array(
-      'identifier' => 'main-menu_administrera-dokument:dokument/admin',
-      'attributes' => array(
-        'id' => 'administer',
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => 1,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -48,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
-  );
   // Exported menu link: main-menu_administrera-dokument:dokument/administrera
   $menu_links['main-menu_administrera-dokument:dokument/administrera'] = array(
     'menu_name' => 'main-menu',
@@ -115,14 +89,14 @@ function f_document_menu_default_menu_links() {
     'weight' => -46,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_dokumentlogg:dokument/log
-  $menu_links['main-menu_dokumentlogg:dokument/log'] = array(
+  // Exported menu link: main-menu_dokumentlogg:dokument/logg
+  $menu_links['main-menu_dokumentlogg:dokument/logg'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/log',
-    'router_path' => 'dokument/log',
+    'link_path' => 'dokument/logg',
+    'router_path' => 'dokument/logg',
     'link_title' => 'Dokumentlogg',
     'options' => array(
-      'identifier' => 'main-menu_dokumentlogg:dokument/log',
+      'identifier' => 'main-menu_dokumentlogg:dokument/logg',
       'attributes' => array(
         'id' => 'document-log',
       ),
@@ -166,58 +140,6 @@ function f_document_menu_default_menu_links() {
     'has_children' => 0,
     'expanded' => 0,
     'weight' => -50,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
-  );
-  // Exported menu link: main-menu_lst-per-anvndare:dokument/read_user
-  $menu_links['main-menu_lst-per-anvndare:dokument/read_user'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'dokument/read_user',
-    'router_path' => 'dokument',
-    'link_title' => 'Läst per användare',
-    'options' => array(
-      'identifier' => 'main-menu_lst-per-anvndare:dokument/read_user',
-      'attributes' => array(
-        'id' => 'read-per-user',
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => 1,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -47,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
-  );
-  // Exported menu link: main-menu_lst-per-dokument:dokument/read_doc
-  $menu_links['main-menu_lst-per-dokument:dokument/read_doc'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'dokument/read_doc',
-    'router_path' => 'dokument',
-    'link_title' => 'Läst per dokument',
-    'options' => array(
-      'identifier' => 'main-menu_lst-per-dokument:dokument/read_doc',
-      'attributes' => array(
-        'id' => 'read-per-doc',
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => 1,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -46,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -280,8 +202,6 @@ function f_document_menu_default_menu_links() {
   t('Dokument');
   t('Dokumentlogg');
   t('Lägg till dokument');
-  t('Läst per användare');
-  t('Läst per dokument');
   t('Lästa dokument per användare');
   t('Lästa dokument per dokument');
 
