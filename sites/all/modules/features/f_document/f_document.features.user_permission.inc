@@ -38,21 +38,27 @@ function f_document_user_default_permissions() {
   // Exported permission: 'document log'.
   $permissions['document log'] = array(
     'name' => 'document log',
-    'roles' => array(),
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
+    ),
     'module' => 'config_perms',
   );
 
   // Exported permission: 'document read per document'.
   $permissions['document read per document'] = array(
     'name' => 'document read per document',
-    'roles' => array(),
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
+    ),
     'module' => 'config_perms',
   );
 
   // Exported permission: 'document read per user'.
   $permissions['document read per user'] = array(
     'name' => 'document read per user',
-    'roles' => array(),
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
+    ),
     'module' => 'config_perms',
   );
 
