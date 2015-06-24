@@ -28,7 +28,7 @@ function sedermera_document_view_menu() {
   );
 
   $items['dokument/last-per-anvandare'] = array(
-    'title' => 'Lästa dokument per användare',
+    'title' => 'Läst per användare',
     'page callback' => 'view_page_per_user',
     'access arguments' => array('document read per user'),
     'menu_name' => 'main-menu',
@@ -37,7 +37,7 @@ function sedermera_document_view_menu() {
   );
 
   $items['dokument/last-per-dokument'] = array(
-    'title' => 'Lästa dokument per dokument',
+    'title' => 'Läst per dokument',
     'page callback' => 'view_page_per_doc',
     'access arguments' => array('document read per document'),
     'menu_name' => 'main-menu',

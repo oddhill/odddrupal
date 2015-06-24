@@ -143,14 +143,14 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_lsta-dokument-per-anvndare:dokument/last-per-anvandare
-  $menu_links['main-menu_lsta-dokument-per-anvndare:dokument/last-per-anvandare'] = array(
+  // Exported menu link: main-menu_lst-per-anvndare:dokument/last-per-anvandare
+  $menu_links['main-menu_lst-per-anvndare:dokument/last-per-anvandare'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/last-per-anvandare',
     'router_path' => 'dokument/last-per-anvandare',
-    'link_title' => 'Lästa dokument per användare',
+    'link_title' => 'Läst per användare',
     'options' => array(
-      'identifier' => 'main-menu_lsta-dokument-per-anvndare:dokument/last-per-anvandare',
+      'identifier' => 'main-menu_lst-per-anvndare:dokument/last-per-anvandare',
       'attributes' => array(
         'id' => 'read-per-user',
       ),
@@ -169,14 +169,14 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_lsta-dokument-per-dokument:dokument/last-per-dokument
-  $menu_links['main-menu_lsta-dokument-per-dokument:dokument/last-per-dokument'] = array(
+  // Exported menu link: main-menu_lst-per-dokument:dokument/last-per-dokument
+  $menu_links['main-menu_lst-per-dokument:dokument/last-per-dokument'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/last-per-dokument',
     'router_path' => 'dokument/last-per-dokument',
-    'link_title' => 'Lästa dokument per dokument',
+    'link_title' => 'Läst per dokument',
     'options' => array(
-      'identifier' => 'main-menu_lsta-dokument-per-dokument:dokument/last-per-dokument',
+      'identifier' => 'main-menu_lst-per-dokument:dokument/last-per-dokument',
       'attributes' => array(
         'id' => 'read-per-doc',
       ),
@@ -202,8 +202,8 @@ function f_document_menu_default_menu_links() {
   t('Dokument');
   t('Dokumentlogg');
   t('Lägg till dokument');
-  t('Lästa dokument per användare');
-  t('Lästa dokument per dokument');
+  t('Läst per användare');
+  t('Läst per dokument');
 
 
   return $menu_links;
