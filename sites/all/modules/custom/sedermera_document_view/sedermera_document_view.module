@@ -54,18 +54,147 @@ function sedermera_document_view_menu() {
  * @return array
  *   A renderable array for the page.
  */
-function view_page_per_user() {
-  $get = drupal_get_query_parameters();
+function view_page_user() {
+  // Get list of documents
+  $documents = getDocuments();
 
-  if (!isset($get['selected']) || ($get['selected'] == 0)) {
-    drupal_set_title("Välj användare för att se lästa dokument");
+  // Check if there is documents
+  if (!empty($documents)) {
+    $appendix = array();
+
+    // Appendix list (documents that are appendix to other documents)
+    foreach ($documents as $doc) {
+      if (!empty($doc->field_document_appendix)) {
+        $appendix[] = $doc;
+      }
+    }
+
+    $documents = getDocuments();
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+      array('data' => 'Bilaga', 'class' => array('table-head')),
+      array('data' => 'Revision', 'class' => array('table-head')),
+      array('data' => 'Läst', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($documents as $doc) {
+      if (empty($doc->field_document_appendix)) {
+        generateRows($rows, '', $doc, $appendix, 'document');
+      }
+    }
+
+    // Create table.
+    $block = generateTable($header, $rows);
   }
   else {
-    drupal_set_title("Lästa dokument per användare");
+    drupal_set_title('Det finns inga dokument');
   }
+  return $block;
+}
 
-  // Return an empty page. The actual content will be set using context.
-  return array();
+/**
+ * Page callback for the admin document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function admin_doc() {
+  // Get list of documents
+  $documents = getAdminDocuments();
+
+  if (!empty($documents)) {
+    $appendix = array();
+
+    // Appendix list (documents that are appendix to other documents)
+    foreach ($documents as $doc) {
+      if (!empty($doc->field_document_appendix)) {
+        $appendix[] = $doc;
+      }
+    }
+
+    $documents = getAdminDocuments();
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+      array('data' => 'Publicerad', 'class' => array('table-head')),
+      array('data' => 'Datum', 'class' => array('table-head')),
+      array('data' => 'Version', 'class' => array('table-head')),
+      array('data' => 'Senaste', 'class' => array('table-head')),
+      array('data' => 'Administrera', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($documents as $doc) {
+      generateAdminRows($rows, '', $doc, $appendix, 'document');
+    }
+    // Create table.
+    $block = generateTable($header, $rows);
+  }
+  else {
+    drupal_set_title('Det finns inga dokument');
+  }
+  return $block;
+}
+
+/**
+ * Page callback for the document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function view_page_per_user() {
+  // Check if there is any documents
+  $documents = getDocuments();
+
+  if (!empty($documents)) {
+    $get = drupal_get_query_parameters();
+
+    if (!isset($get['selected']) || ($get['selected'] == 0)) {
+      // Add form to block content.
+      $block = drupal_get_form('userForm');
+    }
+    else {
+      // Create the header for the table. Add rows
+      $header = array(
+        array('data' => 'Titel', 'class' => array('table-head')),
+        array('data' => 'Revision', 'class' => array('table-head')),
+        array('data' => 'Läst', 'class' => array('table-head')),
+      );
+      $rows = array();
+      foreach ($documents as $doc) {
+        $class = 'no';
+        $read = 'Nej';
+        if (userHasRead($doc->field_document_user_read, $get['selected'])) {
+          $class = 'yes';
+          $read = 'Ja';
+        }
+        $rows[] = array(
+          array(
+            'data' => $doc->title,
+          ),
+          array(
+            'data' => currentRevision($doc),
+          ),
+          array(
+            'data' => $read,
+            'class' => $class,
+          ),
+        );
+      }
+
+      // Add table to block content.
+      $block = array(
+        'form' => drupal_get_form('userForm'),
+        'table' => generateTable($header, $rows),
+      );
+    }
+  }
+  else {
+    drupal_set_title('Det finns inga dokument');
+  }
+  return $block;
 }
 
 /**
@@ -78,282 +207,53 @@ function view_page_per_doc() {
   $get = drupal_get_query_parameters();
 
   if (!isset($get['selected']) || ($get['selected'] == 0)) {
-    drupal_set_title("Välj användare för att se lästa dokument");
+
+    // Get list of documents
+    $documents = getDocuments();
+    if (!empty($documents)) {
+      // Add form to block content.
+      $block = drupal_get_form('docForm');
+    }
+    else {
+      drupal_set_title('Det finns inga dokument');
+    }
   }
   else {
-    drupal_set_title("Lästa dokument per användare");
+    // Get list of users
+    $users = getUsers();
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Användare', 'class' => array('table-head')),
+      array('data' => 'Läst', 'class' => array('table-head')),
+    );
+    $rows = array();
+    $node = node_load(NULL, $get['selected']);
+    foreach ($users as $uid => $user) {
+      $class = 'no';
+      $read = 'Nej';
+     if (userHasRead($node->field_document_user_read, $uid)) {
+        $class = 'yes';
+        $read = 'Ja';
+      }
+      $rows[] = array(
+        array(
+          'data' => $user,
+        ),
+        array(
+          'data' => $read,
+          'class' => $class,
+        ),
+      );
+    }
+
+    // Add table to block content.
+    $block = array(
+      'form' => drupal_get_form('docForm'),
+      'table' => generateTable($header, $rows),
+    );
   }
-
-  // Return an empty page. The actual content will be set using context.
-  return array();
-}
-
-/**
- * Page callback for the document listing.
- *
- * @return array
- *   A renderable array for the page.
- */
-function view_page_user() {
-  drupal_set_title("Dina dokument");
-
-  // Return an empty page. The actual content will be set using context.
-  return array();
-}
-
-/**
- * Page callback for the admin document listing.
- *
- * @return array
- *   A renderable array for the page.
- */
-function admin_doc() {
-  drupal_set_title("Administrera dokument");
-
-  // Return an empty page. The actual content will be set using context.
-  return array();
-}
-
-/**
- * Implements hook_block_info().
- */
-function sedermera_document_view_block_info() {
-  $blocks['read_per_user'] = array(
-    'info' => 'Läst per användare',
-  );
-  $blocks['read_per_doc'] = array(
-    'info' => 'Läst per dokument',
-  );
-  $blocks['read_all'] = array(
-    'info' => 'Alla dokument',
-  );
-  $blocks['admin_doc'] = array(
-    'info' => 'Administrera dokument',
-  );
-  return $blocks;
-}
-
-/**
- * Implements hook_block_view().
- */
-function sedermera_document_view_block_view($delta = '') {
-  switch ($delta) {
-    case  'read_per_user':
-      $get = drupal_get_query_parameters();
-
-      if (!isset($get['selected']) || ($get['selected'] == 0)) {
-        $block = setupBlock('Välj användare för att se lästa dokument');
-
-        // Add form to block content.
-        $block['content'] = array(
-          'form' => drupal_get_form('userForm'),
-        );
-        return $block;
-      }
-      else {
-        // Get list of documents
-        $documents = getDocuments();
-
-        if (!empty($documents)) {
-          $block = setupBlock('Dokument som lästs av användare');
-
-          // Create the header for the table. Add rows
-          $header = array(
-            array('data' => 'Titel', 'class' => array('table-head')),
-            array('data' => 'Revision', 'class' => array('table-head')),
-            array('data' => 'Läst', 'class' => array('table-head')),
-          );
-          $rows = array();
-          foreach ($documents as $doc) {
-            $class = 'no';
-            $read = 'Nej';
-            if (userHasRead($doc->field_document_user_read, $get['selected'])) {
-              $class = 'yes';
-              $read = 'Ja';
-            }
-            $rows[] = array(
-              array(
-                'data' => $doc->title,
-              ),
-              array(
-                'data' => currentRevision($doc),
-              ),
-              array(
-                'data' => $read,
-                'class' => $class,
-              ),
-            );
-          }
-          // Create table.
-          $table = generateTable($header, $rows);
-
-          // Add table to block content.
-          $block['content'] = array(
-            'form' => drupal_get_form('userForm'),
-            'table' => $table,
-          );
-        }
-        else {
-          drupal_set_title('Det finns inga dokument');
-          $block = setupBlock('Det finns inga dokument');
-        }
-        return $block;
-      }
-      break;
-    case 'read_per_doc':
-      $get = drupal_get_query_parameters();
-
-      if (!isset($get['selected']) || ($get['selected'] == 0)) {
-
-        // Get list of documents
-        $documents = getDocuments();
-        if (!empty($documents)) {
-          $block = setupBlock('Välj dokument för att se användare som har läst');
-
-          // Add form to block content.
-          $block['content'] = array(
-            'form' => drupal_get_form('docForm'),
-          );
-        }
-        else {
-          drupal_set_title('Det finns inga dokument');
-          $block = setupBlock('Det finns inga dokument');
-        }
-        return $block;
-      }
-      else {
-        $block = setupBlock('Användare som läst dokumentet');
-
-        // Get list of users
-        $users = getUsers();
-
-        // Create the header for the table. Add rows
-        $header = array(
-          array('data' => 'Användare', 'class' => array('table-head')),
-          array('data' => 'Läst', 'class' => array('table-head')),
-        );
-        $rows = array();
-        $node = node_load(NULL, $get['selected']);
-        foreach ($users as $uid => $user) {
-          $class = 'no';
-          $read = 'Nej';
-         if (userHasRead($node->field_document_user_read, $uid)) {
-            $class = 'yes';
-            $read = 'Ja';
-          }
-          $rows[] = array(
-            array(
-              'data' => $user,
-            ),
-            array(
-              'data' => $read,
-              'class' => $class,
-            ),
-          );
-        }
-        // Create table.
-        $table = generateTable($header, $rows);
-
-        // Add table to block content.
-        $block['content'] = array(
-          'form' => drupal_get_form('docForm'),
-          'table' => $table,
-        );
-        return $block;
-      }
-      break;
-    case 'read_all':
-      // Get list of documents
-      $documents = getDocuments();
-
-      // Check if there is documents
-      if (!empty($documents)) {
-        $block = setupBlock('Dina dokument');
-        $appendix = array();
-
-        // Appendix list (documents that are appendix to other documents)
-        foreach ($documents as $doc) {
-          if (!empty($doc->field_document_appendix)) {
-            $appendix[] = $doc;
-          }
-        }
-
-        $documents = getDocuments();
-
-        // Create the header for the table. Add rows
-        $header = array(
-          array('data' => 'Titel', 'class' => array('table-head')),
-          array('data' => 'Bilaga', 'class' => array('table-head')),
-          array('data' => 'Revision', 'class' => array('table-head')),
-          array('data' => 'Läst', 'class' => array('table-head')),
-        );
-        $rows = array();
-        foreach ($documents as $doc) {
-          if (empty($doc->field_document_appendix)) {
-            generateRows($rows, '', $doc, $appendix, 'document');
-          }
-        }
-
-        // Create table.
-        $table = generateTable($header, $rows);
-
-        // Add table to block content.
-        $block['content'] = array(
-          'table' => $table,
-        );
-      }
-      else {
-        drupal_set_title('Det finns inga dokument');
-        $block = setupBlock('Det finns inga dokument');
-      }
-      return $block;
-      break;
-    case 'admin_doc':
-      // Get list of documents
-      $documents = getAdminDocuments();
-
-      if (!empty($documents)) {
-        $block = setupBlock('Admin dokument');
-        $appendix = array();
-
-        // Appendix list (documents that are appendix to other documents)
-        foreach ($documents as $doc) {
-          if (!empty($doc->field_document_appendix)) {
-            $appendix[] = $doc;
-          }
-        }
-
-        $documents = getAdminDocuments();
-
-        // Create the header for the table. Add rows
-        $header = array(
-          array('data' => 'Titel', 'class' => array('table-head')),
-          array('data' => 'Publicerad', 'class' => array('table-head')),
-          array('data' => 'Datum', 'class' => array('table-head')),
-          array('data' => 'Version', 'class' => array('table-head')),
-          array('data' => 'Senaste', 'class' => array('table-head')),
-          array('data' => 'Administrera', 'class' => array('table-head')),
-        );
-        $rows = array();
-        foreach ($documents as $doc) {
-          generateAdminRows($rows, '', $doc, $appendix, 'document');
-        }
-        // Create table.
-        $table = generateTable($header, $rows);
-
-        // Add table to block content.
-        $block['content'] = array(
-          'table' => $table,
-        );
-
-      }
-      else {
-        drupal_set_title('Det finns inga dokument');
-        $block = setupBlock('Det finns inga dokument');
-      }
-      return $block;
-      break;
-  }
+  return $block;
 }
 
 /**
@@ -466,14 +366,9 @@ function currentRevision($doc) {
 
 function latestRevsion($doc) {
   $result = db_query("SELECT vid FROM node_revision WHERE nid = $doc->nid ORDER BY vid DESC");
-
   $res = $result->fetch();
 
-  if ($res->vid == $doc->vid && $doc->status == 1) {
-    return TRUE;
-  }
-
-  return FALSE;
+  return ($res->vid == $doc->vid && $doc->status == 1) ? TRUE : FALSE;
 }
 
 /**
@@ -494,20 +389,6 @@ function getDocAppendix($doc, $appendix) {
     }
   }
   return $ret;
-}
-
-/**
- * Helper function for block setup to reduce code redundency
- * @param  $subject Block subject
- * @return Renderable block array;
- */
-function setupBlock($subject) {
-  array(
-    'subject' => $subject,
-    'content' => array(
-      '#markup' => '<div class="empty-container"><p>Det finns inga dokument</p></div>',
-    ),
-  );
 }
 
 /**
@@ -601,36 +482,6 @@ function userForm($form, &$form_state) {
 }
 
 /**
- * Get users
- * @return Array of users in key value. uid => username
- */
-function getUsers() {
-  $result = db_query('SELECT u.uid AS uid, n.field_user_name_value AS name FROM users AS u INNER JOIN field_data_field_user_name AS n ON (u.uid = n.entity_id) WHERE u.uid > 1');
-
-  $users = $result->fetchAll();
-
-  $return = array();
-  foreach ($users as $user) {
-    $return[$user->uid] = $user->name;
-  }
-
-  return $return;
-}
-
-/**
- * Get users options
- * @return Array of users in key value. uid => username
- */
-function getUsersOptions() {
-  $return = array();
-  $return[0] = '-- Välj --';
-
-  $return = $return + getUsers();
-
-  return $return;
-}
-
-/**
  * Form doc filter
  */
 function docForm($form, &$form_state) {
@@ -649,6 +500,30 @@ function docForm($form, &$form_state) {
   $form['#method'] = 'get';
 
   return $form;
+}
+
+/**
+ * Get users
+ * @return Array of users in key value. uid => username
+ */
+function getUsers($array = array()) {
+  $result = db_query('SELECT u.uid AS uid, n.field_user_name_value AS name FROM users AS u INNER JOIN field_data_field_user_name AS n ON (u.uid = n.entity_id) WHERE u.uid > 1');
+
+  $users = $result->fetchAll();
+
+  foreach ($users as $user) {
+    $array[$user->uid] = $user->name;
+  }
+
+  return $array;
+}
+
+/**
+ * Get users options
+ * @return Array of users in key value. uid => username
+ */
+function getUsersOptions() {
+  return getUsers(array('-- Välj --'));
 }
 
 /**
