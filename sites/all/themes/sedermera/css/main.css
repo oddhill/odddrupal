@@ -892,6 +892,27 @@ a.tabledrag-handle {
   #edit-submit-document-log:hover {
     background-color: #303030; }
 
+#edit-field-dokument-relation th,
+#edit-field-document-appendix th {
+  height: auto;
+  padding: 0; }
+#edit-field-dokument-relation td,
+#edit-field-document-appendix td {
+  padding: 0; }
+#edit-field-dokument-relation .draggable,
+#edit-field-document-appendix .draggable {
+  background: none; }
+#edit-field-dokument-relation .form-item .form-text,
+#edit-field-document-appendix .form-item .form-text {
+  margin-top: 0; }
+#edit-field-dokument-relation .tabledrag-processed,
+#edit-field-document-appendix .tabledrag-processed {
+  margin-bottom: 5px;
+  border-bottom: 0; }
+  #edit-field-dokument-relation .tabledrag-processed tbody tr,
+  #edit-field-document-appendix .tabledrag-processed tbody tr {
+    border: 0; }
+
 .tabs.secondary {
   font-size: 14px;
   font-size: 1.4rem;

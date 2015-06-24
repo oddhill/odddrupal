@@ -264,3 +264,37 @@
   @include button($dark-grey);
   margin-bottom: 25px;
 }
+
+// Relation document/appendix input field
+#edit-field-dokument-relation,
+#edit-field-document-appendix {
+
+  th {
+    height: auto;
+    padding: 0;
+  }
+
+  td {
+    padding: 0;
+  }
+
+ .draggable {
+    background: none;
+ }
+
+  .form-item {
+
+    .form-text {
+      margin-top: 0;
+    }
+  }
+
+  .tabledrag-processed {
+    margin-bottom: 5px;
+    border-bottom: 0;
+
+    tbody tr {
+      border: 0;
+    }
+  }
+}
