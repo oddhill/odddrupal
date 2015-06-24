@@ -1451,6 +1451,10 @@ input[value="Jämför"]#edit-submit {
   #sedermera-offer-sign-confirm #edit-submit:hover {
     background-color: #303030; }
 
+.page-node-intressenter .content-wrapper {
+  background: #fff;
+  padding: 0 0 30px; }
+
 @media screen and (max-width: 1600px) {
   .sub-menu-active .site-wrapper {
     margin-top: 60px; } }

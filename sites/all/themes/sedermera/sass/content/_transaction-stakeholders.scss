@@ -25,3 +25,11 @@
     @include button($dark-grey, confirm);
   }
 }
+
+.page-node-intressenter {
+
+  .content-wrapper {
+    background: $snow;
+    padding: 0 0 30px
+  }
+}
