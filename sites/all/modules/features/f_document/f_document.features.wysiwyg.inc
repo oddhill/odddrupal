@@ -36,6 +36,9 @@ function f_document_wysiwyg_default_profiles() {
           'Format' => 1,
           'Table' => 1,
         ),
+        'imce' => array(
+          'imce' => 1,
+        ),
       ),
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
