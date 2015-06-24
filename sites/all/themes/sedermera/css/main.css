@@ -545,6 +545,10 @@ form.views-send-preview .form-actions {
 .type-container {
   margin: 0 10px; }
 
+#edit-field-shared-notes-und-0-value {
+  border: 0;
+  margin-top: 10px; }
+
 .node-capital_raising-form .form-actions {
   text-align: right;
   width: 100%; }
