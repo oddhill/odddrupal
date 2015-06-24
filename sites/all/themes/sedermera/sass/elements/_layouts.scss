@@ -140,3 +140,16 @@
    @include outer-container;
    max-width: 800px;
 }
+
+// Pop up message on log in
+#popup-message-window {
+  border: 5px solid $coffee;
+  padding: 20px;
+}
+
+// Pop up message title
+.popup-message-title {
+  @include font-size(2.6);
+  border-bottom: 2px solid $light-grey !important;
+  padding-bottom: 20px !important;
+}

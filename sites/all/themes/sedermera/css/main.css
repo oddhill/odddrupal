@@ -1573,6 +1573,17 @@ input[value="Jämför"]#edit-submit {
     display: table;
     clear: both; }
 
+#popup-message-window {
+  border: 5px solid #282828;
+  padding: 20px; }
+
+.popup-message-title {
+  font-size: 26px;
+  font-size: 2.6rem;
+  line-height: 39px;
+  border-bottom: 2px solid #f3f4f8 !important;
+  padding-bottom: 20px !important; }
+
 .node-type-document .content-wrapper {
   background: #fff; }
 
