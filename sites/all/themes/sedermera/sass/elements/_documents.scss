@@ -30,19 +30,16 @@
   }
 }
 
-.page-dokument-read-user,
-.page-dokument-read-doc {
-
-  .main-content {
-    overflow: visible;
-  }
-}
-
 // Page dokument
 .page-dokument {
 
   .table-wrapper {
     width: 100%;
+  }
+
+    // Display selcet list properly
+   .main-content {
+    overflow: visible;
   }
 }
 

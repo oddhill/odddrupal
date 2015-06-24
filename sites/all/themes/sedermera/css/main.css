@@ -1581,12 +1581,10 @@ input[value="Jämför"]#edit-submit {
 .page-node-revisions-edit .node-document-form {
   padding: 0 0 40px 20px; }
 
-.page-dokument-read-user .main-content,
-.page-dokument-read-doc .main-content {
-  overflow: visible; }
-
 .page-dokument .table-wrapper {
   width: 100%; }
+.page-dokument .main-content {
+  overflow: visible; }
 
 #edit-field-document-files-und-0-upload {
   width: 190px; }
