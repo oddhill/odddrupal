@@ -14,10 +14,36 @@ function f_document_menu_default_menu_links() {
   $menu_links['main-menu_administrera-dokument:dokument/admin'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/admin',
-    'router_path' => 'dokument/admin',
+    'router_path' => 'dokument',
     'link_title' => 'Administrera dokument',
     'options' => array(
       'identifier' => 'main-menu_administrera-dokument:dokument/admin',
+      'attributes' => array(
+        'id' => 'administer',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 1,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
+  );
+  // Exported menu link: main-menu_administrera-dokument:dokument/administrera
+  $menu_links['main-menu_administrera-dokument:dokument/administrera'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/administrera',
+    'router_path' => 'dokument/administrera',
+    'link_title' => 'Administrera dokument',
+    'options' => array(
+      'identifier' => 'main-menu_administrera-dokument:dokument/administrera',
       'attributes' => array(
         'id' => 'administer',
       ),
@@ -32,7 +58,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -45,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -111,7 +137,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -42,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -147,10 +173,62 @@ function f_document_menu_default_menu_links() {
   $menu_links['main-menu_lst-per-anvndare:dokument/read_user'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/read_user',
-    'router_path' => 'dokument/read_user',
+    'router_path' => 'dokument',
     'link_title' => 'Läst per användare',
     'options' => array(
       'identifier' => 'main-menu_lst-per-anvndare:dokument/read_user',
+      'attributes' => array(
+        'id' => 'read-per-user',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 1,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
+  );
+  // Exported menu link: main-menu_lst-per-dokument:dokument/read_doc
+  $menu_links['main-menu_lst-per-dokument:dokument/read_doc'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/read_doc',
+    'router_path' => 'dokument',
+    'link_title' => 'Läst per dokument',
+    'options' => array(
+      'identifier' => 'main-menu_lst-per-dokument:dokument/read_doc',
+      'attributes' => array(
+        'id' => 'read-per-doc',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => 1,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
+  );
+  // Exported menu link: main-menu_lsta-dokument-per-anvndare:dokument/last-per-anvandare
+  $menu_links['main-menu_lsta-dokument-per-anvndare:dokument/last-per-anvandare'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/last-per-anvandare',
+    'router_path' => 'dokument/last-per-anvandare',
+    'link_title' => 'Lästa dokument per användare',
+    'options' => array(
+      'identifier' => 'main-menu_lsta-dokument-per-anvndare:dokument/last-per-anvandare',
       'attributes' => array(
         'id' => 'read-per-user',
       ),
@@ -165,18 +243,18 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -44,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_lst-per-dokument:dokument/read_doc
-  $menu_links['main-menu_lst-per-dokument:dokument/read_doc'] = array(
+  // Exported menu link: main-menu_lsta-dokument-per-dokument:dokument/last-per-dokument
+  $menu_links['main-menu_lsta-dokument-per-dokument:dokument/last-per-dokument'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/read_doc',
-    'router_path' => 'dokument/read_doc',
-    'link_title' => 'Läst per dokument',
+    'link_path' => 'dokument/last-per-dokument',
+    'router_path' => 'dokument/last-per-dokument',
+    'link_title' => 'Lästa dokument per dokument',
     'options' => array(
-      'identifier' => 'main-menu_lst-per-dokument:dokument/read_doc',
+      'identifier' => 'main-menu_lsta-dokument-per-dokument:dokument/last-per-dokument',
       'attributes' => array(
         'id' => 'read-per-doc',
       ),
@@ -191,7 +269,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -43,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -204,6 +282,8 @@ function f_document_menu_default_menu_links() {
   t('Lägg till dokument');
   t('Läst per användare');
   t('Läst per dokument');
+  t('Lästa dokument per användare');
+  t('Lästa dokument per dokument');
 
 
   return $menu_links;

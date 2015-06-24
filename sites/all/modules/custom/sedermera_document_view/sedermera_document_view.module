@@ -18,7 +18,7 @@ function sedermera_document_view_menu() {
     'weight' => 0,
   );
 
-  $items['dokument/admin'] = array(
+  $items['dokument/administrera'] = array(
     'title' => 'Administrera dokument',
     'page callback' => 'admin_doc',
     'access arguments' => array('document admin'),
@@ -27,7 +27,7 @@ function sedermera_document_view_menu() {
     'weight' => 0,
   );
 
-  $items['dokument/read_user'] = array(
+  $items['dokument/last-per-anvandare'] = array(
     'title' => 'Lästa dokument per användare',
     'page callback' => 'view_page_per_user',
     'access arguments' => array('document read per user'),
@@ -36,7 +36,7 @@ function sedermera_document_view_menu() {
     'weight' => 49,
   );
 
-  $items['dokument/read_doc'] = array(
+  $items['dokument/last-per-dokument'] = array(
     'title' => 'Lästa dokument per dokument',
     'page callback' => 'view_page_per_doc',
     'access arguments' => array('document read per document'),
