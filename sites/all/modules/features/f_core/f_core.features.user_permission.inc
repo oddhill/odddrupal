@@ -63,6 +63,8 @@ function f_core_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Granskare' => 'Granskare',
     ),
     'module' => 'user',
   );

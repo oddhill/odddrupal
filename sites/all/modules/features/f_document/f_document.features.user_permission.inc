@@ -40,6 +40,7 @@ function f_document_user_default_permissions() {
     'name' => 'document log',
     'roles' => array(
       'Dokumentmoderator' => 'Dokumentmoderator',
+      'Granskare' => 'Granskare',
     ),
     'module' => 'config_perms',
   );
@@ -49,6 +50,7 @@ function f_document_user_default_permissions() {
     'name' => 'document read per document',
     'roles' => array(
       'Dokumentmoderator' => 'Dokumentmoderator',
+      'Granskare' => 'Granskare',
     ),
     'module' => 'config_perms',
   );
@@ -58,6 +60,7 @@ function f_document_user_default_permissions() {
     'name' => 'document read per user',
     'roles' => array(
       'Dokumentmoderator' => 'Dokumentmoderator',
+      'Granskare' => 'Granskare',
     ),
     'module' => 'config_perms',
   );
