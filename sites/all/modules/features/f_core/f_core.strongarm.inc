@@ -154,7 +154,7 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'autologout_timeout';
-  $strongarm->value = '300';
+  $strongarm->value = '3600';
   $export['autologout_timeout'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -275,7 +275,7 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'popup_message_body';
   $strongarm->value = array(
-    'value' => '<p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam quis risus eget urna mollis ornare vel eu leo.</p>',
+    'value' => '<p>Informationen på Sedermera Fondkommissions server är konfidentiell. Jag försäkrar härmed att jag är medveten om att varje medarbetare är personligt ansvarig för att informationen inte, utan begränsning i tiden, yppas eller på annat sätt sprids till utomstående.<br />&nbsp;<br />Jag bekräftar härmed att jag tagit del av, och förstått, ovanstående information.</p>',
     'format' => 'document_html',
   );
   $export['popup_message_body'] = $strongarm;
@@ -319,7 +319,7 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'popup_message_title';
-  $strongarm->value = 'Title';
+  $strongarm->value = 'Sedermera intranät';
   $export['popup_message_title'] = $strongarm;
 
   $strongarm = new stdClass();
