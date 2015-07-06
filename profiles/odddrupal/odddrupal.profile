@@ -340,10 +340,10 @@ function odddrupal_js_alter(&$js) {
     // is currently set to development. Otherwise we'll use the minified version
     // since this doesn't generate any warnings.
     if (variable_get('tadaa_environment', 'development') != 'development') {
-      $path = 'http://code.jquery.com/jquery-migrate-1.2.1.min.js';
+      $path = '//code.jquery.com/jquery-migrate-1.2.1.min.js';
     }
     else {
-      $path = 'http://code.jquery.com/jquery-migrate-1.2.1.js';
+      $path = '//code.jquery.com/jquery-migrate-1.2.1.js';
     }
 
     // Add the plugin with a high weight. This is because the plugin should be
