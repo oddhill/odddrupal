@@ -24,3 +24,18 @@ $aliases['staging'] = array(
     ),
   ),
 );
+
+/**
+ * An alias for the production site.
+ */
+$aliases['production'] = array(
+  'uri' => 'http://176.58.107.201',
+  'root' => '/mnt/persist/www/docroot',
+  'remote-host' => '176.58.107.201',
+  'remote-user' => 'root',
+  'command-specific' => array (
+    'sql-sync' => array (
+      'create-db' => TRUE,
+    ),
+  ),
+);
