@@ -275,7 +275,7 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'popup_message_body';
   $strongarm->value = array(
-    'value' => '<p>Informationen på Sedermera Fondkommissions server är konfidentiell. Jag försäkrar härmed att jag är medveten om att varje medarbetare är personligt ansvarig för att informationen inte, utan begränsning i tiden, yppas eller på annat sätt sprids till utomstående.<br />&nbsp;<br />Jag bekräftar härmed att jag tagit del av, och förstått, ovanstående information.</p>',
+    'value' => '<p>Informationen på Sedermera Fondkommissions server är konfidentiell. Jag är medveten om att varje medarbetare är personligt ansvarig för att informationen inte, utan begränsning i tiden, yppas eller på annat sätt sprids till utomstående.</p><p>Genom fortsatt användning av systemet bekräftar jag härmed att jag tagit del av, och förstått, ovanstående information.</p>',
     'format' => 'document_html',
   );
   $export['popup_message_body'] = $strongarm;
