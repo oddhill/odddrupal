@@ -1,4 +1,4 @@
-# Drupal, by Odd Hill
+# Drupal, by Odd Hill AB
 
 Complete Drupal package that contains custom installation profiles that are used by [Odd Hill](http://www.oddhill.se/).
 
