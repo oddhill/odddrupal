@@ -58,7 +58,11 @@ function f_capital_raising_user_default_permissions() {
   // Exported permission: 'view own capital_raising content'.
   $permissions['view own capital_raising content'] = array(
     'name' => 'view own capital_raising content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node_view_permissions',
   );
 

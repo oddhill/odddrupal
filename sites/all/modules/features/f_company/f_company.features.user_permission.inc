@@ -40,7 +40,9 @@ function f_company_user_default_permissions() {
   // Exported permission: 'edit own company content'.
   $permissions['edit own company content'] = array(
     'name' => 'edit own company content',
-    'roles' => array(),
+    'roles' => array(
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node',
   );
 
@@ -58,7 +60,11 @@ function f_company_user_default_permissions() {
   // Exported permission: 'view own company content'.
   $permissions['view own company content'] = array(
     'name' => 'view own company content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node_view_permissions',
   );
 
