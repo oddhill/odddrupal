@@ -148,11 +148,11 @@ function f_document_strongarm() {
       'filenum' => '0',
       'directories' => array(
         0 => array(
-          'name' => '.',
-          'subnav' => 0,
-          'browse' => 0,
+          'name' => 'document',
+          'subnav' => 1,
+          'browse' => 1,
           'upload' => 1,
-          'thumb' => 0,
+          'thumb' => 1,
           'delete' => 0,
           'resize' => 0,
         ),
