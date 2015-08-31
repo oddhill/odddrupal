@@ -1485,16 +1485,10 @@ class DrupalWebTestCase extends DrupalTestCase {
 
     // Include the testing profile.
     variable_set('install_profile', $this->profile);
+    $profile_details = install_profile_info($this->profile, 'en');
 
     // Install the modules specified by the testing profile.
-    $profiles = drupal_get_profiles();
-    $profile_dependencies = array();
-
-    foreach ($profiles as $profile) {
-      $info = install_profile_info($profile);
-      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-    }
-    module_enable($profile_dependencies);
+    module_enable($profile_details['dependencies'], FALSE);
 
     // Install modules needed for this test. This could have been passed in as
     // either a single array argument or a variable number of string arguments.
@@ -2227,6 +2221,7 @@ class DrupalWebTestCase extends DrupalTestCase {
 
     // Submit the POST request.
     $return = drupal_json_decode($this->drupalPost(NULL, $edit, array('path' => $ajax_path, 'triggering_element' => $triggering_element), $options, $headers, $form_html_id, $extra_post));
+    $this->assertIdentical($this->drupalGetHeader('X-Drupal-Ajax-Token'), '1', 'Ajax response header found.');
 
     // Change the page content by applying the returned commands.
     if (!empty($ajax_settings) && !empty($return)) {
