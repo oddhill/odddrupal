@@ -187,7 +187,7 @@ index e5a6586..891773e 100644
    // Installation profiles are always loaded last
    db_update('system')
 diff --git a/includes/install.inc b/includes/install.inc
-index 2b55589..7857173 100644
+index 2b55589..2a3bf9f 100644
 --- a/includes/install.inc
 +++ b/includes/install.inc
 @@ -676,15 +676,28 @@ function drupal_rewrite_settings($settings = array(), $prefix = '') {
@@ -298,7 +298,7 @@ index 2b55589..7857173 100644
 -      $requirements = array_merge($requirements, $function('install'));
 +      $info = install_profile_info($profile);
 +      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-+    }
+     }
 +
 +    // Collect requirement testing results.
 +    foreach ($profile_dependencies as $module) {
@@ -307,20 +307,19 @@ index 2b55589..7857173 100644
 +      if (function_exists($function)) {
 +        $requirements = array_merge($requirements, $function('install'));
 +      }
-     }
-   }
++    }
++  }
 +  else {
 +    throw new Exception(install_no_profile_error());
-+  }
+   }
 +
    return $requirements;
  }
 
-@@ -1313,6 +1343,23 @@ function install_profile_info($profile, $locale = 'en') {
-   return $cache[$profile];
+@@ -1314,6 +1344,23 @@ function install_profile_info($profile, $locale = 'en') {
  }
 
-+ /**
+ /**
 + * Get a list of base install profiles from a specified install profile.
 + */
 +function install_get_base_profiles() {
@@ -337,9 +336,10 @@ index 2b55589..7857173 100644
 +  return $profiles;
 +}
 +
- /**
++/**
   * Ensures the environment for a Drupal database on a predefined connection.
   *
+  * This will run tasks that check that Drupal can perform all of the functions
 diff --git a/includes/module.inc b/includes/module.inc
 index 494924f..e8c0847 100644
 --- a/includes/module.inc
@@ -372,7 +372,7 @@ index 494924f..e8c0847 100644
    foreach ($files as $name => $file) {
      $info = drupal_parse_info_file($file->uri);
 diff --git a/modules/simpletest/drupal_web_test_case.php b/modules/simpletest/drupal_web_test_case.php
-index fb5c6a6..b7d500b 100644
+index b67c478..f4ff2da 100644
 --- a/modules/simpletest/drupal_web_test_case.php
 +++ b/modules/simpletest/drupal_web_test_case.php
 @@ -1485,10 +1485,16 @@ class DrupalWebTestCase extends DrupalTestCase {
@@ -435,7 +435,7 @@ index 64c989a..364a23a 100644
        }
        // Check the module's PHP version.
 diff --git a/modules/system/system.module b/modules/system/system.module
-index 8fc517f..1dc5c1c 100644
+index c2aa9e0..b82b14e 100644
 --- a/modules/system/system.module
 +++ b/modules/system/system.module
 @@ -2368,15 +2368,18 @@ function _system_rebuild_module_data() {
@@ -496,4 +496,3 @@ index 8fc517f..1dc5c1c 100644
 +      }
      }
    }
-
