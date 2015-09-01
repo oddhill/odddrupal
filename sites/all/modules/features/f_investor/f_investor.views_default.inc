@@ -518,6 +518,11 @@ function f_investor_views_default_views() {
   );
   $handler->display->display_options['filters']['field_shared_industries_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_shared_industries_tid']['vocabulary'] = 'industries';
+  /* Filter criterion: Investerare: Publish */
+  $handler->display->display_options['filters']['publish']['id'] = 'publish';
+  $handler->display->display_options['filters']['publish']['table'] = 'eck_investor';
+  $handler->display->display_options['filters']['publish']['field'] = 'publish';
+  $handler->display->display_options['filters']['publish']['value']['value'] = '0';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

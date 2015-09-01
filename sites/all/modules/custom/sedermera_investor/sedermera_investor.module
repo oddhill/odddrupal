@@ -99,6 +99,7 @@ function sedermera_investor_create_page() {
   $descriptions = array(
     'company' => 'Lägg till ett nytt investmentbolag. Dessa kan kopplas till flera ägare.',
     'person' => 'Lägg till en ny privatperson.',
+    'lead' => 'Lägg till en ny lead.',
   );
 
   // Iterate through the bundles, add add a link for each bundle. This will be
@@ -167,5 +168,44 @@ function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, 
       $form['industries']['#access'] = FALSE;
       unset($form['#info']['filter-field_shared_industries_tid']);
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_investor_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
+  if (!empty($_POST['lead_id'])) {
+    $lead = entity_load_single('investor', $_POST['lead_id']);
+    $wrapper = entity_metadata_wrapper('investor', $lead);
+
+    $form['field_invest_pers_first_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_lead_first_name->value();
+    $form['field_invest_pers_last_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_lead_last_name->value();
+    $form['field_shared_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $wrapper->field_shared_email->value();
+    $form['field_shared_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_phone->value();
+    $form['field_shared_cell'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_cell->value();
+    $form['field_shared_notes'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_notes->value();
+
+    $lead->publish = 1;
+    $lead->save();
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_investor_form_eck__entity__form_add_investor_company_alter(&$form, &$form_state, $form_id) {
+  if (!empty($_POST['lead_id'])) {
+    $lead = entity_load_single('investor', $_POST['lead_id']);
+    $wrapper = entity_metadata_wrapper('investor', $lead);
+
+    $form['field_invest_comp_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_lead_first_name->value() . " " . $wrapper->field_lead_last_name->value();
+    $form['field_shared_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $wrapper->field_shared_email->value();
+    $form['field_shared_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_phone->value();
+    $form['field_shared_cell'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_cell->value();
+    $form['field_shared_notes'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_notes->value();
+
+    $lead->publish = 1;
+    $lead->save();
   }
 }

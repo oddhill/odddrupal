@@ -1144,7 +1144,7 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'investor',
     'field_name' => 'field_invest_pers_first_name',
     'label' => 'Förnamn',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -1209,7 +1209,7 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'investor',
     'field_name' => 'field_invest_pers_id',
     'label' => 'Personnummer',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -1280,7 +1280,7 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'investor',
     'field_name' => 'field_invest_pers_last_name',
     'label' => 'Efternamn',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -1597,48 +1597,6 @@ function f_investor_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 16,
-    ),
-  );
-
-  // Exported field_instance: 'investor-person-field_shared_lead'
-  $field_instances['investor-person-field_shared_lead'] = array(
-    'bundle' => 'person',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-      'investor_verification' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_lead',
-    'label' => 'Lead',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 14,
     ),
   );
 
@@ -2303,7 +2261,6 @@ function f_investor_field_default_field_instances() {
   t('Kontroll godkänd');
   t('Kontroll utgår');
   t('Kreditkontroll');
-  t('Lead');
   t('Mobiltelefon');
   t('Namn');
   t('Organisationsnummer');

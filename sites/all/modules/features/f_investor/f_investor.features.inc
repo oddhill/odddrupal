@@ -96,6 +96,11 @@ function f_investor_eck_entity_type_info() {
           'type' => 'text',
           'behavior' => 'title',
         ),
+        'publish' => array(
+          'label' => 'Publish',
+          'type' => 'integer',
+          'behavior' => '',
+        ),
       ),
     ),
   );
