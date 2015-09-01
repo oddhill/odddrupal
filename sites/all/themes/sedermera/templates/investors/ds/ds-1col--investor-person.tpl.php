@@ -12,5 +12,18 @@
  */
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding bg">
-  <?php print $ds_content; ?>
+  <?php print render($content['title']); ?>
+  <div class="columns">
+    <div class="col">
+      <?php print render($content['field_shared_industries']); ?>
+      <?php print render($content['field_shared_email']); ?>
+      <?php print render($content['field_shared_cell']); ?>
+      <?php print render($content['field_shared_phone']); ?>
+      <?php print render($content['field_shared_fax']); ?>
+    </div>
+    <div class="col">
+      <?php print render($content['field_shared_address']); ?>
+      <?php print render($content['field_shared_notes']); ?>
+    </div>
+  </div>
 </div>

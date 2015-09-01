@@ -493,7 +493,7 @@ form.views-send-preview .form-actions {
   padding-right: 28px;
   margin-top: -2px; }
   #message-preview-link:hover {
-    background-color: #e1b45b;
+    background-color: #e2b55c;
     border: 0 none; }
 
 .recipients-counter {
@@ -974,7 +974,7 @@ a.tabledrag-handle {
       line-height: 25px;
       margin-top: 0; }
       .tabs.secondary li.active a:hover {
-        background-color: #eebe60;
+        background-color: #eebf61;
         border-bottom: 0 none; }
     .tabs.secondary li.edit a {
       background: none;
@@ -1183,10 +1183,28 @@ input[value="Jämför"]#edit-submit {
     border: 1px solid #e0e2e6;
     font-weight: 500; }
 
+.field-invest-comp-own,
 .field-shared-industries,
+.field-shared-email,
+.field-shared-cell,
+.field-shared-phone,
+.field-shared-fax,
 .field-shared-address,
-.field-shared-email {
+.field-shared-notes {
   margin-bottom: 15px; }
+  .field-invest-comp-own .label,
+  .field-shared-industries .label,
+  .field-shared-email .label,
+  .field-shared-cell .label,
+  .field-shared-phone .label,
+  .field-shared-fax .label,
+  .field-shared-address .label,
+  .field-shared-notes .label {
+    display: inline-block;
+    width: 30%; }
+
+.field-shared-notes .label {
+  display: block; }
 
 .node-type-company .content-wrapper {
   background: #fff;
@@ -1230,8 +1248,8 @@ input[value="Jämför"]#edit-submit {
     #user-pass-reset #edit-submit:hover {
       background-color: #ae7300; }
     #user-pass-reset #edit-submit:hover {
-      background-color: #fac04c;
-      box-shadow: 0 0 3px #222222; }
+      background-color: #fbc04d;
+      box-shadow: 0 0 3px #232323; }
 
 #user-pass #edit-submit,
 #yubikey-lost #edit-submit {
@@ -1584,6 +1602,20 @@ input[value="Jämför"]#edit-submit {
   border-bottom: 2px solid #f3f4f8 !important;
   padding-bottom: 20px !important; }
 
+.columns {
+  display: block; }
+  .columns:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .columns .col {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    .columns .col:last-child {
+      margin-right: 0; }
+
 .node-type-document .content-wrapper {
   background: #fff; }
 
@@ -1691,7 +1723,7 @@ input[value="Jämför"]#edit-submit {
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out; }
   #edit-delete:hover {
-    background-color: #862e2e; }
+    background-color: #862f2f; }
 
 #edit-cancel {
   display: inline-block;
@@ -1715,7 +1747,7 @@ input[value="Jämför"]#edit-submit {
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out; }
   #edit-cancel:hover {
-    background-color: #862e2e; }
+    background-color: #862f2f; }
 
 #edit-next {
   display: inline-block;
@@ -1786,7 +1818,7 @@ input[value="Jämför"]#edit-submit {
   padding-left: 28px;
   background-color: #b6e0af; }
   .approved:hover {
-    background-color: #a3c99d;
+    background-color: #a4ca9e;
     border: 0 none; }
 
 .not-approved {
@@ -1810,7 +1842,7 @@ input[value="Jämför"]#edit-submit {
   padding-left: 28px;
   background-color: #e0afaf; }
   .not-approved:hover {
-    background-color: #c99d9d;
+    background-color: #ca9e9e;
     border: 0 none; }
 
 .expiring {
@@ -1834,7 +1866,7 @@ input[value="Jämför"]#edit-submit {
   color: #454545;
   background-color: #fbc966; }
   .expiring:hover {
-    background-color: #e1b45b;
+    background-color: #e2b55c;
     border: 0 none; }
 
 .expired {
@@ -1858,7 +1890,7 @@ input[value="Jämför"]#edit-submit {
   color: #454545;
   background-color: #d4d6d9; }
   .expired:hover {
-    background-color: #bec0c3;
+    background-color: #bfc1c3;
     border: 0 none; }
 
 form#user-login #edit-submit {
@@ -1887,8 +1919,8 @@ form#user-login #edit-submit {
   form#user-login #edit-submit:hover {
     background-color: #ae7300; }
   form#user-login #edit-submit:hover {
-    background-color: #fac04c;
-    box-shadow: 0 0 3px #222222; }
+    background-color: #fbc04d;
+    box-shadow: 0 0 3px #232323; }
 
 .main-sidebar {
   background-color: #282828;
@@ -1958,7 +1990,7 @@ form#user-login #edit-submit {
         background: url("../graphics/documents_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/documents_white.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a:hover {
-        color: #d8d9da; }
+        color: #d9d9db; }
       .main-navigation .menu li a#overview {
         background: url("../graphics/overview_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/overview_grey.svg") transparent 0 0 no-repeat; }
@@ -2405,11 +2437,11 @@ table {
         table td .editablefield-item .form-actions .ajax-progress .message {
           padding-left: 24px; }
   table tr.even {
-    background: #fafafc;
+    background: #fafbfc;
     border-bottom: 1px solid #f3f4f8;
     border-top: 1px solid #f3f4f8; }
     table tr.even .ajax-progress {
-      background: #fafafc; }
+      background: #fafbfc; }
   table tr.odd {
     background: #fff; }
     table tr.odd .ajax-progress {
@@ -2707,25 +2739,25 @@ form fieldset {
       .page-node-add-document form fieldset table.tabledrag-processed tbody tr {
         border: 0; }
       form fieldset table.tabledrag-processed tbody tr.even {
-        background: #e9eaed; }
+        background: #e9ebee; }
         form fieldset table.tabledrag-processed tbody tr.even a.tabledrag-handle {
-          background-color: #e9eaed; }
+          background-color: #e9ebee; }
           form fieldset table.tabledrag-processed tbody tr.even a.tabledrag-handle:hover, form fieldset table.tabledrag-processed tbody tr.even a.tabledrag-handle.tabledrag-handle-hover {
-            background-color: #e9eaed; }
+            background-color: #e9ebee; }
       form fieldset table.tabledrag-processed tbody tr.odd {
-        background: #eff0f2; }
+        background: #f0f1f3; }
         .page-node-add-document form fieldset table.tabledrag-processed tbody tr.odd {
           background: #d4d6d9; }
         form fieldset table.tabledrag-processed tbody tr.odd a.tabledrag-handle {
-          background-color: #eff0f2; }
+          background-color: #f0f1f3; }
           form fieldset table.tabledrag-processed tbody tr.odd a.tabledrag-handle:hover, form fieldset table.tabledrag-processed tbody tr.odd a.tabledrag-handle.tabledrag-handle-hover {
-            background-color: #eff0f2; }
+            background-color: #f0f1f3; }
       form fieldset table.tabledrag-processed tbody tr.drag {
-        background: #f5f6f7; }
+        background: #f6f6f8; }
         form fieldset table.tabledrag-processed tbody tr.drag a.tabledrag-handle {
-          background-color: #f5f6f7; }
+          background-color: #f6f6f8; }
           form fieldset table.tabledrag-processed tbody tr.drag a.tabledrag-handle:hover, form fieldset table.tabledrag-processed tbody tr.drag a.tabledrag-handle.tabledrag-handle-hover {
-            background-color: #f5f6f7; }
+            background-color: #f6f6f8; }
       form fieldset table.tabledrag-processed tbody tr td {
         padding: 10px;
         position: relative; }
@@ -3212,7 +3244,7 @@ form .submit-wrapper {
       #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-month,
       #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-year {
         border-radius: 2px;
-        background: #fde4b2;
+        background: #fde4b3;
         padding: 0 5px; }
     #ui-datepicker-div.ui-datepicker table thead {
       background: #f3f4f8; }
@@ -3226,7 +3258,7 @@ form .submit-wrapper {
         text-align: center; }
         #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-highlight {
           border-radius: 2px;
-          background: #fef1d8; }
+          background: #fef2d9; }
         #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active {
           border-radius: 2px;
           background: #f9a500;
@@ -3235,7 +3267,7 @@ form .submit-wrapper {
           #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active:hover {
             background: #f9a500; }
         #ui-datepicker-div.ui-datepicker table tbody td a:hover {
-          background: #fde4b2;
+          background: #fde4b3;
           font-weight: 700;
           border-radius: 2px; }
 
@@ -3608,9 +3640,9 @@ form#user-login,
     text-align: center;
     width: 100%; }
   .bar.guaranteed-wrapper .progress-bar {
-    background-color: #d38c00; }
+    background-color: #d48c00; }
   .bar.committed-wrapper .progress-bar {
-    background-color: #ba7b00; }
+    background-color: #bb7c00; }
 
 .vertical-bars-text-wrapper {
   margin: 20px 20px 10px 20px; }
@@ -3805,7 +3837,7 @@ form#user-login,
     font-weight: 700;
     text-align: center; }
     .views-field-field-cap-rais-date a:hover {
-      background-color: #e1b45b;
+      background-color: #e2b55c;
       border: 0 none; }
 
 .block-sedermera-dashboard-verifications h2 {

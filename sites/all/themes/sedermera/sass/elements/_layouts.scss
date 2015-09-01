@@ -153,3 +153,12 @@
   border-bottom: 2px solid $light-grey !important;
   padding-bottom: 20px !important;
 }
+
+// Columns
+.columns {
+  @include row;
+
+  .col {
+    @include span-columns(6 of 12);
+  }
+}

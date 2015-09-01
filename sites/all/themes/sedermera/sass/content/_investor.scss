@@ -1,6 +1,23 @@
-// Investor page - fields (branscher, plats, e-post)
+// Investor page - fields
+.field-invest-comp-own,
 .field-shared-industries,
+.field-shared-email,
+.field-shared-cell,
+.field-shared-phone,
+.field-shared-fax,
 .field-shared-address,
-.field-shared-email {
+.field-shared-notes {
   margin-bottom: 15px;
+
+  .label {
+    display: inline-block;
+    width: 30%;
+  }
+}
+
+.field-shared-notes {
+
+  .label {
+    display: block;
+  }
 }
