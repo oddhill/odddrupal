@@ -16,7 +16,7 @@
       <div class="progress vertical bottom committed">
         <div class="progress-bar" data-transitiongoal="<?php print $committed['percentage']; ?>"></div>
       </div>
-      <div class="text">Åtaget</div>
+      <div class="text">Teckningsförbindelse</div>
     </div>
   </div>
 <?php endif; ?>
@@ -25,7 +25,7 @@
    <div class="vertical-bars-text-wrapper">
     <h4>Garanterat</h4>
     <div class="total"><?php print $guaranteed['current']; ?> av <?php print $guaranteed['max']; ?> SEK</div>
-    <h4>Åtaget</h4>
+    <h4>Teckningsförbindelse</h4>
     <div class="total"><?php print $committed['current']; ?> av <?php print $committed['max']; ?> SEK</div>
   </div>
 <?php endif; ?>
