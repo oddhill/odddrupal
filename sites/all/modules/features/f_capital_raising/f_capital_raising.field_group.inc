@@ -98,6 +98,11 @@ function f_capital_raising_field_group_info() {
       1 => 'field_cap_rais_goal_guar',
       2 => 'field_cap_rais_goal_tot',
       3 => 'field_cap_rais_goal_oth',
+      4 => 'field_cap_rais_goal_newem',
+      5 => 'field_cap_rais_goal_pp',
+      6 => 'field_cap_rais_goal_signcommit',
+      7 => 'field_cap_rais_goal_warrant',
+      8 => 'field_cap_rais_goal_loan',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

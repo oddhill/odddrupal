@@ -167,6 +167,36 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
+  // Exported field_base: 'field_cap_rais_goal_loan'
+  $field_bases['field_cap_rais_goal_loan'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_loan',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_cap_rais_goal_newem'
+  $field_bases['field_cap_rais_goal_newem'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_newem',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
   // Exported field_base: 'field_cap_rais_goal_oth'
   $field_bases['field_cap_rais_goal_oth'] = array(
     'active' => 1,
@@ -188,6 +218,36 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_cap_rais_goal_pp'
+  $field_bases['field_cap_rais_goal_pp'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_pp',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_cap_rais_goal_signcommit'
+  $field_bases['field_cap_rais_goal_signcommit'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_signcommit',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
   // Exported field_base: 'field_cap_rais_goal_tot'
   $field_bases['field_cap_rais_goal_tot'] = array(
     'active' => 1,
@@ -203,6 +263,21 @@ function f_capital_raising_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'number_float',
+  );
+
+  // Exported field_base: 'field_cap_rais_goal_warrant'
+  $field_bases['field_cap_rais_goal_warrant'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_cap_rais_goal_warrant',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
   );
 
   // Exported field_base: 'field_cap_rais_post'

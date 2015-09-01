@@ -205,7 +205,7 @@ function f_capital_raising_views_default_views() {
   /* Display: Dashboard */
   $handler = $view->new_display('block', 'Dashboard', 'dashboard');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Utgående transaktioner';
+  $handler->display->display_options['title'] = 'Pågående emissioner';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '7';
@@ -361,7 +361,7 @@ function f_capital_raising_views_default_views() {
     t('Arkiverade'),
     t('Arkiverade transaktioner'),
     t('Dashboard'),
-    t('Utgående transaktioner'),
+    t('Pågående emissioner'),
     t('Det finns inga utgående transaktioner.'),
     t('Löptid'),
     t('Date (node)'),

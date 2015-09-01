@@ -36,6 +36,11 @@ function f_investor_ds_field_settings_info() {
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'link' => '0',
+        'wrapper' => 'h2',
+        'class' => '',
+      ),
     ),
   );
   $export['investor|person|default'] = $ds_fieldsetting;
@@ -66,6 +71,8 @@ function f_investor_ds_layout_settings_info() {
         4 => 'field_shared_cell',
         5 => 'field_shared_phone',
         6 => 'field_shared_fax',
+        7 => 'field_shared_notes',
+        8 => 'field_invest_comp_own',
       ),
     ),
     'fields' => array(
@@ -76,6 +83,8 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_cell' => 'ds_content',
       'field_shared_phone' => 'ds_content',
       'field_shared_fax' => 'ds_content',
+      'field_shared_notes' => 'ds_content',
+      'field_invest_comp_own' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -150,6 +159,7 @@ function f_investor_ds_layout_settings_info() {
         4 => 'field_shared_cell',
         5 => 'field_shared_phone',
         6 => 'field_shared_fax',
+        7 => 'field_shared_notes',
       ),
     ),
     'fields' => array(
@@ -160,6 +170,7 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_cell' => 'ds_content',
       'field_shared_phone' => 'ds_content',
       'field_shared_fax' => 'ds_content',
+      'field_shared_notes' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

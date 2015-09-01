@@ -21,7 +21,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -67,7 +67,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 19,
     ),
   );
 
@@ -82,7 +82,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 9,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -112,7 +112,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 18,
     ),
   );
 
@@ -124,10 +124,13 @@ function f_investor_field_default_field_instances() {
     'description' => 'Ange vilka ägarna är för detta bolag, om några. Separera flera ägare med komma.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 9,
+        'label' => 'inline',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 8,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -152,7 +155,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 8,
+      'weight' => 21,
     ),
   );
 
@@ -369,7 +372,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
+      'weight' => 20,
     ),
   );
 
@@ -384,7 +387,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -430,7 +433,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 17,
     ),
   );
 
@@ -446,7 +449,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 23,
+        'weight' => 7,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -555,7 +558,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -578,7 +581,7 @@ function f_investor_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 3,
+      'weight' => 16,
     ),
   );
 
@@ -597,7 +600,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -634,7 +637,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -683,7 +686,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -732,7 +735,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 17,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -779,7 +782,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -826,12 +829,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 22,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -878,12 +878,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 20,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -930,12 +927,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 21,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -982,12 +976,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 19,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1036,7 +1027,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 16,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -1083,12 +1074,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 18,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1138,7 +1126,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 9,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1168,7 +1156,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 17,
     ),
   );
 
@@ -1183,7 +1171,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1229,7 +1217,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 19,
     ),
   );
 
@@ -1244,7 +1232,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 11,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1274,7 +1262,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 18,
     ),
   );
 
@@ -1295,7 +1283,7 @@ function f_investor_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1345,7 +1333,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'investor_verification' => array(
         'label' => 'inline',
@@ -1385,7 +1373,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'email',
         'settings' => array(),
         'type' => 'email_spamspan',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'investor_verification' => array(
         'label' => 'inline',
@@ -1420,11 +1408,11 @@ function f_investor_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1467,7 +1455,7 @@ function f_investor_field_default_field_instances() {
           'taxonomy_term_separator' => ', ',
         ),
         'type' => 'ds_taxonomy_separator',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'investor_verification' => array(
         'label' => 'inline',
@@ -1491,7 +1479,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 20,
     ),
   );
 
@@ -1506,7 +1494,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 12,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1552,7 +1540,49 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'investor-person-field_shared_lead'
+  $field_instances['investor-person-field_shared_lead'] = array(
+    'bundle' => 'person',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_lead',
+    'label' => 'Lead',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 14,
     ),
   );
 
@@ -1568,7 +1598,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 22,
+        'weight' => 8,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1634,7 +1664,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'investor_verification' => array(
         'label' => 'inline',
@@ -1677,7 +1707,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1700,7 +1730,7 @@ function f_investor_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 3,
+      'weight' => 15,
     ),
   );
 
@@ -1714,7 +1744,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -1768,7 +1798,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 19,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1805,7 +1835,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -1854,7 +1884,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 16,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -1903,7 +1933,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1950,7 +1980,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'editable' => array(
         'label' => 'above',
@@ -2003,12 +2033,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 20,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -2055,12 +2082,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 21,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -2107,12 +2131,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 19,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -2159,12 +2180,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 18,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
       ),
       'investor_verification' => array(
         'label' => 'hidden',
@@ -2229,6 +2247,7 @@ function f_investor_field_default_field_instances() {
   t('Kontroll godkänd');
   t('Kontroll utgår');
   t('Kreditkontroll');
+  t('Lead');
   t('Mobiltelefon');
   t('Namn');
   t('Organisationsnummer');
