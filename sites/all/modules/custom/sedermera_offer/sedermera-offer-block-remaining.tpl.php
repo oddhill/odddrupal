@@ -10,7 +10,7 @@
       <div class="progress vertical bottom guaranteed">
         <div class="progress-bar" data-transitiongoal="<?php print $guaranteed['percentage']; ?>"></div>
       </div>
-      <div class="text">Garanterat</div>
+      <div class="text">Garantiåtagande</div>
     </div>
     <div class="committed-wrapper bar">
       <div class="progress vertical bottom committed">
@@ -23,7 +23,7 @@
 
 <?php if ($guaranteed && $committed): ?>
    <div class="vertical-bars-text-wrapper">
-    <h4>Garanterat</h4>
+    <h4>Garantiåtagande</h4>
     <div class="total"><?php print $guaranteed['current']; ?> av <?php print $guaranteed['max']; ?> SEK</div>
     <h4>Teckningsförbindelse</h4>
     <div class="total"><?php print $committed['current']; ?> av <?php print $committed['max']; ?> SEK</div>
