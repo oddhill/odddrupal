@@ -52,8 +52,8 @@ function sedermera_dashboard_block_info() {
  */
 function sedermera_dashboard_block_view($delta = '') {
   $block = array(
-    'subject' => 'Utgående kontroller',
-    'content' => array('#markup' => '<div class="empty-container"><p>Det finns inga utgående kontroller.</p></div>'),
+    'subject' => 'Ej färdiga kontroller',
+    'content' => array('#markup' => '<div class="empty-container"><p>Det finns inga Ej färdiga kontroller.</p></div>'),
   );
 
   // Get the query which will return every expiring verification.
