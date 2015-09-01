@@ -29,7 +29,7 @@ function f_investor_field_group_info() {
       3 => 'field_shared_temp',
       4 => 'field_invest_comp_id',
       5 => 'field_shared_inv_id',
-      6 => 'field_shared_lead',
+      6 => 'field_shared_interests',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -162,7 +162,7 @@ function f_investor_field_group_info() {
       3 => 'field_shared_temp',
       4 => 'field_invest_pers_id',
       5 => 'field_shared_inv_id',
-      6 => 'field_shared_lead',
+      6 => 'field_shared_interests',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

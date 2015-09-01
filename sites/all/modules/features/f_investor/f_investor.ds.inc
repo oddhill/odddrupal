@@ -27,6 +27,21 @@ function f_investor_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'investor|lead|default';
+  $ds_fieldsetting->entity_type = 'investor';
+  $ds_fieldsetting->bundle = 'lead';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'upgrade_lead' => array(
+      'weight' => '6',
+      'label' => 'above',
+      'format' => 'default',
+    ),
+  );
+  $export['investor|lead|default'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'investor|person|default';
   $ds_fieldsetting->entity_type = 'investor';
   $ds_fieldsetting->bundle = 'person';
@@ -44,6 +59,57 @@ function f_investor_ds_field_settings_info() {
     ),
   );
   $export['investor|person|default'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'taxonomy_term|intressen|default';
+  $ds_fieldsetting->entity_type = 'taxonomy_term';
+  $ds_fieldsetting->bundle = 'intressen';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['taxonomy_term|intressen|default'] = $ds_fieldsetting;
+
+  return $export;
+}
+
+/**
+ * Implements hook_ds_custom_fields_info().
+ */
+function f_investor_ds_custom_fields_info() {
+  $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'upgrade_lead';
+  $ds_field->label = 'Upgrade lead';
+  $ds_field->field_type = 5;
+  $ds_field->entities = array(
+    'investor' => 'investor',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'code' => array(
+      'value' => '<form action="/investerare/skapa/privatperson?destination=investerare/lista" method="POST">
+<input name="upgrade_lead" type="hidden" value="1" />
+<input name="lead_id" type="hidden" value="<?php print $entity->id; ?>" />
+<input name="private" type="submit" value="Upgrade lead to investor" />
+</form>
+<form action="/investerare/skapa/bolag?destination=investerare/lista" method="POST">
+<input name="upgrade_lead" type="hidden" value="1" />
+<input name="lead_id" type="hidden" value="<?php print $entity->id; ?>" />
+<input name="company" type="submit" value="Upgrade lead to company" />
+</form>',
+      'format' => 'ds_code',
+    ),
+    'use_token' => 1,
+  );
+  $export['upgrade_lead'] = $ds_field;
 
   return $export;
 }
@@ -144,6 +210,46 @@ function f_investor_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'investor|lead|default';
+  $ds_layout->entity_type = 'investor';
+  $ds_layout->bundle = 'lead';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_lead_first_name',
+        1 => 'field_lead_last_name',
+        2 => 'field_shared_email',
+        3 => 'field_shared_phone',
+        4 => 'field_shared_cell',
+        5 => 'field_shared_notes',
+        6 => 'upgrade_lead',
+      ),
+    ),
+    'fields' => array(
+      'field_lead_first_name' => 'ds_content',
+      'field_lead_last_name' => 'ds_content',
+      'field_shared_email' => 'ds_content',
+      'field_shared_phone' => 'ds_content',
+      'field_shared_cell' => 'ds_content',
+      'field_shared_notes' => 'ds_content',
+      'upgrade_lead' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['investor|lead|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'investor|person|default';
   $ds_layout->entity_type = 'investor';
   $ds_layout->bundle = 'person';
@@ -225,6 +331,34 @@ function f_investor_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['investor|person|investor_verification'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'taxonomy_term|intressen|default';
+  $ds_layout->entity_type = 'taxonomy_term';
+  $ds_layout->bundle = 'intressen';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['taxonomy_term|intressen|default'] = $ds_layout;
 
   return $export;
 }

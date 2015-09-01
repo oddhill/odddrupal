@@ -10,6 +10,24 @@
 function f_investor_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'add terms in industries'.
+  $permissions['add terms in industries'] = array(
+    'name' => 'add terms in industries',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
+  // Exported permission: 'add terms in intressen'.
+  $permissions['add terms in intressen'] = array(
+    'name' => 'add terms in intressen',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: 'administer investors'.
   $permissions['administer investors'] = array(
     'name' => 'administer investors',
@@ -18,6 +36,24 @@ function f_investor_user_default_permissions() {
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'sedermera_investor',
+  );
+
+  // Exported permission: 'delete terms in industries'.
+  $permissions['delete terms in industries'] = array(
+    'name' => 'delete terms in industries',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in intressen'.
+  $permissions['delete terms in intressen'] = array(
+    'name' => 'delete terms in intressen',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: 'eck add investor company entities'.
@@ -94,6 +130,24 @@ function f_investor_user_default_permissions() {
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'eck',
+  );
+
+  // Exported permission: 'edit terms in industries'.
+  $permissions['edit terms in industries'] = array(
+    'name' => 'edit terms in industries',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in intressen'.
+  $permissions['edit terms in intressen'] = array(
+    'name' => 'edit terms in intressen',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: 'view investors'.

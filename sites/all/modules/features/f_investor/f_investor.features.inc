@@ -57,6 +57,12 @@ function f_investor_eck_bundle_info() {
       'name' => 'company',
       'label' => 'Bolag',
     ),
+    'investor_lead' => array(
+      'machine_name' => 'investor_lead',
+      'entity_type' => 'investor',
+      'name' => 'lead',
+      'label' => 'Lead',
+    ),
     'investor_person' => array(
       'machine_name' => 'investor_person',
       'entity_type' => 'investor',
