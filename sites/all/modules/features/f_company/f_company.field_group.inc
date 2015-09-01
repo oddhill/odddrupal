@@ -24,7 +24,8 @@ function f_company_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'field_comp_logo',
-      1 => 'title',
+      1 => 'field_comp_legacy_id',
+      2 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

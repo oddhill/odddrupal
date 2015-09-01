@@ -18,7 +18,7 @@ function f_company_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'full';
   $ds_fieldsetting->settings = array(
     'title' => array(
-      'weight' => '0',
+      'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -44,11 +44,13 @@ function f_company_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'title',
-        1 => 'field_comp_logo',
+        0 => 'field_comp_legacy_id',
+        1 => 'title',
+        2 => 'field_comp_logo',
       ),
     ),
     'fields' => array(
+      'field_comp_legacy_id' => 'ds_content',
       'title' => 'ds_content',
       'field_comp_logo' => 'ds_content',
     ),

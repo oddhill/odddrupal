@@ -83,7 +83,7 @@ function f_company_strongarm() {
           'weight' => '5',
         ),
         'title' => array(
-          'weight' => '1',
+          'weight' => '7',
         ),
         'path' => array(
           'weight' => '4',
