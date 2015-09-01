@@ -46,6 +46,9 @@ function f_offer_strongarm() {
       'token' => array(
         'custom_settings' => TRUE,
       ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

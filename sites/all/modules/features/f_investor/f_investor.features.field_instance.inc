@@ -1144,8 +1144,34 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'investor',
     'field_name' => 'field_invest_pers_first_name',
     'label' => 'Förnamn',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'document_html' => 'document_html',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1183,10 +1209,11 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'investor',
     'field_name' => 'field_invest_pers_id',
     'label' => 'Personnummer',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
+          'document_html' => 0,
           'filtered_html' => 'filtered_html',
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
@@ -1195,6 +1222,9 @@ function f_investor_field_default_field_instances() {
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
             'filtered_html' => array(
               'weight' => 0,
             ),
@@ -1250,8 +1280,34 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'investor',
     'field_name' => 'field_invest_pers_last_name',
     'label' => 'Efternamn',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'document_html' => 'document_html',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1579,7 +1635,7 @@ function f_investor_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 0,
+        'display_label' => 1,
       ),
       'type' => 'options_onoff',
       'weight' => 14,

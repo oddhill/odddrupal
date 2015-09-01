@@ -288,7 +288,7 @@ function f_investor_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => '',
-        1 => 'Lead',
+        1 => '',
       ),
       'allowed_values_function' => '',
     ),

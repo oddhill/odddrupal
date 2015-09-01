@@ -209,9 +209,11 @@ function f_offer_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',
-    'settings' => array(),
+    'settings' => array(
+      'decimal_separator' => ',',
+    ),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_float',
   );
 
   // Exported field_base: 'field_offer_newem'
@@ -224,9 +226,11 @@ function f_offer_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',
-    'settings' => array(),
+    'settings' => array(
+      'decimal_separator' => ',',
+    ),
     'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_float',
   );
 
   // Exported field_base: 'field_offer_pp'
@@ -239,24 +243,11 @@ function f_offer_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',
-    'settings' => array(),
+    'settings' => array(
+      'decimal_separator' => ',',
+    ),
     'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_offer_signcommit'
-  $field_bases['field_offer_signcommit'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_offer_signcommit',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
+    'type' => 'number_float',
   );
 
   // Exported field_base: 'field_offer_signed'
@@ -332,21 +323,6 @@ function f_offer_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text',
-  );
-
-  // Exported field_base: 'field_offer_warrant'
-  $field_bases['field_offer_warrant'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_offer_warrant',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
   );
 
   return $field_bases;

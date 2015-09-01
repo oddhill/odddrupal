@@ -21,7 +21,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 11,
       ),
       'token' => array(
         'label' => 'hidden',
@@ -38,7 +38,7 @@ function f_offer_field_default_field_instances() {
     ),
     'entity_type' => 'offer',
     'field_name' => 'field_offer_amount',
-    'label' => 'Åtagande',
+    'label' => 'Teckningsförbindelse',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -67,7 +67,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 5,
       ),
       'token' => array(
         'label' => 'hidden',
@@ -84,7 +84,7 @@ function f_offer_field_default_field_instances() {
     ),
     'entity_type' => 'offer',
     'field_name' => 'field_offer_amount_guar',
-    'label' => 'Garant',
+    'label' => 'Garantiåtagande',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -113,7 +113,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 8,
       ),
       'token' => array(
         'label' => 'above',
@@ -152,7 +152,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'token' => array(
         'label' => 'hidden',
@@ -212,7 +212,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 10,
       ),
       'token' => array(
         'label' => 'above',
@@ -249,7 +249,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 4,
       ),
       'token' => array(
         'label' => 'above',
@@ -296,7 +296,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 6,
       ),
       'token' => array(
         'label' => 'above',
@@ -334,15 +334,9 @@ function f_offer_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 14,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'token' => array(
         'label' => 'above',
@@ -359,7 +353,7 @@ function f_offer_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => '',
+      'suffix' => ' SEK',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -380,15 +374,9 @@ function f_offer_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 10,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'token' => array(
         'label' => 'above',
@@ -405,7 +393,7 @@ function f_offer_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => '',
+      'suffix' => ' SEK',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -426,15 +414,9 @@ function f_offer_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 11,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'token' => array(
         'label' => 'above',
@@ -451,7 +433,7 @@ function f_offer_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => '',
+      'suffix' => ' SEK',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -459,53 +441,7 @@ function f_offer_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 12,
-    ),
-  );
-
-  // Exported field_instance: 'offer-offer-field_offer_signcommit'
-  $field_instances['offer-offer-field_offer_signcommit'] = array(
-    'bundle' => 'offer',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 12,
-      ),
-      'token' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'offer',
-    'field_name' => 'field_offer_signcommit',
-    'label' => 'Teckningsförbindelse',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -524,7 +460,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 12,
       ),
       'token' => array(
         'label' => 'above',
@@ -561,7 +497,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 7,
       ),
       'token' => array(
         'label' => 'above',
@@ -608,7 +544,7 @@ function f_offer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 9,
       ),
       'token' => array(
         'label' => 'hidden',
@@ -659,58 +595,11 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_warrant'
-  $field_instances['offer-offer-field_offer_warrant'] = array(
-    'bundle' => 'offer',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 13,
-      ),
-      'token' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'offer',
-    'field_name' => 'field_offer_warrant',
-    'label' => 'Garantiåtagande',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 14,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Ange vilken investerare som ska få erbjudandet.');
   t('Brygglån');
   t('Första kontakt');
-  t('Garant');
   t('Garantiåtagande');
   t('Intresserad');
   t('Intresserad den');
@@ -722,7 +611,6 @@ function f_offer_field_default_field_instances() {
   t('Tecknat den');
   t('Teckningsförbindelse');
   t('Transaktion');
-  t('Åtagande');
 
   return $field_instances;
 }
