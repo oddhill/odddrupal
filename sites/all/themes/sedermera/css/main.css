@@ -2451,48 +2451,50 @@ table {
   table input {
     border: 1px solid #c8cacd; }
 
-div.checker span {
-  background: url("../graphics/checkbox_unchecked.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_unchecked.svg") transparent 0 0 no-repeat;
-  background-position: 0 0; }
-  div.checker span.checked {
-    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+div.checker {
+  margin-right: 5px; }
+  div.checker span {
+    background: url("../graphics/checkbox_unchecked.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_unchecked.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
-  div.checker span input.form-checkbox {
-    cursor: pointer; }
-div.checker.focus span {
-  background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-  background-position: 0 0; }
-  div.checker.focus span.checked {
-    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    div.checker span.checked {
+      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+      background-position: 0 0; }
+    div.checker span input.form-checkbox {
+      cursor: pointer; }
+  div.checker.focus span {
+    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
-div.checker.focus.active span {
-  background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-  background-position: 0 0; }
-  div.checker.focus.active span.checked {
-    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    div.checker.focus span.checked {
+      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+      background-position: 0 0; }
+  div.checker.focus.active span {
+    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
-div.checker.hover span {
-  background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-  background-position: 0 0; }
-  div.checker.hover span.checked {
-    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    div.checker.focus.active span.checked {
+      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+      background-position: 0 0; }
+  div.checker.hover span {
+    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
-div.checker.hover.active span {
-  background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-  background-position: 0 0; }
-  div.checker.hover.active span.checked {
-    background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+    div.checker.hover span.checked {
+      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+      background-position: 0 0; }
+  div.checker.hover.active span {
+    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
     background-position: 0 0; }
+    div.checker.hover.active span.checked {
+      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
+      background-position: 0 0; }
 
 div.checker.disabled span {
   background: url("../graphics/checkbox_disabled_unchecked.png") transparent 0 0 no-repeat;
@@ -2871,6 +2873,8 @@ form .form-item {
     display: inline-block;
     font-weight: 500;
     margin-bottom: 3px; }
+    form .form-item label.option {
+      margin-bottom: 0; }
   form .form-item .description {
     font-size: 12px;
     font-size: 1.2rem;

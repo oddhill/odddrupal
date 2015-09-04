@@ -417,6 +417,10 @@ form {
       display: inline-block;
       font-weight: 500;
       margin-bottom: 3px;
+
+      &.option {
+        margin-bottom: 0;
+      }
     }
 
     .description {

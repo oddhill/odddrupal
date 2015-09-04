@@ -1,6 +1,7 @@
 @import url("http://gregfranko.com/jquery.selectBoxIt.js/css/jquery.selectBoxIt.css");
 
 div.checker {
+  margin-right: 5px;
 
   span {
     @include svg-bg(checkbox_unchecked);
