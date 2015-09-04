@@ -13,7 +13,7 @@
  * view_name/views-view-table--view-name.tpl.php.
  */
 ?>
-<div class="transction-table-wrapper">
+<div class="transaction-table-wrapper">
   <table <?php print $attributes; ?>>
     <?php if (!empty($title)) : ?>
       <caption><?php print $title; ?></caption>

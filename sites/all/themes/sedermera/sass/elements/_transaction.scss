@@ -45,8 +45,10 @@
 }
 
 // Wraps Contactlist (Kontaktlista), Stakeholders (Intressenter), Subscription list (Teckningslista)
-.transction-table-wrapper {
+.transaction-table-wrapper {
   width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 .page-node-add-capital-raising {

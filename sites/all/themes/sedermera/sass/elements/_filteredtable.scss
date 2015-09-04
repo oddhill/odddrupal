@@ -1,7 +1,8 @@
 // Wraps the entire table
 .filtered-table {
   background: #fff;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 // Wraps the entire filter
@@ -131,11 +132,11 @@
   }
 }
 
-// Wraps the table (all content and filtred content)
+// Wraps the table (all content and filtered content)
 .table-wrapper {
   background: $snow;
-  overflow: hidden;
-  //padding-bottom: 60px;
+  overflow-y: hidden;
+  overflow-x: scroll;
   position: relative;
   width: 77%;
 }

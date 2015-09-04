@@ -2250,7 +2250,8 @@ form#user-login #edit-submit {
 
 .filtered-table {
   background: #fff;
-  overflow: hidden; }
+  overflow-y: hidden;
+  overflow-x: scroll; }
 
 .table-filter {
   background: #e0e2e6;
@@ -2366,7 +2367,8 @@ form#user-login #edit-submit {
 
 .table-wrapper {
   background: #fff;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
   position: relative;
   width: 77%; }
 
@@ -4020,11 +4022,16 @@ form#user-login,
 .node-capital_raising-form {
   padding: 50px 40px 40px 40px; }
 
-.transction-table-wrapper {
-  width: 100%; }
+.transaction-table-wrapper {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll; }
 
 .page-node-add-capital-raising .node-capital_raising-form {
   padding: 0; }
 
 th {
   padding: 10px; }
+
+td {
+  white-space: nowrap; }
