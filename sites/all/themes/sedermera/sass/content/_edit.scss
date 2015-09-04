@@ -19,11 +19,16 @@
   }
 }
 
-// Edit industries (Branscher) (Shared)
-#edit-field-shared-industries-und {
+// Edit industries (Branscher) and interests (Intressen) (Shared)
+#edit-field-shared-industries-und,
+#edit-field-shared-interests-und {
 
   .form-item {
     margin-bottom: 0;
+
+    &:last-child {
+      margin-bottom: 10px;
+    }
   }
 }
 

@@ -617,8 +617,12 @@ a.tabledrag-handle {
 .page-investor-company-edit .form-actions {
   padding-top: 20px; }
 
-#edit-field-shared-industries-und .form-item {
+#edit-field-shared-industries-und .form-item,
+#edit-field-shared-interests-und .form-item {
   margin-bottom: 0; }
+  #edit-field-shared-industries-und .form-item:last-child,
+  #edit-field-shared-interests-und .form-item:last-child {
+    margin-bottom: 10px; }
 
 .page-node-edit.node-type-capital-raising .form-sidebar {
   background: transparent;
