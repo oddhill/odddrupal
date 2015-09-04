@@ -511,9 +511,6 @@ form.views-send-preview .form-actions {
     position: absolute;
     top: 0; }
 
-.form-item-views-send-carbon-copy .checker {
-  padding-right: 25px; }
-
 .page-investerare-skapa .create-type-list {
   list-style: none;
   margin: 0 -10px;
@@ -619,6 +616,9 @@ a.tabledrag-handle {
 .page-investor-person-edit .form-actions,
 .page-investor-company-edit .form-actions {
   padding-top: 20px; }
+
+#edit-field-shared-industries-und .form-item {
+  margin-bottom: 0; }
 
 .page-node-edit.node-type-capital-raising .form-sidebar {
   background: transparent;
@@ -3922,8 +3922,7 @@ form#user-login,
     margin-top: 10px; }
   #eck-entity-form-edit-investor-person .checker,
   #eck-entity-form-edit-investor-company .checker {
-    margin-bottom: 2px;
-    padding-right: 25px; }
+    margin-bottom: 2px; }
   #eck-entity-form-edit-investor-person form .form-item,
   #eck-entity-form-edit-investor-company form .form-item {
     margin-bottom: 5px; }
