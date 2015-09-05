@@ -1491,7 +1491,7 @@ input[value="Jämför"]#edit-submit {
     padding: 40px; }
     @media screen and (max-width: 1600px) {
       .logged-in .main-content {
-        margin-left: 80px; } }
+        margin-left: 82px; } }
 
 .page-head {
   margin-bottom: 70px; }
@@ -2176,7 +2176,7 @@ form#user-login #edit-submit {
 .messages {
   color: #fff;
   font-weight: 500;
-  padding: 20px 40px; }
+  padding: 21px 40px; }
   .messages.status {
     background: #76c043; }
   .messages.warning {
