@@ -3609,6 +3609,12 @@ form#user-login,
     font-weight: 700;
     margin-top: 20px;
     text-transform: uppercase; }
+  @media screen and (max-width: 1600px) {
+    .sidebar-block .date {
+      font-size: 24px;
+      font-size: 2.4rem;
+      line-height: 36px;
+      margin-top: 15px; } }
 
 .remaining,
 .total {
@@ -3658,7 +3664,15 @@ form#user-login,
     overflow: hidden;
     position: absolute;
     text-align: center;
-    width: 100%; }
+    width: 90%;
+    left: 5%;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    @media screen and (max-width: 1600px) {
+      .bar .text {
+        font-size: 11px;
+        font-size: 1.1rem;
+        line-height: 16.5px; } }
   .bar.guaranteed-wrapper .progress-bar {
     background-color: #d48c00; }
   .bar.committed-wrapper .progress-bar {
@@ -3672,8 +3686,6 @@ form#user-login,
   @media screen and (max-width: 1600px) {
     .total {
       margin-bottom: 10px; } }
-  .total:last-child {
-    margin-bottom: 30px; }
 
 .total-wrapper {
   clear: both; }

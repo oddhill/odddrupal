@@ -51,6 +51,14 @@
     margin-top: 20px;
     text-transform: uppercase;
   }
+
+  @include media($big) {
+
+    .date {
+      @include font-size(2.4);
+      margin-top: 15px;
+    }
+  }
 }
 
 // Time remaning & total text
@@ -111,7 +119,14 @@
     overflow: hidden;
     position: absolute;
     text-align: center;
-    width: 100%;
+    width: 90%;
+    left: 5%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include media($big) {
+      @include font-size(1.1);
+    }
   }
 
   &.guaranteed-wrapper {
@@ -140,10 +155,6 @@
 
   @include media($big) {
     margin-bottom: 10px;
-  }
-
-  &:last-child {
-    margin-bottom: 30px;
   }
 }
 
