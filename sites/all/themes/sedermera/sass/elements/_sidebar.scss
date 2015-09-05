@@ -225,12 +225,23 @@
     > ul.menu {
 
       > li {
-        padding: 20px 30px;
+        padding: 0;
 
         > a {
           font-size: 0;
+          padding: 0;
           text-indent: 1000px;
           overflow: hidden;
+          height: 60px;
+          background-position: center center !important;
+
+          &:hover {
+            background-color: tint($medium-grey,3%) !important;
+
+            &.active-trail {
+              background-color: $night !important;
+            }
+          }
         }
       }
     }
@@ -319,6 +330,10 @@
   }
 
   .menu {
+    display: none;
+  }
+
+  @include media($big) {
     display: none;
   }
 }

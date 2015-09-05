@@ -2082,11 +2082,18 @@ form#user-login #edit-submit {
       margin-bottom: 0; }
 @media screen and (max-width: 1600px) {
   .main-navigation > ul.menu > li {
-    padding: 20px 30px; }
+    padding: 0; }
     .main-navigation > ul.menu > li > a {
       font-size: 0;
+      padding: 0;
       text-indent: 1000px;
-      overflow: hidden; }
+      overflow: hidden;
+      height: 60px;
+      background-position: center center !important; }
+      .main-navigation > ul.menu > li > a:hover {
+        background-color: #272727 !important; }
+        .main-navigation > ul.menu > li > a:hover.active-trail {
+          background-color: #1a1a1a !important; }
   .main-navigation li.expanded ul.menu {
     background: #282828;
     position: fixed;
@@ -2145,6 +2152,9 @@ form#user-login #edit-submit {
     text-transform: uppercase; }
   .user .menu {
     display: none; }
+  @media screen and (max-width: 1600px) {
+    .user {
+      display: none; } }
 
 .user-image {
   background: url("../graphics/user_male.png") transparent 0 0 no-repeat;
