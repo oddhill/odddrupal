@@ -365,7 +365,8 @@ function install_run_tasks(&$install_state) {
  * Runs an individual installation task.
  *
  * @param $task
- *   An array of information about the task to be run.
+ *   An array of information about the task to be run as returned by
+ *   hook_install_tasks().
  * @param $install_state
  *   An array of information about the current installation state. This is
  *   passed in by reference so that it can be modified by the task.
@@ -481,11 +482,15 @@ function install_run_task($task, &$install_state) {
  * the page request evolves (for example, if an installation profile hasn't
  * been selected yet, we don't yet know which profile tasks need to be run).
  *
+ * You can override this using hook_install_tasks() or
+ * hook_install_tasks_alter().
+ *
  * @param $install_state
  *   An array of information about the current installation state.
  *
  * @return
- *   A list of tasks to be performed, with associated metadata.
+ *   A list of tasks to be performed, with associated metadata as returned by
+ *   hook_install_tasks().
  */
 function install_tasks_to_perform($install_state) {
   // Start with a list of all currently available tasks.
@@ -577,7 +582,6 @@ function install_tasks($install_state) {
       if (file_exists($profile_install_file)) {
         include_once $profile_install_file;
       }
-
       $function = $profile . '_install_tasks';
       if (function_exists($function)) {
         $result = $function($install_state);
@@ -1387,7 +1391,7 @@ function install_already_done_error() {
  */
 function install_load_profile(&$install_state) {
   foreach (drupal_get_profiles() as $profile) {
-    $profile_file = DRUPAL_ROOT . '/profiles/' . $profile . '/' . $profile . '.profile';
+    $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
     if (file_exists($profile_file)) {
       include_once $profile_file;
 

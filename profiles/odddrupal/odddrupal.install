@@ -30,9 +30,6 @@ function odddrupal_install() {
 
   // Set various variables.
   odddrupal_set_variables();
-
-  // Delete log messages that was created during the installation.
-  db_delete('watchdog')->execute();
 }
 
 /**
@@ -963,5 +960,30 @@ function odddrupal_update_7159() {
   if (variable_get('tadaa_environment') == 'production') {
     module_disable(array('dblog'));
     drupal_uninstall_modules(array('dblog'));
+  }
+}
+
+/**
+ * Enable the Context List Active module for the development and staging environment.
+ */
+function odddrupal_update_7160() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['context_list'] = 1;
+  $modules['context_list_active'] = 1;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['context_list'] = 1;
+  $modules['context_list_active'] = 1;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['context_list'] = 0;
+  $modules['context_list_active'] = 0;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'development' || variable_get('tadaa_environment') == 'staging') {
+    module_enable(array('context_list'));
+    module_enable(array('context_list_active'));
   }
 }
