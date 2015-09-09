@@ -65,6 +65,9 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
 
     // Perform minor alterations.
     sedermera_verification_custom_form_alter($form);
+
+    $form['field_shared_ctrl_upp'][LANGUAGE_NONE]['form']['status']['#access'] = FALSE;
+    // $form['field_shared_ctrl_upp'][LANGUAGE_NONE]['#title'] = 'test';
   }
   else {
     // In any other case, we'll disable the verification elements.
@@ -238,8 +241,7 @@ function sedermera_verification_mark_not_ok(&$form) {
 
   foreach ($fields as $field) {
     if ($form[$field]) {
-
-      if($form[$field][LANGUAGE_NONE]['form']['field_verification_approved'][LANGUAGE_NONE]['#entity']->field_verification_approved[LANGUAGE_NONE][0]['value'] == 0) {
+      if($form[$field][LANGUAGE_NONE]['form']['#entity']->field_control_approved[LANGUAGE_NONE][0]['value'] == 0) {
         $form[$field][LANGUAGE_NONE]['#prefix'] = substr_replace($form[$field][LANGUAGE_NONE]['#prefix'], ' class="not-approved-control"', -1, 0);
       }
     }
@@ -391,7 +393,7 @@ function sedermera_verification_get_approved($id) {
       return FALSE;
     }
 
-    if (!$wrapper->$field->field_verification_approved->value()) {
+    if (!$wrapper->$field->field_control_approved->value()) {
       // The checkbox field hasn't been checked, which means that the
       // verification hasn't been approved yet.
       return FALSE;
@@ -432,7 +434,7 @@ function sedermera_verification_get_expiration_date($id) {
       continue;
     }
 
-    if (!($expire = $wrapper->$field->field_verification_date->value())) {
+    if (!($expire = $wrapper->$field->field_control_date->value())) {
       // An expiration date hasn't been set for this verification.
       continue;
     }
@@ -454,16 +456,16 @@ function sedermera_verification_get_expiration_date($id) {
  */
 function sedermera_verification_get_verification_fields() {
   return array(
-    'field_shared_veri_upp',
-    'field_shared_veri_ptv',
-    'field_shared_veri_id',
-    'field_shared_veri_id_real',
-    'field_shared_veri_address',
-    'field_shared_veri_eu',
-    'field_shared_veri_credit',
-    'field_shared_veri_register',
-    'field_shared_veri_komp',
-    'field_shared_veri_ovr',
+    'field_shared_ctrl_upp',
+    'field_shared_ctrl_ptv',
+    'field_shared_ctrl_id',
+    'field_shared_ctrl_id_real',
+    'field_shared_ctrl_ext',
+    'field_shared_ctrl_eu',
+    'field_shared_ctrl_credit',
+    'field_shared_ctrl_reg',
+    'field_shared_ctrl_comp',
+    'field_shared_ctrl_ovr',
   );
 }
 

@@ -77,12 +77,12 @@ function f_investor_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_investerare:investerare',
   );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Alla investerare');
   t('Investerare');
   t('Lägg till investerare');
-
 
   return $menu_links;
 }

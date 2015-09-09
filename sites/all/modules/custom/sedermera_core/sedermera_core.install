@@ -43,3 +43,18 @@ function sedermera_core_update_7002() {
   );
   path_save($path);
 }
+
+function sedermera_core_update_7003() {
+  field_delete_field('field_shared_veri_upp');
+  field_delete_field('field_shared_veri_ptv');
+  field_delete_field('field_shared_veri_id');
+  field_delete_field('field_shared_veri_id_real');
+  field_delete_field('field_shared_veri_address');
+  field_delete_field('field_shared_veri_eu');
+  field_delete_field('field_shared_veri_credit');
+  field_delete_field('field_shared_veri_register');
+  field_delete_field('field_shared_veri_komp');
+  field_delete_field('field_shared_veri_ovr');
+
+  field_purge_batch(100);
+}
