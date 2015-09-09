@@ -51,6 +51,12 @@ function f_investor_views_api($module = NULL, $api = NULL) {
  */
 function f_investor_eck_bundle_info() {
   $items = array(
+    'contact_person_contact_person' => array(
+      'machine_name' => 'contact_person_contact_person',
+      'entity_type' => 'contact_person',
+      'name' => 'contact_person',
+      'label' => 'Contact person',
+    ),
     'investor_company' => array(
       'machine_name' => 'investor_company',
       'entity_type' => 'investor',
@@ -78,6 +84,17 @@ function f_investor_eck_bundle_info() {
  */
 function f_investor_eck_entity_type_info() {
   $items = array(
+    'contact_person' => array(
+      'name' => 'contact_person',
+      'label' => 'Kontaktperson',
+      'properties' => array(
+        'title' => array(
+          'label' => 'Title',
+          'type' => 'text',
+          'behavior' => 'title',
+        ),
+      ),
+    ),
     'investor' => array(
       'name' => 'investor',
       'label' => 'Investerare',
@@ -110,5 +127,23 @@ function f_investor_eck_entity_type_info() {
       ),
     ),
   );
+  return $items;
+}
+
+/**
+ * Implements hook_node_info().
+ */
+function f_investor_node_info() {
+  $items = array(
+    'kontrolluppgift' => array(
+      'name' => t('Kontrolluppgift'),
+      'base' => 'node_content',
+      'description' => t('Kontrolluppgift'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+  );
+  drupal_alter('node_info', $items);
   return $items;
 }

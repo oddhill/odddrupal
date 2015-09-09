@@ -62,6 +62,21 @@ function f_investor_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|kontrolluppgift|full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'kontrolluppgift';
+  $ds_fieldsetting->view_mode = 'full';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|kontrolluppgift|full'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'taxonomy_term|intressen|default';
   $ds_fieldsetting->entity_type = 'taxonomy_term';
   $ds_fieldsetting->bundle = 'intressen';
@@ -134,12 +149,9 @@ function f_investor_ds_layout_settings_info() {
         1 => 'field_shared_custresp',
         2 => 'field_shared_industries',
         3 => 'field_shared_address',
-        4 => 'field_shared_email',
-        5 => 'field_shared_cell',
-        6 => 'field_shared_phone',
-        7 => 'field_shared_fax',
-        8 => 'field_shared_notes',
-        9 => 'field_invest_comp_own',
+        4 => 'field_shared_notes',
+        5 => 'field_invest_comp_own',
+        6 => 'field_invest_cont_person',
       ),
     ),
     'fields' => array(
@@ -147,12 +159,9 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_custresp' => 'ds_content',
       'field_shared_industries' => 'ds_content',
       'field_shared_address' => 'ds_content',
-      'field_shared_email' => 'ds_content',
-      'field_shared_cell' => 'ds_content',
-      'field_shared_phone' => 'ds_content',
-      'field_shared_fax' => 'ds_content',
       'field_shared_notes' => 'ds_content',
       'field_invest_comp_own' => 'ds_content',
+      'field_invest_cont_person' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -335,6 +344,40 @@ function f_investor_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['investor|person|investor_verification'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|kontrolluppgift|full';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'kontrolluppgift';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_control_files',
+        2 => 'field_control_approved',
+        3 => 'field_control_date',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_control_files' => 'ds_content',
+      'field_control_approved' => 'ds_content',
+      'field_control_date' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|kontrolluppgift|full'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;

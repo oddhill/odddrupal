@@ -13,6 +13,40 @@ function f_investor_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_control_state|node|kontrolluppgift|form';
+  $field_group->group_name = 'group_control_state';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'kontrolluppgift';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Status',
+    'weight' => '44',
+    'children' => array(
+      0 => 'field_control_approved',
+      1 => 'field_control_date',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Status',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'status-fields',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_control_state|node|kontrolluppgift|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_invest_comp_1|investor|company|form';
   $field_group->group_name = 'group_invest_comp_1';
   $field_group->entity_type = 'investor';
@@ -91,7 +125,7 @@ function f_investor_field_group_info() {
     'children' => array(
       0 => 'field_shared_address',
       1 => 'field_shared_notes',
-      2 => 'group_invest_comp_2',
+      2 => 'field_invest_cont_person',
     ),
     'format_type' => 'div',
     'format_settings' => array(
