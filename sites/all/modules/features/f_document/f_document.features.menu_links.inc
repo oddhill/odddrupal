@@ -195,6 +195,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Administrera dokument');
@@ -204,7 +205,6 @@ function f_document_menu_default_menu_links() {
   t('Lägg till dokument');
   t('Läst per användare');
   t('Läst per dokument');
-
 
   return $menu_links;
 }

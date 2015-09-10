@@ -10,7 +10,8 @@
 function f_verification_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'verification-verification-field_verification_approved'
+  // Exported field_instance:
+  // 'verification-verification-field_verification_approved'
   $field_instances['verification-verification-field_verification_approved'] = array(
     'bundle' => 'verification',
     'default_value' => array(
@@ -47,7 +48,8 @@ function f_verification_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'verification-verification-field_verification_date'
+  // Exported field_instance:
+  // 'verification-verification-field_verification_date'
   $field_instances['verification-verification-field_verification_date'] = array(
     'bundle' => 'verification',
     'deleted' => 0,
@@ -96,7 +98,8 @@ function f_verification_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'verification-verification-field_verification_file'
+  // Exported field_instance:
+  // 'verification-verification-field_verification_file'
   $field_instances['verification-verification-field_verification_file'] = array(
     'bundle' => 'verification',
     'deleted' => 0,

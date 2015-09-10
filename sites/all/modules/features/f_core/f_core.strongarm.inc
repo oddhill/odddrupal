@@ -286,6 +286,8 @@ function f_core_strongarm() {
     'capital_raising' => 0,
     'company' => 0,
     'document' => 0,
+    'kontrolluppgift' => 0,
+    'transaction_history' => 0,
   );
   $export['nodeaccess-types'] = $strongarm;
 
@@ -305,6 +307,16 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     'document' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'kontrolluppgift' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'transaction_history' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,

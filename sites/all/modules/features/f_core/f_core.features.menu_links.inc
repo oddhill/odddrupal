@@ -30,10 +30,10 @@ function f_core_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
   );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Översikt');
-
 
   return $menu_links;
 }

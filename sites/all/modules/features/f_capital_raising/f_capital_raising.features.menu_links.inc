@@ -103,13 +103,13 @@ function f_capital_raising_menu_default_menu_links() {
     'weight' => -47,
     'customized' => 1,
   );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Alla transaktioner');
   t('Arkiverade transaktioner');
   t('Lägg till transaktion');
   t('Transaktioner');
-
 
   return $menu_links;
 }

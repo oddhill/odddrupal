@@ -5,7 +5,6 @@ dependencies[] = ctools
 dependencies[] = date
 dependencies[] = ds
 dependencies[] = eck
-dependencies[] = eck
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = file

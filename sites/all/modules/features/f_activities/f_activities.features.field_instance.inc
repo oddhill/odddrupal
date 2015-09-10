@@ -358,7 +358,8 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_first_contact-field_shared_cap_rais'
+  // Exported field_instance:
+  // 'message-offer_first_contact-field_shared_cap_rais'
   $field_instances['message-offer_first_contact-field_shared_cap_rais'] = array(
     'bundle' => 'offer_first_contact',
     'default_value' => NULL,
@@ -416,7 +417,8 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_first_contact-field_shared_investor'
+  // Exported field_instance:
+  // 'message-offer_first_contact-field_shared_investor'
   $field_instances['message-offer_first_contact-field_shared_investor'] = array(
     'bundle' => 'offer_first_contact',
     'default_value' => NULL,
