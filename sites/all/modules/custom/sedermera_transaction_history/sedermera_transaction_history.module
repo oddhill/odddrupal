@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * Implements hook_node_presave().
+ */
+function sedermera_transaction_history_entity_presave($entity, $type) {
+
+  if ($type != 'offer') {
+    return;
+  }
+
+  $wrapper = entity_metadata_wrapper('offer', $entity);
+
+  if ($wrapper->field_offer_signed->value() == 1) {
+    $list = array();
+
+    $company_wrapper = $wrapper->field_offer_cap_rais->value();
+
+    $list['transaction_title'] = $company_wrapper->title;
+
+    $company_obj = node_load($company_wrapper->field_cap_rais_comp[LANGUAGE_NONE][0]['target_id']);
+    $list['company_name'] = $company_obj->title;
+
+    $list['transaction_id'] = $company_wrapper->nid;
+
+    $investor_wrapper = $wrapper->field_offer_investor->value();
+
+    $list['investor_name'] = $investor_wrapper->title;
+
+    $list['hist_name'] = $list['investor_name'] . ' - ' . $list['transaction_title'];
+
+    if (!empty($investor_wrapper->field_invest_pers_id)) {
+      $list['investor_id'] = $investor_wrapper->field_invest_pers_id[LANGUAGE_NONE][0]['value'];
+    }
+    else {
+      $list['investor_id'] = $investor_wrapper->field_invest_comp_id[LANGUAGE_NONE][0]['value'];
+    }
+
+    $list['sum_amount_guar'] = $wrapper->field_offer_amount_guar->value();
+    $list['sum_amount'] = $wrapper->field_offer_amount->value();
+    $list['sum_newem'] = $wrapper->field_offer_newem->value();
+    $list['sum_pp'] = $wrapper->field_offer_pp->value();
+    $list['sum_loan'] = $wrapper->field_offer_loan->value();
+
+    $list['max_invest'] = max($list['sum_amount_guar'], $list['sum_amount'], $list['sum_newem'], $list['sum_pp'], $list['sum_loan']);
+
+    global $user;
+
+    $values = array(
+      'type' => 'transaction_history',
+      'uid' => $user->uid,
+      'status' => 1,
+    );
+
+    $entity = entity_create('node', $values);
+    $ewrapper = entity_metadata_wrapper('node', $entity);
+
+    $ewrapper->title->set($list['hist_name']);
+
+    $ewrapper->field_transaction_title->set($list['transaction_title']);
+    $ewrapper->field_transaction_company->set($list['company_name']);
+    $ewrapper->field_transaction_id->set(intval($list['transaction_id']));
+    $ewrapper->field_transaction_investor_id->set($list['investor_id']);
+    $ewrapper->field_transaction_invest_name->set($list['investor_name']);
+    $ewrapper->field_transaction_amount_guar->set(intval($list['sum_amount_guar']));
+    $ewrapper->field_transaction_amount->set(intval($list['sum_amount']));
+    $ewrapper->field_transaction_newem->set(intval($list['sum_newem']));
+    $ewrapper->field_transaction_pp->set(intval($list['sum_pp']));
+    $ewrapper->field_transaction_loan->set(intval($list['sum_loan']));
+    $ewrapper->field_transaction_max_invest->set(intval($list['max_invest']));
+
+    $ewrapper->save();
+  }
+}
