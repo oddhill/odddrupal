@@ -46,31 +46,3 @@
 #edit-field-document-files-und-0-upload {
   width: 190px;
 }
-
-.field-type-entityreference {
-
-  .submit-wrapper {
-
-    input {
-      @include button($dark-grey, add-mini, small);
-      background-position: 11px 7px;
-    }
-  }
-
-  thead {
-    border: 0;
-  }
-
-  th {
-    background: #D4D6D9;
-    color: #282828;
-  }
-
-  td {
-    padding: 0;
-  }
-
-  tr.odd {
-   background: #D4D6D9;
-  }
-}

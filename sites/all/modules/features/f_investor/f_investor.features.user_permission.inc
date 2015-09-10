@@ -56,6 +56,15 @@ function f_investor_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'eck add contact_person contact_person entities'.
+  $permissions['eck add contact_person contact_person entities'] = array(
+    'name' => 'eck add contact_person contact_person entities',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'eck',
+  );
+
   // Exported permission: 'eck add investor company entities'.
   $permissions['eck add investor company entities'] = array(
     'name' => 'eck add investor company entities',
@@ -90,6 +99,15 @@ function f_investor_user_default_permissions() {
     'module' => 'eck',
   );
 
+  // Exported permission: 'eck edit contact_person contact_person entities'.
+  $permissions['eck edit contact_person contact_person entities'] = array(
+    'name' => 'eck edit contact_person contact_person entities',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'eck',
+  );
+
   // Exported permission: 'eck edit investor company entities'.
   $permissions['eck edit investor company entities'] = array(
     'name' => 'eck edit investor company entities',
@@ -106,6 +124,15 @@ function f_investor_user_default_permissions() {
     'roles' => array(
       'Administratör' => 'Administratör',
       'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'eck',
+  );
+
+  // Exported permission: 'eck view contact_person contact_person entities'.
+  $permissions['eck view contact_person contact_person entities'] = array(
+    'name' => 'eck view contact_person contact_person entities',
+    'roles' => array(
+      'Administratör' => 'Administratör',
     ),
     'module' => 'eck',
   );

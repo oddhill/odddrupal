@@ -19,6 +19,69 @@
   }
 }
 
+// Ajax progress styling for add related document/appendix
+.field-type-entityreference {
+
+  .submit-wrapper {
+    position: relative;
+    margin-right: 10px;
+
+    .form-submit {
+      margin-right: 0;
+    }
+  }
+
+  .ajax-progress {
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 24px;
+    background: shade($dark-grey,30%);
+    border-radius: 12px;
+    padding: 2px;
+    color: $snow;
+
+    .message {
+      padding-left: 5px;
+      @include font-size(1.2);
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+// Add entity to content styling
+.field-type-entityreference {
+
+  .submit-wrapper {
+
+    input {
+      @include button($dark-grey, add-mini, small);
+      background-position: 11px 7px;
+    }
+  }
+
+  thead {
+    border: 0;
+  }
+
+  th {
+    background: #D4D6D9;
+    color: #282828;
+  }
+
+  td {
+    padding: 0;
+  }
+
+  tr.odd {
+   background: #D4D6D9;
+  }
+}
+
 // Edit industries (Branscher) and interests (Intressen) (Shared)
 #edit-field-shared-industries-und,
 #edit-field-shared-interests-und {
