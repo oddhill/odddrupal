@@ -35,11 +35,11 @@ function f_investor_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
-        'views-aktiviteter-investor' => array(
+        'views-transaktions_historia-block' => array(
           'module' => 'views',
-          'delta' => 'aktiviteter-investor',
-          'region' => 'sidebar-second',
-          'weight' => '-10',
+          'delta' => 'transaktions_historia-block',
+          'region' => 'content',
+          'weight' => '-9',
         ),
       ),
     ),

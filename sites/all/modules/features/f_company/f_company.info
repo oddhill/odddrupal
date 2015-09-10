@@ -13,6 +13,7 @@ dependencies[] = menu
 dependencies[] = node
 dependencies[] = node_view_permissions
 dependencies[] = strongarm
+dependencies[] = text
 dependencies[] = views
 features[ccl][] = Lägg till kundbolag
 features[ctools][] = ds:ds:1

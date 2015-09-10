@@ -80,12 +80,12 @@ function f_company_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_kundbolag:kundbolag',
   );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Alla kundbolag');
   t('Kundbolag');
   t('Lägg till kundbolag');
-
 
   return $menu_links;
 }

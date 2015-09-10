@@ -77,6 +77,21 @@ function f_investor_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|transaction_history|full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'transaction_history';
+  $ds_fieldsetting->view_mode = 'full';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|transaction_history|full'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'taxonomy_term|intressen|default';
   $ds_fieldsetting->entity_type = 'taxonomy_term';
   $ds_fieldsetting->bundle = 'intressen';
@@ -102,7 +117,7 @@ function f_investor_ds_custom_fields_info() {
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
   $ds_field->field = 'upgrade_lead';
-  $ds_field->label = 'Upgrade lead';
+  $ds_field->label = 'Uppgradera lead';
   $ds_field->field_type = 5;
   $ds_field->entities = array(
     'investor' => 'investor',
@@ -113,12 +128,12 @@ function f_investor_ds_custom_fields_info() {
       'value' => '<form action="/investerare/skapa/privatperson?destination=investerare/lista" method="POST">
 <input name="upgrade_lead" type="hidden" value="1" />
 <input name="lead_id" type="hidden" value="<?php print $entity->id; ?>" />
-<input name="private" type="submit" value="Upgrade lead to investor" />
+<input name="private" type="submit" value="Uppgradera lead till investerare" />
 </form>
 <form action="/investerare/skapa/bolag?destination=investerare/lista" method="POST">
 <input name="upgrade_lead" type="hidden" value="1" />
 <input name="lead_id" type="hidden" value="<?php print $entity->id; ?>" />
-<input name="company" type="submit" value="Upgrade lead to company" />
+<input name="company" type="submit" value="Uppgradera lead till bolag" />
 </form>',
       'format' => 'ds_code',
     ),
@@ -134,6 +149,42 @@ function f_investor_ds_custom_fields_info() {
  */
 function f_investor_ds_layout_settings_info() {
   $export = array();
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'contact_person|contact_person|default';
+  $ds_layout->entity_type = 'contact_person';
+  $ds_layout->bundle = 'contact_person';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_comp_cont_name',
+        1 => 'field_comp_cont_mail',
+        2 => 'field_comp_cont_cell',
+        3 => 'field_comp_cont_phone',
+        4 => 'field_comp_cont_fax',
+      ),
+    ),
+    'fields' => array(
+      'field_comp_cont_name' => 'ds_content',
+      'field_comp_cont_mail' => 'ds_content',
+      'field_comp_cont_cell' => 'ds_content',
+      'field_comp_cont_phone' => 'ds_content',
+      'field_comp_cont_fax' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['contact_person|contact_person|default'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
@@ -378,6 +429,56 @@ function f_investor_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['node|kontrolluppgift|full'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|transaction_history|full';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'transaction_history';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_transaction_company',
+        2 => 'field_transaction_id',
+        3 => 'field_transaction_title',
+        4 => 'field_transaction_invest_name',
+        5 => 'field_transaction_investor_id',
+        6 => 'field_transaction_max_invest',
+        7 => 'field_transaction_amount_guar',
+        8 => 'field_transaction_amount',
+        9 => 'field_transaction_newem',
+        10 => 'field_transaction_pp',
+        11 => 'field_transaction_loan',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_transaction_company' => 'ds_content',
+      'field_transaction_id' => 'ds_content',
+      'field_transaction_title' => 'ds_content',
+      'field_transaction_invest_name' => 'ds_content',
+      'field_transaction_investor_id' => 'ds_content',
+      'field_transaction_max_invest' => 'ds_content',
+      'field_transaction_amount_guar' => 'ds_content',
+      'field_transaction_amount' => 'ds_content',
+      'field_transaction_newem' => 'ds_content',
+      'field_transaction_pp' => 'ds_content',
+      'field_transaction_loan' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|transaction_history|full'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;

@@ -817,5 +817,212 @@ function f_investor_views_default_views() {
   );
   $export['kundansvarig'] = $view;
 
+  $view = new view();
+  $view->name = 'transaktions_historia';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Transaktions historia';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Transaktions historia';
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'view investors';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_transaction_company' => 'field_transaction_company',
+    'field_transaction_invest_name' => 'field_transaction_invest_name',
+    'field_transaction_investor_id' => 'field_transaction_investor_id',
+    'field_transaction_id' => 'field_transaction_id',
+    'field_transaction_title' => 'field_transaction_title',
+    'field_transaction_max_invest' => 'field_transaction_max_invest',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_transaction_company' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_transaction_invest_name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_transaction_investor_id' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_transaction_id' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_transaction_title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_transaction_max_invest' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Kunde inte hitta någon investeringshistorik som matchade sökkriterierna.';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Företag */
+  $handler->display->display_options['fields']['field_transaction_company']['id'] = 'field_transaction_company';
+  $handler->display->display_options['fields']['field_transaction_company']['table'] = 'field_data_field_transaction_company';
+  $handler->display->display_options['fields']['field_transaction_company']['field'] = 'field_transaction_company';
+  $handler->display->display_options['fields']['field_transaction_company']['element_label_colon'] = FALSE;
+  /* Field: Content: Investerar namn */
+  $handler->display->display_options['fields']['field_transaction_invest_name']['id'] = 'field_transaction_invest_name';
+  $handler->display->display_options['fields']['field_transaction_invest_name']['table'] = 'field_data_field_transaction_invest_name';
+  $handler->display->display_options['fields']['field_transaction_invest_name']['field'] = 'field_transaction_invest_name';
+  $handler->display->display_options['fields']['field_transaction_invest_name']['element_label_colon'] = FALSE;
+  /* Field: Content: Investerar ID */
+  $handler->display->display_options['fields']['field_transaction_investor_id']['id'] = 'field_transaction_investor_id';
+  $handler->display->display_options['fields']['field_transaction_investor_id']['table'] = 'field_data_field_transaction_investor_id';
+  $handler->display->display_options['fields']['field_transaction_investor_id']['field'] = 'field_transaction_investor_id';
+  $handler->display->display_options['fields']['field_transaction_investor_id']['element_label_colon'] = FALSE;
+  /* Field: Content: Transaktions ID */
+  $handler->display->display_options['fields']['field_transaction_id']['id'] = 'field_transaction_id';
+  $handler->display->display_options['fields']['field_transaction_id']['table'] = 'field_data_field_transaction_id';
+  $handler->display->display_options['fields']['field_transaction_id']['field'] = 'field_transaction_id';
+  $handler->display->display_options['fields']['field_transaction_id']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_transaction_id']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Transaktions titel */
+  $handler->display->display_options['fields']['field_transaction_title']['id'] = 'field_transaction_title';
+  $handler->display->display_options['fields']['field_transaction_title']['table'] = 'field_data_field_transaction_title';
+  $handler->display->display_options['fields']['field_transaction_title']['field'] = 'field_transaction_title';
+  $handler->display->display_options['fields']['field_transaction_title']['element_label_colon'] = FALSE;
+  /* Field: Content: Max investering */
+  $handler->display->display_options['fields']['field_transaction_max_invest']['id'] = 'field_transaction_max_invest';
+  $handler->display->display_options['fields']['field_transaction_max_invest']['table'] = 'field_data_field_transaction_max_invest';
+  $handler->display->display_options['fields']['field_transaction_max_invest']['field'] = 'field_transaction_max_invest';
+  $handler->display->display_options['fields']['field_transaction_max_invest']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_transaction_max_invest']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'transaction_history' => 'transaction_history',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+
+  /* Display: History page */
+  $handler = $view->new_display('page', 'History page', 'page');
+  $handler->display->display_options['path'] = 'investerare/historik';
+
+  /* Display: History block */
+  $handler = $view->new_display('block', 'History block', 'block');
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Investerar namn (field_transaction_invest_name) */
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['id'] = 'field_transaction_invest_name_value';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['table'] = 'field_data_field_transaction_invest_name';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['field'] = 'field_transaction_invest_name_value';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_type'] = 'php';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_options']['code'] = '$entity = entity_load_single(\'investor\', arg(2));
+return $entity->title;';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['limit'] = '0';
+  $translatables['transaktions_historia'] = array(
+    t('Master'),
+    t('Transaktions historia'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Kunde inte hitta någon investeringshistorik som matchade sökkriterierna.'),
+    t('Title'),
+    t('Företag'),
+    t('Investerar namn'),
+    t('Investerar ID'),
+    t('Transaktions ID'),
+    t('Transaktions titel'),
+    t('Max investering'),
+    t('History page'),
+    t('History block'),
+    t('All'),
+  );
+  $export['transaktions_historia'] = $view;
+
   return $export;
 }
