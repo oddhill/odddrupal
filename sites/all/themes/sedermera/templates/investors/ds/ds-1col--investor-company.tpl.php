@@ -13,16 +13,20 @@
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding bg">
   <?php print render($content['title']); ?>
-  <div class="columns">
+  <div class="columns <?php if ($content['field_invest_cont_person']): ?>three-col<?php endif; ?>">
     <div class="col">
       <?php print render($content['field_shared_custresp']); ?>
       <?php print render($content['field_invest_comp_own']); ?>
       <?php print render($content['field_shared_industries']); ?>
-      <?php print render($content['field_invest_cont_person']); ?>
     </div>
     <div class="col">
       <?php print render($content['field_shared_address']); ?>
       <?php print render($content['field_shared_notes']); ?>
     </div>
+    <?php if ($content['field_invest_cont_person']): ?>
+      <div class="col">
+        <?php print render($content['field_invest_cont_person']); ?>
+      </div>
+    <?php endif; ?>
   </div>
 </div>

@@ -166,4 +166,11 @@
   .col {
     @include span-columns(6 of 12);
   }
+
+  &.three-col {
+
+    .col {
+      @include span-columns(4 of 12);
+    }
+  }
 }

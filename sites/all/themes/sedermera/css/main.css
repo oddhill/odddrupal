@@ -684,6 +684,64 @@ a.tabledrag-handle {
   padding: 0; }
 .field-type-entityreference tr.odd {
   background: #D4D6D9; }
+.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/check_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/check_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save:hover {
+    background-color: #303030; }
+.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel:hover {
+    background-color: #303030; }
 
 #edit-field-shared-industries-und .form-item,
 #edit-field-shared-interests-und .form-item {
@@ -1276,6 +1334,17 @@ input[value="Jämför"]#edit-submit {
 .field-shared-notes .label {
   display: block; }
 
+.entity-contact-person {
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #f3f4f8;
+  border-radius: 5px; }
+  .entity-contact-person .field {
+    margin-bottom: 5px; }
+    .entity-contact-person .field .label {
+      display: inline-block;
+      width: 25%; }
+
 .node-type-company .content-wrapper {
   background: #fff;
   padding-bottom: 40px; }
@@ -1701,6 +1770,13 @@ input[value="Jämför"]#edit-submit {
     margin-right: 2.35765%;
     width: 48.82117%; }
     .columns .col:last-child {
+      margin-right: 0; }
+  .columns.three-col .col {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    .columns.three-col .col:last-child {
       margin-right: 0; }
 
 .node-type-document .content-wrapper {

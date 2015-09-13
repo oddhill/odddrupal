@@ -13,6 +13,13 @@ function f_investor_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_contact_person_contact_person';
+  $strongarm->value = '1';
+  $export['auto_entitylabel_contact_person_contact_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_investor_company';
   $strongarm->value = '1';
   $export['auto_entitylabel_investor_company'] = $strongarm;
@@ -37,6 +44,13 @@ function f_investor_strongarm() {
   $strongarm->name = 'auto_entitylabel_node_kontrolluppgift';
   $strongarm->value = '1';
   $export['auto_entitylabel_node_kontrolluppgift'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_pattern_contact_person_contact_person';
+  $strongarm->value = '[contact_person:field-comp-cont-name]';
+  $export['auto_entitylabel_pattern_contact_person_contact_person'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

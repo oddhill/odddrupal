@@ -217,12 +217,11 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'contact_person',
     'field_name' => 'field_comp_cont_name',
     'label' => 'Namn',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
           'filtered_html' => 'filtered_html',
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
@@ -233,9 +232,6 @@ function f_investor_field_default_field_instances() {
           'formats' => array(
             'document_html' => array(
               'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
             ),
             'filtered_html' => array(
               'weight' => 0,

@@ -81,6 +81,24 @@
   tr.odd {
    background: #D4D6D9;
   }
+
+  // Inline entity form specifics
+  .ief-form {
+
+    // Buttons
+    .submit-wrapper {
+
+      input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
+        @include button($dark-grey, check-mini, small);
+        background-position: 11px 7px;
+      }
+
+      input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
+        @include button($dark-grey, cross-mini, small);
+        background-position: 11px 7px;
+      }
+    }
+  }
 }
 
 // Edit industries (Branscher) and interests (Intressen) (Shared)

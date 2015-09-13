@@ -1,4 +1,4 @@
-  @mixin button($background: $dark-grey, $icon: default, $size: default) {
+@mixin button($background: $dark-grey, $icon: default, $size: default) {
   display: inline-block;
   height: 34px;
   @include font-size(1.2,1);
@@ -22,6 +22,16 @@
 
   @if $icon == add-mini {
     @include svg-bg(add_mini_light);
+    padding-left: 42px;
+  }
+
+  @if $icon == check-mini {
+    @include svg-bg(check_mini_light);
+    padding-left: 42px;
+  }
+
+  @if $icon == cross-mini {
+    @include svg-bg(cross_mini_light);
     padding-left: 42px;
   }
 
