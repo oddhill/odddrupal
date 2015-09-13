@@ -1247,6 +1247,7 @@ input[value="Jämför"]#edit-submit {
     border: 1px solid #e0e2e6;
     font-weight: 500; }
 
+.field-shared-custresp,
 .field-invest-comp-own,
 .field-shared-industries,
 .field-shared-email,
@@ -1256,6 +1257,7 @@ input[value="Jämför"]#edit-submit {
 .field-shared-address,
 .field-shared-notes {
   margin-bottom: 15px; }
+  .field-shared-custresp .label,
   .field-invest-comp-own .label,
   .field-shared-industries .label,
   .field-shared-email .label,
