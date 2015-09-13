@@ -99,6 +99,7 @@
 #capital-raising-node-form,
 #eck-entity-form-add-investor-person,
 #eck-entity-form-add-investor-company,
+#eck-entity-form-add-investor-lead,
 #document-node-form {
 
   > div {
@@ -111,10 +112,14 @@
 }
 
 .page-investor-company-edit,
-.page-investor-person-edit {
+.page-investor-person-edit,
+.page-investor-lead-edit {
 
   #eck-entity-form-edit-investor-company,
-  #eck-entity-form-edit-investor-person {
+  #eck-entity-form-edit-investor-person,
+  #eck-entity-form-edit-investor-lead {
+    background: $snow;
+    padding: 50px 40px 20px 40px;
 
     > div {
       display: -ms-flexbox;

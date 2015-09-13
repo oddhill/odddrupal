@@ -1377,7 +1377,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1394,7 +1394,6 @@ function f_investor_field_default_field_instances() {
       'better_formats' => array(
         'allowed_formats' => array(
           'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
           'filtered_html' => 'filtered_html',
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
@@ -1405,9 +1404,6 @@ function f_investor_field_default_field_instances() {
           'formats' => array(
             'document_html' => array(
               'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
             ),
             'filtered_html' => array(
               'weight' => 0,
@@ -1431,7 +1427,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 12,
     ),
   );
 
@@ -1447,7 +1443,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1501,7 +1497,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 13,
     ),
   );
 
@@ -1517,7 +1513,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1567,7 +1563,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -1583,7 +1579,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'email',
         'settings' => array(),
         'type' => 'email_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1595,7 +1591,7 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'investor',
     'field_name' => 'field_shared_email',
     'label' => 'E-post',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -1622,7 +1618,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1672,7 +1668,7 @@ function f_investor_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 17,
     ),
   );
 
@@ -1688,7 +1684,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1738,7 +1734,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 

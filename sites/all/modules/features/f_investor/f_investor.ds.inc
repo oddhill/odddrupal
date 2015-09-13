@@ -33,8 +33,13 @@ function f_investor_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
     'upgrade_lead' => array(
-      'weight' => '6',
+      'weight' => '7',
       'label' => 'above',
+      'format' => 'default',
+    ),
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
       'format' => 'default',
     ),
   );
@@ -280,16 +285,18 @@ function f_investor_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'field_lead_first_name',
-        1 => 'field_lead_last_name',
-        2 => 'field_shared_email',
-        3 => 'field_shared_phone',
-        4 => 'field_shared_cell',
-        5 => 'field_shared_notes',
-        6 => 'upgrade_lead',
+        0 => 'title',
+        1 => 'field_lead_first_name',
+        2 => 'field_lead_last_name',
+        3 => 'field_shared_email',
+        4 => 'field_shared_phone',
+        5 => 'field_shared_cell',
+        6 => 'field_shared_notes',
+        7 => 'upgrade_lead',
       ),
     ),
     'fields' => array(
+      'title' => 'ds_content',
       'field_lead_first_name' => 'ds_content',
       'field_lead_last_name' => 'ds_content',
       'field_shared_email' => 'ds_content',

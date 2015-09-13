@@ -181,6 +181,132 @@ function f_investor_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_invest_lead_1|investor|lead|form';
+  $field_group->group_name = 'group_invest_lead_1';
+  $field_group->entity_type = 'investor';
+  $field_group->bundle = 'lead';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_invest_lead_sidebar';
+  $field_group->data = array(
+    'label' => 'Grundläggande',
+    'weight' => '11',
+    'children' => array(
+      0 => 'field_lead_first_name',
+      1 => 'field_lead_last_name',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Grundläggande',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-invest-lead-1 field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_invest_lead_1|investor|lead|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_invest_lead_2|investor|lead|form';
+  $field_group->group_name = 'group_invest_lead_2';
+  $field_group->entity_type = 'investor';
+  $field_group->bundle = 'lead';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_invest_lead_body';
+  $field_group->data = array(
+    'label' => 'Kontaktuppgifter',
+    'weight' => '16',
+    'children' => array(
+      0 => 'field_shared_cell',
+      1 => 'field_shared_email',
+      2 => 'field_shared_phone',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Kontaktuppgifter',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-invest-lead-2 field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_invest_lead_2|investor|lead|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_invest_lead_body|investor|lead|form';
+  $field_group->group_name = 'group_invest_lead_body';
+  $field_group->entity_type = 'investor';
+  $field_group->bundle = 'lead';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Body',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_shared_notes',
+      1 => 'group_invest_lead_2',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Body',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'form-body column',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_invest_lead_body|investor|lead|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_invest_lead_sidebar|investor|lead|form';
+  $field_group->group_name = 'group_invest_lead_sidebar';
+  $field_group->entity_type = 'investor';
+  $field_group->bundle = 'lead';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Sidebar',
+    'weight' => '0',
+    'children' => array(
+      0 => 'group_invest_lead_1',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Sidebar',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'form-sidebar column',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_invest_lead_sidebar|investor|lead|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_invest_pers_1|investor|person|form';
   $field_group->group_name = 'group_invest_pers_1';
   $field_group->entity_type = 'investor';

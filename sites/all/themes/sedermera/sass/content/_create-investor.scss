@@ -13,7 +13,8 @@
     background: $aluminium;
     border-top: 1px solid $wool;
     display: block;
-    padding: 20px 20px 25px;
+    padding: 30px 20px 25px;
+    min-height: 140px;
 
     &:hover {
       border-top: 1px solid $night;
@@ -39,10 +40,10 @@
   float: left;
   margin-bottom: 20px;
   text-align: center;
-  width: 50%;
+  width: 33.3%;
 }
 
-// Company & private individual container (Bolag/Privatperson)
+// Individual containers (Bolag/Privatperson/Lead)
 .type-container {
   margin: 0 10px;
 }

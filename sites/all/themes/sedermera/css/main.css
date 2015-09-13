@@ -519,7 +519,8 @@ form.views-send-preview .form-actions {
   background: #ebedf1;
   border-top: 1px solid #e0e2e6;
   display: block;
-  padding: 20px 20px 25px; }
+  padding: 30px 20px 25px;
+  min-height: 140px; }
   .page-investerare-skapa .item:hover {
     border-top: 1px solid #1a1a1a; }
   .page-investerare-skapa .item span {
@@ -537,7 +538,7 @@ form.views-send-preview .form-actions {
   float: left;
   margin-bottom: 20px;
   text-align: center;
-  width: 50%; }
+  width: 33.3%; }
 
 .type-container {
   margin: 0 10px; }
@@ -605,16 +606,19 @@ a.tabledrag-handle {
   display: none; }
 
 .page-investor-person-edit .form-sidebar,
-.page-investor-company-edit .form-sidebar {
+.page-investor-company-edit .form-sidebar,
+.page-investor-lead-edit .form-sidebar {
   background: transparent;
   padding: 0 20px 0 0; }
 .page-investor-person-edit .form-body,
-.page-investor-company-edit .form-body {
+.page-investor-company-edit .form-body,
+.page-investor-lead-edit .form-body {
   background: transparent;
   overflow: hidden;
   padding: 0; }
 .page-investor-person-edit .form-actions,
-.page-investor-company-edit .form-actions {
+.page-investor-company-edit .form-actions,
+.page-investor-lead-edit .form-actions {
   padding-top: 20px; }
 
 .field-type-entityreference .submit-wrapper {
@@ -1624,6 +1628,7 @@ input[value="Jämför"]#edit-submit {
 #capital-raising-node-form > div,
 #eck-entity-form-add-investor-person > div,
 #eck-entity-form-add-investor-company > div,
+#eck-entity-form-add-investor-lead > div,
 #document-node-form > div {
   display: -ms-flexbox;
   -ms-flex-direction: column;
@@ -1631,15 +1636,31 @@ input[value="Jämför"]#edit-submit {
   display: flex;
   flex-wrap: wrap; }
 
-.page-investor-company-edit #eck-entity-form-edit-investor-company > div,
-.page-investor-company-edit #eck-entity-form-edit-investor-person > div,
-.page-investor-person-edit #eck-entity-form-edit-investor-company > div,
-.page-investor-person-edit #eck-entity-form-edit-investor-person > div {
-  display: -ms-flexbox;
-  -ms-flex-direction: column;
-  -ms-flex-wrap: wrap;
-  display: flex;
-  flex-wrap: wrap; }
+.page-investor-company-edit #eck-entity-form-edit-investor-company,
+.page-investor-company-edit #eck-entity-form-edit-investor-person,
+.page-investor-company-edit #eck-entity-form-edit-investor-lead,
+.page-investor-person-edit #eck-entity-form-edit-investor-company,
+.page-investor-person-edit #eck-entity-form-edit-investor-person,
+.page-investor-person-edit #eck-entity-form-edit-investor-lead,
+.page-investor-lead-edit #eck-entity-form-edit-investor-company,
+.page-investor-lead-edit #eck-entity-form-edit-investor-person,
+.page-investor-lead-edit #eck-entity-form-edit-investor-lead {
+  background: #fff;
+  padding: 50px 40px 20px 40px; }
+  .page-investor-company-edit #eck-entity-form-edit-investor-company > div,
+  .page-investor-company-edit #eck-entity-form-edit-investor-person > div,
+  .page-investor-company-edit #eck-entity-form-edit-investor-lead > div,
+  .page-investor-person-edit #eck-entity-form-edit-investor-company > div,
+  .page-investor-person-edit #eck-entity-form-edit-investor-person > div,
+  .page-investor-person-edit #eck-entity-form-edit-investor-lead > div,
+  .page-investor-lead-edit #eck-entity-form-edit-investor-company > div,
+  .page-investor-lead-edit #eck-entity-form-edit-investor-person > div,
+  .page-investor-lead-edit #eck-entity-form-edit-investor-lead > div {
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    -ms-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap; }
 
 .bg {
   background: #fff; }
