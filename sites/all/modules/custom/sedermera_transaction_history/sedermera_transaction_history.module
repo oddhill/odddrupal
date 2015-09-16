@@ -4,7 +4,6 @@
  * Implements hook_node_presave().
  */
 function sedermera_transaction_history_entity_presave($entity, $type) {
-
   if ($type != 'offer') {
     return;
   }

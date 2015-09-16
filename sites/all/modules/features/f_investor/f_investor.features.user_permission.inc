@@ -38,6 +38,16 @@ function f_investor_user_default_permissions() {
     'module' => 'sedermera_investor',
   );
 
+  // Exported permission: 'create transaction_history content'.
+  $permissions['create transaction_history content'] = array(
+    'name' => 'create transaction_history content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete terms in industries'.
   $permissions['delete terms in industries'] = array(
     'name' => 'delete terms in industries',

@@ -103,3 +103,8 @@ function sedermera_update_update_7005() {
 
   field_purge_batch(100);
 }
+
+function sedermera_update_update_7006() {
+  sedermera_update_update_7004();
+  sedermera_update_update_7005();
+}

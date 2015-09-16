@@ -829,11 +829,10 @@ function f_investor_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Transaktions historia';
+  $handler->display->display_options['title'] = 'Transaktionshistoria';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'view investors';
+  $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -977,6 +976,42 @@ function f_investor_views_default_views() {
 
   /* Display: History page */
   $handler = $view->new_display('page', 'History page', 'page');
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'transaction_history' => 'transaction_history',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Content: Max investering (field_transaction_max_invest) */
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['id'] = 'field_transaction_max_invest_value';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['table'] = 'field_data_field_transaction_max_invest';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['field'] = 'field_transaction_max_invest_value';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['operator_id'] = 'field_transaction_max_invest_value_op';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['label'] = 'Investering högre än';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['operator'] = 'field_transaction_max_invest_value_op';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['identifier'] = 'field_transaction_max_invest_value';
+  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+  );
   $handler->display->display_options['path'] = 'investerare/historik';
 
   /* Display: History block */
@@ -1013,7 +1048,7 @@ return $entity->title;';
   $handler->display->display_options['path'] = 'investerare/lista/%/investeringshistorik';
   $translatables['transaktions_historia'] = array(
     t('Master'),
-    t('Transaktions historia'),
+    t('Transaktionshistoria'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -1036,6 +1071,7 @@ return $entity->title;';
     t('Transaktions titel'),
     t('Max investering'),
     t('History page'),
+    t('Investering högre än'),
     t('History block'),
     t('All'),
     t('Individual page'),
