@@ -34,7 +34,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -45,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
+    'parent_identifier' => 'main-menu_alla-dokument:dokument',
   );
   // Exported menu link: main-menu_alla-dokument:dokument/lista
   $menu_links['main-menu_alla-dokument:dokument/lista'] = array(
@@ -62,7 +62,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -49,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
+    'parent_identifier' => 'main-menu_alla-dokument:dokument',
   );
   // Exported menu link: main-menu_dokument:dokument
   $menu_links['main-menu_dokument:dokument'] = array(
@@ -113,7 +113,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -42,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
+    'parent_identifier' => 'main-menu_alla-dokument:dokument',
   );
   // Exported menu link: main-menu_lgg-till-dokument:node/add/document
   $menu_links['main-menu_lgg-till-dokument:node/add/document'] = array(
@@ -141,7 +141,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
+    'parent_identifier' => 'main-menu_alla-dokument:dokument',
   );
   // Exported menu link: main-menu_lst-per-anvndare:dokument/last-per-anvandare
   $menu_links['main-menu_lst-per-anvndare:dokument/last-per-anvandare'] = array(
@@ -167,7 +167,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -44,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
+    'parent_identifier' => 'main-menu_alla-dokument:dokument',
   );
   // Exported menu link: main-menu_lst-per-dokument:dokument/last-per-dokument
   $menu_links['main-menu_lst-per-dokument:dokument/last-per-dokument'] = array(
@@ -193,7 +193,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -43,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_dokument:dokument',
+    'parent_identifier' => 'main-menu_alla-dokument:dokument',
   );
 
   // Translatables

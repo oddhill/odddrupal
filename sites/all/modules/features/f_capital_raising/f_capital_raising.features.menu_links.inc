@@ -31,7 +31,7 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_transaktioner:transaktioner',
+    'parent_identifier' => 'main-menu_:transaktioner',
   );
   // Exported menu link: main-menu_arkiverade-transaktioner:transaktioner/arkiverade
   $menu_links['main-menu_arkiverade-transaktioner:transaktioner/arkiverade'] = array(
@@ -54,7 +54,7 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_transaktioner:transaktioner',
+    'parent_identifier' => 'main-menu_:transaktioner',
   );
   // Exported menu link: main-menu_lgg-till-transaktion:node/add/capital-raising
   $menu_links['main-menu_lgg-till-transaktion:node/add/capital-raising'] = array(
@@ -80,7 +80,7 @@ function f_capital_raising_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 20,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_transaktioner:transaktioner',
+    'parent_identifier' => 'main-menu_:transaktioner',
   );
   // Exported menu link: main-menu_transaktioner:transaktioner
   $menu_links['main-menu_transaktioner:transaktioner'] = array(

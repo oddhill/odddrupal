@@ -31,7 +31,7 @@ function f_company_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_kundbolag:kundbolag',
+    'parent_identifier' => 'main-menu_:kundbolag',
   );
   // Exported menu link: main-menu_kundbolag:kundbolag
   $menu_links['main-menu_kundbolag:kundbolag'] = array(
@@ -78,7 +78,7 @@ function f_company_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_kundbolag:kundbolag',
+    'parent_identifier' => 'main-menu_:kundbolag',
   );
 
   // Translatables
