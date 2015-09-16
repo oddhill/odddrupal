@@ -31,7 +31,7 @@ function f_investor_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_:investerare',
+    'parent_identifier' => 'main-menu_investerare:investerare',
   );
   // Exported menu link: main-menu_investerare:investerare
   $menu_links['main-menu_investerare:investerare'] = array(
@@ -75,7 +75,7 @@ function f_investor_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 10,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_:investerare',
+    'parent_identifier' => 'main-menu_investerare:investerare',
   );
 
   // Translatables
