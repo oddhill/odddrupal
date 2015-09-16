@@ -89,3 +89,17 @@ function sedermera_update_update_7004() {
 
   field_purge_batch(100);
 }
+
+/**
+ * Delete wrong fields
+ * @return null
+ */
+function sedermera_update_update_7005() {
+  field_delete_field('field_offer_newem');
+  field_delete_field('field_offer_signcommit');
+  field_delete_field('field_offer_pp');
+  field_delete_field('field_offer_warrant');
+  field_delete_field('field_offer_loan');
+
+  field_purge_batch(100);
+}
