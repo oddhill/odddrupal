@@ -980,7 +980,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['path'] = 'investerare/historik';
 
   /* Display: History block */
-  $handler = $view->new_display('block', 'History block', 'block');
+  $handler = $view->new_display('block', 'History block', 'transaction_history_block');
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Investerar namn (field_transaction_invest_name) */
   $handler->display->display_options['arguments']['field_transaction_invest_name_value']['id'] = 'field_transaction_invest_name_value';
@@ -994,6 +994,23 @@ return $entity->title;';
   $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_transaction_invest_name_value']['limit'] = '0';
+
+  /* Display: Individual page */
+  $handler = $view->new_display('page', 'Individual page', 'page_1');
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Investerar namn (field_transaction_invest_name) */
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['id'] = 'field_transaction_invest_name_value';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['table'] = 'field_data_field_transaction_invest_name';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['field'] = 'field_transaction_invest_name_value';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_type'] = 'php';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_options']['code'] = '$entity = entity_load_single(\'investor\', arg(2));
+return $entity->title;';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['limit'] = '0';
+  $handler->display->display_options['path'] = 'investerare/lista/%/investeringshistorik';
   $translatables['transaktions_historia'] = array(
     t('Master'),
     t('Transaktions historia'),
@@ -1021,6 +1038,7 @@ return $entity->title;';
     t('History page'),
     t('History block'),
     t('All'),
+    t('Individual page'),
   );
   $export['transaktions_historia'] = $view;
 

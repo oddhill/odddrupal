@@ -208,6 +208,7 @@ function f_investor_ds_layout_settings_info() {
         4 => 'field_shared_notes',
         5 => 'field_invest_comp_own',
         6 => 'field_invest_cont_person',
+        7 => 'field_shared_interests',
       ),
     ),
     'fields' => array(
@@ -218,6 +219,7 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_notes' => 'ds_content',
       'field_invest_comp_own' => 'ds_content',
       'field_invest_cont_person' => 'ds_content',
+      'field_shared_interests' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -336,6 +338,7 @@ function f_investor_ds_layout_settings_info() {
         6 => 'field_shared_phone',
         7 => 'field_shared_fax',
         8 => 'field_shared_notes',
+        9 => 'field_shared_interests',
       ),
     ),
     'fields' => array(
@@ -348,6 +351,7 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_phone' => 'ds_content',
       'field_shared_fax' => 'ds_content',
       'field_shared_notes' => 'ds_content',
+      'field_shared_interests' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -414,16 +418,12 @@ function f_investor_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
-        1 => 'field_control_files',
-        2 => 'field_control_approved',
-        3 => 'field_control_date',
+        1 => 'field_ctrl_date_upp',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
-      'field_control_files' => 'ds_content',
-      'field_control_approved' => 'ds_content',
-      'field_control_date' => 'ds_content',
+      'field_ctrl_date_upp' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

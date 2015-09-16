@@ -67,3 +67,25 @@ function sedermera_update_update_7003() {
 
   return t('Menu links removed successfully');
 }
+
+/**
+ * Delete unused fields
+ * @return null
+ */
+function sedermera_update_update_7004() {
+  field_delete_field('field_control_approved');
+  field_delete_field('field_control_date');
+  field_delete_field('field_control_files');
+  field_delete_field('field_shared_ctrl_comp');
+  field_delete_field('field_shared_ctrl_credit');
+  field_delete_field('field_shared_ctrl_eu');
+  field_delete_field('field_shared_ctrl_ext');
+  field_delete_field('field_shared_ctrl_id');
+  field_delete_field('field_shared_ctrl_id_real');
+  field_delete_field('field_shared_ctrl_ovr');
+  field_delete_field('field_shared_ctrl_ptv');
+  field_delete_field('field_shared_ctrl_reg');
+  field_delete_field('field_shared_ctrl_upp');
+
+  field_purge_batch(100);
+}

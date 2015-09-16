@@ -35,9 +35,9 @@ function f_investor_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
-        'views-transaktions_historia-block' => array(
+        'views-aadbde9fc19498653ca73f9fe62d3aa2' => array(
           'module' => 'views',
-          'delta' => 'transaktions_historia-block',
+          'delta' => 'aadbde9fc19498653ca73f9fe62d3aa2',
           'region' => 'content',
           'weight' => '-9',
         ),

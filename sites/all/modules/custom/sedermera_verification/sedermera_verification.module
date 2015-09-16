@@ -65,9 +65,6 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
 
     // Perform minor alterations.
     sedermera_verification_custom_form_alter($form);
-
-    $form['field_shared_ctrl_upp'][LANGUAGE_NONE]['form']['status']['#access'] = FALSE;
-    // $form['field_shared_ctrl_upp'][LANGUAGE_NONE]['#title'] = 'test';
   }
   else {
     // In any other case, we'll disable the verification elements.
@@ -210,7 +207,7 @@ function sedermera_verification_view_rendered_verification(&$form) {
 function sedermera_verification_disable_regular_elements(&$form) {
   // Determine which elements that should be preserved by merging the required
   // elements with the verification elements.
-  $preserve = array_merge(array('entity', 'actions', 'form_build_id', 'form_token', 'form_id'), sedermera_verification_get_verification_fields());
+  $preserve = array_merge(array('entity', 'actions', 'form_build_id', 'form_token', 'form_id'), sedermera_verification_get_verification_field());
 
   // Disable access to all form elements except the ones that should be
   // preserved.
@@ -231,7 +228,7 @@ function sedermera_verification_disable_regular_elements(&$form) {
  */
 function sedermera_verification_disable_verification_elements(&$form) {
   // Loop through every investor form element and disable access to it.
-  foreach (sedermera_verification_get_verification_fields() as $name) {
+  foreach (sedermera_verification_get_verification_field() as $name) {
     $form[$name]['#access'] = FALSE;
   }
 }
@@ -239,10 +236,26 @@ function sedermera_verification_disable_verification_elements(&$form) {
 function sedermera_verification_mark_not_ok(&$form) {
   $fields = sedermera_verification_get_verification_fields();
 
+  $node = (isset($form['#entity']->field_shared_ctrl)) ? node_load($form['#entity']->field_shared_ctrl[LANGUAGE_NONE][0]['target_id']) : node_load($form['#entity']->field_shared_ctrl_pvt[LANGUAGE_NONE][0]['target_id']);
+
+  if (!$node) {
+    return;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+
   foreach ($fields as $field) {
-    if ($form[$field]) {
-      if($form[$field][LANGUAGE_NONE]['form']['#entity']->field_control_approved[LANGUAGE_NONE][0]['value'] == 0) {
-        $form[$field][LANGUAGE_NONE]['#prefix'] = substr_replace($form[$field][LANGUAGE_NONE]['#prefix'], ' class="not-approved-control"', -1, 0);
+    $current = 'field_ctrl_app_'. $field;
+
+    if (isset($wrapper->$current)) {
+      if($wrapper->$current->value() == 0) {
+        $group = 'group_ctrl_' . $field;
+        if (isset($form['#entity']->field_shared_ctrl)) {
+          $form['field_shared_ctrl'][LANGUAGE_NONE]['form']['#groups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
+        }
+        else {
+          $form['field_shared_ctrl_pvt'][LANGUAGE_NONE]['form']['#groups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
+        }
       }
     }
   }
@@ -383,20 +396,23 @@ function sedermera_verification_get_approved($id) {
   // Get the verification fields, and the available properties for this investor
   // in order to only check the available verification fields.
   $fields = sedermera_verification_get_verification_fields();
-  $properties = array_keys($wrapper->getPropertyInfo());
+
+  $node = (isset($wrapper->field_shared_ctrl)) ? node_load($wrapper->field_shared_ctrl->value()->nid) : node_load($wrapper->field_shared_ctrl_pvt->value()->nid);
+
+  if (!$node) {
+    return FALSE;
+  }
+
+  $node_wrapper = entity_metadata_wrapper('node', $node);
 
   // Iterate through every available investor field.
-  foreach (array_intersect($fields, $properties) as $field) {
-    if (!$wrapper->$field->value()) {
-      // The field doesn't have a value, which means that the verification isn't
-      // approved.
-      return FALSE;
-    }
+  foreach ($fields as $field) {
+    $current = 'field_ctrl_app_'. $field;
 
-    if (!$wrapper->$field->field_control_approved->value()) {
-      // The checkbox field hasn't been checked, which means that the
-      // verification hasn't been approved yet.
-      return FALSE;
+    if (isset($node_wrapper->$current)) {
+      if($node_wrapper->$current->value() == 0) {
+        return FALSE;
+      }
     }
   }
 
@@ -424,23 +440,25 @@ function sedermera_verification_get_expiration_date($id) {
   // Get the verification fields, and the available properties for this investor
   // in order to only check the available verification fields.
   $fields = sedermera_verification_get_verification_fields();
-  $properties = array_keys($wrapper->getPropertyInfo());
+
+  $node = (isset($wrapper->field_shared_ctrl)) ? node_load($wrapper->field_shared_ctrl->value()->nid) : node_load($wrapper->field_shared_ctrl_pvt->value()->nid);
+
+  if (!$node) {
+    return 0;
+  }
+
+  $node_wrapper = entity_metadata_wrapper('node', $node);
 
   // Iterate through every available investor field.
-  foreach (array_intersect($fields, $properties) as $field) {
-    if (!$wrapper->$field->value()) {
-      // The field doesn't have a value, which means that there aren't a field
-      // to check.
-      continue;
-    }
+  foreach ($fields as $field) {
+    $current = 'field_ctrl_date_'. $field;
 
-    if (!($expire = $wrapper->$field->field_control_date->value())) {
-      // An expiration date hasn't been set for this verification.
-      continue;
-    }
+    if (isset($node_wrapper->$current)) {
+      $expire = $node_wrapper->$current->value();
 
-    if (empty($return) || $expire < $return) {
-      $return = $expire;
+      if (empty($return) || $expire < $return) {
+        $return = $expire;
+      }
     }
   }
 
@@ -452,20 +470,33 @@ function sedermera_verification_get_expiration_date($id) {
  * Get the the verification fields.
  *
  * @return array
+ *   An array with the name of the verification field.
+ */
+function sedermera_verification_get_verification_field() {
+  return array(
+    'field_shared_ctrl',
+    'field_shared_ctrl_pvt',
+  );
+}
+
+/**
+ * Get the the verification fields.
+ *
+ * @return array
  *   An array with the names of the verification fields.
  */
 function sedermera_verification_get_verification_fields() {
   return array(
-    'field_shared_ctrl_upp',
-    'field_shared_ctrl_ptv',
-    'field_shared_ctrl_id',
-    'field_shared_ctrl_id_real',
-    'field_shared_ctrl_ext',
-    'field_shared_ctrl_eu',
-    'field_shared_ctrl_credit',
-    'field_shared_ctrl_reg',
-    'field_shared_ctrl_comp',
-    'field_shared_ctrl_ovr',
+    'upp',
+    'ptv',
+    'id',
+    'id_real',
+    'reg',
+    'eu',
+    'credit',
+    'comp',
+    'oth',
+    'ext',
   );
 }
 

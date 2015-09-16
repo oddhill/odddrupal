@@ -17,6 +17,7 @@
     <div class="col">
       <?php print render($content['field_shared_custresp']); ?>
       <?php print render($content['field_shared_industries']); ?>
+      <?php print render($content['field_shared_interests']); ?>
       <?php print render($content['field_shared_email']); ?>
       <?php print render($content['field_shared_cell']); ?>
       <?php print render($content['field_shared_phone']); ?>
