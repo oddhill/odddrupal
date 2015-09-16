@@ -21,6 +21,7 @@
     </div>
     <div class="col">
       <?php print render($content['field_shared_notes']); ?>
+      <?php print render($content['upgrade_lead']); ?>
     </div>
   </div>
 </div>

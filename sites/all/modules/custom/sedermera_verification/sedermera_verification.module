@@ -236,6 +236,10 @@ function sedermera_verification_disable_verification_elements(&$form) {
 function sedermera_verification_mark_not_ok(&$form) {
   $fields = sedermera_verification_get_verification_fields();
 
+  if (!isset($form['#entity']->field_shared_ctrl) && !isset($form['#entity']->field_shared_ctrl_pvt)) {
+    return;
+  }
+
   $node = (isset($form['#entity']->field_shared_ctrl)) ? node_load($form['#entity']->field_shared_ctrl[LANGUAGE_NONE][0]['target_id']) : node_load($form['#entity']->field_shared_ctrl_pvt[LANGUAGE_NONE][0]['target_id']);
 
   if (!$node) {
@@ -393,6 +397,10 @@ function sedermera_verification_get_approved($id) {
   // Load the investor entity.
   $wrapper = entity_metadata_wrapper('investor', $id);
 
+  if (!isset($wrapper->field_shared_ctrl) && !isset($wrapper->field_shared_ctrl_pvt)) {
+    return FALSE;
+  }
+
   // Get the verification fields, and the available properties for this investor
   // in order to only check the available verification fields.
   $fields = sedermera_verification_get_verification_fields();
@@ -433,6 +441,11 @@ function sedermera_verification_get_approved($id) {
 function sedermera_verification_get_expiration_date($id) {
   // Load the investor entity.
   $wrapper = entity_metadata_wrapper('investor', $id);
+
+  if (!isset($wrapper->field_shared_ctrl) && !isset($wrapper->field_shared_ctrl_pvt)) {
+    return 0;
+  }
+
 
   // Set the initial return value.
   $return = 0;
