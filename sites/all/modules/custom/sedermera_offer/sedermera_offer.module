@@ -1076,4 +1076,16 @@ function sedermera_offer_views_pre_render(&$view) {
       );
     }
   }
+  else if ($view->name == 'offers' && $view->current_display == 'page_1') {
+    $node = node_load(arg(1));
+    $view->disable = array(
+      'title' => FALSE,
+      'field_offer_signed_date' => FALSE,
+      'field_offer_newem' => empty($node->field_cap_rais_goal_newem),
+      'field_offer_pp' => empty($node->field_cap_rais_goal_pp),
+      'field_offer_loan' => empty($node->field_cap_rais_goal_loan),
+      'field_offer_amount_guar' => empty($node->field_cap_rais_goal_guar),
+      'field_offer_amount' => empty($node->field_cap_rais_goal_com),
+    );
+  }
 }

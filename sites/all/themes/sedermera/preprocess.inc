@@ -211,4 +211,7 @@ function sedermera_preprocess_views_view_table(&$vars) {
     $vars['sum_row'] = $view->res;
     $vars['disable'] = $view->disable;
   }
+  else if ($view->name == 'offers' && $view->current_display == 'page_1') {
+    $vars['disable'] = $view->disable;
+  }
 }
