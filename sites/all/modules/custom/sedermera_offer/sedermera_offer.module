@@ -1014,7 +1014,7 @@ function sedermera_offer_views_pre_render(&$view) {
       }
 
       $row = $amount_row + $amount_guar_row + $loan_row + $newem_row + $pp_row;
-      $value->field_field_offer_sum['0']['rendered']['#markup'] = $row . " SEK";
+      $value->field_field_offer_sum['0']['rendered']['#markup'] = number_format($row, 0, '.', ',')  . " SEK";
     }
 
     if ($view->name == 'offers' && $view->current_display == 'page') {
@@ -1023,11 +1023,11 @@ function sedermera_offer_views_pre_render(&$view) {
         'title' => '',
         'field_shared_cell' => '',
         'field_shared_phone' => '',
-        'field_offer_newem' => $field_offer_newem . " SEK",
-        'field_offer_pp' => $field_offer_pp . " SEK",
-        'field_offer_loan' => $field_offer_loan . " SEK",
-        'field_offer_amount_guar' => $field_offer_amount_guar . " SEK",
-        'field_offer_amount' => $field_offer_amount . " SEK",
+        'field_offer_newem' => number_format($field_offer_newem, 0, '.', ',') . " SEK",
+        'field_offer_pp' => number_format($field_offer_pp, 0, '.', ',') . " SEK",
+        'field_offer_loan' => number_format($field_offer_loan, 0, '.', ',') . " SEK",
+        'field_offer_amount_guar' => number_format($field_offer_amount_guar, 0, '.', ',') . " SEK",
+        'field_offer_amount' => number_format($field_offer_amount, 0, '.', ',') . " SEK",
         'field_offer_sum' => '',
         'field_offer_status' => '',
         'field_offer_first_contact' => '',
@@ -1053,11 +1053,11 @@ function sedermera_offer_views_pre_render(&$view) {
       $view->res = array(
         'title' => '',
         'field_offer_interested_date' => '',
-        'field_offer_newem' => $field_offer_newem . " SEK",
-        'field_offer_pp' => $field_offer_pp . " SEK",
-        'field_offer_loan' => $field_offer_loan . " SEK",
-        'field_offer_amount_guar' => $field_offer_amount_guar . " SEK",
-        'field_offer_amount' => $field_offer_amount . " SEK",
+        'field_offer_newem' => number_format($field_offer_newem, 0, '.', ',') . " SEK",
+        'field_offer_pp' => number_format($field_offer_pp, 0, '.', ',') . " SEK",
+        'field_offer_loan' => number_format($field_offer_loan, 0, '.', ',') . " SEK",
+        'field_offer_amount_guar' => number_format($field_offer_amount_guar, 0, '.', ',') . " SEK",
+        'field_offer_amount' => number_format($field_offer_amount, 0, '.', ','). " SEK",
         'field_offer_sum' => '',
         'verification_status' => '',
         'sign' => '',
