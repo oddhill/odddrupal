@@ -995,6 +995,12 @@ function sedermera_offer_views_pre_render(&$view) {
   $field_offer_pp = 0;
 
   foreach ($view->result as $r => $value) {
+    $amount_row = 0;
+    $amount_guar_row = 0;
+    $loan_row = 0;
+    $newem_row = 0;
+    $pp_row = 0;
+
     if (!empty($value->_field_data['id']['entity']->field_offer_amount)) {
       $amount_row = $value->_field_data['id']['entity']->field_offer_amount[LANGUAGE_NONE]['0']['value'];
       $field_offer_amount += $amount_row;
