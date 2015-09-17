@@ -42,14 +42,29 @@ function sedermera_offer_sign_confirm($form, &$form_state, $transaction_id, $off
   // Add the offer entity to the form.
   $form['#offer'] = $offer;
 
-  // Create the text that we'll use for the confirmation form.
-  $text = format_string('Är du säker på att du vill teckna %investor för %transaction?', array(
-    '%investor' => $offer->field_offer_investor->title->value(),
-    '%transaction' => $transaction->title->value(),
-  ));
+  if (!$offer->field_offer_investor->field_shared_veri_appr->value()) {
+    // Create the text that we'll use for the confirmation form.
+    $text = format_string('OBS! Kontrollen för %investor är INTE godkänd. <br> Är du säker på att du vill teckna %investor för %transaction?', array(
+      '%investor' => $offer->field_offer_investor->title->value(),
+      '%transaction' => $transaction->title->value(),
+    ));
 
-  // Return the confirmation form.
-  return confirm_form($form, $transaction->title->value(), "node/$transaction_id/intressenter", $text);
+    // Return the confirmation form.
+    $confirm_form = confirm_form($form, $transaction->title->value(), "node/$transaction_id/intressenter", $text, 'Bekräfta ändå', 'Tillbaka');
+
+    unset($confirm_form['actions']['submit']);
+    return $confirm_form;
+  }
+  else {
+    // Create the text that we'll use for the confirmation form.
+    $text = format_string('Är du säker på att du vill teckna %investor för %transaction?', array(
+      '%investor' => $offer->field_offer_investor->title->value(),
+      '%transaction' => $transaction->title->value(),
+    ));
+
+    // Return the confirmation form.
+    return confirm_form($form, $transaction->title->value(), "node/$transaction_id/intressenter", $text);
+  }
 }
 
 /**

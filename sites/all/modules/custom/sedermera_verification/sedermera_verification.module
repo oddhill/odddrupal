@@ -586,7 +586,7 @@ function sedermera_verification_entity_presave($entity, $type) {
   if ($type == 'investor') {
     // Get the expiration status for this investor, and save the status to the
     // investor entity if it has been set.
-    $approved = sedermera_verification_get_approved($entity->id);
+    $approved = (sedermera_verification_get_approved($entity->id)) ? 1 : 0;
     $entity->field_shared_veri_appr = array(LANGUAGE_NONE => array(array('value' => intval($approved))));
 
     // Get the expiration date for this investor, and save the date to the
