@@ -1317,7 +1317,8 @@ input[value="Jämför"]#edit-submit {
 .field-shared-phone,
 .field-shared-fax,
 .field-shared-address,
-.field-shared-notes {
+.field-shared-notes,
+.field-shared-interests {
   margin-bottom: 15px; }
   .field-shared-custresp .label,
   .field-invest-comp-own .label,
@@ -1327,7 +1328,8 @@ input[value="Jämför"]#edit-submit {
   .field-shared-phone .label,
   .field-shared-fax .label,
   .field-shared-address .label,
-  .field-shared-notes .label {
+  .field-shared-notes .label,
+  .field-shared-interests .label {
     display: inline-block;
     width: 30%; }
 
