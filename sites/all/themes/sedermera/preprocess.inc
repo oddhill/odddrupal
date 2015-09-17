@@ -202,3 +202,32 @@ function getIcon($file) {
 
   return "<img class='file-icon' alt='' title='" . $title . "' src='/modules/file/icons/" . $src . "'>";
 }
+
+function sedermera_preprocess_views_view(&$vars) {
+  $view = &$vars['view'];
+
+  // dprint_r($view);
+  // dprint_r($view->current_display);
+  // die;
+
+  if ($view->name == 'offers' && ($view->current_display == 'page' || $view->current_display == 'interest')) {
+    drupal_add_js(drupal_get_path('module', 'sedermera_core') . '/js/view_calc_table_reload.js');
+  }
+}
+
+/**
+ * Removes column headers for columns that do not have content.
+ */
+// function sedermera_preprocess_views_view_table(&$vars) {
+//   dprint_r($vars); die;
+//   $rows = $vars['rows'];
+//   $column_has_content = array();
+//   foreach ($rows as $count => $row) {
+//     foreach ($row as $field => $content) {
+//       if (!empty($content)) {
+//         $column_has_content[$field] = TRUE;
+//       }
+//     }
+//   }
+//   $vars['column_has_content'] = $column_has_content;
+// }

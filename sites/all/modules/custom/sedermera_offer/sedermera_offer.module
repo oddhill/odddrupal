@@ -970,3 +970,168 @@ function sedermera_offer_field_access($op, $field, $entity_type, $entity, $accou
     return FALSE;
   }
 }
+
+function sedermera_offer_views_pre_render(&$view) {
+  // dprint_r($view->name);
+  // dprint_r($view->current_display);
+  // die;
+
+  // if ($view->name == 'offers' && $view->current_display == 'page') {
+  //   drupal_add_js(drupal_get_path('module', 'sedermera_core') . '/js/view_calc_table_reload.js', array('group' => JS_THEME));
+  // }
+
+  // dprint_r($view->result); die;
+  if (empty($view->result)) {
+    return;
+  }
+  // dprint_r($view->result); die;
+  // $view->result[0][_field_data][id][entity]->field_test_interger[und][0][value]
+
+
+  $field_offer_amount = 0;
+  $field_offer_amount_guar = 0;
+  $field_offer_loan = 0;
+  $field_offer_newem = 0;
+  $field_offer_pp = 0;
+
+  foreach ($view->result as $r => $value) {
+    if (!empty($value->_field_data['id']['entity']->field_offer_amount)) {
+      $amount_row = $value->_field_data['id']['entity']->field_offer_amount[LANGUAGE_NONE]['0']['value'];
+      $field_offer_amount += $amount_row;
+    }
+    if (!empty($value->_field_data['id']['entity']->field_offer_amount_guar)) {
+      $amount_guar_row = $value->_field_data['id']['entity']->field_offer_amount_guar[LANGUAGE_NONE]['0']['value'];
+      $field_offer_amount_guar += $amount_guar_row;
+    }
+    if (!empty($value->_field_data['id']['entity']->field_offer_loan)) {
+      $loan_row = $value->_field_data['id']['entity']->field_offer_loan[LANGUAGE_NONE]['0']['value'];
+      $field_offer_loan += $loan_row;
+    }
+    if (!empty($value->_field_data['id']['entity']->field_offer_newem)) {
+      $newem_row = $value->_field_data['id']['entity']->field_offer_newem[LANGUAGE_NONE]['0']['value'];
+      $field_offer_newem += $newem_row;
+    }
+    if (!empty($value->_field_data['id']['entity']->field_offer_pp)) {
+      $pp_row = $value->_field_data['id']['entity']->field_offer_pp[LANGUAGE_NONE]['0']['value'];
+      $field_offer_pp += $pp_row;
+    }
+
+    $row = $amount_row + $amount_guar_row + $loan_row + $newem_row + $pp_row;
+    $value->field_field_offer_sum['0']['rendered']['#markup'] = $row . " SEK";
+  }
+
+  if ($view->name == 'offers' && $view->current_display == 'page') {
+    $view->result[] = (object) array(
+      'field_field_shared_email' => array(),
+      'field_field_shared_cell' => array(),
+      'field_field_shared_phone' => array(),
+      'field_field_offer_newem' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_newem . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_pp' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_pp . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_loan' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_loan . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_amount_guar' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_amount_guar . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_amount' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_amount . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_sum' => array(),
+      'field_field_offer_status' => array(),
+      'field_field_offer_first_contact' => array(),
+      'field_field_offer_interested' => array(),
+    );
+
+
+    // dprint_r($field_offer_newem);
+    // dprint_r($field_offer_pp);
+    // dprint_r($field_offer_loan);
+    // dprint_r($field_offer_amount_guar);
+    // dprint_r($field_offer_amount);
+
+    // dprint_r($view); die;
+
+    // die;
+
+    // dprint_r($count); die;
+  }
+  else if ($view->name == 'offers' && $view->current_display == 'interest') {
+    return;
+
+    $view->result[] = (object) array(
+      'field_field_offer_interested_date' => array(),
+      'field_field_offer_newem' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_newem . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_pp' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_pp . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_loan' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_loan . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_amount_guar' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_amount_guar . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_amount' => Array(
+        '0' => Array(
+          'rendered' => Array(
+            '#markup' => $field_offer_amount . " SEK",
+            '#access' => 1,
+          ),
+        ),
+      ),
+      'field_field_offer_sum' => array(),
+    );
+
+    dprint_r($view->result); die;
+  }
+}
