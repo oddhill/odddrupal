@@ -209,5 +209,6 @@ function sedermera_preprocess_views_view_table(&$vars) {
   if ($view->name == 'offers' && ($view->current_display == 'page' || $view->current_display == 'interest')) {
     drupal_add_js(drupal_get_path('module', 'sedermera_core') . '/js/view_calc_table_reload.js');
     $vars['sum_row'] = $view->res;
+    $vars['disable'] = $view->disable;
   }
 }

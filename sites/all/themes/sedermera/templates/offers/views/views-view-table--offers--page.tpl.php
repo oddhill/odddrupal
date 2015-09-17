@@ -22,6 +22,7 @@
       <thead>
         <tr>
           <?php foreach ($header as $field => $label): ?>
+            <?php if ($disable[$field]) { continue; } ?>
             <th <?php if ($header_classes[$field]) { print 'class="'. $header_classes[$field] . '" '; } ?>>
               <?php print $label; ?>
             </th>
@@ -33,7 +34,7 @@
       <?php foreach ($rows as $row_count => $row): ?>
         <tr <?php if ($row_classes[$row_count]) { print 'class="' . implode(' ', $row_classes[$row_count]) .'"';  } ?>>
           <?php foreach ($row as $field => $content): ?>
-
+            <?php if ($disable[$field]) { continue; } ?>
             <td <?php if ($field_classes[$field][$row_count]) { print 'class="'. $field_classes[$field][$row_count] . '" '; } ?><?php print drupal_attributes($field_attributes[$field][$row_count]); ?>>
               <?php print $content; ?>
             </td>
@@ -46,6 +47,7 @@
       <tfoot>
         <tr>
           <?php foreach ($sum_row as $field => $content): ?>
+            <?php if ($disable[$field]) { continue; } ?>
             <td>
               <?php print $content; ?>
             </td>
