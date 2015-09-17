@@ -1046,6 +1046,10 @@ return $entity->title;';
   $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_transaction_invest_name_value']['limit'] = '0';
   $handler->display->display_options['path'] = 'investerare/lista/%/investeringshistorik';
+  $handler->display->display_options['menu']['title'] = 'Transaktionshistorik';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['transaktions_historia'] = array(
     t('Master'),
     t('Transaktionshistoria'),

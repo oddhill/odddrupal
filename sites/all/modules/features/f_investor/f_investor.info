@@ -8,6 +8,7 @@ dependencies[] = context
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = ds
+dependencies[] = ds_format
 dependencies[] = eck
 dependencies[] = eck
 dependencies[] = email

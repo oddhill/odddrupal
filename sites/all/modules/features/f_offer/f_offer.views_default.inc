@@ -117,6 +117,12 @@ function f_offer_views_default_views() {
     'title' => 'title',
     'field_shared_cell' => 'field_shared_cell',
     'field_shared_phone' => 'field_shared_phone',
+    'field_offer_newem' => 'field_offer_newem',
+    'field_offer_pp' => 'field_offer_pp',
+    'field_offer_loan' => 'field_offer_loan',
+    'field_offer_amount_guar' => 'field_offer_amount_guar',
+    'field_offer_amount' => 'field_offer_amount',
+    'field_offer_sum' => 'field_offer_sum',
     'field_offer_status' => 'field_offer_status',
     'field_offer_first_contact' => 'field_offer_first_contact',
     'field_offer_interested' => 'field_offer_interested',
@@ -133,7 +139,7 @@ function f_offer_views_default_views() {
     'views_send' => array(
       'align' => '',
       'separator' => '',
-      'empty_column' => 1,
+      'empty_column' => 0,
     ),
     'id' => array(
       'sortable' => 0,
@@ -150,7 +156,7 @@ function f_offer_views_default_views() {
       'empty_column' => 0,
     ),
     'title' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -164,6 +170,48 @@ function f_offer_views_default_views() {
       'empty_column' => 0,
     ),
     'field_shared_phone' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_newem' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_pp' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_loan' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_amount_guar' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_amount' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_sum' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -275,9 +323,11 @@ function f_offer_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
       'thousand_separator' => ' ',
+      'decimal_separator' => '.',
+      'scale' => '2',
       'prefix_suffix' => 0,
     ),
   );
@@ -349,6 +399,17 @@ function f_offer_views_default_views() {
       'prefix_suffix' => 1,
     ),
   );
+  /* Field: Erbjudande: Summa */
+  $handler->display->display_options['fields']['field_offer_sum']['id'] = 'field_offer_sum';
+  $handler->display->display_options['fields']['field_offer_sum']['table'] = 'field_data_field_offer_sum';
+  $handler->display->display_options['fields']['field_offer_sum']['field'] = 'field_offer_sum';
+  $handler->display->display_options['fields']['field_offer_sum']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_sum']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
   /* Field: Erbjudande: Status */
   $handler->display->display_options['fields']['field_offer_status']['id'] = 'field_offer_status';
   $handler->display->display_options['fields']['field_offer_status']['table'] = 'field_data_field_offer_status';
@@ -406,13 +467,19 @@ function f_offer_views_default_views() {
   $handler->display->display_options['style_options']['columns'] = array(
     'path' => 'path',
     'id' => 'id',
+    'id_1' => 'id_1',
+    'type' => 'type',
     'title' => 'title',
     'field_offer_interested_date' => 'field_offer_interested_date',
+    'field_offer_newem' => 'field_offer_newem',
+    'field_offer_pp' => 'field_offer_pp',
+    'field_offer_loan' => 'field_offer_loan',
     'field_offer_amount_guar' => 'field_offer_amount_guar',
     'field_offer_amount' => 'field_offer_amount',
-    'field_offer_signed' => 'field_offer_signed',
+    'verification_status' => 'verification_status',
+    'sign' => 'sign',
   );
-  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'path' => array(
       'align' => '',
@@ -426,15 +493,50 @@ function f_offer_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
+    'id_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'title' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'field_offer_interested_date' => array(
-      'sortable' => 1,
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_newem' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_pp' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_offer_loan' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -454,9 +556,12 @@ function f_offer_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_offer_signed' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
+    'verification_status' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sign' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -528,6 +633,54 @@ function f_offer_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Field: Erbjudande: Riktad nyemission */
+  $handler->display->display_options['fields']['field_offer_newem']['id'] = 'field_offer_newem';
+  $handler->display->display_options['fields']['field_offer_newem']['table'] = 'field_data_field_offer_newem';
+  $handler->display->display_options['fields']['field_offer_newem']['field'] = 'field_offer_newem';
+  $handler->display->display_options['fields']['field_offer_newem']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_newem']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_newem']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'number_integer',
+    'fallback_settings' => array(
+      'thousand_separator' => ' ',
+      'prefix_suffix' => 0,
+    ),
+  );
+  /* Field: Erbjudande: Private Placement */
+  $handler->display->display_options['fields']['field_offer_pp']['id'] = 'field_offer_pp';
+  $handler->display->display_options['fields']['field_offer_pp']['table'] = 'field_data_field_offer_pp';
+  $handler->display->display_options['fields']['field_offer_pp']['field'] = 'field_offer_pp';
+  $handler->display->display_options['fields']['field_offer_pp']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_pp']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_pp']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'number_integer',
+    'fallback_settings' => array(
+      'thousand_separator' => ' ',
+      'prefix_suffix' => 0,
+    ),
+  );
+  /* Field: Erbjudande: Brygglån */
+  $handler->display->display_options['fields']['field_offer_loan']['id'] = 'field_offer_loan';
+  $handler->display->display_options['fields']['field_offer_loan']['table'] = 'field_data_field_offer_loan';
+  $handler->display->display_options['fields']['field_offer_loan']['field'] = 'field_offer_loan';
+  $handler->display->display_options['fields']['field_offer_loan']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_loan']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_offer_loan']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'number_integer',
+    'fallback_settings' => array(
+      'thousand_separator' => ' ',
+      'prefix_suffix' => 0,
+    ),
+  );
   /* Field: Erbjudande: Garantiåtagande */
   $handler->display->display_options['fields']['field_offer_amount_guar']['id'] = 'field_offer_amount_guar';
   $handler->display->display_options['fields']['field_offer_amount_guar']['table'] = 'field_data_field_offer_amount_guar';
@@ -562,65 +715,16 @@ function f_offer_views_default_views() {
       'prefix_suffix' => 1,
     ),
   );
-  /* Field: Erbjudande: Riktad nyemission */
-  $handler->display->display_options['fields']['field_offer_newem']['id'] = 'field_offer_newem';
-  $handler->display->display_options['fields']['field_offer_newem']['table'] = 'field_data_field_offer_newem';
-  $handler->display->display_options['fields']['field_offer_newem']['field'] = 'field_offer_newem';
-  $handler->display->display_options['fields']['field_offer_newem']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_offer_newem']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_offer_newem']['settings'] = array(
-    'click_to_edit' => 0,
-    'click_to_edit_style' => 'button',
-    'empty_text' => '',
-    'fallback_format' => 'number_integer',
-    'fallback_settings' => array(
-      'thousand_separator' => ' ',
-      'prefix_suffix' => 0,
-    ),
-  );
-  /* Field: Erbjudande: Private Placement */
-  $handler->display->display_options['fields']['field_offer_pp']['id'] = 'field_offer_pp';
-  $handler->display->display_options['fields']['field_offer_pp']['table'] = 'field_data_field_offer_pp';
-  $handler->display->display_options['fields']['field_offer_pp']['field'] = 'field_offer_pp';
-  $handler->display->display_options['fields']['field_offer_pp']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_offer_pp']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_offer_pp']['settings'] = array(
-    'click_to_edit' => 0,
-    'click_to_edit_style' => 'button',
-    'empty_text' => '',
-    'fallback_format' => 'number_integer',
-    'fallback_settings' => array(
-      'thousand_separator' => ' ',
-      'prefix_suffix' => 0,
-    ),
-  );
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_offer_signcommit']['id'] = 'field_offer_signcommit';
-  $handler->display->display_options['fields']['field_offer_signcommit']['table'] = 'field_data_field_offer_signcommit';
-  $handler->display->display_options['fields']['field_offer_signcommit']['field'] = 'field_offer_signcommit';
-  $handler->display->display_options['fields']['field_offer_signcommit']['label'] = 'Teckningsförbindelse';
-  $handler->display->display_options['fields']['field_offer_signcommit']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_offer_warrant']['id'] = 'field_offer_warrant';
-  $handler->display->display_options['fields']['field_offer_warrant']['table'] = 'field_data_field_offer_warrant';
-  $handler->display->display_options['fields']['field_offer_warrant']['field'] = 'field_offer_warrant';
-  $handler->display->display_options['fields']['field_offer_warrant']['label'] = 'Garantiåtagande';
-  $handler->display->display_options['fields']['field_offer_warrant']['element_label_colon'] = FALSE;
-  /* Field: Erbjudande: Brygglån */
-  $handler->display->display_options['fields']['field_offer_loan']['id'] = 'field_offer_loan';
-  $handler->display->display_options['fields']['field_offer_loan']['table'] = 'field_data_field_offer_loan';
-  $handler->display->display_options['fields']['field_offer_loan']['field'] = 'field_offer_loan';
-  $handler->display->display_options['fields']['field_offer_loan']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_offer_loan']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_offer_loan']['settings'] = array(
-    'click_to_edit' => 0,
-    'click_to_edit_style' => 'button',
-    'empty_text' => '',
-    'fallback_format' => 'number_integer',
-    'fallback_settings' => array(
-      'thousand_separator' => ' ',
-      'prefix_suffix' => 0,
-    ),
+  /* Field: Erbjudande: Summa */
+  $handler->display->display_options['fields']['field_offer_sum']['id'] = 'field_offer_sum';
+  $handler->display->display_options['fields']['field_offer_sum']['table'] = 'field_data_field_offer_sum';
+  $handler->display->display_options['fields']['field_offer_sum']['field'] = 'field_offer_sum';
+  $handler->display->display_options['fields']['field_offer_sum']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_sum']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => ',',
+    'scale' => '2',
+    'prefix_suffix' => 1,
   );
   /* Field: Investerare: Status för kontrollen */
   $handler->display->display_options['fields']['verification_status']['id'] = 'verification_status';
@@ -825,6 +929,7 @@ function f_offer_views_default_views() {
     t('Private Placement'),
     t('Brygglån'),
     t('Garantiåtagande'),
+    t('Summa'),
     t('Första kontakt'),
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.'),
