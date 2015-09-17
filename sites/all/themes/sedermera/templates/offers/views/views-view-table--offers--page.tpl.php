@@ -42,5 +42,16 @@
         </tr>
       <?php endforeach; ?>
     </tbody>
+    <?php if (!empty($sum_row)) : ?>
+      <tfoot>
+        <tr>
+          <?php foreach ($sum_row as $field => $content): ?>
+            <td>
+              <?php print $content; ?>
+            </td>
+          <?php endforeach; ?>
+        </tr>
+      </tfoot>
+    <?php endif; ?>
   </table>
 </div>
