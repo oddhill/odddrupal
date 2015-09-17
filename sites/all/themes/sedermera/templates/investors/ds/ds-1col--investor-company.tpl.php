@@ -29,4 +29,6 @@
       </div>
     <?php endif; ?>
   </div>
+
+  <?php print render($content['transaction_history']); ?>
 </div>

@@ -29,7 +29,7 @@ function f_capital_raising_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -50,
     'customized' => 1,
     'parent_identifier' => 'main-menu_transaktioner:transaktioner',
   );
@@ -52,7 +52,7 @@ function f_capital_raising_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 10,
+    'weight' => -49,
     'customized' => 1,
     'parent_identifier' => 'main-menu_transaktioner:transaktioner',
   );
@@ -78,7 +78,7 @@ function f_capital_raising_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 20,
+    'weight' => -47,
     'customized' => 1,
     'parent_identifier' => 'main-menu_transaktioner:transaktioner',
   );
@@ -103,6 +103,32 @@ function f_capital_raising_menu_default_menu_links() {
     'weight' => -47,
     'customized' => 1,
   );
+  // Exported menu link: main-menu_transaktionshistoria:transaktioner/historik
+  $menu_links['main-menu_transaktionshistoria:transaktioner/historik'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'transaktioner/historik',
+    'router_path' => 'transaktioner',
+    'link_title' => 'Transaktionshistoria',
+    'options' => array(
+      'identifier' => 'main-menu_transaktionshistoria:transaktioner/historik',
+      'attributes' => array(
+        'id' => 'document-log',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_transaktioner:transaktioner',
+  );
 
   // Translatables
   // Included for use with string extractors like potx.
@@ -110,6 +136,7 @@ function f_capital_raising_menu_default_menu_links() {
   t('Arkiverade transaktioner');
   t('Lägg till transaktion');
   t('Transaktioner');
+  t('Transaktionshistoria');
 
   return $menu_links;
 }

@@ -9,11 +9,11 @@
 .field-shared-address,
 .field-shared-notes,
 .field-shared-interests {
-  margin-bottom: 15px;
 
   .label {
     display: inline-block;
-    width: 30%;
+    width: 40%;
+    margin-bottom: 10px;
   }
 }
 
@@ -21,6 +21,15 @@
 
   .label {
     display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.field-invest-cont-person {
+
+  .label {
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
@@ -31,11 +40,20 @@
   border-radius: 5px;
 
   .field {
-    margin-bottom: 5px;
 
     .label {
       display: inline-block;
       width: 25%;
     }
+  }
+}
+
+.transaction-history {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 2px solid $light-grey;
+
+  h2 {
+    margin-bottom: 15px;
   }
 }

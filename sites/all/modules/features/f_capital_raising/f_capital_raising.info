@@ -95,6 +95,7 @@ features[menu_links][] = main-menu_alla-transaktioner:transaktioner/lista
 features[menu_links][] = main-menu_arkiverade-transaktioner:transaktioner/arkiverade
 features[menu_links][] = main-menu_lgg-till-transaktion:node/add/capital-raising
 features[menu_links][] = main-menu_transaktioner:transaktioner
+features[menu_links][] = main-menu_transaktionshistoria:transaktioner/historik
 features[msnf_step][] = step_cap_rais_1|node|capital_raising
 features[msnf_step][] = step_cap_rais_2|node|capital_raising
 features[msnf_step][] = step_cap_rais_3|node|capital_raising

@@ -1012,7 +1012,7 @@ function f_investor_views_default_views() {
     7 => 0,
     8 => 0,
   );
-  $handler->display->display_options['path'] = 'investerare/historik';
+  $handler->display->display_options['path'] = 'transaktioner/historik';
 
   /* Display: History block */
   $handler = $view->new_display('block', 'History block', 'transaction_history_block');

@@ -77,39 +77,12 @@ function f_investor_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_investerare:investerare',
   );
-  // Exported menu link: main-menu_transaktionshistoria:investerare/historik
-  $menu_links['main-menu_transaktionshistoria:investerare/historik'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'investerare/historik',
-    'router_path' => 'investerare/historik',
-    'link_title' => 'Transaktionshistoria',
-    'options' => array(
-      'attributes' => array(
-        'id' => 'document-log',
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
-      'identifier' => 'main-menu_transaktionshistoria:investerare/historik',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 0,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_investerare:investerare',
-  );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Alla investerare');
   t('Investerare');
   t('Lägg till investerare');
-  t('Transaktionshistoria');
 
   return $menu_links;
 }

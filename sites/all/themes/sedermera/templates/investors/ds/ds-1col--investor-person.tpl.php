@@ -28,4 +28,6 @@
       <?php print render($content['field_shared_notes']); ?>
     </div>
   </div>
+
+  <?php print render($content['transaction_history']); ?>
 </div>

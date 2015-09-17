@@ -345,7 +345,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -406,7 +406,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -726,7 +726,7 @@ function f_investor_field_default_field_instances() {
           'taxonomy_term_separator' => ', ',
         ),
         'type' => 'ds_taxonomy_separator',
-        'weight' => 14,
+        'weight' => 7,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -762,7 +762,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 12,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -893,7 +893,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 11,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -935,7 +935,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -972,7 +972,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1397,7 +1397,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 12,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1468,7 +1468,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 16,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1533,7 +1533,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1697,15 +1697,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 28,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1742,12 +1736,9 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 27,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1955,7 +1946,7 @@ function f_investor_field_default_field_instances() {
           'taxonomy_term_separator' => ', ',
         ),
         'type' => 'ds_taxonomy_separator',
-        'weight' => 17,
+        'weight' => 9,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -1991,7 +1982,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -2162,7 +2153,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -2204,7 +2195,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'investor_verification' => array(
         'label' => 'above',
@@ -2241,7 +2232,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'investor_verification' => array(
         'label' => 'above',

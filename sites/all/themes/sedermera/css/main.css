@@ -1309,43 +1309,43 @@ input[value="Jämför"]#edit-submit {
     border: 1px solid #e0e2e6;
     font-weight: 500; }
 
-.field-shared-custresp,
-.field-invest-comp-own,
-.field-shared-industries,
-.field-shared-email,
-.field-shared-cell,
-.field-shared-phone,
-.field-shared-fax,
-.field-shared-address,
-.field-shared-notes,
-.field-shared-interests {
-  margin-bottom: 15px; }
-  .field-shared-custresp .label,
-  .field-invest-comp-own .label,
-  .field-shared-industries .label,
-  .field-shared-email .label,
-  .field-shared-cell .label,
-  .field-shared-phone .label,
-  .field-shared-fax .label,
-  .field-shared-address .label,
-  .field-shared-notes .label,
-  .field-shared-interests .label {
-    display: inline-block;
-    width: 30%; }
+.field-shared-custresp .label,
+.field-invest-comp-own .label,
+.field-shared-industries .label,
+.field-shared-email .label,
+.field-shared-cell .label,
+.field-shared-phone .label,
+.field-shared-fax .label,
+.field-shared-address .label,
+.field-shared-notes .label,
+.field-shared-interests .label {
+  display: inline-block;
+  width: 40%;
+  margin-bottom: 10px; }
 
 .field-shared-notes .label {
-  display: block; }
+  display: block;
+  margin-bottom: 10px; }
+
+.field-invest-cont-person .label {
+  display: block;
+  margin-bottom: 10px; }
 
 .entity-contact-person {
   padding: 10px;
   margin: 10px 0;
   border: 2px solid #f3f4f8;
   border-radius: 5px; }
-  .entity-contact-person .field {
-    margin-bottom: 5px; }
-    .entity-contact-person .field .label {
-      display: inline-block;
-      width: 25%; }
+  .entity-contact-person .field .label {
+    display: inline-block;
+    width: 25%; }
+
+.transaction-history {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 2px solid #f3f4f8; }
+  .transaction-history h2 {
+    margin-bottom: 15px; }
 
 .node-type-company .content-wrapper {
   background: #fff;
@@ -1613,6 +1613,19 @@ input[value="Jämför"]#edit-submit {
 .page-node-intressenter .content-wrapper {
   background: #fff;
   padding: 0 0 30px; }
+
+.node.node-transaction-history.view-mode-full {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .node.node-transaction-history.view-mode-full:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .node.node-transaction-history.view-mode-full .col .field .label {
+    display: inline-block;
+    width: 40%;
+    margin-bottom: 10px; }
 
 @media screen and (max-width: 1600px) {
   .sub-menu-active .site-wrapper {
@@ -4178,7 +4191,8 @@ form#user-login,
   padding: 0; }
 
 th {
-  padding: 10px; }
+  padding: 10px;
+  white-space: nowrap; }
 
 td {
   white-space: nowrap; }

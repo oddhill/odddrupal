@@ -17,6 +17,11 @@ function f_investor_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'company';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
+    'transaction_history' => array(
+      'weight' => '8',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'title' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -52,6 +57,11 @@ function f_investor_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'person';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
+    'transaction_history' => array(
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'title' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -118,6 +128,21 @@ function f_investor_ds_field_settings_info() {
  */
 function f_investor_ds_custom_fields_info() {
   $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'transaction_history';
+  $ds_field->label = 'Transaktionshistoria';
+  $ds_field->field_type = 6;
+  $ds_field->entities = array(
+    'investor' => 'investor',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'block' => 'views|aadbde9fc19498653ca73f9fe62d3aa2',
+    'block_render' => '1',
+  );
+  $export['transaction_history'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -209,6 +234,7 @@ function f_investor_ds_layout_settings_info() {
         5 => 'field_invest_comp_own',
         6 => 'field_invest_cont_person',
         7 => 'field_shared_interests',
+        8 => 'transaction_history',
       ),
     ),
     'fields' => array(
@@ -220,6 +246,7 @@ function f_investor_ds_layout_settings_info() {
       'field_invest_comp_own' => 'ds_content',
       'field_invest_cont_person' => 'ds_content',
       'field_shared_interests' => 'ds_content',
+      'transaction_history' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -339,6 +366,7 @@ function f_investor_ds_layout_settings_info() {
         7 => 'field_shared_fax',
         8 => 'field_shared_notes',
         9 => 'field_shared_interests',
+        10 => 'transaction_history',
       ),
     ),
     'fields' => array(
@@ -352,6 +380,7 @@ function f_investor_ds_layout_settings_info() {
       'field_shared_fax' => 'ds_content',
       'field_shared_notes' => 'ds_content',
       'field_shared_interests' => 'ds_content',
+      'transaction_history' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
