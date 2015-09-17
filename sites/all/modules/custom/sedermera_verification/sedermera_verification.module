@@ -124,6 +124,10 @@ function sedermera_verification_menu_alter(&$items) {
 
   // Add a "Kontroller" page for every bundle.
   foreach ($entity_info['bundles'] as $bundle => $info) {
+    if ($bundle == 'lead') {
+      continue;
+    }
+
     // Get the base path for this bundle.
     $base = "investor/$bundle/%eckentity";
 
