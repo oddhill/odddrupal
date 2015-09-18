@@ -13,21 +13,23 @@
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding bg">
   <?php print render($content['title']); ?>
-  <div class="columns">
-    <div class="col">
-      <?php print render($content['field_shared_custresp']); ?>
-      <?php print render($content['field_shared_industries']); ?>
-      <?php print render($content['field_shared_interests']); ?>
-      <?php print render($content['field_shared_email']); ?>
-      <?php print render($content['field_shared_cell']); ?>
-      <?php print render($content['field_shared_phone']); ?>
-      <?php print render($content['field_shared_fax']); ?>
+  <?php if (!$history_page): ?>
+    <div class="columns">
+      <div class="col">
+        <?php print render($content['field_shared_custresp']); ?>
+        <?php print render($content['field_shared_industries']); ?>
+        <?php print render($content['field_shared_interests']); ?>
+        <?php print render($content['field_shared_email']); ?>
+        <?php print render($content['field_shared_cell']); ?>
+        <?php print render($content['field_shared_phone']); ?>
+        <?php print render($content['field_shared_fax']); ?>
+      </div>
+      <div class="col">
+        <?php print render($content['field_shared_address']); ?>
+        <?php print render($content['field_shared_notes']); ?>
+      </div>
     </div>
-    <div class="col">
-      <?php print render($content['field_shared_address']); ?>
-      <?php print render($content['field_shared_notes']); ?>
-    </div>
-  </div>
-
-  <?php print render($content['transaction_history']); ?>
+  <?php else: ?>
+    <?php print render($content['transaction_history']); ?>
+  <?php endif; ?>
 </div>

@@ -13,22 +13,24 @@
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding bg">
   <?php print render($content['title']); ?>
-  <div class="columns <?php if ($content['field_invest_cont_person']): ?>three-col<?php endif; ?>">
-    <div class="col">
-      <?php print render($content['field_shared_custresp']); ?>
-      <?php print render($content['field_invest_comp_own']); ?>
-      <?php print render($content['field_shared_industries']); ?>
-    </div>
-    <div class="col">
-      <?php print render($content['field_shared_address']); ?>
-      <?php print render($content['field_shared_notes']); ?>
-    </div>
-    <?php if ($content['field_invest_cont_person']): ?>
+  <?php if (!$history_page): ?>
+    <div class="columns <?php if ($content['field_invest_cont_person']): ?>three-col<?php endif; ?>">
       <div class="col">
-        <?php print render($content['field_invest_cont_person']); ?>
+        <?php print render($content['field_shared_custresp']); ?>
+        <?php print render($content['field_invest_comp_own']); ?>
+        <?php print render($content['field_shared_industries']); ?>
       </div>
-    <?php endif; ?>
-  </div>
-
-  <?php print render($content['transaction_history']); ?>
+      <div class="col">
+        <?php print render($content['field_shared_address']); ?>
+        <?php print render($content['field_shared_notes']); ?>
+      </div>
+      <?php if ($content['field_invest_cont_person']): ?>
+        <div class="col">
+          <?php print render($content['field_invest_cont_person']); ?>
+        </div>
+      <?php endif; ?>
+    </div>
+  <?php else: ?>
+    <?php print render($content['transaction_history']); ?>
+  <?php endif; ?>
 </div>

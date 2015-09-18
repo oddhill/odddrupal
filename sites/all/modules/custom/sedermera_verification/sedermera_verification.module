@@ -148,6 +148,13 @@ function sedermera_verification_menu_alter(&$items) {
       'access callback' => 'user_is_logged_in',
       'type' => MENU_CALLBACK,
     );
+
+    $items["$base/transaktionshistoria"] = array(
+      'title' => t('Transaktionshistoria'),
+      'access callback' => TRUE,
+      'type' => MENU_LOCAL_TASK,
+      'weight' => 50,
+    );
   }
 }
 

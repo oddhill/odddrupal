@@ -184,6 +184,14 @@ function sedermera_preprocess_node(&$variables) {
   }
 }
 
+function sedermera_preprocess_entity(&$variables) {
+  if ($variables['elements']['#entity_type'] == 'investor' && $variables['elements']['#view_mode'] == 'full') {
+    $variables['history_page'] = (arg(3) == 'transaktionshistoria') ? TRUE : FALSE;
+  }
+}
+
+// mymodule_preprocess_myentity
+
 function getIcon($file) {
   $title = $file['filemime'];
   $src = 'text-plain.png';
