@@ -399,6 +399,20 @@ function f_investor_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'new_revisions_kontrolluppgift';
+  $strongarm->value = '0';
+  $export['new_revisions_kontrolluppgift'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'new_revisions_kontrolluppgift_privat';
+  $strongarm->value = '0';
+  $export['new_revisions_kontrolluppgift_privat'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'nodeaccess_kontrolluppgift';
   $strongarm->value = array(
     0 => array(
@@ -660,6 +674,20 @@ function f_investor_strongarm() {
   $strongarm->name = 'node_submitted_transaction_history';
   $strongarm->value = 0;
   $export['node_submitted_transaction_history'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_kontrolluppgift';
+  $strongarm->value = 1;
+  $export['node_view_permissions_kontrolluppgift'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_kontrolluppgift_privat';
+  $strongarm->value = 1;
+  $export['node_view_permissions_kontrolluppgift_privat'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

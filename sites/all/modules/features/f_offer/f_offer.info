@@ -4,7 +4,6 @@ package = Features
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = eck
-dependencies[] = eck
 dependencies[] = editablefields
 dependencies[] = entityreference
 dependencies[] = features
