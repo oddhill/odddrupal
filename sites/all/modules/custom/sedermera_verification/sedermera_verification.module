@@ -222,7 +222,8 @@ function return_to_investor($nid) {
     $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl_pvt` WHERE field_shared_ctrl_pvt_target_id = $nid)")->fetchObject();
   }
 
-  $title = strtolower(explode(' ', $investor->title)[0]);
+  $exp = explode(' ', $investor->title);
+  $title = strtolower($exp[0]);
   drupal_goto("investerare/lista/$title/kontroll");
 }
 
