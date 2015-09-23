@@ -108,3 +108,13 @@ function sedermera_update_update_7006() {
   sedermera_update_update_7004();
   sedermera_update_update_7005();
 }
+
+/**
+ * Removes unused field
+ * @return null
+ */
+function sedermera_update_update_7007() {
+  field_delete_field('field_shared_ctrl_nid');
+
+  field_purge_batch(100);
+}

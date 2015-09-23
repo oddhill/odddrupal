@@ -721,7 +721,7 @@ function f_investor_field_default_field_bases() {
   // Exported field_base: 'field_ctrl_files_ext'
   $field_bases['field_ctrl_files_ext'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_ctrl_files_ext',
@@ -1069,6 +1069,27 @@ function f_investor_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_ctrl_ok'
+  $field_bases['field_ctrl_ok'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_ctrl_ok',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_invest_comp_id'
   $field_bases['field_invest_comp_id'] = array(
     'active' => 1,
@@ -1357,21 +1378,6 @@ function f_investor_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'entityreference',
-  );
-
-  // Exported field_base: 'field_shared_ctrl_nid'
-  $field_bases['field_shared_ctrl_nid'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_shared_ctrl_nid',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
   );
 
   // Exported field_base: 'field_shared_ctrl_pvt'

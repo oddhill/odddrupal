@@ -77,11 +77,36 @@ function f_investor_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|kontrolluppgift_privat|full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'kontrolluppgift_privat';
+  $ds_fieldsetting->view_mode = 'full';
+  $ds_fieldsetting->settings = array(
+    'handle_control' => array(
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|kontrolluppgift_privat|full'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|kontrolluppgift|full';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'kontrolluppgift';
   $ds_fieldsetting->view_mode = 'full';
   $ds_fieldsetting->settings = array(
+    'handle_control' => array(
+      'weight' => '11',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'title' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -128,6 +153,28 @@ function f_investor_ds_field_settings_info() {
  */
 function f_investor_ds_custom_fields_info() {
   $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'handle_control';
+  $ds_field->label = 'Hantera kontroll';
+  $ds_field->field_type = 5;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array(
+    'code' => array(
+      'value' => '<?php if (arg(3) == \'kontroll\') { ?>
+<form action="/node/<?php print $entity->nid; ?>/revisions" method="POST">
+<input name="private" type="submit" value="Hantera kontroll" />
+</form>
+<?php } ?>',
+      'format' => 'ds_code',
+    ),
+    'use_token' => 1,
+  );
+  $export['handle_control'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -447,12 +494,104 @@ function f_investor_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
-        1 => 'field_ctrl_date_upp',
+        1 => 'field_ctrl_ok',
+        2 => 'group_ctrl_upp',
+        3 => 'group_ctrl_ptv',
+        4 => 'group_ctrl_id',
+        5 => 'group_ctrl_id_real',
+        6 => 'group_ctrl_reg',
+        7 => 'group_ctrl_eu',
+        8 => 'group_ctrl_credit',
+        9 => 'group_ctrl_comp',
+        10 => 'group_ctrl_oth',
+        11 => 'field_ctrl_files_reg',
+        12 => 'field_ctrl_files_eu',
+        13 => 'handle_control',
+        14 => 'field_ctrl_app_reg',
+        15 => 'field_ctrl_files_credit',
+        16 => 'field_ctrl_app_eu',
+        17 => 'field_ctrl_date_reg',
+        18 => 'field_ctrl_note_reg',
+        19 => 'field_ctrl_files_id_real',
+        20 => 'field_ctrl_date_eu',
+        21 => 'field_ctrl_app_credit',
+        22 => 'field_ctrl_note_eu',
+        23 => 'field_ctrl_date_credit',
+        24 => 'field_ctrl_files_id',
+        25 => 'field_ctrl_app_id_real',
+        26 => 'field_ctrl_date_id_real',
+        27 => 'field_ctrl_files_comp',
+        28 => 'field_ctrl_note_credit',
+        29 => 'field_ctrl_app_id',
+        30 => 'field_ctrl_files_oth',
+        31 => 'field_ctrl_app_comp',
+        32 => 'field_ctrl_date_id',
+        33 => 'field_ctrl_note_id_real',
+        34 => 'field_ctrl_app_oth',
+        35 => 'field_ctrl_files_ptv',
+        36 => 'field_ctrl_date_comp',
+        37 => 'field_ctrl_note_id',
+        38 => 'field_ctrl_date_oth',
+        39 => 'field_ctrl_note_comp',
+        40 => 'field_ctrl_app_ptv',
+        41 => 'field_ctrl_note_oth',
+        42 => 'field_ctrl_date_ptv',
+        43 => 'field_ctrl_note_ptv',
+        44 => 'field_ctrl_files_upp',
+        45 => 'field_ctrl_app_upp',
+        46 => 'field_ctrl_date_upp',
+        47 => 'field_ctrl_note_upp',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
+      'field_ctrl_ok' => 'ds_content',
+      'group_ctrl_upp' => 'ds_content',
+      'group_ctrl_ptv' => 'ds_content',
+      'group_ctrl_id' => 'ds_content',
+      'group_ctrl_id_real' => 'ds_content',
+      'group_ctrl_reg' => 'ds_content',
+      'group_ctrl_eu' => 'ds_content',
+      'group_ctrl_credit' => 'ds_content',
+      'group_ctrl_comp' => 'ds_content',
+      'group_ctrl_oth' => 'ds_content',
+      'field_ctrl_files_reg' => 'ds_content',
+      'field_ctrl_files_eu' => 'ds_content',
+      'handle_control' => 'ds_content',
+      'field_ctrl_app_reg' => 'ds_content',
+      'field_ctrl_files_credit' => 'ds_content',
+      'field_ctrl_app_eu' => 'ds_content',
+      'field_ctrl_date_reg' => 'ds_content',
+      'field_ctrl_note_reg' => 'ds_content',
+      'field_ctrl_files_id_real' => 'ds_content',
+      'field_ctrl_date_eu' => 'ds_content',
+      'field_ctrl_app_credit' => 'ds_content',
+      'field_ctrl_note_eu' => 'ds_content',
+      'field_ctrl_date_credit' => 'ds_content',
+      'field_ctrl_files_id' => 'ds_content',
+      'field_ctrl_app_id_real' => 'ds_content',
+      'field_ctrl_date_id_real' => 'ds_content',
+      'field_ctrl_files_comp' => 'ds_content',
+      'field_ctrl_note_credit' => 'ds_content',
+      'field_ctrl_app_id' => 'ds_content',
+      'field_ctrl_files_oth' => 'ds_content',
+      'field_ctrl_app_comp' => 'ds_content',
+      'field_ctrl_date_id' => 'ds_content',
+      'field_ctrl_note_id_real' => 'ds_content',
+      'field_ctrl_app_oth' => 'ds_content',
+      'field_ctrl_files_ptv' => 'ds_content',
+      'field_ctrl_date_comp' => 'ds_content',
+      'field_ctrl_note_id' => 'ds_content',
+      'field_ctrl_date_oth' => 'ds_content',
+      'field_ctrl_note_comp' => 'ds_content',
+      'field_ctrl_app_ptv' => 'ds_content',
+      'field_ctrl_note_oth' => 'ds_content',
+      'field_ctrl_date_ptv' => 'ds_content',
+      'field_ctrl_note_ptv' => 'ds_content',
+      'field_ctrl_files_upp' => 'ds_content',
+      'field_ctrl_app_upp' => 'ds_content',
       'field_ctrl_date_upp' => 'ds_content',
+      'field_ctrl_note_upp' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

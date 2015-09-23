@@ -12,8 +12,8 @@
  */
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding bg">
-  <?php print render($content['title']); ?>
-  <?php if (!$history_page): ?>
+  <?php if ($view_page): ?>
+    <?php print render($content['title']); ?>
     <div class="columns">
       <div class="col">
         <?php print render($content['field_shared_custresp']); ?>
@@ -29,7 +29,9 @@
         <?php print render($content['field_shared_notes']); ?>
       </div>
     </div>
-  <?php else: ?>
+  <?php elseif ($control_page): ?>
+    <?php print render($control_node); ?>
+  <?php elseif ($history_page): ?>
     <?php print render($content['transaction_history']); ?>
   <?php endif; ?>
 </div>

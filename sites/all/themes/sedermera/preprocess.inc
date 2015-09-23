@@ -186,11 +186,22 @@ function sedermera_preprocess_node(&$variables) {
 
 function sedermera_preprocess_entity(&$variables) {
   if ($variables['elements']['#entity_type'] == 'investor' && $variables['elements']['#view_mode'] == 'full') {
+    $variables['view_page'] = (arg(3) == '') ? TRUE : FALSE;
+    $variables['control_page'] = (arg(3) == 'kontroll') ? TRUE : FALSE;
     $variables['history_page'] = (arg(3) == 'transaktionshistoria') ? TRUE : FALSE;
+
+    if (isset($variables['elements']['#entity']->field_shared_ctrl)) {
+      $node = node_load($variables['elements']['#entity']->field_shared_ctrl[LANGUAGE_NONE][0]['target_id']);
+    }
+    else if (isset($variables['elements']['#entity']->field_shared_ctrl_pvt)) {
+      $node = node_load($variables['elements']['#entity']->field_shared_ctrl_pvt[LANGUAGE_NONE][0]['target_id']);
+    }
+    else {
+      return;
+    }
+    $variables['control_node'] = node_view($node, 'full');
   }
 }
-
-// mymodule_preprocess_myentity
 
 function getIcon($file) {
   $title = $file['filemime'];

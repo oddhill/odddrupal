@@ -44,9 +44,8 @@ function sedermera_offer_sign_confirm($form, &$form_state, $transaction_id, $off
 
   if (!$offer->field_offer_investor->field_shared_veri_appr->value()) {
     // Create the text that we'll use for the confirmation form.
-    $text = format_string('OBS! Kontrollen för %investor är INTE godkänd. <br> Är du säker på att du vill teckna %investor för %transaction?', array(
+    $text = format_string('OBS! Kontrollen för %investor är INTE godkänd.', array(
       '%investor' => $offer->field_offer_investor->title->value(),
-      '%transaction' => $transaction->title->value(),
     ));
 
     // Return the confirmation form.
@@ -686,8 +685,9 @@ function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state)
   if ($form_state['step'] == 'views_form_views_form') {
     sedermera_offer_form_editablefields_form_alter($form, $form_state);
 
-    // Disable access to the entire form when there's no result, since it doesn't
-    // make any sense to print the form when there's nothing that can be selected.
+    // Disable access to the entire form when there's no result, since it
+    // doesn't make any sense to print the form when there's nothing that can be
+    // selected.
     if (!$form_state['build_info']['args'][0]->result) {
       $form['#access'] = FALSE;
     }

@@ -99,7 +99,10 @@ function f_document_user_default_permissions() {
   $permissions['edit revisions'] = array(
     'name' => 'edit revisions',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'revisioning',
   );
@@ -124,6 +127,7 @@ function f_document_user_default_permissions() {
   $permissions['publish revisions'] = array(
     'name' => 'publish revisions',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
@@ -160,6 +164,7 @@ function f_document_user_default_permissions() {
   $permissions['unpublish current revision'] = array(
     'name' => 'unpublish current revision',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
     ),
     'module' => 'revisioning',
@@ -221,7 +226,9 @@ function f_document_user_default_permissions() {
   $permissions['view revision status messages'] = array(
     'name' => 'view revision status messages',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'revisioning',
   );

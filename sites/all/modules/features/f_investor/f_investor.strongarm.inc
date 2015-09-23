@@ -84,18 +84,14 @@ function f_investor_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_pattern_node_kontrolluppgift';
-  $strongarm->value = '<?php $ent = entity_load_single(\'investor\', arg(2)); ?>
-
-<?php echo $ent->title . \'  \'  . $entity->type ?>';
+  $strongarm->value = '';
   $export['auto_entitylabel_pattern_node_kontrolluppgift'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_pattern_node_kontrolluppgift_privat';
-  $strongarm->value = '<?php $ent = entity_load_single(\'investor\', arg(2)); ?>
-
-<?php echo $ent->title . \'  \'  . $entity->type ?>';
+  $strongarm->value = '';
   $export['auto_entitylabel_pattern_node_kontrolluppgift_privat'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -240,7 +236,32 @@ function f_investor_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__kontrolluppgift_privat';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'full' => array(
+        'custom_settings' => TRUE,
+      ),
+      'teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'PDF' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'mail' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
@@ -574,6 +595,7 @@ function f_investor_strongarm() {
   $strongarm->value = array(
     0 => 'status',
     1 => 'revision',
+    2 => 'revision_moderation',
   );
   $export['node_options_kontrolluppgift'] = $strongarm;
 
@@ -584,6 +606,7 @@ function f_investor_strongarm() {
   $strongarm->value = array(
     0 => 'status',
     1 => 'revision',
+    2 => 'revision_moderation',
   );
   $export['node_options_kontrolluppgift_privat'] = $strongarm;
 
