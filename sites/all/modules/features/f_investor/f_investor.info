@@ -54,6 +54,7 @@ features[ds_layout_settings][] = investor|company|investor_verification
 features[ds_layout_settings][] = investor|lead|default
 features[ds_layout_settings][] = investor|person|default
 features[ds_layout_settings][] = investor|person|investor_verification
+features[ds_layout_settings][] = node|kontrolluppgift_privat|full
 features[ds_layout_settings][] = node|kontrolluppgift|full
 features[ds_layout_settings][] = node|transaction_history|full
 features[ds_layout_settings][] = taxonomy_term|intressen|default
