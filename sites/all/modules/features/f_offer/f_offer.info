@@ -16,6 +16,7 @@ dependencies[] = strongarm
 dependencies[] = text
 dependencies[] = views
 dependencies[] = views_linkarea
+dependencies[] = views_php
 dependencies[] = views_send
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
