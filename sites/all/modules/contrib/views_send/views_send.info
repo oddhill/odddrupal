@@ -8,9 +8,9 @@ core = 7.x
 files[] = views_send.rules.inc
 files[] = views/views_send_handler_field_selector.inc
 
-; Information added by Drupal.org packaging script on 2014-06-21
-version = "7.x-1.1"
+; Information added by Drupal.org packaging script on 2015-03-14
+version = "7.x-1.1+6-dev"
 core = "7.x"
 project = "views_send"
-datestamp = "1403371134"
+datestamp = "1426295897"
 

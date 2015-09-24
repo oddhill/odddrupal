@@ -28,7 +28,100 @@ function sedermera_offer_menu() {
     'access arguments' => array(1, 'eck add offer offer entities'),
   );
 
+  $items['offer/send-info'] = array(
+    'page callback' => 'transaction_transparency_info_send_mail',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
+}
+
+function sedermera_offer_node_presave($node) {
+  if ($node->type = 'capital_raising') {
+    // React if info logout checkbox has been checked else proceed as normal
+    if ($node->original->field_cap_rais_info_mail[LANGUAGE_NONE][0]['value'] == 0 && $node->field_cap_rais_info_mail[LANGUAGE_NONE][0]['value'] == 1) {
+
+      // Get offers connected to this transaction
+      $result = db_query("SELECT entity_id FROM `field_data_field_offer_cap_rais` WHERE `field_offer_cap_rais_target_id` = $node->nid")->fetchAll();
+
+      // Build mail.
+      // Subject.
+      $params['subject'] = 'Hello';
+      // Message.
+      $params['message'][] = 'Utloggad insynsinfo';
+
+      foreach ($result as $target_id) {
+        // Load offer entity to get connected investors
+        $offer = entity_load_single('offer', $target_id->entity_id);
+
+        // Only send mail if investor has gotten info previously
+        if (!empty($offer->field_offer_info_mail) && $offer->field_offer_info_mail[LANGUAGE_NONE][0]['value'] == 1) {
+          $investor = entity_load_single('investor', $offer->field_offer_investor[LANGUAGE_NONE][0]['target_id']);
+
+          // If investor is company then possibility of multiple contact persons
+          if ($investor->type == 'company'){
+            foreach ($investor->field_invest_cont_person[LANGUAGE_NONE] as $investor_id) {
+              $person = entity_load_single('contact_person', $investor_id['target_id']);
+              // Get mail address from investor
+              $mail = $person->field_comp_cont_mail[LANGUAGE_NONE][0]['email'];
+              // Send mail
+              drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
+            }
+          }
+          else if ($investor->type == 'person'){
+            // Get mail address from investor
+            $mail = $investor->field_shared_email[LANGUAGE_NONE][0]['email'];
+            // Send mail
+            drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
+          }
+        }
+      }
+    }
+  }
+}
+
+function transaction_transparency_info_send_mail() {
+  // Load entitys to retrieve info
+  $transaction = node_load(arg(4));
+  $investor = entity_load_single('investor', arg(5));
+  $company = node_load($transaction->field_cap_rais_comp[LANGUAGE_NONE][0]['target_id']);
+
+  // Gater info for mail.
+  $investor_name = $investor->title;
+  $investor_mail = $investor->field_shared_email[LANGUAGE_NONE][0]['email'];
+
+  $transaction_title = $company->title . ' ' . $transaction->title;
+
+  // Build mail.
+  // Subject.
+  $params['subject'] = 'Hello';
+
+  // Message.
+  $params['message'][] = 'TEXT';
+
+  // Send Mail
+  drupal_mail('sedermera_offer', 'info', $investor_mail, LANGUAGE_NONE, $params);
+
+  // Mark offer as gotten transparency information
+  $offer = entity_load_single('offer', arg(3));
+  $offer->field_offer_info_mail[LANGUAGE_NONE][0]['value'] = 1;
+  entity_save('offer', $offer);
+
+  // Return to contactlist.
+  drupal_goto("transaktioner/lista/".arg(2)."/kontaktlista");
+}
+
+/**
+ * Implements hook_mail().
+ */
+function sedermera_offer_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'info':
+      $message['subject'] = $params['subject'];
+      $message['body'] = $params['message'];
+      break;
+  }
 }
 
 /**

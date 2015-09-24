@@ -1724,6 +1724,7 @@ function f_investor_field_group_info() {
       0 => 'field_shared_address',
       1 => 'field_shared_notes',
       2 => 'field_invest_cont_person',
+      3 => 'field_shared_email',
     ),
     'format_type' => 'div',
     'format_settings' => array(

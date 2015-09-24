@@ -62,6 +62,7 @@ function f_capital_raising_field_group_info() {
       0 => 'body',
       1 => 'field_cap_rais_file',
       2 => 'field_cap_rais_text_def',
+      3 => 'field_cap_rais_info_mail',
     ),
     'format_type' => 'div',
     'format_settings' => array(

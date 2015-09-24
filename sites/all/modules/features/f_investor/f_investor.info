@@ -226,6 +226,7 @@ features[field_instance][] = investor-company-field_invest_cont_person
 features[field_instance][] = investor-company-field_shared_address
 features[field_instance][] = investor-company-field_shared_ctrl
 features[field_instance][] = investor-company-field_shared_custresp
+features[field_instance][] = investor-company-field_shared_email
 features[field_instance][] = investor-company-field_shared_industries
 features[field_instance][] = investor-company-field_shared_interests
 features[field_instance][] = investor-company-field_shared_inv_id

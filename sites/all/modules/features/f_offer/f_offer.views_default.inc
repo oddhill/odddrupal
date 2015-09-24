@@ -451,6 +451,48 @@ function f_offer_views_default_views() {
     'empty_text' => 'Test',
     'fallback_format' => 'list_default',
   );
+  /* Field: Erbjudande: Insynsinfo */
+  $handler->display->display_options['fields']['field_offer_info_mail']['id'] = 'field_offer_info_mail';
+  $handler->display->display_options['fields']['field_offer_info_mail']['table'] = 'field_data_field_offer_info_mail';
+  $handler->display->display_options['fields']['field_offer_info_mail']['field'] = 'field_offer_info_mail';
+  $handler->display->display_options['fields']['field_offer_info_mail']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_offer_info_mail']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_info_mail']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'list_default',
+  );
+  /* Field: Content: Insynsinformation utloggad */
+  $handler->display->display_options['fields']['field_cap_rais_info_mail']['id'] = 'field_cap_rais_info_mail';
+  $handler->display->display_options['fields']['field_cap_rais_info_mail']['table'] = 'field_data_field_cap_rais_info_mail';
+  $handler->display->display_options['fields']['field_cap_rais_info_mail']['field'] = 'field_cap_rais_info_mail';
+  $handler->display->display_options['fields']['field_cap_rais_info_mail']['relationship'] = 'field_offer_cap_rais_target_id';
+  $handler->display->display_options['fields']['field_cap_rais_info_mail']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_cap_rais_info_mail']['element_label_colon'] = FALSE;
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php']['id'] = 'php';
+  $handler->display->display_options['fields']['php']['table'] = 'views';
+  $handler->display->display_options['fields']['php']['field'] = 'php';
+  $handler->display->display_options['fields']['php']['label'] = 'Insynsinformation';
+  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php 
+if ($data->field_field_cap_rais_info_mail[0][raw][value]) {
+print \'Info utloggad\';
+}
+else if ($data->field_field_offer_info_mail[0][raw][value]) {
+print \'Info skickat\';
+}
+else {
+  $node = node_load($data->node_field_data_field_offer_cap_rais_nid);
+  $title = str_replace(\' \', \'-\', strtolower($node->title));
+
+  print l(t(\'Skicka info\'), \'/offer/send-info/\' . $title . \'/\' . $data->id . \'/\' . $data->node_field_data_field_offer_cap_rais_nid . \'/\' . $data->eck_investor_field_data_field_offer_investor_id . \'/\'); 
+}
+?>';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   $handler->display->display_options['path'] = 'node/%/kontaktlista';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Kontaktlista';
@@ -931,6 +973,9 @@ function f_offer_views_default_views() {
     t('Garantiåtagande'),
     t('Summa'),
     t('Första kontakt'),
+    t('Insynsinfo'),
+    t('Insynsinformation utloggad'),
+    t('Insynsinformation'),
     t('Intressenter'),
     t('Inga investerare är intresserade av denna transaktion. Gå till fliken <em>Kontaktlista</em> för att se alla tillagda investerare.'),
     t('Intresserad sen'),

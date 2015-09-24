@@ -22,6 +22,19 @@ if (Drupal.jsAC) {
 
 // Run once when the DOM is ready (page load)
 $(document).ready(function() {
+  var ischeck = 0;
+  $("#uniform-edit-field-cap-rais-info-mail-und").click(function() {
+    ischeck = 1;
+  });
+
+  $('#capital-raising-node-form').submit(function(event) {
+    if (ischeck == 1) {
+      var conf = confirm('Insynsinformation kommer att loggas ut.');
+      if (conf == false) {
+        event.preventDefault();
+      }
+    }
+  });
 
   // Fade in the date format (Kontaktlista)
   $(".form-type-date-combo .date-date .form-text").on('focusin', function() {

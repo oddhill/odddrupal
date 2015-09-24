@@ -686,6 +686,55 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_info_mail'
+  $field_instances['node-capital_raising-field_cap_rais_info_mail'] = array(
+    'bundle' => 'capital_raising',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 23,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'mail' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_cap_rais_info_mail',
+    'label' => 'Insynsinformation utloggad',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 19,
+    ),
+  );
+
   // Exported field_instance: 'node-capital_raising-field_cap_rais_post'
   $field_instances['node-capital_raising-field_cap_rais_post'] = array(
     'bundle' => 'capital_raising',
@@ -1221,6 +1270,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Brygglån');
   t('Emissionsvolym');
   t('Filer');
+  t('Insynsinformation utloggad');
   t('Kundbolag');
   t('Private Placement');
   t('Riktad nyemission');

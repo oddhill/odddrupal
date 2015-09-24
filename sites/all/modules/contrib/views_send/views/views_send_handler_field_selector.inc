@@ -12,11 +12,6 @@ class views_send_handler_field_selector extends views_handler_field {
    * placeholder for a "select all" checkbox.
    */
   function label() {
-    // Don't do anything if the user doesn't have access.
-    if (!user_access('mass mailing with views_send')) {
-      return;
-    }
-
     if ($this->view->style_plugin instanceof views_plugin_style_table) {
       return '<!--views-send-select-all-->';
     }
@@ -30,11 +25,6 @@ class views_send_handler_field_selector extends views_handler_field {
   }
 
   function render($values) {
-    // Don't do anything if the user doesn't have access.
-    if (!user_access('mass mailing with views_send')) {
-      return;
-    }
-
     return '<!--form-item-' . $this->options['id'] . '--' . $this->view->row_index . '-->';
   }
 
@@ -42,11 +32,6 @@ class views_send_handler_field_selector extends views_handler_field {
    * The form which replaces the placeholder from render().
    */
   function views_form(&$form, &$form_state) {
-    // Don't do anything if the user doesn't have access.
-    if (!user_access('mass mailing with views_send')) {
-      return;
-    }
-
     // The view is empty, abort.
     if (empty($this->view->result)) {
       return;

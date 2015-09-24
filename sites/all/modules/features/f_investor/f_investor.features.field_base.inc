@@ -1452,7 +1452,7 @@ function f_investor_field_default_field_bases() {
   // Exported field_base: 'field_shared_email'
   $field_bases['field_shared_email'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_shared_email',

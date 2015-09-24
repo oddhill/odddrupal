@@ -528,7 +528,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form',
-      'weight' => 11,
+      'weight' => 27,
     ),
   );
 
@@ -583,7 +583,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 10,
+      'weight' => 26,
     ),
   );
 
@@ -668,6 +668,45 @@ function f_investor_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance: 'investor-company-field_shared_email'
+  $field_instances['investor-company-field_shared_email'] = array(
+    'bundle' => 'company',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'email',
+        'settings' => array(),
+        'type' => 'email_default',
+        'weight' => 17,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_email',
+    'label' => 'E-post',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'email',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'email_textfield',
+      'weight' => 25,
     ),
   );
 
@@ -874,7 +913,7 @@ function f_investor_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 13,
+      'weight' => 28,
     ),
   );
 
