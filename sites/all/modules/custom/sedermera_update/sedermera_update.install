@@ -118,3 +118,16 @@ function sedermera_update_update_7007() {
 
   field_purge_batch(100);
 }
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7008() {
+  field_delete_field('field_shared_fax');
+  field_delete_field('field_shared_cell');
+  field_delete_field('field_shared_email');
+  field_delete_field('field_shared_phone');
+
+  field_purge_batch(100);
+}
