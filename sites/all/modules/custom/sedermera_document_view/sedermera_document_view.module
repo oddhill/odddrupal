@@ -6,6 +6,20 @@
  */
 
 /**
+ * Implements hook_revisionapi().
+ */
+function sedermera_document_view_revisionapi($op, $node_revision) {
+  if ($node_revision->type == 'document' && ($op == 'post publish' || $op == 'post unpublish' || $op == 'post revert')){
+    // Get original author for this revision
+    $nid = $node_revision->nid;
+    $vid = $node_revision->vid;
+    $rid = $node_revision->revision_uid;
+    // Restore original author
+    db_query("UPDATE node_revision SET uid=$rid WHERE nid=$nid AND vid=$vid");
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function sedermera_document_view_menu() {

@@ -46,8 +46,15 @@ function sedermera_document_sign_doc($nid) {
   $user = $GLOBALS['user'];
   // If correct node type add the user to document signed list.
   if ($node->type == 'document') {
+    // Get original author for this revision
+    $nid = $node->nid;
+    $vid = $node->vid;
+    $rid = $node->revision_uid;
+    // Add user as has read the document and save node
     $node->field_document_user_read[LANGUAGE_NONE][]['target_id'] = $user->uid;
     node_save($node);
+    // Restore original author after node save
+    db_query("UPDATE node_revision SET uid=$rid WHERE nid=$nid AND vid=$vid");
   }
   drupal_goto('/node/' . $nid);
 }
@@ -57,7 +64,15 @@ function sedermera_document_sign_doc($nid) {
  */
 function sedermera_document_sign_revision_publish($node) {
   // TODO Notification to user of new revision of document. Use list form node.
-  // Notification to unsigned users that there is a new document to read.
+  // And notification to unsigned users that there is a new document to read.
+
+  // Get original author for this revision
+  $nid = $node->nid;
+  $vid = $node->vid;
+  $rid = $node->revision_uid;
+  // Clear user read document and save node
   $node->field_document_user_read = array();
   node_save($node);
+  // Restore original author after node save
+  db_query("UPDATE node_revision SET uid=$rid WHERE nid=$nid AND vid=$vid");
 }
