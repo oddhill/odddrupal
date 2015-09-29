@@ -52,6 +52,7 @@ function sedermera_verification_form_eck__entity__form_edit_investor_person_alte
   $form['field_shared_veri_appr']['#access'] = FALSE;
   $form['field_shared_veri_expire']['#access'] = FALSE;
   $form['field_ctrl_ok']['#access'] = FALSE;
+  $form['field_shared_lead']['#access'] = FALSE;
 }
 
 /**
@@ -69,6 +70,7 @@ function sedermera_verification_form_eck__entity__form_edit_investor_company_alt
   $form['field_shared_veri_appr']['#access'] = FALSE;
   $form['field_shared_veri_expire']['#access'] = FALSE;
   $form['field_ctrl_ok']['#access'] = FALSE;
+  $form['field_shared_lead']['#access'] = FALSE;
 }
 
 /**
@@ -80,6 +82,7 @@ function sedermera_verification_form_kontrolluppgift_privat_node_form_alter(&$fo
   $form['field_shared_veri_appr']['#access'] = FALSE;
   $form['field_shared_veri_expire']['#access'] = FALSE;
   $form['field_ctrl_ok']['#access'] = FALSE;
+  $form['field_shared_lead']['#access'] = FALSE;
 }
 
 /**
@@ -91,6 +94,7 @@ function sedermera_verification_form_kontrolluppgift_node_form_alter(&$form, &$f
   $form['field_shared_veri_appr']['#access'] = FALSE;
   $form['field_shared_veri_expire']['#access'] = FALSE;
   $form['field_ctrl_ok']['#access'] = FALSE;
+  $form['field_shared_lead']['#access'] = FALSE;
 }
 
 /**
