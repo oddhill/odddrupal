@@ -38,7 +38,7 @@ function sedermera_offer_menu() {
 }
 
 function sedermera_offer_node_presave($node) {
-  if ($node->type = 'capital_raising') {
+  if ($node->type == 'capital_raising') {
     // React if info logout checkbox has been checked else proceed as normal
     if ($node->original->field_cap_rais_info_mail[LANGUAGE_NONE][0]['value'] == 0 && $node->field_cap_rais_info_mail[LANGUAGE_NONE][0]['value'] == 1) {
 
