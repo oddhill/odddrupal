@@ -262,15 +262,6 @@ function f_offer_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Inga investerare har lagts till för denna transaktion.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Investerare: E-post */
-  $handler->display->display_options['fields']['field_shared_email']['id'] = 'field_shared_email';
-  $handler->display->display_options['fields']['field_shared_email']['table'] = 'field_data_field_shared_email';
-  $handler->display->display_options['fields']['field_shared_email']['field'] = 'field_shared_email';
-  $handler->display->display_options['fields']['field_shared_email']['relationship'] = 'field_offer_investor_target_id';
-  $handler->display->display_options['fields']['field_shared_email']['label'] = '';
-  $handler->display->display_options['fields']['field_shared_email']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_shared_email']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_shared_email']['type'] = 'email_plain';
   /* Field: Global: Send e-mail */
   $handler->display->display_options['fields']['views_send']['id'] = 'views_send';
   $handler->display->display_options['fields']['views_send']['table'] = 'views';
@@ -303,16 +294,6 @@ function f_offer_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Namn';
   $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['path'] = 'investor/[type]/[id]';
-  /* Field: Investerare: Mobiltelefon */
-  $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['field'] = 'field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['relationship'] = 'field_offer_investor_target_id';
-  /* Field: Investerare: Telefon */
-  $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['relationship'] = 'field_offer_investor_target_id';
   /* Field: Erbjudande: Riktad nyemission */
   $handler->display->display_options['fields']['field_offer_newem']['id'] = 'field_offer_newem';
   $handler->display->display_options['fields']['field_offer_newem']['table'] = 'field_data_field_offer_newem';
@@ -965,8 +946,6 @@ else {
     t('Lägg till fler investerare'),
     t('Inga investerare har lagts till för denna transaktion.'),
     t('.'),
-    t('Mobiltelefon'),
-    t('Telefon'),
     t('Riktad nyemission'),
     t('Private Placement'),
     t('Brygglån'),
