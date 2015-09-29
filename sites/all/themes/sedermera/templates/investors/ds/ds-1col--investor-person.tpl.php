@@ -14,20 +14,21 @@
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding bg">
   <?php if ($view_page): ?>
     <?php print render($content['title']); ?>
-    <div class="columns">
+    <div class="columns <?php if ($content['field_invest_cont_person_prvt']): ?>three-col<?php endif; ?>">
       <div class="col">
         <?php print render($content['field_shared_custresp']); ?>
         <?php print render($content['field_shared_industries']); ?>
         <?php print render($content['field_shared_interests']); ?>
-        <?php print render($content['field_shared_email']); ?>
-        <?php print render($content['field_shared_cell']); ?>
-        <?php print render($content['field_shared_phone']); ?>
-        <?php print render($content['field_shared_fax']); ?>
       </div>
       <div class="col">
         <?php print render($content['field_shared_address']); ?>
         <?php print render($content['field_shared_notes']); ?>
       </div>
+      <?php if ($content['field_invest_cont_person_prvt']): ?>
+        <div class="col">
+          <?php print render($content['field_invest_cont_person_prvt']); ?>
+        </div>
+      <?php endif; ?>
     </div>
   <?php elseif ($control_page): ?>
     <?php print render($control_node); ?>
