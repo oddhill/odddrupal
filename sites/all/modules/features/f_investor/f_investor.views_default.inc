@@ -414,14 +414,6 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
   $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
-  /* Field: Investerare: Mobiltelefon */
-  $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['field'] = 'field_shared_cell';
-  /* Field: Investerare: Telefon */
-  $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
   /* Filter criterion: Investerare: Investerar ID (field_shared_inv_id) */
   $handler->display->display_options['filters']['field_shared_inv_id_value']['id'] = 'field_shared_inv_id_value';
   $handler->display->display_options['filters']['field_shared_inv_id_value']['table'] = 'field_data_field_shared_inv_id';
@@ -562,19 +554,6 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
   $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
-  /* Field: Investerare: Mobiltelefon */
-  $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['field'] = 'field_shared_cell';
-  /* Field: Investerare: Telefon */
-  $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
-  /* Field: Investerare: E-post */
-  $handler->display->display_options['fields']['field_shared_email']['id'] = 'field_shared_email';
-  $handler->display->display_options['fields']['field_shared_email']['table'] = 'field_data_field_shared_email';
-  $handler->display->display_options['fields']['field_shared_email']['field'] = 'field_shared_email';
-  $handler->display->display_options['fields']['field_shared_email']['element_label_colon'] = FALSE;
   $handler->display->display_options['path'] = 'investerare/lista';
 
   /* Display: Skicka ut erbjudande */
@@ -693,14 +672,6 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
   $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
-  /* Field: Investerare: Mobiltelefon */
-  $handler->display->display_options['fields']['field_shared_cell']['id'] = 'field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['table'] = 'field_data_field_shared_cell';
-  $handler->display->display_options['fields']['field_shared_cell']['field'] = 'field_shared_cell';
-  /* Field: Investerare: Telefon */
-  $handler->display->display_options['fields']['field_shared_phone']['id'] = 'field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['table'] = 'field_data_field_shared_phone';
-  $handler->display->display_options['fields']['field_shared_phone']['field'] = 'field_shared_phone';
   $translatables['investors'] = array(
     t('Master'),
     t('Alla investerare'),
@@ -723,15 +694,12 @@ function f_investor_views_default_views() {
     t('.'),
     t('Namn'),
     t('Plats'),
-    t('Mobiltelefon'),
-    t('Telefon'),
     t('Investerar ID'),
     t('Postnummer'),
     t('Ort'),
     t('Land'),
     t('Branscher'),
     t('Page'),
-    t('E-post'),
     t('Skicka ut erbjudande'),
     t('- Choose an operation -'),
     t('ID'),

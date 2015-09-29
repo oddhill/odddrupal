@@ -1204,6 +1204,76 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_invest_cont_person_prvt'
+  $field_bases['field_invest_cont_person_prvt'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_invest_cont_person_prvt',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'contact_person' => 'contact_person',
+        ),
+      ),
+      'target_type' => 'contact_person',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_invest_lead_cont'
+  $field_bases['field_invest_lead_cont'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_invest_lead_cont',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'contact_person' => 'contact_person',
+        ),
+      ),
+      'target_type' => 'contact_person',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
   // Exported field_base: 'field_invest_pers_first_name'
   $field_bases['field_invest_pers_first_name'] = array(
     'active' => 1,
@@ -1324,27 +1394,6 @@ function f_investor_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_shared_cell'
-  $field_bases['field_shared_cell'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_shared_cell',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
   // Exported field_base: 'field_shared_ctrl'
   $field_bases['field_shared_ctrl'] = array(
     'active' => 1,
@@ -1449,42 +1498,6 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_shared_email'
-  $field_bases['field_shared_email'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_shared_email',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'email',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'email',
-  );
-
-  // Exported field_base: 'field_shared_fax'
-  $field_bases['field_shared_fax'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_shared_fax',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
   // Exported field_base: 'field_shared_industries'
   $field_bases['field_shared_industries'] = array(
     'active' => 1,
@@ -1558,6 +1571,31 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_shared_lead'
+  $field_bases['field_shared_lead'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_shared_lead',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => 'Lead',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_shared_notes'
   $field_bases['field_shared_notes'] = array(
     'active' => 1,
@@ -1575,27 +1613,6 @@ function f_investor_field_default_field_bases() {
     'settings' => array(),
     'translatable' => 0,
     'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_shared_phone'
-  $field_bases['field_shared_phone'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_shared_phone',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
   );
 
   // Exported field_base: 'field_shared_temp'

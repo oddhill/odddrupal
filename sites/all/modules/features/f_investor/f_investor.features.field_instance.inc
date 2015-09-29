@@ -519,7 +519,7 @@ function f_investor_field_default_field_instances() {
       'settings' => array(
         'fields' => array(),
         'type_settings' => array(
-          'allow_existing' => 0,
+          'allow_existing' => 1,
           'delete_references' => 0,
           'label_plural' => 'entities',
           'label_singular' => 'entity',
@@ -668,45 +668,6 @@ function f_investor_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 17,
-    ),
-  );
-
-  // Exported field_instance: 'investor-company-field_shared_email'
-  $field_instances['investor-company-field_shared_email'] = array(
-    'bundle' => 'company',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'email',
-        'settings' => array(),
-        'type' => 'email_default',
-        'weight' => 17,
-      ),
-      'investor_verification' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_email',
-    'label' => 'E-post',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'email',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'email_textfield',
-      'weight' => 25,
     ),
   );
 
@@ -1048,6 +1009,54 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'investor-lead-field_invest_lead_cont'
+  $field_instances['investor-lead-field_invest_lead_cont'] = array(
+    'bundle' => 'lead',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_invest_lead_cont',
+    'label' => 'Kontaktuppgifter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'investor-lead-field_lead_first_name'
   $field_instances['investor-lead-field_lead_first_name'] = array(
     'bundle' => 'lead',
@@ -1188,111 +1197,6 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-lead-field_shared_cell'
-  $field_instances['investor-lead-field_shared_cell'] = array(
-    'bundle' => 'lead',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_cell',
-    'label' => 'Mobiltelefon',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'investor-lead-field_shared_email'
-  $field_instances['investor-lead-field_shared_email'] = array(
-    'bundle' => 'lead',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'email',
-        'settings' => array(),
-        'type' => 'email_default',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_email',
-    'label' => 'E-post',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'email',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'email_textfield',
-      'weight' => 2,
-    ),
-  );
-
   // Exported field_instance: 'investor-lead-field_shared_notes'
   $field_instances['investor-lead-field_shared_notes'] = array(
     'bundle' => 'lead',
@@ -1355,25 +1259,27 @@ function f_investor_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
-  // Exported field_instance: 'investor-lead-field_shared_phone'
-  $field_instances['investor-lead-field_shared_phone'] = array(
-    'bundle' => 'lead',
-    'default_value' => NULL,
+  // Exported field_instance: 'investor-person-field_invest_cont_person_prvt'
+  $field_instances['investor-person-field_invest_cont_person_prvt'] = array(
+    'bundle' => 'person',
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 1,
+          'view_mode' => 'default',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 20,
       ),
-      'teaser' => array(
+      'investor_verification' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1381,46 +1287,27 @@ function f_investor_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'investor',
-    'field_name' => 'field_shared_phone',
-    'label' => 'Telefon',
+    'field_name' => 'field_invest_cont_person_prvt',
+    'label' => 'Kontaktperson',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'inline_entity_form',
       'settings' => array(
-        'size' => 60,
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'delete_references' => 0,
+          'label_plural' => 'entities',
+          'label_singular' => 'entity',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
       ),
-      'type' => 'text_textfield',
+      'type' => 'inline_entity_form_single',
       'weight' => 3,
     ),
   );
@@ -1687,46 +1574,6 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_cell'
-  $field_instances['investor-person-field_shared_cell'] = array(
-    'bundle' => 'person',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
-      ),
-      'investor_verification' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 12,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_cell',
-    'label' => 'Mobiltelefon',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance: 'investor-person-field_shared_ctrl_pvt'
   $field_instances['investor-person-field_shared_ctrl_pvt'] = array(
     'bundle' => 'person',
@@ -1808,85 +1655,6 @@ function f_investor_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 16,
-    ),
-  );
-
-  // Exported field_instance: 'investor-person-field_shared_email'
-  $field_instances['investor-person-field_shared_email'] = array(
-    'bundle' => 'person',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'email',
-        'settings' => array(),
-        'type' => 'email_spamspan',
-        'weight' => 4,
-      ),
-      'investor_verification' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 11,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_email',
-    'label' => 'E-post',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'email',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'email_textfield',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'investor-person-field_shared_fax'
-  $field_instances['investor-person-field_shared_fax'] = array(
-    'bundle' => 'person',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 7,
-      ),
-      'investor_verification' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 14,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_fax',
-    'label' => 'Fax',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 7,
     ),
   );
 
@@ -2031,6 +1799,48 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'investor-person-field_shared_lead'
+  $field_instances['investor-person-field_shared_lead'] = array(
+    'bundle' => 'person',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'investor_verification' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'investor',
+    'field_name' => 'field_shared_lead',
+    'label' => 'Lead',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 14,
+    ),
+  );
+
   // Exported field_instance: 'investor-person-field_shared_notes'
   $field_instances['investor-person-field_shared_notes'] = array(
     'bundle' => 'person',
@@ -2093,46 +1903,6 @@ function f_investor_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'investor-person-field_shared_phone'
-  $field_instances['investor-person-field_shared_phone'] = array(
-    'bundle' => 'person',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 6,
-      ),
-      'investor_verification' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-    ),
-    'entity_type' => 'investor',
-    'field_name' => 'field_shared_phone',
-    'label' => 'Telefon',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
       'weight' => 5,
     ),
   );
@@ -7369,14 +7139,16 @@ function f_investor_field_default_field_instances() {
   t('Intressen');
   t('Investerar ID');
   t('Investerar namn');
+  t('Kontaktperson');
   t('Kontaktpersoner');
+  t('Kontaktuppgifter');
   t('Kontroll');
   t('Kontroll godkänd');
   t('Kontroll utgår');
   t('Kundansvarig');
+  t('Lead');
   t('Max investering');
   t('Mobil');
-  t('Mobiltelefon');
   t('Namn');
   t('Organisationsnummer');
   t('Personnummer');

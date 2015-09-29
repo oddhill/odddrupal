@@ -1724,7 +1724,6 @@ function f_investor_field_group_info() {
       0 => 'field_shared_address',
       1 => 'field_shared_notes',
       2 => 'field_invest_cont_person',
-      3 => 'field_shared_email',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1850,7 +1849,7 @@ function f_investor_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_shared_notes',
-      1 => 'group_invest_lead_2',
+      1 => 'field_invest_lead_cont',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1984,7 +1983,7 @@ function f_investor_field_group_info() {
     'children' => array(
       0 => 'field_shared_address',
       1 => 'field_shared_notes',
-      2 => 'group_invest_pers_2',
+      2 => 'field_invest_cont_person_prvt',
     ),
     'format_type' => 'div',
     'format_settings' => array(
