@@ -19,6 +19,7 @@
         <?php print render($content['field_shared_custresp']); ?>
         <?php print render($content['field_invest_comp_own']); ?>
         <?php print render($content['field_shared_industries']); ?>
+        <?php print render($content['field_shared_interests']); ?>
       </div>
       <div class="col">
         <?php print render($content['field_shared_address']); ?>
