@@ -22,7 +22,7 @@ function f_investor_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Contact persons';
+  $handler->display->display_options['title'] = 'Kontaktpersoner';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
@@ -235,7 +235,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['path'] = 'investerare/kontaktperson';
   $translatables['contact_persons'] = array(
     t('Master'),
-    t('Contact persons'),
+    t('Kontaktpersoner'),
     t('more'),
     t('Filtrera listan'),
     t('Reset'),
