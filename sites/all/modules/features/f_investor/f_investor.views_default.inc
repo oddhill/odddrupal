@@ -11,6 +11,261 @@ function f_investor_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'contact_persons';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'eck_contact_person';
+  $view->human_name = 'Contact persons';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Contact persons';
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filtrera listan';
+  $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
+  $handler->display->display_options['exposed_form']['options']['bef'] = array(
+    'general' => array(
+      'allow_secondary' => 0,
+      'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_comp_cont_name_value' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
+    'bef_filter_description' => NULL,
+    'any_label' => NULL,
+    'filter_rewrite_values' => NULL,
+  );
+  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'document_html';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'id' => 'id',
+    'field_comp_cont_name' => 'field_comp_cont_name',
+    'field_comp_cont_mail' => 'field_comp_cont_mail',
+    'field_comp_cont_cell' => 'field_comp_cont_cell',
+    'field_comp_cont_phone' => 'field_comp_cont_phone',
+    'field_comp_cont_fax' => 'field_comp_cont_fax',
+    'field_invest_comp_name' => 'field_invest_comp_name',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'id' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_comp_cont_name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_comp_cont_mail' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_comp_cont_cell' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_comp_cont_phone' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_comp_cont_fax' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_invest_comp_name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Relationship: Entity Reference: Referencing entity */
+  $handler->display->display_options['relationships']['reverse_field_invest_cont_person_investor']['id'] = 'reverse_field_invest_cont_person_investor';
+  $handler->display->display_options['relationships']['reverse_field_invest_cont_person_investor']['table'] = 'eck_contact_person';
+  $handler->display->display_options['relationships']['reverse_field_invest_cont_person_investor']['field'] = 'reverse_field_invest_cont_person_investor';
+  $handler->display->display_options['relationships']['reverse_field_invest_cont_person_investor']['label'] = 'Company';
+  /* Field: Kontaktperson: Id */
+  $handler->display->display_options['fields']['id']['id'] = 'id';
+  $handler->display->display_options['fields']['id']['table'] = 'eck_contact_person';
+  $handler->display->display_options['fields']['id']['field'] = 'id';
+  $handler->display->display_options['fields']['id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
+  /* Field: Kontaktperson: Namn */
+  $handler->display->display_options['fields']['field_comp_cont_name']['id'] = 'field_comp_cont_name';
+  $handler->display->display_options['fields']['field_comp_cont_name']['table'] = 'field_data_field_comp_cont_name';
+  $handler->display->display_options['fields']['field_comp_cont_name']['field'] = 'field_comp_cont_name';
+  $handler->display->display_options['fields']['field_comp_cont_name']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_comp_cont_name']['alter']['path'] = 'contact_person/contact_person/[id]';
+  $handler->display->display_options['fields']['field_comp_cont_name']['element_label_colon'] = FALSE;
+  /* Field: Kontaktperson: E-post */
+  $handler->display->display_options['fields']['field_comp_cont_mail']['id'] = 'field_comp_cont_mail';
+  $handler->display->display_options['fields']['field_comp_cont_mail']['table'] = 'field_data_field_comp_cont_mail';
+  $handler->display->display_options['fields']['field_comp_cont_mail']['field'] = 'field_comp_cont_mail';
+  $handler->display->display_options['fields']['field_comp_cont_mail']['element_label_colon'] = FALSE;
+  /* Field: Kontaktperson: Mobil */
+  $handler->display->display_options['fields']['field_comp_cont_cell']['id'] = 'field_comp_cont_cell';
+  $handler->display->display_options['fields']['field_comp_cont_cell']['table'] = 'field_data_field_comp_cont_cell';
+  $handler->display->display_options['fields']['field_comp_cont_cell']['field'] = 'field_comp_cont_cell';
+  $handler->display->display_options['fields']['field_comp_cont_cell']['element_label_colon'] = FALSE;
+  /* Field: Kontaktperson: Telefon */
+  $handler->display->display_options['fields']['field_comp_cont_phone']['id'] = 'field_comp_cont_phone';
+  $handler->display->display_options['fields']['field_comp_cont_phone']['table'] = 'field_data_field_comp_cont_phone';
+  $handler->display->display_options['fields']['field_comp_cont_phone']['field'] = 'field_comp_cont_phone';
+  $handler->display->display_options['fields']['field_comp_cont_phone']['element_label_colon'] = FALSE;
+  /* Field: Kontaktperson: Fax */
+  $handler->display->display_options['fields']['field_comp_cont_fax']['id'] = 'field_comp_cont_fax';
+  $handler->display->display_options['fields']['field_comp_cont_fax']['table'] = 'field_data_field_comp_cont_fax';
+  $handler->display->display_options['fields']['field_comp_cont_fax']['field'] = 'field_comp_cont_fax';
+  $handler->display->display_options['fields']['field_comp_cont_fax']['element_label_colon'] = FALSE;
+  /* Field: Investerare: Namn */
+  $handler->display->display_options['fields']['field_invest_comp_name']['id'] = 'field_invest_comp_name';
+  $handler->display->display_options['fields']['field_invest_comp_name']['table'] = 'field_data_field_invest_comp_name';
+  $handler->display->display_options['fields']['field_invest_comp_name']['field'] = 'field_invest_comp_name';
+  $handler->display->display_options['fields']['field_invest_comp_name']['relationship'] = 'reverse_field_invest_cont_person_investor';
+  $handler->display->display_options['fields']['field_invest_comp_name']['label'] = 'Företag';
+  $handler->display->display_options['fields']['field_invest_comp_name']['element_label_colon'] = FALSE;
+  /* Filter criterion: Kontaktperson: Namn (field_comp_cont_name) */
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['id'] = 'field_comp_cont_name_value';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['table'] = 'field_data_field_comp_cont_name';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['field'] = 'field_comp_cont_name_value';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['expose']['operator_id'] = 'field_comp_cont_name_value_op';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['expose']['label'] = 'Namn';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['expose']['operator'] = 'field_comp_cont_name_value_op';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['field_comp_cont_name_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    9 => 0,
+    8 => 0,
+    10 => 0,
+  );
+
+  /* Display: Contact person list */
+  $handler = $view->new_display('page', 'Contact person list', 'page');
+  $handler->display->display_options['path'] = 'investerare/kontaktperson';
+  $translatables['contact_persons'] = array(
+    t('Master'),
+    t('Contact persons'),
+    t('more'),
+    t('Filtrera listan'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Advanced options'),
+    t('Select any filter and click on Apply to see results'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Company'),
+    t('Id'),
+    t('.'),
+    t(','),
+    t('Namn'),
+    t('E-post'),
+    t('Mobil'),
+    t('Telefon'),
+    t('Fax'),
+    t('Företag'),
+    t('Contact person list'),
+  );
+  $export['contact_persons'] = $view;
+
+  $view = new view();
   $view->name = 'investors';
   $view->description = '';
   $view->tag = 'default';
@@ -516,8 +771,8 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['publish']['field'] = 'publish';
   $handler->display->display_options['filters']['publish']['value']['value'] = '0';
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
+  /* Display: Investerare */
+  $handler = $view->new_display('page', 'Investerare', 'page');
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Investerare: Id */
   $handler->display->display_options['fields']['id']['id'] = 'id';
@@ -699,7 +954,7 @@ function f_investor_views_default_views() {
     t('Ort'),
     t('Land'),
     t('Branscher'),
-    t('Page'),
+    t('Investerare'),
     t('Skicka ut erbjudande'),
     t('- Choose an operation -'),
     t('ID'),

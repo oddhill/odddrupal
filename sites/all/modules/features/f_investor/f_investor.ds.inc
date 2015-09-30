@@ -265,6 +265,41 @@ function f_investor_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'contact_person|contact_person|full';
+  $ds_layout->entity_type = 'contact_person';
+  $ds_layout->bundle = 'contact_person';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_comp_cont_name',
+        1 => 'field_comp_cont_mail',
+        2 => 'field_comp_cont_cell',
+        3 => 'field_comp_cont_phone',
+        4 => 'field_comp_cont_fax',
+      ),
+    ),
+    'fields' => array(
+      'field_comp_cont_name' => 'ds_content',
+      'field_comp_cont_mail' => 'ds_content',
+      'field_comp_cont_cell' => 'ds_content',
+      'field_comp_cont_phone' => 'ds_content',
+      'field_comp_cont_fax' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => TRUE,
+    'layout_link_attribute' => FALSE,
+    'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
+  );
+  $export['contact_person|contact_person|full'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'investor|company|default';
   $ds_layout->entity_type = 'investor';
   $ds_layout->bundle = 'company';

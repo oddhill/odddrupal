@@ -185,6 +185,30 @@ function sedermera_preprocess_node(&$variables) {
 }
 
 function sedermera_preprocess_entity(&$variables) {
+  if ($variables['elements']['#entity_type'] == 'contact_person' && $variables['elements']['#view_mode'] == 'full') {
+
+    $res = db_query("SELECT title FROM eck_investor LEFT JOIN field_data_field_invest_cont_person ON eck_investor.id = field_data_field_invest_cont_person.entity_id WHERE field_data_field_invest_cont_person.field_invest_cont_person_target_id = :id", array(':id' => arg(2)))->fetchAll();
+
+    if (!empty($res)) {
+      $variables['contact_persons'] = array(
+        '#type' => 'container',
+        '#prefix' => '<div class="contact_company"><span class="label">Företag:&nbsp;</span><ul>',
+        '#suffix' => '</ul></div>',
+      );
+
+      foreach ($res as $value) {
+        $link = str_replace(" ", "-", strtolower($value->title));
+
+        $variables['contact_persons'][] = array(
+          '#type' => 'markup',
+          '#prefix' => '<li>',
+          '#suffix' => '</li>',
+          '#markup' => l(t($value->title), 'investerare/lista/' . $link),
+        );
+      }
+    }
+  }
+
   if ($variables['elements']['#entity_type'] == 'investor' && $variables['elements']['#view_mode'] == 'full') {
     $variables['view_page'] = (arg(3) == '') ? TRUE : FALSE;
     $variables['control_page'] = (arg(3) == 'kontroll') ? TRUE : FALSE;
