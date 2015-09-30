@@ -17,5 +17,13 @@ function f_document_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
+    'manual_typ' => array(
+      'name' => 'Manual typ',
+      'machine_name' => 'manual_typ',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
   );
 }

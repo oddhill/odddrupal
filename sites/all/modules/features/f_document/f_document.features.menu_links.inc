@@ -36,6 +36,32 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
+  // Exported menu link: main-menu_administrera-manualer:manualer/administrera
+  $menu_links['main-menu_administrera-manualer:manualer/administrera'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'manualer/administrera',
+    'router_path' => 'manualer/administrera',
+    'link_title' => 'Administrera manualer',
+    'options' => array(
+      'attributes' => array(
+        'id' => 'administer',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_administrera-manualer:manualer/administrera',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_manual:manualer',
+  );
   // Exported menu link: main-menu_alla-dokument:dokument/lista
   $menu_links['main-menu_alla-dokument:dokument/lista'] = array(
     'menu_name' => 'main-menu',
@@ -63,6 +89,34 @@ function f_document_menu_default_menu_links() {
     'weight' => -49,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
+  );
+  // Exported menu link: main-menu_alla-manualer:manualer/lista
+  $menu_links['main-menu_alla-manualer:manualer/lista'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'manualer/lista',
+    'router_path' => 'manualer/lista',
+    'link_title' => 'Alla manualer',
+    'options' => array(
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_alla-manualer:manualer/lista',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_manual:manualer',
   );
   // Exported menu link: main-menu_dokument:dokument
   $menu_links['main-menu_dokument:dokument'] = array(
@@ -195,16 +249,44 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
+  // Exported menu link: main-menu_manual:manualer
+  $menu_links['main-menu_manual:manualer'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'manualer',
+    'router_path' => 'manualer',
+    'link_title' => 'Manual',
+    'options' => array(
+      'attributes' => array(
+        'id' => 'documents',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_manual:manualer',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+  );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Administrera dokument');
+  t('Administrera manualer');
   t('Alla dokument');
+  t('Alla manualer');
   t('Dokument');
   t('Dokumentlogg');
   t('Lägg till dokument');
   t('Läst per användare');
   t('Läst per dokument');
+  t('Manual');
 
   return $menu_links;
 }
