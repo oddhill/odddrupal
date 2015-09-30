@@ -272,9 +272,9 @@ function f_core_strongarm() {
     3 => 1,
     5 => 1,
     4 => 1,
-    6 => 1,
-    7 => 1,
+    9 => 0,
     8 => 1,
+    10 => 0,
   );
   $export['nodeaccess-roles'] = $strongarm;
 
@@ -287,7 +287,9 @@ function f_core_strongarm() {
     'company' => 0,
     'document' => 0,
     'kontrolluppgift' => 0,
+    'kontrolluppgift_privat' => 0,
     'transaction_history' => 0,
+    'manual' => 0,
   );
   $export['nodeaccess-types'] = $strongarm;
 
@@ -316,7 +318,17 @@ function f_core_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
+    'kontrolluppgift_privat' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
     'transaction_history' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'manual' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
@@ -365,21 +377,21 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     5 => array(
-      'gid' => 6,
+      'gid' => 9,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
     6 => array(
-      'gid' => 7,
+      'gid' => 8,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
     7 => array(
-      'gid' => 8,
+      'gid' => 10,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
@@ -429,21 +441,21 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     5 => array(
-      'gid' => 6,
+      'gid' => 9,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
     6 => array(
-      'gid' => 7,
+      'gid' => 8,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
     7 => array(
-      'gid' => 8,
+      'gid' => 10,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
@@ -493,21 +505,21 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     5 => array(
-      'gid' => 6,
+      'gid' => 9,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
     6 => array(
-      'gid' => 7,
+      'gid' => 8,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
     7 => array(
-      'gid' => 8,
+      'gid' => 10,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
