@@ -7,6 +7,7 @@ scripts[] = assets/modernizr/modernizr.min.js
 scripts[] = assets/uniform/jquery.uniform.js
 scripts[] = assets/selectBoxIt/src/javascripts/jquery.selectBoxIt.min.js
 scripts[] = assets/jquery-match-height/jquery.matchHeight-min.js
+scripts[] = assets/tocify/src/javascripts/jquery.tocify.min.js
 
 ; Javascripts.
 scripts[] = js/main.js
@@ -15,6 +16,7 @@ scripts[] = js/main.js
 stylesheets[screen][] = css/normalize.css
 stylesheets[print][] = css/print.css
 stylesheets[screen][] = assets/uniform/theme/_base/css/uniform._base.css
+stylesheets[screen][] = assets/tocify/src/stylesheets/jquery.tocify.css
 stylesheets[screen][] = css/main.css
 
 ; Regions.

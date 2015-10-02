@@ -20,6 +20,12 @@
     padding-left: 42px;
   }
 
+  @if $icon == flow {
+    @include svg-bg(flow_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
   @if $icon == add-mini {
     @include svg-bg(add_mini_light);
     padding-left: 42px;

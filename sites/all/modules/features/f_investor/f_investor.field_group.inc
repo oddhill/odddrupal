@@ -21,11 +21,8 @@ function f_investor_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Status',
-    'weight' => '44',
-    'children' => array(
-      0 => 'field_control_approved',
-      1 => 'field_control_date',
-    ),
+    'weight' => '5',
+    'children' => array(),
     'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Status',
@@ -52,24 +49,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'Kompletterande fråga till investerare',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'field_ctrl_files_comp',
       1 => 'field_ctrl_note_comp',
       2 => 'group_ctrl_state_comp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kompletterande fråga till investerare',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_comp|node|kontrolluppgift_privat|form'] = $field_group;
@@ -87,19 +89,24 @@ function f_investor_field_group_info() {
     'label' => 'Kompletterande fråga till investerare',
     'weight' => '8',
     'children' => array(
-      0 => 'field_ctrl_date_comp',
-      1 => 'field_ctrl_app_comp',
+      0 => 'field_ctrl_app_comp',
+      1 => 'field_ctrl_date_comp',
       2 => 'field_ctrl_files_comp',
       3 => 'field_ctrl_note_comp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kompletterande fråga till investerare',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_comp|node|kontrolluppgift_privat|full'] = $field_group;
@@ -112,24 +119,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'Kompletterande fråga till investerare',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'field_ctrl_files_comp',
       1 => 'field_ctrl_note_comp',
       2 => 'group_ctrl_state_comp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kompletterande fråga till investerare',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_comp|node|kontrolluppgift|form'] = $field_group;
@@ -152,14 +164,19 @@ function f_investor_field_group_info() {
       2 => 'field_ctrl_files_comp',
       3 => 'field_ctrl_note_comp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kompletterande fråga till investerare',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_comp|node|kontrolluppgift|full'] = $field_group;
@@ -172,24 +189,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'Kreditkontroll',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_ctrl_files_credit',
       1 => 'field_ctrl_note_credit',
       2 => 'group_ctrl_state_credit',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kreditkontroll',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_credit|node|kontrolluppgift_privat|form'] = $field_group;
@@ -207,19 +229,24 @@ function f_investor_field_group_info() {
     'label' => 'Kreditkontroll',
     'weight' => '7',
     'children' => array(
-      0 => 'field_ctrl_date_credit',
-      1 => 'field_ctrl_app_credit',
+      0 => 'field_ctrl_app_credit',
+      1 => 'field_ctrl_date_credit',
       2 => 'field_ctrl_files_credit',
       3 => 'field_ctrl_note_credit',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kreditkontroll',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_credit|node|kontrolluppgift_privat|full'] = $field_group;
@@ -232,24 +259,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'Kreditkontroll',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'field_ctrl_files_credit',
       1 => 'field_ctrl_note_credit',
       2 => 'group_ctrl_state_credit',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kreditkontroll',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_credit|node|kontrolluppgift|form'] = $field_group;
@@ -272,14 +304,19 @@ function f_investor_field_group_info() {
       2 => 'field_ctrl_files_credit',
       3 => 'field_ctrl_note_credit',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Kreditkontroll',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_credit|node|kontrolluppgift|full'] = $field_group;
@@ -292,24 +329,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'EU:s sanktionsförordningar',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'field_ctrl_files_eu',
       1 => 'field_ctrl_note_eu',
       2 => 'group_ctrl_state_eu',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'EU:s sanktionsförordningar',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_eu|node|kontrolluppgift_privat|form'] = $field_group;
@@ -327,19 +369,24 @@ function f_investor_field_group_info() {
     'label' => 'EU:s sanktionsförordningar',
     'weight' => '6',
     'children' => array(
-      0 => 'field_ctrl_date_eu',
-      1 => 'field_ctrl_app_eu',
+      0 => 'field_ctrl_app_eu',
+      1 => 'field_ctrl_date_eu',
       2 => 'field_ctrl_files_eu',
       3 => 'field_ctrl_note_eu',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'EU:s sanktionsförordningar',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_eu|node|kontrolluppgift_privat|full'] = $field_group;
@@ -352,24 +399,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'EU:s sanktionsförordningar',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_ctrl_files_eu',
       1 => 'field_ctrl_note_eu',
       2 => 'group_ctrl_state_eu',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'EU:s sanktionsförordningar',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_eu|node|kontrolluppgift|form'] = $field_group;
@@ -392,14 +444,19 @@ function f_investor_field_group_info() {
       2 => 'field_ctrl_files_eu',
       3 => 'field_ctrl_note_eu',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'EU:s sanktionsförordningar',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_eu|node|kontrolluppgift|full'] = $field_group;
@@ -412,24 +469,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'Externt register (för addressuppgifter)',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'field_ctrl_files_ext',
       1 => 'field_ctrl_note_ext',
       2 => 'group_ctrl_state_ext',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Externt register (för addressuppgifter)',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_ext|node|kontrolluppgift_privat|form'] = $field_group;
@@ -447,22 +509,108 @@ function f_investor_field_group_info() {
     'label' => 'Externt register (för addressuppgifter)',
     'weight' => '5',
     'children' => array(
-      0 => 'field_ctrl_date_ext',
-      1 => 'field_ctrl_app_ext',
+      0 => 'field_ctrl_app_ext',
+      1 => 'field_ctrl_date_ext',
       2 => 'field_ctrl_files_ext',
       3 => 'field_ctrl_note_ext',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Externt register (för addressuppgifter)',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_ext|node|kontrolluppgift_privat|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_ctrl_fields_wrapper_person|node|kontrolluppgift_privat|form';
+  $field_group->group_name = 'group_ctrl_fields_wrapper_person';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'kontrolluppgift_privat';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Fields wrapper',
+    'weight' => '4',
+    'children' => array(
+      0 => 'group_ctrl_comp',
+      1 => 'group_ctrl_credit',
+      2 => 'group_ctrl_eu',
+      3 => 'group_ctrl_ext',
+      4 => 'group_ctrl_id',
+      5 => 'group_ctrl_oth',
+      6 => 'group_ctrl_ptv',
+      7 => 'group_ctrl_upp',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Fields wrapper',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'control_list',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_ctrl_fields_wrapper_person|node|kontrolluppgift_privat|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_ctrl_fields_wrapper|node|kontrolluppgift|form';
+  $field_group->group_name = 'group_ctrl_fields_wrapper';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'kontrolluppgift';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Fields wrapper',
+    'weight' => '4',
+    'children' => array(
+      0 => 'group_ctrl_comp',
+      1 => 'group_ctrl_credit',
+      2 => 'group_ctrl_eu',
+      3 => 'group_ctrl_id_real',
+      4 => 'group_ctrl_id',
+      5 => 'group_ctrl_oth',
+      6 => 'group_ctrl_ptv',
+      7 => 'group_ctrl_reg',
+      8 => 'group_ctrl_upp',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Fields wrapper',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'control_list',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_ctrl_fields_wrapper|node|kontrolluppgift|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -472,24 +620,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'ID-kontroll, verklig huvudman',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'field_ctrl_files_id_real',
       1 => 'field_ctrl_note_id_real',
       2 => 'group_ctrl_state_id_real',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'ID-kontroll, verklig huvudman',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_id_real|node|kontrolluppgift|form'] = $field_group;
@@ -512,14 +665,19 @@ function f_investor_field_group_info() {
       2 => 'field_ctrl_files_id_real',
       3 => 'field_ctrl_note_id_real',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'ID-kontroll, verklig huvudman',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_id_real|node|kontrolluppgift|full'] = $field_group;
@@ -532,24 +690,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'Identitetskontroll',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_ctrl_files_id',
       1 => 'field_ctrl_note_id',
       2 => 'group_ctrl_state_id',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Identitetskontroll',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_id|node|kontrolluppgift_privat|form'] = $field_group;
@@ -567,19 +730,24 @@ function f_investor_field_group_info() {
     'label' => 'Identitetskontroll',
     'weight' => '4',
     'children' => array(
-      0 => 'field_ctrl_date_id',
-      1 => 'field_ctrl_app_id',
+      0 => 'field_ctrl_app_id',
+      1 => 'field_ctrl_date_id',
       2 => 'field_ctrl_files_id',
       3 => 'field_ctrl_note_id',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Identitetskontroll',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_id|node|kontrolluppgift_privat|full'] = $field_group;
@@ -592,24 +760,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'Identitetskontroll',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_ctrl_files_id',
       1 => 'field_ctrl_note_id',
       2 => 'group_ctrl_state_id',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Identitetskontroll',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_id|node|kontrolluppgift|form'] = $field_group;
@@ -632,14 +805,19 @@ function f_investor_field_group_info() {
       2 => 'field_ctrl_files_id',
       3 => 'field_ctrl_note_id',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Identitetskontroll',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_id|node|kontrolluppgift|full'] = $field_group;
@@ -652,24 +830,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'Övriga dokument/tillägg',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'field_ctrl_files_oth',
       1 => 'field_ctrl_note_oth',
       2 => 'group_ctrl_state_oth',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Övriga dokument/tillägg',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_oth|node|kontrolluppgift_privat|form'] = $field_group;
@@ -687,19 +870,24 @@ function f_investor_field_group_info() {
     'label' => 'Övriga dokument/tillägg',
     'weight' => '9',
     'children' => array(
-      0 => 'field_ctrl_date_oth',
-      1 => 'field_ctrl_app_oth',
+      0 => 'field_ctrl_app_oth',
+      1 => 'field_ctrl_date_oth',
       2 => 'field_ctrl_files_oth',
       3 => 'field_ctrl_note_oth',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Övriga dokument/tillägg',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_oth|node|kontrolluppgift_privat|full'] = $field_group;
@@ -712,7 +900,7 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'Övriga document/tillägg',
     'weight' => '13',
@@ -721,15 +909,20 @@ function f_investor_field_group_info() {
       1 => 'field_ctrl_note_oth',
       2 => 'group_ctrl_state_oth',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Övriga document/tillägg',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_oth|node|kontrolluppgift|form'] = $field_group;
@@ -752,14 +945,19 @@ function f_investor_field_group_info() {
       2 => 'field_ctrl_files_oth',
       3 => 'field_ctrl_note_oth',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Övriga dokument/tillägg',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_oth|node|kontrolluppgift|full'] = $field_group;
@@ -772,24 +970,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'PTV-blankett',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_ctrl_files_ptv',
       1 => 'field_ctrl_note_ptv',
       2 => 'group_ctrl_state_ptv',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'PTV-blankett',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_ptv|node|kontrolluppgift_privat|form'] = $field_group;
@@ -807,19 +1010,24 @@ function f_investor_field_group_info() {
     'label' => 'PTV-blankett',
     'weight' => '3',
     'children' => array(
-      0 => 'field_ctrl_date_ptv',
-      1 => 'field_ctrl_app_ptv',
+      0 => 'field_ctrl_app_ptv',
+      1 => 'field_ctrl_date_ptv',
       2 => 'field_ctrl_files_ptv',
       3 => 'field_ctrl_note_ptv',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'PTV-blankett',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_ptv|node|kontrolluppgift_privat|full'] = $field_group;
@@ -832,24 +1040,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'PTV-blankett',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_ctrl_files_ptv',
       1 => 'field_ctrl_note_ptv',
       2 => 'group_ctrl_state_ptv',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'PTV-blankett',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_ptv|node|kontrolluppgift|form'] = $field_group;
@@ -867,19 +1080,24 @@ function f_investor_field_group_info() {
     'label' => 'PTV-blankett',
     'weight' => '3',
     'children' => array(
-      0 => 'field_ctrl_files_ptv',
-      1 => 'field_ctrl_app_ptv',
-      2 => 'field_ctrl_date_ptv',
+      0 => 'field_ctrl_app_ptv',
+      1 => 'field_ctrl_date_ptv',
+      2 => 'field_ctrl_files_ptv',
       3 => 'field_ctrl_note_ptv',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'PTV-blankett',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_ptv|node|kontrolluppgift|full'] = $field_group;
@@ -892,24 +1110,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'Registeringsbevis',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'field_ctrl_files_reg',
       1 => 'field_ctrl_note_reg',
       2 => 'group_ctrl_state_reg',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Registeringsbevis',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_reg|node|kontrolluppgift|form'] = $field_group;
@@ -932,14 +1155,19 @@ function f_investor_field_group_info() {
       2 => 'field_ctrl_files_reg',
       3 => 'field_ctrl_note_reg',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Registeringsbevis',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_reg|node|kontrolluppgift|full'] = $field_group;
@@ -957,8 +1185,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '13',
     'children' => array(
-      0 => 'field_ctrl_date_comp',
-      1 => 'field_ctrl_app_comp',
+      0 => 'field_ctrl_app_comp',
+      1 => 'field_ctrl_date_comp',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1025,8 +1253,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '12',
     'children' => array(
-      0 => 'field_ctrl_date_credit',
-      1 => 'field_ctrl_app_credit',
+      0 => 'field_ctrl_app_credit',
+      1 => 'field_ctrl_date_credit',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1093,8 +1321,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '11',
     'children' => array(
-      0 => 'field_ctrl_date_eu',
-      1 => 'field_ctrl_app_eu',
+      0 => 'field_ctrl_app_eu',
+      1 => 'field_ctrl_date_eu',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1161,8 +1389,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '10',
     'children' => array(
-      0 => 'field_ctrl_date_ext',
-      1 => 'field_ctrl_app_ext',
+      0 => 'field_ctrl_app_ext',
+      1 => 'field_ctrl_date_ext',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1229,8 +1457,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '9',
     'children' => array(
-      0 => 'field_ctrl_date_id',
-      1 => 'field_ctrl_app_id',
+      0 => 'field_ctrl_app_id',
+      1 => 'field_ctrl_date_id',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1297,8 +1525,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '14',
     'children' => array(
-      0 => 'field_ctrl_date_oth',
-      1 => 'field_ctrl_app_oth',
+      0 => 'field_ctrl_app_oth',
+      1 => 'field_ctrl_date_oth',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1365,8 +1593,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '8',
     'children' => array(
-      0 => 'field_ctrl_date_ptv',
-      1 => 'field_ctrl_app_ptv',
+      0 => 'field_ctrl_app_ptv',
+      1 => 'field_ctrl_date_ptv',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1467,8 +1695,8 @@ function f_investor_field_group_info() {
     'label' => 'Status',
     'weight' => '7',
     'children' => array(
-      0 => 'field_ctrl_date_upp',
-      1 => 'field_ctrl_app_upp',
+      0 => 'field_ctrl_app_upp',
+      1 => 'field_ctrl_date_upp',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -1530,24 +1758,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift_privat';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
     'label' => 'Uppdragsavtal',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_ctrl_files_upp',
       1 => 'field_ctrl_note_upp',
       2 => 'group_ctrl_state_upp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Uppdragsavtal',
       'instance_settings' => array(
         'required_fields' => 1,
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_upp|node|kontrolluppgift_privat|form'] = $field_group;
@@ -1565,19 +1798,24 @@ function f_investor_field_group_info() {
     'label' => 'Uppdragsavtal',
     'weight' => '2',
     'children' => array(
-      0 => 'field_ctrl_date_upp',
-      1 => 'field_ctrl_app_upp',
+      0 => 'field_ctrl_app_upp',
+      1 => 'field_ctrl_date_upp',
       2 => 'field_ctrl_files_upp',
       3 => 'field_ctrl_note_upp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Uppdragsavtal',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_upp|node|kontrolluppgift_privat|full'] = $field_group;
@@ -1590,24 +1828,29 @@ function f_investor_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'kontrolluppgift';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
     'label' => 'Uppdragsavtal',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_ctrl_files_upp',
       1 => 'field_ctrl_note_upp',
       2 => 'group_ctrl_state_upp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Uppdragsavtal',
       'instance_settings' => array(
-        'required_fields' => 0,
-        'classes' => 'approved-control',
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'control-section',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_upp|node|kontrolluppgift|form'] = $field_group;
@@ -1625,19 +1868,24 @@ function f_investor_field_group_info() {
     'label' => 'Uppdragsavtal',
     'weight' => '2',
     'children' => array(
-      0 => 'field_ctrl_files_upp',
-      1 => 'field_ctrl_app_upp',
-      2 => 'field_ctrl_date_upp',
+      0 => 'field_ctrl_app_upp',
+      1 => 'field_ctrl_date_upp',
+      2 => 'field_ctrl_files_upp',
       3 => 'field_ctrl_note_upp',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Uppdragsavtal',
       'instance_settings' => array(
+        'id' => '',
         'classes' => 'approved-control',
         'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
       ),
-      'formatter' => 'collapsed',
+      'formatter' => 'open',
     ),
   );
   $export['group_ctrl_upp|node|kontrolluppgift|full'] = $field_group;

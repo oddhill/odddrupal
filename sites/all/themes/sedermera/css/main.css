@@ -435,6 +435,47 @@ div.button {
       background-position: right -610px;
       cursor: default; }
 
+/* The Table of Contents container element */
+.tocify {
+  width: 20%;
+  float: right;
+  max-height: 90%;
+  overflow: auto;
+  margin-left: 20px;
+  position: static;
+  border: 2px solid #f3f4f8;
+  border-bottom: 0px none;
+  webkit-border-radius: 0px;
+  moz-border-radius: 0px;
+  border-radius: 0px; }
+
+/* The Table of Contents is composed of multiple nested unordered lists.  These styles remove the default styling of an unordered list because it is ugly. */
+.tocify ul, .tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 30px; }
+
+/* Top level header elements */
+.tocify-header {
+  text-indent: 0px; }
+
+/* Twitter Bootstrap Override Style */
+.nav-list > li {
+  border-bottom: 2px solid #f3f4f8; }
+  .nav-list > li > a {
+    display: block;
+    padding: 5px 10px;
+    border-bottom: 0 none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    .nav-list > li > a:hover {
+      background: #f9fafc; }
+  .nav-list > li.active > a {
+    font-weight: 500; }
+
 .page-node-kontaktlista .process-steps {
   background: #fff;
   margin-bottom: 30px;
@@ -4047,10 +4088,69 @@ form#user-login,
   padding: 5px 5px 5px 20px;
   text-align: left; }
 
+.node-kontrolluppgift.view-mode-full,
+.node-kontrolluppgift-privat.view-mode-full {
+  max-width: 1800px; }
+  .node-kontrolluppgift.view-mode-full .control_list,
+  .node-kontrolluppgift-privat.view-mode-full .control_list {
+    overflow: hidden; }
+    .node-kontrolluppgift.view-mode-full .control_list .approved-control,
+    .node-kontrolluppgift.view-mode-full .control_list .not-approved-control,
+    .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control,
+    .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control {
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 2px solid #f3f4f8; }
+      .node-kontrolluppgift.view-mode-full .control_list .approved-control h3,
+      .node-kontrolluppgift.view-mode-full .control_list .not-approved-control h3,
+      .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control h3,
+      .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control h3 {
+        margin-bottom: 15px; }
+  .node-kontrolluppgift.view-mode-full .handle-control input,
+  .node-kontrolluppgift-privat.view-mode-full .handle-control input {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/flow_small_light.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/flow_small_light.svg") transparent 0 0 no-repeat;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out; }
+    .node-kontrolluppgift.view-mode-full .handle-control input:hover,
+    .node-kontrolluppgift-privat.view-mode-full .handle-control input:hover {
+      background-color: #303030; }
+
 #eck-entity-form-edit-investor-person,
 #eck-entity-form-edit-investor-company {
   background: #fff;
   padding: 50px 40px 20px 40px; }
+  #eck-entity-form-edit-investor-person fieldset#edit-field-shared-ctrl-und > legend,
+  #eck-entity-form-edit-investor-company fieldset#edit-field-shared-ctrl-und > legend {
+    display: none; }
+  #eck-entity-form-edit-investor-person fieldset#edit-field-shared-ctrl-und > .fieldset-wrapper,
+  #eck-entity-form-edit-investor-company fieldset#edit-field-shared-ctrl-und > .fieldset-wrapper {
+    padding: 0;
+    background: transparent; }
+  #eck-entity-form-edit-investor-person h3,
+  #eck-entity-form-edit-investor-company h3 {
+    margin-bottom: 15px; }
+  #eck-entity-form-edit-investor-person .control-section,
+  #eck-entity-form-edit-investor-company .control-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid #f3f4f8; }
   #eck-entity-form-edit-investor-person .form-type-managed-file,
   #eck-entity-form-edit-investor-company .form-type-managed-file {
     border-right: 1px solid #c8cacd;
@@ -4061,7 +4161,7 @@ form#user-login,
     width: auto; }
   #eck-entity-form-edit-investor-person .status-fields,
   #eck-entity-form-edit-investor-company .status-fields {
-    float: left; }
+    overflow: hidden; }
   #eck-entity-form-edit-investor-person .field-type-list-boolean,
   #eck-entity-form-edit-investor-company .field-type-list-boolean {
     display: inline-block;
@@ -4086,7 +4186,9 @@ form#user-login,
 
 .verification-header {
   margin-bottom: 20px;
-  overflow: hidden; }
+  overflow: hidden;
+  border-bottom: 2px solid #f3f4f8;
+  padding-bottom: 20px; }
   .verification-header h2 {
     font-size: 25px;
     font-size: 2.5rem;
@@ -4133,6 +4235,75 @@ form#user-login,
 
 .not-approved-control .fieldset-legend {
   background: #e0afaf; }
+
+#revisioning-revisions-summary {
+  padding: 50px 40px;
+  background: #fff; }
+  #revisioning-revisions-summary .table-revisions tr.revision-current td {
+    background: #fde9c2; }
+    #revisioning-revisions-summary .table-revisions tr.revision-current td a {
+      border-bottom: 1px solid #fbc966; }
+      #revisioning-revisions-summary .table-revisions tr.revision-current td a:hover {
+        border-bottom: 1px solid #1a1a1a; }
+    #revisioning-revisions-summary .table-revisions tr.revision-current td .revisions-active {
+      background: url("../graphics/arrow_right_honey.png") transparent 0 3px no-repeat;
+      background: none, url("../graphics/arrow_right_honey.svg") transparent 0 3px no-repeat; }
+
+.page-node-revisions-view .node-kontrolluppgift,
+.page-node-revisions-view .node-kontrolluppgift-privat,
+.page-node-revisions-view .node-kontrolluppgift_privat-form,
+.page-node-revisions-view .node-kontrolluppgift-form,
+.page-node-revisions-edit .node-kontrolluppgift,
+.page-node-revisions-edit .node-kontrolluppgift-privat,
+.page-node-revisions-edit .node-kontrolluppgift_privat-form,
+.page-node-revisions-edit .node-kontrolluppgift-form {
+  padding: 50px 40px;
+  background: #fff; }
+  .page-node-revisions-view .node-kontrolluppgift .control_list,
+  .page-node-revisions-view .node-kontrolluppgift-privat .control_list,
+  .page-node-revisions-view .node-kontrolluppgift_privat-form .control_list,
+  .page-node-revisions-view .node-kontrolluppgift-form .control_list,
+  .page-node-revisions-edit .node-kontrolluppgift .control_list,
+  .page-node-revisions-edit .node-kontrolluppgift-privat .control_list,
+  .page-node-revisions-edit .node-kontrolluppgift_privat-form .control_list,
+  .page-node-revisions-edit .node-kontrolluppgift-form .control_list {
+    overflow: hidden; }
+    .page-node-revisions-view .node-kontrolluppgift .control_list .approved-control,
+    .page-node-revisions-view .node-kontrolluppgift .control_list .not-approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-privat .control_list .approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-privat .control_list .not-approved-control,
+    .page-node-revisions-view .node-kontrolluppgift_privat-form .control_list .approved-control,
+    .page-node-revisions-view .node-kontrolluppgift_privat-form .control_list .not-approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-form .control_list .approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-form .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-privat .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-privat .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift_privat-form .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift_privat-form .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-form .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-form .control_list .not-approved-control {
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 2px solid #f3f4f8; }
+      .page-node-revisions-view .node-kontrolluppgift .control_list .approved-control h3,
+      .page-node-revisions-view .node-kontrolluppgift .control_list .not-approved-control h3,
+      .page-node-revisions-view .node-kontrolluppgift-privat .control_list .approved-control h3,
+      .page-node-revisions-view .node-kontrolluppgift-privat .control_list .not-approved-control h3,
+      .page-node-revisions-view .node-kontrolluppgift_privat-form .control_list .approved-control h3,
+      .page-node-revisions-view .node-kontrolluppgift_privat-form .control_list .not-approved-control h3,
+      .page-node-revisions-view .node-kontrolluppgift-form .control_list .approved-control h3,
+      .page-node-revisions-view .node-kontrolluppgift-form .control_list .not-approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift .control_list .approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift .control_list .not-approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift-privat .control_list .approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift-privat .control_list .not-approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift_privat-form .control_list .approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift_privat-form .control_list .not-approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift-form .control_list .approved-control h3,
+      .page-node-revisions-edit .node-kontrolluppgift-form .control_list .not-approved-control h3 {
+        margin-bottom: 15px; }
 
 .transaction-wrapper {
   background: #fff;

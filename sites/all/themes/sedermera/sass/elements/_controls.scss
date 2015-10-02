@@ -1,8 +1,63 @@
+.node-kontrolluppgift,
+.node-kontrolluppgift-privat {
+
+  &.view-mode-full {
+    max-width: 1800px;
+
+    .control_list {
+      overflow: hidden;
+
+      .approved-control,
+      .not-approved-control {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 2px solid $light-grey;
+
+        h3 {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    .handle-control {
+
+      input {
+        @include button($dark-grey,flow);
+      }
+    }
+  }
+}
+
 // Investor Person/Company Control (Kontroll)
 #eck-entity-form-edit-investor-person,
 #eck-entity-form-edit-investor-company {
   background: $snow;
   padding: 50px 40px 20px 40px;
+
+  // Remove form-wrapper fieldset from view.
+  fieldset#edit-field-shared-ctrl-und {
+
+    > legend {
+      display: none;
+    }
+
+    > .fieldset-wrapper {
+      padding: 0;
+      background: transparent;
+    }
+  }
+
+  // Headings
+  h3 {
+    margin-bottom: 15px;
+  }
+
+  // Control sections
+  .control-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid $light-grey;
+  }
 
   // File
   .form-type-managed-file {
@@ -15,7 +70,7 @@
   }
 
   .status-fields {
-    float: left;
+    overflow: hidden;
   }
 
   // Approved checkbox
@@ -54,6 +109,8 @@
 .verification-header {
   margin-bottom: 20px;
   overflow: hidden;
+  border-bottom: 2px solid $light-grey;
+  padding-bottom: 20px;
 
   h2 {
     @include font-size(2.5);
@@ -116,5 +173,60 @@
 
   .fieldset-legend {
     background: $bubblegum;
+  }
+}
+
+// Revisions
+#revisioning-revisions-summary {
+  padding: 50px 40px;
+  background: $snow;
+
+  .table-revisions {
+
+    tr.revision-current {
+
+      td {
+        background: tint($honey,60%);
+
+        a {
+          border-bottom: 1px solid $honey;
+
+          &:hover {
+            border-bottom: 1px solid $night;
+          }
+        }
+
+        .revisions-active {
+          @include svg-bg(arrow_right_honey,transparent,0 3px);
+        }
+      }
+    }
+  }
+}
+
+.page-node-revisions-view,
+.page-node-revisions-edit {
+
+  .node-kontrolluppgift,
+  .node-kontrolluppgift-privat,
+  .node-kontrolluppgift_privat-form,
+  .node-kontrolluppgift-form {
+    padding: 50px 40px;
+    background: $snow;
+
+    .control_list {
+      overflow: hidden;
+
+      .approved-control,
+      .not-approved-control {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 2px solid $light-grey;
+
+        h3 {
+          margin-bottom: 15px;
+        }
+      }
+    }
   }
 }

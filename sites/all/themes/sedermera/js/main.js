@@ -20,6 +20,64 @@ if (Drupal.jsAC) {
   };
 }
 
+// Function that implements Tocify.
+var tocInitiator = function() {
+
+  var $target = $("#toc");
+  var offset = $target.offset();
+  var l,n,i,x,scrollTo,stickTo;
+  var $adminmenu;
+  var $toolbar = $("#toolbar");
+  var $submenu = $(".main-navigation li.active-trail ul.menu");
+
+  // Set x var to 29 (height) if admin menu is present.
+  if ($('body').hasClass('admin-menu')) {
+    x = 29;
+    $adminmenu = true;
+  }
+  else {
+    x = 0;
+    $adminmenu = false;
+  }
+
+  // Calculate scrollTo and stickTo values.
+  // add 42 or 20 to value so that the margin is included.
+  if ($adminmenu || $toolbar || $submenu) {
+    scrollTo = x + $toolbar.height() + $submenu.height();
+    stickTo = scrollTo + 20;
+    scrollTo = scrollTo + 42;
+  }
+  else {
+    scrollTo = 42;
+    stickTo = 20;
+  }
+
+  $target.tocify({
+    context: '.control_list',
+    selectors: 'h3',
+    scrollTo: scrollTo,
+    highlightOffset: scrollTo,
+    extendPage: false
+  });
+
+  $(window).scroll(function() {
+    l = $(window).scrollTop() + stickTo;
+
+    if (offset) {
+      i = offset.top;
+    }
+
+    n = l - i;
+
+    if (i <= l) {
+      $target.css({"transform": 'translateY(' + n + 'px)'});
+    }
+    else {
+      $target.css({"transform": 'translateY(' + 0 + 'px)'});
+    }
+  });
+};
+
 // Run once when the DOM is ready (page load)
 $(document).ready(function() {
   var ischeck = 0;
@@ -30,7 +88,7 @@ $(document).ready(function() {
   $('#capital-raising-node-form').submit(function(event) {
     if (ischeck == 1) {
       var conf = confirm('Insynsinformation kommer att loggas ut.');
-      if (conf == false) {
+      if (conf === false) {
         event.preventDefault();
       }
     }
@@ -40,6 +98,9 @@ $(document).ready(function() {
   $(".form-type-date-combo .date-date .form-text").on('focusin', function() {
     $(this).parent().siblings(".description").fadeIn();
   });
+
+  // Add a TOC to controls
+  tocInitiator();
 
   // Fade out the date format (Kontaktlista)
   $(".form-type-date-combo .date-date .form-text").on('focusout', function() {
