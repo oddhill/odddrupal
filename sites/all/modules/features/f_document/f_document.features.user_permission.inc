@@ -278,8 +278,10 @@ function f_document_user_default_permissions() {
   $permissions['view any unpublished content'] = array(
     'name' => 'view any unpublished content',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'view_unpublished',
   );

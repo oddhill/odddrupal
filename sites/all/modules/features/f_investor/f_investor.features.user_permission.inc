@@ -362,14 +362,20 @@ function f_investor_user_default_permissions() {
   // Exported permission: 'view own kontrolluppgift content'.
   $permissions['view own kontrolluppgift content'] = array(
     'name' => 'view own kontrolluppgift content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node_view_permissions',
   );
 
   // Exported permission: 'view own kontrolluppgift_privat content'.
   $permissions['view own kontrolluppgift_privat content'] = array(
     'name' => 'view own kontrolluppgift_privat content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node_view_permissions',
   );
 

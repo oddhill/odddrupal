@@ -21,7 +21,7 @@ function f_investor_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Status',
-    'weight' => '5',
+    'weight' => '44',
     'children' => array(),
     'format_type' => 'div',
     'format_settings' => array(
@@ -51,8 +51,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
-    'label' => 'Kompletterande fråga till investerare',
-    'weight' => '11',
+    'label' => 'Kompletterande fråga till investerare (Vid transaktioner över 250 000 SEK)',
+    'weight' => '10',
     'children' => array(
       0 => 'field_ctrl_files_comp',
       1 => 'field_ctrl_note_comp',
@@ -60,7 +60,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Kompletterande fråga till investerare',
+      'label' => 'Kompletterande fråga till investerare (Vid transaktioner över 250 000 SEK)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -121,8 +121,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
-    'label' => 'Kompletterande fråga till investerare',
-    'weight' => '12',
+    'label' => 'Kompletterande fråga till investerare (Vid transaktioner över 250 000 SEK)',
+    'weight' => '11',
     'children' => array(
       0 => 'field_ctrl_files_comp',
       1 => 'field_ctrl_note_comp',
@@ -130,7 +130,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Kompletterande fråga till investerare',
+      'label' => 'Kompletterande fråga till investerare (Vid transaktioner över 250 000 SEK)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -191,8 +191,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
-    'label' => 'Kreditkontroll',
-    'weight' => '10',
+    'label' => 'Kreditkontroll (Vid transaktioner över 250 000 SEK och giltig 1 år)',
+    'weight' => '9',
     'children' => array(
       0 => 'field_ctrl_files_credit',
       1 => 'field_ctrl_note_credit',
@@ -200,7 +200,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Kreditkontroll',
+      'label' => 'Kreditkontroll (Vid transaktioner över 250 000 SEK och giltig 1 år)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -261,8 +261,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
-    'label' => 'Kreditkontroll',
-    'weight' => '11',
+    'label' => 'Kreditkontroll (Vid transaktioner över 250 000 SEK och giltig 1 år)',
+    'weight' => '10',
     'children' => array(
       0 => 'field_ctrl_files_credit',
       1 => 'field_ctrl_note_credit',
@@ -270,7 +270,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Kreditkontroll',
+      'label' => 'Kreditkontroll (Vid transaktioner över 250 000 SEK och giltig 1 år)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -331,8 +331,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
-    'label' => 'EU:s sanktionsförordningar',
-    'weight' => '9',
+    'label' => 'EU:s sanktionsförordningar (Kontrolleras vid varje transaktion)',
+    'weight' => '8',
     'children' => array(
       0 => 'field_ctrl_files_eu',
       1 => 'field_ctrl_note_eu',
@@ -340,7 +340,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'EU:s sanktionsförordningar',
+      'label' => 'EU:s sanktionsförordningar (Kontrolleras vid varje transaktion)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -401,8 +401,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
-    'label' => 'EU:s sanktionsförordningar',
-    'weight' => '10',
+    'label' => 'EU:s sanktionsförordningar (Kontrolleras vid varje transaktion)',
+    'weight' => '9',
     'children' => array(
       0 => 'field_ctrl_files_eu',
       1 => 'field_ctrl_note_eu',
@@ -410,7 +410,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'EU:s sanktionsförordningar',
+      'label' => 'EU:s sanktionsförordningar (Kontrolleras vid varje transaktion)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -471,8 +471,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
-    'label' => 'Externt register (för addressuppgifter)',
-    'weight' => '8',
+    'label' => 'Externt register (för addressuppgifter) (Giltig 1 år)',
+    'weight' => '7',
     'children' => array(
       0 => 'field_ctrl_files_ext',
       1 => 'field_ctrl_note_ext',
@@ -480,7 +480,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Externt register (för addressuppgifter)',
+      'label' => 'Externt register (för addressuppgifter) (Giltig 1 år)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -622,8 +622,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
-    'label' => 'ID-kontroll, verklig huvudman',
-    'weight' => '8',
+    'label' => 'ID-kontroll, verklig huvudman (Giltig till och med utgånget ID)',
+    'weight' => '7',
     'children' => array(
       0 => 'field_ctrl_files_id_real',
       1 => 'field_ctrl_note_id_real',
@@ -631,7 +631,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'ID-kontroll, verklig huvudman',
+      'label' => 'ID-kontroll, verklig huvudman (Giltig till och med utgånget ID)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -692,8 +692,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper_person';
   $field_group->data = array(
-    'label' => 'Identitetskontroll',
-    'weight' => '7',
+    'label' => 'Identitetskontroll (Giltig till och med utgånget ID)',
+    'weight' => '6',
     'children' => array(
       0 => 'field_ctrl_files_id',
       1 => 'field_ctrl_note_id',
@@ -701,7 +701,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Identitetskontroll',
+      'label' => 'Identitetskontroll (Giltig till och med utgånget ID)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -762,8 +762,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
-    'label' => 'Identitetskontroll',
-    'weight' => '7',
+    'label' => 'Identitetskontroll (Giltig till och med utgånget ID)',
+    'weight' => '6',
     'children' => array(
       0 => 'field_ctrl_files_id',
       1 => 'field_ctrl_note_id',
@@ -771,7 +771,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Identitetskontroll',
+      'label' => 'Identitetskontroll (Giltig till och med utgånget ID)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -902,7 +902,7 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
-    'label' => 'Övriga document/tillägg',
+    'label' => 'Övriga dokument/tillägg',
     'weight' => '13',
     'children' => array(
       0 => 'field_ctrl_files_oth',
@@ -911,7 +911,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Övriga document/tillägg',
+      'label' => 'Övriga dokument/tillägg',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -1112,8 +1112,8 @@ function f_investor_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_ctrl_fields_wrapper';
   $field_group->data = array(
-    'label' => 'Registeringsbevis',
-    'weight' => '9',
+    'label' => 'Registreringsbevis (Giltigt 1 år för befintlig kund, 3 mån för nya kunder)',
+    'weight' => '8',
     'children' => array(
       0 => 'field_ctrl_files_reg',
       1 => 'field_ctrl_note_reg',
@@ -1121,7 +1121,7 @@ function f_investor_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Registeringsbevis',
+      'label' => 'Registreringsbevis (Giltigt 1 år för befintlig kund, 3 mån för nya kunder)',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
