@@ -32,7 +32,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -165,7 +165,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -42,
+    'weight' => -44,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -219,7 +219,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -44,
+    'weight' => -46,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -245,7 +245,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -43,
+    'weight' => -45,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -274,6 +274,30 @@ function f_document_menu_default_menu_links() {
     'weight' => -45,
     'customized' => 1,
   );
+  // Exported menu link: main-menu_sortera-dokument:dokument/sortera
+  $menu_links['main-menu_sortera-dokument:dokument/sortera'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'dokument/sortera',
+    'router_path' => 'dokument/sortera',
+    'link_title' => 'Sortera dokument',
+    'options' => array(
+      'attributes' => array(),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_sortera-dokument:dokument/sortera',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_dokument:dokument',
+  );
 
   // Translatables
   // Included for use with string extractors like potx.
@@ -287,6 +311,7 @@ function f_document_menu_default_menu_links() {
   t('Läst per användare');
   t('Läst per dokument');
   t('Manual');
+  t('Sortera dokument');
 
   return $menu_links;
 }

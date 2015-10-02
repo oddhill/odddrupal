@@ -83,7 +83,7 @@ function view_page_user() {
       }
     }
 
-    $documents = getDocuments();
+    $documents = orderDocuments(getDocuments());
 
     // Create the header for the table. Add rows
     $header = array(
@@ -458,6 +458,21 @@ function getDocuments() {
     $document_nids = array_keys($result['node']);
     return entity_load('node', $document_nids);
   }
+}
+
+/**
+ * Order documents according to draggableviews order
+ * @return ordered document list.
+ */
+function orderDocuments($documents) {
+  $orderedDocuments = array();
+  $result = db_query("SELECT entity_id FROM draggableviews_structure WHERE view_name = 'dokument' ORDER BY weight ASC")->fetchAll();
+
+  foreach ($result as $value) {
+    $orderedDocuments[] = $documents[$value->entity_id];
+  }
+
+  return $orderedDocuments;
 }
 
 /**
