@@ -97,29 +97,32 @@ function sedermera_preprocess_field(&$variables) {
  */
 function sedermera_preprocess_node(&$variables) {
   if ($variables['type'] == 'document' && $variables['view_mode'] == 'full') {
-    $user_id = $variables['user']->uid;
-    // Only registered users should sign the document.
-    // Exclude anonymous and root users.
-    if ($user_id >= 2) {
-      // Get list of users who have signed the document.
-      $user_sign = $variables['node']->field_document_user_read[LANGUAGE_NONE];
+    if (sizeof(arg()) <= 2) {
+      $user_id = $variables['user']->uid;
+      // Only registered users should sign the document.
+      // Exclude anonymous and root users.
+      if ($user_id >= 2) {
+        $variables['show_sidebar'] = TRUE;
+        // Get list of users who have signed the document.
+        $user_sign = $variables['node']->field_document_user_read[LANGUAGE_NONE];
 
-      // User have not signed the document.
-      // Creates link for the user to sign the document.
-      $variables['sign'] = l('Bekräfta', url('node/' . $variables['nid'] . '/sign'));
-      $variables['sign_status'] = FALSE;
-      $variables['signtext'] = 'Ja, jag har läst och förstått detta dokument';
+        // User have not signed the document.
+        // Creates link for the user to sign the document.
+        $variables['sign'] = l('Bekräfta', url('node/' . $variables['nid'] . '/sign'));
+        $variables['sign_status'] = FALSE;
+        $variables['signtext'] = 'Ja, jag har läst och förstått detta dokument';
 
-      // If any user have signed the document proceed.
-      if (isset($user_sign)) {
-        foreach ($user_sign as $key => $value) {
-          // Check if the current user have signed the document.
-          if ($value['target_id'] == $user_id) {
-            // User have signed the document.
-            // Creates text to display that the user have already signed the document.
-            $variables['sign'] = '<div class="signed-icon"></div>';
-            $variables['sign_status'] = TRUE;
-            $variables['signtext'] = 'Du har läst och förstått detta dokument';
+        // If any user have signed the document proceed.
+        if (isset($user_sign)) {
+          foreach ($user_sign as $key => $value) {
+            // Check if the current user have signed the document.
+            if ($value['target_id'] == $user_id) {
+              // User have signed the document.
+              // Creates text to display that the user have already signed the document.
+              $variables['sign'] = '<div class="signed-icon"></div>';
+              $variables['sign_status'] = TRUE;
+              $variables['signtext'] = 'Du har läst och förstått detta dokument';
+            }
           }
         }
       }
