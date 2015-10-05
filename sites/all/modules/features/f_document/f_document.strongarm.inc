@@ -14,7 +14,7 @@ function f_document_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_document';
-  $strongarm->value = 'edit-workflow';
+  $strongarm->value = 'edit-diff';
   $export['additional_settings__active_tab_document'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -28,7 +28,7 @@ function f_document_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'diff_show_preview_changes_node_document';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['diff_show_preview_changes_node_document'] = $strongarm;
 
   $strongarm = new stdClass();
