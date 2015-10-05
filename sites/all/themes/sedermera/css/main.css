@@ -4100,12 +4100,55 @@ form#user-login,
     .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control {
       margin-bottom: 20px;
       padding: 20px;
-      border: 2px solid #f3f4f8; }
+      border: 2px solid #f3f4f8;
+      overflow: hidden; }
       .node-kontrolluppgift.view-mode-full .control_list .approved-control h3,
       .node-kontrolluppgift.view-mode-full .control_list .not-approved-control h3,
       .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control h3,
       .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control h3 {
         margin-bottom: 15px; }
+    .node-kontrolluppgift.view-mode-full .control_list .approved-control,
+    .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control {
+      border-left: 2px solid #b6cfb2; }
+      .node-kontrolluppgift.view-mode-full .control_list .approved-control .app,
+      .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control .app {
+        float: left;
+        clear: left;
+        padding: 10px;
+        background: #b6cfb2; }
+      .node-kontrolluppgift.view-mode-full .control_list .approved-control .app-date,
+      .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control .app-date {
+        float: left;
+        padding: 10px 10px 10px 0;
+        background: #b6cfb2; }
+    .node-kontrolluppgift.view-mode-full .control_list .not-approved-control,
+    .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control {
+      border-left: 2px solid #e0a1a1; }
+      .node-kontrolluppgift.view-mode-full .control_list .not-approved-control .app,
+      .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control .app {
+        float: left;
+        clear: left;
+        padding: 10px;
+        background: #e0a1a1; }
+      .node-kontrolluppgift.view-mode-full .control_list .not-approved-control .app-date,
+      .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control .app-date {
+        float: left;
+        padding: 10px 10px 10px 0;
+        background: #e0a1a1; }
+    .node-kontrolluppgift.view-mode-full .control_list .notes,
+    .node-kontrolluppgift-privat.view-mode-full .control_list .notes {
+      float: right;
+      width: 35%;
+      padding-left: 20px; }
+      .node-kontrolluppgift.view-mode-full .control_list .notes .label,
+      .node-kontrolluppgift-privat.view-mode-full .control_list .notes .label {
+        display: block;
+        margin-bottom: 10px; }
+    .node-kontrolluppgift.view-mode-full .control_list .files,
+    .node-kontrolluppgift-privat.view-mode-full .control_list .files {
+      float: left;
+      width: 65%;
+      margin-bottom: 20px; }
   .node-kontrolluppgift.view-mode-full .handle-control input,
   .node-kontrolluppgift-privat.view-mode-full .handle-control input {
     display: inline-block;
@@ -4131,6 +4174,44 @@ form#user-login,
     .node-kontrolluppgift.view-mode-full .handle-control input:hover,
     .node-kontrolluppgift-privat.view-mode-full .handle-control input:hover {
       background-color: #303030; }
+
+.node-kontrolluppgift-form .control_list .field-type-file,
+.node-kontrolluppgift-form .control_list .field-type-text-long,
+.node-kontrolluppgift_privat-form .control_list .field-type-file,
+.node-kontrolluppgift_privat-form .control_list .field-type-text-long {
+  width: 50%;
+  float: left; }
+  .node-kontrolluppgift-form .control_list .field-type-file textarea,
+  .node-kontrolluppgift-form .control_list .field-type-text-long textarea,
+  .node-kontrolluppgift_privat-form .control_list .field-type-file textarea,
+  .node-kontrolluppgift_privat-form .control_list .field-type-text-long textarea {
+    margin-top: 9px;
+    padding: 10px;
+    width: 100%;
+    border: 0px none; }
+.node-kontrolluppgift-form .control_list .field-type-file,
+.node-kontrolluppgift_privat-form .control_list .field-type-file {
+  padding-right: 20px; }
+.node-kontrolluppgift-form .control_list .status-fields,
+.node-kontrolluppgift_privat-form .control_list .status-fields {
+  clear: both;
+  overflow: hidden;
+  padding: 10px;
+  background: #ebedf1; }
+  .node-kontrolluppgift-form .control_list .status-fields .field-type-list-boolean,
+  .node-kontrolluppgift-form .control_list .status-fields .field-type-date,
+  .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-list-boolean,
+  .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-date {
+    float: left; }
+    .node-kontrolluppgift-form .control_list .status-fields .field-type-list-boolean .form-item,
+    .node-kontrolluppgift-form .control_list .status-fields .field-type-date .form-item,
+    .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-list-boolean .form-item,
+    .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-date .form-item {
+      margin-bottom: 0; }
+  .node-kontrolluppgift-form .control_list .status-fields .field-type-list-boolean,
+  .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-list-boolean {
+    margin-right: 20px;
+    margin-top: 10px; }
 
 #eck-entity-form-edit-investor-person,
 #eck-entity-form-edit-investor-company {
@@ -4233,21 +4314,26 @@ form#user-login,
   padding: 10px;
   margin-bottom: 20px; }
 
-.not-approved-control .fieldset-legend {
-  background: #e0afaf; }
-
 #revisioning-revisions-summary {
   padding: 50px 40px;
   background: #fff; }
-  #revisioning-revisions-summary .table-revisions tr.revision-current td {
+  #revisioning-revisions-summary .table-revisions tr td {
+    padding: 10px; }
+    #revisioning-revisions-summary .table-revisions tr td .revisions-active {
+      background: url("../graphics/arrow_right_night.png") transparent 0 3px no-repeat;
+      background: none, url("../graphics/arrow_right_night.svg") transparent 0 3px no-repeat; }
+  #revisioning-revisions-summary .table-revisions tr.revision-pending td {
     background: #fde9c2; }
-    #revisioning-revisions-summary .table-revisions tr.revision-current td a {
+    #revisioning-revisions-summary .table-revisions tr.revision-pending td a {
       border-bottom: 1px solid #fbc966; }
+      #revisioning-revisions-summary .table-revisions tr.revision-pending td a:hover {
+        border-bottom: 1px solid #1a1a1a; }
+  #revisioning-revisions-summary .table-revisions tr.revision-current td {
+    background: #c4d8c1; }
+    #revisioning-revisions-summary .table-revisions tr.revision-current td a {
+      border-bottom: 1px solid #6c9e65; }
       #revisioning-revisions-summary .table-revisions tr.revision-current td a:hover {
         border-bottom: 1px solid #1a1a1a; }
-    #revisioning-revisions-summary .table-revisions tr.revision-current td .revisions-active {
-      background: url("../graphics/arrow_right_honey.png") transparent 0 3px no-repeat;
-      background: none, url("../graphics/arrow_right_honey.svg") transparent 0 3px no-repeat; }
 
 .page-node-revisions-view .node-kontrolluppgift,
 .page-node-revisions-view .node-kontrolluppgift-privat,
@@ -4304,6 +4390,24 @@ form#user-login,
       .page-node-revisions-edit .node-kontrolluppgift-form .control_list .approved-control h3,
       .page-node-revisions-edit .node-kontrolluppgift-form .control_list .not-approved-control h3 {
         margin-bottom: 15px; }
+    .page-node-revisions-view .node-kontrolluppgift .control_list .approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-privat .control_list .approved-control,
+    .page-node-revisions-view .node-kontrolluppgift_privat-form .control_list .approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-form .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-privat .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift_privat-form .control_list .approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-form .control_list .approved-control {
+      border-left: 2px solid #b6cfb2; }
+    .page-node-revisions-view .node-kontrolluppgift .control_list .not-approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-privat .control_list .not-approved-control,
+    .page-node-revisions-view .node-kontrolluppgift_privat-form .control_list .not-approved-control,
+    .page-node-revisions-view .node-kontrolluppgift-form .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-privat .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift_privat-form .control_list .not-approved-control,
+    .page-node-revisions-edit .node-kontrolluppgift-form .control_list .not-approved-control {
+      border-left: 2px solid #e0a1a1; }
 
 .transaction-wrapper {
   background: #fff;

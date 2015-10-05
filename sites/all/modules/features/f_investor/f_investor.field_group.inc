@@ -134,7 +134,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -274,7 +274,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -414,7 +414,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -635,7 +635,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -775,7 +775,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -915,7 +915,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -1055,7 +1055,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -1125,7 +1125,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
@@ -1843,7 +1843,7 @@ function f_investor_field_group_info() {
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'control-section',
+        'classes' => 'approved-control',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',

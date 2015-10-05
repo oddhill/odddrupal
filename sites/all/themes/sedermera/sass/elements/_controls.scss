@@ -12,10 +12,62 @@
         margin-bottom: 20px;
         padding: 20px;
         border: 2px solid $light-grey;
+        overflow: hidden;
 
         h3 {
           margin-bottom: 15px;
         }
+      }
+
+      .approved-control {
+        border-left: 2px solid tint($pear,50%);
+
+        .app {
+          float: left;
+          clear: left;
+          padding: 10px;
+          background: tint($pear,50%);
+        }
+
+        .app-date {
+          float: left;
+          padding: 10px 10px 10px 0;
+          background: tint($pear,50%);
+        }
+      }
+
+      .not-approved-control {
+        border-left: 2px solid tint($wine,50%);
+
+        .app {
+          float: left;
+          clear: left;
+          padding: 10px;
+          background: tint($wine,50%);
+        }
+
+        .app-date {
+          float: left;
+          padding: 10px 10px 10px 0;
+          background: tint($wine,50%);
+        }
+      }
+
+      .notes {
+        float: right;
+        width: 35%;
+        padding-left: 20px;
+
+        .label {
+          display: block;
+          margin-bottom: 10px;
+        }
+      }
+
+      .files {
+        float: left;
+        width: 65%;
+        margin-bottom: 20px;
       }
     }
 
@@ -23,6 +75,51 @@
 
       input {
         @include button($dark-grey,flow);
+      }
+    }
+  }
+}
+
+.node-kontrolluppgift-form,
+.node-kontrolluppgift_privat-form {
+
+  .control_list {
+
+    .field-type-file,
+    .field-type-text-long {
+      width: 50%;
+      float: left;
+
+      textarea {
+        margin-top: 9px;
+        padding: 10px;
+        width: 100%;
+        border: 0px none;
+      }
+    }
+
+    .field-type-file {
+      padding-right: 20px;
+    }
+
+    .status-fields {
+      clear: both;
+      overflow: hidden;
+      padding: 10px;
+      background: $aluminium;
+
+      .field-type-list-boolean,
+      .field-type-date {
+        float: left;
+
+        .form-item {
+          margin-bottom: 0;
+        }
+      }
+
+      .field-type-list-boolean {
+        margin-right: 20px;
+        margin-top: 10px;
       }
     }
   }
@@ -168,14 +265,6 @@
   margin-bottom: 20px;
 }
 
-// Not approved control
-.not-approved-control {
-
-  .fieldset-legend {
-    background: $bubblegum;
-  }
-}
-
 // Revisions
 #revisioning-revisions-summary {
   padding: 50px 40px;
@@ -183,21 +272,43 @@
 
   .table-revisions {
 
-    tr.revision-current {
+    tr {
 
       td {
-        background: tint($honey,60%);
-
-        a {
-          border-bottom: 1px solid $honey;
-
-          &:hover {
-            border-bottom: 1px solid $night;
-          }
-        }
+        padding: 10px;
 
         .revisions-active {
-          @include svg-bg(arrow_right_honey,transparent,0 3px);
+          @include svg-bg(arrow_right_night,transparent,0 3px);
+        }
+      }
+
+      &.revision-pending {
+
+        td {
+          background: tint($honey,60%);
+
+          a {
+            border-bottom: 1px solid $honey;
+
+            &:hover {
+              border-bottom: 1px solid $night;
+            }
+          }
+        }
+      }
+
+      &.revision-current {
+
+        td {
+          background: tint($pear,60%);
+
+          a {
+            border-bottom: 1px solid $pear;
+
+            &:hover {
+              border-bottom: 1px solid $night;
+            }
+          }
         }
       }
     }
@@ -226,6 +337,14 @@
         h3 {
           margin-bottom: 15px;
         }
+      }
+
+      .approved-control {
+        border-left: 2px solid tint($pear,50%);
+      }
+
+      .not-approved-control {
+        border-left: 2px solid tint($wine,50%);
       }
     }
   }

@@ -2096,7 +2096,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2147,7 +2147,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2198,7 +2198,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2249,7 +2249,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2300,7 +2300,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 14,
+        'weight' => 16,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2351,7 +2351,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 17,
+        'weight' => 19,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2402,7 +2402,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 18,
+        'weight' => 20,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2453,7 +2453,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2504,7 +2504,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 35,
+        'weight' => 37,
       ),
       'revision' => array(
         'label' => 'above',
@@ -2564,7 +2564,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 17,
+        'weight' => 19,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -2641,7 +2641,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 14,
+        'weight' => 16,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -2718,7 +2718,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -2795,7 +2795,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -2872,7 +2872,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -2949,7 +2949,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 18,
+        'weight' => 20,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3026,7 +3026,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 19,
+        'weight' => 21,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3103,7 +3103,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3180,7 +3180,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 36,
+        'weight' => 38,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3243,7 +3243,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3293,7 +3293,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3343,7 +3343,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3393,7 +3393,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 14,
+        'weight' => 16,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3443,7 +3443,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3493,7 +3493,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3543,7 +3543,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 17,
+        'weight' => 19,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3593,7 +3593,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 10,
+        'weight' => 12,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3643,7 +3643,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 34,
+        'weight' => 36,
       ),
       'revision' => array(
         'label' => 'hidden',
@@ -3694,7 +3694,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 18,
+        'weight' => 16,
       ),
       'revision' => array(
         'label' => 'above',
@@ -3772,7 +3772,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 15,
+        'weight' => 13,
       ),
       'revision' => array(
         'label' => 'above',
@@ -3850,7 +3850,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 14,
+        'weight' => 12,
       ),
       'revision' => array(
         'label' => 'above',
@@ -3928,7 +3928,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 17,
+        'weight' => 15,
       ),
       'revision' => array(
         'label' => 'above',
@@ -4006,7 +4006,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 16,
+        'weight' => 14,
       ),
       'revision' => array(
         'label' => 'above',
@@ -4084,7 +4084,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 19,
+        'weight' => 17,
       ),
       'revision' => array(
         'label' => 'above',
@@ -4162,7 +4162,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 20,
+        'weight' => 18,
       ),
       'revision' => array(
         'label' => 'above',
@@ -4240,7 +4240,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 13,
+        'weight' => 11,
       ),
       'revision' => array(
         'label' => 'above',
@@ -4318,7 +4318,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 37,
+        'weight' => 35,
       ),
       'revision' => array(
         'label' => 'above',
@@ -4478,7 +4478,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 25,
+        'weight' => 27,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4529,7 +4529,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 24,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4579,7 +4579,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 23,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4629,7 +4629,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 22,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4679,7 +4679,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 21,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4729,7 +4729,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 26,
+        'weight' => 28,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4779,7 +4779,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 20,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4829,7 +4829,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 19,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4888,7 +4888,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 26,
+        'weight' => 28,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4958,7 +4958,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 25,
+        'weight' => 27,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5027,7 +5027,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 24,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5096,7 +5096,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 23,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5165,7 +5165,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 22,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5234,7 +5234,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 27,
+        'weight' => 29,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5303,7 +5303,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 21,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5372,7 +5372,7 @@ function f_investor_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 20,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5428,7 +5428,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 24,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5478,7 +5478,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 23,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5527,7 +5527,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 22,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5576,7 +5576,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 21,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5625,7 +5625,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 20,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5674,7 +5674,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 25,
+        'weight' => 27,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5723,7 +5723,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 19,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5772,7 +5772,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 18,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5822,7 +5822,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 27,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5900,7 +5900,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 26,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -5977,7 +5977,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 25,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -6054,7 +6054,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 24,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -6131,7 +6131,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 23,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -6208,7 +6208,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 28,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -6285,7 +6285,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 22,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -6362,7 +6362,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 21,
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
