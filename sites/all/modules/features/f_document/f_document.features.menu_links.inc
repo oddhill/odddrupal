@@ -281,13 +281,15 @@ function f_document_menu_default_menu_links() {
     'router_path' => 'dokument/sortera',
     'link_title' => 'Sortera dokument',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_sortera-dokument:dokument/sortera',
+      'attributes' => array(
+        'id' => 'documents-sort',
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_sortera-dokument:dokument/sortera',
     ),
     'module' => 'menu',
     'hidden' => 0,
