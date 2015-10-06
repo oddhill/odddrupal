@@ -1638,7 +1638,7 @@ input[value="Jämför"]#edit-submit {
   border-bottom: 0 none;
   background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
-  background-position: 20px 14px;
+  background-position: 20px 13px;
   padding-left: 42px;
   background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
@@ -2953,6 +2953,18 @@ form fieldset {
         position: relative; }
         .page-node-add-document form fieldset table.tabledrag-processed tbody tr td {
           padding: 0; }
+        form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data {
+          position: relative; }
+          form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis; }
+            form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file img {
+              display: block;
+              float: left;
+              margin-right: 5px; }
+          form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file-size {
+            display: none; }
         form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle {
           margin-top: 1px;
           margin-left: -5px;
@@ -3469,9 +3481,9 @@ form.confirmation {
   line-height: 24px;
   display: inline-block;
   font-weight: 700;
-  padding: 50px 40px 20px 40px; }
-  .page-node-revisions form.confirmation {
-    padding: 0 40px 60px 40px; }
+  padding: 50px 40px;
+  background: #fff;
+  width: 100%; }
   form.confirmation input {
     display: inline-block;
     height: 34px;
@@ -3487,7 +3499,7 @@ form.confirmation {
     border-bottom: 0 none;
     background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
-    background-position: 20px 14px;
+    background-position: 20px 13px;
     padding-left: 42px;
     background-color: #454545;
     -webkit-transition: background-color 0.1s ease-in-out;
@@ -3515,9 +3527,9 @@ form.confirmation {
       font-weight: 500;
       text-transform: uppercase;
       border-bottom: 0 none;
-      background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
+      background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+      background-position: 20px 13px;
       padding-left: 42px;
       background-color: #454545;
       -webkit-transition: background-color 0.1s ease-in-out;

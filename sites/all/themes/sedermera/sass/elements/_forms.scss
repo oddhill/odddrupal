@@ -300,7 +300,23 @@ form {
             .file-widget {
 
               .file-widget-data {
-                //padding-left: 15px;
+                position: relative;
+
+                .file {
+                  display: block;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+
+                  img {
+                    display: block;
+                    float: left;
+                    margin-right: 5px;
+                  }
+                }
+
+                .file-size {
+                  display: none;
+                }
               }
             }
 
@@ -844,11 +860,9 @@ form.confirmation {
   @include font-size(1.6);
   display: inline-block;
   font-weight: 700;
-  padding: 50px 40px 20px 40px;
-
-  .page-node-revisions & {
-    padding: 0 40px 60px 40px;
-  }
+  padding: 50px 40px;
+  background: $snow;
+  width: 100%;
 
   input {
     @include button($dark-grey, confirm);
@@ -865,7 +879,7 @@ form.confirmation {
     }
 
     #edit-submit {
-      @include button($dark-grey, delete);
+      @include button($dark-grey, confirm);
     }
   }
 }
