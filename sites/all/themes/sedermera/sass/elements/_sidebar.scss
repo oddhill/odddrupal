@@ -131,6 +131,10 @@
           @include svg-bg(administer_grey);
         }
 
+        &#documents-sort {
+          @include svg-bg(documents_sort_grey);
+        }
+
         &#read-per-user {
           @include svg-bg(user_small_grey);
         }
@@ -177,6 +181,10 @@
 
             &#administer {
               @include svg-bg(administer_yellow);
+            }
+
+            &#documents-sort {
+              @include svg-bg(documents_sort_yellow);
             }
 
             &#read-per-user {
@@ -289,6 +297,10 @@
             }
 
             &#administer {
+              background-position: 44px 23px;
+            }
+
+            &#documents-sort {
               background-position: 44px 23px;
             }
 

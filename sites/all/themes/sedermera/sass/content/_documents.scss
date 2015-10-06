@@ -258,3 +258,77 @@
     padding: 10px 12px;
   }
 }
+
+// Document sorting
+form#views-form-dokument-doc-sort-page {
+
+  .draggableviews-changed-notice {
+    float: left;
+    margin-top: -48px;
+  }
+
+  .tabledrag-toggle-weight-wrapper {
+    margin-top: -28px;
+    margin-bottom: 10px;
+  }
+
+  table#draggableviews-table-dokument-doc-sort-page {
+
+    a.tabledrag-handle {
+      display: block;
+      width: 19px;
+      height: 19px;
+      border: 0px none;
+      margin: 0 10px 0 0;
+      cursor: -webkit-grab;
+      cursor: -moz-grab;
+
+      .handle {
+        margin: 3px;
+        width: 13px;
+        height: 13px;
+        padding: 0;
+        @include svg-bg(drag_grey);
+      }
+
+      &:hover {
+
+        .handle {
+          @include svg-bg(drag_dark_grey);
+        }
+      }
+    }
+
+    tr.draggable {
+      @include transition(background 0.2s ease-in-out);
+    }
+
+    tr.drag {
+      background: tint($honey,60%);
+
+      a.tabledrag-handle {
+        cursor: -webkit-grabbing;
+        cursor: -moz-grabbing;
+
+        &:hover {
+
+          .handle {
+            @include svg-bg(drag_dark_grey);
+          }
+        }
+      }
+
+      td.views-field-title {
+
+        a {
+          font-weight: 500;
+          border-bottom: 0px none;
+        }
+      }
+    }
+
+    tr.drag-previous {
+      background: tint($honey,80%);
+    }
+  }
+}
