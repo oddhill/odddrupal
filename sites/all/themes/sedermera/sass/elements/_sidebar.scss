@@ -89,6 +89,10 @@
           &#documents {
             @include svg-bg(documents_white);
           }
+
+          &#manuals {
+            @include svg-bg(manuals_white);
+          }
         }
 
         &:hover {
@@ -125,6 +129,10 @@
 
         &#documents {
           @include svg-bg(documents_grey);
+        }
+
+        &#manuals {
+          @include svg-bg(manuals_grey);
         }
 
         &#administer {

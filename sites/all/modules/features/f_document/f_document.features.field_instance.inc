@@ -83,12 +83,13 @@ function f_document_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
+    'label' => 'Text',
     'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'document_html' => 'document_html',
+          'ds_code' => 0,
           'filtered_html' => 0,
           'full_html' => 0,
           'plain_text' => 0,
@@ -99,6 +100,9 @@ function f_document_field_default_field_instances() {
           'formats' => array(
             'document_html' => array(
               'weight' => 0,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
             ),
             'filtered_html' => array(
               'weight' => 0,
@@ -133,7 +137,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'document',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Address som visas i sidfot',
+    'description' => 'Adress som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -152,12 +156,13 @@ function f_document_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_doc_foot_address',
-    'label' => 'Address',
+    'label' => 'Adress',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'document_html' => 'document_html',
+          'ds_code' => 0,
           'filtered_html' => 'filtered_html',
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
@@ -168,6 +173,9 @@ function f_document_field_default_field_instances() {
           'formats' => array(
             'document_html' => array(
               'weight' => 0,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
             ),
             'filtered_html' => array(
               'weight' => 0,
@@ -794,7 +802,7 @@ function f_document_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 22,
+      'weight' => 14,
     ),
   );
 
@@ -848,7 +856,7 @@ function f_document_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 20,
+      'weight' => 2,
     ),
   );
 
@@ -915,7 +923,7 @@ function f_document_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 21,
+      'weight' => 3,
     ),
   );
 
@@ -961,7 +969,7 @@ function f_document_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 15,
+      'weight' => 9,
     ),
   );
 
@@ -1010,7 +1018,7 @@ function f_document_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 15,
+      'weight' => 36,
     ),
   );
 
@@ -1047,7 +1055,7 @@ function f_document_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 13,
+      'weight' => 6,
     ),
   );
 
@@ -1086,7 +1094,7 @@ function f_document_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 54,
     ),
   );
 
@@ -1132,7 +1140,7 @@ function f_document_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 14,
+      'weight' => 8,
     ),
   );
 
@@ -1150,6 +1158,13 @@ function f_document_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -1162,14 +1177,45 @@ function f_document_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
+    'label' => 'Text',
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'document_html' => 'document_html',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'display_summary' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
@@ -1185,7 +1231,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Adress som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1193,6 +1239,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 8,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1203,7 +1256,7 @@ function f_document_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_man_foot_address',
-    'label' => 'Address',
+    'label' => 'Adress',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1255,7 +1308,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Bankgironummer som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1263,6 +1316,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 10,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1325,7 +1385,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Faxnummer som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1333,6 +1393,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 9,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1395,7 +1462,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Fritextfält som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1403,6 +1470,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 15,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1465,7 +1539,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'E-post som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1473,6 +1547,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 14,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1535,7 +1616,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Moms som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1543,6 +1624,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 11,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1605,7 +1693,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Telefonnummer som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1613,6 +1701,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 7,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1675,7 +1770,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'VAT som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1683,6 +1778,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 12,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1745,7 +1847,7 @@ function f_document_field_default_field_instances() {
     'bundle' => 'manual',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Webbaddress som visas i sidfot',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1753,6 +1855,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 13,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1819,6 +1928,13 @@ function f_document_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+      'full' => array(
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -1896,6 +2012,16 @@ function f_document_field_default_field_instances() {
         'type' => 'image',
         'weight' => 3,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'medium',
+        ),
+        'type' => 'image',
+        'weight' => 11,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1943,6 +2069,13 @@ function f_document_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2016,6 +2149,15 @@ function f_document_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 17,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2056,6 +2198,13 @@ function f_document_field_default_field_instances() {
         'type' => 'file_default',
         'weight' => 2,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 4,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2081,7 +2230,7 @@ function f_document_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => -2,
+      'weight' => 8,
     ),
   );
 
@@ -2100,6 +2249,15 @@ function f_document_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 16,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2142,6 +2300,12 @@ function f_document_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 1,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2152,7 +2316,7 @@ function f_document_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_manual_type',
     'label' => 'Typ',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -2167,15 +2331,14 @@ function f_document_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Address');
-  t('Address som visas i sidfot');
+  t('Adress');
+  t('Adress som visas i sidfot');
   t('Allmänt');
   t('Används endast om ingen bildlogo används');
   t('Bankgiro');
   t('Bankgironummer som visas i sidfot');
   t('Bilaga till');
   t('Bildlogo');
-  t('Body');
   t('Bolagsnamn');
   t('Dokument relaterat till');
   t('E-post');
@@ -2193,6 +2356,7 @@ function f_document_field_default_field_instances() {
   t('Reference');
   t('Telefon');
   t('Telefonnummer som visas i sidfot');
+  t('Text');
   t('Typ');
   t('User read');
   t('VAT');

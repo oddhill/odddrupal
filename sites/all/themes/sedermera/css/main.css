@@ -811,15 +811,51 @@ a.tabledrag-handle {
 .page-node-edit .form-actions {
   padding-top: 20px; }
 
+.node-type-document .content-wrapper,
+.node-type-manual .content-wrapper {
+  background: #fff; }
+
+.node-document.view-mode-full,
+.node-manual.view-mode-full {
+  padding-bottom: 60px; }
+
+.node-type-document .node-document-form,
+.node-type-document .node-manual-form,
+.node-type-manual .node-document-form,
+.node-type-manual .node-manual-form {
+  padding: 20px 0 40px 20px; }
+  .node-type-document .node-document-form .form-body,
+  .node-type-document .node-manual-form .form-body,
+  .node-type-manual .node-document-form .form-body,
+  .node-type-manual .node-manual-form .form-body {
+    padding: 0 20px 40px 20px; }
+
+.page-node-revisions-edit .node-document-form,
+.page-node-revisions-edit .node-manual-form {
+  padding: 0 0 40px 20px; }
+
+.page-dokument .table-wrapper,
+.page-manualer .table-wrapper {
+  width: 100%; }
+.page-dokument .main-content,
+.page-manualer .main-content {
+  overflow: visible; }
+
 .document-related,
 .document-appendix,
-.document-files {
+.document-files,
+.manual-related,
+.manual-appendix,
+.manual-files {
   background: #EAECF0;
   margin-bottom: 20px;
   padding-bottom: 20px; }
   .document-related .label,
   .document-appendix .label,
-  .document-files .label {
+  .document-files .label,
+  .manual-related .label,
+  .manual-appendix .label,
+  .manual-files .label {
     display: block;
     font-size: 12px;
     font-size: 1.2rem;
@@ -833,25 +869,40 @@ a.tabledrag-handle {
     text-transform: uppercase; }
   .document-related .file img,
   .document-appendix .file img,
-  .document-files .file img {
+  .document-files .file img,
+  .manual-related .file img,
+  .manual-appendix .file img,
+  .manual-files .file img {
     display: none; }
   .document-related .file-icon,
   .document-appendix .file-icon,
-  .document-files .file-icon {
+  .document-files .file-icon,
+  .manual-related .file-icon,
+  .manual-appendix .file-icon,
+  .manual-files .file-icon {
     display: none; }
   .document-related li,
   .document-appendix li,
-  .document-files li {
+  .document-files li,
+  .manual-related li,
+  .manual-appendix li,
+  .manual-files li {
     display: block;
     list-style: none;
     margin: 0 0 7px 20px; }
   .document-related a,
   .document-appendix a,
-  .document-files a {
+  .document-files a,
+  .manual-related a,
+  .manual-appendix a,
+  .manual-files a {
     border-bottom: 1px solid #ccc; }
     .document-related a:hover,
     .document-appendix a:hover,
-    .document-files a:hover {
+    .document-files a:hover,
+    .manual-related a:hover,
+    .manual-appendix a:hover,
+    .manual-files a:hover {
       border-bottom: 1px solid #282828; }
 
 .block-sedermera-document-view-read-all .table-wrapper,
@@ -860,11 +911,13 @@ a.tabledrag-handle {
 .block-sedermera-document-view-admin-doc .table-wrapper {
   width: 100%; }
 
-.full-document-wrapper {
+.full-document-wrapper,
+.full-manual-wrapper {
   background: #fff;
   display: flex; }
 
-.document-left-column {
+.document-left-column,
+.manual-left-column {
   padding: 0 5%;
   width: 74%;
   -webkit-user-select: none;
@@ -874,19 +927,24 @@ a.tabledrag-handle {
   -o-user-select: none;
   user-select: none; }
 
-.document-head-wrapper {
+.document-head-wrapper,
+.manual-head-wrapper {
   margin-top: 50px; }
-  .page-node-revisions .document-head-wrapper {
+  .page-node-revisions .document-head-wrapper, .page-node-revisions
+  .manual-head-wrapper {
     margin-top: 0; }
 
-.document-head-content {
-  border-bottom: 2px solid #f3f4f8;
-  margin: 40px 0 30px 0;
-  padding-bottom: 30px; }
-  .page-node-revisions .document-head-content {
+.document-head-content,
+.manual-head-content {
+  margin: 0px 0 40px 40px;
+  text-align: center;
+  float: right; }
+  .page-node-revisions .document-head-content, .page-node-revisions
+  .manual-head-content {
     margin-top: 0; }
 
-.field-doc-head-text {
+.field-doc-head-text,
+.field-man-head-text {
   font-size: 22px;
   font-size: 2.2rem;
   line-height: 33px;
@@ -894,34 +952,128 @@ a.tabledrag-handle {
   margin-bottom: 10px;
   width: 30%; }
 
-.field-doc-head-free {
+.field-doc-head-free,
+.field-man-head-free {
   font-size: 13px;
   font-size: 1.3rem;
   line-height: 19.5px;
   clear: both; }
 
-.field-doc-head-img {
+.field-doc-head-img,
+.field-man-head-img {
   clear: both;
   margin-bottom: 20px; }
-  .field-doc-head-img img {
+  .field-doc-head-img img,
+  .field-man-head-img img {
     height: auto;
     max-width: 100%; }
 
-.document-title-wrapper {
+.document-title-wrapper,
+.manual-title-wrapper {
   clear: both; }
-  .document-title-wrapper h2 {
+  .document-title-wrapper h2,
+  .manual-title-wrapper h2 {
     text-align: left; }
 
-.document-content-wrapper {
+.document-content-wrapper,
+.manual-content-wrapper {
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 100%;
   float: left; }
-  .document-content-wrapper:last-child {
+  .document-content-wrapper:last-child,
+  .manual-content-wrapper:last-child {
     margin-right: 0; }
+  .document-content-wrapper html,
+  .manual-content-wrapper html {
+    font-size: 62.5%; }
+  .document-content-wrapper body,
+  .manual-content-wrapper body {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 18.2px;
+    background: #fff;
+    color: #282828;
+    font-family: "Roboto", sans-serif; }
+  .document-content-wrapper h1,
+  .manual-content-wrapper h1 {
+    font-size: 30px;
+    font-size: 3rem;
+    line-height: 45px;
+    font-weight: 500; }
+  .document-content-wrapper h2,
+  .manual-content-wrapper h2 {
+    font-size: 24px;
+    font-size: 2.4rem;
+    line-height: 36px;
+    font-weight: 500; }
+  .document-content-wrapper h3,
+  .manual-content-wrapper h3 {
+    font-size: 20px;
+    font-size: 2rem;
+    line-height: 30px;
+    font-weight: 500; }
+  .document-content-wrapper h4,
+  .manual-content-wrapper h4 {
+    font-size: 17px;
+    font-size: 1.7rem;
+    line-height: 25.5px;
+    font-weight: 500; }
+  .document-content-wrapper h5,
+  .manual-content-wrapper h5 {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    font-weight: 700; }
+  .document-content-wrapper p,
+  .manual-content-wrapper p {
+    margin: 1em 0; }
+  .document-content-wrapper li,
+  .manual-content-wrapper li {
+    margin-bottom: 5px; }
+  .document-content-wrapper a,
+  .manual-content-wrapper a {
+    color: #f99d1c;
+    font-weight: 500;
+    border-bottom: 1px solid #e0e2e6;
+    text-decoration: none; }
+  .document-content-wrapper hr,
+  .manual-content-wrapper hr {
+    background-color: #f3f4f8;
+    border: 0;
+    color: #f3f4f8;
+    height: 2px;
+    margin: 25px 0; }
+  .document-content-wrapper table,
+  .manual-content-wrapper table {
+    margin: 10px 0 30px 0;
+    border: 0;
+    border-spacing: 0; }
+    .document-content-wrapper table caption,
+    .manual-content-wrapper table caption {
+      font-size: 15px;
+      font-size: 1.5rem;
+      line-height: 22.5px;
+      font-weight: 500;
+      margin-bottom: 20px; }
+  .document-content-wrapper td,
+  .manual-content-wrapper td {
+    border: 1px solid #e0e2e6;
+    padding: 10px 0 10px 10px; }
+  .document-content-wrapper thead,
+  .manual-content-wrapper thead {
+    background: #f3f4f8;
+    border: 0; }
+  .document-content-wrapper th,
+  .manual-content-wrapper th {
+    background: #f3f4f8;
+    border: 1px solid #e0e2e6;
+    font-weight: 500;
+    padding: 10px; }
 
-.document-sidebar {
+.document-sidebar,
+.manual-sidebar {
   font-size: 13px;
   font-size: 1.3rem;
   line-height: 19.5px;
@@ -931,27 +1083,32 @@ a.tabledrag-handle {
   padding: 15px;
   width: 26%; }
 
-.document-files .label {
+.document-files .label,
+.manual-files .label {
   display: block; }
 
-.document-footer {
+.document-footer,
+.manual-footer {
   clear: both;
   border-top: 2px solid #f3f4f8;
   margin-top: 50px;
   padding-top: 40px; }
-  .document-footer .field {
+  .document-footer .field,
+  .manual-footer .field {
     font-size: 13px;
     font-size: 1.3rem;
     line-height: 19.5px;
     margin: 10px 0 10px 0; }
 
-.document-footer-content {
+.document-footer-content,
+.manual-footer-content {
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 31.76157%;
   margin-right: 0; }
-  .document-footer-content:last-child {
+  .document-footer-content:last-child,
+  .manual-footer-content:last-child {
     margin-right: 0; }
 
 .sign {
@@ -1109,24 +1266,36 @@ form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-s
     background-color: #303030; }
 
 #edit-field-dokument-relation th,
-#edit-field-document-appendix th {
+#edit-field-manual-relation th,
+#edit-field-document-appendix th,
+#edit-field-manual-appendix th {
   height: auto;
   padding: 0; }
 #edit-field-dokument-relation td,
-#edit-field-document-appendix td {
+#edit-field-manual-relation td,
+#edit-field-document-appendix td,
+#edit-field-manual-appendix td {
   padding: 0; }
 #edit-field-dokument-relation .draggable,
-#edit-field-document-appendix .draggable {
+#edit-field-manual-relation .draggable,
+#edit-field-document-appendix .draggable,
+#edit-field-manual-appendix .draggable {
   background: none; }
 #edit-field-dokument-relation .form-item .form-text,
-#edit-field-document-appendix .form-item .form-text {
+#edit-field-manual-relation .form-item .form-text,
+#edit-field-document-appendix .form-item .form-text,
+#edit-field-manual-appendix .form-item .form-text {
   margin-top: 0; }
 #edit-field-dokument-relation .tabledrag-processed,
-#edit-field-document-appendix .tabledrag-processed {
+#edit-field-manual-relation .tabledrag-processed,
+#edit-field-document-appendix .tabledrag-processed,
+#edit-field-manual-appendix .tabledrag-processed {
   margin-bottom: 5px;
   border-bottom: 0; }
   #edit-field-dokument-relation .tabledrag-processed tbody tr,
-  #edit-field-document-appendix .tabledrag-processed tbody tr {
+  #edit-field-manual-relation .tabledrag-processed tbody tr,
+  #edit-field-document-appendix .tabledrag-processed tbody tr,
+  #edit-field-manual-appendix .tabledrag-processed tbody tr {
     border: 0; }
 
 .node-form-revision-information .form-type-textarea {
@@ -1136,11 +1305,40 @@ form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-s
   font-weight: 700;
   padding: 0px 0 15px 0; }
 
-.form-item.form-type-textarea label {
-  border-bottom: 0; }
-
-.cke_chrome {
+.cke {
   border: 0 !important; }
+
+.group-document-footer .fieldset-wrapper,
+.group-manual-footer .fieldset-wrapper {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .group-document-footer .fieldset-wrapper:after,
+  .group-manual-footer .fieldset-wrapper:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .group-document-footer .fieldset-wrapper .field-type-text,
+  .group-manual-footer .fieldset-wrapper .field-type-text {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    .group-document-footer .fieldset-wrapper .field-type-text:last-child,
+    .group-manual-footer .fieldset-wrapper .field-type-text:last-child {
+      margin-right: 0; }
+    .group-document-footer .fieldset-wrapper .field-type-text:nth-child(2n),
+    .group-manual-footer .fieldset-wrapper .field-type-text:nth-child(2n) {
+      margin-right: 0; }
+    .group-document-footer .fieldset-wrapper .field-type-text:nth-child(2n+1),
+    .group-manual-footer .fieldset-wrapper .field-type-text:nth-child(2n+1) {
+      clear: left; }
+    .group-document-footer .fieldset-wrapper .field-type-text input[type=text],
+    .group-manual-footer .fieldset-wrapper .field-type-text input[type=text] {
+      width: 100%; }
+    .group-document-footer .fieldset-wrapper .field-type-text .form-item,
+    .group-manual-footer .fieldset-wrapper .field-type-text .form-item {
+      margin-bottom: 10px; }
 
 .tabs.secondary {
   font-size: 14px;
@@ -1335,62 +1533,6 @@ input[value="Jämför"]#edit-submit {
       background-color: #303030; }
   #revisioning-ux-delete-all .form .submit-wrapper.form-submit {
     margin-right: 0; }
-
-.document-content-wrapper h1 {
-  font-size: 30px;
-  font-size: 3rem;
-  line-height: 45px;
-  font-weight: 500; }
-.document-content-wrapper h2 {
-  font-size: 24px;
-  font-size: 2.4rem;
-  line-height: 36px;
-  font-weight: 500; }
-.document-content-wrapper h3 {
-  font-size: 20px;
-  font-size: 2rem;
-  line-height: 30px;
-  font-weight: 500; }
-.document-content-wrapper h4 {
-  font-size: 17px;
-  font-size: 1.7rem;
-  line-height: 25.5px;
-  font-weight: 500; }
-.document-content-wrapper h5 {
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 21px;
-  font-weight: 700; }
-.document-content-wrapper p {
-  margin: 1em 0; }
-.document-content-wrapper li {
-  margin-bottom: 5px; }
-.document-content-wrapper a {
-  color: #f99d1c;
-  font-weight: 500; }
-.document-content-wrapper hr {
-  background-color: #f3f4f8;
-  border: 0;
-  color: #f3f4f8;
-  height: 2px;
-  margin: 25px 0; }
-.document-content-wrapper table {
-  margin: 10px 0 30px 0; }
-  .document-content-wrapper table caption {
-    font-size: 15px;
-    font-size: 1.5rem;
-    line-height: 22.5px;
-    font-weight: 500;
-    margin-bottom: 20px; }
-  .document-content-wrapper table td {
-    border: 1px solid #e0e2e6; }
-  .document-content-wrapper table thead {
-    background: #f3f4f8;
-    border: 0; }
-  .document-content-wrapper table th {
-    background: #f3f4f8;
-    border: 1px solid #e0e2e6;
-    font-weight: 500; }
 
 .field-shared-custresp .label,
 .field-invest-comp-own .label,
@@ -1789,6 +1931,7 @@ input[value="Jämför"]#edit-submit {
   flex-wrap: wrap; }
 
 #capital-raising-node-form > div,
+#manual-node-form > div,
 #eck-entity-form-add-investor-person > div,
 #eck-entity-form-add-investor-company > div,
 #eck-entity-form-add-investor-lead > div,
@@ -1872,28 +2015,6 @@ input[value="Jämför"]#edit-submit {
     width: 31.76157%; }
     .columns.three-col .col:last-child {
       margin-right: 0; }
-
-.node-type-document .content-wrapper {
-  background: #fff; }
-
-.node-document.view-mode-full {
-  padding-bottom: 60px; }
-
-.node-type-document .node-document-form {
-  padding: 20px 0 40px 20px; }
-  .node-type-document .node-document-form .form-body {
-    padding: 0 20px 40px 20px; }
-
-.page-node-revisions-edit .node-document-form {
-  padding: 0 0 40px 20px; }
-
-.page-dokument .table-wrapper {
-  width: 100%; }
-.page-dokument .main-content {
-  overflow: visible; }
-
-#edit-field-document-files-und-0-upload {
-  width: 190px; }
 
 #edit-submit {
   display: inline-block;
@@ -2207,6 +2328,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a.active-trail#documents {
         background: url("../graphics/documents_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/documents_white.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a.active-trail#manuals {
+        background: url("../graphics/manuals_white.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/manuals_white.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a:hover {
         color: #d9d9db; }
       .main-navigation .menu li a#overview {
@@ -2233,6 +2357,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a#documents {
         background: url("../graphics/documents_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/documents_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#manuals {
+        background: url("../graphics/manuals_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/manuals_grey.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a#administer {
         background: url("../graphics/administer_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/administer_grey.svg") transparent 0 0 no-repeat; }
@@ -3129,8 +3256,7 @@ form .form-item {
     font-size: 12px;
     font-size: 1.2rem;
     line-height: 15.6px;
-    font-style: italic;
-    margin-top: 5px; }
+    font-style: italic; }
   form .form-item.form-type-select {
     position: relative; }
     form .form-item.form-type-select label {
@@ -3206,7 +3332,7 @@ form .form-item {
         -moz-animation: load 0.9s linear infinite;
         animation: load 0.9s linear infinite; }
   form .form-item.form-type-textarea {
-    background: #ebedf1;
+    background: #d4d6d9;
     padding: 10px;
     border-radius: 2px;
     margin-bottom: 20px; }
@@ -3224,8 +3350,8 @@ form .form-item {
       font-weight: 500;
       text-transform: none;
       padding: 10px 0 11px 10px;
-      margin: -10px -10px 0;
-      border-bottom: 1px solid #fff;
+      margin: -10px -10px 10px -10px;
+      border-bottom: 1px solid #e0e2e6;
       border-radius: 2px 2px 0 0; }
       form .form-item.form-type-textarea label .form-required {
         display: block;
@@ -3592,7 +3718,8 @@ form.confirmation {
   border: 0;
   margin-top: 10px; }
 
-.form-item label[for=edit-field-document-type-und] {
+.form-item label[for=edit-field-document-type-und],
+.form-item label[for=edit-field-manual-type-und] {
   background: #c8cacd;
   border-radius: 2px 2px 0 0;
   display: block;
@@ -3605,7 +3732,8 @@ form.confirmation {
   padding: 10px 0 11px 0;
   text-align: left;
   text-transform: none; }
-  .form-item label[for=edit-field-document-type-und] .form-required {
+  .form-item label[for=edit-field-document-type-und] .form-required,
+  .form-item label[for=edit-field-manual-type-und] .form-required {
     background: url("../graphics/required.png") transparent 5px center no-repeat;
     background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
     color: transparent;
@@ -3619,10 +3747,18 @@ form.confirmation {
     text-indent: 100px;
     width: 18px; }
 
-#edit-field-document-type-und {
+#edit-field-document-type-und,
+#edit-field-manual-type-und {
   background: #fff;
   border-radius: 0 0 2px 2px;
-  padding: 20px 0px 5px 10px; }
+  padding: 15px 10px;
+  overflow: hidden; }
+  #edit-field-document-type-und .form-item,
+  #edit-field-manual-type-und .form-item {
+    margin-bottom: 10px; }
+    #edit-field-document-type-und .form-item:last-child,
+    #edit-field-manual-type-und .form-item:last-child {
+      margin-bottom: 0px; }
 
 .form-type-managed-file.form-item label {
   display: block; }

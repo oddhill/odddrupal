@@ -14,7 +14,9 @@
 
 // Relation document/appendix input field
 #edit-field-dokument-relation,
-#edit-field-document-appendix {
+#edit-field-manual-relation,
+#edit-field-document-appendix,
+#edit-field-manual-appendix {
 
   th {
     height: auto;
@@ -57,17 +59,36 @@
 
 // Label: Revision creation and moderation options
 .form-item  {
-    label[for=edit-revision-operation] {
+
+  label[for=edit-revision-operation] {
     font-weight: 700;
     padding: 0px 0 15px 0;
   }
 }
 
-.form-item.form-type-textarea label {
-  border-bottom: 0;
+// WYSIWYG editor
+.cke {
+  border: 0 !important;
 }
 
-// WYSIWYG editor
-.cke_chrome {
-  border: 0 !important;
+// Page footer
+.group-document-footer,
+.group-manual-footer {
+
+  .fieldset-wrapper {
+    @include outer-container;
+
+    .field-type-text {
+      @include span-columns(6 of 12);
+      @include omega(2n);
+
+      input[type=text] {
+        width: 100%;
+      }
+
+      .form-item {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }

@@ -60,7 +60,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -49,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_manual:manualer',
+    'parent_identifier' => 'main-menu_manualer:manualer',
   );
   // Exported menu link: main-menu_alla-dokument:dokument/lista
   $menu_links['main-menu_alla-dokument:dokument/lista'] = array(
@@ -116,7 +116,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_manual:manualer',
+    'parent_identifier' => 'main-menu_manualer:manualer',
   );
   // Exported menu link: main-menu_dokument:dokument
   $menu_links['main-menu_dokument:dokument'] = array(
@@ -249,31 +249,6 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_manual:manualer
-  $menu_links['main-menu_manual:manualer'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'manualer',
-    'router_path' => 'manualer',
-    'link_title' => 'Manual',
-    'options' => array(
-      'attributes' => array(
-        'id' => 'documents',
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
-      'identifier' => 'main-menu_manual:manualer',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 1,
-    'expanded' => 0,
-    'weight' => -45,
-    'customized' => 1,
-  );
   // Exported menu link: main-menu_sortera-dokument:dokument/sortera
   $menu_links['main-menu_sortera-dokument:dokument/sortera'] = array(
     'menu_name' => 'main-menu',
@@ -312,7 +287,6 @@ function f_document_menu_default_menu_links() {
   t('Lägg till dokument');
   t('Läst per användare');
   t('Läst per dokument');
-  t('Manual');
   t('Sortera dokument');
 
   return $menu_links;
