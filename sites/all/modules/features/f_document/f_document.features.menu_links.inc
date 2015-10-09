@@ -58,9 +58,9 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -48,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_manualer:manualer',
+    'parent_identifier' => 'main-menu_manual:manualer',
   );
   // Exported menu link: main-menu_alla-dokument:dokument/lista
   $menu_links['main-menu_alla-dokument:dokument/lista'] = array(
@@ -116,7 +116,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_manualer:manualer',
+    'parent_identifier' => 'main-menu_manual:manualer',
   );
   // Exported menu link: main-menu_dokument:dokument
   $menu_links['main-menu_dokument:dokument'] = array(
@@ -275,6 +275,30 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
+  // Exported menu link: main-menu_sortera-manualer:manualer/sortera
+  $menu_links['main-menu_sortera-manualer:manualer/sortera'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'manualer/sortera',
+    'router_path' => 'manualer/sortera',
+    'link_title' => 'Sortera manualer',
+    'options' => array(
+      'attributes' => array(),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_sortera-manualer:manualer/sortera',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_manual:manualer',
+  );
 
   // Translatables
   // Included for use with string extractors like potx.
@@ -288,6 +312,7 @@ function f_document_menu_default_menu_links() {
   t('Läst per användare');
   t('Läst per dokument');
   t('Sortera dokument');
+  t('Sortera manualer');
 
   return $menu_links;
 }

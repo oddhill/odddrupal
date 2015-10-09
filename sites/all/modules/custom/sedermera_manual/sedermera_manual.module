@@ -50,7 +50,7 @@ function view_manual() {
       }
     }
 
-    $manuals = getManuals();
+    $manuals = orderManuals(getManuals());
 
     // Create the header for the table. Add rows
     $header = array(
@@ -123,6 +123,25 @@ function getManuals() {
     $manual_nids = array_keys($result['node']);
     return entity_load('node', $manual_nids);
   }
+}
+
+/**
+ * Order documents according to draggableviews order
+ * @return ordered document list.
+ */
+function orderManuals($manuals) {
+  $orderedManuals = array();
+  $result = db_query("SELECT entity_id FROM draggableviews_structure WHERE view_name = 'manual' ORDER BY weight ASC")->fetchAll();
+
+  if (empty($result)) {
+    return $manuals;
+  }
+
+  foreach ($result as $value) {
+    $orderedManuals[] = $manuals[$value->entity_id];
+  }
+
+  return $orderedManuals;
 }
 
 /**

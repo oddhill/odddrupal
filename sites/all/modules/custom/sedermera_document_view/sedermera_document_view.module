@@ -371,7 +371,7 @@ function generateAdminRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
 }
 
 function currentRevision($doc) {
-  $result = db_query("SELECT vid FROM node_revision WHERE nid = $doc->nid ORDER BY vid ASC");
+  $result = db_query("SELECT vid FROM node_revision WHERE nid = :nid ORDER BY vid ASC", array(':nid' => $doc->nid));
   $revision = 1;
 
   foreach ($result->fetchAll() as $rev) {
