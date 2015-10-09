@@ -10,6 +10,16 @@
 function f_document_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access draggableviews'.
+  $permissions['access draggableviews'] = array(
+    'name' => 'access draggableviews',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'draggableviews',
+  );
+
   // Exported permission: 'add terms in document_type'.
   $permissions['add terms in document_type'] = array(
     'name' => 'add terms in document_type',
