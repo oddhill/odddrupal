@@ -139,7 +139,8 @@
           @include svg-bg(administer_grey);
         }
 
-        &#documents-sort {
+        &#documents-sort,
+        &#manuals-sort {
           @include svg-bg(documents_sort_grey);
         }
 
@@ -191,7 +192,8 @@
               @include svg-bg(administer_yellow);
             }
 
-            &#documents-sort {
+            &#documents-sort,
+            &#manuals-sort {
               @include svg-bg(documents_sort_yellow);
             }
 
@@ -308,7 +310,8 @@
               background-position: 44px 23px;
             }
 
-            &#documents-sort {
+            &#documents-sort,
+            &#manuals-sort {
               background-position: 44px 23px;
             }
 

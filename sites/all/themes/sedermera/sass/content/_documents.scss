@@ -327,8 +327,9 @@
   }
 }
 
-// Document sorting
-form#views-form-dokument-doc-sort-page {
+// Document & manual sorting
+form#views-form-dokument-doc-sort-page,
+form#views-form-dokument-page-1 {
 
   .draggableviews-changed-notice {
     float: left;
@@ -340,7 +341,8 @@ form#views-form-dokument-doc-sort-page {
     margin-bottom: 10px;
   }
 
-  table#draggableviews-table-dokument-doc-sort-page {
+  table#draggableviews-table-dokument-doc-sort-page,
+  table#draggableviews-table-dokument-page-1 {
 
     a.tabledrag-handle {
       display: block;

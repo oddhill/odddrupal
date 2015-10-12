@@ -1199,13 +1199,18 @@ a.tabledrag-handle {
 .view-document-log .form-text.required {
   padding: 10px 12px; }
 
-form#views-form-dokument-doc-sort-page .draggableviews-changed-notice {
+form#views-form-dokument-doc-sort-page .draggableviews-changed-notice,
+form#views-form-dokument-page-1 .draggableviews-changed-notice {
   float: left;
   margin-top: -48px; }
-form#views-form-dokument-doc-sort-page .tabledrag-toggle-weight-wrapper {
+form#views-form-dokument-doc-sort-page .tabledrag-toggle-weight-wrapper,
+form#views-form-dokument-page-1 .tabledrag-toggle-weight-wrapper {
   margin-top: -28px;
   margin-bottom: 10px; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle {
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle,
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 a.tabledrag-handle,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 a.tabledrag-handle {
   display: block;
   width: 19px;
   height: 19px;
@@ -1213,32 +1218,56 @@ form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-s
   margin: 0 10px 0 0;
   cursor: -webkit-grab;
   cursor: -moz-grab; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle .handle {
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle .handle,
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 a.tabledrag-handle .handle,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle .handle,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 a.tabledrag-handle .handle {
     margin: 3px;
     width: 13px;
     height: 13px;
     padding: 0;
     background: url("../graphics/drag_grey.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/drag_grey.svg") transparent 0 0 no-repeat; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle:hover .handle {
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle:hover .handle,
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 a.tabledrag-handle:hover .handle,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle:hover .handle,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 a.tabledrag-handle:hover .handle {
     background: url("../graphics/drag_dark_grey.png") transparent 0 0 no-repeat;
     background: none, url("../graphics/drag_dark_grey.svg") transparent 0 0 no-repeat; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.draggable {
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.draggable,
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.draggable,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.draggable,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.draggable {
   -webkit-transition: background 0.2s ease-in-out;
   -moz-transition: background 0.2s ease-in-out;
   transition: background 0.2s ease-in-out; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag {
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag,
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag {
   background: #fde9c2; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle {
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle,
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle {
     cursor: -webkit-grabbing;
     cursor: -moz-grabbing; }
-    form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle:hover .handle {
+    form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle:hover .handle,
+    form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle:hover .handle,
+    form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle:hover .handle,
+    form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle:hover .handle {
       background: url("../graphics/drag_dark_grey.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/drag_dark_grey.svg") transparent 0 0 no-repeat; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag td.views-field-title a {
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag td.views-field-title a,
+  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag td.views-field-title a,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag td.views-field-title a,
+  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag td.views-field-title a {
     font-weight: 500;
     border-bottom: 0px none; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag-previous {
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag-previous,
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag-previous,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag-previous,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag-previous {
   background: #fef4e0; }
 
 #views-exposed-form-document-log-document-log .description {
@@ -2363,7 +2392,7 @@ form#user-login #edit-submit {
       .main-navigation .menu li a#administer {
         background: url("../graphics/administer_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/administer_grey.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a#documents-sort {
+      .main-navigation .menu li a#documents-sort, .main-navigation .menu li a#manuals-sort {
         background: url("../graphics/documents_sort_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/documents_sort_grey.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a#read-per-user {
@@ -2403,7 +2432,7 @@ form#user-login #edit-submit {
           .main-navigation .menu li li a.active#administer, .main-navigation .menu li li a.active-trail#administer {
             background: url("../graphics/administer_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/administer_yellow.svg") transparent 0 0 no-repeat; }
-          .main-navigation .menu li li a.active#documents-sort, .main-navigation .menu li li a.active-trail#documents-sort {
+          .main-navigation .menu li li a.active#documents-sort, .main-navigation .menu li li a.active#manuals-sort, .main-navigation .menu li li a.active-trail#documents-sort, .main-navigation .menu li li a.active-trail#manuals-sort {
             background: url("../graphics/documents_sort_yellow.png") transparent 0 0 no-repeat;
             background: none, url("../graphics/documents_sort_yellow.svg") transparent 0 0 no-repeat; }
           .main-navigation .menu li li a.active#read-per-user, .main-navigation .menu li li a.active-trail#read-per-user {
@@ -2471,7 +2500,7 @@ form#user-login #edit-submit {
           display: none; }
         .main-navigation li.expanded ul.menu li a#administer {
           background-position: 44px 23px; }
-        .main-navigation li.expanded ul.menu li a#documents-sort {
+        .main-navigation li.expanded ul.menu li a#documents-sort, .main-navigation li.expanded ul.menu li a#manuals-sort {
           background-position: 44px 23px; }
         .main-navigation li.expanded ul.menu li a#read-per-user {
           background-position: 44px 23px; }
