@@ -2,10 +2,10 @@
 @import url("http://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto:400,300,500,700,400italic,500italic,700italic,300italic");
 @import url("http://gregfranko.com/jquery.selectBoxIt.js/css/jquery.selectBoxIt.css");
 h1 {
-  font-size: 48px;
-  font-size: 4.8rem;
-  line-height: 62.4px;
-  font-weight: 300; }
+  font-size: 40px;
+  font-size: 4rem;
+  line-height: 48px;
+  font-weight: 500; }
 
 h2 {
   font-size: 20px;
@@ -2486,28 +2486,32 @@ form#user-login #edit-submit {
       background: none;
       display: block;
       float: left;
-      padding: 0; }
+      padding: 0;
+      max-width: 15.5%; }
       .main-navigation li.expanded ul.menu li a {
-        background-position: 40px 24px;
+        background-position: 24px 24px;
         border-right: 1px solid #363636;
         display: block;
         height: 60px;
         line-height: 60px;
-        padding: 0 40px 0 70px; }
+        padding: 0 30px 0 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
         .main-navigation li.expanded ul.menu li a.active, .main-navigation li.expanded ul.menu li a.active-trail {
-          background-position: 40px 24px; }
+          background-position: 24px 24px; }
         .main-navigation li.expanded ul.menu li a.add {
           display: none; }
         .main-navigation li.expanded ul.menu li a#administer {
-          background-position: 44px 23px; }
+          background-position: 28px 23px; }
         .main-navigation li.expanded ul.menu li a#documents-sort, .main-navigation li.expanded ul.menu li a#manuals-sort {
-          background-position: 44px 23px; }
+          background-position: 28px 23px; }
         .main-navigation li.expanded ul.menu li a#read-per-user {
-          background-position: 44px 23px; }
+          background-position: 28px 23px; }
         .main-navigation li.expanded ul.menu li a#read-per-doc {
-          background-position: 44px 23px; }
+          background-position: 28px 23px; }
         .main-navigation li.expanded ul.menu li a#document-log {
-          background-position: 44px 23px; } }
+          background-position: 28px 23px; } }
 
 .user {
   font-size: 16px;
