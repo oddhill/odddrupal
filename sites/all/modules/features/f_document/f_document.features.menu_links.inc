@@ -307,13 +307,15 @@ function f_document_menu_default_menu_links() {
     'router_path' => 'manualer/sortera',
     'link_title' => 'Sortera manualer',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_sortera-manualer:manualer/sortera',
+      'attributes' => array(
+        'id' => 'manuals-sort',
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_sortera-manualer:manualer/sortera',
     ),
     'module' => 'menu',
     'hidden' => 0,
