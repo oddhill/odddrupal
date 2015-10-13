@@ -83,6 +83,7 @@ function sedermera_offer_node_presave($node) {
 
 function transaction_transparency_info_send_mail() {
   // Load entitys to retrieve info
+  global $user;
   $transaction = node_load(arg(4));
   $investor = entity_load_single('investor', arg(5));
   $company = node_load($transaction->field_cap_rais_comp[LANGUAGE_NONE][0]['target_id']);
@@ -95,10 +96,16 @@ function transaction_transparency_info_send_mail() {
 
   // Build mail.
   // Subject.
-  $params['subject'] = 'Hello';
+  $params['subject'] = 'Insynsinformation';
 
   // Message.
-  $params['message'][] = 'TEXT';
+  $params['message'][] = "Hej $investor->title,";
+
+  $params['message'][] = "Ni har härmed erhållit insiderinformation i $company->title och därigenom blivit insynsloggad, vilket innebär att Ni inte får utnyttja informationen för egen eller någon annans räkning. Vidare får informationen inte vidarebefordras och inte heller på annat sätt göras tillgänglig för andra. Informationen skall behandlas med strikt sekretess.";
+
+  $params['message'][] = 'Om Ni har några frågor eller funderingar, vänligen kontakta mig.';
+  $params['message'][] = 'Med vänlig hälsning';
+  $params['message'][] = "$user->name";
 
   // Send Mail
   drupal_mail('sedermera_offer', 'info', $investor_mail, LANGUAGE_NONE, $params);
