@@ -47,9 +47,13 @@ function sedermera_offer_node_presave($node) {
 
       // Build mail.
       // Subject.
-      $params['subject'] = 'Hello';
+      $params['subject'] = 'Insynsinformation';
       // Message.
-      $params['message'][] = 'Utloggad insynsinfo';
+      $params['message'][] = 'Hej XX,';
+      $params['message'][] = 'Ni har härmed blivit utloggade från Er insynsställning i BOLAGET.';
+      $params['message'][] = 'Om Ni har några frågor eller funderingar, vänligen kontakta mig.';
+      $params['message'][] = 'Med vänlig hälsning';
+      $params['message'][] = 'Signatur';
 
       foreach ($result as $target_id) {
         // Load offer entity to get connected investors
