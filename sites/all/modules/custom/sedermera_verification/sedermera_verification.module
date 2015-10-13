@@ -211,7 +211,7 @@ function sedermera_verification_menu_alter(&$items) {
     'title' => 'Återgå till investerare',
     'page callback' => 'return_to_investor',
     'page arguments' => array(1),
-    'access callback' => TRUE,
+    'access callback' => 'sedermera_verification_investor_page',
     'type' => MENU_LOCAL_TASK,
   );
 }
@@ -230,6 +230,25 @@ function return_to_investor($nid) {
   $title = strtolower($exp[0]);
   drupal_goto("investerare/lista/$title/kontroll");
 }
+
+/**
+ * Access callback.
+ *
+ * Check if item is investor.
+ *
+ * @return bool
+ */
+function sedermera_verification_investor_page() {
+  $node = node_load(arg(1));
+
+  if ($node->type == 'kontrolluppgift_privat' || $node->type == 'kontrolluppgift') {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
+}
+
 
 /**
  * Access callback for the verification form.
