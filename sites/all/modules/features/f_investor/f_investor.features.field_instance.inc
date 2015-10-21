@@ -2128,54 +2128,6 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_ctrl'
-  $field_instances['node-investor_bolag-field_investor_comp_ctrl'] = array(
-    'bundle' => 'investor_bolag',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_investor_comp_ctrl',
-    'label' => 'Kontroll',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'inline_entity_form',
-      'settings' => array(
-        'fields' => array(),
-        'type_settings' => array(
-          'allow_existing' => FALSE,
-          'delete_references' => 0,
-          'label_plural' => 'nodes',
-          'label_singular' => 'node',
-          'match_operator' => 'CONTAINS',
-          'override_labels' => 0,
-        ),
-      ),
-      'type' => 'inline_entity_form_single',
-      'weight' => 8,
-    ),
-  );
-
   // Exported field_instance:
   // 'node-investor_bolag-field_investor_comp_ctrl_cred'
   $field_instances['node-investor_bolag-field_investor_comp_ctrl_cred'] = array(
@@ -2624,7 +2576,7 @@ function f_investor_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_investor_comp_reg_nbr',
     'label' => 'Organisationsnummer',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -3082,9 +3034,13 @@ function f_investor_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
       'weight' => 5,
     ),
   );

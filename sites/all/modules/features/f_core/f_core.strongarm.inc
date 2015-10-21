@@ -318,17 +318,27 @@ function f_core_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
-    'kontrolluppgift' => array(
-      'grant_view' => 0,
-      'grant_update' => 0,
-      'grant_delete' => 0,
-    ),
-    'kontrolluppgift_privat' => array(
-      'grant_view' => 0,
-      'grant_update' => 0,
-      'grant_delete' => 0,
-    ),
     'transaction_history' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'person' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'investor_privat' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'investor_bolag' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'ctrl' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
@@ -564,7 +574,6 @@ function f_core_strongarm() {
     'contact_person' => 'contact_person',
     'investor' => 'investor',
     'offer' => 0,
-    'verification' => 0,
     'file' => 0,
   );
   $export['pathauto_entity_available_entity_types'] = $strongarm;
@@ -596,20 +605,6 @@ function f_core_strongarm() {
   $strongarm->name = 'pathauto_investor_person_pattern';
   $strongarm->value = '';
   $export['pathauto_investor_person_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_kontrolluppgift_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_kontrolluppgift_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_kontrolluppgift_privat_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_kontrolluppgift_privat_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

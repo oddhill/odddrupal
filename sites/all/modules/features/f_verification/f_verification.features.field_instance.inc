@@ -13,7 +13,11 @@ function f_verification_field_default_field_instances() {
   // Exported field_instance: 'node-ctrl-field_ctrl_app'
   $field_instances['node-ctrl-field_ctrl_app'] = array(
     'bundle' => 'ctrl',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'approved_to',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(

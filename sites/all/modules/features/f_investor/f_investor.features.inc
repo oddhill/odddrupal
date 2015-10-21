@@ -146,7 +146,7 @@ function f_investor_node_info() {
     'investor_privat' => array(
       'name' => t('Avtalspart privat'),
       'base' => 'node_content',
-      'description' => t('Person som kan investera privat'),
+      'description' => t('Person som kan investera'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

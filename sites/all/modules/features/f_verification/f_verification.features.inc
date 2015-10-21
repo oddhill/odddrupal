@@ -56,7 +56,7 @@ function f_verification_node_info() {
     'ctrl' => array(
       'name' => t('Kontrolluppgift'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('Entitet för kontrolluppgift'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
