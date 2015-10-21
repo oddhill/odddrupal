@@ -209,3 +209,43 @@ function sedermera_investor_form_eck__entity__form_add_investor_company_alter(&$
     $lead->save();
   }
 }
+
+/**
+ * Implements hook_node_presave
+ */
+function sedermera_investor_node_presave($node) {
+  if ($node->type == 'person') {
+    global $user;
+
+    $new_node = new stdClass();
+    $new_node->title = $node->title . " ID kontroll";
+    $new_node->type = "kontrolluppgift_id";
+    node_object_prepare($new_node);
+    $new_node->language = LANGUAGE_NONE;
+    $new_node->uid = $user->uid;
+    $new_node->status = 1;
+    $new_node->promote = 0;
+    $new_node->comment = 0;
+
+    $new_node = node_submit($new_node);
+    node_save($new_node);
+
+    $node->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'] = $new_node->nid;
+  }
+}
+
+/**
+ * Implements hook_node_validate().
+ */
+function sedermera_investor_node_validate($node, $form, &$form_state) {
+  if ($form_state['values']['type'] == 'person') {
+    if ($form_state['values']['field_user_lead'][LANGUAGE_NONE][0]['value'] == 0) {
+      if ($form_state['values']['field_user_mail'][LANGUAGE_NONE][0]['email'] == '') {
+        form_set_error('field_user_mail', t('Mejl address måste fyllas i.'));
+      }
+      if ($form_state['values']['field_user_ssn'][LANGUAGE_NONE][0]['value'] == '') {
+        form_set_error('field_user_ssn', t('Personnummer måste fyllas i.'));
+      }
+    }
+  }
+}
