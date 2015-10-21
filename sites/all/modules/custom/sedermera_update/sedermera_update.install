@@ -153,3 +153,68 @@ function sedermera_update_update_7009() {
 
   field_purge_batch(100);
 }
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7010() {
+  field_delete_field('field_ctrl_app_comp');
+  field_delete_field('field_ctrl_app_credit');
+  field_delete_field('field_ctrl_app_eu');
+  field_delete_field('field_ctrl_app_ext');
+  field_delete_field('field_ctrl_app_id');
+  field_delete_field('field_ctrl_app_oth');
+  field_delete_field('field_ctrl_app_ptv');
+  field_delete_field('field_ctrl_app_upp');
+  field_delete_field('field_ctrl_date_comp');
+  field_delete_field('field_ctrl_date_credit');
+  field_delete_field('field_ctrl_date_eu');
+  field_delete_field('field_ctrl_date_ext');
+  field_delete_field('field_ctrl_date_id');
+  field_delete_field('field_ctrl_date_oth');
+  field_delete_field('field_ctrl_date_ptv');
+  field_delete_field('field_ctrl_date_upp');
+  field_delete_field('field_ctrl_files_comp');
+  field_delete_field('field_ctrl_files_credit');
+  field_delete_field('field_ctrl_files_eu');
+  field_delete_field('field_ctrl_files_ext');
+  field_delete_field('field_ctrl_files_id');
+  field_delete_field('field_ctrl_files_oth');
+  field_delete_field('field_ctrl_files_ptv');
+  field_delete_field('field_ctrl_files_upp');
+  field_delete_field('field_ctrl_note_comp');
+  field_delete_field('field_ctrl_note_credit');
+  field_delete_field('field_ctrl_note_eu');
+  field_delete_field('field_ctrl_note_ext');
+  field_delete_field('field_ctrl_note_id');
+  field_delete_field('field_ctrl_note_oth');
+  field_delete_field('field_ctrl_note_ptv');
+  field_delete_field('field_ctrl_note_upp');
+  field_delete_field('field_ctrl_ok');
+  field_delete_field('field_ctrl_app_id_real');
+  field_delete_field('field_ctrl_app_reg');
+  field_delete_field('field_ctrl_date_id_real');
+  field_delete_field('field_ctrl_date_reg');
+  field_delete_field('field_ctrl_files_id_real');
+  field_delete_field('field_ctrl_files_reg');
+  field_delete_field('field_ctrl_note_id_real');
+  field_delete_field('field_ctrl_note_reg');
+  field_delete_field('field_ctrl_id_app');
+  field_delete_field('field_ctrl_id_date');
+  field_delete_field('field_ctrl_id_files');
+  field_delete_field('field_ctrl_id_notes');
+  field_delete_field('field_invest_pvt_ctrl');
+  field_delete_field('field_ctrl_private_ua');
+  field_delete_field('field_ctrl_private_ptv');
+  field_delete_field('field_ctrl_private_cred');
+  field_delete_field('field_ctrl_private_er');
+  field_delete_field('field_ctrl_private_oth');
+  field_delete_field('field_investor_comp_ctrl');
+
+  node_type_delete('kontrolluppgift_id');
+  node_type_delete('kontrolluppgift_privat');
+  node_type_delete('kontrolluppgift');
+
+  field_purge_batch(1000);
+}
