@@ -24,11 +24,11 @@ function f_verification_ctools_plugin_api($module = NULL, $api = NULL) {
  */
 function f_verification_eck_bundle_info() {
   $items = array(
-    'verification_verification' => array(
-      'machine_name' => 'verification_verification',
-      'entity_type' => 'verification',
-      'name' => 'verification',
-      'label' => 'Kontrolluppgift',
+    '' => array(
+      'machine_name' => NULL,
+      'entity_type' => NULL,
+      'name' => NULL,
+      'label' => NULL,
     ),
   );
   return $items;
@@ -39,27 +39,45 @@ function f_verification_eck_bundle_info() {
  */
 function f_verification_eck_entity_type_info() {
   $items = array(
-    'verification' => array(
-      'name' => 'verification',
-      'label' => 'Kontrolluppgift',
-      'properties' => array(
-        'uid' => array(
-          'label' => 'Author',
-          'type' => 'integer',
-          'behavior' => 'author',
-        ),
-        'created' => array(
-          'label' => 'Created',
-          'type' => 'integer',
-          'behavior' => 'created',
-        ),
-        'changed' => array(
-          'label' => 'Changed',
-          'type' => 'integer',
-          'behavior' => 'changed',
-        ),
-      ),
+    '' => array(
+      'name' => NULL,
+      'label' => NULL,
+      'properties' => NULL,
     ),
   );
+  return $items;
+}
+
+/**
+ * Implements hook_node_info().
+ */
+function f_verification_node_info() {
+  $items = array(
+    'kontrolluppgift' => array(
+      'name' => t('Kontrolluppgift bolag'),
+      'base' => 'node_content',
+      'description' => t('Kontrolluppgift för bolag'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'kontrolluppgift_id' => array(
+      'name' => t('Kontrolluppgift ID'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'kontrolluppgift_privat' => array(
+      'name' => t('Kontrolluppgift privat'),
+      'base' => 'node_content',
+      'description' => t('Kontrolluppgift för privatpersoner'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+  );
+  drupal_alter('node_info', $items);
   return $items;
 }

@@ -135,20 +135,28 @@ function f_investor_eck_entity_type_info() {
  */
 function f_investor_node_info() {
   $items = array(
-    'kontrolluppgift' => array(
-      'name' => t('Kontrolluppgift bolag'),
+    'investor_bolag' => array(
+      'name' => t('Avtalspart bolag'),
       'base' => 'node_content',
-      'description' => t('Kontrolluppgift för bolag'),
+      'description' => t('Bolag som kan investera'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
     ),
-    'kontrolluppgift_privat' => array(
-      'name' => t('Kontrolluppgift privat'),
+    'investor_privat' => array(
+      'name' => t('Avtalspart privat'),
       'base' => 'node_content',
-      'description' => t('Kontrolluppgift för privatpersoner'),
+      'description' => t('Person som kan investera privat'),
       'has_title' => '1',
       'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'person' => array(
+      'name' => t('Person'),
+      'base' => 'node_content',
+      'description' => t('Kontaktperson'),
+      'has_title' => '1',
+      'title_label' => t('Namn'),
       'help' => '',
     ),
     'transaction_history' => array(

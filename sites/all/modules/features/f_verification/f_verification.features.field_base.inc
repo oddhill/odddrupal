@@ -10,13 +10,13 @@
 function f_verification_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_verification_approved'
-  $field_bases['field_verification_approved'] = array(
+  // Exported field_base: 'field_ctrl_id_app'
+  $field_bases['field_ctrl_id_app'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_verification_approved',
+    'field_name' => 'field_ctrl_id_app',
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -26,8 +26,8 @@ function f_verification_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 'Nej',
-        1 => 'Ja',
+        0 => '',
+        1 => '',
       ),
       'allowed_values_function' => '',
     ),
@@ -35,13 +35,13 @@ function f_verification_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_verification_date'
-  $field_bases['field_verification_date'] = array(
+  // Exported field_base: 'field_ctrl_id_date'
+  $field_bases['field_ctrl_id_date'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_verification_date',
+    'field_name' => 'field_ctrl_id_date',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
@@ -64,13 +64,13 @@ function f_verification_field_default_field_bases() {
     'type' => 'date',
   );
 
-  // Exported field_base: 'field_verification_file'
-  $field_bases['field_verification_file'] = array(
+  // Exported field_base: 'field_ctrl_id_files'
+  $field_bases['field_ctrl_id_files'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_verification_file',
+    'field_name' => 'field_ctrl_id_files',
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -85,6 +85,25 @@ function f_verification_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'file',
+  );
+
+  // Exported field_base: 'field_ctrl_id_notes'
+  $field_bases['field_ctrl_id_notes'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_ctrl_id_notes',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
   );
 
   return $field_bases;
