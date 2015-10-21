@@ -215,22 +215,24 @@ function sedermera_investor_form_eck__entity__form_add_investor_company_alter(&$
  */
 function sedermera_investor_node_presave($node) {
   if ($node->type == 'person') {
-    global $user;
+    if ($node->is_new) {
+      global $user;
 
-    $new_node = new stdClass();
-    $new_node->title = $node->title . " ID kontroll";
-    $new_node->type = "kontrolluppgift_id";
-    node_object_prepare($new_node);
-    $new_node->language = LANGUAGE_NONE;
-    $new_node->uid = $user->uid;
-    $new_node->status = 1;
-    $new_node->promote = 0;
-    $new_node->comment = 0;
+      $new_node = new stdClass();
+      $new_node->title = $node->title . " ID kontroll";
+      $new_node->type = "ctrl";
+      node_object_prepare($new_node);
+      $new_node->language = LANGUAGE_NONE;
+      $new_node->uid = $user->uid;
+      $new_node->status = 1;
+      $new_node->promote = 0;
+      $new_node->comment = 0;
 
-    $new_node = node_submit($new_node);
-    node_save($new_node);
+      $new_node = node_submit($new_node);
+      node_save($new_node);
 
-    $node->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'] = $new_node->nid;
+      $node->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'] = $new_node->nid;
+    }
   }
 }
 
@@ -247,5 +249,41 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
         form_set_error('field_user_ssn', t('Personnummer måste fyllas i.'));
       }
     }
+
+    $pnbr = $node->field_user_ssn[LANGUAGE_NONE][0]['value'];
+
+    if (isset($node->nid)) {
+      if (!person_nbr_is_same($pnbr, $node->nid) && person_nbr_exists($pnbr)) {
+        form_set_error('field_user_ssn', t('Personnummer används redan i systemet.'));
+      }
+    }
+    else {
+      if (person_nbr_exists($pnbr)) {
+        form_set_error('field_user_ssn', t('Personnummer används redan i systemet.'));
+      }
+    }
   }
+}
+
+/**
+ * Checks if person number already exists in the system
+ * @param  $pnbr The person number to check for
+ * @return boolean true if exists else false
+ */
+function person_nbr_exists($pnbr) {
+  $pnbr_exists = db_query("SELECT COUNT(*) AS count FROM field_data_field_user_ssn WHERE field_user_ssn_value = :pnbr", array(':pnbr' => $pnbr))->fetchAssoc();
+
+  return $pnbr_exists['count'] ? TRUE : FALSE;
+}
+
+/**
+ * Checks if person number has been changed from the existing in the system
+ * @param  $pnbr Person number to check for
+ * @param  $nid  The node to check on
+ * @return boolean true if no change else false
+ */
+function person_nbr_is_same($pnbr, $nid) {
+  $pnbr_is_same = db_query("SELECT COUNT(*) AS count FROM field_data_field_user_ssn WHERE field_user_ssn_value = :pnbr AND entity_id = :nid", array(':pnbr' => $pnbr, ':nid' => $nid))->fetchAssoc();
+
+  return $pnbr_is_same['count'] ? TRUE : FALSE;
 }
