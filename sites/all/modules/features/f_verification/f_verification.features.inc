@@ -53,6 +53,14 @@ function f_verification_eck_entity_type_info() {
  */
 function f_verification_node_info() {
   $items = array(
+    'ctrl' => array(
+      'name' => t('Kontrolluppgift'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'kontrolluppgift' => array(
       'name' => t('Kontrolluppgift bolag'),
       'base' => 'node_content',
