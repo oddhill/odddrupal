@@ -61,30 +61,6 @@ function f_verification_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
-    'kontrolluppgift' => array(
-      'name' => t('Kontrolluppgift bolag'),
-      'base' => 'node_content',
-      'description' => t('Kontrolluppgift för bolag'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'kontrolluppgift_id' => array(
-      'name' => t('Kontrolluppgift ID'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'kontrolluppgift_privat' => array(
-      'name' => t('Kontrolluppgift privat'),
-      'base' => 'node_content',
-      'description' => t('Kontrolluppgift för privatpersoner'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
   );
   drupal_alter('node_info', $items);
   return $items;
