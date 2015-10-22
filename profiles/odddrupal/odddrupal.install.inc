@@ -494,4 +494,5 @@ function odddrupal_set_variables() {
   variable_set('devel_memory', 1);
   variable_set('dev_timer', 1);
   variable_set('logentries_severity', '7');
+  variable_set('features_default_export_path', 'sites/all/modules/features');
 }
