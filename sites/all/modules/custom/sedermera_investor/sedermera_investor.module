@@ -236,6 +236,30 @@ function sedermera_investor_node_presave($node) {
   }
 }
 
+function sedermera_investor_form_investor_bolag_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!isset($form_state['node']->nid)) {
+    $id = get_next_cust_id();
+    $form['field_shared_cust_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $id;
+  }
+}
+
+function sedermera_investor_form_investor_privat_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!isset($form_state['node']->nid)) {
+    $id = get_next_cust_id();
+    $form['field_shared_cust_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $id;
+  }
+}
+
+function get_next_cust_id() {
+  $result = db_query("SELECT field_shared_cust_id_value AS id FROM field_data_field_shared_cust_id ORDER BY field_shared_cust_id_value DESC")->fetchAssoc();
+
+  preg_match('!\d+!', $result['id'], $matches);
+  $n2 = str_pad($matches[0] + 1, 3, 0, STR_PAD_LEFT);
+
+  return 'A' . $n2;
+}
+
+
 /**
  * Implements hook_node_validate().
  */
@@ -254,16 +278,50 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
 
     if (isset($node->nid)) {
       if (!person_nbr_is_same($pnbr, $node->nid) && person_nbr_exists($pnbr)) {
-        form_set_error('field_user_ssn', t('Personnummer används redan i systemet.'));
+        form_set_error('field_user_ssn', t('Person number already in use.'));
       }
     }
     else {
       if (person_nbr_exists($pnbr)) {
-        form_set_error('field_user_ssn', t('Personnummer används redan i systemet.'));
+        form_set_error('field_user_ssn', t('Person number already in use.'));
       }
     }
   }
+  if ($form_state['values']['type'] == 'investor_bolag') {
+    $org_nbr = $node->field_investor_comp_org_nbr[LANGUAGE_NONE][0]['value'];
+
+    if (isset($node->nid)) {
+      if (!org_nbr_is_same($org_nbr, $node->nid) && org_nbr_exists($org_nbr)) {
+        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+      }
+    }
+    else {
+      if (org_nbr_exists($org_nbr)) {
+        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+      }
+    }
+    if (cust_id_exists($form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'])) {
+      form_set_error('field_shared_cust_id', t('Customer id already exists, please resave.'));
+    }
+  }
+  if ($form_state['values']['type'] == 'investor_privat') {
+    if (cust_id_exists($form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'])) {
+      form_set_error('field_shared_cust_id', t('Customer id already exists, please resave use id: ' . get_next_cust_id()));
+    }
+  }
 }
+
+/**
+ * Checks if customer id already exist in the system
+ * @param  $cust_id Customer id to check for
+ * @return boolean true if exists else false
+ */
+function cust_id_exists($cust_id) {
+  $result = db_query("SELECT COUNT(*) AS count FROM field_data_field_shared_cust_id WHERE field_shared_cust_id_value = :id", array(':id' => $cust_id))->fetchAll();
+
+  return ($result[0]->count > 0) ? TRUE : FALSE;
+}
+
 
 /**
  * Checks if person number already exists in the system
@@ -286,4 +344,27 @@ function person_nbr_is_same($pnbr, $nid) {
   $pnbr_is_same = db_query("SELECT COUNT(*) AS count FROM field_data_field_user_ssn WHERE field_user_ssn_value = :pnbr AND entity_id = :nid", array(':pnbr' => $pnbr, ':nid' => $nid))->fetchAssoc();
 
   return $pnbr_is_same['count'] ? TRUE : FALSE;
+}
+
+/**
+ * Checks if organisation number already exists in the system
+ * @param  $org_nbr The organisation number to check for
+ * @return boolean true if exists else false
+ */
+function org_nbr_exists($org_nbr) {
+  $org_nbr_exists = db_query("SELECT COUNT(*) AS count FROM field_data_field_investor_comp_org_nbr WHERE field_investor_comp_org_nbr_value = :org_nbr", array(':org_nbr' => $org_nbr))->fetchAssoc();
+
+  return $org_nbr_exists['count'] ? TRUE : FALSE;
+}
+
+/**
+ * Checks if organisation number has been changed from the existing in the system
+ * @param  $org_nbr Person number to check for
+ * @param  $nid  The node to check on
+ * @return boolean true if no change else false
+ */
+function org_nbr_is_same($org_nbr, $nid) {
+  $org_nbr_is_same = db_query("SELECT COUNT(*) AS count FROM field_data_field_investor_comp_org_nbr WHERE field_investor_comp_org_nbr_value = :org_nbr AND entity_id = :nid", array(':org_nbr' => $org_nbr, ':nid' => $nid))->fetchAssoc();
+
+  return $org_nbr_is_same['count'] ? TRUE : FALSE;
 }
