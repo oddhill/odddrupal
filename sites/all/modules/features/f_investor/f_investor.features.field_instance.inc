@@ -2124,7 +2124,51 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 7,
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-investor_bolag-field_investor_comp_cont_pers'
+  $field_instances['node-investor_bolag-field_investor_comp_cont_pers'] = array(
+    'bundle' => 'investor_bolag',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_investor_comp_cont_pers',
+    'label' => 'Kontaktperson',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 6,
     ),
   );
 
@@ -2173,7 +2217,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -2221,7 +2265,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -2269,7 +2313,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -2317,7 +2361,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -2365,77 +2409,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 10,
-    ),
-  );
-
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_id'
-  $field_instances['node-investor_bolag-field_investor_comp_id'] = array(
-    'bundle' => 'investor_bolag',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Ange investerar ID för denna investerare. Detta måste vara unikt, och kräver att investeraren har godkänt avtalet.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_investor_comp_id',
-    'label' => 'Investor ID',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 11,
     ),
   );
 
@@ -2505,55 +2479,12 @@ function f_investor_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_owners'
-  $field_instances['node-investor_bolag-field_investor_comp_owners'] = array(
-    'bundle' => 'investor_bolag',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_investor_comp_owners',
-    'label' => 'Ägare',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete_tags',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_reg_nbr'
-  $field_instances['node-investor_bolag-field_investor_comp_reg_nbr'] = array(
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_org_nbr'
+  $field_instances['node-investor_bolag-field_investor_comp_org_nbr'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2564,7 +2495,7 @@ function f_investor_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2574,7 +2505,7 @@ function f_investor_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_investor_comp_reg_nbr',
+    'field_name' => 'field_investor_comp_org_nbr',
     'label' => 'Organisationsnummer',
     'required' => 1,
     'settings' => array(
@@ -2618,7 +2549,163 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_owners'
+  $field_instances['node-investor_bolag-field_investor_comp_owners'] = array(
+    'bundle' => 'investor_bolag',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'En eller flera separera med ,',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_investor_comp_owners',
+    'label' => 'Ägare',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete_tags',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_real'
+  $field_instances['node-investor_bolag-field_investor_comp_real'] = array(
+    'bundle' => 'investor_bolag',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_investor_comp_real',
+    'label' => 'Verklig huvudman',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-investor_bolag-field_shared_cust_id'
+  $field_instances['node-investor_bolag-field_shared_cust_id'] = array(
+    'bundle' => 'investor_bolag',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 12,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_shared_cust_id',
+    'label' => 'Kundnummer',
+    'required' => 1,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'document_html' => 'document_html',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
     ),
   );
 
@@ -2666,7 +2753,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -2714,7 +2801,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -2762,7 +2849,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -2810,7 +2897,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -2858,77 +2945,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-investor_privat-field_invest_pvt_id'
-  $field_instances['node-investor_privat-field_invest_pvt_id'] = array(
-    'bundle' => 'investor_privat',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Ange investerar ID för denna investerare. Detta måste vara unikt, och kräver att investeraren har godkänt avtalet.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_invest_pvt_id',
-    'label' => 'Investor ID',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -2998,7 +3015,7 @@ function f_investor_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -3027,7 +3044,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_invest_pvt_person',
-    'label' => 'Person',
+    'label' => 'Kontaktperson',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -3042,6 +3059,76 @@ function f_investor_field_default_field_instances() {
       ),
       'type' => 'entityreference_autocomplete',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-investor_privat-field_shared_cust_id'
+  $field_instances['node-investor_privat-field_shared_cust_id'] = array(
+    'bundle' => 'investor_privat',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_shared_cust_id',
+    'label' => 'Kundnummer',
+    'required' => 1,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'document_html' => 'document_html',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
     ),
   );
 
@@ -4434,6 +4521,7 @@ function f_investor_field_default_field_instances() {
   t('Brygglån');
   t('E-post');
   t('Efternamn');
+  t('En eller flera separera med ,');
   t('Externt register (för addressuppgifter)');
   t('Fax');
   t('Företag');
@@ -4453,13 +4541,13 @@ function f_investor_field_default_field_instances() {
   t('Kontroll utgår');
   t('Kreditkontroll');
   t('Kundansvarig');
+  t('Kundnummer');
   t('Lead');
   t('Max investering');
   t('Mobil');
   t('Namn');
   t('Organisationsnummer');
   t('PTV-blankett');
-  t('Person');
   t('Personnummer');
   t('Plats');
   t('Private Placement');
@@ -4472,6 +4560,7 @@ function f_investor_field_default_field_instances() {
   t('Transaktions ID');
   t('Transaktions titel');
   t('Uppdragsavtal');
+  t('Verklig huvudman');
   t('Ägare');
   t('Övriga dokument/tillägg');
 
