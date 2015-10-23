@@ -236,6 +236,9 @@ function sedermera_investor_node_presave($node) {
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter
+ */
 function sedermera_investor_form_investor_bolag_node_form_alter(&$form, &$form_state, $form_id) {
   if (!isset($form_state['node']->nid)) {
     $id = get_next_cust_id();
@@ -243,6 +246,9 @@ function sedermera_investor_form_investor_bolag_node_form_alter(&$form, &$form_s
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter
+ */
 function sedermera_investor_form_investor_privat_node_form_alter(&$form, &$form_state, $form_id) {
   if (!isset($form_state['node']->nid)) {
     $id = get_next_cust_id();
@@ -250,6 +256,10 @@ function sedermera_investor_form_investor_privat_node_form_alter(&$form, &$form_
   }
 }
 
+/**
+ * Generate the next incremental customer id
+ * @return Incremented customer id.
+ */
 function get_next_cust_id() {
   $result = db_query("SELECT field_shared_cust_id_value AS id FROM field_data_field_shared_cust_id ORDER BY field_shared_cust_id_value DESC")->fetchAssoc();
 
