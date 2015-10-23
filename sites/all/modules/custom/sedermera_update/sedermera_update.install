@@ -155,7 +155,7 @@ function sedermera_update_update_7009() {
 }
 
 /**
- * Removes unused fields
+ * Removes unused fields and content types
  * @return null
  */
 function sedermera_update_update_7010() {
@@ -215,6 +215,18 @@ function sedermera_update_update_7010() {
   node_type_delete('kontrolluppgift_id');
   node_type_delete('kontrolluppgift_privat');
   node_type_delete('kontrolluppgift');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7011() {
+  field_delete_field('field_invest_pvt_id');
+  field_delete_field('field_investor_comp_id');
+  field_delete_field('field_investor_comp_reg_nbr');
 
   field_purge_batch(1000);
 }
