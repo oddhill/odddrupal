@@ -3813,7 +3813,7 @@ function f_investor_field_default_field_instances() {
     'bundle' => 'person',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'ÅÅMMDD-XXXX',
     'display' => array(
       'control' => array(
         'label' => 'above',
@@ -4601,6 +4601,7 @@ function f_investor_field_default_field_instances() {
   t('Uppdragsavtal');
   t('Verklig huvudman');
   t('Ägare');
+  t('ÅÅMMDD-XXXX');
   t('Övriga dokument/tillägg');
 
   return $field_instances;
