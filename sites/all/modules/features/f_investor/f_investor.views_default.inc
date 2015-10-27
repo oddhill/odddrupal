@@ -32,6 +32,11 @@ function f_investor_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['id'] = 'field_shared_cont_pers_target_id';
+  $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['table'] = 'field_data_field_shared_cont_pers';
+  $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['field'] = 'field_shared_cont_pers_target_id';
+  $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['required'] = TRUE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -52,6 +57,15 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_cont_pers']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_shared_cont_pers']['settings'] = array(
     'link' => 1,
+  );
+  /* Field: Content: Kundansvarig */
+  $handler->display->display_options['fields']['field_user_owner']['id'] = 'field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['table'] = 'field_data_field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['field'] = 'field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['relationship'] = 'field_shared_cont_pers_target_id';
+  $handler->display->display_options['fields']['field_user_owner']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_user_owner']['settings'] = array(
+    'link' => 0,
   );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
@@ -134,9 +148,11 @@ function f_investor_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Content entity referenced from field_shared_cont_pers'),
     t('Namn'),
     t('Kundnummer'),
     t('Kontaktperson'),
+    t('Kundansvarig'),
     t('Avtalsparter'),
   );
   $export['avtalsparter'] = $view;

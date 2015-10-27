@@ -38,6 +38,16 @@ function f_investor_user_default_permissions() {
     'module' => 'sedermera_investor',
   );
 
+  // Exported permission: 'create person content'.
+  $permissions['create person content'] = array(
+    'name' => 'create person content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create transaction_history content'.
   $permissions['create transaction_history content'] = array(
     'name' => 'create transaction_history content',
@@ -66,134 +76,24 @@ function f_investor_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'eck add contact_person contact_person entities'.
-  $permissions['eck add contact_person contact_person entities'] = array(
-    'name' => 'eck add contact_person contact_person entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck add investor company entities'.
-  $permissions['eck add investor company entities'] = array(
-    'name' => 'eck add investor company entities',
+  // Exported permission: 'edit any person content'.
+  $permissions['edit any person content'] = array(
+    'name' => 'edit any person content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Redaktör' => 'Redaktör',
     ),
-    'module' => 'eck',
+    'module' => 'node',
   );
 
-  // Exported permission: 'eck add investor lead entities'.
-  $permissions['eck add investor lead entities'] = array(
-    'name' => 'eck add investor lead entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck add investor person entities'.
-  $permissions['eck add investor person entities'] = array(
-    'name' => 'eck add investor person entities',
+  // Exported permission: 'edit own person content'.
+  $permissions['edit own person content'] = array(
+    'name' => 'edit own person content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Redaktör' => 'Redaktör',
     ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck administer investor company entities'.
-  $permissions['eck administer investor company entities'] = array(
-    'name' => 'eck administer investor company entities',
-    'roles' => array(),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck administer investor person entities'.
-  $permissions['eck administer investor person entities'] = array(
-    'name' => 'eck administer investor person entities',
-    'roles' => array(),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck edit contact_person contact_person entities'.
-  $permissions['eck edit contact_person contact_person entities'] = array(
-    'name' => 'eck edit contact_person contact_person entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck edit investor company entities'.
-  $permissions['eck edit investor company entities'] = array(
-    'name' => 'eck edit investor company entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck edit investor lead entities'.
-  $permissions['eck edit investor lead entities'] = array(
-    'name' => 'eck edit investor lead entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck edit investor person entities'.
-  $permissions['eck edit investor person entities'] = array(
-    'name' => 'eck edit investor person entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck view contact_person contact_person entities'.
-  $permissions['eck view contact_person contact_person entities'] = array(
-    'name' => 'eck view contact_person contact_person entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck view investor company entities'.
-  $permissions['eck view investor company entities'] = array(
-    'name' => 'eck view investor company entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-      'Granskare' => 'Granskare',
-      'Redaktör' => 'Redaktör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck view investor lead entities'.
-  $permissions['eck view investor lead entities'] = array(
-    'name' => 'eck view investor lead entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
-    'module' => 'eck',
-  );
-
-  // Exported permission: 'eck view investor person entities'.
-  $permissions['eck view investor person entities'] = array(
-    'name' => 'eck view investor person entities',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-      'Granskare' => 'Granskare',
-      'Redaktör' => 'Redaktör',
-    ),
-    'module' => 'eck',
+    'module' => 'node',
   );
 
   // Exported permission: 'edit terms in industries'.
@@ -214,6 +114,28 @@ function f_investor_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'view any person content'.
+  $permissions['view any person content'] = array(
+    'name' => 'view any person content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any unpublished person content'.
+  $permissions['view any unpublished person content'] = array(
+    'name' => 'view any unpublished person content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
   // Exported permission: 'view investors'.
   $permissions['view investors'] = array(
     'name' => 'view investors',
@@ -223,6 +145,17 @@ function f_investor_user_default_permissions() {
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'sedermera_investor',
+  );
+
+  // Exported permission: 'view own person content'.
+  $permissions['view own person content'] = array(
+    'name' => 'view own person content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
   );
 
   return $permissions;

@@ -112,6 +112,11 @@ function f_investor_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'person';
   $ds_fieldsetting->view_mode = 'full';
   $ds_fieldsetting->settings = array(
+    'avtalsparter' => array(
+      'weight' => '11',
+      'label' => 'above',
+      'format' => 'default',
+    ),
     'title' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -158,6 +163,32 @@ function f_investor_ds_field_settings_info() {
  */
 function f_investor_ds_custom_fields_info() {
   $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'avtalsparter';
+  $ds_field->label = 'Avtalsparter';
+  $ds_field->field_type = 5;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'person|full';
+  $ds_field->properties = array(
+    'code' => array(
+      'value' => '<?php
+$results = db_query("SELECT n.title AS name, a.alias AS alias FROM node AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) INNER JOIN url_alias AS a ON (a.source = CONCAT(\'node/\', u.entity_id)) WHERE u.field_shared_cont_pers_target_id = :tid", array(\':tid\' => arg(1)))->fetchAll();
+
+print "<ul>";
+foreach ($results as $key => $res) {
+  print "<li>" . l($res->name, $res->alias) . "</li>";
+}
+print "</ul>";
+?>',
+      'format' => 'ds_code',
+    ),
+    'use_token' => 0,
+  );
+  $export['avtalsparter'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -696,6 +727,7 @@ function f_investor_ds_layout_settings_info() {
         8 => 'field_user_branches',
         9 => 'field_user_interests',
         10 => 'field_user_notes',
+        11 => 'avtalsparter',
       ),
     ),
     'fields' => array(
@@ -710,6 +742,7 @@ function f_investor_ds_layout_settings_info() {
       'field_user_branches' => 'ds_content',
       'field_user_interests' => 'ds_content',
       'field_user_notes' => 'ds_content',
+      'avtalsparter' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

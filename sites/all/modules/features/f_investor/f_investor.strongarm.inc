@@ -646,6 +646,34 @@ function f_investor_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_ctrl_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_ctrl_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_investor_bolag_pattern';
+  $strongarm->value = 'avtalsparter/lista/[node:title]';
+  $export['pathauto_node_investor_bolag_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_investor_privat_pattern';
+  $strongarm->value = 'avtalsparter/lista/[node:title]';
+  $export['pathauto_node_investor_privat_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_person_pattern';
+  $strongarm->value = 'kontaktpersoner/lista/[node:title]';
+  $export['pathauto_node_person_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'rh_taxonomy_term_action_industries';
   $strongarm->value = '2';
   $export['rh_taxonomy_term_action_industries'] = $strongarm;
