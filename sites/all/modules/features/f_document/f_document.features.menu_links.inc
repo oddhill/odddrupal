@@ -140,7 +140,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -45,
     'customized' => 1,
   );
   // Exported menu link: main-menu_dokumentlogg:dokument/logg
@@ -271,7 +271,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -43,
     'customized' => 1,
   );
   // Exported menu link: main-menu_sortera-dokument:dokument/sortera

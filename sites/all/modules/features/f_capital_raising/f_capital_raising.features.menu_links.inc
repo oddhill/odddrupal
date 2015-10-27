@@ -100,7 +100,7 @@ function f_capital_raising_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -46,
     'customized' => 1,
   );
   // Exported menu link: main-menu_transaktionshistoria:transaktioner/historik

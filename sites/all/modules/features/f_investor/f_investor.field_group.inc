@@ -13,6 +13,60 @@ function f_investor_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_head|node|person|form';
+  $field_group->group_name = 'group_head';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'person';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Head',
+    'weight' => '3',
+    'children' => array(
+      0 => 'group_id_ctrl',
+      1 => 'group_user',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_head|node|person|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_id_ctrl|node|person|form';
+  $field_group->group_name = 'group_id_ctrl';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'person';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_head';
+  $field_group->data = array(
+    'label' => 'ID-kontroll',
+    'weight' => '5',
+    'children' => array(
+      0 => 'field_user_id_ctrl',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_id_ctrl|node|person|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_invest_comp_1|investor|company|form';
   $field_group->group_name = 'group_invest_comp_1';
   $field_group->entity_type = 'investor';
@@ -403,6 +457,45 @@ function f_investor_field_group_info() {
     ),
   );
   $export['group_invest_pers_sidebar|investor|person|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_user|node|person|form';
+  $field_group->group_name = 'group_user';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'person';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_head';
+  $field_group->data = array(
+    'label' => 'Allmänt',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_user_mail',
+      1 => 'field_user_cell',
+      2 => 'field_user_phone',
+      3 => 'field_user_fax',
+      4 => 'field_user_owner',
+      5 => 'field_user_ssn',
+      6 => 'field_user_branches',
+      7 => 'field_user_interests',
+      8 => 'field_user_notes',
+      9 => 'field_user_lead',
+      10 => 'field_user_id_address',
+      11 => 'title',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-user field-group-htab',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_user|node|person|form'] = $field_group;
 
   return $export;
 }

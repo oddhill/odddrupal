@@ -14,222 +14,230 @@ define('SEDERMERA_VERIFICATION_APPROVED', 3);
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function sedermera_verification_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
-  // Disable the fields for "Kontroller" for the regular entity form as we want
-  // to present this at another form.
-  sedermera_verification_disable_verification_elements($form);
+// function sedermera_verification_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
+//   // Disable the fields for "Kontroller" for the regular entity form as we want
+//   // to present this at another form.
+//   sedermera_verification_disable_verification_elements($form);
 
-  // Disable access to the verification approved and expiration field.
-  $form['field_shared_veri_appr']['#access'] = FALSE;
-  $form['field_shared_veri_expire']['#access'] = FALSE;
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_verification_form_eck__entity__form_add_investor_company_alter(&$form, &$form_state, $form_id) {
-  // Disable the fields for "Kontroller" for the regular entity form as we want
-  // to present this at another form.
-  sedermera_verification_disable_verification_elements($form);
-
-  // Disable access to the verification approved and expiration field.
-  $form['field_shared_veri_appr']['#access'] = FALSE;
-  $form['field_shared_veri_expire']['#access'] = FALSE;
-}
+//   // Disable access to the verification approved and expiration field.
+//   $form['field_shared_veri_appr']['#access'] = FALSE;
+//   $form['field_shared_veri_expire']['#access'] = FALSE;
+// }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
-  if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
-    return;
+// function sedermera_verification_form_eck__entity__form_add_investor_company_alter(&$form, &$form_state, $form_id) {
+//   // Disable the fields for "Kontroller" for the regular entity form as we want
+//   // to present this at another form.
+//   sedermera_verification_disable_verification_elements($form);
+
+//   // Disable access to the verification approved and expiration field.
+//   $form['field_shared_veri_appr']['#access'] = FALSE;
+//   $form['field_shared_veri_expire']['#access'] = FALSE;
+// }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+// function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
+//   if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
+//     return;
+//   }
+
+//   // We'll disable the verification elements.
+//   sedermera_verification_disable_verification_elements($form);
+
+//   // Disable access to the verification approved and expiration field.
+//   $form['field_shared_veri_appr']['#access'] = FALSE;
+//   $form['field_shared_veri_expire']['#access'] = FALSE;
+//   $form['field_ctrl_ok']['#access'] = FALSE;
+//   $form['field_shared_lead']['#access'] = FALSE;
+// }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+// function sedermera_verification_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
+//   if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
+//     return;
+//   }
+
+//   // We'll disable the verification elements.
+//   sedermera_verification_disable_verification_elements($form);
+
+//   // Disable access to the verification approved and expiration field.
+//   $form['field_shared_veri_appr']['#access'] = FALSE;
+//   $form['field_shared_veri_expire']['#access'] = FALSE;
+//   $form['field_ctrl_ok']['#access'] = FALSE;
+//   $form['field_shared_lead']['#access'] = FALSE;
+// }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+// function sedermera_verification_form_kontrolluppgift_privat_node_form_alter(&$form, &$form_state, $form_id) {
+//   sedermera_verification_add_verification_header($form);
+//   sedermera_verification_mark_not_ok($form);
+//   $form['field_shared_veri_appr']['#access'] = FALSE;
+//   $form['field_shared_veri_expire']['#access'] = FALSE;
+//   $form['field_ctrl_ok']['#access'] = FALSE;
+//   $form['field_shared_lead']['#access'] = FALSE;
+// }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+// function sedermera_verification_form_kontrolluppgift_node_form_alter(&$form, &$form_state, $form_id) {
+//   sedermera_verification_add_verification_header($form);
+//   sedermera_verification_mark_not_ok($form);
+//   $form['field_shared_veri_appr']['#access'] = FALSE;
+//   $form['field_shared_veri_expire']['#access'] = FALSE;
+//   $form['field_ctrl_ok']['#access'] = FALSE;
+//   $form['field_shared_lead']['#access'] = FALSE;
+// }
+
+function sedermera_verification_form_person_node_form_alter(&$form, &$form_state, $form_id) {
+  if (arg(1) == 'add' && arg(2) == 'person') {
+    $form['field_user_id_ctrl']['#access'] = FALSE;
+    unset($form['#groups']['group_id_ctrl']);
+    unset($form['#fieldgroups']['group_id_ctrl']);
   }
-
-  // We'll disable the verification elements.
-  sedermera_verification_disable_verification_elements($form);
-
-  // Disable access to the verification approved and expiration field.
-  $form['field_shared_veri_appr']['#access'] = FALSE;
-  $form['field_shared_veri_expire']['#access'] = FALSE;
-  $form['field_ctrl_ok']['#access'] = FALSE;
-  $form['field_shared_lead']['#access'] = FALSE;
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_verification_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
-  if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
-    return;
-  }
-
-  // We'll disable the verification elements.
-  sedermera_verification_disable_verification_elements($form);
-
-  // Disable access to the verification approved and expiration field.
-  $form['field_shared_veri_appr']['#access'] = FALSE;
-  $form['field_shared_veri_expire']['#access'] = FALSE;
-  $form['field_ctrl_ok']['#access'] = FALSE;
-  $form['field_shared_lead']['#access'] = FALSE;
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_verification_form_kontrolluppgift_privat_node_form_alter(&$form, &$form_state, $form_id) {
-  sedermera_verification_add_verification_header($form);
-  sedermera_verification_mark_not_ok($form);
-  $form['field_shared_veri_appr']['#access'] = FALSE;
-  $form['field_shared_veri_expire']['#access'] = FALSE;
-  $form['field_ctrl_ok']['#access'] = FALSE;
-  $form['field_shared_lead']['#access'] = FALSE;
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_verification_form_kontrolluppgift_node_form_alter(&$form, &$form_state, $form_id) {
-  sedermera_verification_add_verification_header($form);
-  sedermera_verification_mark_not_ok($form);
-  $form['field_shared_veri_appr']['#access'] = FALSE;
-  $form['field_shared_veri_expire']['#access'] = FALSE;
-  $form['field_ctrl_ok']['#access'] = FALSE;
-  $form['field_shared_lead']['#access'] = FALSE;
 }
 
 /**
  * Implements hook_node_view().
  */
-function sedermera_verification_node_view($node, $view_mode) {
-  if (in_array($node->type, array('kontrolluppgift', 'kontrolluppgift_privat')) && $view_mode == 'full' && arg(3) == 'kontroll') {
-    $fields = sedermera_verification_get_verification_fields();
+// function sedermera_verification_node_view($node, $view_mode) {
+//   if (in_array($node->type, array('kontrolluppgift', 'kontrolluppgift_privat')) && $view_mode == 'full' && arg(3) == 'kontroll') {
+//     $fields = sedermera_verification_get_verification_fields();
 
-    foreach ($fields as $field) {
-      $check = 'field_ctrl_app_'. $field;
-      $date = 'field_ctrl_date_'. $field;
-      $group = 'group_ctrl_' . $field;
+//     foreach ($fields as $field) {
+//       $check = 'field_ctrl_app_'. $field;
+//       $date = 'field_ctrl_date_'. $field;
+//       $group = 'group_ctrl_' . $field;
 
 
-      if (isset($node->content[$check])) {
-        if($node->content[$check]['#items'][0]['value'] == 0) {
-          $node->content['#fieldgroups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
-        }
-      }
-      if (isset($node->content[$date])) {
-        if(strtotime($node->content[$date]['#items'][0]['value']) < REQUEST_TIME) {
-          $node->content['#fieldgroups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
-        }
-      }
-    }
+//       if (isset($node->content[$check])) {
+//         if($node->content[$check]['#items'][0]['value'] == 0) {
+//           $node->content['#fieldgroups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
+//         }
+//       }
+//       if (isset($node->content[$date])) {
+//         if(strtotime($node->content[$date]['#items'][0]['value']) < REQUEST_TIME) {
+//           $node->content['#fieldgroups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
+//         }
+//       }
+//     }
 
-    // Add the initial structure.
-    $node->content['field_ctrl_ok'] = array(
-      '#prefix' => '<div class="verification-header">',
-      '#suffix' => '</div>',
-      '#weight' => -100,
-    );
+//     // Add the initial structure.
+//     $node->content['field_ctrl_ok'] = array(
+//       '#prefix' => '<div class="verification-header">',
+//       '#suffix' => '</div>',
+//       '#weight' => -100,
+//     );
 
-    // Get the status.
-    $status = sedermera_verification_get_status($node->nid);
+//     // Get the status.
+//     $status = sedermera_verification_get_status($node->nid);
 
-    // Determine the class and text based on the status.
-    switch ($status) {
-      case SEDERMERA_VERIFICATION_NOT_APPROVED:
-        $class = 'not-approved';
-        $text = 'inte godkänd';
-        break;
+//     // Determine the class and text based on the status.
+//     switch ($status) {
+//       case SEDERMERA_VERIFICATION_NOT_APPROVED:
+//         $class = 'not-approved';
+//         $text = 'inte godkänd';
+//         break;
 
-      case SEDERMERA_VERIFICATION_EXPIRED:
-        $class = 'expired';
-        $text = 'utgången';
-        break;
+//       case SEDERMERA_VERIFICATION_EXPIRED:
+//         $class = 'expired';
+//         $text = 'utgången';
+//         break;
 
-      default:
-        $class = 'approved';
-        $text = 'godkänd';
-    }
+//       default:
+//         $class = 'approved';
+//         $text = 'godkänd';
+//     }
 
-    // Add the status to the header.
-    $node->content['field_ctrl_ok']['status'] = array(
-      '#prefix' => '<h2>',
-      '#markup' => "Kontrollen är <span class=\"$class\">$text</span>",
-      '#suffix' => '</h2>',
-    );
+//     // Add the status to the header.
+//     $node->content['field_ctrl_ok']['status'] = array(
+//       '#prefix' => '<h2>',
+//       '#markup' => "Kontrollen är <span class=\"$class\">$text</span>",
+//       '#suffix' => '</h2>',
+//     );
 
-    // Add the expiration date to the header, if the verification is approved or
-    // about to expire.
-    if (in_array($status, array(SEDERMERA_VERIFICATION_EXPIRING, SEDERMERA_VERIFICATION_APPROVED)) && ($expire = sedermera_verification_get_expiration_date($node->nid))) {
-      $node->content['field_ctrl_ok']['expire'] = array(
-        '#prefix' => '<span class="expires">',
-        '#markup' => format_string('Förfaller den @date', array('@date' => format_date($expire, 'custom', 'j/n Y'))),
-        '#suffix' => '</span>',
-      );
-    }
-  }
-}
+//     // Add the expiration date to the header, if the verification is approved or
+//     // about to expire.
+//     if (in_array($status, array(SEDERMERA_VERIFICATION_EXPIRING, SEDERMERA_VERIFICATION_APPROVED)) && ($expire = sedermera_verification_get_expiration_date($node->nid))) {
+//       $node->content['field_ctrl_ok']['expire'] = array(
+//         '#prefix' => '<span class="expires">',
+//         '#markup' => format_string('Förfaller den @date', array('@date' => format_date($expire, 'custom', 'j/n Y'))),
+//         '#suffix' => '</span>',
+//       );
+//     }
+//   }
+// }
 
 /**
  * Implements hook_menu().
  */
 function sedermera_verification_menu_alter(&$items) {
   // Get info about the investor entities in order to get the bundles.
-  $entity_info = entity_get_info('investor');
+  // $entity_info = entity_get_info('investor');
 
   // Add a "Kontroller" page for every bundle.
-  foreach ($entity_info['bundles'] as $bundle => $info) {
-    if ($bundle == 'lead') {
-      continue;
-    }
+  // foreach ($entity_info['bundles'] as $bundle => $info) {
+  //   if ($bundle == 'lead') {
+  //     continue;
+  //   }
 
-    // Get the base path for this bundle.
-    $base = "investor/$bundle/%eckentity";
+  //   // Get the base path for this bundle.
+  //   $base = "investor/$bundle/%eckentity";
 
-    $items["$base/kontroll"] = array(
-      'title' => t('Kontroll'),
-      'access callback' => TRUE,
-      'type' => MENU_LOCAL_TASK,
-      'weight' => 50,
-    );
+  //   $items["$base/kontroll"] = array(
+  //     'title' => t('Kontroll'),
+  //     'access callback' => TRUE,
+  //     'type' => MENU_LOCAL_TASK,
+  //     'weight' => 50,
+  //   );
 
-    // Callback for the verification status that is fetched via AJAX.
-    $items["$base/kontroll/check"] = array(
-      'page callback' => 'sedermera_verification_status_field_ajax',
-      'page arguments' => array(2),
-      'access callback' => 'user_is_logged_in',
-      'type' => MENU_CALLBACK,
-    );
+  //   // Callback for the verification status that is fetched via AJAX.
+  //   $items["$base/kontroll/check"] = array(
+  //     'page callback' => 'sedermera_verification_status_field_ajax',
+  //     'page arguments' => array(2),
+  //     'access callback' => 'user_is_logged_in',
+  //     'type' => MENU_CALLBACK,
+  //   );
 
-    $items["$base/transaktionshistoria"] = array(
-      'title' => t('Transaktionshistoria'),
-      'access callback' => TRUE,
-      'type' => MENU_LOCAL_TASK,
-      'weight' => 50,
-    );
-  }
+  //   $items["$base/transaktionshistoria"] = array(
+  //     'title' => t('Transaktionshistoria'),
+  //     'access callback' => TRUE,
+  //     'type' => MENU_LOCAL_TASK,
+  //     'weight' => 50,
+  //   );
+  // }
 
-  $items['node/%/revisions/return'] = array(
-    'title' => 'Återgå till investerare',
-    'page callback' => 'return_to_investor',
-    'page arguments' => array(1),
-    'access callback' => 'sedermera_verification_investor_page',
-    'type' => MENU_LOCAL_TASK,
-  );
+  // $items['node/%/revisions/return'] = array(
+  //   'title' => 'Återgå till investerare',
+  //   'page callback' => 'return_to_investor',
+  //   'page arguments' => array(1),
+  //   'access callback' => 'sedermera_verification_investor_page',
+  //   'type' => MENU_LOCAL_TASK,
+  // );
 }
 
 /**
 * Page callback.
 */
-function return_to_investor($nid) {
-  $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl` WHERE field_shared_ctrl_target_id = $nid)")->fetchObject();
+// function return_to_investor($nid) {
+//   $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl` WHERE field_shared_ctrl_target_id = $nid)")->fetchObject();
 
-  if (!$investor) {
-    $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl_pvt` WHERE field_shared_ctrl_pvt_target_id = $nid)")->fetchObject();
-  }
+//   if (!$investor) {
+//     $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl_pvt` WHERE field_shared_ctrl_pvt_target_id = $nid)")->fetchObject();
+//   }
 
-  $exp = explode(' ', $investor->title);
-  $title = strtolower($exp[0]);
-  drupal_goto("investerare/lista/$title/kontroll");
-}
+//   $exp = explode(' ', $investor->title);
+//   $title = strtolower($exp[0]);
+//   drupal_goto("investerare/lista/$title/kontroll");
+// }
 
 /**
  * Access callback.
@@ -238,16 +246,16 @@ function return_to_investor($nid) {
  *
  * @return bool
  */
-function sedermera_verification_investor_page() {
-  $node = node_load(arg(1));
+// function sedermera_verification_investor_page() {
+//   $node = node_load(arg(1));
 
-  if ($node->type == 'kontrolluppgift_privat' || $node->type == 'kontrolluppgift') {
-    return TRUE;
-  }
-  else {
-    return FALSE;
-  }
-}
+//   if ($node->type == 'kontrolluppgift_privat' || $node->type == 'kontrolluppgift') {
+//     return TRUE;
+//   }
+//   else {
+//     return FALSE;
+//   }
+// }
 
 
 /**

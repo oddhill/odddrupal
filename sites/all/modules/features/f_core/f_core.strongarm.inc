@@ -287,9 +287,11 @@ function f_core_strongarm() {
     'company' => 0,
     'document' => 0,
     'manual' => 0,
-    'kontrolluppgift' => 0,
-    'kontrolluppgift_privat' => 0,
+    'investor_bolag' => 0,
+    'investor_privat' => 0,
+    'person' => 0,
     'transaction_history' => 0,
+    'ctrl' => 0,
   );
   $export['nodeaccess-types'] = $strongarm;
 
@@ -318,12 +320,7 @@ function f_core_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
-    'transaction_history' => array(
-      'grant_view' => 0,
-      'grant_update' => 0,
-      'grant_delete' => 0,
-    ),
-    'person' => array(
+    'investor_bolag' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
@@ -333,7 +330,12 @@ function f_core_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
-    'investor_bolag' => array(
+    'person' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'transaction_history' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
@@ -571,8 +573,8 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_entity_available_entity_types';
   $strongarm->value = array(
-    'contact_person' => 'contact_person',
-    'investor' => 'investor',
+    'contact_person' => 0,
+    'investor' => 0,
     'offer' => 0,
     'file' => 0,
   );

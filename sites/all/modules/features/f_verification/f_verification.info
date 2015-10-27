@@ -6,6 +6,7 @@ dependencies[] = date
 dependencies[] = ds
 dependencies[] = eck
 dependencies[] = eck
+dependencies[] = editablefields
 dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = field_group

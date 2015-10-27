@@ -51,7 +51,7 @@ function f_investor_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -48,
     'customized' => 1,
   );
   // Exported menu link: main-menu_kontaktpersoner:investerare/kontaktperson

@@ -21,6 +21,19 @@ function f_verification_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'control' => array(
+        'label' => 'above',
+        'module' => 'editablefields',
+        'settings' => array(
+          'click_to_edit' => FALSE,
+          'click_to_edit_style' => 'button',
+          'empty_text' => '',
+          'fallback_format' => NULL,
+          'fallback_settings' => array(),
+        ),
+        'type' => 'editable',
+        'weight' => 2,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -57,6 +70,19 @@ function f_verification_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'control' => array(
+        'label' => 'above',
+        'module' => 'editablefields',
+        'settings' => array(
+          'click_to_edit' => FALSE,
+          'click_to_edit_style' => 'button',
+          'empty_text' => '',
+          'fallback_format' => NULL,
+          'fallback_settings' => array(),
+        ),
+        'type' => 'editable',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'date',
@@ -112,6 +138,19 @@ function f_verification_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'control' => array(
+        'label' => 'above',
+        'module' => 'editablefields',
+        'settings' => array(
+          'click_to_edit' => FALSE,
+          'click_to_edit_style' => 'button',
+          'empty_text' => '',
+          'fallback_format' => NULL,
+          'fallback_settings' => array(),
+        ),
+        'type' => 'editable',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'file',
@@ -155,6 +194,19 @@ function f_verification_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'control' => array(
+        'label' => 'above',
+        'module' => 'editablefields',
+        'settings' => array(
+          'click_to_edit' => FALSE,
+          'click_to_edit_style' => 'button',
+          'empty_text' => '',
+          'fallback_format' => NULL,
+          'fallback_settings' => array(),
+        ),
+        'type' => 'editable',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
