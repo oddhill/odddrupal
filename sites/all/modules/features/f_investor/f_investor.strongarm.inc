@@ -547,6 +547,7 @@ function f_investor_strongarm() {
   $strongarm->name = 'node_options_investor_bolag';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_investor_bolag'] = $strongarm;
 
@@ -556,6 +557,7 @@ function f_investor_strongarm() {
   $strongarm->name = 'node_options_investor_privat';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_investor_privat'] = $strongarm;
 
@@ -565,6 +567,7 @@ function f_investor_strongarm() {
   $strongarm->name = 'node_options_person';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_person'] = $strongarm;
 
