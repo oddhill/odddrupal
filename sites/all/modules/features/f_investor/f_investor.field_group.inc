@@ -13,6 +13,157 @@ function f_investor_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_ap|node|investor_bolag|form';
+  $field_group->group_name = 'group_ap';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'investor_bolag';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_head';
+  $field_group->data = array(
+    'label' => 'Allmänt',
+    'weight' => '18',
+    'children' => array(
+      0 => 'field_investor_comp_notes',
+      1 => 'field_investor_comp_address',
+      2 => 'field_investor_comp_owners',
+      3 => 'field_investor_comp_org_nbr',
+      4 => 'field_shared_cust_id',
+      5 => 'field_investor_comp_real',
+      6 => 'field_shared_cont_pers',
+      7 => 'title',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_ap|node|investor_bolag|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_ap|node|investor_privat|form';
+  $field_group->group_name = 'group_ap';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'investor_privat';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_head';
+  $field_group->data = array(
+    'label' => 'Allmänt',
+    'weight' => '14',
+    'children' => array(
+      0 => 'field_invest_pvt_notes',
+      1 => 'field_shared_cust_id',
+      2 => 'field_shared_cont_pers',
+      3 => 'title',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_ap|node|investor_privat|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_comp_ctrl|node|investor_bolag|form';
+  $field_group->group_name = 'group_comp_ctrl';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'investor_bolag';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_head';
+  $field_group->data = array(
+    'label' => 'Kontroll',
+    'weight' => '20',
+    'children' => array(
+      0 => 'field_investor_comp_ctrl_ua',
+      1 => 'field_investor_comp_ctrl_ptv',
+      2 => 'field_investor_comp_ctrl_cred',
+      3 => 'field_investor_comp_ctrl_reg',
+      4 => 'field_investor_comp_ctrl_oth',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Kontroll',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $export['group_comp_ctrl|node|investor_bolag|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_head|node|investor_bolag|form';
+  $field_group->group_name = 'group_head';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'investor_bolag';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Head',
+    'weight' => '4',
+    'children' => array(
+      0 => 'group_ap',
+      1 => 'group_comp_ctrl',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_head|node|investor_bolag|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_head|node|investor_privat|form';
+  $field_group->group_name = 'group_head';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'investor_privat';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Head',
+    'weight' => '4',
+    'children' => array(
+      0 => 'group_prv_ctrl',
+      1 => 'group_ap',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_head|node|investor_privat|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_head|node|person|form';
   $field_group->group_name = 'group_head';
   $field_group->entity_type = 'node';
@@ -457,6 +608,39 @@ function f_investor_field_group_info() {
     ),
   );
   $export['group_invest_pers_sidebar|investor|person|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_prv_ctrl|node|investor_privat|form';
+  $field_group->group_name = 'group_prv_ctrl';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'investor_privat';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_head';
+  $field_group->data = array(
+    'label' => 'Kontroll',
+    'weight' => '15',
+    'children' => array(
+      0 => 'field_invest_pvt_ctrl_ua',
+      1 => 'field_invest_pvt_ctrl_ptv',
+      2 => 'field_invest_pvt_ctrl_cred',
+      3 => 'field_invest_pvt_ctrl_ext',
+      4 => 'field_invest_pvt_ctrl_oth',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Kontroll',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $export['group_prv_ctrl|node|investor_privat|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */

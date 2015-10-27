@@ -11,6 +11,137 @@ function f_investor_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'avtalsparter';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Avtalsparter';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Alla avtalsparter';
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Kundnummer */
+  $handler->display->display_options['fields']['field_shared_cust_id']['id'] = 'field_shared_cust_id';
+  $handler->display->display_options['fields']['field_shared_cust_id']['table'] = 'field_data_field_shared_cust_id';
+  $handler->display->display_options['fields']['field_shared_cust_id']['field'] = 'field_shared_cust_id';
+  $handler->display->display_options['fields']['field_shared_cust_id']['element_label_colon'] = FALSE;
+  /* Field: Content: Kontaktperson */
+  $handler->display->display_options['fields']['field_shared_cont_pers']['id'] = 'field_shared_cont_pers';
+  $handler->display->display_options['fields']['field_shared_cont_pers']['table'] = 'field_data_field_shared_cont_pers';
+  $handler->display->display_options['fields']['field_shared_cont_pers']['field'] = 'field_shared_cont_pers';
+  $handler->display->display_options['fields']['field_shared_cont_pers']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_shared_cont_pers']['settings'] = array(
+    'link' => 1,
+  );
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'investor_bolag' => 'investor_bolag',
+    'investor_privat' => 'investor_privat',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Namn';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    9 => 0,
+    8 => 0,
+    10 => 0,
+  );
+  /* Filter criterion: Content: Kundnummer (field_shared_cust_id) */
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['id'] = 'field_shared_cust_id_value';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['table'] = 'field_data_field_shared_cust_id';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['field'] = 'field_shared_cust_id_value';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['expose']['operator_id'] = 'field_shared_cust_id_value_op';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['expose']['label'] = 'Kundnummer';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['expose']['operator'] = 'field_shared_cust_id_value_op';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['expose']['identifier'] = 'field_shared_cust_id_value';
+  $handler->display->display_options['filters']['field_shared_cust_id_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    9 => 0,
+    8 => 0,
+    10 => 0,
+  );
+
+  /* Display: Avtalsparter */
+  $handler = $view->new_display('page', 'Avtalsparter', 'page');
+  $handler->display->display_options['path'] = 'avtalsparter/lista';
+  $translatables['avtalsparter'] = array(
+    t('Master'),
+    t('Alla avtalsparter'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Namn'),
+    t('Kundnummer'),
+    t('Kontaktperson'),
+    t('Avtalsparter'),
+  );
+  $export['avtalsparter'] = $view;
+
+  $view = new view();
   $view->name = 'contact_persons';
   $view->description = '';
   $view->tag = 'default';
@@ -277,7 +408,7 @@ function f_investor_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Alla investerare';
+  $handler->display->display_options['title'] = 'Alla avtalsparter';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -809,7 +940,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_address_country']['label'] = '';
   $handler->display->display_options['fields']['field_shared_address_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
-  $handler->display->display_options['path'] = 'investerare/lista';
+  $handler->display->display_options['path'] = 'aa';
 
   /* Display: Skicka ut erbjudande */
   $handler = $view->new_display('embed', 'Skicka ut erbjudande', 'offer_embed');
@@ -929,7 +1060,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_shared_address_country']['display_name'] = 0;
   $translatables['investors'] = array(
     t('Master'),
-    t('Alla investerare'),
+    t('Alla avtalsparter'),
     t('more'),
     t('Filtrera listan'),
     t('Reset'),

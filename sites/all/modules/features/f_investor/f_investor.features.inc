@@ -9,11 +9,11 @@
  */
 function f_investor_ccl_features_preset() {
   return array(
-    'Lägg till investerare' => array(
+    'Lägg till avtalspart' => array(
       'type' => 'local_action',
-      'title' => 'Lägg till investerare',
-      'link' => 'investerare/skapa',
-      'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:7:"company";s:7:"node_id";s:14:" [nid: [nid:]]";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:17:"investerare/lista";s:8:"la_types";a:2:{s:7:"company";i:0;s:15:"capital_raising";i:0;}s:8:"la_roles";a:3:{i:1;i:0;i:2;i:0;i:3;i:0;}}',
+      'title' => 'Lägg till avtalspart',
+      'link' => 'avtalsparter/skapa',
+      'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:7:"company";s:7:"node_id";s:35:" [nid: [nid: [nid: [nid: [nid:]]]]]";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:18:"avtalsparter/lista";s:8:"la_types";a:9:{s:14:"investor_bolag";i:0;s:15:"investor_privat";i:0;s:8:"document";i:0;s:4:"ctrl";i:0;s:7:"company";i:0;s:6:"manual";i:0;s:6:"person";i:0;s:15:"capital_raising";i:0;s:19:"transaction_history";i:0;}s:8:"la_roles";a:8:{i:1;i:0;i:2;i:0;i:3;i:0;i:5;i:0;i:4;i:0;i:9;i:0;i:8;i:0;i:10;i:0;}}',
     ),
   );
 }
@@ -140,7 +140,7 @@ function f_investor_node_info() {
       'base' => 'node_content',
       'description' => t('Bolag som kan investera'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Bolagsnamn'),
       'help' => '',
     ),
     'investor_privat' => array(
@@ -148,7 +148,7 @@ function f_investor_node_info() {
       'base' => 'node_content',
       'description' => t('Person som kan investera'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Namn'),
       'help' => '',
     ),
     'person' => array(

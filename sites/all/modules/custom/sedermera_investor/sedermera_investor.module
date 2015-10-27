@@ -25,8 +25,8 @@ function sedermera_investor_permission() {
  * Implements hook_menu().
  */
 function sedermera_investor_menu() {
-  $items['investerare/skapa'] = array(
-    'title' => 'Lägg till investerare',
+  $items['avtalsparter/skapa'] = array(
+    'title' => 'Lägg till avtalspart',
     'page callback' => 'sedermera_investor_create_page',
     'access arguments' => array('administer investors'),
     'type' => MENU_CALLBACK,
@@ -90,35 +90,24 @@ function sedermera_investor_admin_paths_alter(&$paths) {
  * @see node_add_page()
  */
 function sedermera_investor_create_page() {
-  // Get the entity info for the investor entity type.
-  $investor_info = entity_get_info('investor');
-
-  // Setup the descriptions for the different bundles. The ECK module doesn't
-  // support descriptions, like node types. This is a way to mimic the same
-  // behavior for this particular page.
-  $descriptions = array(
-    'company' => 'Lägg till ett nytt investmentbolag. Dessa kan kopplas till flera ägare.',
-    'person' => 'Lägg till en ny privatperson.',
-    'lead' => 'Lägg till en ny lead.',
+  $items[] = array(
+    'title' => 'Avtalspart Privat',
+    'href' => "node/add/investor-privat",
+    'description' => 'Lägg till en ny privatperson.',
+    'localized_options' => array(
+      'query' => array('destination' => 'avtalsparter'),
+    ),
   );
 
-  // Iterate through the bundles, add add a link for each bundle. This will be
-  // used to genereate the output.
-  foreach ($investor_info['bundles'] as $bundle_name => $bundle_info) {
-    if (user_access("eck administer investor $bundle_name entities") || user_access("eck add investor $bundle_name entities"))
-    $items[] = array(
-      'title' => $bundle_info['label'],
-      'href' => "admin/structure/entity-type/investor/{$bundle_name}/add",
-      'description' => isset($descriptions[$bundle_name]) ? $descriptions[$bundle_name] : '',
-      'localized_options' => array(
-        'query' => array('destination' => 'investerare'),
-      ),
-    );
-  }
+  $items[] = array(
+    'title' => 'Avtalspart Bolag',
+    'href' => "node/add/investor-bolag",
+    'description' => 'Lägg till ett nytt bolag.',
+    'localized_options' => array(
+      'query' => array('destination' => 'avtalsparter'),
+    ),
+  );
 
-  // Return a list which looks like the node add list. This isn't actually
-  // nodes, but it's convinient to use the same theme function since we'd like
-  // to generate a similar list.
   return theme('node_add_list', array('content' => $items));
 }
 
@@ -303,9 +292,13 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
   }
   if ($form_state['values']['type'] == 'investor_bolag') {
     $org_nbr = $node->field_investor_comp_org_nbr[LANGUAGE_NONE][0]['value'];
+    $cust_id = $form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'];
 
     if (isset($node->nid)) {
       if (!org_nbr_is_same($org_nbr, $node->nid) && org_nbr_exists($org_nbr)) {
+        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+      }
+      if (!cust_id_is_same($cust_id, $node->nid) && cust_id_exists($cust_id)) {
         form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
       }
     }
@@ -313,14 +306,22 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
       if (org_nbr_exists($org_nbr)) {
         form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
       }
-    }
-    if (cust_id_exists($form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'])) {
-      form_set_error('field_shared_cust_id', t('Customer id already exists, please resave.'));
+      if (cust_id_exists($cust_id)) {
+        form_set_error('field_shared_cust_id', t('Customer id already exists, please resave use id: ' . get_next_cust_id()));
+      }
     }
   }
   if ($form_state['values']['type'] == 'investor_privat') {
-    if (cust_id_exists($form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'])) {
-      form_set_error('field_shared_cust_id', t('Customer id already exists, please resave use id: ' . get_next_cust_id()));
+    $cust_id = $form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'];
+    if (isset($node->nid)) {
+      if (!cust_id_is_same($cust_id, $node->nid) && cust_id_exists($cust_id)) {
+        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+      }
+    }
+    else {
+      if (cust_id_exists($cust_id)) {
+        form_set_error('field_shared_cust_id', t('Customer id already exists, please resave use id: ' . get_next_cust_id()));
+      }
     }
   }
 }
@@ -336,6 +337,17 @@ function cust_id_exists($cust_id) {
   return ($result[0]->count > 0) ? TRUE : FALSE;
 }
 
+/**
+ * Checks if person number has been changed from the existing in the system
+ * @param  $pnbr Person number to check for
+ * @param  $nid  The node to check on
+ * @return boolean true if no change else false
+ */
+function cust_id_is_same($custid, $nid) {
+  $cust_id_is_same = db_query("SELECT COUNT(*) AS count FROM field_data_field_shared_cust_id WHERE field_shared_cust_id_value = :custid AND entity_id = :nid", array(':custid' => $custid, ':nid' => $nid))->fetchAssoc();
+
+  return $cust_id_is_same['count'] ? TRUE : FALSE;
+}
 
 /**
  * Checks if person number already exists in the system

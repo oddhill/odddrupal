@@ -77,6 +77,51 @@ function f_investor_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|investor_bolag|full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'investor_bolag';
+  $ds_fieldsetting->view_mode = 'full';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|investor_bolag|full'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|investor_privat|full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'investor_privat';
+  $ds_fieldsetting->view_mode = 'full';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|investor_privat|full'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|person|full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'person';
+  $ds_fieldsetting->view_mode = 'full';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|person|full'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|transaction_history|full';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'transaction_history';
@@ -471,6 +516,212 @@ function f_investor_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['investor|person|investor_verification'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|ctrl|control';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'ctrl';
+  $ds_layout->view_mode = 'control';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_ctrl_files',
+        1 => 'field_ctrl_notes',
+        2 => 'field_ctrl_app',
+        3 => 'field_ctrl_date',
+      ),
+    ),
+    'fields' => array(
+      'field_ctrl_files' => 'ds_content',
+      'field_ctrl_notes' => 'ds_content',
+      'field_ctrl_app' => 'ds_content',
+      'field_ctrl_date' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|ctrl|control'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|investor_bolag|full';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'investor_bolag';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_shared_cust_id',
+        2 => 'field_investor_comp_org_nbr',
+        3 => 'field_investor_comp_cont_pers',
+        4 => 'field_investor_comp_owners',
+        5 => 'field_investor_comp_real',
+        6 => 'field_investor_comp_address',
+        7 => 'field_investor_comp_notes',
+        8 => 'field_investor_comp_ctrl_ua',
+        9 => 'field_investor_comp_ctrl_ptv',
+        10 => 'field_investor_comp_ctrl_cred',
+        11 => 'field_investor_comp_ctrl_reg',
+        12 => 'field_investor_comp_ctrl_oth',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_shared_cust_id' => 'ds_content',
+      'field_investor_comp_org_nbr' => 'ds_content',
+      'field_investor_comp_cont_pers' => 'ds_content',
+      'field_investor_comp_owners' => 'ds_content',
+      'field_investor_comp_real' => 'ds_content',
+      'field_investor_comp_address' => 'ds_content',
+      'field_investor_comp_notes' => 'ds_content',
+      'field_investor_comp_ctrl_ua' => 'ds_content',
+      'field_investor_comp_ctrl_ptv' => 'ds_content',
+      'field_investor_comp_ctrl_cred' => 'ds_content',
+      'field_investor_comp_ctrl_reg' => 'ds_content',
+      'field_investor_comp_ctrl_oth' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|investor_bolag|full'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|investor_privat|full';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'investor_privat';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_shared_cust_id',
+        2 => 'field_shared_cont_pers',
+        3 => 'field_invest_pvt_notes',
+        4 => 'field_invest_pvt_ctrl_ua',
+        5 => 'field_invest_pvt_ctrl_ptv',
+        6 => 'field_invest_pvt_ctrl_cred',
+        7 => 'field_invest_pvt_ctrl_ext',
+        8 => 'field_invest_pvt_ctrl_oth',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_shared_cust_id' => 'ds_content',
+      'field_shared_cont_pers' => 'ds_content',
+      'field_invest_pvt_notes' => 'ds_content',
+      'field_invest_pvt_ctrl_ua' => 'ds_content',
+      'field_invest_pvt_ctrl_ptv' => 'ds_content',
+      'field_invest_pvt_ctrl_cred' => 'ds_content',
+      'field_invest_pvt_ctrl_ext' => 'ds_content',
+      'field_invest_pvt_ctrl_oth' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|investor_privat|full'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|person|control';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'person';
+  $ds_layout->view_mode = 'control';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_user_id_ctrl',
+      ),
+    ),
+    'fields' => array(
+      'field_user_id_ctrl' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|person|control'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|person|full';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'person';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_user_owner',
+        2 => 'field_user_ssn',
+        3 => 'field_user_id_address',
+        4 => 'field_user_mail',
+        5 => 'field_user_cell',
+        6 => 'field_user_phone',
+        7 => 'field_user_fax',
+        8 => 'field_user_branches',
+        9 => 'field_user_interests',
+        10 => 'field_user_notes',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_user_owner' => 'ds_content',
+      'field_user_ssn' => 'ds_content',
+      'field_user_id_address' => 'ds_content',
+      'field_user_mail' => 'ds_content',
+      'field_user_cell' => 'ds_content',
+      'field_user_phone' => 'ds_content',
+      'field_user_fax' => 'ds_content',
+      'field_user_branches' => 'ds_content',
+      'field_user_interests' => 'ds_content',
+      'field_user_notes' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|person|full'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
