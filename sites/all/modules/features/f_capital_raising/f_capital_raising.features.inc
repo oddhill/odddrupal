@@ -59,6 +59,14 @@ function f_capital_raising_node_info() {
       'title_label' => t('Titel'),
       'help' => '',
     ),
+    'erbjudande' => array(
+      'name' => t('Erbjudande'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;
