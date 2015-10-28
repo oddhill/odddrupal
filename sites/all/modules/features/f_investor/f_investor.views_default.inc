@@ -32,6 +32,43 @@ function f_investor_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_shared_cust_id' => 'field_shared_cust_id',
+    'field_shared_cont_pers' => 'field_shared_cont_pers',
+    'field_user_owner' => 'field_user_owner',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_shared_cust_id' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_shared_cont_pers' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_user_owner' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['id'] = 'field_shared_cont_pers_target_id';
   $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['table'] = 'field_data_field_shared_cont_pers';
@@ -128,6 +165,27 @@ function f_investor_views_default_views() {
     8 => 0,
     10 => 0,
   );
+  /* Filter criterion: Content: Kundansvarig (field_user_owner) (reference filter) */
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['id'] = 'field_user_owner_target_id_entityreference_filter';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['table'] = 'field_data_field_user_owner';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['field'] = 'field_user_owner_target_id_entityreference_filter';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['relationship'] = 'field_shared_cont_pers_target_id';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator_id'] = 'field_user_owner_target_id_entityreference_filter_op';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['label'] = 'Kundansvarig';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator'] = 'field_user_owner_target_id_entityreference_filter_op';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['identifier'] = 'field_user_owner_target_id_entityreference_filter';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    9 => 0,
+    8 => 0,
+    10 => 0,
+  );
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['reference_display'] = 'kundansvarig:entityreference_1';
 
   /* Display: Avtalsparter */
   $handler = $view->new_display('page', 'Avtalsparter', 'page');
