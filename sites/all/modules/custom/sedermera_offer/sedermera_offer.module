@@ -635,6 +635,81 @@ function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bu
   }
 }
 
+function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $form_id) {
+  $fe = ($form['#node']->field_offer_type_fe[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $le = ($form['#node']->field_offer_type_le[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $pp = ($form['#node']->field_offer_type_pp[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $re = ($form['#node']->field_offer_type_re[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $bl = ($form['#node']->field_offer_type_bl[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $bp = ($form['#node']->field_offer_type_bp[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+
+
+  if (!$fe) {
+    $form['#fieldgroups']['group_offer_type_fe']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+  }
+  if (!$le) {
+    $form['#fieldgroups']['group_offer_type_le']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+  }
+  if (!$pp) {
+    $form['#fieldgroups']['group_offer_type_pp']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+  }
+  if (!$re) {
+    $form['#fieldgroups']['group_offer_type_re']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+  }
+  if (!$bl) {
+    $form['#fieldgroups']['group_offer_type_bl']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+  }
+  if (!$bp) {
+    $form['#fieldgroups']['group_offer_type_bp']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+  }
+
+  if ($form['#node']->nid) {
+    // Don't alter the form when editing an existing node, bail out.
+    return;
+  }
+
+  // Add the offer display from the investors view as a prefix to the form. The
+  // view is needed in order to filter among the investors. The view can't be
+  // embedded as a subform within the node form, since this will break the AJAX
+  // functionality. The reason is unknown, but that's just the way it is...
+  if ($form_state['storage']['step'] == 'step_offer_3') {
+    $form['#prefix'] = views_embed_view('person', 'offer_embed');
+  }
+
+  // Get the available investors from the database.
+  $available_persons = db_query('SELECT nid, title FROM node WHERE type = :person', array(':person' => 'person'))->fetchAllKeyed();
+
+  // Get the selected investors, based on the form values, and sort them
+  // alphabetically.
+  $selected_persons = isset($form_state['values']['investors']) ? array_intersect_key($available_persons, array_filter($form_state['values']['investors'])) : array();
+  asort($selected_persons);
+
+  // Add checkboxes for every available investor. This will be added to the
+  // second step, and will get its values from the embedded view. See the
+  // attached javascript for more information about what's going on.
+  $form['investors'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $available_persons,
+    '#default_value' => array_keys($selected_persons),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
+      ),
+    ),
+    '#prefix' => '<div style="display: none;">',
+    '#suffix' => '</div>',
+  );
+  $form['#step_children']['investors'] =  'step_offer_3';
+
+
+
+  // Change the text of the submit button.
+  $form['actions']['submit']['#value'] = 'Skapa erbjudande';
+}
+
+  // TODO
+
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
@@ -756,7 +831,7 @@ function sedermera_offer_node_insert($node) {
 function sedermera_offer_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) {
   // Remove the action selection and submit button for the VBO form for the
   // investors embeded offer display.
-  if ($vbo->view->name == 'investors' && $vbo->view->current_display == 'offer_embed') {
+  if ($vbo->view->name == 'person' && $vbo->view->current_display == 'offer_embed') {
     $form['select']['#access'] = FALSE;
     $form['actions']['#access'] = FALSE;
 

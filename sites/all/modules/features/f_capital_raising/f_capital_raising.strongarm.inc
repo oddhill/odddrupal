@@ -91,16 +91,19 @@ function f_capital_raising_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '2',
+          'weight' => '5',
         ),
         'title' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '4',
         ),
         'redirect' => array(
-          'weight' => '0',
+          'weight' => '3',
+        ),
+        'additional_settings' => array(
+          'weight' => '6',
         ),
       ),
       'display' => array(),

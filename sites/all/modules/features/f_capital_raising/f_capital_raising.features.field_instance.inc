@@ -1437,7 +1437,7 @@ function f_capital_raising_field_default_field_instances() {
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -1480,7 +1480,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -1522,7 +1522,7 @@ function f_capital_raising_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -1565,7 +1565,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 9,
+      'weight' => 34,
     ),
   );
 
@@ -1635,7 +1635,7 @@ function f_capital_raising_field_default_field_instances() {
         'rows' => 40,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -1690,7 +1690,7 @@ function f_capital_raising_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -1733,7 +1733,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 18,
+      'weight' => 37,
     ),
   );
 
@@ -2032,7 +2032,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 19,
+      'weight' => 38,
     ),
   );
 
@@ -2331,7 +2331,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 14,
+      'weight' => 33,
     ),
   );
 
@@ -2973,7 +2973,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 15,
+      'weight' => 34,
     ),
   );
 
@@ -3825,7 +3825,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 16,
+      'weight' => 35,
     ),
   );
 
@@ -4240,7 +4240,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 17,
+      'weight' => 36,
     ),
   );
 

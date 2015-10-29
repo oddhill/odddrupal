@@ -13,6 +13,41 @@ function f_capital_raising_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_body|node|erbjudande|form';
+  $field_group->group_name = 'group_body';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'erbjudande';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'step_offer_1';
+  $field_group->data = array(
+    'label' => 'Body',
+    'weight' => '34',
+    'children' => array(
+      0 => 'field_offer_text',
+      1 => 'field_offer_additional',
+      2 => 'field_offer_files',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Body',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'form-body column',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_body|node|erbjudande|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_cap_rais_1|node|capital_raising|form';
   $field_group->group_name = 'group_cap_rais_1';
   $field_group->entity_type = 'node';
@@ -99,9 +134,9 @@ function f_capital_raising_field_group_info() {
       1 => 'field_cap_rais_goal_guar',
       2 => 'field_cap_rais_goal_tot',
       3 => 'field_cap_rais_goal_oth',
-      4 => 'field_cap_rais_goal_newem',
-      5 => 'field_cap_rais_goal_pp',
-      6 => 'field_cap_rais_goal_loan',
+      4 => 'field_cap_rais_goal_loan',
+      5 => 'field_cap_rais_goal_newem',
+      6 => 'field_cap_rais_goal_pp',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -194,10 +229,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'erbjudande';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_types';
   $field_group->data = array(
     'label' => 'Brygglån',
-    'weight' => '15',
+    'weight' => '38',
     'children' => array(
       0 => 'field_offer_type_bl_sum',
       1 => 'field_offer_type_bl_time',
@@ -209,7 +244,7 @@ function f_capital_raising_field_group_info() {
       'label' => 'Brygglån',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-offer-type-bl field-group-fieldset group-offer-type-bl-hidden',
+        'classes' => 'group-offer-type-bl field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
@@ -225,10 +260,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'erbjudande';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_types';
   $field_group->data = array(
     'label' => 'Blockpost',
-    'weight' => '16',
+    'weight' => '39',
     'children' => array(
       0 => 'field_offer_type_bp_sum',
       1 => 'field_offer_type_bp_time',
@@ -240,7 +275,7 @@ function f_capital_raising_field_group_info() {
       'label' => 'Blockpost',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-offer-type-bp field-group-fieldset group-offer-type-bp-hidden',
+        'classes' => 'group-offer-type-bp field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
@@ -256,10 +291,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'erbjudande';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_types';
   $field_group->data = array(
     'label' => 'Företrädesemission',
-    'weight' => '11',
+    'weight' => '34',
     'children' => array(
       0 => 'field_offer_type_fe_sum',
       1 => 'field_offer_type_fe_rate',
@@ -277,7 +312,7 @@ function f_capital_raising_field_group_info() {
       'label' => 'Företrädesemission',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-offer-type-fe field-group-fieldset group-offer-type-fe-hidden',
+        'classes' => 'group-offer-type-fe field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
@@ -293,10 +328,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'erbjudande';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_types';
   $field_group->data = array(
     'label' => 'Listningsemission',
-    'weight' => '12',
+    'weight' => '35',
     'children' => array(
       0 => 'field_offer_type_le_sum',
       1 => 'field_offer_type_le_rate',
@@ -317,7 +352,7 @@ function f_capital_raising_field_group_info() {
       'label' => 'Listningsemission',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-offer-type-le field-group-fieldset group-offer-type-le-hidden',
+        'classes' => 'group-offer-type-le field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
@@ -333,10 +368,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'erbjudande';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_types';
   $field_group->data = array(
     'label' => 'Private Placement',
-    'weight' => '13',
+    'weight' => '36',
     'children' => array(
       0 => 'field_offer_type_pp_sum',
       1 => 'field_offer_type_pp_time',
@@ -350,7 +385,7 @@ function f_capital_raising_field_group_info() {
       'label' => 'Private Placement',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-offer-type-pp field-group-fieldset group-offer-type-pp-hidden',
+        'classes' => 'group-offer-type-pp field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
@@ -366,10 +401,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'erbjudande';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_types';
   $field_group->data = array(
     'label' => 'Riktad emission',
-    'weight' => '14',
+    'weight' => '37',
     'children' => array(
       0 => 'field_offer_type_re_sum',
       1 => 'field_offer_type_re_time',
@@ -383,7 +418,7 @@ function f_capital_raising_field_group_info() {
       'label' => 'Riktad emission',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-offer-type-re field-group-fieldset group-offer-type-re-hidden',
+        'classes' => 'group-offer-type-re field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
@@ -399,10 +434,10 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'erbjudande';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_sidebar';
   $field_group->data = array(
     'label' => 'Transaktions typ',
-    'weight' => '10',
+    'weight' => '33',
     'children' => array(
       0 => 'field_offer_type_pp',
       1 => 'field_offer_type_fe',
@@ -423,6 +458,114 @@ function f_capital_raising_field_group_info() {
     ),
   );
   $export['group_offer_types|node|erbjudande|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_sidebar|node|erbjudande|form';
+  $field_group->group_name = 'group_sidebar';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'erbjudande';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'step_offer_1';
+  $field_group->data = array(
+    'label' => 'Sidebar',
+    'weight' => '33',
+    'children' => array(
+      0 => 'field_offer_logout_info',
+      1 => 'group_offer_types',
+      2 => 'group_title',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Sidebar',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'form-sidebar column',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_sidebar|node|erbjudande|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_title|node|erbjudande|form';
+  $field_group->group_name = 'group_title';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'erbjudande';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_sidebar';
+  $field_group->data = array(
+    'label' => 'Titel och kund',
+    'weight' => '32',
+    'children' => array(
+      0 => 'field_offer_company',
+      1 => 'field_offer_time',
+      2 => 'title',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Titel och kund',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => 'title-wrapper',
+        'classes' => '',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_title|node|erbjudande|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_types|node|erbjudande|form';
+  $field_group->group_name = 'group_types';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'erbjudande';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'step_offer_2';
+  $field_group->data = array(
+    'label' => 'Types',
+    'weight' => '35',
+    'children' => array(
+      0 => 'group_offer_type_fe',
+      1 => 'group_offer_type_le',
+      2 => 'group_offer_type_pp',
+      3 => 'group_offer_type_re',
+      4 => 'group_offer_type_bl',
+      5 => 'group_offer_type_bp',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Types',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'group-types field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_types|node|erbjudande|form'] = $field_group;
 
   return $export;
 }

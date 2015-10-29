@@ -666,7 +666,8 @@ function f_investor_field_group_info() {
       8 => 'field_user_notes',
       9 => 'field_user_lead',
       10 => 'field_user_id_address',
-      11 => 'title',
+      11 => 'field_user_location',
+      12 => 'title',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
