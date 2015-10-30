@@ -1,5 +1,5 @@
 # Server specifics, so we don't include them
-.htaccess
+/public/.htaccess
 /public/sites/*/settings.local.php
 
 # User generated content should not be in the repository
