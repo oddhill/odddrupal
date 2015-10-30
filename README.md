@@ -37,3 +37,4 @@ Installation profile that extends Odd Drupal but adds a more "locked" expirence,
 - Rename `/public/.htaccess.default` to `/public/.htaccess`.
 - Verify that everything is working.
 - Update to the latest version of 7.x-2.x using the steps described in the section above.
+- Make sure to update any deployment or CI environments so that the contents of `/public` is deployed instead of the root folder!
