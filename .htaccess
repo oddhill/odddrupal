@@ -1,0 +1,6 @@
+# Redirect the user to /public in case the user tried to access a path outside
+# of /public. This will preserve the entire URL, by appending it to the
+# /public folder.
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/public/ [NC]
+RewriteRule ^ http%{ENV:protossl}://%{HTTP_HOST}/public%{REQUEST_URI}
