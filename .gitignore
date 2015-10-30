@@ -1,13 +1,13 @@
 # Server specifics, so we don't include them
 .htaccess
-/sites/*/settings.local.php
+/public/sites/*/settings.local.php
 
 # User generated content should not be in the repository
-/sites/*/files/*
-/sites/*/tmp/*
+/public/sites/*/files/*
+/public/sites/*/tmp/*
 
 # Include README in the files folders.
-!/sites/*/files/README.txt
+!/public/sites/*/files/README.txt
 
 # Exlude various other files
 icon.png
@@ -15,4 +15,4 @@ icon.gif
 icon.jpg
 .DS_Store
 .sass-cache
-/cache
+/public/cache
