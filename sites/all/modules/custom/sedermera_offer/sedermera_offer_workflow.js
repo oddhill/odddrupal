@@ -4,9 +4,9 @@ Drupal.behaviors.sedermeraOfferWorkFlow = {
   attach: function (context, settings) {
 
     // Find the relevant elements.
-    $tableForm = $('#views-form-investors-offer-embed');
+    $tableForm = $('#views-form-person-offer-embed');
     $tableFormCheckboxes = $tableForm.find('td.views-field-views-bulk-operations input[type=checkbox]');
-    $investorCheckboxes = $('#edit-investors input[type=checkbox]');
+    $investorCheckboxes = $('#edit-person input[type=checkbox]');
 
     // Check the table checkboxes that corresponds to a checked investor
     // checkbox.

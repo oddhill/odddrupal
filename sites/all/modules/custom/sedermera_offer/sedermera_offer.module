@@ -13,18 +13,18 @@ function sedermera_offer_menu() {
     'type' => MENU_CALLBACK,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('sedermera_offer_sign_confirm', 1, 3),
-    'access callback' => 'sedermera_offer_investors_admin_access',
+    'access callback' => 'sedermera_offer_person_admin_access',
     'access arguments' => array(1, 'eck administer offer offer entities'),
   );
 
   $items['node/%/kontaktlista/lagg-till'] = array(
-    'title' => 'Lägg till investerare',
+    'title' => 'Lägg till kontaktperson',
     'type' => MENU_CALLBACK,
-    'title callback' => 'sedermera_offer_investors_add_title',
+    'title callback' => 'sedermera_offer_person_add_title',
     'title arguments' => array(1),
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('sedermera_offer_investors_add', 1),
-    'access callback' => 'sedermera_offer_investors_admin_access',
+    'page arguments' => array('sedermera_offer_person_add', 1),
+    'access callback' => 'sedermera_offer_person_admin_access',
     'access arguments' => array(1, 'eck add offer offer entities'),
   );
 
@@ -226,15 +226,15 @@ function sedermera_offer_entity_presave($entity, $type) {
 /**
  * Title callback for the add investors page.
  *
- * @param int $capital_raising_nid
+ * @param int $offer_nid
  *   The node id for the capital raising node.
  *
  * @return string
  *   The title that will be used for the page.
  */
-function sedermera_offer_investors_add_title($capital_raising_nid) {
+function sedermera_offer_person_add_title($offer_nid) {
   // Load the node, and return the title.
-  $node = node_load($capital_raising_nid);
+  $node = node_load($offer_nid);
   return $node->title;
 }
 
@@ -242,15 +242,15 @@ function sedermera_offer_investors_add_title($capital_raising_nid) {
  * Access callback when modifying existing offers or when adding new investors
  * to existing capital raisings.
  *
- * $param int $capital_raising_nid
+ * $param int $offer_nid
  *   The node id for the capital raisong node.
  * $param string $permission
  *   The regular permission that will be checked if the capital raising isn't
  *   archived.
  */
-function sedermera_offer_investors_admin_access($capital_raising_nid, $permission) {
+function sedermera_offer_person_admin_access($offer_nid, $permission) {
   // Load the capital raising node.
-  $node = node_load($capital_raising_nid);
+  $node = node_load($offer_nid);
 
   // Allow access if the node isn't archived and the user has the specified
   // permission.
@@ -263,31 +263,31 @@ function sedermera_offer_investors_admin_access($capital_raising_nid, $permissio
  * @param int $capital_raising_nid
  *   The node id for the capital raising node.
  */
-function sedermera_offer_investors_add($form, &$form_state, $capital_raising_nid) {
+function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
   // Add the capital raising nid to the internal values.
-  $form['capital_raising_nid'] = array(
+  $form['offer_nid'] = array(
     '#type' => 'value',
-    '#value' => $capital_raising_nid,
+    '#value' => $offer_nid,
   );
 
   // Add the offer display from the investors view as a prefix to the form. The
   // view is needed in order to filter among the investors. The view can't be
   // embedded as a subform within the node form, since this will break the AJAX
   // functionality. The reason is unknown, but that's just the way it is...
-  $form['#prefix'] = views_embed_view('investors', 'offer_embed');
+  $form['#prefix'] = views_embed_view('person', 'offer_embed');
 
   // Get the exiting investors for this capital raising.
-  $existing_investors = sedermera_offer_get_investors_for_capital_raising($capital_raising_nid);
+  $existing_investors = sedermera_offer_get_investors_for_capital_raising($offer_nid);
 
   // Get the investors from the database, and remove the ones that are already
   // added.
-  $investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
+  $investors = db_query('SELECT nid, title FROM node WHERE type = :person', array(':person' => 'person'))->fetchAllKeyed();
   $available_investors = array_diff_key($investors, array_flip($existing_investors));
 
   // Add checkboxes for every available investor. This will get its values from
   // the embedded view. See the attached javascript for more information about
   // what's going on.
-  $form['investors'] = array(
+  $form['person'] = array(
     '#type' => 'checkboxes',
     '#options' => $available_investors,
     '#default_value' => isset($form_state['values']['investors']) ? $form_state['values']['investors'] : array(),
@@ -313,31 +313,51 @@ function sedermera_offer_investors_add($form, &$form_state, $capital_raising_nid
 /**
  * Submit callback for the add investor form.
  */
-function sedermera_offer_investors_add_submit($form, &$form_state) {
-  foreach (array_filter($form_state['values']['investors']) as $investor_id) {
-    // Setup the values for the offer entity.
-    $values = array(
-      'type' => 'offer',
-      'field_offer_cap_rais' => array(
-        LANGUAGE_NONE => array(
-          array('target_id' => $form_state['values']['capital_raising_nid']),
-        ),
-      ),
-      'field_offer_investor' => array(
-        LANGUAGE_NONE => array(
-          array('target_id' => $investor_id),
-        ),
-      ),
-    );
-
-    // Create the offer, and save it.
-    $offer = entity_create('offer', $values);
-    entity_save('offer', $offer);
+function sedermera_offer_person_add_submit($form, &$form_state) {
+  foreach (array_filter($form_state['values']['person']) as $person_nid) {
+    create_transaction_node($person_nid, $form_state['values']['offer_nid']);
   }
 
   // Display a message, and redirect to the "Erbjudande" view.
   drupal_set_message('De valda investerarna har lagts till.');
-  $form_state['redirect'] = "node/{$form_state['values']['capital_raising_nid']}/kontaktlista";
+  $form_state['redirect'] = "node/{$form_state['values']['offer_nid']}/kontaktlista";
+}
+
+function create_transaction_node($person_nid, $offer_nid) {
+  global $user;
+
+  $new_node = new stdClass();
+  $new_node->title = "Transaktion " . get_title($person_nid) . " " . get_title($offer_nid);
+  $new_node->type = "transaction";
+  node_object_prepare($new_node); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+  $new_node->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+  $new_node->uid = $user->uid;
+  $new_node->status = 1; //(1 or 0): published or not
+  $new_node->promote = 0; //(1 or 0): promoted to front page
+  $new_node->comment = 0; // 0 = comments disabled, 1 = read only, 2 = read/write
+
+  // Entity reference fields
+  $new_node->field_transaction_offer[$new_node->language][] = array(
+    'target_id' => $offer_nid,
+    'target_type' => 'node',
+  );
+  $new_node->field_transaction_person[$new_node->language][] = array(
+    'target_id' => $person_nid,
+    'target_type' => 'node',
+  );
+
+  $new_node = node_submit($new_node); // Prepare node for saving
+  node_save($new_node);
+}
+
+/**
+ * Helper function to get the title from a node
+ * @param  $nid nid of the node to get the title for
+ * @return node title as string
+ */
+function get_title($nid) {
+  $result = db_query("SELECT title FROM node WHERE nid = :nid", array(':nid' => $nid))->fetchAll();
+  return $result[0]->title;
 }
 
 /**
@@ -668,26 +688,26 @@ function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $
     return;
   }
 
-  // Add the offer display from the investors view as a prefix to the form. The
-  // view is needed in order to filter among the investors. The view can't be
+  // Add the offer display from the person view as a prefix to the form. The
+  // view is needed in order to filter among the person. The view can't be
   // embedded as a subform within the node form, since this will break the AJAX
   // functionality. The reason is unknown, but that's just the way it is...
   if ($form_state['storage']['step'] == 'step_offer_3') {
     $form['#prefix'] = views_embed_view('person', 'offer_embed');
   }
 
-  // Get the available investors from the database.
+  // Get the available person from the database.
   $available_persons = db_query('SELECT nid, title FROM node WHERE type = :person', array(':person' => 'person'))->fetchAllKeyed();
 
-  // Get the selected investors, based on the form values, and sort them
+  // Get the selected person, based on the form values, and sort them
   // alphabetically.
-  $selected_persons = isset($form_state['values']['investors']) ? array_intersect_key($available_persons, array_filter($form_state['values']['investors'])) : array();
+  $selected_persons = isset($form_state['values']['person']) ? array_intersect_key($available_persons, array_filter($form_state['values']['person'])) : array();
   asort($selected_persons);
 
   // Add checkboxes for every available investor. This will be added to the
   // second step, and will get its values from the embedded view. See the
   // attached javascript for more information about what's going on.
-  $form['investors'] = array(
+  $form['person'] = array(
     '#type' => 'checkboxes',
     '#options' => $available_persons,
     '#default_value' => array_keys($selected_persons),
@@ -699,61 +719,10 @@ function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $
     '#prefix' => '<div style="display: none;">',
     '#suffix' => '</div>',
   );
-  $form['#step_children']['investors'] =  'step_offer_3';
-
-
-
-  // Change the text of the submit button.
-  $form['actions']['submit']['#value'] = 'Skapa erbjudande';
-}
-
-  // TODO
-
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_state) {
-  if ($form['#node']->nid) {
-    // Don't alter the form when editing an existing node, bail out.
-    return;
-  }
-
-  // Add the offer display from the investors view as a prefix to the form. The
-  // view is needed in order to filter among the investors. The view can't be
-  // embedded as a subform within the node form, since this will break the AJAX
-  // functionality. The reason is unknown, but that's just the way it is...
-  if ($form_state['storage']['step'] == 'step_cap_rais_2') {
-    $form['#prefix'] = views_embed_view('investors', 'offer_embed');
-  }
-
-  // Get the available investors from the database.
-  $available_investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
-
-  // Get the selected investors, based on the form values, and sort them
-  // alphabetically.
-  $selected_investors = isset($form_state['values']['investors']) ? array_intersect_key($available_investors, array_filter($form_state['values']['investors'])) : array();
-  asort($selected_investors);
-
-  // Add checkboxes for every available investor. This will be added to the
-  // second step, and will get its values from the embedded view. See the
-  // attached javascript for more information about what's going on.
-  $form['investors'] = array(
-    '#type' => 'checkboxes',
-    '#options' => $available_investors,
-    '#default_value' => array_keys($selected_investors),
-    '#attached' => array(
-      'js' => array(
-        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
-      ),
-    ),
-    '#prefix' => '<div style="display: none;">',
-    '#suffix' => '</div>',
-  );
-  $form['#step_children']['investors'] =  'step_cap_rais_2';
+  $form['#step_children']['person'] =  'step_offer_3';
 
   // Add elements that are required for the third step.
-  if ($form_state['storage']['step'] == 'step_cap_rais_3') {
+  if ($form_state['storage']['step'] == 'step_offer_4') {
     // Build the node object based of the form values. This will be used to
     // generate the preview.
     $node = node_form_submit_build_node($form, $form_state);
@@ -763,22 +732,22 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
     $form['preview_node'] = node_view($node);
     $form['preview_node']['#prefix'] = '<div id="preview-transaction" class="column">';
     $form['preview_node']['#suffix'] = '</div>';
-    $form['#step_children']['preview_node'] =  'step_cap_rais_3';
+    $form['#step_children']['preview_node'] =  'step_offer_4';
 
     // Add a wrapper for all the elements in the right column.
     $form['right'] = array(
-      '#prefix' => '<div id="preview-investors" class="column">',
+      '#prefix' => '<div id="preview-person" class="column">',
       '#suffix' => '</div>',
     );
-    $form['#step_children']['right'] =  'step_cap_rais_3';
+    $form['#step_children']['right'] =  'step_offer_4';
 
     // Add checkboxes for every selected investor, which will be added to the
     // third step. This will be used as the confirmation page, where the user will
-    // be able to deselect some of the investors before creating the transaction.
-    $form['right']['selected_investors'] = array(
+    // be able to deselect some of the person before creating the transaction.
+    $form['right']['selected_persons'] = array(
       '#type' => 'checkboxes',
-      '#options' => $selected_investors,
-      '#default_value' => array_keys($selected_investors),
+      '#options' => $selected_persons,
+      '#default_value' => array_keys($selected_persons),
       '#prefix' => '<h3>Kontaktlista</h3>',
     );
   }
@@ -791,37 +760,105 @@ function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_sta
   );
 
   // Change the text of the submit button.
-  $form['actions']['submit']['#value'] = 'Skapa transaktion';
+  $form['actions']['submit']['#value'] = 'Skapa erbjudande';
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_state) {
+  // if ($form['#node']->nid) {
+  //   // Don't alter the form when editing an existing node, bail out.
+  //   return;
+  // }
+
+  // // Add the offer display from the investors view as a prefix to the form. The
+  // // view is needed in order to filter among the investors. The view can't be
+  // // embedded as a subform within the node form, since this will break the AJAX
+  // // functionality. The reason is unknown, but that's just the way it is...
+  // if ($form_state['storage']['step'] == 'step_cap_rais_2') {
+  //   $form['#prefix'] = views_embed_view('investors', 'offer_embed');
+  // }
+
+  // // Get the available investors from the database.
+  // $available_investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
+
+  // // Get the selected investors, based on the form values, and sort them
+  // // alphabetically.
+  // $selected_investors = isset($form_state['values']['investors']) ? array_intersect_key($available_investors, array_filter($form_state['values']['investors'])) : array();
+  // asort($selected_investors);
+
+  // // Add checkboxes for every available investor. This will be added to the
+  // // second step, and will get its values from the embedded view. See the
+  // // attached javascript for more information about what's going on.
+  // $form['investors'] = array(
+  //   '#type' => 'checkboxes',
+  //   '#options' => $available_investors,
+  //   '#default_value' => array_keys($selected_investors),
+  //   '#attached' => array(
+  //     'js' => array(
+  //       drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
+  //     ),
+  //   ),
+  //   '#prefix' => '<div style="display: none;">',
+  //   '#suffix' => '</div>',
+  // );
+  // $form['#step_children']['investors'] =  'step_cap_rais_2';
+
+  // // Add elements that are required for the third step.
+  // if ($form_state['storage']['step'] == 'step_cap_rais_3') {
+  //   // Build the node object based of the form values. This will be used to
+  //   // generate the preview.
+  //   $node = node_form_submit_build_node($form, $form_state);
+
+  //   // Add the rendered node as a preview to the left fieldset. This fieldset will
+  //   // be added to the third step.
+  //   $form['preview_node'] = node_view($node);
+  //   $form['preview_node']['#prefix'] = '<div id="preview-transaction" class="column">';
+  //   $form['preview_node']['#suffix'] = '</div>';
+  //   $form['#step_children']['preview_node'] =  'step_cap_rais_3';
+
+  //   // Add a wrapper for all the elements in the right column.
+  //   $form['right'] = array(
+  //     '#prefix' => '<div id="preview-investors" class="column">',
+  //     '#suffix' => '</div>',
+  //   );
+  //   $form['#step_children']['right'] =  'step_cap_rais_3';
+
+  //   // Add checkboxes for every selected investor, which will be added to the
+  //   // third step. This will be used as the confirmation page, where the user will
+  //   // be able to deselect some of the investors before creating the transaction.
+  //   $form['right']['selected_investors'] = array(
+  //     '#type' => 'checkboxes',
+  //     '#options' => $selected_investors,
+  //     '#default_value' => array_keys($selected_investors),
+  //     '#prefix' => '<h3>Kontaktlista</h3>',
+  //   );
+  // }
+
+  // // Add javascript that are used in every step for the form.
+  // $form['#attached'] = array(
+  //   'js' => array(
+  //     drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
+  //   ),
+  // );
+
+  // // Change the text of the submit button.
+  // $form['actions']['submit']['#value'] = 'Skapa transaktion';
 }
 
 /**
  * Implements hook_node_insert().
  */
 function sedermera_offer_node_insert($node) {
-  if ($node->type != 'capital_raising' || empty($node->selected_investors)) {
+  if ($node->type != 'erbjudande' || empty($node->selected_persons)) {
     return;
   }
 
   // Create offer entities for each investor.
-  foreach (array_filter($node->selected_investors) as $investor_id) {
-    // Setup the values for the offer entity.
-    $values = array(
-      'type' => 'offer',
-      'field_offer_cap_rais' => array(
-        LANGUAGE_NONE => array(
-          array('target_id' => $node->nid)
-        ),
-      ),
-      'field_offer_investor' => array(
-        LANGUAGE_NONE => array(
-          array('target_id' => $investor_id)
-        ),
-      ),
-    );
-
-    // Create the offer, and save it.
-    $offer = entity_create('offer', $values);
-    entity_save('offer', $offer);
+  foreach (array_filter($node->selected_persons) as $person_nid) {
+    create_transaction_node($person_nid, $node->nid);
   }
 }
 
@@ -1129,22 +1166,32 @@ function sedermera_offer_form_editablefields_form_alter(&$form, &$form_state) {
  * Get every investor that are connected to a capital raising via an offer
  * entity.
  *
- * @param int $capital_raising_nid.
+ * @param int $offer_nid.
  *   The node ID for the capital raising node.
  *
  * @return array
  *   An array with the ID's for every investor entity.
  */
-function sedermera_offer_get_investors_for_capital_raising($capital_raising_nid) {
-  // Create and execute the query.
-  $query = db_select('field_data_field_offer_cap_rais', 'capital_raising');
-  $query->addField('offer', 'field_offer_investor_target_id', 'investor');
-  $query->join('field_data_field_offer_investor', 'offer', 'capital_raising.entity_id = offer.entity_id');
-  $query->condition('field_offer_cap_rais_target_id', $capital_raising_nid);
-  $result = $query->execute();
+function sedermera_offer_get_investors_for_capital_raising($offer_nid) {
 
-  // Return the first column for the entire result.
-  return $result->fetchCol();
+  // dprint_r($offer_nid); die;
+
+  $result = db_query("SELECT field_transaction_person_target_id FROM field_data_field_transaction_person AS p
+INNER JOIN field_data_field_transaction_offer AS o ON (o.field_transaction_offer_target_id = :offer_nid)", array(':offer_nid' => $offer_nid))->fetchCol();
+
+  return $result;
+
+  // dprint_r($result); die;
+
+  // // Create and execute the query.
+  // $query = db_select('field_data_field_offer_cap_rais', 'capital_raising');
+  // $query->addField('offer', 'field_offer_investor_target_id', 'investor');
+  // $query->join('field_data_field_offer_investor', 'offer', 'capital_raising.entity_id = offer.entity_id');
+  // $query->condition('field_offer_cap_rais_target_id', $offer_nid);
+  // $result = $query->execute();
+
+  // // Return the first column for the entire result.
+  // return $result->fetchCol();
 }
 
 /**

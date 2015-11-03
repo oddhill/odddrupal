@@ -10,19 +10,52 @@
 function f_investor_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-investerare:investerare/lista
-  $menu_links['main-menu_alla-investerare:investerare/lista'] = array(
+  // Exported menu link: main-menu_alla-avtalsparter:avtalsparter/lista
+  $menu_links['main-menu_alla-avtalsparter:avtalsparter/lista'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'investerare/lista',
-    'router_path' => 'investerare/lista',
-    'link_title' => 'Alla investerare',
+    'link_path' => 'avtalsparter/lista',
+    'router_path' => 'avtalsparter/lista',
+    'link_title' => 'Alla avtalsparter',
     'options' => array(
-      'identifier' => 'main-menu_alla-investerare:investerare/lista',
       'attributes' => array(
         'class' => array(
           0 => 'all',
         ),
       ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_alla-avtalsparter:avtalsparter/lista',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_avtalsparter:avtalsparter',
+  );
+  // Exported menu link: main-menu_alla-kontaktpersoner:kontaktpersoner/lista
+  $menu_links['main-menu_alla-kontaktpersoner:kontaktpersoner/lista'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'kontaktpersoner/lista',
+    'router_path' => 'kontaktpersoner/lista',
+    'link_title' => 'Alla kontaktpersoner',
+    'options' => array(
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_alla-kontaktpersoner:kontaktpersoner/lista',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -31,20 +64,24 @@ function f_investor_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_investerare:investerare',
+    'parent_identifier' => 'main-menu_kontaktpersoner:kontaktpersoner',
   );
-  // Exported menu link: main-menu_investerare:investerare
-  $menu_links['main-menu_investerare:investerare'] = array(
+  // Exported menu link: main-menu_avtalsparter:avtalsparter
+  $menu_links['main-menu_avtalsparter:avtalsparter'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'investerare',
-    'router_path' => 'investerare',
-    'link_title' => 'Investerare',
+    'link_path' => 'avtalsparter',
+    'router_path' => 'avtalsparter',
+    'link_title' => 'Avtalsparter',
     'options' => array(
-      'alter' => TRUE,
-      'identifier' => 'main-menu_investerare:investerare',
       'attributes' => array(
         'id' => 'investors',
       ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_avtalsparter:avtalsparter',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -54,62 +91,36 @@ function f_investor_menu_default_menu_links() {
     'weight' => -48,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_kontaktpersoner:investerare/kontaktperson
-  $menu_links['main-menu_kontaktpersoner:investerare/kontaktperson'] = array(
+  // Exported menu link: main-menu_kontaktpersoner:kontaktpersoner
+  $menu_links['main-menu_kontaktpersoner:kontaktpersoner'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'investerare/kontaktperson',
-    'router_path' => 'investerare/kontaktperson',
+    'link_path' => 'kontaktpersoner',
+    'router_path' => 'kontaktpersoner',
     'link_title' => 'Kontaktpersoner',
     'options' => array(
-      'attributes' => array(
-        'id' => 'document-log',
-      ),
+      'attributes' => array(),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_kontaktpersoner:investerare/kontaktperson',
+      'identifier' => 'main-menu_kontaktpersoner:kontaktpersoner',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -49,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_investerare:investerare',
-  );
-  // Exported menu link: main-menu_lgg-till-investerare:investerare/skapa
-  $menu_links['main-menu_lgg-till-investerare:investerare/skapa'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'investerare/skapa',
-    'router_path' => 'investerare/skapa',
-    'link_title' => 'Lägg till investerare',
-    'options' => array(
-      'identifier' => 'main-menu_lgg-till-investerare:investerare/skapa',
-      'attributes' => array(
-        'class' => array(
-          0 => 'add',
-        ),
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 10,
-    'customized' => 1,
-    'parent_identifier' => 'main-menu_investerare:investerare',
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Alla investerare');
-  t('Investerare');
+  t('Alla avtalsparter');
+  t('Alla kontaktpersoner');
+  t('Avtalsparter');
   t('Kontaktpersoner');
-  t('Lägg till investerare');
 
   return $menu_links;
 }

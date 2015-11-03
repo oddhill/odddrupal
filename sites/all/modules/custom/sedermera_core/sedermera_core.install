@@ -78,3 +78,11 @@ function sedermera_core_update_7004() {
   );
   path_save($path);
 }
+
+function sedermera_core_update_7005() {
+  $path = array(
+    'source' => 'node/add/erbjudande',
+    'alias' => 'erbjudande/skapa',
+  );
+  path_save($path);
+}

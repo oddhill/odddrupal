@@ -230,3 +230,13 @@ function sedermera_update_update_7011() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7012() {
+  field_delete_field('field_user_location');
+
+  field_purge_batch(1000);
+}
