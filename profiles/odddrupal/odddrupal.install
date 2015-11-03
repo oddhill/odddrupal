@@ -987,3 +987,10 @@ function odddrupal_update_7160() {
     module_enable(array('context_list_active'));
   }
 }
+
+/**
+ * Set the default path for features export.
+ */
+function odddrupal_update_7161() {
+  variable_set('features_default_export_path', 'sites/all/modules/features');
+}
