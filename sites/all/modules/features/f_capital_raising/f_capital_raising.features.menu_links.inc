@@ -10,7 +10,7 @@
 function f_capital_raising_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-erbjudande:erbjudande/lista
+  // Exported menu link: main-menu_alla-erbjudande:erbjudande/lista.
   $menu_links['main-menu_alla-erbjudande:erbjudande/lista'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'erbjudande/lista',
@@ -38,7 +38,7 @@ function f_capital_raising_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_erbjudande:erbjudande',
   );
-  // Exported menu link: main-menu_alla-transaktioner:transaktioner/lista
+  // Exported menu link: main-menu_alla-transaktioner:transaktioner/lista.
   $menu_links['main-menu_alla-transaktioner:transaktioner/lista'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'transaktioner/lista',
@@ -61,7 +61,7 @@ function f_capital_raising_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_transaktioner:transaktioner',
   );
-  // Exported menu link: main-menu_arkiverade-transaktioner:transaktioner/arkiverade
+  // Exported menu link: main-menu_arkiverade-transaktioner:transaktioner/arkiverade.
   $menu_links['main-menu_arkiverade-transaktioner:transaktioner/arkiverade'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'transaktioner/arkiverade',
@@ -84,7 +84,7 @@ function f_capital_raising_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_transaktioner:transaktioner',
   );
-  // Exported menu link: main-menu_erbjudande:erbjudande
+  // Exported menu link: main-menu_erbjudande:erbjudande.
   $menu_links['main-menu_erbjudande:erbjudande'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'erbjudande',
@@ -109,7 +109,7 @@ function f_capital_raising_menu_default_menu_links() {
     'weight' => -46,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_lgg-till-transaktion:node/add/capital-raising
+  // Exported menu link: main-menu_lgg-till-transaktion:node/add/capital-raising.
   $menu_links['main-menu_lgg-till-transaktion:node/add/capital-raising'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/capital-raising',
@@ -135,7 +135,7 @@ function f_capital_raising_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_transaktioner:transaktioner',
   );
-  // Exported menu link: main-menu_transaktioner:transaktioner
+  // Exported menu link: main-menu_transaktioner:transaktioner.
   $menu_links['main-menu_transaktioner:transaktioner'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'transaktioner',
@@ -156,7 +156,7 @@ function f_capital_raising_menu_default_menu_links() {
     'weight' => -45,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_transaktionshistoria:transaktioner/historik
+  // Exported menu link: main-menu_transaktionshistoria:transaktioner/historik.
   $menu_links['main-menu_transaktionshistoria:transaktioner/historik'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'transaktioner/historik',

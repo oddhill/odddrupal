@@ -10,7 +10,7 @@
 function f_capital_raising_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-capital_raising-body'
+  // Exported field_instance: 'node-capital_raising-body'.
   $field_instances['node-capital_raising-body'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -90,7 +90,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_comp'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_comp'.
   $field_instances['node-capital_raising-field_cap_rais_comp'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -149,7 +149,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_date'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_date'.
   $field_instances['node-capital_raising-field_cap_rais_date'] = array(
     'bundle' => 'capital_raising',
     'deleted' => 0,
@@ -213,7 +213,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_estim'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_estim'.
   $field_instances['node-capital_raising-field_cap_rais_estim'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -271,7 +271,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_file'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_file'.
   $field_instances['node-capital_raising-field_cap_rais_file'] = array(
     'bundle' => 'capital_raising',
     'deleted' => 0,
@@ -320,7 +320,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_com'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_com'.
   $field_instances['node-capital_raising-field_cap_rais_goal_com'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -366,7 +366,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_guar'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_guar'.
   $field_instances['node-capital_raising-field_cap_rais_goal_guar'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -412,7 +412,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_loan'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_loan'.
   $field_instances['node-capital_raising-field_cap_rais_goal_loan'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -464,7 +464,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_newem'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_newem'.
   $field_instances['node-capital_raising-field_cap_rais_goal_newem'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -516,7 +516,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_oth'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_oth'.
   $field_instances['node-capital_raising-field_cap_rais_goal_oth'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -588,7 +588,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_pp'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_pp'.
   $field_instances['node-capital_raising-field_cap_rais_goal_pp'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -641,7 +641,7 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-capital_raising-field_cap_rais_goal_signcommit'
+  // 'node-capital_raising-field_cap_rais_goal_signcommit'.
   $field_instances['node-capital_raising-field_cap_rais_goal_signcommit'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -693,7 +693,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_tot'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_tot'.
   $field_instances['node-capital_raising-field_cap_rais_goal_tot'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -739,7 +739,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_goal_warrant'
+  // Exported field_instance:
+  // 'node-capital_raising-field_cap_rais_goal_warrant'.
   $field_instances['node-capital_raising-field_cap_rais_goal_warrant'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -791,7 +792,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_info_mail'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_info_mail'.
   $field_instances['node-capital_raising-field_cap_rais_info_mail'] = array(
     'bundle' => 'capital_raising',
     'default_value' => array(
@@ -840,7 +841,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_post'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_post'.
   $field_instances['node-capital_raising-field_cap_rais_post'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -898,7 +899,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_post_units'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_post_units'.
   $field_instances['node-capital_raising-field_cap_rais_post_units'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -956,7 +957,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_rate'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_rate'.
   $field_instances['node-capital_raising-field_cap_rais_rate'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -1014,7 +1015,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_stock_no'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_stock_no'.
   $field_instances['node-capital_raising-field_cap_rais_stock_no'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -1072,7 +1073,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_text_def'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_text_def'.
   $field_instances['node-capital_raising-field_cap_rais_text_def'] = array(
     'bundle' => 'capital_raising',
     'default_value' => array(
@@ -1146,7 +1147,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_type'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_type'.
   $field_instances['node-capital_raising-field_cap_rais_type'] = array(
     'bundle' => 'capital_raising',
     'default_value' => array(
@@ -1192,7 +1193,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_units_no'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_units_no'.
   $field_instances['node-capital_raising-field_cap_rais_units_no'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -1250,7 +1251,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_vol'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_vol'.
   $field_instances['node-capital_raising-field_cap_rais_vol'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -1308,7 +1309,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-capital_raising-field_cap_rais_vol_units'
+  // Exported field_instance: 'node-capital_raising-field_cap_rais_vol_units'.
   $field_instances['node-capital_raising-field_cap_rais_vol_units'] = array(
     'bundle' => 'capital_raising',
     'default_value' => NULL,
@@ -1366,7 +1367,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_additional'
+  // Exported field_instance: 'node-erbjudande-field_offer_additional'.
   $field_instances['node-erbjudande-field_offer_additional'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -1441,7 +1442,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_company'
+  // Exported field_instance: 'node-erbjudande-field_offer_company'.
   $field_instances['node-erbjudande-field_offer_company'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -1484,7 +1485,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_files'
+  // Exported field_instance: 'node-erbjudande-field_offer_files'.
   $field_instances['node-erbjudande-field_offer_files'] = array(
     'bundle' => 'erbjudande',
     'deleted' => 0,
@@ -1526,7 +1527,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_logout_info'
+  // Exported field_instance: 'node-erbjudande-field_offer_logout_info'.
   $field_instances['node-erbjudande-field_offer_logout_info'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -1569,7 +1570,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_text'
+  // Exported field_instance: 'node-erbjudande-field_offer_text'.
   $field_instances['node-erbjudande-field_offer_text'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -1639,7 +1640,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_time'
+  // Exported field_instance: 'node-erbjudande-field_offer_time'.
   $field_instances['node-erbjudande-field_offer_time'] = array(
     'bundle' => 'erbjudande',
     'deleted' => 0,
@@ -1694,7 +1695,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bl'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bl'.
   $field_instances['node-erbjudande-field_offer_type_bl'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -1737,7 +1738,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_interest'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_interest'.
   $field_instances['node-erbjudande-field_offer_type_bl_interest'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -1807,7 +1808,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_planned'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_planned'.
   $field_instances['node-erbjudande-field_offer_type_bl_planned'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -1877,7 +1878,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_sum'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_sum'.
   $field_instances['node-erbjudande-field_offer_type_bl_sum'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -1923,7 +1924,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_time'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bl_time'.
   $field_instances['node-erbjudande-field_offer_type_bl_time'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -1993,7 +1994,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bp'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bp'.
   $field_instances['node-erbjudande-field_offer_type_bp'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -2036,7 +2037,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_planned'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_planned'.
   $field_instances['node-erbjudande-field_offer_type_bp_planned'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2106,7 +2107,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_price'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_price'.
   $field_instances['node-erbjudande-field_offer_type_bp_price'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2176,7 +2177,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_sum'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_sum'.
   $field_instances['node-erbjudande-field_offer_type_bp_sum'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2222,7 +2223,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_time'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_bp_time'.
   $field_instances['node-erbjudande-field_offer_type_bp_time'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2292,7 +2293,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe'.
   $field_instances['node-erbjudande-field_offer_type_fe'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -2335,7 +2336,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_bonus'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_bonus'.
   $field_instances['node-erbjudande-field_offer_type_fe_bonus'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2405,7 +2406,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_payment'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_payment'.
   $field_instances['node-erbjudande-field_offer_type_fe_payment'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2475,7 +2476,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_pre'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_pre'.
   $field_instances['node-erbjudande-field_offer_type_fe_pre'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2545,7 +2546,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_rate'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_rate'.
   $field_instances['node-erbjudande-field_offer_type_fe_rate'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2615,7 +2616,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_sign'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_sign'.
   $field_instances['node-erbjudande-field_offer_type_fe_sign'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2661,7 +2662,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_sum'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_sum'.
   $field_instances['node-erbjudande-field_offer_type_fe_sum'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2707,7 +2708,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_terms'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_terms'.
   $field_instances['node-erbjudande-field_offer_type_fe_terms'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2777,7 +2778,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_time'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_time'.
   $field_instances['node-erbjudande-field_offer_type_fe_time'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2847,7 +2848,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_warrant'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_warrant'.
   $field_instances['node-erbjudande-field_offer_type_fe_warrant'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -2893,7 +2894,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_fe_warrant_type'
+  // Exported field_instance:
+  // 'node-erbjudande-field_offer_type_fe_warrant_type'.
   $field_instances['node-erbjudande-field_offer_type_fe_warrant_type'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -2934,7 +2936,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le'.
   $field_instances['node-erbjudande-field_offer_type_le'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -2977,7 +2979,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_bonus'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_bonus'.
   $field_instances['node-erbjudande-field_offer_type_le_bonus'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3047,7 +3049,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_count'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_count'.
   $field_instances['node-erbjudande-field_offer_type_le_count'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3117,7 +3119,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_low'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_low'.
   $field_instances['node-erbjudande-field_offer_type_le_low'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3187,7 +3189,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_market'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_market'.
   $field_instances['node-erbjudande-field_offer_type_le_market'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3257,7 +3259,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_payment'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_payment'.
   $field_instances['node-erbjudande-field_offer_type_le_payment'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3327,7 +3329,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_pre'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_pre'.
   $field_instances['node-erbjudande-field_offer_type_le_pre'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3397,7 +3399,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_rate'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_rate'.
   $field_instances['node-erbjudande-field_offer_type_le_rate'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3467,7 +3469,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_sign'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_sign'.
   $field_instances['node-erbjudande-field_offer_type_le_sign'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3513,7 +3515,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_sum'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_sum'.
   $field_instances['node-erbjudande-field_offer_type_le_sum'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3559,7 +3561,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_terms'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_terms'.
   $field_instances['node-erbjudande-field_offer_type_le_terms'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3629,7 +3631,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_time'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_time'.
   $field_instances['node-erbjudande-field_offer_type_le_time'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3699,7 +3701,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_warrant'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_le_warrant'.
   $field_instances['node-erbjudande-field_offer_type_le_warrant'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3745,7 +3747,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_le_warrant_type'
+  // Exported field_instance:
+  // 'node-erbjudande-field_offer_type_le_warrant_type'.
   $field_instances['node-erbjudande-field_offer_type_le_warrant_type'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -3786,7 +3789,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_pp'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_pp'.
   $field_instances['node-erbjudande-field_offer_type_pp'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -3829,7 +3832,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_payment'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_payment'.
   $field_instances['node-erbjudande-field_offer_type_pp_payment'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3899,7 +3902,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_pre'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_pre'.
   $field_instances['node-erbjudande-field_offer_type_pp_pre'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -3969,7 +3972,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_rate'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_rate'.
   $field_instances['node-erbjudande-field_offer_type_pp_rate'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4039,7 +4042,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_sign'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_sign'.
   $field_instances['node-erbjudande-field_offer_type_pp_sign'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4085,7 +4088,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_sum'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_sum'.
   $field_instances['node-erbjudande-field_offer_type_pp_sum'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4131,7 +4134,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_time'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_pp_time'.
   $field_instances['node-erbjudande-field_offer_type_pp_time'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4201,7 +4204,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_re'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_re'.
   $field_instances['node-erbjudande-field_offer_type_re'] = array(
     'bundle' => 'erbjudande',
     'default_value' => array(
@@ -4244,7 +4247,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_re_payment'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_re_payment'.
   $field_instances['node-erbjudande-field_offer_type_re_payment'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4314,7 +4317,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_re_pre'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_re_pre'.
   $field_instances['node-erbjudande-field_offer_type_re_pre'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4384,7 +4387,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_re_rate'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_re_rate'.
   $field_instances['node-erbjudande-field_offer_type_re_rate'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4454,7 +4457,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_re_sign'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_re_sign'.
   $field_instances['node-erbjudande-field_offer_type_re_sign'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4500,7 +4503,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_re_sum'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_re_sum'.
   $field_instances['node-erbjudande-field_offer_type_re_sum'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4546,7 +4549,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-erbjudande-field_offer_type_re_time'
+  // Exported field_instance: 'node-erbjudande-field_offer_type_re_time'.
   $field_instances['node-erbjudande-field_offer_type_re_time'] = array(
     'bundle' => 'erbjudande',
     'default_value' => NULL,
@@ -4616,7 +4619,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-body'
+  // Exported field_instance: 'node-transaction-body'.
   $field_instances['node-transaction-body'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -4660,7 +4663,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_block'
+  // Exported field_instance: 'node-transaction-field_transaction_block'.
   $field_instances['node-transaction-field_transaction_block'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -4706,7 +4709,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_bridging'
+  // Exported field_instance: 'node-transaction-field_transaction_bridging'.
   $field_instances['node-transaction-field_transaction_bridging'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -4752,7 +4755,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_fe_sign'
+  // Exported field_instance: 'node-transaction-field_transaction_fe_sign'.
   $field_instances['node-transaction-field_transaction_fe_sign'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -4798,7 +4801,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_fe_warant'
+  // Exported field_instance: 'node-transaction-field_transaction_fe_warant'.
   $field_instances['node-transaction-field_transaction_fe_warant'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -4844,7 +4847,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_first'
+  // Exported field_instance: 'node-transaction-field_transaction_first'.
   $field_instances['node-transaction-field_transaction_first'] = array(
     'bundle' => 'transaction',
     'deleted' => 0,
@@ -4899,7 +4902,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_info'
+  // Exported field_instance: 'node-transaction-field_transaction_info'.
   $field_instances['node-transaction-field_transaction_info'] = array(
     'bundle' => 'transaction',
     'default_value' => array(
@@ -4942,7 +4945,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_info_offer'
+  // Exported field_instance: 'node-transaction-field_transaction_info_offer'.
   $field_instances['node-transaction-field_transaction_info_offer'] = array(
     'bundle' => 'transaction',
     'default_value' => array(
@@ -4985,7 +4988,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_interested'
+  // Exported field_instance: 'node-transaction-field_transaction_interested'.
   $field_instances['node-transaction-field_transaction_interested'] = array(
     'bundle' => 'transaction',
     'default_value' => array(
@@ -5029,7 +5032,7 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction-field_transaction_interested_day'
+  // 'node-transaction-field_transaction_interested_day'.
   $field_instances['node-transaction-field_transaction_interested_day'] = array(
     'bundle' => 'transaction',
     'deleted' => 0,
@@ -5084,7 +5087,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_investor'
+  // Exported field_instance: 'node-transaction-field_transaction_investor'.
   $field_instances['node-transaction-field_transaction_investor'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5127,7 +5130,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_le_sign'
+  // Exported field_instance: 'node-transaction-field_transaction_le_sign'.
   $field_instances['node-transaction-field_transaction_le_sign'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5173,7 +5176,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_le_warrant'
+  // Exported field_instance: 'node-transaction-field_transaction_le_warrant'.
   $field_instances['node-transaction-field_transaction_le_warrant'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5219,7 +5222,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_note'
+  // Exported field_instance: 'node-transaction-field_transaction_note'.
   $field_instances['node-transaction-field_transaction_note'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5289,7 +5292,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_offer'
+  // Exported field_instance: 'node-transaction-field_transaction_offer'.
   $field_instances['node-transaction-field_transaction_offer'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5332,7 +5335,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_person'
+  // Exported field_instance: 'node-transaction-field_transaction_person'.
   $field_instances['node-transaction-field_transaction_person'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5375,7 +5378,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_pp_sign'
+  // Exported field_instance: 'node-transaction-field_transaction_pp_sign'.
   $field_instances['node-transaction-field_transaction_pp_sign'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5421,7 +5424,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_re_sign'
+  // Exported field_instance: 'node-transaction-field_transaction_re_sign'.
   $field_instances['node-transaction-field_transaction_re_sign'] = array(
     'bundle' => 'transaction',
     'default_value' => NULL,
@@ -5467,7 +5470,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction-field_transaction_sum'
+  // Exported field_instance: 'node-transaction-field_transaction_sum'.
   $field_instances['node-transaction-field_transaction_sum'] = array(
     'bundle' => 'transaction',
     'default_value' => array(
@@ -5517,7 +5520,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-body'
+  // Exported field_instance: 'node-transaktion_ap-body'.
   $field_instances['node-transaktion_ap-body'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5562,7 +5565,7 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_aggrement'
+  // 'node-transaktion_ap-field_transaction_ap_aggrement'.
   $field_instances['node-transaktion_ap-field_transaction_ap_aggrement'] = array(
     'bundle' => 'transaktion_ap',
     'deleted' => 0,
@@ -5604,7 +5607,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_ap'
+  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_ap'.
   $field_instances['node-transaktion_ap-field_transaction_ap_ap'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5647,7 +5650,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_block'
+  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_block'.
   $field_instances['node-transaktion_ap-field_transaction_ap_block'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5694,7 +5697,7 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_bridging'
+  // 'node-transaktion_ap-field_transaction_ap_bridging'.
   $field_instances['node-transaktion_ap-field_transaction_ap_bridging'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5740,7 +5743,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_ctrl'
+  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_ctrl'.
   $field_instances['node-transaktion_ap-field_transaction_ap_ctrl'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => array(
@@ -5783,7 +5786,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_fe_sign'
+  // Exported field_instance:
+  // 'node-transaktion_ap-field_transaction_ap_fe_sign'.
   $field_instances['node-transaktion_ap-field_transaction_ap_fe_sign'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5830,7 +5834,7 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_fe_warrant'
+  // 'node-transaktion_ap-field_transaction_ap_fe_warrant'.
   $field_instances['node-transaktion_ap-field_transaction_ap_fe_warrant'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5876,7 +5880,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_le_sign'
+  // Exported field_instance:
+  // 'node-transaktion_ap-field_transaction_ap_le_sign'.
   $field_instances['node-transaktion_ap-field_transaction_ap_le_sign'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5923,7 +5928,7 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_le_warrant'
+  // 'node-transaktion_ap-field_transaction_ap_le_warrant'.
   $field_instances['node-transaktion_ap-field_transaction_ap_le_warrant'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -5969,7 +5974,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_pp_sign'
+  // Exported field_instance:
+  // 'node-transaktion_ap-field_transaction_ap_pp_sign'.
   $field_instances['node-transaktion_ap-field_transaction_ap_pp_sign'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -6015,7 +6021,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_re_sign'
+  // Exported field_instance:
+  // 'node-transaktion_ap-field_transaction_ap_re_sign'.
   $field_instances['node-transaktion_ap-field_transaction_ap_re_sign'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -6061,7 +6068,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_signed'
+  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_signed'.
   $field_instances['node-transaktion_ap-field_transaction_ap_signed'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => array(
@@ -6105,7 +6112,7 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_signed_date'
+  // 'node-transaktion_ap-field_transaction_ap_signed_date'.
   $field_instances['node-transaktion_ap-field_transaction_ap_signed_date'] = array(
     'bundle' => 'transaktion_ap',
     'deleted' => 0,
@@ -6160,7 +6167,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_sum'
+  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_sum'.
   $field_instances['node-transaktion_ap-field_transaction_ap_sum'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => NULL,
@@ -6206,7 +6213,8 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_to_sign'
+  // Exported field_instance:
+  // 'node-transaktion_ap-field_transaction_ap_to_sign'.
   $field_instances['node-transaktion_ap-field_transaction_ap_to_sign'] = array(
     'bundle' => 'transaktion_ap',
     'default_value' => array(
