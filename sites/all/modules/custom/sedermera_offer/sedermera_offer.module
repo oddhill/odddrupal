@@ -650,7 +650,7 @@ function sedermera_offer_capital_raising_get_signed_guaranteed($node) {
  */
 function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bundle, $form, $form_state = array()) {
   // Disable every step when editing an existing capital raising node.
-  if ($entity_type == 'node' && $bundle == 'capital_raising' && !empty($form['node']->nid)) {
+  if ($entity_type == 'node' && $bundle == 'erbjudande' && !empty($form['node']->nid)) {
     $steps_cached = array();
   }
 }
