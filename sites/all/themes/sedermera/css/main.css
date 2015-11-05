@@ -552,100 +552,6 @@ form.views-send-preview .form-actions {
     position: absolute;
     top: 0; }
 
-.page-investerare-skapa .create-type-list {
-  list-style: none;
-  margin: 0 -10px;
-  overflow: hidden; }
-.page-investerare-skapa .item {
-  background: #ebedf1;
-  border-top: 1px solid #e0e2e6;
-  display: block;
-  padding: 30px 20px 25px;
-  min-height: 140px; }
-  .page-investerare-skapa .item:hover {
-    border-top: 1px solid #1a1a1a; }
-  .page-investerare-skapa .item span {
-    display: block; }
-  .page-investerare-skapa .item .title {
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 26px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    text-transform: uppercase; }
-
-.type {
-  display: block;
-  float: left;
-  margin-bottom: 20px;
-  text-align: center;
-  width: 33.3%; }
-
-.type-container {
-  margin: 0 10px; }
-
-#edit-field-shared-notes-und-0-value {
-  border: 0;
-  margin-top: 10px; }
-
-.node-capital_raising-form .form-actions {
-  text-align: right;
-  width: 100%; }
-  .node-capital_raising-form .form-actions .form-submit {
-    margin-left: 10px;
-    margin-right: 0; }
-.node-capital_raising-form .field.title h2 {
-  font-size: 32px;
-  font-size: 3.2rem;
-  line-height: 48px;
-  font-weight: 500;
-  border-bottom: 2px solid #f3f4f8;
-  margin-bottom: 33px;
-  padding: 0 0 33px 0;
-  text-align: center; }
-.node-capital_raising-form #preview-transaction {
-  background: #fff;
-  overflow: hidden;
-  padding: 50px 40px 50px 40px;
-  width: 75%; }
-.node-capital_raising-form #preview-investors {
-  background: #e0e2e6;
-  padding: 20px;
-  width: 25%; }
-  .node-capital_raising-form #preview-investors h3 {
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 18px;
-    background: #c8cacd;
-    border-bottom: 1px solid #e0e2e6;
-    font-weight: 700;
-    padding: 10px 0 10px 0;
-    text-align: center;
-    text-transform: uppercase; }
-  .node-capital_raising-form #preview-investors .form-item {
-    margin-bottom: 5px; }
-  .node-capital_raising-form #preview-investors .checker {
-    margin-bottom: 4px;
-    margin-right: 5px; }
-  .node-capital_raising-form #preview-investors #edit-selected-investors {
-    background: #d4d6d9;
-    margin-bottom: 20px;
-    padding: 20px 20px 15px 20px; }
-
-#edit-field-cap-rais-file .form-type-textfield label {
-  color: #a9a9a9;
-  left: 10px;
-  position: absolute;
-  top: 21px; }
-#edit-field-cap-rais-file input {
-  border: 0; }
-#edit-field-cap-rais-file input[value="Remove"],
-#edit-field-cap-rais-file input[value="Ta bort"] {
-  margin-top: 9px; }
-
-a.tabledrag-handle {
-  display: none; }
-
 .page-investor-person-edit .form-sidebar,
 .page-investor-company-edit .form-sidebar,
 .page-investor-lead-edit .form-sidebar {
@@ -1562,40 +1468,6 @@ input[value="Jämför"]#edit-submit {
       background-color: #303030; }
   #revisioning-ux-delete-all .form .submit-wrapper.form-submit {
     margin-right: 0; }
-
-.field-shared-custresp .label,
-.field-invest-comp-own .label,
-.field-shared-industries .label,
-.field-shared-email .label,
-.field-shared-cell .label,
-.field-shared-phone .label,
-.field-shared-fax .label,
-.field-shared-address .label,
-.field-shared-notes .label,
-.field-shared-interests .label {
-  display: inline-block;
-  width: 40%;
-  margin-bottom: 10px; }
-
-.field-shared-notes .label {
-  display: block;
-  margin-bottom: 10px; }
-
-.field-invest-cont-person .label {
-  display: block;
-  margin-bottom: 10px; }
-
-.entity-contact-person {
-  padding: 10px;
-  margin: 10px 0;
-  border: 2px solid #f3f4f8;
-  border-radius: 5px; }
-  .entity-contact-person .field .label {
-    display: inline-block;
-    width: 25%; }
-
-.transaction-history h2 {
-  margin-bottom: 15px; }
 
 .node-type-company .content-wrapper {
   background: #fff;
@@ -2644,14 +2516,8 @@ form#user-login #edit-submit {
   .activities-wrapper .pager a {
     background: #c8cacd; }
 
-.filtered-table {
-  background: #fff;
-  overflow-y: hidden;
-  overflow-x: scroll; }
-
 .table-filter {
   background: #e0e2e6;
-  float: left;
   width: 23%; }
   .table-filter h2.filter-icon {
     background: #454545;

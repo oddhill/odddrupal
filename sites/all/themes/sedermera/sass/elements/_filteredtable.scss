@@ -1,15 +1,6 @@
-// Wraps the entire table
-.filtered-table {
-  background: #fff;
-  overflow-y: hidden;
-  overflow-x: scroll;
-}
-
 // Wraps the entire filter
 .table-filter {
   background: $wool;
-  float: left;
-  //width: 280px;
   width: 23%;
 
   h2.filter-icon {

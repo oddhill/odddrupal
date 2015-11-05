@@ -22,7 +22,7 @@
 
   <?php print $attachment_before; ?>
 
-  <div class="table-wrapper">
+   <div class="table-wrapper">
 
     <?php print $rows; ?>
 
@@ -39,5 +39,4 @@
     <?php print $pager; ?>
 
   </div>
-
 </div>
