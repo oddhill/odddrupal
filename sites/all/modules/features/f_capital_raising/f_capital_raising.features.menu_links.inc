@@ -91,15 +91,15 @@ function f_capital_raising_menu_default_menu_links() {
     'router_path' => 'erbjudande',
     'link_title' => 'Erbjudande',
     'options' => array(
+      'identifier' => 'main-menu_erbjudande:erbjudande',
       'attributes' => array(
-        'id' => 'transactions',
+        'id' => 'offers',
       ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_erbjudande:erbjudande',
     ),
     'module' => 'menu',
     'hidden' => 0,

@@ -81,20 +81,20 @@
   }
 }
 
-// Expiring transaction wrapper (Utgående transaktion)
-.capital-rasing-db-wrapper {
+// Expiring offers wrapper (Utgående erbjudande)
+.offers-db-wrapper {
   margin-bottom: 70px;
 }
 
-// Expiring transaction header
-.captial-rasing-db {
+// Expiring offers
+.offers-db-header {
   padding-left: 30px;
   position: relative;
   margin-bottom: 10px;
 
   // Expiring transaction icon (Utgående transaktion)
   &:before {
-    @include svg-bg(transaction_dark_grey);
+    @include svg-bg(offers_dark_grey);
     content: '';
     height: 20px;
     left: 0;

@@ -1637,7 +1637,7 @@ input[value="Jämför"]#edit-submit {
     -moz-transition: background-color 0.1s ease-in-out;
     transition: background-color 0.1s ease-in-out; }
     #user-pass-reset #edit-submit:hover {
-      background-color: #ae7300; }
+      background-color: #ae7400; }
     #user-pass-reset #edit-submit:hover {
       background-color: #fbc04d;
       box-shadow: 0 0 3px #232323; }
@@ -1668,7 +1668,7 @@ input[value="Jämför"]#edit-submit {
   color: #1a1a1a; }
   #user-pass #edit-submit:hover,
   #yubikey-lost #edit-submit:hover {
-    background-color: #ae7300; }
+    background-color: #ae7400; }
 
 .view-offers .add-more {
   display: inline-block;
@@ -2285,7 +2285,7 @@ form#user-login #edit-submit {
   transition: background-color 0.1s ease-in-out;
   margin: 10px 0 0; }
   form#user-login #edit-submit:hover {
-    background-color: #ae7300; }
+    background-color: #ae7400; }
   form#user-login #edit-submit:hover {
     background-color: #fbc04d;
     box-shadow: 0 0 3px #232323; }
@@ -2351,9 +2351,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a.active-trail#companies {
         background: url("../graphics/company_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/company_white.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a.active-trail#transactions {
-        background: url("../graphics/transaction_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/transaction_white.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a.active-trail#offers {
+        background: url("../graphics/offers_white.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/offers_white.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a.active-trail#documents {
         background: url("../graphics/documents_white.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/documents_white.svg") transparent 0 0 no-repeat; }
@@ -2371,9 +2371,9 @@ form#user-login #edit-submit {
       .main-navigation .menu li a#companies {
         background: url("../graphics/company_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/company_grey.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a#transactions {
-        background: url("../graphics/transaction_grey.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/transaction_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#offers {
+        background: url("../graphics/offers_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/offers_grey.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a.archive {
         background: url("../graphics/archive_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/archive_grey.svg") transparent 0 0 no-repeat; }
@@ -3943,7 +3943,7 @@ form#user-login,
     #user-pass .form-text:focus,
     #yubikey-lost .form-text:focus {
       background: #121212;
-      box-shadow: 0 0 5px #3d3d3d; }
+      box-shadow: 0 0 5px #3e3e3e; }
   form#user-login .description,
   #user-pass .description,
   #yubikey-lost .description {
@@ -4235,16 +4235,16 @@ form#user-login,
     font-size: 1.2rem;
     line-height: 18px; }
 
-.capital-rasing-db-wrapper {
+.offers-db-wrapper {
   margin-bottom: 70px; }
 
-.captial-rasing-db {
+.offers-db-header {
   padding-left: 30px;
   position: relative;
   margin-bottom: 10px; }
-  .captial-rasing-db:before {
-    background: url("../graphics/transaction_dark_grey.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/transaction_dark_grey.svg") transparent 0 0 no-repeat;
+  .offers-db-header:before {
+    background: url("../graphics/offers_dark_grey.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/offers_dark_grey.svg") transparent 0 0 no-repeat;
     content: '';
     height: 20px;
     left: 0;

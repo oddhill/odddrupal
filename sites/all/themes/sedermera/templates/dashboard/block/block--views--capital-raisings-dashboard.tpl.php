@@ -20,9 +20,9 @@
  * @see template_process()
  */
 ?>
-<div class="capital-rasing-db-wrapper">
+<div class="offers-db-wrapper">
   <?php if ($block->subject): ?>
-    <h2 class="captial-rasing-db"><?php print $block->subject ?></h2>
+    <h2 class="offers-db-header"><?php print $block->subject ?></h2>
   <?php endif;?>
 
   <?php print $content ?>

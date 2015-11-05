@@ -82,8 +82,8 @@
             @include svg-bg(company_white);
           }
 
-          &#transactions {
-            @include svg-bg(transaction_white);
+          &#offers {
+            @include svg-bg(offers_white);
           }
 
           &#documents {
@@ -111,8 +111,8 @@
           @include svg-bg(company_grey);
         }
 
-        &#transactions {
-          @include svg-bg(transaction_grey);
+        &#offers {
+          @include svg-bg(offers_grey);
         }
 
         &.archive {

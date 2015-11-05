@@ -1258,7 +1258,7 @@ function f_investor_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Person';
+  $view->human_name = 'Kontaktpersoner';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -1421,8 +1421,8 @@ function f_investor_views_default_views() {
     10 => 0,
   );
 
-  /* Display: Contact persons */
-  $handler = $view->new_display('page', 'Contact persons', 'page');
+  /* Display: Lista */
+  $handler = $view->new_display('page', 'Lista', 'list');
   $handler->display->display_options['path'] = 'kontaktpersoner/lista';
 
   /* Display: Skicka erbjudande */
@@ -1634,7 +1634,7 @@ function f_investor_views_default_views() {
     t('E-post'),
     t('Mobil'),
     t('Telefon'),
-    t('Contact persons'),
+    t('Lista'),
     t('Skicka erbjudande'),
     t('- Choose an operation -'),
   );

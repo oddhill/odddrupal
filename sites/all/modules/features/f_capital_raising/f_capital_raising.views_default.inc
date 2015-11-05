@@ -205,7 +205,7 @@ function f_capital_raising_views_default_views() {
   /* Display: Dashboard */
   $handler = $view->new_display('block', 'Dashboard', 'dashboard');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Pågående emissioner';
+  $handler->display->display_options['title'] = 'Pågående erbjudanden';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '7';
@@ -222,7 +222,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga utgående transaktioner.';
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga pågående erbjudanden.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
@@ -361,8 +361,8 @@ function f_capital_raising_views_default_views() {
     t('Arkiverade'),
     t('Arkiverade transaktioner'),
     t('Dashboard'),
-    t('Pågående emissioner'),
-    t('Det finns inga utgående transaktioner.'),
+    t('Pågående erbjudanden'),
+    t('Det finns inga pågående erbjudanden.'),
     t('Löptid'),
     t('Date (node)'),
     t('Utgår inom'),
