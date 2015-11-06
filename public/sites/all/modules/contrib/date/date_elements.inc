@@ -301,6 +301,7 @@ function date_combo_element_process($element, &$form_state, $form) {
   // Blank out the end date for optional end dates that match the start date,
   // except when this is a new node that has default values that should be honored.
   if (!$date_is_default && $field['settings']['todate'] != 'required'
+  && is_array($element['#default_value'])
   && !empty($element['#default_value'][$to_field])
   && $element['#default_value'][$to_field] == $element['#default_value'][$from_field]) {
     unset($element['#default_value'][$to_field]);
@@ -418,7 +419,7 @@ function date_combo_element_process($element, &$form_state, $form) {
   if (!empty($instance['widget']['settings']['no_fieldset'])) {
     unset($element[$from_field]['#description']);
     if (!empty($field['settings']['todate']) && isset($element['#description'])) {
-      $element['#description'] .= '<span class="js-hide"> '. t("Empty 'End date' values will use the 'Start date' values.") .'</span>';
+      $element['#description'] .= '<span class="js-hide"> ' . t("Empty 'End date' values will use the 'Start date' values.") . '</span>';
     }
   }
 
