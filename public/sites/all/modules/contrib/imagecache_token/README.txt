@@ -1,7 +1,8 @@
 ImageCache Token
 ----------------
-Module provides additional tokens for image fields. For each image style
-available additional token [node:field_image_field:style_name] will be provided.
+Module provides additional tokens for image, file and media fields. For each
+image style available additional token [node:field_image_field:style_name] will
+be provided.
 
 
 Installation
@@ -12,7 +13,11 @@ admin panel.
 
 Configuration
 ------------------------------------------------------------------------------
-No module configuration needed. 
+Because "file" and "media" file types may contain images and other types of
+files, it is necessary to indicate which fields hold images. Field selection is
+controlled via the settings page:
+
+    admin/config/media/imagecache-token
 
 
 Gotchas
@@ -24,9 +29,8 @@ cache on the Performance page.
 
 Credits / Contact
 ------------------------------------------------------------------------------
-Currently maintained by Damien McKenna [1]. All initial development was by
-Pavel A. Karoukin [2] with several contributions by Pascal Crott [3] and others
-in the community.
+Currently maintained by Damien McKenna [1]. Originally written by Pavel A.
+Karoukin [2] with contributions by Pascal Crott [3] and others in the community.
 
 
 References
