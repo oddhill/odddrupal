@@ -17,15 +17,10 @@ function f_core_menu_default_menu_links() {
     'router_path' => 'oversikt',
     'link_title' => 'Översikt',
     'options' => array(
-      'identifier' => 'main-menu_versikt:oversikt',
       'attributes' => array(
         'id' => 'overview',
       ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
+      'identifier' => 'main-menu_versikt:oversikt',
     ),
     'module' => 'system',
     'hidden' => 0,

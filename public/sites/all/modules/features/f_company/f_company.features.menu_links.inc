@@ -23,11 +23,6 @@ function f_company_menu_default_menu_links() {
           0 => 'all',
         ),
       ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -49,11 +44,6 @@ function f_company_menu_default_menu_links() {
       'identifier' => 'main-menu_kundbolag:kundbolag',
       'attributes' => array(
         'id' => 'companies',
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
       ),
     ),
     'module' => 'menu',
@@ -79,11 +69,6 @@ function f_company_menu_default_menu_links() {
         'class' => array(
           0 => 'add',
         ),
-      ),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
       ),
     ),
     'module' => 'menu',
