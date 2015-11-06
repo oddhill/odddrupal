@@ -3728,6 +3728,61 @@ form.confirmation {
         height: 42px;
         margin-top: -1px; }
 
+.htabs-wrapper {
+  background: #fff;
+  padding: 40px 0; }
+  .htabs-wrapper .horizontal-tabs {
+    border: 0px none; }
+    .htabs-wrapper .horizontal-tabs fieldset.horizontal-tabs-pane {
+      padding: 0;
+      margin: 0; }
+  .htabs-wrapper ul.horizontal-tabs-list {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    padding: 0 40px;
+    background: transparent;
+    border-right: 0px none; }
+    .htabs-wrapper ul.horizontal-tabs-list li {
+      background: transparent;
+      border-right: 0px; }
+      .htabs-wrapper ul.horizontal-tabs-list li a {
+        border: 0px none;
+        padding: 0 19px;
+        line-height: 40px;
+        color: #797979; }
+        .htabs-wrapper ul.horizontal-tabs-list li a:hover {
+          background: transparent;
+          color: #282828; }
+        .htabs-wrapper ul.horizontal-tabs-list li a strong {
+          font-weight: 400; }
+        .htabs-wrapper ul.horizontal-tabs-list li a .form-required {
+          color: #c04343; }
+      .htabs-wrapper ul.horizontal-tabs-list li.selected {
+        background: #fafbfc;
+        border-top: 1px solid #f3f4f8;
+        border-right: 1px solid #f3f4f8;
+        border-left: 1px solid #f3f4f8; }
+        .htabs-wrapper ul.horizontal-tabs-list li.selected a,
+        .htabs-wrapper ul.horizontal-tabs-list li.selected a:hover {
+          padding: 0 19px; }
+          .htabs-wrapper ul.horizontal-tabs-list li.selected a strong,
+          .htabs-wrapper ul.horizontal-tabs-list li.selected a:hover strong {
+            font-weight: 700; }
+        .htabs-wrapper ul.horizontal-tabs-list li.selected:hover {
+          background: #fafbfc; }
+      .htabs-wrapper ul.horizontal-tabs-list li:hover {
+        background: transparent; }
+  .htabs-wrapper .horizontal-tabs-panes {
+    background: #fafbfc;
+    padding: 40px;
+    border-top: 1px solid #f3f4f8;
+    border-bottom: 1px solid #f3f4f8;
+    position: relative;
+    z-index: 5;
+    margin-top: -1px; }
+
 .not-logged-in.page-user {
   background: #282828;
   box-sizing: border-box; }

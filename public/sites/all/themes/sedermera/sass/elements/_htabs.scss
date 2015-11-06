@@ -1,0 +1,82 @@
+.htabs-wrapper {
+  background: $snow;
+  padding: 40px 0;
+
+  .horizontal-tabs {
+    border: 0px none;
+
+    fieldset.horizontal-tabs-pane {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  ul.horizontal-tabs-list {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    padding: 0 40px;
+    background: transparent;
+    border-right: 0px none;
+
+    li {
+      background: transparent;
+      border-right: 0px;
+
+      a {
+        border: 0px none;
+        padding: 0 19px;
+        line-height: 40px;
+        color: $grey;
+
+        &:hover {
+          background: transparent;
+          color: $coffee;
+        }
+
+        strong {
+          font-weight: 400;
+        }
+
+        .form-required {
+          color: $wine;
+        }
+      }
+
+      &.selected {
+        background: tint($light-grey,60%);
+        border-top: 1px solid $light-grey;
+        border-right: 1px solid $light-grey;
+        border-left: 1px solid $light-grey;
+
+        a,
+        a:hover {
+          padding: 0 19px;
+
+          strong {
+            font-weight: 700;
+          }
+        }
+
+        &:hover {
+          background: #fafbfc;
+        }
+      }
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+
+  .horizontal-tabs-panes {
+    background: tint($light-grey,60%);
+    padding: 40px;
+    border-top: 1px solid $light-grey;
+    border-bottom: 1px solid $light-grey;
+    position: relative;
+    z-index: 5;
+    margin-top: -1px;
+  }
+}
