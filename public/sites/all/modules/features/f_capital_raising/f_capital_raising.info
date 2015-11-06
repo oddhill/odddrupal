@@ -360,6 +360,5 @@ features[variable][] = pathauto_node_capital_raising_pattern
 features[variable][] = pathauto_node_erbjudande_pattern
 features[variable][] = pathauto_node_transaction_pattern
 features[variable][] = pathauto_node_transaktion_ap_pattern
-features[views_view][] = capital_raisings
 features[views_view][] = erbjudande
 project path = sites/all/modules/features
