@@ -21,6 +21,5 @@ function f_investor_menu_default_menu_custom() {
   t('<em>Huvudmenyn</em> används på många webbplatser för att visa webbplatsens huvudsektioner, ofta i en navigationsrad högst upp.');
   t('Main menu');
 
-
   return $menus;
 }

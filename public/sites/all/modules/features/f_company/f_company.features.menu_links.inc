@@ -10,7 +10,7 @@
 function f_company_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-kundbolag:kundbolag/lista
+  // Exported menu link: main-menu_alla-kundbolag:kundbolag/lista.
   $menu_links['main-menu_alla-kundbolag:kundbolag/lista'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'kundbolag/lista',
@@ -23,6 +23,11 @@ function f_company_menu_default_menu_links() {
           0 => 'all',
         ),
       ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -33,7 +38,7 @@ function f_company_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_kundbolag:kundbolag',
   );
-  // Exported menu link: main-menu_kundbolag:kundbolag
+  // Exported menu link: main-menu_kundbolag:kundbolag.
   $menu_links['main-menu_kundbolag:kundbolag'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'kundbolag',
@@ -45,6 +50,11 @@ function f_company_menu_default_menu_links() {
       'attributes' => array(
         'id' => 'companies',
       ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -54,7 +64,7 @@ function f_company_menu_default_menu_links() {
     'weight' => -47,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_lgg-till-kundbolag:node/add/company
+  // Exported menu link: main-menu_lgg-till-kundbolag:node/add/company.
   $menu_links['main-menu_lgg-till-kundbolag:node/add/company'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/company',
@@ -69,6 +79,11 @@ function f_company_menu_default_menu_links() {
         'class' => array(
           0 => 'add',
         ),
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
       ),
     ),
     'module' => 'menu',

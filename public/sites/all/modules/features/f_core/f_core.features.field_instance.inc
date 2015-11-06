@@ -10,7 +10,7 @@
 function f_core_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'message_type-message_type-message_text'
+  // Exported field_instance: 'message_type-message_type-message_text'.
   $field_instances['message_type-message_type-message_text'] = array(
     'bundle' => 'message_type',
     'default_value' => NULL,

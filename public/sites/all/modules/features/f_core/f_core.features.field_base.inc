@@ -10,7 +10,7 @@
 function f_core_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_message_reference'
+  // Exported field_base: 'field_message_reference'.
   $field_bases['field_message_reference'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -45,7 +45,7 @@ function f_core_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'message_text'
+  // Exported field_base: 'message_text'.
   $field_bases['message_text'] = array(
     'active' => 1,
     'cardinality' => -1,

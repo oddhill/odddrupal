@@ -10,7 +10,7 @@
 function f_offer_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_offer_amount'
+  // Exported field_base: 'field_offer_amount'.
   $field_bases['field_offer_amount'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -27,7 +27,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_offer_amount_guar'
+  // Exported field_base: 'field_offer_amount_guar'.
   $field_bases['field_offer_amount_guar'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -44,7 +44,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_offer_cap_rais'
+  // Exported field_base: 'field_offer_cap_rais'.
   $field_bases['field_offer_cap_rais'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -81,7 +81,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_offer_first_contact'
+  // Exported field_base: 'field_offer_first_contact'.
   $field_bases['field_offer_first_contact'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -110,7 +110,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'date',
   );
 
-  // Exported field_base: 'field_offer_info_mail'
+  // Exported field_base: 'field_offer_info_mail'.
   $field_bases['field_offer_info_mail'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -135,7 +135,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_offer_interested'
+  // Exported field_base: 'field_offer_interested'.
   $field_bases['field_offer_interested'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -160,7 +160,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_offer_interested_date'
+  // Exported field_base: 'field_offer_interested_date'.
   $field_bases['field_offer_interested_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -189,7 +189,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'datestamp',
   );
 
-  // Exported field_base: 'field_offer_investor'
+  // Exported field_base: 'field_offer_investor'.
   $field_bases['field_offer_investor'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -224,7 +224,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_offer_loan'
+  // Exported field_base: 'field_offer_loan'.
   $field_bases['field_offer_loan'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -241,7 +241,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_offer_newem'
+  // Exported field_base: 'field_offer_newem'.
   $field_bases['field_offer_newem'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -258,7 +258,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_offer_pp'
+  // Exported field_base: 'field_offer_pp'.
   $field_bases['field_offer_pp'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -275,7 +275,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'number_float',
   );
 
-  // Exported field_base: 'field_offer_signed'
+  // Exported field_base: 'field_offer_signed'.
   $field_bases['field_offer_signed'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -300,7 +300,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_offer_signed_date'
+  // Exported field_base: 'field_offer_signed_date'.
   $field_bases['field_offer_signed_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -329,7 +329,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'datestamp',
   );
 
-  // Exported field_base: 'field_offer_status'
+  // Exported field_base: 'field_offer_status'.
   $field_bases['field_offer_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -350,7 +350,7 @@ function f_offer_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_offer_sum'
+  // Exported field_base: 'field_offer_sum'.
   $field_bases['field_offer_sum'] = array(
     'active' => 1,
     'cardinality' => 1,

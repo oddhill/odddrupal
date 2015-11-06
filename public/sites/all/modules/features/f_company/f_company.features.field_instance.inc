@@ -10,7 +10,7 @@
 function f_company_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-company-field_comp_legacy_id'
+  // Exported field_instance: 'node-company-field_comp_legacy_id'.
   $field_instances['node-company-field_comp_legacy_id'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -81,7 +81,7 @@ function f_company_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-company-field_comp_logo'
+  // Exported field_instance: 'node-company-field_comp_logo'.
   $field_instances['node-company-field_comp_logo'] = array(
     'bundle' => 'company',
     'deleted' => 0,

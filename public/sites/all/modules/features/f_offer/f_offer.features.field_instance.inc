@@ -10,7 +10,7 @@
 function f_offer_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'offer-offer-field_offer_amount'
+  // Exported field_instance: 'offer-offer-field_offer_amount'.
   $field_instances['offer-offer-field_offer_amount'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -56,7 +56,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_amount_guar'
+  // Exported field_instance: 'offer-offer-field_offer_amount_guar'.
   $field_instances['offer-offer-field_offer_amount_guar'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -102,7 +102,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_cap_rais'
+  // Exported field_instance: 'offer-offer-field_offer_cap_rais'.
   $field_instances['offer-offer-field_offer_cap_rais'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -142,7 +142,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_first_contact'
+  // Exported field_instance: 'offer-offer-field_offer_first_contact'.
   $field_instances['offer-offer-field_offer_first_contact'] = array(
     'bundle' => 'offer',
     'deleted' => 0,
@@ -197,7 +197,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_info_mail'
+  // Exported field_instance: 'offer-offer-field_offer_info_mail'.
   $field_instances['offer-offer-field_offer_info_mail'] = array(
     'bundle' => 'offer',
     'default_value' => array(
@@ -240,7 +240,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_interested'
+  // Exported field_instance: 'offer-offer-field_offer_interested'.
   $field_instances['offer-offer-field_offer_interested'] = array(
     'bundle' => 'offer',
     'default_value' => array(
@@ -282,7 +282,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_interested_date'
+  // Exported field_instance: 'offer-offer-field_offer_interested_date'.
   $field_instances['offer-offer-field_offer_interested_date'] = array(
     'bundle' => 'offer',
     'deleted' => 0,
@@ -328,7 +328,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_investor'
+  // Exported field_instance: 'offer-offer-field_offer_investor'.
   $field_instances['offer-offer-field_offer_investor'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -368,7 +368,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_loan'
+  // Exported field_instance: 'offer-offer-field_offer_loan'.
   $field_instances['offer-offer-field_offer_loan'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -408,7 +408,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_newem'
+  // Exported field_instance: 'offer-offer-field_offer_newem'.
   $field_instances['offer-offer-field_offer_newem'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -448,7 +448,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_pp'
+  // Exported field_instance: 'offer-offer-field_offer_pp'.
   $field_instances['offer-offer-field_offer_pp'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -488,7 +488,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_signed'
+  // Exported field_instance: 'offer-offer-field_offer_signed'.
   $field_instances['offer-offer-field_offer_signed'] = array(
     'bundle' => 'offer',
     'default_value' => array(
@@ -530,7 +530,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_signed_date'
+  // Exported field_instance: 'offer-offer-field_offer_signed_date'.
   $field_instances['offer-offer-field_offer_signed_date'] = array(
     'bundle' => 'offer',
     'deleted' => 0,
@@ -576,7 +576,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_status'
+  // Exported field_instance: 'offer-offer-field_offer_status'.
   $field_instances['offer-offer-field_offer_status'] = array(
     'bundle' => 'offer',
     'default_value' => NULL,
@@ -638,7 +638,7 @@ function f_offer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'offer-offer-field_offer_sum'
+  // Exported field_instance: 'offer-offer-field_offer_sum'.
   $field_instances['offer-offer-field_offer_sum'] = array(
     'bundle' => 'offer',
     'default_value' => array(

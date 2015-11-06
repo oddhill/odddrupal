@@ -10,7 +10,8 @@
 function f_activities_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'message-offer_comm_changed-field_shared_cap_rais'
+  // Exported field_instance:
+  // 'message-offer_comm_changed-field_shared_cap_rais'.
   $field_instances['message-offer_comm_changed-field_shared_cap_rais'] = array(
     'bundle' => 'offer_comm_changed',
     'default_value' => NULL,
@@ -68,7 +69,8 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_comm_changed-field_shared_investor'
+  // Exported field_instance:
+  // 'message-offer_comm_changed-field_shared_investor'.
   $field_instances['message-offer_comm_changed-field_shared_investor'] = array(
     'bundle' => 'offer_comm_changed',
     'default_value' => NULL,
@@ -126,7 +128,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_comm_changed-field_shared_offer'
+  // Exported field_instance: 'message-offer_comm_changed-field_shared_offer'.
   $field_instances['message-offer_comm_changed-field_shared_offer'] = array(
     'bundle' => 'offer_comm_changed',
     'default_value' => NULL,
@@ -184,7 +186,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_created-field_shared_cap_rais'
+  // Exported field_instance: 'message-offer_created-field_shared_cap_rais'.
   $field_instances['message-offer_created-field_shared_cap_rais'] = array(
     'bundle' => 'offer_created',
     'default_value' => NULL,
@@ -242,7 +244,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_created-field_shared_investor'
+  // Exported field_instance: 'message-offer_created-field_shared_investor'.
   $field_instances['message-offer_created-field_shared_investor'] = array(
     'bundle' => 'offer_created',
     'default_value' => NULL,
@@ -300,7 +302,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_created-field_shared_offer'
+  // Exported field_instance: 'message-offer_created-field_shared_offer'.
   $field_instances['message-offer_created-field_shared_offer'] = array(
     'bundle' => 'offer_created',
     'default_value' => NULL,
@@ -359,7 +361,7 @@ function f_activities_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'message-offer_first_contact-field_shared_cap_rais'
+  // 'message-offer_first_contact-field_shared_cap_rais'.
   $field_instances['message-offer_first_contact-field_shared_cap_rais'] = array(
     'bundle' => 'offer_first_contact',
     'default_value' => NULL,
@@ -418,7 +420,7 @@ function f_activities_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'message-offer_first_contact-field_shared_investor'
+  // 'message-offer_first_contact-field_shared_investor'.
   $field_instances['message-offer_first_contact-field_shared_investor'] = array(
     'bundle' => 'offer_first_contact',
     'default_value' => NULL,
@@ -476,7 +478,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_first_contact-field_shared_offer'
+  // Exported field_instance: 'message-offer_first_contact-field_shared_offer'.
   $field_instances['message-offer_first_contact-field_shared_offer'] = array(
     'bundle' => 'offer_first_contact',
     'default_value' => NULL,
@@ -534,7 +536,8 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_guar_changed-field_shared_cap_rais'
+  // Exported field_instance:
+  // 'message-offer_guar_changed-field_shared_cap_rais'.
   $field_instances['message-offer_guar_changed-field_shared_cap_rais'] = array(
     'bundle' => 'offer_guar_changed',
     'default_value' => NULL,
@@ -592,7 +595,8 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_guar_changed-field_shared_investor'
+  // Exported field_instance:
+  // 'message-offer_guar_changed-field_shared_investor'.
   $field_instances['message-offer_guar_changed-field_shared_investor'] = array(
     'bundle' => 'offer_guar_changed',
     'default_value' => NULL,
@@ -650,7 +654,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_guar_changed-field_shared_offer'
+  // Exported field_instance: 'message-offer_guar_changed-field_shared_offer'.
   $field_instances['message-offer_guar_changed-field_shared_offer'] = array(
     'bundle' => 'offer_guar_changed',
     'default_value' => NULL,
@@ -708,7 +712,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_interested-field_shared_cap_rais'
+  // Exported field_instance: 'message-offer_interested-field_shared_cap_rais'.
   $field_instances['message-offer_interested-field_shared_cap_rais'] = array(
     'bundle' => 'offer_interested',
     'default_value' => NULL,
@@ -766,7 +770,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_interested-field_shared_investor'
+  // Exported field_instance: 'message-offer_interested-field_shared_investor'.
   $field_instances['message-offer_interested-field_shared_investor'] = array(
     'bundle' => 'offer_interested',
     'default_value' => NULL,
@@ -824,7 +828,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_interested-field_shared_offer'
+  // Exported field_instance: 'message-offer_interested-field_shared_offer'.
   $field_instances['message-offer_interested-field_shared_offer'] = array(
     'bundle' => 'offer_interested',
     'default_value' => NULL,
@@ -882,7 +886,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_mail-field_shared_cap_rais'
+  // Exported field_instance: 'message-offer_mail-field_shared_cap_rais'.
   $field_instances['message-offer_mail-field_shared_cap_rais'] = array(
     'bundle' => 'offer_mail',
     'default_value' => NULL,
@@ -940,7 +944,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_mail-field_shared_investor'
+  // Exported field_instance: 'message-offer_mail-field_shared_investor'.
   $field_instances['message-offer_mail-field_shared_investor'] = array(
     'bundle' => 'offer_mail',
     'default_value' => NULL,
@@ -998,7 +1002,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_mail-field_shared_offer'
+  // Exported field_instance: 'message-offer_mail-field_shared_offer'.
   $field_instances['message-offer_mail-field_shared_offer'] = array(
     'bundle' => 'offer_mail',
     'default_value' => NULL,
@@ -1056,7 +1060,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_signed-field_shared_cap_rais'
+  // Exported field_instance: 'message-offer_signed-field_shared_cap_rais'.
   $field_instances['message-offer_signed-field_shared_cap_rais'] = array(
     'bundle' => 'offer_signed',
     'default_value' => NULL,
@@ -1114,7 +1118,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_signed-field_shared_investor'
+  // Exported field_instance: 'message-offer_signed-field_shared_investor'.
   $field_instances['message-offer_signed-field_shared_investor'] = array(
     'bundle' => 'offer_signed',
     'default_value' => NULL,
@@ -1172,7 +1176,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_signed-field_shared_offer'
+  // Exported field_instance: 'message-offer_signed-field_shared_offer'.
   $field_instances['message-offer_signed-field_shared_offer'] = array(
     'bundle' => 'offer_signed',
     'default_value' => NULL,
@@ -1230,7 +1234,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_status-field_shared_cap_rais'
+  // Exported field_instance: 'message-offer_status-field_shared_cap_rais'.
   $field_instances['message-offer_status-field_shared_cap_rais'] = array(
     'bundle' => 'offer_status',
     'default_value' => NULL,
@@ -1294,7 +1298,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_status-field_shared_investor'
+  // Exported field_instance: 'message-offer_status-field_shared_investor'.
   $field_instances['message-offer_status-field_shared_investor'] = array(
     'bundle' => 'offer_status',
     'default_value' => NULL,
@@ -1358,7 +1362,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_status-field_shared_offer'
+  // Exported field_instance: 'message-offer_status-field_shared_offer'.
   $field_instances['message-offer_status-field_shared_offer'] = array(
     'bundle' => 'offer_status',
     'default_value' => NULL,
@@ -1422,7 +1426,8 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_uninterested-field_shared_cap_rais'
+  // Exported field_instance:
+  // 'message-offer_uninterested-field_shared_cap_rais'.
   $field_instances['message-offer_uninterested-field_shared_cap_rais'] = array(
     'bundle' => 'offer_uninterested',
     'default_value' => NULL,
@@ -1480,7 +1485,8 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_uninterested-field_shared_investor'
+  // Exported field_instance:
+  // 'message-offer_uninterested-field_shared_investor'.
   $field_instances['message-offer_uninterested-field_shared_investor'] = array(
     'bundle' => 'offer_uninterested',
     'default_value' => NULL,
@@ -1538,7 +1544,7 @@ function f_activities_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'message-offer_uninterested-field_shared_offer'
+  // Exported field_instance: 'message-offer_uninterested-field_shared_offer'.
   $field_instances['message-offer_uninterested-field_shared_offer'] = array(
     'bundle' => 'offer_uninterested',
     'default_value' => NULL,

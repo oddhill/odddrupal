@@ -10,7 +10,7 @@
 function f_verification_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_ctrl_app'
+  // Exported field_base: 'field_ctrl_app'.
   $field_bases['field_ctrl_app'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -35,7 +35,7 @@ function f_verification_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_ctrl_date'
+  // Exported field_base: 'field_ctrl_date'.
   $field_bases['field_ctrl_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -64,7 +64,7 @@ function f_verification_field_default_field_bases() {
     'type' => 'date',
   );
 
-  // Exported field_base: 'field_ctrl_files'
+  // Exported field_base: 'field_ctrl_files'.
   $field_bases['field_ctrl_files'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -87,7 +87,7 @@ function f_verification_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_ctrl_notes'
+  // Exported field_base: 'field_ctrl_notes'.
   $field_bases['field_ctrl_notes'] = array(
     'active' => 1,
     'cardinality' => -1,

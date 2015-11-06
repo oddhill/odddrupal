@@ -10,7 +10,7 @@
 function f_investor_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_alla-avtalsparter:avtalsparter/lista
+  // Exported menu link: main-menu_alla-avtalsparter:avtalsparter/lista.
   $menu_links['main-menu_alla-avtalsparter:avtalsparter/lista'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'avtalsparter/lista',
@@ -38,7 +38,7 @@ function f_investor_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_avtalsparter:avtalsparter',
   );
-  // Exported menu link: main-menu_alla-kontaktpersoner:kontaktpersoner/lista
+  // Exported menu link: main-menu_alla-kontaktpersoner:kontaktpersoner/lista.
   $menu_links['main-menu_alla-kontaktpersoner:kontaktpersoner/lista'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'kontaktpersoner/lista',
@@ -66,7 +66,7 @@ function f_investor_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_kontaktpersoner:kontaktpersoner',
   );
-  // Exported menu link: main-menu_avtalsparter:avtalsparter
+  // Exported menu link: main-menu_avtalsparter:avtalsparter.
   $menu_links['main-menu_avtalsparter:avtalsparter'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'avtalsparter',
@@ -91,7 +91,7 @@ function f_investor_menu_default_menu_links() {
     'weight' => -48,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_kontaktpersoner:kontaktpersoner
+  // Exported menu link: main-menu_kontaktpersoner:kontaktpersoner.
   $menu_links['main-menu_kontaktpersoner:kontaktpersoner'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'kontaktpersoner',

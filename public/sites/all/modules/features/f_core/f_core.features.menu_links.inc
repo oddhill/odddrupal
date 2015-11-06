@@ -10,17 +10,22 @@
 function f_core_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_versikt:oversikt
+  // Exported menu link: main-menu_versikt:oversikt.
   $menu_links['main-menu_versikt:oversikt'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'oversikt',
     'router_path' => 'oversikt',
     'link_title' => 'Översikt',
     'options' => array(
+      'identifier' => 'main-menu_versikt:oversikt',
       'attributes' => array(
         'id' => 'overview',
       ),
-      'identifier' => 'main-menu_versikt:oversikt',
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'system',
     'hidden' => 0,

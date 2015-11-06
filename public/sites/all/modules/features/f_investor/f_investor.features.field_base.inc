@@ -10,7 +10,7 @@
 function f_investor_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_comp_cont_cell'
+  // Exported field_base: 'field_comp_cont_cell'.
   $field_bases['field_comp_cont_cell'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_comp_cont_fax'
+  // Exported field_base: 'field_comp_cont_fax'.
   $field_bases['field_comp_cont_fax'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -52,7 +52,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_comp_cont_mail'
+  // Exported field_base: 'field_comp_cont_mail'.
   $field_bases['field_comp_cont_mail'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -67,7 +67,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_comp_cont_name'
+  // Exported field_base: 'field_comp_cont_name'.
   $field_bases['field_comp_cont_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -88,7 +88,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_comp_cont_phone'
+  // Exported field_base: 'field_comp_cont_phone'.
   $field_bases['field_comp_cont_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -109,7 +109,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_invest_comp_id'
+  // Exported field_base: 'field_invest_comp_id'.
   $field_bases['field_invest_comp_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -130,7 +130,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_invest_comp_name'
+  // Exported field_base: 'field_invest_comp_name'.
   $field_bases['field_invest_comp_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -151,7 +151,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_invest_comp_own'
+  // Exported field_base: 'field_invest_comp_own'.
   $field_bases['field_invest_comp_own'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -188,7 +188,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_cont_person'
+  // Exported field_base: 'field_invest_cont_person'.
   $field_bases['field_invest_cont_person'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -223,7 +223,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_cont_person_prvt'
+  // Exported field_base: 'field_invest_cont_person_prvt'.
   $field_bases['field_invest_cont_person_prvt'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -258,7 +258,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_lead_cont'
+  // Exported field_base: 'field_invest_lead_cont'.
   $field_bases['field_invest_lead_cont'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -293,7 +293,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_pers_first_name'
+  // Exported field_base: 'field_invest_pers_first_name'.
   $field_bases['field_invest_pers_first_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -314,7 +314,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_invest_pers_id'
+  // Exported field_base: 'field_invest_pers_id'.
   $field_bases['field_invest_pers_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -335,7 +335,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_invest_pers_last_name'
+  // Exported field_base: 'field_invest_pers_last_name'.
   $field_bases['field_invest_pers_last_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -356,7 +356,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_invest_pvt_ctrl_cred'
+  // Exported field_base: 'field_invest_pvt_ctrl_cred'.
   $field_bases['field_invest_pvt_ctrl_cred'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -391,7 +391,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_pvt_ctrl_ext'
+  // Exported field_base: 'field_invest_pvt_ctrl_ext'.
   $field_bases['field_invest_pvt_ctrl_ext'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -426,7 +426,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_pvt_ctrl_oth'
+  // Exported field_base: 'field_invest_pvt_ctrl_oth'.
   $field_bases['field_invest_pvt_ctrl_oth'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -461,7 +461,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_pvt_ctrl_ptv'
+  // Exported field_base: 'field_invest_pvt_ctrl_ptv'.
   $field_bases['field_invest_pvt_ctrl_ptv'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -496,7 +496,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_pvt_ctrl_ua'
+  // Exported field_base: 'field_invest_pvt_ctrl_ua'.
   $field_bases['field_invest_pvt_ctrl_ua'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -531,7 +531,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_invest_pvt_notes'
+  // Exported field_base: 'field_invest_pvt_notes'.
   $field_bases['field_invest_pvt_notes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -550,7 +550,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_investor_comp_address'
+  // Exported field_base: 'field_investor_comp_address'.
   $field_bases['field_investor_comp_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -565,7 +565,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_investor_comp_ctrl_cred'
+  // Exported field_base: 'field_investor_comp_ctrl_cred'.
   $field_bases['field_investor_comp_ctrl_cred'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -600,7 +600,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_investor_comp_ctrl_oth'
+  // Exported field_base: 'field_investor_comp_ctrl_oth'.
   $field_bases['field_investor_comp_ctrl_oth'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -635,7 +635,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_investor_comp_ctrl_ptv'
+  // Exported field_base: 'field_investor_comp_ctrl_ptv'.
   $field_bases['field_investor_comp_ctrl_ptv'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -670,7 +670,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_investor_comp_ctrl_reg'
+  // Exported field_base: 'field_investor_comp_ctrl_reg'.
   $field_bases['field_investor_comp_ctrl_reg'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -705,7 +705,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_investor_comp_ctrl_ua'
+  // Exported field_base: 'field_investor_comp_ctrl_ua'.
   $field_bases['field_investor_comp_ctrl_ua'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -740,7 +740,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_investor_comp_notes'
+  // Exported field_base: 'field_investor_comp_notes'.
   $field_bases['field_investor_comp_notes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -759,7 +759,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_investor_comp_org_nbr'
+  // Exported field_base: 'field_investor_comp_org_nbr'.
   $field_bases['field_investor_comp_org_nbr'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -780,7 +780,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_investor_comp_owners'
+  // Exported field_base: 'field_investor_comp_owners'.
   $field_bases['field_investor_comp_owners'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -817,7 +817,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_investor_comp_real'
+  // Exported field_base: 'field_investor_comp_real'.
   $field_bases['field_investor_comp_real'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -852,7 +852,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_lead_first_name'
+  // Exported field_base: 'field_lead_first_name'.
   $field_bases['field_lead_first_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -873,7 +873,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_lead_last_name'
+  // Exported field_base: 'field_lead_last_name'.
   $field_bases['field_lead_last_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -894,7 +894,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_shared_address'
+  // Exported field_base: 'field_shared_address'.
   $field_bases['field_shared_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -909,7 +909,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_shared_cont_pers'
+  // Exported field_base: 'field_shared_cont_pers'.
   $field_bases['field_shared_cont_pers'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -944,7 +944,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_shared_ctrl'
+  // Exported field_base: 'field_shared_ctrl'.
   $field_bases['field_shared_ctrl'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -979,7 +979,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_shared_ctrl_pvt'
+  // Exported field_base: 'field_shared_ctrl_pvt'.
   $field_bases['field_shared_ctrl_pvt'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1014,7 +1014,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_shared_cust_id'
+  // Exported field_base: 'field_shared_cust_id'.
   $field_bases['field_shared_cust_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1035,7 +1035,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_shared_custresp'
+  // Exported field_base: 'field_shared_custresp'.
   $field_bases['field_shared_custresp'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1069,7 +1069,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_shared_industries'
+  // Exported field_base: 'field_shared_industries'.
   $field_bases['field_shared_industries'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1095,7 +1095,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_shared_interests'
+  // Exported field_base: 'field_shared_interests'.
   $field_bases['field_shared_interests'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1121,7 +1121,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_shared_inv_id'
+  // Exported field_base: 'field_shared_inv_id'.
   $field_bases['field_shared_inv_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1142,7 +1142,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_shared_lead'
+  // Exported field_base: 'field_shared_lead'.
   $field_bases['field_shared_lead'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1167,7 +1167,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_shared_notes'
+  // Exported field_base: 'field_shared_notes'.
   $field_bases['field_shared_notes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1186,7 +1186,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_shared_temp'
+  // Exported field_base: 'field_shared_temp'.
   $field_bases['field_shared_temp'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1211,7 +1211,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_shared_veri_appr'
+  // Exported field_base: 'field_shared_veri_appr'.
   $field_bases['field_shared_veri_appr'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1236,7 +1236,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_shared_veri_expire'
+  // Exported field_base: 'field_shared_veri_expire'.
   $field_bases['field_shared_veri_expire'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1265,7 +1265,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'date',
   );
 
-  // Exported field_base: 'field_transaction_amount'
+  // Exported field_base: 'field_transaction_amount'.
   $field_bases['field_transaction_amount'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1280,7 +1280,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_transaction_amount_guar'
+  // Exported field_base: 'field_transaction_amount_guar'.
   $field_bases['field_transaction_amount_guar'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1295,7 +1295,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_transaction_company'
+  // Exported field_base: 'field_transaction_company'.
   $field_bases['field_transaction_company'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1316,7 +1316,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_transaction_id'
+  // Exported field_base: 'field_transaction_id'.
   $field_bases['field_transaction_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1331,7 +1331,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_transaction_invest_name'
+  // Exported field_base: 'field_transaction_invest_name'.
   $field_bases['field_transaction_invest_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1352,7 +1352,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_transaction_investor_id'
+  // Exported field_base: 'field_transaction_investor_id'.
   $field_bases['field_transaction_investor_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1373,7 +1373,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_transaction_loan'
+  // Exported field_base: 'field_transaction_loan'.
   $field_bases['field_transaction_loan'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1388,7 +1388,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_transaction_max_invest'
+  // Exported field_base: 'field_transaction_max_invest'.
   $field_bases['field_transaction_max_invest'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1403,7 +1403,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_transaction_newem'
+  // Exported field_base: 'field_transaction_newem'.
   $field_bases['field_transaction_newem'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1418,7 +1418,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_transaction_pp'
+  // Exported field_base: 'field_transaction_pp'.
   $field_bases['field_transaction_pp'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1433,7 +1433,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_transaction_title'
+  // Exported field_base: 'field_transaction_title'.
   $field_bases['field_transaction_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1454,7 +1454,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_user_branches'
+  // Exported field_base: 'field_user_branches'.
   $field_bases['field_user_branches'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1480,7 +1480,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_user_cell'
+  // Exported field_base: 'field_user_cell'.
   $field_bases['field_user_cell'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1501,7 +1501,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_user_fax'
+  // Exported field_base: 'field_user_fax'.
   $field_bases['field_user_fax'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1522,7 +1522,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_user_id_address'
+  // Exported field_base: 'field_user_id_address'.
   $field_bases['field_user_id_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1537,7 +1537,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_user_id_ctrl'
+  // Exported field_base: 'field_user_id_ctrl'.
   $field_bases['field_user_id_ctrl'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1572,7 +1572,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_user_interests'
+  // Exported field_base: 'field_user_interests'.
   $field_bases['field_user_interests'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1598,7 +1598,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_user_lead'
+  // Exported field_base: 'field_user_lead'.
   $field_bases['field_user_lead'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1623,7 +1623,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_user_mail'
+  // Exported field_base: 'field_user_mail'.
   $field_bases['field_user_mail'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1638,7 +1638,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_user_notes'
+  // Exported field_base: 'field_user_notes'.
   $field_bases['field_user_notes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1657,7 +1657,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_user_owner'
+  // Exported field_base: 'field_user_owner'.
   $field_bases['field_user_owner'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1691,7 +1691,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_user_phone'
+  // Exported field_base: 'field_user_phone'.
   $field_bases['field_user_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1712,7 +1712,7 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_user_ssn'
+  // Exported field_base: 'field_user_ssn'.
   $field_bases['field_user_ssn'] = array(
     'active' => 1,
     'cardinality' => 1,

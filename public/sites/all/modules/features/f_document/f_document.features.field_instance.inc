@@ -10,7 +10,7 @@
 function f_document_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'message-document_view-field_message_reference'
+  // Exported field_instance: 'message-document_view-field_message_reference'.
   $field_instances['message-document_view-field_message_reference'] = array(
     'bundle' => 'document_view',
     'default_value' => NULL,
@@ -50,7 +50,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-body'
+  // Exported field_instance: 'node-document-body'.
   $field_instances['node-document-body'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -132,7 +132,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_address'
+  // Exported field_instance: 'node-document-field_doc_foot_address'.
   $field_instances['node-document-field_doc_foot_address'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -203,7 +203,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_bg'
+  // Exported field_instance: 'node-document-field_doc_foot_bg'.
   $field_instances['node-document-field_doc_foot_bg'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -270,7 +270,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_fax'
+  // Exported field_instance: 'node-document-field_doc_foot_fax'.
   $field_instances['node-document-field_doc_foot_fax'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -337,7 +337,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_free'
+  // Exported field_instance: 'node-document-field_doc_foot_free'.
   $field_instances['node-document-field_doc_foot_free'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -404,7 +404,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_mail'
+  // Exported field_instance: 'node-document-field_doc_foot_mail'.
   $field_instances['node-document-field_doc_foot_mail'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -471,7 +471,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_moms'
+  // Exported field_instance: 'node-document-field_doc_foot_moms'.
   $field_instances['node-document-field_doc_foot_moms'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -538,7 +538,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_tel'
+  // Exported field_instance: 'node-document-field_doc_foot_tel'.
   $field_instances['node-document-field_doc_foot_tel'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -605,7 +605,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_vat'
+  // Exported field_instance: 'node-document-field_doc_foot_vat'.
   $field_instances['node-document-field_doc_foot_vat'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -672,7 +672,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_foot_webb'
+  // Exported field_instance: 'node-document-field_doc_foot_webb'.
   $field_instances['node-document-field_doc_foot_webb'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -739,7 +739,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_head_free'
+  // Exported field_instance: 'node-document-field_doc_head_free'.
   $field_instances['node-document-field_doc_head_free'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -806,7 +806,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_head_img'
+  // Exported field_instance: 'node-document-field_doc_head_img'.
   $field_instances['node-document-field_doc_head_img'] = array(
     'bundle' => 'document',
     'deleted' => 0,
@@ -860,7 +860,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_doc_head_text'
+  // Exported field_instance: 'node-document-field_doc_head_text'.
   $field_instances['node-document-field_doc_head_text'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -927,7 +927,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_document_appendix'
+  // Exported field_instance: 'node-document-field_document_appendix'.
   $field_instances['node-document-field_document_appendix'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -973,7 +973,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_document_files'
+  // Exported field_instance: 'node-document-field_document_files'.
   $field_instances['node-document-field_document_files'] = array(
     'bundle' => 'document',
     'deleted' => 0,
@@ -1022,7 +1022,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_document_type'
+  // Exported field_instance: 'node-document-field_document_type'.
   $field_instances['node-document-field_document_type'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -1059,7 +1059,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_document_user_read'
+  // Exported field_instance: 'node-document-field_document_user_read'.
   $field_instances['node-document-field_document_user_read'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -1098,7 +1098,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_dokument_relation'
+  // Exported field_instance: 'node-document-field_dokument_relation'.
   $field_instances['node-document-field_dokument_relation'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -1144,7 +1144,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-body'
+  // Exported field_instance: 'node-manual-body'.
   $field_instances['node-manual-body'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1226,7 +1226,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_address'
+  // Exported field_instance: 'node-manual-field_man_foot_address'.
   $field_instances['node-manual-field_man_foot_address'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1303,7 +1303,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_bg'
+  // Exported field_instance: 'node-manual-field_man_foot_bg'.
   $field_instances['node-manual-field_man_foot_bg'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1380,7 +1380,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_fax'
+  // Exported field_instance: 'node-manual-field_man_foot_fax'.
   $field_instances['node-manual-field_man_foot_fax'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1457,7 +1457,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_free'
+  // Exported field_instance: 'node-manual-field_man_foot_free'.
   $field_instances['node-manual-field_man_foot_free'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1534,7 +1534,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_mail'
+  // Exported field_instance: 'node-manual-field_man_foot_mail'.
   $field_instances['node-manual-field_man_foot_mail'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1611,7 +1611,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_moms'
+  // Exported field_instance: 'node-manual-field_man_foot_moms'.
   $field_instances['node-manual-field_man_foot_moms'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1688,7 +1688,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_tel'
+  // Exported field_instance: 'node-manual-field_man_foot_tel'.
   $field_instances['node-manual-field_man_foot_tel'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1765,7 +1765,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_vat'
+  // Exported field_instance: 'node-manual-field_man_foot_vat'.
   $field_instances['node-manual-field_man_foot_vat'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1842,7 +1842,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_foot_webb'
+  // Exported field_instance: 'node-manual-field_man_foot_webb'.
   $field_instances['node-manual-field_man_foot_webb'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1919,7 +1919,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_head_free'
+  // Exported field_instance: 'node-manual-field_man_head_free'.
   $field_instances['node-manual-field_man_head_free'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -1996,7 +1996,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_head_img'
+  // Exported field_instance: 'node-manual-field_man_head_img'.
   $field_instances['node-manual-field_man_head_img'] = array(
     'bundle' => 'manual',
     'deleted' => 0,
@@ -2056,7 +2056,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_man_head_text'
+  // Exported field_instance: 'node-manual-field_man_head_text'.
   $field_instances['node-manual-field_man_head_text'] = array(
     'bundle' => 'manual',
     'default_value' => NULL,
@@ -2133,7 +2133,7 @@ function f_document_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-manual-field_manual_files'
+  // Exported field_instance: 'node-manual-field_manual_files'.
   $field_instances['node-manual-field_manual_files'] = array(
     'bundle' => 'manual',
     'deleted' => 0,

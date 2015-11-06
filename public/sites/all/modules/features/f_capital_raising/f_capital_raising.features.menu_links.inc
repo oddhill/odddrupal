@@ -51,6 +51,11 @@ function f_capital_raising_menu_default_menu_links() {
           0 => 'all',
         ),
       ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -73,6 +78,11 @@ function f_capital_raising_menu_default_menu_links() {
         'class' => array(
           0 => 'archive',
         ),
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
       ),
     ),
     'module' => 'menu',
@@ -125,6 +135,11 @@ function f_capital_raising_menu_default_menu_links() {
           0 => 'add',
         ),
       ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -147,6 +162,11 @@ function f_capital_raising_menu_default_menu_links() {
       'attributes' => array(
         'id' => 'transactions',
       ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -160,7 +180,7 @@ function f_capital_raising_menu_default_menu_links() {
   $menu_links['main-menu_transaktionshistoria:transaktioner/historik'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'transaktioner/historik',
-    'router_path' => 'transaktioner',
+    'router_path' => 'transaktioner/historik',
     'link_title' => 'Transaktionshistoria',
     'options' => array(
       'identifier' => 'main-menu_transaktionshistoria:transaktioner/historik',

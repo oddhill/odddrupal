@@ -10,7 +10,7 @@
 function f_activities_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_shared_cap_rais'
+  // Exported field_base: 'field_shared_cap_rais'.
   $field_bases['field_shared_cap_rais'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -45,7 +45,7 @@ function f_activities_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_shared_investor'
+  // Exported field_base: 'field_shared_investor'.
   $field_bases['field_shared_investor'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -78,7 +78,7 @@ function f_activities_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_shared_offer'
+  // Exported field_base: 'field_shared_offer'.
   $field_bases['field_shared_offer'] = array(
     'active' => 1,
     'cardinality' => 1,

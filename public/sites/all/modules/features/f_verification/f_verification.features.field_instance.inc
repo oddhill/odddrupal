@@ -10,7 +10,7 @@
 function f_verification_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-ctrl-field_ctrl_app'
+  // Exported field_instance: 'node-ctrl-field_ctrl_app'.
   $field_instances['node-ctrl-field_ctrl_app'] = array(
     'bundle' => 'ctrl',
     'default_value' => array(
@@ -64,7 +64,7 @@ function f_verification_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ctrl-field_ctrl_date'
+  // Exported field_instance: 'node-ctrl-field_ctrl_date'.
   $field_instances['node-ctrl-field_ctrl_date'] = array(
     'bundle' => 'ctrl',
     'deleted' => 0,
@@ -132,7 +132,7 @@ function f_verification_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ctrl-field_ctrl_files'
+  // Exported field_instance: 'node-ctrl-field_ctrl_files'.
   $field_instances['node-ctrl-field_ctrl_files'] = array(
     'bundle' => 'ctrl',
     'deleted' => 0,
@@ -187,7 +187,7 @@ function f_verification_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ctrl-field_ctrl_notes'
+  // Exported field_instance: 'node-ctrl-field_ctrl_notes'.
   $field_instances['node-ctrl-field_ctrl_notes'] = array(
     'bundle' => 'ctrl',
     'default_value' => NULL,

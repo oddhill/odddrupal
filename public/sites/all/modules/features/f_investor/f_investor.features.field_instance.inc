@@ -11,7 +11,7 @@ function f_investor_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'contact_person-contact_person-field_comp_cont_cell'
+  // 'contact_person-contact_person-field_comp_cont_cell'.
   $field_instances['contact_person-contact_person-field_comp_cont_cell'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -89,7 +89,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'contact_person-contact_person-field_comp_cont_fax'
+  // 'contact_person-contact_person-field_comp_cont_fax'.
   $field_instances['contact_person-contact_person-field_comp_cont_fax'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -167,7 +167,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'contact_person-contact_person-field_comp_cont_mail'
+  // 'contact_person-contact_person-field_comp_cont_mail'.
   $field_instances['contact_person-contact_person-field_comp_cont_mail'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -214,7 +214,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'contact_person-contact_person-field_comp_cont_name'
+  // 'contact_person-contact_person-field_comp_cont_name'.
   $field_instances['contact_person-contact_person-field_comp_cont_name'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -292,7 +292,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'contact_person-contact_person-field_comp_cont_phone'
+  // 'contact_person-contact_person-field_comp_cont_phone'.
   $field_instances['contact_person-contact_person-field_comp_cont_phone'] = array(
     'bundle' => 'contact_person',
     'default_value' => NULL,
@@ -369,7 +369,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_invest_comp_id'
+  // Exported field_instance: 'investor-company-field_invest_comp_id'.
   $field_instances['investor-company-field_invest_comp_id'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -430,7 +430,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_invest_comp_name'
+  // Exported field_instance: 'investor-company-field_invest_comp_name'.
   $field_instances['investor-company-field_invest_comp_name'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -475,7 +475,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_invest_comp_own'
+  // Exported field_instance: 'investor-company-field_invest_comp_own'.
   $field_instances['investor-company-field_invest_comp_own'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -518,7 +518,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_invest_cont_person'
+  // Exported field_instance: 'investor-company-field_invest_cont_person'.
   $field_instances['investor-company-field_invest_cont_person'] = array(
     'bundle' => 'company',
     'deleted' => 0,
@@ -567,7 +567,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_address'
+  // Exported field_instance: 'investor-company-field_shared_address'.
   $field_instances['investor-company-field_shared_address'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -622,7 +622,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_ctrl'
+  // Exported field_instance: 'investor-company-field_shared_ctrl'.
   $field_instances['investor-company-field_shared_ctrl'] = array(
     'bundle' => 'company',
     'deleted' => 0,
@@ -667,7 +667,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_custresp'
+  // Exported field_instance: 'investor-company-field_shared_custresp'.
   $field_instances['investor-company-field_shared_custresp'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -706,7 +706,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_industries'
+  // Exported field_instance: 'investor-company-field_shared_industries'.
   $field_instances['investor-company-field_shared_industries'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -746,7 +746,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_interests'
+  // Exported field_instance: 'investor-company-field_shared_interests'.
   $field_instances['investor-company-field_shared_interests'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -786,7 +786,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_inv_id'
+  // Exported field_instance: 'investor-company-field_shared_inv_id'.
   $field_instances['investor-company-field_shared_inv_id'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -847,7 +847,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_notes'
+  // Exported field_instance: 'investor-company-field_shared_notes'.
   $field_instances['investor-company-field_shared_notes'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
@@ -913,7 +913,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_temp'
+  // Exported field_instance: 'investor-company-field_shared_temp'.
   $field_instances['investor-company-field_shared_temp'] = array(
     'bundle' => 'company',
     'default_value' => array(
@@ -955,7 +955,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_veri_appr'
+  // Exported field_instance: 'investor-company-field_shared_veri_appr'.
   $field_instances['investor-company-field_shared_veri_appr'] = array(
     'bundle' => 'company',
     'default_value' => array(
@@ -997,7 +997,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-company-field_shared_veri_expire'
+  // Exported field_instance: 'investor-company-field_shared_veri_expire'.
   $field_instances['investor-company-field_shared_veri_expire'] = array(
     'bundle' => 'company',
     'deleted' => 0,
@@ -1044,7 +1044,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-lead-field_invest_lead_cont'
+  // Exported field_instance: 'investor-lead-field_invest_lead_cont'.
   $field_instances['investor-lead-field_invest_lead_cont'] = array(
     'bundle' => 'lead',
     'deleted' => 0,
@@ -1092,7 +1092,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-lead-field_lead_first_name'
+  // Exported field_instance: 'investor-lead-field_lead_first_name'.
   $field_instances['investor-lead-field_lead_first_name'] = array(
     'bundle' => 'lead',
     'default_value' => NULL,
@@ -1162,7 +1162,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-lead-field_lead_last_name'
+  // Exported field_instance: 'investor-lead-field_lead_last_name'.
   $field_instances['investor-lead-field_lead_last_name'] = array(
     'bundle' => 'lead',
     'default_value' => NULL,
@@ -1232,7 +1232,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-lead-field_shared_notes'
+  // Exported field_instance: 'investor-lead-field_shared_notes'.
   $field_instances['investor-lead-field_shared_notes'] = array(
     'bundle' => 'lead',
     'default_value' => NULL,
@@ -1298,7 +1298,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_invest_cont_person_prvt'
+  // Exported field_instance: 'investor-person-field_invest_cont_person_prvt'.
   $field_instances['investor-person-field_invest_cont_person_prvt'] = array(
     'bundle' => 'person',
     'deleted' => 0,
@@ -1347,7 +1347,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_invest_pers_first_name'
+  // Exported field_instance: 'investor-person-field_invest_pers_first_name'.
   $field_instances['investor-person-field_invest_pers_first_name'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1418,7 +1418,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_invest_pers_id'
+  // Exported field_instance: 'investor-person-field_invest_pers_id'.
   $field_instances['investor-person-field_invest_pers_id'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1483,7 +1483,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_invest_pers_last_name'
+  // Exported field_instance: 'investor-person-field_invest_pers_last_name'.
   $field_instances['investor-person-field_invest_pers_last_name'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1554,7 +1554,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_address'
+  // Exported field_instance: 'investor-person-field_shared_address'.
   $field_instances['investor-person-field_shared_address'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1609,7 +1609,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_ctrl_pvt'
+  // Exported field_instance: 'investor-person-field_shared_ctrl_pvt'.
   $field_instances['investor-person-field_shared_ctrl_pvt'] = array(
     'bundle' => 'person',
     'deleted' => 0,
@@ -1654,7 +1654,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_custresp'
+  // Exported field_instance: 'investor-person-field_shared_custresp'.
   $field_instances['investor-person-field_shared_custresp'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1693,7 +1693,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_industries'
+  // Exported field_instance: 'investor-person-field_shared_industries'.
   $field_instances['investor-person-field_shared_industries'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1733,7 +1733,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_interests'
+  // Exported field_instance: 'investor-person-field_shared_interests'.
   $field_instances['investor-person-field_shared_interests'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1773,7 +1773,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_inv_id'
+  // Exported field_instance: 'investor-person-field_shared_inv_id'.
   $field_instances['investor-person-field_shared_inv_id'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1834,7 +1834,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_lead'
+  // Exported field_instance: 'investor-person-field_shared_lead'.
   $field_instances['investor-person-field_shared_lead'] = array(
     'bundle' => 'person',
     'default_value' => array(
@@ -1876,7 +1876,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_notes'
+  // Exported field_instance: 'investor-person-field_shared_notes'.
   $field_instances['investor-person-field_shared_notes'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -1942,7 +1942,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_temp'
+  // Exported field_instance: 'investor-person-field_shared_temp'.
   $field_instances['investor-person-field_shared_temp'] = array(
     'bundle' => 'person',
     'default_value' => array(
@@ -1984,7 +1984,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_veri_appr'
+  // Exported field_instance: 'investor-person-field_shared_veri_appr'.
   $field_instances['investor-person-field_shared_veri_appr'] = array(
     'bundle' => 'person',
     'default_value' => array(
@@ -2026,7 +2026,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'investor-person-field_shared_veri_expire'
+  // Exported field_instance: 'investor-person-field_shared_veri_expire'.
   $field_instances['investor-person-field_shared_veri_expire'] = array(
     'bundle' => 'person',
     'deleted' => 0,
@@ -2073,7 +2073,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_address'
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_address'.
   $field_instances['node-investor_bolag-field_investor_comp_address'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
@@ -2135,7 +2135,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-investor_bolag-field_investor_comp_ctrl_cred'
+  // 'node-investor_bolag-field_investor_comp_ctrl_cred'.
   $field_instances['node-investor_bolag-field_investor_comp_ctrl_cred'] = array(
     'bundle' => 'investor_bolag',
     'deleted' => 0,
@@ -2186,7 +2186,8 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_ctrl_oth'
+  // Exported field_instance:
+  // 'node-investor_bolag-field_investor_comp_ctrl_oth'.
   $field_instances['node-investor_bolag-field_investor_comp_ctrl_oth'] = array(
     'bundle' => 'investor_bolag',
     'deleted' => 0,
@@ -2237,7 +2238,8 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_ctrl_ptv'
+  // Exported field_instance:
+  // 'node-investor_bolag-field_investor_comp_ctrl_ptv'.
   $field_instances['node-investor_bolag-field_investor_comp_ctrl_ptv'] = array(
     'bundle' => 'investor_bolag',
     'deleted' => 0,
@@ -2288,7 +2290,8 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_ctrl_reg'
+  // Exported field_instance:
+  // 'node-investor_bolag-field_investor_comp_ctrl_reg'.
   $field_instances['node-investor_bolag-field_investor_comp_ctrl_reg'] = array(
     'bundle' => 'investor_bolag',
     'deleted' => 0,
@@ -2339,7 +2342,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_ctrl_ua'
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_ctrl_ua'.
   $field_instances['node-investor_bolag-field_investor_comp_ctrl_ua'] = array(
     'bundle' => 'investor_bolag',
     'deleted' => 0,
@@ -2390,7 +2393,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_notes'
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_notes'.
   $field_instances['node-investor_bolag-field_investor_comp_notes'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
@@ -2461,7 +2464,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_org_nbr'
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_org_nbr'.
   $field_instances['node-investor_bolag-field_investor_comp_org_nbr'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
@@ -2532,7 +2535,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_owners'
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_owners'.
   $field_instances['node-investor_bolag-field_investor_comp_owners'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
@@ -2578,7 +2581,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_investor_comp_real'
+  // Exported field_instance: 'node-investor_bolag-field_investor_comp_real'.
   $field_instances['node-investor_bolag-field_investor_comp_real'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
@@ -2624,7 +2627,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_shared_cont_pers'
+  // Exported field_instance: 'node-investor_bolag-field_shared_cont_pers'.
   $field_instances['node-investor_bolag-field_shared_cont_pers'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
@@ -2667,7 +2670,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_bolag-field_shared_cust_id'
+  // Exported field_instance: 'node-investor_bolag-field_shared_cust_id'.
   $field_instances['node-investor_bolag-field_shared_cust_id'] = array(
     'bundle' => 'investor_bolag',
     'default_value' => NULL,
@@ -2738,7 +2741,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_cred'
+  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_cred'.
   $field_instances['node-investor_privat-field_invest_pvt_ctrl_cred'] = array(
     'bundle' => 'investor_privat',
     'deleted' => 0,
@@ -2789,7 +2792,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_ext'
+  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_ext'.
   $field_instances['node-investor_privat-field_invest_pvt_ctrl_ext'] = array(
     'bundle' => 'investor_privat',
     'deleted' => 0,
@@ -2840,7 +2843,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_oth'
+  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_oth'.
   $field_instances['node-investor_privat-field_invest_pvt_ctrl_oth'] = array(
     'bundle' => 'investor_privat',
     'deleted' => 0,
@@ -2891,7 +2894,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_ptv'
+  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_ptv'.
   $field_instances['node-investor_privat-field_invest_pvt_ctrl_ptv'] = array(
     'bundle' => 'investor_privat',
     'deleted' => 0,
@@ -2942,7 +2945,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_ua'
+  // Exported field_instance: 'node-investor_privat-field_invest_pvt_ctrl_ua'.
   $field_instances['node-investor_privat-field_invest_pvt_ctrl_ua'] = array(
     'bundle' => 'investor_privat',
     'deleted' => 0,
@@ -2993,7 +2996,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_invest_pvt_notes'
+  // Exported field_instance: 'node-investor_privat-field_invest_pvt_notes'.
   $field_instances['node-investor_privat-field_invest_pvt_notes'] = array(
     'bundle' => 'investor_privat',
     'default_value' => NULL,
@@ -3064,7 +3067,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_shared_cont_pers'
+  // Exported field_instance: 'node-investor_privat-field_shared_cont_pers'.
   $field_instances['node-investor_privat-field_shared_cont_pers'] = array(
     'bundle' => 'investor_privat',
     'default_value' => NULL,
@@ -3110,7 +3113,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_privat-field_shared_cust_id'
+  // Exported field_instance: 'node-investor_privat-field_shared_cust_id'.
   $field_instances['node-investor_privat-field_shared_cust_id'] = array(
     'bundle' => 'investor_privat',
     'default_value' => NULL,
@@ -3181,7 +3184,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_branches'
+  // Exported field_instance: 'node-person-field_user_branches'.
   $field_instances['node-person-field_user_branches'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3228,7 +3231,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_cell'
+  // Exported field_instance: 'node-person-field_user_cell'.
   $field_instances['node-person-field_user_cell'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3305,7 +3308,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_fax'
+  // Exported field_instance: 'node-person-field_user_fax'.
   $field_instances['node-person-field_user_fax'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3382,7 +3385,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_id_address'
+  // Exported field_instance: 'node-person-field_user_id_address'.
   $field_instances['node-person-field_user_id_address'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3449,7 +3452,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_id_ctrl'
+  // Exported field_instance: 'node-person-field_user_id_ctrl'.
   $field_instances['node-person-field_user_id_ctrl'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3513,7 +3516,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_interests'
+  // Exported field_instance: 'node-person-field_user_interests'.
   $field_instances['node-person-field_user_interests'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3560,7 +3563,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_lead'
+  // Exported field_instance: 'node-person-field_user_lead'.
   $field_instances['node-person-field_user_lead'] = array(
     'bundle' => 'person',
     'default_value' => array(
@@ -3609,7 +3612,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_mail'
+  // Exported field_instance: 'node-person-field_user_mail'.
   $field_instances['node-person-field_user_mail'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3655,7 +3658,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_notes'
+  // Exported field_instance: 'node-person-field_user_notes'.
   $field_instances['node-person-field_user_notes'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3732,7 +3735,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_owner'
+  // Exported field_instance: 'node-person-field_user_owner'.
   $field_instances['node-person-field_user_owner'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3780,7 +3783,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_phone'
+  // Exported field_instance: 'node-person-field_user_phone'.
   $field_instances['node-person-field_user_phone'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3857,7 +3860,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_user_ssn'
+  // Exported field_instance: 'node-person-field_user_ssn'.
   $field_instances['node-person-field_user_ssn'] = array(
     'bundle' => 'person',
     'default_value' => NULL,
@@ -3935,7 +3938,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_amount'
+  // 'node-transaction_history-field_transaction_amount'.
   $field_instances['node-transaction_history-field_transaction_amount'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -3988,7 +3991,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_amount_guar'
+  // 'node-transaction_history-field_transaction_amount_guar'.
   $field_instances['node-transaction_history-field_transaction_amount_guar'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4041,7 +4044,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_company'
+  // 'node-transaction_history-field_transaction_company'.
   $field_instances['node-transaction_history-field_transaction_company'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4112,7 +4115,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction_history-field_transaction_id'
+  // Exported field_instance: 'node-transaction_history-field_transaction_id'.
   $field_instances['node-transaction_history-field_transaction_id'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4165,7 +4168,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_invest_name'
+  // 'node-transaction_history-field_transaction_invest_name'.
   $field_instances['node-transaction_history-field_transaction_invest_name'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4237,7 +4240,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_investor_id'
+  // 'node-transaction_history-field_transaction_investor_id'.
   $field_instances['node-transaction_history-field_transaction_investor_id'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4308,7 +4311,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction_history-field_transaction_loan'
+  // Exported field_instance: 'node-transaction_history-field_transaction_loan'.
   $field_instances['node-transaction_history-field_transaction_loan'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4361,7 +4364,7 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_max_invest'
+  // 'node-transaction_history-field_transaction_max_invest'.
   $field_instances['node-transaction_history-field_transaction_max_invest'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4413,7 +4416,8 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction_history-field_transaction_newem'
+  // Exported field_instance:
+  // 'node-transaction_history-field_transaction_newem'.
   $field_instances['node-transaction_history-field_transaction_newem'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4465,7 +4469,7 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction_history-field_transaction_pp'
+  // Exported field_instance: 'node-transaction_history-field_transaction_pp'.
   $field_instances['node-transaction_history-field_transaction_pp'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
@@ -4517,7 +4521,8 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaction_history-field_transaction_title'
+  // Exported field_instance:
+  // 'node-transaction_history-field_transaction_title'.
   $field_instances['node-transaction_history-field_transaction_title'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,

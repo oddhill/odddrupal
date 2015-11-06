@@ -10,7 +10,7 @@
 function f_document_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_administrera-dokument:dokument/administrera
+  // Exported menu link: main-menu_administrera-dokument:dokument/administrera.
   $menu_links['main-menu_administrera-dokument:dokument/administrera'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/administrera',
@@ -36,7 +36,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_administrera-manualer:manualer/administrera
+  // Exported menu link: main-menu_administrera-manualer:manualer/administrera.
   $menu_links['main-menu_administrera-manualer:manualer/administrera'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'manualer/administrera',
@@ -62,7 +62,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_manualer:manualer',
   );
-  // Exported menu link: main-menu_alla-dokument:dokument/lista
+  // Exported menu link: main-menu_alla-dokument:dokument/lista.
   $menu_links['main-menu_alla-dokument:dokument/lista'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/lista',
@@ -90,7 +90,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_alla-manualer:manualer/lista
+  // Exported menu link: main-menu_alla-manualer:manualer/lista.
   $menu_links['main-menu_alla-manualer:manualer/lista'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'manualer/lista',
@@ -118,7 +118,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_manualer:manualer',
   );
-  // Exported menu link: main-menu_dokument:dokument
+  // Exported menu link: main-menu_dokument:dokument.
   $menu_links['main-menu_dokument:dokument'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument',
@@ -143,7 +143,7 @@ function f_document_menu_default_menu_links() {
     'weight' => -44,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_dokumentlogg:dokument/logg
+  // Exported menu link: main-menu_dokumentlogg:dokument/logg.
   $menu_links['main-menu_dokumentlogg:dokument/logg'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/logg',
@@ -169,7 +169,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_lgg-till-dokument:node/add/document
+  // Exported menu link: main-menu_lgg-till-dokument:node/add/document.
   $menu_links['main-menu_lgg-till-dokument:node/add/document'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/document',
@@ -197,7 +197,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_lst-per-anvndare:dokument/last-per-anvandare
+  // Exported menu link: main-menu_lst-per-anvndare:dokument/last-per-anvandare.
   $menu_links['main-menu_lst-per-anvndare:dokument/last-per-anvandare'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/last-per-anvandare',
@@ -223,7 +223,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_lst-per-dokument:dokument/last-per-dokument
+  // Exported menu link: main-menu_lst-per-dokument:dokument/last-per-dokument.
   $menu_links['main-menu_lst-per-dokument:dokument/last-per-dokument'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/last-per-dokument',
@@ -249,7 +249,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_manualer:manualer
+  // Exported menu link: main-menu_manualer:manualer.
   $menu_links['main-menu_manualer:manualer'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'manualer',
@@ -274,7 +274,7 @@ function f_document_menu_default_menu_links() {
     'weight' => -43,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_sortera-dokument:dokument/sortera
+  // Exported menu link: main-menu_sortera-dokument:dokument/sortera.
   $menu_links['main-menu_sortera-dokument:dokument/sortera'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'dokument/sortera',
@@ -300,7 +300,7 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
-  // Exported menu link: main-menu_sortera-manualer:manualer/sortera
+  // Exported menu link: main-menu_sortera-manualer:manualer/sortera.
   $menu_links['main-menu_sortera-manualer:manualer/sortera'] = array(
     'menu_name' => 'main-menu',
     'link_path' => 'manualer/sortera',

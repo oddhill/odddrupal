@@ -10,7 +10,7 @@
 function f_document_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_doc_foot_address'
+  // Exported field_base: 'field_doc_foot_address'.
   $field_bases['field_doc_foot_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_bg'
+  // Exported field_base: 'field_doc_foot_bg'.
   $field_bases['field_doc_foot_bg'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -52,7 +52,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_fax'
+  // Exported field_base: 'field_doc_foot_fax'.
   $field_bases['field_doc_foot_fax'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -73,7 +73,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_free'
+  // Exported field_base: 'field_doc_foot_free'.
   $field_bases['field_doc_foot_free'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -94,7 +94,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_mail'
+  // Exported field_base: 'field_doc_foot_mail'.
   $field_bases['field_doc_foot_mail'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -115,7 +115,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_moms'
+  // Exported field_base: 'field_doc_foot_moms'.
   $field_bases['field_doc_foot_moms'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -136,7 +136,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_tel'
+  // Exported field_base: 'field_doc_foot_tel'.
   $field_bases['field_doc_foot_tel'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -157,7 +157,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_vat'
+  // Exported field_base: 'field_doc_foot_vat'.
   $field_bases['field_doc_foot_vat'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -178,7 +178,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_foot_webb'
+  // Exported field_base: 'field_doc_foot_webb'.
   $field_bases['field_doc_foot_webb'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -199,7 +199,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_head_free'
+  // Exported field_base: 'field_doc_head_free'.
   $field_bases['field_doc_head_free'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -220,7 +220,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_doc_head_img'
+  // Exported field_base: 'field_doc_head_img'.
   $field_bases['field_doc_head_img'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -242,7 +242,7 @@ function f_document_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_doc_head_text'
+  // Exported field_base: 'field_doc_head_text'.
   $field_bases['field_doc_head_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -263,7 +263,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_document_appendix'
+  // Exported field_base: 'field_document_appendix'.
   $field_bases['field_document_appendix'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -297,7 +297,7 @@ function f_document_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_document_files'
+  // Exported field_base: 'field_document_files'.
   $field_bases['field_document_files'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -320,7 +320,7 @@ function f_document_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_document_type'
+  // Exported field_base: 'field_document_type'.
   $field_bases['field_document_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -346,7 +346,7 @@ function f_document_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_document_user_read'
+  // Exported field_base: 'field_document_user_read'.
   $field_bases['field_document_user_read'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -379,7 +379,7 @@ function f_document_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_dokument_relation'
+  // Exported field_base: 'field_dokument_relation'.
   $field_bases['field_dokument_relation'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -413,7 +413,7 @@ function f_document_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_man_foot_address'
+  // Exported field_base: 'field_man_foot_address'.
   $field_bases['field_man_foot_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -434,7 +434,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_bg'
+  // Exported field_base: 'field_man_foot_bg'.
   $field_bases['field_man_foot_bg'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -455,7 +455,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_fax'
+  // Exported field_base: 'field_man_foot_fax'.
   $field_bases['field_man_foot_fax'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -476,7 +476,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_free'
+  // Exported field_base: 'field_man_foot_free'.
   $field_bases['field_man_foot_free'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -497,7 +497,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_mail'
+  // Exported field_base: 'field_man_foot_mail'.
   $field_bases['field_man_foot_mail'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -518,7 +518,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_moms'
+  // Exported field_base: 'field_man_foot_moms'.
   $field_bases['field_man_foot_moms'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -539,7 +539,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_tel'
+  // Exported field_base: 'field_man_foot_tel'.
   $field_bases['field_man_foot_tel'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -560,7 +560,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_vat'
+  // Exported field_base: 'field_man_foot_vat'.
   $field_bases['field_man_foot_vat'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -581,7 +581,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_foot_webb'
+  // Exported field_base: 'field_man_foot_webb'.
   $field_bases['field_man_foot_webb'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -602,7 +602,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_head_free'
+  // Exported field_base: 'field_man_head_free'.
   $field_bases['field_man_head_free'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -623,7 +623,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_man_head_img'
+  // Exported field_base: 'field_man_head_img'.
   $field_bases['field_man_head_img'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -645,7 +645,7 @@ function f_document_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_man_head_text'
+  // Exported field_base: 'field_man_head_text'.
   $field_bases['field_man_head_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -666,7 +666,7 @@ function f_document_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_manual_files'
+  // Exported field_base: 'field_manual_files'.
   $field_bases['field_manual_files'] = array(
     'active' => 1,
     'cardinality' => -1,

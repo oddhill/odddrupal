@@ -10,7 +10,6 @@ dependencies[] = date
 dependencies[] = ds
 dependencies[] = ds_format
 dependencies[] = eck
-dependencies[] = eck
 dependencies[] = editablefields
 dependencies[] = email
 dependencies[] = entityreference
