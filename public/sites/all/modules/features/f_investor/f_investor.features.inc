@@ -141,7 +141,7 @@ function f_investor_eck_entity_type_info() {
  */
 function f_investor_node_info() {
   $items = array(
-    'investor_bolag' => array(
+    'investor_company' => array(
       'name' => t('Avtalspart bolag'),
       'base' => 'node_content',
       'description' => t('Bolag som kan investera'),
@@ -149,7 +149,7 @@ function f_investor_node_info() {
       'title_label' => t('Bolagsnamn'),
       'help' => '',
     ),
-    'investor_privat' => array(
+    'investor_private' => array(
       'name' => t('Avtalspart privat'),
       'base' => 'node_content',
       'description' => t('Person som kan investera'),

@@ -16,7 +16,7 @@ function f_investor_field_group_info() {
   $field_group->identifier = 'group_ap|node|investor_bolag|form';
   $field_group->group_name = 'group_ap';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'investor_bolag';
+  $field_group->bundle = 'investor_company';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_head';
   $field_group->data = array(
@@ -51,7 +51,7 @@ function f_investor_field_group_info() {
   $field_group->identifier = 'group_ap|node|investor_privat|form';
   $field_group->group_name = 'group_ap';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'investor_privat';
+  $field_group->bundle = 'investor_private';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_head';
   $field_group->data = array(
@@ -82,7 +82,7 @@ function f_investor_field_group_info() {
   $field_group->identifier = 'group_comp_ctrl|node|investor_bolag|form';
   $field_group->group_name = 'group_comp_ctrl';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'investor_bolag';
+  $field_group->bundle = 'investor_company';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_head';
   $field_group->data = array(
@@ -115,7 +115,7 @@ function f_investor_field_group_info() {
   $field_group->identifier = 'group_head|node|investor_bolag|form';
   $field_group->group_name = 'group_head';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'investor_bolag';
+  $field_group->bundle = 'investor_company';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
@@ -141,7 +141,7 @@ function f_investor_field_group_info() {
   $field_group->identifier = 'group_head|node|investor_privat|form';
   $field_group->group_name = 'group_head';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'investor_privat';
+  $field_group->bundle = 'investor_private';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
@@ -615,7 +615,7 @@ function f_investor_field_group_info() {
   $field_group->identifier = 'group_prv_ctrl|node|investor_privat|form';
   $field_group->group_name = 'group_prv_ctrl';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'investor_privat';
+  $field_group->bundle = 'investor_private';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_head';
   $field_group->data = array(
