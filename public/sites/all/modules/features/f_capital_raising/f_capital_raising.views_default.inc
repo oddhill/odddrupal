@@ -50,6 +50,45 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
 
+  /* Display: Alla */
+  $handler = $view->new_display('page', 'Alla', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Alla erbjudande';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Företag */
+  $handler->display->display_options['fields']['field_offer_company']['id'] = 'field_offer_company';
+  $handler->display->display_options['fields']['field_offer_company']['table'] = 'field_data_field_offer_company';
+  $handler->display->display_options['fields']['field_offer_company']['field'] = 'field_offer_company';
+  $handler->display->display_options['fields']['field_offer_company']['label'] = 'Bolag';
+  $handler->display->display_options['fields']['field_offer_company']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_company']['settings'] = array(
+    'link' => 0,
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'erbjudande' => 'erbjudande',
+  );
+  $handler->display->display_options['path'] = 'erbjudande/lista';
+
   /* Display: Kontaktlista */
   $handler = $view->new_display('page', 'Kontaktlista', 'page');
   $handler->display->display_options['defaults']['header'] = FALSE;
@@ -333,45 +372,6 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '10';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
-
-  /* Display: Alla */
-  $handler = $view->new_display('page', 'Alla', 'page_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Alla erbjudande';
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Företag */
-  $handler->display->display_options['fields']['field_offer_company']['id'] = 'field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['table'] = 'field_data_field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['field'] = 'field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['label'] = 'Bolag';
-  $handler->display->display_options['fields']['field_offer_company']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_offer_company']['settings'] = array(
-    'link' => 0,
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'erbjudande' => 'erbjudande',
-  );
-  $handler->display->display_options['path'] = 'erbjudande/lista';
   $translatables['erbjudande'] = array(
     t('Master'),
     t('Kontaktlista'),
@@ -382,6 +382,9 @@ function f_capital_raising_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Title'),
+    t('Alla'),
+    t('Alla erbjudande'),
+    t('Bolag'),
     t('Lägg till fler'),
     t('Lägg till fler kontaktpersoner'),
     t('Content entity referenced from field_transaction_offer'),
@@ -398,9 +401,6 @@ function f_capital_raising_views_default_views() {
     t('Erbjudande'),
     t('Intresserad'),
     t('All'),
-    t('Alla'),
-    t('Alla erbjudande'),
-    t('Bolag'),
   );
   $export['erbjudande'] = $view;
 
