@@ -252,7 +252,7 @@ function getIcon($file) {
 function sedermera_preprocess_views_view_table(&$vars) {
   $view = &$vars['view'];
 
-  if ($view->name == 'erbjudande' && $view->current_display == 'page') {
+  if ($view->name == 'transactions' && $view->current_display == 'page') {
     drupal_add_js(drupal_get_path('module', 'sedermera_core') . '/js/view_calc_table_reload.js');
     $vars['sum_row'] = $view->res;
     $vars['disable'] = $view->disable;
