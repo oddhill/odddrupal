@@ -1213,7 +1213,7 @@ function sedermera_offer_field_access($op, $field, $entity_type, $entity, $accou
 }
 
 function sedermera_offer_views_pre_render(&$view) {
-  if ($view->name == 'erbjudande' && $view->current_display == 'page') {
+  if ($view->name == 'transactions' && $view->current_display == 'page') {
     if (empty($view->result)) {
       return;
     }
