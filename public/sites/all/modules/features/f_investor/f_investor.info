@@ -37,7 +37,6 @@ dependencies[] = view_unpublished
 dependencies[] = views
 features[ccl][] = Lägg till avtalspart
 features[ccl][] = Lägg till kontaktperson
-features[context][] = entities_investor
 features[ctools][] = context:context:3
 features[ctools][] = ds:ds:1
 features[ctools][] = field_group:field_group:1
