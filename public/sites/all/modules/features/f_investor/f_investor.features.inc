@@ -57,29 +57,29 @@ function f_investor_views_api($module = NULL, $api = NULL) {
  */
 function f_investor_eck_bundle_info() {
   $items = array(
-    'contact_person_contact_person' => array(
-      'machine_name' => 'contact_person_contact_person',
-      'entity_type' => 'contact_person',
-      'name' => 'contact_person',
-      'label' => 'Contact person',
+    '' => array(
+      'machine_name' => NULL,
+      'entity_type' => NULL,
+      'name' => NULL,
+      'label' => NULL,
     ),
-    'investor_company' => array(
-      'machine_name' => 'investor_company',
-      'entity_type' => 'investor',
-      'name' => 'company',
-      'label' => 'Bolag',
+    '' => array(
+      'machine_name' => NULL,
+      'entity_type' => NULL,
+      'name' => NULL,
+      'label' => NULL,
     ),
-    'investor_lead' => array(
-      'machine_name' => 'investor_lead',
-      'entity_type' => 'investor',
-      'name' => 'lead',
-      'label' => 'Lead',
+    '' => array(
+      'machine_name' => NULL,
+      'entity_type' => NULL,
+      'name' => NULL,
+      'label' => NULL,
     ),
-    'investor_person' => array(
-      'machine_name' => 'investor_person',
-      'entity_type' => 'investor',
-      'name' => 'person',
-      'label' => 'Privatperson',
+    '' => array(
+      'machine_name' => NULL,
+      'entity_type' => NULL,
+      'name' => NULL,
+      'label' => NULL,
     ),
   );
   return $items;
@@ -90,47 +90,15 @@ function f_investor_eck_bundle_info() {
  */
 function f_investor_eck_entity_type_info() {
   $items = array(
-    'contact_person' => array(
-      'name' => 'contact_person',
-      'label' => 'Kontaktperson',
-      'properties' => array(
-        'title' => array(
-          'label' => 'Title',
-          'type' => 'text',
-          'behavior' => 'title',
-        ),
-      ),
+    '' => array(
+      'name' => NULL,
+      'label' => NULL,
+      'properties' => NULL,
     ),
-    'investor' => array(
-      'name' => 'investor',
-      'label' => 'Investerare',
-      'properties' => array(
-        'uid' => array(
-          'label' => 'Author',
-          'type' => 'integer',
-          'behavior' => 'author',
-        ),
-        'created' => array(
-          'label' => 'Created',
-          'type' => 'integer',
-          'behavior' => 'created',
-        ),
-        'changed' => array(
-          'label' => 'Changed',
-          'type' => 'integer',
-          'behavior' => 'changed',
-        ),
-        'title' => array(
-          'label' => 'Title',
-          'type' => 'text',
-          'behavior' => 'title',
-        ),
-        'publish' => array(
-          'label' => 'Publish',
-          'type' => 'integer',
-          'behavior' => '',
-        ),
-      ),
+    '' => array(
+      'name' => NULL,
+      'label' => NULL,
+      'properties' => NULL,
     ),
   );
   return $items;
