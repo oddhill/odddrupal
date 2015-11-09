@@ -57,14 +57,6 @@ function f_capital_raising_views_api($module = NULL, $api = NULL) {
  */
 function f_capital_raising_node_info() {
   $items = array(
-    'capital_raising' => array(
-      'name' => t('Transaktion'),
-      'base' => 'node_content',
-      'description' => t('Transaktioner utgör navet för webbplatsen. Dessa knyts till ett bolag, och innehåller all information som är relevant för transaktionen.'),
-      'has_title' => '1',
-      'title_label' => t('Titel'),
-      'help' => '',
-    ),
     'erbjudande' => array(
       'name' => t('Erbjudande'),
       'base' => 'node_content',
