@@ -241,6 +241,10 @@ function sedermera_update_update_7012() {
   field_purge_batch(1000);
 }
 
+/**
+ * Delete unused views
+ * @return null
+ */
 function sedermera_update_update_7013() {
   ctools_include('export');
   $view = ctools_export_crud_load('views_view', 'erbjudande');
@@ -257,4 +261,47 @@ function sedermera_update_update_7013() {
 
   $view = ctools_export_crud_load('views_view', 'kundansvarig');
   $view->delete();
+}
+
+/**
+ * Removes unused fields and entity types
+ * @return null
+ */
+function sedermera_update_update_7014() {
+  field_delete_field('field_comp_cont_cell');
+  field_delete_field('field_comp_cont_fax');
+  field_delete_field('field_comp_cont_mail');
+  field_delete_field('field_comp_cont_name');
+  field_delete_field('field_comp_cont_phone');
+  field_delete_field('field_invest_comp_id');
+  field_delete_field('field_invest_comp_name');
+  field_delete_field('field_invest_comp_own');
+  field_delete_field('field_invest_cont_person');
+  field_delete_field('field_invest_cont_person_prvt');
+  field_delete_field('field_invest_lead_cont');
+  field_delete_field('field_invest_pers_first_name');
+  field_delete_field('field_invest_pers_id');
+  field_delete_field('field_invest_pers_last_name');
+  field_delete_field('field_lead_first_name');
+  field_delete_field('field_lead_last_name');
+  field_delete_field('field_shared_address');
+  field_delete_field('field_shared_ctrl');
+  field_delete_field('field_shared_ctrl_pvt');
+  field_delete_field('field_shared_custresp');
+  field_delete_field('field_shared_industries');
+  field_delete_field('field_shared_interests');
+  field_delete_field('field_shared_inv_id');
+  field_delete_field('field_shared_lead');
+  field_delete_field('field_shared_notes');
+  field_delete_field('field_shared_temp');
+  field_delete_field('field_shared_veri_appr');
+  field_delete_field('field_shared_veri_expire');
+
+  $entity_types = EntityType::loadAll();
+
+  foreach ($entity_types as $entity_type) {
+    $entity_type->delete();
+  }
+
+  field_purge_batch(1000);
 }
