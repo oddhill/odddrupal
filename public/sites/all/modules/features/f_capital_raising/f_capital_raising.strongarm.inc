@@ -115,13 +115,6 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_capital_raising';
-  $strongarm->value = '0';
-  $export['language_content_type_capital_raising'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_erbjudande';
   $strongarm->value = '0';
   $export['language_content_type_erbjudande'] = $strongarm;
@@ -143,13 +136,6 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_capital_raising';
-  $strongarm->value = array();
-  $export['menu_options_capital_raising'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_erbjudande';
   $strongarm->value = array();
   $export['menu_options_erbjudande'] = $strongarm;
@@ -167,13 +153,6 @@ function f_capital_raising_strongarm() {
   $strongarm->name = 'menu_options_transaktion_ap';
   $strongarm->value = array();
   $export['menu_options_transaktion_ap'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_capital_raising';
-  $strongarm->value = 'main-menu:0';
-  $export['menu_parent_capital_raising'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -519,15 +498,6 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_capital_raising';
-  $strongarm->value = array(
-    0 => 'status',
-  );
-  $export['node_options_capital_raising'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_erbjudande';
   $strongarm->value = array(
     0 => 'status',
@@ -555,13 +525,6 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_capital_raising';
-  $strongarm->value = '0';
-  $export['node_preview_capital_raising'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_erbjudande';
   $strongarm->value = '0';
   $export['node_preview_erbjudande'] = $strongarm;
@@ -583,13 +546,6 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_capital_raising';
-  $strongarm->value = 0;
-  $export['node_submitted_capital_raising'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_erbjudande';
   $strongarm->value = 0;
   $export['node_submitted_erbjudande'] = $strongarm;
@@ -607,13 +563,6 @@ function f_capital_raising_strongarm() {
   $strongarm->name = 'node_submitted_transaktion_ap';
   $strongarm->value = 0;
   $export['node_submitted_transaktion_ap'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'node_view_permissions_capital_raising';
-  $strongarm->value = 1;
-  $export['node_view_permissions_capital_raising'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
