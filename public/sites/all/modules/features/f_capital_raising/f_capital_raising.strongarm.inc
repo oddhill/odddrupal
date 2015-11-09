@@ -698,7 +698,7 @@ function f_capital_raising_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_erbjudande_pattern';
-  $strongarm->value = 'erbjudande/lista/[node:title]';
+  $strongarm->value = 'erbjudanden/lista/[node:title]';
   $export['pathauto_node_erbjudande_pattern'] = $strongarm;
 
   $strongarm = new stdClass();

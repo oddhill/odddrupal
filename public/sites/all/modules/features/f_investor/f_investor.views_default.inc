@@ -11,7 +11,167 @@ function f_investor_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'avtalsparter';
+  $view->name = 'all_offers';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Erbjudanden';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Erbjudanden';
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Content: Företag */
+  $handler->display->display_options['fields']['field_offer_company']['id'] = 'field_offer_company';
+  $handler->display->display_options['fields']['field_offer_company']['table'] = 'field_data_field_offer_company';
+  $handler->display->display_options['fields']['field_offer_company']['field'] = 'field_offer_company';
+  $handler->display->display_options['fields']['field_offer_company']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_offer_company']['settings'] = array(
+    'link' => 0,
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'erbjudande' => 'erbjudande',
+  );
+
+  /* Display: Alla */
+  $handler = $view->new_display('page', 'Alla', 'page');
+  $handler->display->display_options['path'] = 'erbjudanden/lista';
+  $translatables['all_offers'] = array(
+    t('Master'),
+    t('Erbjudanden'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Företag'),
+    t('Title'),
+    t('Alla'),
+  );
+  $export['all_offers'] = $view;
+
+  $view = new view();
+  $view->name = 'customer_handler';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'users';
+  $view->human_name = 'Kundansvarig';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'access user profiles';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['field_user_name']['id'] = 'field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['table'] = 'field_data_field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['field'] = 'field_user_name';
+  $handler->display->display_options['fields']['field_user_name']['label'] = '';
+  $handler->display->display_options['fields']['field_user_name']['element_label_colon'] = FALSE;
+  /* Sort criterion: User: Created date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'users';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: User: The user ID */
+  $handler->display->display_options['filters']['uid_raw']['id'] = 'uid_raw';
+  $handler->display->display_options['filters']['uid_raw']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_raw']['field'] = 'uid_raw';
+  $handler->display->display_options['filters']['uid_raw']['operator'] = '>';
+  $handler->display->display_options['filters']['uid_raw']['value']['value'] = '1';
+  /* Filter criterion: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['value'] = array(
+    3 => '3',
+    5 => '5',
+  );
+
+  /* Display: Entity Reference */
+  $handler = $view->new_display('entityreference', 'Entity Reference', 'entityreference_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'entityreference_style';
+  $handler->display->display_options['style_options']['search_fields'] = array(
+    'field_user_name' => 'field_user_name',
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entityreference_fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $translatables['customer_handler'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Entity Reference'),
+  );
+  $export['customer_handler'] = $view;
+
+  $view = new view();
+  $view->name = 'investors';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
@@ -121,8 +281,8 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'investor_bolag' => 'investor_bolag',
-    'investor_privat' => 'investor_privat',
+    'investor_company' => 'investor_company',
+    'investor_private' => 'investor_private',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Title */
@@ -190,7 +350,7 @@ function f_investor_views_default_views() {
   /* Display: Avtalsparter */
   $handler = $view->new_display('page', 'Avtalsparter', 'page');
   $handler->display->display_options['path'] = 'avtalsparter/lista';
-  $translatables['avtalsparter'] = array(
+  $translatables['investors'] = array(
     t('Master'),
     t('Alla avtalsparter'),
     t('more'),
@@ -213,94 +373,7 @@ function f_investor_views_default_views() {
     t('Kundansvarig'),
     t('Avtalsparter'),
   );
-  $export['avtalsparter'] = $view;
-
-  $view = new view();
-  $view->name = 'kundansvarig';
-  $view->description = '';
-  $view->tag = 'default';
-  $view->base_table = 'users';
-  $view->human_name = 'Kundansvarig';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'access user profiles';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: User: Name */
-  $handler->display->display_options['fields']['field_user_name']['id'] = 'field_user_name';
-  $handler->display->display_options['fields']['field_user_name']['table'] = 'field_data_field_user_name';
-  $handler->display->display_options['fields']['field_user_name']['field'] = 'field_user_name';
-  $handler->display->display_options['fields']['field_user_name']['label'] = '';
-  $handler->display->display_options['fields']['field_user_name']['element_label_colon'] = FALSE;
-  /* Sort criterion: User: Created date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'users';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: User: Active */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'users';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: User: The user ID */
-  $handler->display->display_options['filters']['uid_raw']['id'] = 'uid_raw';
-  $handler->display->display_options['filters']['uid_raw']['table'] = 'users';
-  $handler->display->display_options['filters']['uid_raw']['field'] = 'uid_raw';
-  $handler->display->display_options['filters']['uid_raw']['operator'] = '>';
-  $handler->display->display_options['filters']['uid_raw']['value']['value'] = '1';
-  /* Filter criterion: User: Roles */
-  $handler->display->display_options['filters']['rid']['id'] = 'rid';
-  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
-  $handler->display->display_options['filters']['rid']['field'] = 'rid';
-  $handler->display->display_options['filters']['rid']['value'] = array(
-    3 => '3',
-    5 => '5',
-  );
-
-  /* Display: Entity Reference */
-  $handler = $view->new_display('entityreference', 'Entity Reference', 'entityreference_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'entityreference_style';
-  $handler->display->display_options['style_options']['search_fields'] = array(
-    'field_user_name' => 'field_user_name',
-  );
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'entityreference_fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $translatables['kundansvarig'] = array(
-    t('Master'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
-    t('Entity Reference'),
-  );
-  $export['kundansvarig'] = $view;
+  $export['investors'] = $view;
 
   $view = new view();
   $view->name = 'person';
@@ -474,20 +547,10 @@ function f_investor_views_default_views() {
   $handler = $view->new_display('page', 'Lista', 'list');
   $handler->display->display_options['path'] = 'kontaktpersoner/lista';
 
-  /* Display: Skicka erbjudande */
-  $handler = $view->new_display('embed', 'Skicka erbjudande', 'offer_embed');
+  /* Display: Skapa erbjudande */
+  $handler = $view->new_display('embed', 'Skapa erbjudande', 'offer_embed');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Bulk operations: Content */
-  $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
-  $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['label'] = '';
-  $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -496,16 +559,27 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: E-post */
-  $handler->display->display_options['fields']['field_user_mail']['id'] = 'field_user_mail';
-  $handler->display->display_options['fields']['field_user_mail']['table'] = 'field_data_field_user_mail';
-  $handler->display->display_options['fields']['field_user_mail']['field'] = 'field_user_mail';
-  $handler->display->display_options['fields']['field_user_mail']['element_label_colon'] = FALSE;
+  /* Field: Bulk operations: Content */
+  $handler->display->display_options['fields']['views_bulk_operations_1']['id'] = 'views_bulk_operations_1';
+  $handler->display->display_options['fields']['views_bulk_operations_1']['table'] = 'node';
+  $handler->display->display_options['fields']['views_bulk_operations_1']['field'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations_1']['label'] = '';
+  $handler->display->display_options['fields']['views_bulk_operations_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['views_bulk_operations_1']['vbo_settings']['display_type'] = '1';
+  $handler->display->display_options['fields']['views_bulk_operations_1']['vbo_settings']['enable_select_all_pages'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations_1']['vbo_settings']['row_clickable'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations_1']['vbo_settings']['force_single'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations_1']['vbo_settings']['entity_load_capacity'] = '10';
   /* Field: Content: Mobil */
   $handler->display->display_options['fields']['field_user_cell']['id'] = 'field_user_cell';
   $handler->display->display_options['fields']['field_user_cell']['table'] = 'field_data_field_user_cell';
   $handler->display->display_options['fields']['field_user_cell']['field'] = 'field_user_cell';
   $handler->display->display_options['fields']['field_user_cell']['element_label_colon'] = FALSE;
+  /* Field: Content: E-post */
+  $handler->display->display_options['fields']['field_user_mail']['id'] = 'field_user_mail';
+  $handler->display->display_options['fields']['field_user_mail']['table'] = 'field_data_field_user_mail';
+  $handler->display->display_options['fields']['field_user_mail']['field'] = 'field_user_mail';
+  $handler->display->display_options['fields']['field_user_mail']['element_label_colon'] = FALSE;
   /* Field: Content: Telefon */
   $handler->display->display_options['fields']['field_user_phone']['id'] = 'field_user_phone';
   $handler->display->display_options['fields']['field_user_phone']['table'] = 'field_data_field_user_phone';
@@ -534,275 +608,10 @@ function f_investor_views_default_views() {
     t('Mobil'),
     t('Telefon'),
     t('Lista'),
-    t('Skicka erbjudande'),
+    t('Skapa erbjudande'),
     t('- Choose an operation -'),
   );
   $export['person'] = $view;
-
-  $view = new view();
-  $view->name = 'transaktions_historia';
-  $view->description = '';
-  $view->tag = 'default';
-  $view->base_table = 'node';
-  $view->human_name = 'Transaktions historia';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Transaktionshistoria';
-  $handler->display->display_options['use_ajax'] = TRUE;
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'title' => 'title',
-    'field_transaction_company' => 'field_transaction_company',
-    'field_transaction_invest_name' => 'field_transaction_invest_name',
-    'field_transaction_investor_id' => 'field_transaction_investor_id',
-    'field_transaction_id' => 'field_transaction_id',
-    'field_transaction_title' => 'field_transaction_title',
-    'field_transaction_max_invest' => 'field_transaction_max_invest',
-  );
-  $handler->display->display_options['style_options']['default'] = 'title';
-  $handler->display->display_options['style_options']['info'] = array(
-    'title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_transaction_company' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_transaction_invest_name' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_transaction_investor_id' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_transaction_id' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_transaction_title' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_transaction_max_invest' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Kunde inte hitta någon investeringshistorik som matchade sökkriterierna.';
-  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Företag */
-  $handler->display->display_options['fields']['field_transaction_company']['id'] = 'field_transaction_company';
-  $handler->display->display_options['fields']['field_transaction_company']['table'] = 'field_data_field_transaction_company';
-  $handler->display->display_options['fields']['field_transaction_company']['field'] = 'field_transaction_company';
-  $handler->display->display_options['fields']['field_transaction_company']['element_label_colon'] = FALSE;
-  /* Field: Content: Investerar namn */
-  $handler->display->display_options['fields']['field_transaction_invest_name']['id'] = 'field_transaction_invest_name';
-  $handler->display->display_options['fields']['field_transaction_invest_name']['table'] = 'field_data_field_transaction_invest_name';
-  $handler->display->display_options['fields']['field_transaction_invest_name']['field'] = 'field_transaction_invest_name';
-  $handler->display->display_options['fields']['field_transaction_invest_name']['element_label_colon'] = FALSE;
-  /* Field: Content: Investerar ID */
-  $handler->display->display_options['fields']['field_transaction_investor_id']['id'] = 'field_transaction_investor_id';
-  $handler->display->display_options['fields']['field_transaction_investor_id']['table'] = 'field_data_field_transaction_investor_id';
-  $handler->display->display_options['fields']['field_transaction_investor_id']['field'] = 'field_transaction_investor_id';
-  $handler->display->display_options['fields']['field_transaction_investor_id']['element_label_colon'] = FALSE;
-  /* Field: Content: Transaktions ID */
-  $handler->display->display_options['fields']['field_transaction_id']['id'] = 'field_transaction_id';
-  $handler->display->display_options['fields']['field_transaction_id']['table'] = 'field_data_field_transaction_id';
-  $handler->display->display_options['fields']['field_transaction_id']['field'] = 'field_transaction_id';
-  $handler->display->display_options['fields']['field_transaction_id']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_transaction_id']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Field: Content: Transaktions titel */
-  $handler->display->display_options['fields']['field_transaction_title']['id'] = 'field_transaction_title';
-  $handler->display->display_options['fields']['field_transaction_title']['table'] = 'field_data_field_transaction_title';
-  $handler->display->display_options['fields']['field_transaction_title']['field'] = 'field_transaction_title';
-  $handler->display->display_options['fields']['field_transaction_title']['element_label_colon'] = FALSE;
-  /* Field: Content: Max investering */
-  $handler->display->display_options['fields']['field_transaction_max_invest']['id'] = 'field_transaction_max_invest';
-  $handler->display->display_options['fields']['field_transaction_max_invest']['table'] = 'field_data_field_transaction_max_invest';
-  $handler->display->display_options['fields']['field_transaction_max_invest']['field'] = 'field_transaction_max_invest';
-  $handler->display->display_options['fields']['field_transaction_max_invest']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_transaction_max_invest']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'transaction_history' => 'transaction_history',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  $handler->display->display_options['filters']['status']['group'] = 1;
-
-  /* Display: History page */
-  $handler = $view->new_display('page', 'History page', 'page');
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'transaction_history' => 'transaction_history',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  /* Filter criterion: Content: Max investering (field_transaction_max_invest) */
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['id'] = 'field_transaction_max_invest_value';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['table'] = 'field_data_field_transaction_max_invest';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['field'] = 'field_transaction_max_invest_value';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['operator'] = '>=';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['operator_id'] = 'field_transaction_max_invest_value_op';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['label'] = 'Investering högre än';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['operator'] = 'field_transaction_max_invest_value_op';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['identifier'] = 'field_transaction_max_invest_value';
-  $handler->display->display_options['filters']['field_transaction_max_invest_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    5 => 0,
-    4 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-  );
-  $handler->display->display_options['path'] = 'transaktioner/historik';
-
-  /* Display: History block */
-  $handler = $view->new_display('block', 'History block', 'transaction_history_block');
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Investerar namn (field_transaction_invest_name) */
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['id'] = 'field_transaction_invest_name_value';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['table'] = 'field_data_field_transaction_invest_name';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['field'] = 'field_transaction_invest_name_value';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_type'] = 'php';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_options']['code'] = '$entity = entity_load_single(\'investor\', arg(2));
-return $entity->title;';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['limit'] = '0';
-
-  /* Display: Individual page */
-  $handler = $view->new_display('page', 'Individual page', 'page_1');
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Investerar namn (field_transaction_invest_name) */
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['id'] = 'field_transaction_invest_name_value';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['table'] = 'field_data_field_transaction_invest_name';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['field'] = 'field_transaction_invest_name_value';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_type'] = 'php';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['default_argument_options']['code'] = '$entity = entity_load_single(\'investor\', arg(2));
-return $entity->title;';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_transaction_invest_name_value']['limit'] = '0';
-  $handler->display->display_options['path'] = 'investerare/lista/%/investeringshistorik';
-  $handler->display->display_options['menu']['title'] = 'Transaktionshistorik';
-  $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
-  $translatables['transaktions_historia'] = array(
-    t('Master'),
-    t('Transaktionshistoria'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
-    t('Kunde inte hitta någon investeringshistorik som matchade sökkriterierna.'),
-    t('Title'),
-    t('Företag'),
-    t('Investerar namn'),
-    t('Investerar ID'),
-    t('Transaktions ID'),
-    t('Transaktions titel'),
-    t('Max investering'),
-    t('History page'),
-    t('Investering högre än'),
-    t('History block'),
-    t('All'),
-    t('Individual page'),
-  );
-  $export['transaktions_historia'] = $view;
 
   return $export;
 }

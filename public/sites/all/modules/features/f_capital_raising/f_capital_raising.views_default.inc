@@ -11,18 +11,18 @@ function f_capital_raising_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'erbjudande';
+  $view->name = 'transactions';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Erbjudande';
+  $view->human_name = 'Transaktioner';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Kontaktlista';
+  $handler->display->display_options['title'] = 'Transaktioner';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -49,45 +49,13 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-
-  /* Display: Alla */
-  $handler = $view->new_display('page', 'Alla', 'page_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Alla erbjudande';
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Företag */
-  $handler->display->display_options['fields']['field_offer_company']['id'] = 'field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['table'] = 'field_data_field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['field'] = 'field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['label'] = 'Bolag';
-  $handler->display->display_options['fields']['field_offer_company']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_offer_company']['settings'] = array(
-    'link' => 0,
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'erbjudande' => 'erbjudande',
+    'transaction' => 'transaction',
   );
-  $handler->display->display_options['path'] = 'erbjudande/lista';
 
   /* Display: Kontaktlista */
   $handler = $view->new_display('page', 'Kontaktlista', 'page');
@@ -103,13 +71,13 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['header']['link']['class'] = 'add-more';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_transaction_offer_target_id']['id'] = 'field_transaction_offer_target_id';
-  $handler->display->display_options['relationships']['field_transaction_offer_target_id']['table'] = 'field_data_field_transaction_offer';
-  $handler->display->display_options['relationships']['field_transaction_offer_target_id']['field'] = 'field_transaction_offer_target_id';
-  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_transaction_person_target_id']['id'] = 'field_transaction_person_target_id';
   $handler->display->display_options['relationships']['field_transaction_person_target_id']['table'] = 'field_data_field_transaction_person';
   $handler->display->display_options['relationships']['field_transaction_person_target_id']['field'] = 'field_transaction_person_target_id';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_transaction_offer_target_id']['id'] = 'field_transaction_offer_target_id';
+  $handler->display->display_options['relationships']['field_transaction_offer_target_id']['table'] = 'field_data_field_transaction_offer';
+  $handler->display->display_options['relationships']['field_transaction_offer_target_id']['field'] = 'field_transaction_offer_target_id';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -126,6 +94,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_fe_sign']['table'] = 'field_data_field_transaction_fe_sign';
   $handler->display->display_options['fields']['field_transaction_fe_sign']['field'] = 'field_transaction_fe_sign';
   $handler->display->display_options['fields']['field_transaction_fe_sign']['label'] = 'Teckningsförbindelse';
+  $handler->display->display_options['fields']['field_transaction_fe_sign']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_fe_sign']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_fe_sign']['settings'] = array(
     'click_to_edit' => 0,
@@ -176,6 +145,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_le_warrant']['table'] = 'field_data_field_transaction_le_warrant';
   $handler->display->display_options['fields']['field_transaction_le_warrant']['field'] = 'field_transaction_le_warrant';
   $handler->display->display_options['fields']['field_transaction_le_warrant']['label'] = 'Garantiåtagande';
+  $handler->display->display_options['fields']['field_transaction_le_warrant']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_le_warrant']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_le_warrant']['settings'] = array(
     'click_to_edit' => 0,
@@ -257,7 +227,6 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_sum']['id'] = 'field_transaction_sum';
   $handler->display->display_options['fields']['field_transaction_sum']['table'] = 'field_data_field_transaction_sum';
   $handler->display->display_options['fields']['field_transaction_sum']['field'] = 'field_transaction_sum';
-  $handler->display->display_options['fields']['field_transaction_sum']['label'] = '';
   $handler->display->display_options['fields']['field_transaction_sum']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_sum']['settings'] = array(
     'thousand_separator' => ' ',
@@ -319,7 +288,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['text'] = 'Skicka';
   $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['path'] = 'test.php';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['alt'] = 'Skicka';
+  $handler->display->display_options['fields']['field_transaction_info_offer']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_info_offer']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_info_offer']['settings'] = array(
     'click_to_edit' => 0,
@@ -350,31 +319,15 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'transaction' => 'transaction',
-  );
   $handler->display->display_options['path'] = 'node/%/kontaktlista';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Kontaklista';
-  $handler->display->display_options['menu']['weight'] = '10';
+  $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
-  $translatables['erbjudande'] = array(
+  $translatables['transactions'] = array(
     t('Master'),
-    t('Kontaktlista'),
+    t('Transaktioner'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -382,18 +335,17 @@ function f_capital_raising_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Title'),
-    t('Alla'),
-    t('Alla erbjudande'),
-    t('Bolag'),
+    t('Kontaktlista'),
     t('Lägg till fler'),
     t('Lägg till fler kontaktpersoner'),
-    t('Content entity referenced from field_transaction_offer'),
     t('Content entity referenced from field_transaction_person'),
+    t('Content entity referenced from field_transaction_offer'),
     t('Kontaktperson'),
     t('Teckningsförbindelse'),
     t('Garantiåtagande'),
     t('Brygglån'),
     t('Blockpost'),
+    t('Summa'),
     t('Anteckning'),
     t('Första kontakt'),
     t('Insynsinfo'),
@@ -402,7 +354,7 @@ function f_capital_raising_views_default_views() {
     t('Intresserad'),
     t('All'),
   );
-  $export['erbjudande'] = $view;
+  $export['transactions'] = $view;
 
   return $export;
 }

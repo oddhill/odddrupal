@@ -32,7 +32,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -47,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -58,7 +58,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'main-menu_manualer:manualer',
   );
@@ -140,7 +140,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -44,
+    'weight' => -39,
     'customized' => 1,
   );
   // Exported menu link: main-menu_dokumentlogg:dokument/logg.
@@ -219,7 +219,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -45,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -245,7 +245,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -46,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -271,7 +271,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 1,
     'expanded' => 0,
-    'weight' => -43,
+    'weight' => -38,
     'customized' => 1,
   );
   // Exported menu link: main-menu_sortera-dokument:dokument/sortera.
@@ -296,7 +296,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'main-menu_dokument:dokument',
   );
@@ -322,7 +322,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -49,
     'customized' => 1,
     'parent_identifier' => 'main-menu_manualer:manualer',
   );
