@@ -145,7 +145,6 @@ features[variable][] = nodeaccess-priority
 features[variable][] = nodeaccess-roles
 features[variable][] = nodeaccess-types
 features[variable][] = nodeaccess_authors
-features[variable][] = nodeaccess_capital_raising
 features[variable][] = nodeaccess_company
 features[variable][] = nodeaccess_document
 features[variable][] = path_alias_xt_regex_pattern
