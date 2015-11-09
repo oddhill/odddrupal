@@ -682,6 +682,63 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-investor_private-field_invest_pvt_address'.
+  $field_instances['node-investor_private-field_invest_pvt_address'] = array(
+    'bundle' => 'investor_private',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 8,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_invest_pvt_address',
+    'label' => 'Address',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield',
+      'settings' => array(
+        'available_countries' => array(
+          'SE' => 'SE',
+        ),
+        'default_country' => 'SE',
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-country' => 'address-hide-country',
+          'name-oneline' => 'name-oneline',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
+          'organisation' => 0,
+          'name-full' => 0,
+          'address-optional' => 0,
+        ),
+      ),
+      'type' => 'addressfield_standard',
+      'weight' => 12,
+    ),
+  );
+
   // Exported field_instance:
   // 'node-investor_private-field_invest_pvt_ctrl_cred'.
   $field_instances['node-investor_private-field_invest_pvt_ctrl_cred'] = array(
