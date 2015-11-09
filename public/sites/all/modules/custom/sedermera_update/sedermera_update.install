@@ -305,3 +305,37 @@ function sedermera_update_update_7014() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Removes unused fields and content types
+ * @return null
+ */
+function sedermera_update_update_7015() {
+  field_delete_field('field_cap_rais_comp');
+  field_delete_field('field_cap_rais_date');
+  field_delete_field('field_cap_rais_estim');
+  field_delete_field('field_cap_rais_file');
+  field_delete_field('field_cap_rais_goal_com');
+  field_delete_field('field_cap_rais_goal_guar');
+  field_delete_field('field_cap_rais_goal_loan');
+  field_delete_field('field_cap_rais_goal_newem');
+  field_delete_field('field_cap_rais_goal_oth');
+  field_delete_field('field_cap_rais_goal_pp');
+  field_delete_field('field_cap_rais_goal_signcommit');
+  field_delete_field('field_cap_rais_goal_tot');
+  field_delete_field('field_cap_rais_goal_warrant');
+  field_delete_field('field_cap_rais_info_mail');
+  field_delete_field('field_cap_rais_post');
+  field_delete_field('field_cap_rais_post_units');
+  field_delete_field('field_cap_rais_rate');
+  field_delete_field('field_cap_rais_stock_no');
+  field_delete_field('field_cap_rais_text_def');
+  field_delete_field('field_cap_rais_type');
+  field_delete_field('field_cap_rais_units_no');
+  field_delete_field('field_cap_rais_vol');
+  field_delete_field('field_cap_rais_vol_units');
+
+  node_type_delete('capital_raising');
+
+  field_purge_batch(1000);
+}
