@@ -2378,7 +2378,8 @@ fieldset .container-inline-date {
   display: none; }
 
 .form-wrapper {
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  clear: both; }
 
 .form-item {
   margin-bottom: 1em; }
@@ -2428,6 +2429,39 @@ div.addressfield-container-inline {
 #person-node-form .field-name-field-user-phone,
 #person-node-form .field-name-field-user-cell {
   margin: 0; }
+
+#person-node-form .form-item-title,
+#person-node-form .field-name-field-user-ssn,
+#person-node-form .field-name-field-user-mail,
+#person-node-form .field-name-field-user-phone,
+#person-node-form .field-name-field-user-cell,
+#person-node-form .field-name-field-user-fax {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  clear: none; }
+  #person-node-form .form-item-title:last-child,
+  #person-node-form .field-name-field-user-ssn:last-child,
+  #person-node-form .field-name-field-user-mail:last-child,
+  #person-node-form .field-name-field-user-phone:last-child,
+  #person-node-form .field-name-field-user-cell:last-child,
+  #person-node-form .field-name-field-user-fax:last-child {
+    margin-right: 0; }
+  #person-node-form .form-item-title:nth-child(2n),
+  #person-node-form .field-name-field-user-ssn:nth-child(2n),
+  #person-node-form .field-name-field-user-mail:nth-child(2n),
+  #person-node-form .field-name-field-user-phone:nth-child(2n),
+  #person-node-form .field-name-field-user-cell:nth-child(2n),
+  #person-node-form .field-name-field-user-fax:nth-child(2n) {
+    margin-right: 0; }
+  #person-node-form .form-item-title:nth-child(2n+1),
+  #person-node-form .field-name-field-user-ssn:nth-child(2n+1),
+  #person-node-form .field-name-field-user-mail:nth-child(2n+1),
+  #person-node-form .field-name-field-user-phone:nth-child(2n+1),
+  #person-node-form .field-name-field-user-cell:nth-child(2n+1),
+  #person-node-form .field-name-field-user-fax:nth-child(2n+1) {
+    clear: left; }
 
 table.field-multiple-table {
   margin-bottom: 20px;
@@ -2747,7 +2781,7 @@ table.tabledrag-processed {
 
 .form-type-textfield {
   position: relative;
-  display: inline-block; }
+  display: block; }
   .form-type-textfield label {
     display: none; }
   .form-type-textfield .form-required {
@@ -2798,7 +2832,7 @@ table.tabledrag-processed {
 .form-text {
   height: 30px;
   border-radius: 2px;
-  max-width: 100%;
+  width: 100%;
   border: 1px solid #d4d6d9;
   padding: 1px 30px 1px 5px; }
   .js .form-text.form-autocomplete {

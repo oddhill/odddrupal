@@ -131,6 +131,7 @@ fieldset {
 
 .form-wrapper {
   margin-bottom: 2em;
+  clear: both;
 }
 
 .form-item {
@@ -192,5 +193,20 @@ div.addressfield-container-inline {
   .field-name-field-user-phone,
   .field-name-field-user-cell {
     margin: 0;
+  }
+}
+
+// Person details two-column layout
+#person-node-form {
+
+  .form-item-title,
+  .field-name-field-user-ssn,
+  .field-name-field-user-mail,
+  .field-name-field-user-phone,
+  .field-name-field-user-cell,
+  .field-name-field-user-fax {
+    @include span-columns(6 of 12);
+    @include omega(2n);
+    clear: none;
   }
 }
