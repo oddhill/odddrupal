@@ -2422,6 +2422,12 @@ div.addressfield-container-inline {
   .submit-wrapper .form-submit {
     margin-right: 10px; }
 
+#person-node-form .field-name-field-user-ssn,
+#person-node-form .field-name-field-user-mail,
+#person-node-form .field-name-field-user-phone,
+#person-node-form .field-name-field-user-cell {
+  margin: 0; }
+
 table.field-multiple-table {
   margin-bottom: 20px;
   border: 1px solid #e0e2e6;
