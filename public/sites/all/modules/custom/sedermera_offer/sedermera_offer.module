@@ -38,12 +38,10 @@ function sedermera_offer_menu() {
 }
 
 function sedermera_offer_node_presave($node) {
-  if ($node->type == 'capital_raising') {
-    // React if info logout checkbox has been checked else proceed as normal
-    if ($node->original->field_cap_rais_info_mail[LANGUAGE_NONE][0]['value'] == 0 && $node->field_cap_rais_info_mail[LANGUAGE_NONE][0]['value'] == 1) {
+  if ($node->type == 'erbjudande') {
 
-      // Get offers connected to this transaction
-      $result = db_query("SELECT entity_id FROM `field_data_field_offer_cap_rais` WHERE `field_offer_cap_rais_target_id` = $node->nid")->fetchAll();
+    // React if info logout checkbox has been checked else proceed as normal
+    if ($node->original->field_offer_logout_info[und][0]['value'] == 0 && $node->field_offer_logout_info[und][0]['value'] == 1) {
 
       // Build mail.
       // Subject.
@@ -55,30 +53,18 @@ function sedermera_offer_node_presave($node) {
       $params['message'][] = 'Med vänlig hälsning';
       $params['message'][] = 'Signatur';
 
-      foreach ($result as $target_id) {
-        // Load offer entity to get connected investors
-        $offer = entity_load_single('offer', $target_id->entity_id);
+      // Get transactions connected to this offer
+      $result = db_query("SELECT entity_id FROM field_data_field_transaction_offer WHERE field_transaction_offer_target_id = :nid", array(':nid' => $node->nid))->fetchAll();
 
-        // Only send mail if investor has gotten info previously
-        if (!empty($offer->field_offer_info_mail) && $offer->field_offer_info_mail[LANGUAGE_NONE][0]['value'] == 1) {
-          $investor = entity_load_single('investor', $offer->field_offer_investor[LANGUAGE_NONE][0]['target_id']);
+      // Send mail to all persons connected to the offer.
+      foreach ($result as $target) {
+        $transaction = node_load($target->entity_id);
+        $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
 
-          // If investor is company then possibility of multiple contact persons
-          if ($investor->type == 'company'){
-            foreach ($investor->field_invest_cont_person[LANGUAGE_NONE] as $investor_id) {
-              $person = entity_load_single('contact_person', $investor_id['target_id']);
-              // Get mail address from investor
-              $mail = $person->field_comp_cont_mail[LANGUAGE_NONE][0]['email'];
-              // Send mail
-              drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
-            }
-          }
-          else if ($investor->type == 'person'){
-            // Get mail address from investor
-            $mail = $investor->field_shared_email[LANGUAGE_NONE][0]['email'];
-            // Send mail
-            drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
-          }
+        // Only send if they have recieved information.
+        if ($transaction->field_transaction_info[LANGUAGE_NONE][0]['value'] == 1) {
+          $mail = $person->field_user_mail[LANGUAGE_NONE][0]['email'];
+          drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
         }
       }
     }
@@ -88,22 +74,17 @@ function sedermera_offer_node_presave($node) {
 function transaction_transparency_info_send_mail() {
   // Load entitys to retrieve info
   global $user;
-  $transaction = node_load(arg(4));
-  $investor = entity_load_single('investor', arg(5));
-  $company = node_load($transaction->field_cap_rais_comp[LANGUAGE_NONE][0]['target_id']);
-
-  // Gater info for mail.
-  $investor_name = $investor->title;
-  $investor_mail = $investor->field_shared_email[LANGUAGE_NONE][0]['email'];
-
-  $transaction_title = $company->title . ' ' . $transaction->title;
+  $transaction = node_load(arg(2));
+  $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
+  $offer = node_load($transaction->field_transaction_offer[LANGUAGE_NONE][0]['target_id']);
+  $company = node_load($offer->field_offer_company[LANGUAGE_NONE][0]['target_id']);
 
   // Build mail.
   // Subject.
   $params['subject'] = 'Insynsinformation';
 
   // Message.
-  $params['message'][] = "Hej $investor->title,";
+  $params['message'][] = "Hej $person->title,";
 
   $params['message'][] = "Ni har härmed erhållit insiderinformation i $company->title och därigenom blivit insynsloggad, vilket innebär att Ni inte får utnyttja informationen för egen eller någon annans räkning. Vidare får informationen inte vidarebefordras och inte heller på annat sätt göras tillgänglig för andra. Informationen skall behandlas med strikt sekretess.";
 
@@ -115,12 +96,11 @@ function transaction_transparency_info_send_mail() {
   drupal_mail('sedermera_offer', 'info', $investor_mail, LANGUAGE_NONE, $params);
 
   // Mark offer as gotten transparency information
-  $offer = entity_load_single('offer', arg(3));
-  $offer->field_offer_info_mail[LANGUAGE_NONE][0]['value'] = 1;
-  entity_save('offer', $offer);
+  $transaction->field_transaction_info[LANGUAGE_NONE][0]['value'] = 1;
+  node_save($transaction);
 
   // Return to contactlist.
-  drupal_goto("transaktioner/lista/".arg(2)."/kontaktlista");
+  drupal_goto("erbjudanden/lista/".$offer->title."/kontaktlista");
 }
 
 /**
@@ -296,8 +276,8 @@ function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
         drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
       ),
     ),
-    '#prefix' => '<div style="display: none;">',
-    '#suffix' => '</div>',
+    // '#prefix' => '<div style="display: none;">',
+    // '#suffix' => '</div>',
   );
 
   // Add the submit button.
@@ -681,6 +661,10 @@ function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $
   }
   if (!$bp) {
     $form['#fieldgroups']['group_offer_type_bp']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+  }
+
+  if ($form['#node']->field_offer_logout_info[LANGUAGE_NONE][0]['value'] == 1) {
+    $form['field_offer_logout_info']['#access'] = FALSE;
   }
 
   if ($form['#node']->nid) {
