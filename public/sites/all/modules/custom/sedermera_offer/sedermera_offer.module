@@ -276,8 +276,8 @@ function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
         drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
       ),
     ),
-    // '#prefix' => '<div style="display: none;">',
-    // '#suffix' => '</div>',
+    '#prefix' => '<div style="display: none;">',
+    '#suffix' => '</div>',
   );
 
   // Add the submit button.
@@ -745,91 +745,6 @@ function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $
 
   // Change the text of the submit button.
   $form['actions']['submit']['#value'] = 'Skapa erbjudande';
-}
-
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_offer_form_capital_raising_node_form_alter(&$form, &$form_state) {
-  // if ($form['#node']->nid) {
-  //   // Don't alter the form when editing an existing node, bail out.
-  //   return;
-  // }
-
-  // // Add the offer display from the investors view as a prefix to the form. The
-  // // view is needed in order to filter among the investors. The view can't be
-  // // embedded as a subform within the node form, since this will break the AJAX
-  // // functionality. The reason is unknown, but that's just the way it is...
-  // if ($form_state['storage']['step'] == 'step_cap_rais_2') {
-  //   $form['#prefix'] = views_embed_view('investors', 'offer_embed');
-  // }
-
-  // // Get the available investors from the database.
-  // $available_investors = db_query('SELECT id, title FROM {eck_investor}')->fetchAllKeyed();
-
-  // // Get the selected investors, based on the form values, and sort them
-  // // alphabetically.
-  // $selected_investors = isset($form_state['values']['investors']) ? array_intersect_key($available_investors, array_filter($form_state['values']['investors'])) : array();
-  // asort($selected_investors);
-
-  // // Add checkboxes for every available investor. This will be added to the
-  // // second step, and will get its values from the embedded view. See the
-  // // attached javascript for more information about what's going on.
-  // $form['investors'] = array(
-  //   '#type' => 'checkboxes',
-  //   '#options' => $available_investors,
-  //   '#default_value' => array_keys($selected_investors),
-  //   '#attached' => array(
-  //     'js' => array(
-  //       drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
-  //     ),
-  //   ),
-  //   '#prefix' => '<div style="display: none;">',
-  //   '#suffix' => '</div>',
-  // );
-  // $form['#step_children']['investors'] =  'step_cap_rais_2';
-
-  // // Add elements that are required for the third step.
-  // if ($form_state['storage']['step'] == 'step_cap_rais_3') {
-  //   // Build the node object based of the form values. This will be used to
-  //   // generate the preview.
-  //   $node = node_form_submit_build_node($form, $form_state);
-
-  //   // Add the rendered node as a preview to the left fieldset. This fieldset will
-  //   // be added to the third step.
-  //   $form['preview_node'] = node_view($node);
-  //   $form['preview_node']['#prefix'] = '<div id="preview-transaction" class="column">';
-  //   $form['preview_node']['#suffix'] = '</div>';
-  //   $form['#step_children']['preview_node'] =  'step_cap_rais_3';
-
-  //   // Add a wrapper for all the elements in the right column.
-  //   $form['right'] = array(
-  //     '#prefix' => '<div id="preview-investors" class="column">',
-  //     '#suffix' => '</div>',
-  //   );
-  //   $form['#step_children']['right'] =  'step_cap_rais_3';
-
-  //   // Add checkboxes for every selected investor, which will be added to the
-  //   // third step. This will be used as the confirmation page, where the user will
-  //   // be able to deselect some of the investors before creating the transaction.
-  //   $form['right']['selected_investors'] = array(
-  //     '#type' => 'checkboxes',
-  //     '#options' => $selected_investors,
-  //     '#default_value' => array_keys($selected_investors),
-  //     '#prefix' => '<h3>Kontaktlista</h3>',
-  //   );
-  // }
-
-  // // Add javascript that are used in every step for the form.
-  // $form['#attached'] = array(
-  //   'js' => array(
-  //     drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
-  //   ),
-  // );
-
-  // // Change the text of the submit button.
-  // $form['actions']['submit']['#value'] = 'Skapa transaktion';
 }
 
 /**
