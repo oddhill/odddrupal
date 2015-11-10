@@ -79,6 +79,28 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['relationships']['field_transaction_offer_target_id']['table'] = 'field_data_field_transaction_offer';
   $handler->display->display_options['relationships']['field_transaction_offer_target_id']['field'] = 'field_transaction_offer_target_id';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'Transaction id';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid_1']['id'] = 'nid_1';
+  $handler->display->display_options['fields']['nid_1']['table'] = 'node';
+  $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid_1']['relationship'] = 'field_transaction_person_target_id';
+  $handler->display->display_options['fields']['nid_1']['label'] = 'Person id';
+  $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid_2']['id'] = 'nid_2';
+  $handler->display->display_options['fields']['nid_2']['table'] = 'node';
+  $handler->display->display_options['fields']['nid_2']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid_2']['relationship'] = 'field_transaction_offer_target_id';
+  $handler->display->display_options['fields']['nid_2']['label'] = 'Erbjudande id';
+  $handler->display->display_options['fields']['nid_2']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid_2']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -264,22 +286,29 @@ function f_capital_raising_views_default_views() {
       'show_remaining_days' => 0,
     ),
   );
-  /* Field: Content: Insynsinfo */
-  $handler->display->display_options['fields']['field_transaction_info']['id'] = 'field_transaction_info';
-  $handler->display->display_options['fields']['field_transaction_info']['table'] = 'field_data_field_transaction_info';
-  $handler->display->display_options['fields']['field_transaction_info']['field'] = 'field_transaction_info';
-  $handler->display->display_options['fields']['field_transaction_info']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_transaction_info']['alter']['text'] = 'Skicka';
-  $handler->display->display_options['fields']['field_transaction_info']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_transaction_info']['alter']['path'] = 'test.php';
-  $handler->display->display_options['fields']['field_transaction_info']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_transaction_info']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_transaction_info']['settings'] = array(
-    'click_to_edit' => 0,
-    'click_to_edit_style' => 'button',
-    'empty_text' => '',
-    'fallback_format' => 'list_default',
-  );
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php']['id'] = 'php';
+  $handler->display->display_options['fields']['php']['table'] = 'views';
+  $handler->display->display_options['fields']['php']['field'] = 'php';
+  $handler->display->display_options['fields']['php']['label'] = 'Insynsinfo';
+  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php
+$node_tr = node_load($row->nid);
+$node_of = node_load($row->nid_2);
+
+if ($node_of->field_offer_logout_info[\'und\'][0][value]) {
+ print \'Utloggad\';
+}
+else if ($node_tr->field_transaction_info[\'und\'][0][value]) {
+  print \'Skickad\';
+}
+else {
+  print l(\'Skicka\', "offer/send-info/$row->nid");
+}
+?>';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: Content: Erbjudande */
   $handler->display->display_options['fields']['field_transaction_info_offer']['id'] = 'field_transaction_info_offer';
   $handler->display->display_options['fields']['field_transaction_info_offer']['table'] = 'field_data_field_transaction_info_offer';
@@ -340,6 +369,9 @@ function f_capital_raising_views_default_views() {
     t('Lägg till fler kontaktpersoner'),
     t('Content entity referenced from field_transaction_person'),
     t('Content entity referenced from field_transaction_offer'),
+    t('Transaction id'),
+    t('Person id'),
+    t('Erbjudande id'),
     t('Kontaktperson'),
     t('Teckningsförbindelse'),
     t('Garantiåtagande'),
@@ -349,8 +381,8 @@ function f_capital_raising_views_default_views() {
     t('Anteckning'),
     t('Första kontakt'),
     t('Insynsinfo'),
-    t('Skicka'),
     t('Erbjudande'),
+    t('Skicka'),
     t('Intresserad'),
     t('All'),
   );

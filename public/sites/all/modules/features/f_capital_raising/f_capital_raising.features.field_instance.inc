@@ -3624,7 +3624,7 @@ function f_capital_raising_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 0,
+        'display_label' => 1,
       ),
       'type' => 'options_onoff',
       'weight' => 58,
@@ -3928,7 +3928,7 @@ function f_capital_raising_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 20,
       ),
       'type' => 'text_textfield',
       'weight' => 44,
