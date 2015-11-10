@@ -71,30 +71,7 @@ function f_core_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'views-capital_raisings-dashboard' => array(
-          'module' => 'views',
-          'delta' => 'capital_raisings-dashboard',
-          'region' => 'content',
-          'weight' => '-10',
-        ),
-        'sedermera_dashboard-verifications' => array(
-          'module' => 'sedermera_dashboard',
-          'delta' => 'verifications',
-          'region' => 'content',
-          'weight' => '-9',
-        ),
-        'views-aktiviteter-dashboard' => array(
-          'module' => 'views',
-          'delta' => 'aktiviteter-dashboard',
-          'region' => 'sidebar-second',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
+  $context->reactions = array();
   $context->condition_mode = 0;
 
   // Translatables
