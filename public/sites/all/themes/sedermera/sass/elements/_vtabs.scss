@@ -1,0 +1,110 @@
+div.vertical-tabs {
+  background: $snow;
+  padding: 0 40px 40px;
+  margin: 0 auto;
+  border: 0px none;
+
+  ul.vertical-tabs-list {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    padding: 0;
+    margin: 0 auto;
+    background: transparent;
+    border: 0px none;
+    width: 50%;
+    min-width: 700px;
+    float: none;
+
+    li {
+      background: transparent;
+      border: 0px;
+      float: left;
+
+      a {
+        border: 0px none;
+        padding: 10px 19px;
+        height: auto;
+        color: $grey;
+
+        &:hover {
+          background: transparent;
+          color: $coffee;
+          outline: 0px none;
+          border-bottom: 0px none;
+
+          strong {
+            text-decoration: none;
+          }
+        }
+
+        strong {
+          font-weight: 400;
+        }
+
+        .form-required {
+          color: $wine;
+        }
+      }
+
+      &.selected {
+        background: tint($light-grey,60%);
+        border-top: 1px solid $wool;
+        border-right: 1px solid $wool;
+        border-left: 1px solid $wool;
+
+        a,
+        a:hover {
+          padding: 10px 19px;
+
+          strong {
+            font-weight: 700;
+          }
+        }
+
+        &:hover {
+          background: tint($light-grey,60%);
+        }
+      }
+    }
+  }
+
+  .vertical-tabs-panes {
+    background: tint($light-grey,60%);
+    padding: 40px;
+    border: 1px solid $wool;
+    position: relative;
+    z-index: 5;
+    margin: -1px auto 0;
+    width: 50%;
+    min-width: 700px;
+
+    fieldset {
+      padding: 0;
+
+      &.collapsible {
+        padding: 15px 18px;
+      }
+    }
+
+    .fieldset-wrapper {
+      padding-top: 0;
+    }
+
+    .form-item:first-child {
+
+      label {
+        margin-top: 0;
+      }
+    }
+
+    .form-item:last-child {
+      margin-bottom: 0;
+    }
+
+    textarea#edit-log {
+      width: 100%;
+    }
+  }
+}

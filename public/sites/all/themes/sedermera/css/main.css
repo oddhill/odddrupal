@@ -2407,7 +2407,8 @@ fieldset .container-inline-date {
     font-size: 1.2rem;
     line-height: 15.6px;
     font-style: italic;
-    margin-top: 3px; }
+    margin-top: 3px;
+    color: #797979; }
 
 div.street-block,
 div.addressfield-container-inline {
@@ -2463,6 +2464,9 @@ table.field-multiple-table {
       width: 100%; }
       table.field-multiple-table .form-type-textarea .form-textarea:focus {
         box-shadow: 0 0 0 transparent; }
+
+.form-radios {
+  margin-bottom: 1em; }
 
 div.radio {
   margin-right: 5px;
@@ -3660,6 +3664,78 @@ table {
     position: relative;
     z-index: 5;
     margin-top: -1px; }
+
+div.vertical-tabs {
+  background: #fff;
+  padding: 0 40px 40px;
+  margin: 0 auto;
+  border: 0px none; }
+  div.vertical-tabs ul.vertical-tabs-list {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    padding: 0;
+    margin: 0 auto;
+    background: transparent;
+    border: 0px none;
+    width: 50%;
+    min-width: 700px;
+    float: none; }
+    div.vertical-tabs ul.vertical-tabs-list li {
+      background: transparent;
+      border: 0px;
+      float: left; }
+      div.vertical-tabs ul.vertical-tabs-list li a {
+        border: 0px none;
+        padding: 10px 19px;
+        height: auto;
+        color: #797979; }
+        div.vertical-tabs ul.vertical-tabs-list li a:hover {
+          background: transparent;
+          color: #282828;
+          outline: 0px none;
+          border-bottom: 0px none; }
+          div.vertical-tabs ul.vertical-tabs-list li a:hover strong {
+            text-decoration: none; }
+        div.vertical-tabs ul.vertical-tabs-list li a strong {
+          font-weight: 400; }
+        div.vertical-tabs ul.vertical-tabs-list li a .form-required {
+          color: #c04343; }
+      div.vertical-tabs ul.vertical-tabs-list li.selected {
+        background: #fafbfc;
+        border-top: 1px solid #e0e2e6;
+        border-right: 1px solid #e0e2e6;
+        border-left: 1px solid #e0e2e6; }
+        div.vertical-tabs ul.vertical-tabs-list li.selected a,
+        div.vertical-tabs ul.vertical-tabs-list li.selected a:hover {
+          padding: 10px 19px; }
+          div.vertical-tabs ul.vertical-tabs-list li.selected a strong,
+          div.vertical-tabs ul.vertical-tabs-list li.selected a:hover strong {
+            font-weight: 700; }
+        div.vertical-tabs ul.vertical-tabs-list li.selected:hover {
+          background: #fafbfc; }
+  div.vertical-tabs .vertical-tabs-panes {
+    background: #fafbfc;
+    padding: 40px;
+    border: 1px solid #e0e2e6;
+    position: relative;
+    z-index: 5;
+    margin: -1px auto 0;
+    width: 50%;
+    min-width: 700px; }
+    div.vertical-tabs .vertical-tabs-panes fieldset {
+      padding: 0; }
+      div.vertical-tabs .vertical-tabs-panes fieldset.collapsible {
+        padding: 15px 18px; }
+    div.vertical-tabs .vertical-tabs-panes .fieldset-wrapper {
+      padding-top: 0; }
+    div.vertical-tabs .vertical-tabs-panes .form-item:first-child label {
+      margin-top: 0; }
+    div.vertical-tabs .vertical-tabs-panes .form-item:last-child {
+      margin-bottom: 0; }
+    div.vertical-tabs .vertical-tabs-panes textarea#edit-log {
+      width: 100%; }
 
 .not-logged-in.page-user {
   background: #282828;
