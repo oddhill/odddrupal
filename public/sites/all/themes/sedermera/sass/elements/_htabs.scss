@@ -1,9 +1,12 @@
-.htabs-wrapper {
+.field-group-htabs-wrapper {
   background: $snow;
-  padding: 40px 0;
+  padding: 40px;
 
   .horizontal-tabs {
     border: 0px none;
+    width: 50%;
+    margin: 0 auto;
+    min-width: 700px;
 
     fieldset.horizontal-tabs-pane {
       padding: 0;
@@ -16,7 +19,7 @@
     overflow: hidden;
     position: relative;
     z-index: 10;
-    padding: 0 40px;
+    padding: 0;
     background: transparent;
     border-right: 0px none;
 
@@ -46,9 +49,9 @@
 
       &.selected {
         background: tint($light-grey,60%);
-        border-top: 1px solid $light-grey;
-        border-right: 1px solid $light-grey;
-        border-left: 1px solid $light-grey;
+        border-top: 1px solid $wool;
+        border-right: 1px solid $wool;
+        border-left: 1px solid $wool;
 
         a,
         a:hover {
@@ -60,7 +63,7 @@
         }
 
         &:hover {
-          background: #fafbfc;
+          background: tint($light-grey,60%);
         }
       }
 
@@ -73,8 +76,7 @@
   .horizontal-tabs-panes {
     background: tint($light-grey,60%);
     padding: 40px;
-    border-top: 1px solid $light-grey;
-    border-bottom: 1px solid $light-grey;
+    border: 1px solid $wool;
     position: relative;
     z-index: 5;
     margin-top: -1px;

@@ -1,0 +1,28 @@
+// Form submit confirmation styling / Delete (Page node delete)
+form.confirmation {
+  @include font-size(1.6);
+  display: inline-block;
+  font-weight: 700;
+  padding: 50px 40px;
+  background: $snow;
+  width: 100%;
+
+  input {
+    @include button($dark-grey, confirm);
+    display: inline;
+  }
+
+  .form-actions.form-wrapper {
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%;
+
+    .submit-wrapper {
+      display: inline;
+    }
+
+    #edit-submit {
+      @include button($dark-grey, confirm);
+    }
+  }
+}

@@ -1,0 +1,183 @@
+form {
+
+  .form-required {
+    color: $wine;
+    font-weight: 700;
+  }
+
+  .form-sidebar {
+    background: $wool;
+    padding: 20px;
+    width: 30%;
+
+    .form-text {
+      width: 100%;
+    }
+
+    .group-cap-rais-details {
+
+      .form-text {
+        width: 65%;
+      }
+    }
+  }
+
+  .form-body {
+    background: $snow;
+    overflow: hidden;
+    padding: 20px;
+    width: 70%;
+  }
+
+  .form-actions {
+    margin-top: 20px;
+  }
+
+  .messages {
+    padding: 10px;
+    color: $snow;
+    font-weight: 500;
+    margin: 10px 0;
+
+    &.status {
+      background: $cactus;
+    }
+
+    &.warning {
+      background: $mustard;
+    }
+
+    &.error {
+      background: $wine;
+    }
+  }
+
+  .field-suffix {
+    font-weight: 500;
+    margin-left: 5px;
+  }
+}
+
+fieldset {
+
+  .container-inline-date {
+    position: relative;
+    width: 100%;
+    margin: 0;
+
+    .form-item {
+      margin: 0;
+      width: 100%;
+
+      .description {
+        display: none;
+      }
+
+      label {
+        margin: 10px 0;
+        text-align: left;
+        font-weight: 700;
+        @include font-size(1.2,1.5);
+        height: 18px;
+
+        .form-required {
+          display: block;
+          float: left;
+          width: 18px;
+          height: 18px;
+          @include svg-bg(required, transparent, 0 center);
+          color: transparent;
+          font-size: 0;
+          overflow: hidden;
+          text-indent: 100px;
+          line-height: 0px;
+        }
+      }
+
+      .date-padding {
+        width: 100%;
+        padding: 0;
+      }
+
+      .form-text {
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.filter-item {
+
+  .form-item {
+
+    &.form-type-select {
+
+      label {
+        display: block;
+      }
+    }
+  }
+}
+
+.field-type-text-with-summary,
+.field-type-text-long {
+
+  .filter-wrapper {
+    display: none;
+  }
+}
+
+.form-wrapper {
+  margin-bottom: 2em;
+}
+
+.form-item {
+  margin-bottom: 1em;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: $grey;
+    padding-bottom: 0.5em;
+    @include font-size(1.6,1);
+    border-bottom: 2px solid $wool;
+    margin: 2em 0 1em;
+
+    &.option {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-weight: 400;
+      color: $coffee;
+      @include font-size(1.4,1);
+      border-bottom: 0px none;
+    }
+  }
+
+  .description {
+    @include font-size(1.2,1.3);
+    font-style: italic;
+    margin-top: 3px;
+  }
+}
+
+// Make address fields look prettier :)
+div.street-block,
+div.addressfield-container-inline {
+  clear: both;
+
+  > div.form-item {
+    float: left;
+    margin-right: 1em;
+  }
+}
+
+.submit-wrapper {
+  display: inline-block;
+
+  .form-submit {
+    margin-right: 10px;
+  }
+}

@@ -1,3 +1,39 @@
+// Control form specifics
+#ctrl-status {
+  @include clearfix;
+
+  h3 {
+    display: block;
+    font-weight: 500;
+    color: $grey;
+    padding-bottom: 0.5em;
+    @include font-size(1.6,1);
+    border-bottom: 2px solid $wool;
+    margin: 2em 0 1em;
+  }
+
+  .field-widget-options-select {
+    float: left;
+    margin-right: 1em;
+  }
+
+  .field-type-date {
+    float: left;
+  }
+
+  .form-type-select {
+
+    label {
+      display: inline-block;
+      color: $coffee;
+      border: 0px none;
+      margin: 9px 5px 0 0;
+      padding: 0;
+      @include font-size(1.4,1);
+    }
+  }
+}
+
 .node-kontrolluppgift,
 .node-kontrolluppgift-privat {
 

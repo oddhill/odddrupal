@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     sass: {
       options: {
         sourcemap: "none",
+        require: "sass-globbing",
       },
       style: {
         files: {
@@ -28,6 +29,17 @@ module.exports = function(grunt) {
         files: [
           { cwd: 'graphics/', src: ['**/*.svg'], dest: 'graphics/' }
         ]
+      }
+    },
+    scsslint: {
+      allFiles: ['scss/**/*.scss'],
+      options: {
+        bundleExec: false,
+        colorizeOutput: true,
+        config: '.scss-lint.yml',
+        reporterOutput: null,
+        maxBuffer: 3000 * 1024,
+        exclude: ['scss/print.scss', 'scss/normalize.scss']
       }
     },
     watch: {

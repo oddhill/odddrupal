@@ -91,16 +91,15 @@ body {
 "content/transaction-stakeholders",
 "content/transaction-history";
 
+@import 'elements/forms/*';
+
 // Import page elements
 @import
 "elements/layouts",
-"elements/form-buttons",
 "elements/sidebar",
 "elements/messages",
 "elements/pager",
 "elements/filteredtable",
-"elements/formelements",
-"elements/forms",
 "elements/tabs",
 "elements/htabs",
 "elements/login",

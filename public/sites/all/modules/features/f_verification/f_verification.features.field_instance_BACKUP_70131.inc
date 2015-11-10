@@ -60,7 +60,11 @@ function f_verification_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
+<<<<<<< HEAD
       'weight' => 7,
+=======
+      'weight' => 43,
+>>>>>>> master
     ),
   );
 

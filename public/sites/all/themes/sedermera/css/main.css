@@ -622,15 +622,6 @@ form.views-send-preview .form-actions {
   background-position: 11px 7px; }
   .field-type-entityreference .submit-wrapper input:hover {
     background-color: #303030; }
-.field-type-entityreference thead {
-  border: 0; }
-.field-type-entityreference th {
-  background: #D4D6D9;
-  color: #282828; }
-.field-type-entityreference td {
-  padding: 0; }
-.field-type-entityreference tr.odd {
-  background: #D4D6D9; }
 .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
   display: inline-block;
   height: 34px;
@@ -1113,68 +1104,12 @@ form#views-form-dokument-doc-sort-page .tabledrag-toggle-weight-wrapper,
 form#views-form-dokument-page-1 .tabledrag-toggle-weight-wrapper {
   margin-top: -28px;
   margin-bottom: 10px; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle,
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 a.tabledrag-handle,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 a.tabledrag-handle {
-  display: block;
-  width: 19px;
-  height: 19px;
-  border: 0px none;
-  margin: 0 10px 0 0;
-  cursor: -webkit-grab;
-  cursor: -moz-grab; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle .handle,
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 a.tabledrag-handle .handle,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle .handle,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 a.tabledrag-handle .handle {
-    margin: 3px;
-    width: 13px;
-    height: 13px;
-    padding: 0;
-    background: url("../graphics/drag_grey.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/drag_grey.svg") transparent 0 0 no-repeat; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle:hover .handle,
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 a.tabledrag-handle:hover .handle,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page a.tabledrag-handle:hover .handle,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 a.tabledrag-handle:hover .handle {
-    background: url("../graphics/drag_dark_grey.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/drag_dark_grey.svg") transparent 0 0 no-repeat; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.draggable,
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.draggable,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.draggable,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.draggable {
-  -webkit-transition: background 0.2s ease-in-out;
-  -moz-transition: background 0.2s ease-in-out;
-  transition: background 0.2s ease-in-out; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag,
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag {
-  background: #fde9c2; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle,
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle {
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing; }
-    form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle:hover .handle,
-    form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle:hover .handle,
-    form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag a.tabledrag-handle:hover .handle,
-    form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag a.tabledrag-handle:hover .handle {
-      background: url("../graphics/drag_dark_grey.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/drag_dark_grey.svg") transparent 0 0 no-repeat; }
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag td.views-field-title a,
-  form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag td.views-field-title a,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag td.views-field-title a,
-  form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag td.views-field-title a {
-    font-weight: 500;
-    border-bottom: 0px none; }
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag-previous,
-form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag-previous,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag-previous,
-form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag-previous {
-  background: #fef4e0; }
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-doc-sort-page tr.drag td.views-field-title a,
+form#views-form-dokument-doc-sort-page table#draggableviews-table-dokument-page-1 tr.drag td.views-field-title a,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-doc-sort-page tr.drag td.views-field-title a,
+form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.drag td.views-field-title a {
+  font-weight: 500;
+  border-bottom: 0px none; }
 
 #views-exposed-form-document-log-document-log .description {
   display: none; }
@@ -1749,58 +1684,94 @@ input[value="Jämför"]#edit-submit {
     width: 40%;
     margin-bottom: 10px; }
 
-@media screen and (max-width: 1600px) {
-  .sub-menu-active .site-wrapper {
-    margin-top: 60px; } }
-
-.main-content {
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 18.2px;
-  overflow: hidden; }
-  .logged-in .main-content {
-    margin-left: 280px;
-    padding: 40px; }
-    @media screen and (max-width: 1600px) {
-      .logged-in .main-content {
-        margin-left: 82px; } }
-
-.page-head {
-  margin-bottom: 70px; }
-  .page-head:after {
-    content: "";
-    display: table;
-    clear: both; }
-
-.page-title {
-  float: left; }
-
-.content-wrapper {
-  margin: 0; }
-  .content-wrapper .content-sidebar {
-    background: #e0e2e6;
-    padding-bottom: 30px;
-    width: 23%; }
-    .page-oversikt .content-wrapper .content-sidebar {
-      padding-bottom: 30px;
-      width: 25%; }
-    .content-wrapper .content-sidebar .sidebar-second-content {
-      padding: 0 10px 10px 10px; }
-
-.content-column {
+div.checker {
+  margin-right: 5px;
+  border: 1px solid #d4d6d9;
   background-color: #fff;
-  overflow: hidden;
-  width: 77%; }
+  border-radius: 2px; }
+  div.checker input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer; }
+  div.checker span {
+    background: transparent;
+    width: 16px;
+    height: 16px; }
+    div.checker span:before {
+      display: none;
+      content: '';
+      background: #454545;
+      position: absolute;
+      left: 4px;
+      top: 7px;
+      width: 10px;
+      height: 2px;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg); }
+    div.checker span:after {
+      display: none;
+      content: '';
+      width: 2px;
+      height: 5px;
+      background: #454545;
+      position: absolute;
+      left: 4px;
+      top: 7px;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg); }
+    div.checker span.checked:before {
+      display: block; }
+    div.checker span.checked:after {
+      display: block; }
+  div.checker.focus {
+    box-shadow: 0 0 3px #dadada; }
 
-.page-actions {
-  float: right;
-  margin-top: 16px; }
-  .page-actions ul {
-    list-style: none; }
-  .page-actions li {
-    display: inline;
-    margin-left: 20px; }
-    .page-actions li a {
+form.confirmation {
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px;
+  display: inline-block;
+  font-weight: 700;
+  padding: 50px 40px;
+  background: #fff;
+  width: 100%; }
+  form.confirmation input {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+    background-position: 20px 13px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    display: inline; }
+    form.confirmation input:hover {
+      background-color: #303030; }
+  form.confirmation .form-actions.form-wrapper {
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%; }
+    form.confirmation .form-actions.form-wrapper .submit-wrapper {
+      display: inline; }
+    form.confirmation .form-actions.form-wrapper #edit-submit {
       display: inline-block;
       height: 34px;
       font-size: 12px;
@@ -1813,109 +1784,276 @@ input[value="Jämför"]#edit-submit {
       font-weight: 500;
       text-transform: uppercase;
       border-bottom: 0 none;
-      background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
+      background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+      background-position: 20px 13px;
       padding-left: 42px;
       background-color: #454545;
       -webkit-transition: background-color 0.1s ease-in-out;
       -moz-transition: background-color 0.1s ease-in-out;
       transition: background-color 0.1s ease-in-out; }
-      .page-actions li a:hover {
+      form.confirmation .form-actions.form-wrapper #edit-submit:hover {
         background-color: #303030; }
 
-.flex-box {
-  display: -ms-flexbox;
-  -ms-flex-direction: column;
-  -ms-flex-wrap: wrap;
-  display: flex;
-  flex-wrap: wrap; }
-
-#capital-raising-node-form > div,
-#manual-node-form > div,
-#eck-entity-form-add-investor-person > div,
-#eck-entity-form-add-investor-company > div,
-#eck-entity-form-add-investor-lead > div,
-#document-node-form > div {
-  display: -ms-flexbox;
-  -ms-flex-direction: column;
-  -ms-flex-wrap: wrap;
-  display: flex;
-  flex-wrap: wrap; }
-
-.page-investor-company-edit #eck-entity-form-edit-investor-company,
-.page-investor-company-edit #eck-entity-form-edit-investor-person,
-.page-investor-company-edit #eck-entity-form-edit-investor-lead,
-.page-investor-person-edit #eck-entity-form-edit-investor-company,
-.page-investor-person-edit #eck-entity-form-edit-investor-person,
-.page-investor-person-edit #eck-entity-form-edit-investor-lead,
-.page-investor-lead-edit #eck-entity-form-edit-investor-company,
-.page-investor-lead-edit #eck-entity-form-edit-investor-person,
-.page-investor-lead-edit #eck-entity-form-edit-investor-lead {
+#ui-datepicker-div {
+  font-family: "Roboto", sans-serif;
   background: #fff;
-  padding: 50px 40px 20px 40px; }
-  .page-investor-company-edit #eck-entity-form-edit-investor-company > div,
-  .page-investor-company-edit #eck-entity-form-edit-investor-person > div,
-  .page-investor-company-edit #eck-entity-form-edit-investor-lead > div,
-  .page-investor-person-edit #eck-entity-form-edit-investor-company > div,
-  .page-investor-person-edit #eck-entity-form-edit-investor-person > div,
-  .page-investor-person-edit #eck-entity-form-edit-investor-lead > div,
-  .page-investor-lead-edit #eck-entity-form-edit-investor-company > div,
-  .page-investor-lead-edit #eck-entity-form-edit-investor-person > div,
-  .page-investor-lead-edit #eck-entity-form-edit-investor-lead > div {
-    display: -ms-flexbox;
-    -ms-flex-direction: column;
-    -ms-flex-wrap: wrap;
-    display: flex;
-    flex-wrap: wrap; }
+  border-right: 0px none;
+  border-bottom: 0px none;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 2px; }
+  #ui-datepicker-div.ui-datepicker {
+    padding: 0px; }
+    #ui-datepicker-div.ui-datepicker .ui-datepicker-header {
+      margin: 0;
+      padding: 5px;
+      background: #f9a500;
+      overflow: hidden;
+      border-radius: 2px 2px 0 0; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev,
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+        width: 22px;
+        height: 22px;
+        border-bottom: 0 none;
+        top: 8px;
+        cursor: pointer; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev:hover,
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next:hover {
+          border-bottom: 0 none; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev span,
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next span {
+          left: 4px;
+          top: 4px;
+          margin: 0;
+          width: 14px;
+          height: 14px;
+          overflow: hidden;
+          color: #f9a500;
+          font-size: 0;
+          line-height: 0; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
+        left: 5px; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev span {
+          background: url("../graphics/date_left.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/date_left.svg") transparent 0 0 no-repeat; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+        right: 5px; }
+        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next span {
+          background: url("../graphics/date_right.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/date_right.svg") transparent 0 0 no-repeat; }
+    #ui-datepicker-div.ui-datepicker .ui-datepicker-title {
+      overflow: hidden;
+      margin: 0 27px; }
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-month,
+      #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-year {
+        border-radius: 2px;
+        background: #fde4b3;
+        padding: 0 5px; }
+    #ui-datepicker-div.ui-datepicker table thead {
+      background: #f3f4f8; }
+      #ui-datepicker-div.ui-datepicker table thead th {
+        padding: 5px; }
+    #ui-datepicker-div.ui-datepicker table tbody td {
+      padding: 1px; }
+      #ui-datepicker-div.ui-datepicker table tbody td a {
+        padding: 5px;
+        border: 0px none;
+        text-align: center; }
+        #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-highlight {
+          border-radius: 2px;
+          background: #fef2d9; }
+        #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active {
+          border-radius: 2px;
+          background: #f9a500;
+          color: #fff;
+          font-weight: 700; }
+          #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active:hover {
+            background: #f9a500; }
+        #ui-datepicker-div.ui-datepicker table tbody td a:hover {
+          background: #fde4b3;
+          font-weight: 700;
+          border-radius: 2px; }
 
-.bg {
-  background: #fff; }
-
-.padding {
-  padding: 50px 40px 40px 40px; }
-
-.node.view-mode-full {
-  max-width: 1800px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px; }
-  .node.view-mode-full:after {
-    content: "";
-    display: table;
-    clear: both; }
-
-#popup-message-window {
-  border: 5px solid #282828;
-  padding: 20px; }
-
-.popup-message-title {
-  font-size: 26px;
-  font-size: 2.6rem;
-  line-height: 39px;
-  border-bottom: 2px solid #f3f4f8 !important;
-  padding-bottom: 20px !important; }
-
-.columns {
-  display: block; }
-  .columns:after {
-    content: "";
-    display: table;
-    clear: both; }
-  .columns .col {
+fieldset {
+  border: 3px solid #e0e2e6;
+  padding: 15px 18px; }
+  fieldset legend {
     float: left;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em; }
+  fieldset .fieldset-wrapper {
+    clear: both;
+    padding-top: 15px; }
+  fieldset .fieldset-description {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 16.8px;
+    font-style: italic;
+    margin-bottom: 1.5em; }
+  fieldset.collapsed {
+    height: auto !important;
+    border-width: 3px !important; }
+
+.form-type-managed-file.form-item label {
+  color: #282828;
+  border: 0px none;
+  margin: 0 0 5px 0;
+  padding: 0;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 14px; }
+.form-type-managed-file .image-widget,
+.form-type-managed-file .file-widget {
+  float: left; }
+.form-type-managed-file .image-widget-data,
+.form-type-managed-file .file-widget-data {
+  border: 1px solid #d4d6d9;
+  background: #fff;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  position: relative;
+  float: left; }
+.form-type-managed-file .icon {
+  display: block;
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  background: url("../graphics/folder.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/folder.svg") transparent 0 0 no-repeat; }
+.form-type-managed-file .text {
+  position: absolute;
+  left: 34px;
+  top: 4px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0; }
+.form-type-managed-file input[type="file"] {
+  display: block;
+  float: left;
+  width: 240px;
+  height: 28px;
+  opacity: 0; }
+.form-type-managed-file .file {
+  display: inline-block;
+  padding: 0 5px 10px 5px; }
+.form-type-managed-file .file-size {
+  padding-right: 5px; }
+.form-type-managed-file .submit-wrapper {
+  margin: 2px 2px 2px 0;
+  height: 24px;
+  position: relative; }
+  .form-type-managed-file .submit-wrapper .form-submit {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/upload.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/upload.svg") transparent 0 0 no-repeat;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 24px;
+    background-position: 10px 6px;
+    padding: 0 10px 0 26px;
+    margin-right: 8px;
+    margin: 0; }
+    .form-type-managed-file .submit-wrapper .form-submit:hover {
+      background-color: #303030; }
+  .form-type-managed-file .submit-wrapper .ajax-progress {
     display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%; }
-    .columns .col:last-child {
-      margin-right: 0; }
-  .columns.three-col .col {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 31.76157%; }
-    .columns.three-col .col:last-child {
-      margin-right: 0; }
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0 8px 0 0;
+    border-radius: 24px;
+    cursor: pointer;
+    background: #303030;
+    height: 100%;
+    text-align: center;
+    padding-top: 4px; }
+    .form-type-managed-file .submit-wrapper .ajax-progress .throbber {
+      display: inline-block;
+      background: transparent;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #f9a500;
+      border-radius: 50%;
+      border-top-color: transparent;
+      -webkit-animation: load 0.9s linear infinite;
+      -moz-animation: load 0.9s linear infinite;
+      animation: load 0.9s linear infinite;
+      margin: 0 auto;
+      float: none; }
+.form-type-managed-file.populated {
+  background: #fff;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  padding: 10px; }
+  .form-type-managed-file.populated .image-preview {
+    margin: 0 10px 0 0;
+    line-height: 0px;
+    padding: 0; }
+  .form-type-managed-file.populated .image-widget-data {
+    background: transparent;
+    border-radius: 0px;
+    margin: 10px 0; }
+    .form-type-managed-file.populated .image-widget-data .submit-wrapper {
+      margin: 0 0 0 10px; }
+      .form-type-managed-file.populated .image-widget-data .submit-wrapper .form-submit {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+        background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 24px;
+        background-position: 10px 6px;
+        padding: 0 10px 0 26px;
+        margin-right: 8px;
+        margin: 0; }
+        .form-type-managed-file.populated .image-widget-data .submit-wrapper .form-submit:hover {
+          background-color: #303030; }
+.form-type-managed-file .description {
+  clear: both; }
 
 #edit-submit {
   display: inline-block;
@@ -2161,6 +2299,672 @@ form#user-login #edit-submit {
   form#user-login #edit-submit:hover {
     background-color: #fbc04d;
     box-shadow: 0 0 3px #232323; }
+
+form .form-required {
+  color: #c04343;
+  font-weight: 700; }
+form .form-sidebar {
+  background: #e0e2e6;
+  padding: 20px;
+  width: 30%; }
+  form .form-sidebar .form-text {
+    width: 100%; }
+  form .form-sidebar .group-cap-rais-details .form-text {
+    width: 65%; }
+form .form-body {
+  background: #fff;
+  overflow: hidden;
+  padding: 20px;
+  width: 70%; }
+form .form-actions {
+  margin-top: 20px; }
+form .messages {
+  padding: 10px;
+  color: #fff;
+  font-weight: 500;
+  margin: 10px 0; }
+  form .messages.status {
+    background: #76c043; }
+  form .messages.warning {
+    background: #f9a500; }
+  form .messages.error {
+    background: #c04343; }
+form .field-suffix {
+  font-weight: 500;
+  margin-left: 5px; }
+
+fieldset .container-inline-date {
+  position: relative;
+  width: 100%;
+  margin: 0; }
+  fieldset .container-inline-date .form-item {
+    margin: 0;
+    width: 100%; }
+    fieldset .container-inline-date .form-item .description {
+      display: none; }
+    fieldset .container-inline-date .form-item label {
+      margin: 10px 0;
+      text-align: left;
+      font-weight: 700;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 18px;
+      height: 18px; }
+      fieldset .container-inline-date .form-item label .form-required {
+        display: block;
+        float: left;
+        width: 18px;
+        height: 18px;
+        background: url("../graphics/required.png") transparent 0 center no-repeat;
+        background: none, url("../graphics/required.svg") transparent 0 center no-repeat;
+        color: transparent;
+        font-size: 0;
+        overflow: hidden;
+        text-indent: 100px;
+        line-height: 0px; }
+    fieldset .container-inline-date .form-item .date-padding {
+      width: 100%;
+      padding: 0; }
+    fieldset .container-inline-date .form-item .form-text {
+      width: 100%;
+      padding: 10px;
+      margin: 0; }
+
+.filter-item .form-item.form-type-select label {
+  display: block; }
+
+.field-type-text-with-summary .filter-wrapper,
+.field-type-text-long .filter-wrapper {
+  display: none; }
+
+.form-wrapper {
+  margin-bottom: 2em; }
+
+.form-item {
+  margin-bottom: 1em; }
+  .form-item label {
+    display: block;
+    font-weight: 500;
+    color: #797979;
+    padding-bottom: 0.5em;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 16px;
+    border-bottom: 2px solid #e0e2e6;
+    margin: 2em 0 1em; }
+    .form-item label.option {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-weight: 400;
+      color: #282828;
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 14px;
+      border-bottom: 0px none; }
+  .form-item .description {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 15.6px;
+    font-style: italic;
+    margin-top: 3px; }
+
+div.street-block,
+div.addressfield-container-inline {
+  clear: both; }
+  div.street-block > div.form-item,
+  div.addressfield-container-inline > div.form-item {
+    float: left;
+    margin-right: 1em; }
+
+.submit-wrapper {
+  display: inline-block; }
+  .submit-wrapper .form-submit {
+    margin-right: 10px; }
+
+table.field-multiple-table {
+  margin-bottom: 20px;
+  border: 1px solid #e0e2e6;
+  border-collapse: separate; }
+  table.field-multiple-table thead {
+    text-align: left;
+    font-weight: 700; }
+    table.field-multiple-table thead th {
+      padding: 10px;
+      border-bottom: 1px solid #e0e2e6; }
+      table.field-multiple-table thead th label {
+        font-size: 14px;
+        font-size: 1.4rem;
+        line-height: 14px;
+        font-weight: 700;
+        margin: 0;
+        color: #282828;
+        padding: 0;
+        border: 0px none; }
+  table.field-multiple-table tbody tr {
+    background: #fff; }
+    table.field-multiple-table tbody tr td {
+      border-bottom: 1px solid #e0e2e6; }
+    table.field-multiple-table tbody tr:last-child td {
+      border-bottom: 0px none; }
+  table.field-multiple-table .form-type-textarea {
+    margin: -10px; }
+    table.field-multiple-table .form-type-textarea .form-textarea {
+      border: 0px none;
+      margin: 0;
+      padding: 10px;
+      display: block;
+      width: 100%; }
+      table.field-multiple-table .form-type-textarea .form-textarea:focus {
+        box-shadow: 0 0 0 transparent; }
+
+div.radio {
+  margin-right: 5px;
+  border: 1px solid #d4d6d9;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 0; }
+  div.radio input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer; }
+  div.radio span {
+    background: transparent;
+    width: 16px;
+    height: 16px; }
+    div.radio span:before {
+      display: none;
+      content: '';
+      background: #454545;
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%; }
+    div.radio span.checked:before {
+      display: block; }
+  div.radio.focus {
+    box-shadow: 0 0 3px #dadada; }
+
+.form-type-select {
+  position: relative; }
+  .form-type-select label {
+    display: none; }
+  .form-type-select .ajax-progress {
+    margin: 0 3px;
+    padding: 9px 4px;
+    background: #fff;
+    z-index: 10;
+    position: absolute;
+    height: 39px;
+    width: 200px; }
+    .form-type-select .ajax-progress .throbber {
+      display: inline-block;
+      background: transparent;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #f9a500;
+      border-radius: 50%;
+      border-top-color: transparent;
+      -webkit-animation: load 0.9s linear infinite;
+      -moz-animation: load 0.9s linear infinite;
+      animation: load 0.9s linear infinite; }
+    .form-type-select .ajax-progress .message {
+      display: none; }
+
+.selectboxit-container * {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px; }
+.selectboxit-container .selectboxit {
+  border-radius: 2px; }
+.selectboxit-container .selectboxit-text {
+  font-weight: 400; }
+.selectboxit-container .selectboxit-option-icon-container {
+  margin: 0; }
+.selectboxit-container .selectboxit-btn {
+  background: #fff;
+  border: 0px none;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #d4d6d9; }
+  .selectboxit-container .selectboxit-btn .selectboxit-arrow-container {
+    right: 0px; }
+    .selectboxit-container .selectboxit-btn .selectboxit-arrow-container .selectboxit-arrow {
+      margin-top: -2px; }
+  .selectboxit-container .selectboxit-btn.selectboxit-hover {
+    background: #fff; }
+  .selectboxit-container .selectboxit-btn.selectboxit-focus {
+    background: #fff;
+    box-shadow: 0 0 3px #dadada; }
+  .selectboxit-container .selectboxit-btn.selectboxit-open .selectboxit-arrow-container {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -webkit-animation: rotate 0.2s ease-in;
+    -moz-animation: rotate 0.2s ease-in;
+    animation: rotate 0.2s ease-in; }
+.selectboxit-container .selectboxit-options {
+  background: transparent;
+  border: 1px solid #d4d6d9;
+  border-radius: 2px;
+  box-shadow: 0 0 3px #dadada;
+  margin: 3px 0 0; }
+  .selectboxit-container .selectboxit-options .selectboxit-option span,
+  .selectboxit-container .selectboxit-options .selectboxit-option a {
+    border: 0 none;
+    height: 32px;
+    line-height: 32px; }
+  .selectboxit-container .selectboxit-options .selectboxit-option a {
+    background: #fff;
+    border-bottom: 1px solid #e0e2e6; }
+    .selectboxit-container .selectboxit-options .selectboxit-option a:hover {
+      background: #f3f4f8;
+      border-color: #e0e2e6;
+      color: #282828; }
+  .selectboxit-container .selectboxit-options .selectboxit-option.selectboxit-focus a {
+    background: #f3f4f8;
+    border-color: #e0e2e6;
+    color: #282828; }
+  .selectboxit-container .selectboxit-options .selectboxit-option.selectboxit-option-last a {
+    border-bottom: 0px none; }
+
+.tabledrag-changed-warning {
+  background: #f9a500;
+  border-radius: 2px;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  display: block; }
+
+.tabledrag-toggle-weight-wrapper,
+span.warning.tabledrag-changed {
+  display: none; }
+
+table.tabledrag-processed {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #e0e2e6; }
+  table.tabledrag-processed thead {
+    text-align: left;
+    font-weight: 700; }
+    table.tabledrag-processed thead th {
+      padding: 10px; }
+  table.tabledrag-processed tbody tr {
+    border-bottom: 1px solid #e0e2e6;
+    background: #fff; }
+    .page-node-add-document table.tabledrag-processed tbody tr {
+      border: 0; }
+    table.tabledrag-processed tbody tr.draggable {
+      -webkit-transition: background 0.2s ease-in-out;
+      -moz-transition: background 0.2s ease-in-out;
+      transition: background 0.2s ease-in-out; }
+    table.tabledrag-processed tbody tr.drag {
+      background: #fde9c2; }
+      table.tabledrag-processed tbody tr.drag a.tabledrag-handle {
+        cursor: -webkit-grabbing;
+        cursor: -moz-grabbing; }
+        table.tabledrag-processed tbody tr.drag a.tabledrag-handle:hover .handle {
+          background: url("../graphics/drag_dark_grey.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/drag_dark_grey.svg") transparent 0 0 no-repeat; }
+    table.tabledrag-processed tbody tr.drag-previous {
+      background: #fef4e0; }
+    table.tabledrag-processed tbody tr td {
+      padding: 10px;
+      position: relative; }
+      table.tabledrag-processed tbody tr td .file-widget {
+        overflow: hidden; }
+        table.tabledrag-processed tbody tr td .file-widget .file-widget-data {
+          position: relative; }
+          table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis; }
+            table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file img {
+              display: block;
+              float: left;
+              margin-right: 5px; }
+          table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file-size {
+            display: none; }
+      table.tabledrag-processed tbody tr td .form-item {
+        margin-bottom: 5px; }
+        table.tabledrag-processed tbody tr td .form-item .form-text {
+          padding: 5px;
+          margin-top: 15px;
+          width: 100%; }
+          .page-node-add-document table.tabledrag-processed tbody tr td .form-item .form-text {
+            margin-top: 0; }
+      table.tabledrag-processed tbody tr td .submit-wrapper {
+        margin: 0;
+        height: 24px;
+        position: relative; }
+        table.tabledrag-processed tbody tr td .submit-wrapper .form-submit {
+          display: inline-block;
+          height: 34px;
+          font-size: 12px;
+          font-size: 1.2rem;
+          line-height: 12px;
+          line-height: 34px;
+          border-radius: 34px;
+          color: #fff;
+          padding: 0 20px;
+          font-weight: 500;
+          text-transform: uppercase;
+          border-bottom: 0 none;
+          background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+          background-position: 20px 11px;
+          padding-left: 42px;
+          background-color: #454545;
+          -webkit-transition: background-color 0.1s ease-in-out;
+          -moz-transition: background-color 0.1s ease-in-out;
+          transition: background-color 0.1s ease-in-out;
+          height: 24px;
+          line-height: 24px;
+          border-radius: 24px;
+          background-position: 10px 6px;
+          padding: 0 10px 0 26px;
+          margin-right: 8px;
+          margin: 0; }
+          table.tabledrag-processed tbody tr td .submit-wrapper .form-submit:hover {
+            background-color: #303030; }
+        table.tabledrag-processed tbody tr td .submit-wrapper .ajax-progress {
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 9px;
+          width: 100%;
+          margin: 0 8px 0 0;
+          border-radius: 24px;
+          cursor: pointer;
+          background: #303030;
+          height: 100%;
+          text-align: center;
+          padding-top: 4px; }
+          table.tabledrag-processed tbody tr td .submit-wrapper .ajax-progress .throbber {
+            display: inline-block;
+            background: transparent;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f9a500;
+            border-radius: 50%;
+            border-top-color: transparent;
+            -webkit-animation: load 0.9s linear infinite;
+            -moz-animation: load 0.9s linear infinite;
+            animation: load 0.9s linear infinite;
+            margin: 0 auto;
+            float: none; }
+  table.tabledrag-processed a.tabledrag-handle {
+    display: block;
+    background: none;
+    width: 19px;
+    height: 19px;
+    border: 0px none;
+    margin: 0 10px 0 0;
+    cursor: -webkit-grab;
+    cursor: -moz-grab; }
+    table.tabledrag-processed a.tabledrag-handle .handle {
+      margin: 3px;
+      width: 13px;
+      height: 13px;
+      padding: 0;
+      background: url("../graphics/drag_grey.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/drag_grey.svg") transparent 0 0 no-repeat; }
+    table.tabledrag-processed a.tabledrag-handle:hover .handle {
+      background: url("../graphics/drag_dark_grey.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/drag_dark_grey.svg") transparent 0 0 no-repeat; }
+
+.form-type-textarea .mce-panel {
+  border: 0 solid #ebedf1;
+  background: #ebedf1; }
+.form-type-textarea textarea {
+  -webkit-appearance: none;
+  outline: none; }
+.form-type-textarea .form-textarea {
+  border-radius: 2px;
+  max-width: 100%;
+  border: 1px solid #d4d6d9;
+  padding: 5px; }
+  .form-type-textarea .form-textarea:focus {
+    box-shadow: 0 0 3px #dadada; }
+  .form-type-textarea .form-textarea:disabled {
+    color: #b4b4b4; }
+
+.form-type-textfield {
+  position: relative;
+  display: inline-block; }
+  .form-type-textfield label {
+    display: none; }
+  .form-type-textfield .form-required {
+    display: inline-block;
+    width: 25px;
+    height: 30px;
+    background: url("../graphics/required.png") #f3f4f8 4px center no-repeat;
+    background: none, url("../graphics/required.svg") #f3f4f8 4px center no-repeat;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: transparent;
+    font-size: 0px;
+    overflow: hidden;
+    text-indent: 100px;
+    line-height: 0px;
+    border: 1px solid #d4d6d9;
+    border-radius: 0 2px 2px 0; }
+  .form-type-textfield #autocomplete {
+    border: 0 none;
+    margin: 3px 0 0;
+    box-shadow: 0 0 3px #a2a2a2; }
+    .form-type-textfield #autocomplete ul li {
+      height: 32px;
+      line-height: 32px;
+      border-bottom: 1px solid #e0e2e6;
+      cursor: pointer;
+      padding: 0 10px; }
+      .form-type-textfield #autocomplete ul li:hover {
+        background: #f3f4f8; }
+  .form-type-textfield .throbber {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #e0e2e6;
+    margin-left: -23px;
+    border-radius: 50%; }
+    .form-type-textfield .throbber.throbbing {
+      margin: -3px -3px -3px -26px;
+      width: 16px;
+      height: 16px;
+      border-color: #f9a500;
+      border-top-color: transparent;
+      -webkit-animation: load 0.9s linear infinite;
+      -moz-animation: load 0.9s linear infinite;
+      animation: load 0.9s linear infinite; }
+
+.form-text {
+  height: 30px;
+  border-radius: 2px;
+  max-width: 100%;
+  border: 1px solid #d4d6d9;
+  padding: 1px 30px 1px 5px; }
+  .js .form-text.form-autocomplete {
+    background-image: none; }
+    .js .form-text.form-autocomplete.throbbing {
+      background-image: none; }
+  .form-text:focus {
+    box-shadow: 0 0 3px #dadada; }
+
+@media screen and (max-width: 1600px) {
+  .sub-menu-active .site-wrapper {
+    margin-top: 60px; } }
+
+.main-content {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 18.2px;
+  overflow: hidden; }
+  .logged-in .main-content {
+    margin-left: 280px;
+    padding: 40px; }
+    @media screen and (max-width: 1600px) {
+      .logged-in .main-content {
+        margin-left: 82px; } }
+
+.page-head {
+  margin-bottom: 70px; }
+  .page-head:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.page-title {
+  float: left; }
+
+.content-wrapper {
+  margin: 0; }
+  .content-wrapper .content-sidebar {
+    background: #e0e2e6;
+    padding-bottom: 30px;
+    width: 23%; }
+    .page-oversikt .content-wrapper .content-sidebar {
+      padding-bottom: 30px;
+      width: 25%; }
+    .content-wrapper .content-sidebar .sidebar-second-content {
+      padding: 0 10px 10px 10px; }
+
+.content-column {
+  background-color: #fff;
+  overflow: hidden;
+  width: 77%; }
+
+.page-actions {
+  float: right;
+  margin-top: 16px; }
+  .page-actions ul {
+    list-style: none; }
+  .page-actions li {
+    display: inline;
+    margin-left: 20px; }
+    .page-actions li a {
+      display: inline-block;
+      height: 34px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 34px;
+      border-radius: 34px;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-bottom: 0 none;
+      background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+      background-position: 20px 11px;
+      padding-left: 42px;
+      background-color: #454545;
+      -webkit-transition: background-color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out; }
+      .page-actions li a:hover {
+        background-color: #303030; }
+
+.flex-box {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap; }
+
+#capital-raising-node-form > div,
+#manual-node-form > div,
+#eck-entity-form-add-investor-person > div,
+#eck-entity-form-add-investor-company > div,
+#eck-entity-form-add-investor-lead > div,
+#document-node-form > div {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap; }
+
+.page-investor-company-edit #eck-entity-form-edit-investor-company,
+.page-investor-company-edit #eck-entity-form-edit-investor-person,
+.page-investor-company-edit #eck-entity-form-edit-investor-lead,
+.page-investor-person-edit #eck-entity-form-edit-investor-company,
+.page-investor-person-edit #eck-entity-form-edit-investor-person,
+.page-investor-person-edit #eck-entity-form-edit-investor-lead,
+.page-investor-lead-edit #eck-entity-form-edit-investor-company,
+.page-investor-lead-edit #eck-entity-form-edit-investor-person,
+.page-investor-lead-edit #eck-entity-form-edit-investor-lead {
+  background: #fff;
+  padding: 50px 40px 20px 40px; }
+  .page-investor-company-edit #eck-entity-form-edit-investor-company > div,
+  .page-investor-company-edit #eck-entity-form-edit-investor-person > div,
+  .page-investor-company-edit #eck-entity-form-edit-investor-lead > div,
+  .page-investor-person-edit #eck-entity-form-edit-investor-company > div,
+  .page-investor-person-edit #eck-entity-form-edit-investor-person > div,
+  .page-investor-person-edit #eck-entity-form-edit-investor-lead > div,
+  .page-investor-lead-edit #eck-entity-form-edit-investor-company > div,
+  .page-investor-lead-edit #eck-entity-form-edit-investor-person > div,
+  .page-investor-lead-edit #eck-entity-form-edit-investor-lead > div {
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    -ms-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap; }
+
+.bg {
+  background: #fff; }
+
+.padding {
+  padding: 50px 40px 40px 40px; }
+
+.node.view-mode-full {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px; }
+  .node.view-mode-full:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+#popup-message-window {
+  border: 5px solid #282828;
+  padding: 20px; }
+
+.popup-message-title {
+  font-size: 26px;
+  font-size: 2.6rem;
+  line-height: 39px;
+  border-bottom: 2px solid #f3f4f8 !important;
+  padding-bottom: 20px !important; }
+
+.columns {
+  display: block; }
+  .columns:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .columns .col {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    .columns .col:last-child {
+      margin-right: 0; }
+  .columns.three-col .col {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    .columns.three-col .col:last-child {
+      margin-right: 0; }
 
 .main-sidebar {
   background-color: #282828;
@@ -2636,13 +3440,26 @@ form#user-login #edit-submit {
 
 table {
   width: 100%; }
+  table.sticky-header {
+    z-index: 10;
+    border-left: 1px solid #e0e2e6;
+    border-right: 1px solid #e0e2e6; }
+    table.sticky-header label {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 14px;
+      font-weight: 700;
+      color: #282828;
+      border: 0px none; }
   table thead {
     background: #ebedf1;
     border-bottom: 1px solid #e0e2e6;
-    border-top: 1px solid #e0e2e6;
     font-weight: 700; }
+    table thead tr {
+      border-bottom: 1px solid #e0e2e6; }
     table thead th {
-      height: 42px;
       text-align: left; }
       table thead th.views-field {
         padding: 10px; }
@@ -2657,7 +3474,7 @@ table {
           margin-left: 5px; }
   table td {
     height: 44px;
-    padding: 10px 0 10px 10px;
+    padding: 10px;
     vertical-align: middle; }
     table td .form-actions {
       margin: 0; }
@@ -2700,967 +3517,20 @@ table {
           animation: load 0.9s linear infinite; }
         table td .editablefield-item .form-actions .ajax-progress .message {
           padding-left: 24px; }
-  table tr.even {
-    background: #fafbfc;
-    border-bottom: 1px solid #f3f4f8;
-    border-top: 1px solid #f3f4f8; }
-    table tr.even .ajax-progress {
+  table tr {
+    border-bottom: 1px solid #f3f4f8; }
+    table tr.even {
       background: #fafbfc; }
-  table tr.odd {
-    background: #fff; }
-    table tr.odd .ajax-progress {
+      table tr.even .ajax-progress {
+        background: #fafbfc; }
+    table tr.odd {
       background: #fff; }
+      table tr.odd .ajax-progress {
+        background: #fff; }
   table td {
     color: #363636; }
   table input {
     border: 1px solid #c8cacd; }
-
-div.checker {
-  margin-right: 5px; }
-  div.checker span {
-    background: url("../graphics/checkbox_unchecked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_unchecked.svg") transparent 0 0 no-repeat;
-    background-position: 0 0; }
-    div.checker span.checked {
-      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
-      background-position: 0 0; }
-    div.checker span input.form-checkbox {
-      cursor: pointer; }
-  div.checker.focus span {
-    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-    background-position: 0 0; }
-    div.checker.focus span.checked {
-      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
-      background-position: 0 0; }
-  div.checker.focus.active span {
-    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-    background-position: 0 0; }
-    div.checker.focus.active span.checked {
-      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
-      background-position: 0 0; }
-  div.checker.hover span {
-    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-    background-position: 0 0; }
-    div.checker.hover span.checked {
-      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
-      background-position: 0 0; }
-  div.checker.hover.active span {
-    background: url("../graphics/checkbox_hover.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_hover.svg") transparent 0 0 no-repeat;
-    background-position: 0 0; }
-    div.checker.hover.active span.checked {
-      background: url("../graphics/checkbox_checked.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/checkbox_checked.svg") transparent 0 0 no-repeat;
-      background-position: 0 0; }
-
-div.checker.disabled span {
-  background: url("../graphics/checkbox_disabled_unchecked.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/checkbox_disabled_unchecked.svg") transparent 0 0 no-repeat;
-  background-position: 0 0; }
-  div.checker.disabled span.checked {
-    background: url("../graphics/checkbox_disabled_checked.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/checkbox_disabled_checked.svg") transparent 0 0 no-repeat;
-    background-position: 0 0; }
-
-.selectboxit-container * {
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 21px; }
-.selectboxit-container .selectboxit {
-  border-radius: 2px; }
-.selectboxit-container .selectboxit-text {
-  font-weight: 400; }
-.selectboxit-container span {
-  height: 39px;
-  line-height: 39px; }
-.selectboxit-container .selectboxit-btn {
-  background: #fff;
-  border: 0px none; }
-  .selectboxit-container .selectboxit-btn .selectboxit-arrow-container {
-    right: 5px; }
-    .selectboxit-container .selectboxit-btn .selectboxit-arrow-container .selectboxit-arrow {
-      margin-top: -2px; }
-  .selectboxit-container .selectboxit-btn.selectboxit-hover {
-    background: #fff; }
-  .selectboxit-container .selectboxit-btn.selectboxit-focus {
-    background: #fff;
-    box-shadow: 0 0 3px #a2a2a2; }
-  .selectboxit-container .selectboxit-btn.selectboxit-open .selectboxit-arrow-container {
-    -webkit-transform: rotate(-180deg);
-    -moz-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    transform: rotate(-180deg);
-    -webkit-animation: rotate 0.2s ease-in;
-    -moz-animation: rotate 0.2s ease-in;
-    animation: rotate 0.2s ease-in; }
-.selectboxit-container .selectboxit-options {
-  background: transparent;
-  border: 0 none;
-  border-radius: 0px;
-  box-shadow: 0 0 3px #a2a2a2;
-  margin: 3px 0 0; }
-  .selectboxit-container .selectboxit-options .selectboxit-option span,
-  .selectboxit-container .selectboxit-options .selectboxit-option a {
-    border: 0 none;
-    height: 32px;
-    line-height: 32px; }
-  .selectboxit-container .selectboxit-options .selectboxit-option a {
-    background: #fff;
-    border-bottom: 1px solid #e0e2e6; }
-    .selectboxit-container .selectboxit-options .selectboxit-option a:hover {
-      background: #f3f4f8;
-      border-color: #e0e2e6;
-      color: #282828; }
-  .selectboxit-container .selectboxit-options .selectboxit-option.selectboxit-focus a {
-    background: #f3f4f8;
-    border-color: #e0e2e6;
-    color: #282828; }
-
-form .form-sidebar {
-  background: #e0e2e6;
-  padding: 20px;
-  width: 30%; }
-  form .form-sidebar .form-text {
-    width: 100%; }
-  form .form-sidebar .group-cap-rais-details .form-text {
-    width: 65%; }
-form .form-body {
-  background: #fff;
-  overflow: hidden;
-  padding: 20px;
-  width: 70%; }
-form .form-actions {
-  margin-top: 20px; }
-form .messages {
-  padding: 10px;
-  color: #fff;
-  font-weight: 500;
-  margin: 10px 0; }
-  form .messages.status {
-    background: #76c043; }
-  form .messages.warning {
-    background: #f9a500; }
-  form .messages.error {
-    background: #c04343; }
-form .field-suffix {
-  font-weight: 500;
-  margin-left: 5px; }
-form fieldset {
-  position: relative;
-  margin-bottom: 20px; }
-  form fieldset legend {
-    height: 40px;
-    width: 100%; }
-    form fieldset legend .fieldset-legend {
-      background: #c8cacd;
-      text-align: left;
-      display: block;
-      height: 40px;
-      width: 100%;
-      font-size: 14px;
-      font-size: 1.4rem;
-      line-height: 18.2px;
-      font-weight: 500;
-      text-transform: none;
-      padding: 10px 0 11px 10px;
-      border-bottom: 1px solid #e0e2e6;
-      border-radius: 2px 2px 0 0; }
-      form fieldset legend .fieldset-legend .form-required {
-        display: block;
-        float: left;
-        width: 18px;
-        height: 18px;
-        background: url("../graphics/required.png") transparent 5px center no-repeat;
-        background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
-        color: transparent;
-        font-size: 0px;
-        overflow: hidden;
-        text-indent: 100px;
-        line-height: 0;
-        margin-right: 12px;
-        margin-left: -10px; }
-  form fieldset .fieldset-wrapper {
-    background: #d4d6d9;
-    padding: 10px;
-    border-radius: 0 0 2px 2px;
-    overflow: hidden; }
-    form fieldset .fieldset-wrapper fieldset {
-      background: #d4d6d9;
-      position: relative;
-      border-radius: 2px; }
-      form fieldset .fieldset-wrapper fieldset.filter-wrapper {
-        display: none; }
-      form fieldset .fieldset-wrapper fieldset .fieldset-legend {
-        background: #c8cacd;
-        text-align: left;
-        display: block;
-        font-size: 14px;
-        font-size: 1.4rem;
-        line-height: 18.2px;
-        font-weight: 500;
-        text-transform: none;
-        padding: 10px 0 11px 0;
-        border-bottom: 1px solid #e0e2e6;
-        border-radius: 2px 2px 0 0; }
-        form fieldset .fieldset-wrapper fieldset .fieldset-legend .form-required {
-          display: block;
-          float: left;
-          width: 18px;
-          height: 18px;
-          background: url("../graphics/required.png") transparent 5px center no-repeat;
-          background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
-          color: transparent;
-          font-size: 0;
-          overflow: hidden;
-          text-indent: 100px;
-          line-height: 0px;
-          margin-right: 12px; }
-      form fieldset .fieldset-wrapper fieldset .fieldset-wrapper {
-        overflow: hidden;
-        padding: 10px;
-        background: transparent; }
-        form fieldset .fieldset-wrapper fieldset .fieldset-wrapper .fieldset-description {
-          padding: 0;
-          background: transparent; }
-  form fieldset .fieldset-description {
-    margin-bottom: 10px;
-    font-style: italic;
-    padding: 0 10px 0 0; }
-  form fieldset .container-inline-date {
-    position: relative;
-    width: 100%;
-    margin: 0; }
-    form fieldset .container-inline-date .form-item {
-      margin: 0;
-      width: 100%; }
-      form fieldset .container-inline-date .form-item .description {
-        display: none; }
-      form fieldset .container-inline-date .form-item label {
-        margin: 10px 0;
-        text-align: left;
-        font-weight: 700;
-        font-size: 12px;
-        font-size: 1.2rem;
-        line-height: 18px;
-        height: 18px; }
-        form fieldset .container-inline-date .form-item label .form-required {
-          display: block;
-          float: left;
-          width: 18px;
-          height: 18px;
-          background: url("../graphics/required.png") transparent 0 center no-repeat;
-          background: none, url("../graphics/required.svg") transparent 0 center no-repeat;
-          color: transparent;
-          font-size: 0;
-          overflow: hidden;
-          text-indent: 100px;
-          line-height: 0px; }
-      form fieldset .container-inline-date .form-item .date-padding {
-        width: 100%;
-        padding: 0; }
-      form fieldset .container-inline-date .form-item .form-text {
-        width: 100%;
-        padding: 10px;
-        margin: 0; }
-  form fieldset .tabledrag-changed-warning {
-    background: #f9a500;
-    border-radius: 2px;
-    color: #fff;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-weight: 500;
-    display: block;
-    padding-left: 27px;
-    position: relative; }
-    form fieldset .tabledrag-changed-warning span.warning {
-      font-size: 25px;
-      line-height: 10px;
-      padding-top: 0px;
-      position: absolute;
-      left: 10px;
-      top: 17px; }
-  form fieldset .tabledrag-toggle-weight-wrapper {
-    display: none; }
-  form fieldset table.tabledrag-processed {
-    width: 100%;
-    margin-bottom: 20px; }
-    form fieldset table.tabledrag-processed thead {
-      background: #454545;
-      color: #fff;
-      text-align: left;
-      font-weight: 500; }
-      form fieldset table.tabledrag-processed thead th {
-        padding: 10px; }
-    form fieldset table.tabledrag-processed tbody tr {
-      border-bottom: 1px solid #e0e2e6; }
-      .page-node-add-document form fieldset table.tabledrag-processed tbody tr {
-        border: 0; }
-      form fieldset table.tabledrag-processed tbody tr.even {
-        background: #e9ebee; }
-        form fieldset table.tabledrag-processed tbody tr.even a.tabledrag-handle {
-          background-color: #e9ebee; }
-          form fieldset table.tabledrag-processed tbody tr.even a.tabledrag-handle:hover, form fieldset table.tabledrag-processed tbody tr.even a.tabledrag-handle.tabledrag-handle-hover {
-            background-color: #e9ebee; }
-      form fieldset table.tabledrag-processed tbody tr.odd {
-        background: #f0f1f3; }
-        .page-node-add-document form fieldset table.tabledrag-processed tbody tr.odd {
-          background: #d4d6d9; }
-        form fieldset table.tabledrag-processed tbody tr.odd a.tabledrag-handle {
-          background-color: #f0f1f3; }
-          form fieldset table.tabledrag-processed tbody tr.odd a.tabledrag-handle:hover, form fieldset table.tabledrag-processed tbody tr.odd a.tabledrag-handle.tabledrag-handle-hover {
-            background-color: #f0f1f3; }
-      form fieldset table.tabledrag-processed tbody tr.drag {
-        background: #f6f6f8; }
-        form fieldset table.tabledrag-processed tbody tr.drag a.tabledrag-handle {
-          background-color: #f6f6f8; }
-          form fieldset table.tabledrag-processed tbody tr.drag a.tabledrag-handle:hover, form fieldset table.tabledrag-processed tbody tr.drag a.tabledrag-handle.tabledrag-handle-hover {
-            background-color: #f6f6f8; }
-      form fieldset table.tabledrag-processed tbody tr td {
-        padding: 10px;
-        position: relative; }
-        .page-node-add-document form fieldset table.tabledrag-processed tbody tr td {
-          padding: 0; }
-        form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data {
-          position: relative; }
-          form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file {
-            display: block;
-            overflow: hidden;
-            text-overflow: ellipsis; }
-            form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file img {
-              display: block;
-              float: left;
-              margin-right: 5px; }
-          form fieldset table.tabledrag-processed tbody tr td .file-widget .file-widget-data .file-size {
-            display: none; }
-        form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle {
-          margin-top: 1px;
-          margin-left: -5px;
-          width: 16px;
-          height: 30px;
-          border-radius: 3px 0 0 3px;
-          background: url("../graphics/tabledrag_handle.png") transparent center center no-repeat;
-          background: none, url("../graphics/tabledrag_handle.svg") transparent center center no-repeat;
-          border: 0px none;
-          position: relative;
-          z-index: 2; }
-          form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle:hover, form fieldset table.tabledrag-processed tbody tr td a.tabledrag-handle.tabledrag-handle-hover {
-            border: 0px none;
-            background: url("../graphics/tabledrag_handle_hover.png") transparent center center no-repeat;
-            background: none, url("../graphics/tabledrag_handle_hover.svg") transparent center center no-repeat;
-            z-index: 5; }
-        form fieldset table.tabledrag-processed tbody tr td .tabledrag-changed {
-          position: absolute;
-          top: 22px;
-          width: 14px;
-          left: 6px;
-          height: 8px;
-          background: #e0afaf;
-          border-radius: 4px;
-          overflow: hidden;
-          text-indent: 20px;
-          font-size: 0px;
-          line-height: 0px;
-          z-index: 3; }
-        form fieldset table.tabledrag-processed tbody tr td .form-item {
-          margin-bottom: 5px; }
-          form fieldset table.tabledrag-processed tbody tr td .form-item .form-text {
-            padding: 5px;
-            margin-top: 15px;
-            width: 100%; }
-            .page-node-add-document form fieldset table.tabledrag-processed tbody tr td .form-item .form-text {
-              margin-top: 0; }
-        form fieldset table.tabledrag-processed tbody tr td .submit-wrapper {
-          margin: 0;
-          height: 24px;
-          position: relative; }
-          form fieldset table.tabledrag-processed tbody tr td .submit-wrapper .form-submit {
-            display: inline-block;
-            height: 34px;
-            font-size: 12px;
-            font-size: 1.2rem;
-            line-height: 12px;
-            line-height: 34px;
-            border-radius: 34px;
-            color: #fff;
-            padding: 0 20px;
-            font-weight: 500;
-            text-transform: uppercase;
-            border-bottom: 0 none;
-            background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
-            background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
-            background-position: 20px 11px;
-            padding-left: 42px;
-            background-color: #454545;
-            -webkit-transition: background-color 0.1s ease-in-out;
-            -moz-transition: background-color 0.1s ease-in-out;
-            transition: background-color 0.1s ease-in-out;
-            height: 24px;
-            line-height: 24px;
-            border-radius: 24px;
-            background-position: 10px 6px;
-            padding: 0 10px 0 26px;
-            margin-right: 8px;
-            margin: 0; }
-            form fieldset table.tabledrag-processed tbody tr td .submit-wrapper .form-submit:hover {
-              background-color: #303030; }
-          form fieldset table.tabledrag-processed tbody tr td .submit-wrapper .ajax-progress {
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 9px;
-            width: 100%;
-            margin: 0 8px 0 0;
-            border-radius: 24px;
-            cursor: pointer;
-            background: #303030;
-            height: 100%;
-            text-align: center;
-            padding-top: 4px; }
-            form fieldset table.tabledrag-processed tbody tr td .submit-wrapper .ajax-progress .throbber {
-              display: inline-block;
-              background: transparent;
-              width: 16px;
-              height: 16px;
-              border: 2px solid #f9a500;
-              border-radius: 50%;
-              border-top-color: transparent;
-              -webkit-animation: load 0.9s linear infinite;
-              -moz-animation: load 0.9s linear infinite;
-              animation: load 0.9s linear infinite;
-              margin: 0 auto;
-              float: none; }
-form .filter-item .form-item.form-type-select label {
-  display: block; }
-form .field-type-text-with-summary .filter-wrapper,
-form .field-type-text-long .filter-wrapper {
-  display: none; }
-form .form-item {
-  margin-bottom: 20px; }
-  form .form-item label {
-    display: inline-block;
-    font-weight: 500;
-    margin-bottom: 3px; }
-    form .form-item label.option {
-      margin-bottom: 0; }
-  form .form-item .description {
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 15.6px;
-    font-style: italic; }
-  form .form-item.form-type-select {
-    position: relative; }
-    form .form-item.form-type-select label {
-      display: none; }
-    form .form-item.form-type-select .ajax-progress {
-      margin: 0 3px;
-      padding: 9px 4px;
-      background: #fff;
-      z-index: 10;
-      position: absolute;
-      height: 39px;
-      width: 200px; }
-      form .form-item.form-type-select .ajax-progress .throbber {
-        display: inline-block;
-        background: transparent;
-        width: 16px;
-        height: 16px;
-        border: 2px solid #f9a500;
-        border-radius: 50%;
-        border-top-color: transparent;
-        -webkit-animation: load 0.9s linear infinite;
-        -moz-animation: load 0.9s linear infinite;
-        animation: load 0.9s linear infinite; }
-      form .form-item.form-type-select .ajax-progress .message {
-        display: none; }
-  form .form-item.form-type-textfield, form .form-item.form-type-password {
-    position: relative; }
-    form .form-item.form-type-textfield label, form .form-item.form-type-password label {
-      position: absolute;
-      top: 11px;
-      left: 10px; }
-    form .form-item.form-type-textfield .form-required, form .form-item.form-type-password .form-required {
-      display: inline-block;
-      width: 24px;
-      height: 39px;
-      background: url("../graphics/required.png") #f3f4f8 5px center no-repeat;
-      background: none, url("../graphics/required.svg") #f3f4f8 5px center no-repeat;
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      color: transparent;
-      font-size: 0px;
-      overflow: hidden;
-      text-indent: 100px;
-      line-height: 0px;
-      border-radius: 2px 0 0 2px; }
-    form .form-item.form-type-textfield #autocomplete, form .form-item.form-type-password #autocomplete {
-      border: 0 none;
-      margin: 3px 0 0;
-      box-shadow: 0 0 3px #a2a2a2; }
-      form .form-item.form-type-textfield #autocomplete ul li, form .form-item.form-type-password #autocomplete ul li {
-        height: 32px;
-        line-height: 32px;
-        border-bottom: 1px solid #e0e2e6;
-        cursor: pointer;
-        padding: 0 10px; }
-        form .form-item.form-type-textfield #autocomplete ul li:hover, form .form-item.form-type-password #autocomplete ul li:hover {
-          background: #f3f4f8; }
-    form .form-item.form-type-textfield .throbber, form .form-item.form-type-password .throbber {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border: 2px solid #e0e2e6;
-      margin-left: -23px;
-      border-radius: 50%; }
-      form .form-item.form-type-textfield .throbber.throbbing, form .form-item.form-type-password .throbber.throbbing {
-        margin: -3px -3px -3px -26px;
-        width: 16px;
-        height: 16px;
-        border-color: #f9a500;
-        border-top-color: transparent;
-        -webkit-animation: load 0.9s linear infinite;
-        -moz-animation: load 0.9s linear infinite;
-        animation: load 0.9s linear infinite; }
-  form .form-item.form-type-textarea {
-    background: #d4d6d9;
-    padding: 10px;
-    border-radius: 2px;
-    margin-bottom: 20px; }
-    form .form-item.form-type-textarea .mce-panel {
-      border: 0 solid #ebedf1;
-      background: #ebedf1; }
-    form .form-item.form-type-textarea label {
-      background: #c8cacd;
-      text-align: left;
-      display: block;
-      height: 40px;
-      font-size: 14px;
-      font-size: 1.4rem;
-      line-height: 18.2px;
-      font-weight: 500;
-      text-transform: none;
-      padding: 10px 0 11px 10px;
-      margin: -10px -10px 10px -10px;
-      border-bottom: 1px solid #e0e2e6;
-      border-radius: 2px 2px 0 0; }
-      form .form-item.form-type-textarea label .form-required {
-        display: block;
-        float: left;
-        width: 18px;
-        height: 18px;
-        background: url("../graphics/required.png") transparent 5px center no-repeat;
-        background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
-        color: transparent;
-        font-size: 0px;
-        overflow: hidden;
-        text-indent: 100px;
-        line-height: 0px;
-        margin-right: 12px;
-        margin-left: -10px; }
-  form .form-item.form-type-managed-file .image-widget,
-  form .form-item.form-type-managed-file .file-widget {
-    float: left; }
-    form .form-item.form-type-managed-file .image-widget .image-widget-data,
-    form .form-item.form-type-managed-file .image-widget .file-widget-data,
-    form .form-item.form-type-managed-file .file-widget .image-widget-data,
-    form .form-item.form-type-managed-file .file-widget .file-widget-data {
-      background: #fff;
-      border-radius: 2px;
-      margin-bottom: 5px;
-      position: relative;
-      float: left; }
-      form .form-item.form-type-managed-file .image-widget .image-widget-data .icon,
-      form .form-item.form-type-managed-file .image-widget .file-widget-data .icon,
-      form .form-item.form-type-managed-file .file-widget .image-widget-data .icon,
-      form .form-item.form-type-managed-file .file-widget .file-widget-data .icon {
-        display: block;
-        position: absolute;
-        left: 9px;
-        top: 9px;
-        width: 20px;
-        height: 20px;
-        background: url("../graphics/folder.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/folder.svg") transparent 0 0 no-repeat; }
-      form .form-item.form-type-managed-file .image-widget .image-widget-data .text,
-      form .form-item.form-type-managed-file .image-widget .file-widget-data .text,
-      form .form-item.form-type-managed-file .file-widget .image-widget-data .text,
-      form .form-item.form-type-managed-file .file-widget .file-widget-data .text {
-        position: absolute;
-        left: 34px;
-        top: 10px;
-        width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin: 0;
-        padding: 0; }
-      form .form-item.form-type-managed-file .image-widget .image-widget-data input[type="file"],
-      form .form-item.form-type-managed-file .image-widget .file-widget-data input[type="file"],
-      form .form-item.form-type-managed-file .file-widget .image-widget-data input[type="file"],
-      form .form-item.form-type-managed-file .file-widget .file-widget-data input[type="file"] {
-        display: block;
-        float: left;
-        width: 240px;
-        height: 39px;
-        opacity: 0; }
-      form .form-item.form-type-managed-file .image-widget .image-widget-data .file,
-      form .form-item.form-type-managed-file .image-widget .file-widget-data .file,
-      form .form-item.form-type-managed-file .file-widget .image-widget-data .file,
-      form .form-item.form-type-managed-file .file-widget .file-widget-data .file {
-        display: inline-block;
-        padding: 0 5px 10px 5px; }
-      form .form-item.form-type-managed-file .image-widget .image-widget-data .file-size,
-      form .form-item.form-type-managed-file .image-widget .file-widget-data .file-size,
-      form .form-item.form-type-managed-file .file-widget .image-widget-data .file-size,
-      form .form-item.form-type-managed-file .file-widget .file-widget-data .file-size {
-        padding-right: 5px; }
-      form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper,
-      form .form-item.form-type-managed-file .image-widget .file-widget-data .submit-wrapper,
-      form .form-item.form-type-managed-file .file-widget .image-widget-data .submit-wrapper,
-      form .form-item.form-type-managed-file .file-widget .file-widget-data .submit-wrapper {
-        margin: 8px 8px 8px 0;
-        height: 24px;
-        position: relative; }
-        form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit,
-        form .form-item.form-type-managed-file .image-widget .file-widget-data .submit-wrapper .form-submit,
-        form .form-item.form-type-managed-file .file-widget .image-widget-data .submit-wrapper .form-submit,
-        form .form-item.form-type-managed-file .file-widget .file-widget-data .submit-wrapper .form-submit {
-          display: inline-block;
-          height: 34px;
-          font-size: 12px;
-          font-size: 1.2rem;
-          line-height: 12px;
-          line-height: 34px;
-          border-radius: 34px;
-          color: #fff;
-          padding: 0 20px;
-          font-weight: 500;
-          text-transform: uppercase;
-          border-bottom: 0 none;
-          background: url("../graphics/upload.png") transparent 0 0 no-repeat;
-          background: none, url("../graphics/upload.svg") transparent 0 0 no-repeat;
-          background-position: 20px 11px;
-          padding-left: 42px;
-          background-color: #454545;
-          -webkit-transition: background-color 0.1s ease-in-out;
-          -moz-transition: background-color 0.1s ease-in-out;
-          transition: background-color 0.1s ease-in-out;
-          height: 24px;
-          line-height: 24px;
-          border-radius: 24px;
-          background-position: 10px 6px;
-          padding: 0 10px 0 26px;
-          margin-right: 8px;
-          margin: 0; }
-          form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .form-submit:hover,
-          form .form-item.form-type-managed-file .image-widget .file-widget-data .submit-wrapper .form-submit:hover,
-          form .form-item.form-type-managed-file .file-widget .image-widget-data .submit-wrapper .form-submit:hover,
-          form .form-item.form-type-managed-file .file-widget .file-widget-data .submit-wrapper .form-submit:hover {
-            background-color: #303030; }
-        form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress,
-        form .form-item.form-type-managed-file .image-widget .file-widget-data .submit-wrapper .ajax-progress,
-        form .form-item.form-type-managed-file .file-widget .image-widget-data .submit-wrapper .ajax-progress,
-        form .form-item.form-type-managed-file .file-widget .file-widget-data .submit-wrapper .ajax-progress {
-          display: block;
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
-          margin: 0 8px 0 0;
-          border-radius: 24px;
-          cursor: pointer;
-          background: #303030;
-          height: 100%;
-          text-align: center;
-          padding-top: 4px; }
-          form .form-item.form-type-managed-file .image-widget .image-widget-data .submit-wrapper .ajax-progress .throbber,
-          form .form-item.form-type-managed-file .image-widget .file-widget-data .submit-wrapper .ajax-progress .throbber,
-          form .form-item.form-type-managed-file .file-widget .image-widget-data .submit-wrapper .ajax-progress .throbber,
-          form .form-item.form-type-managed-file .file-widget .file-widget-data .submit-wrapper .ajax-progress .throbber {
-            display: inline-block;
-            background: transparent;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #f9a500;
-            border-radius: 50%;
-            border-top-color: transparent;
-            -webkit-animation: load 0.9s linear infinite;
-            -moz-animation: load 0.9s linear infinite;
-            animation: load 0.9s linear infinite;
-            margin: 0 auto;
-            float: none; }
-    form .form-item.form-type-managed-file .image-widget.populated,
-    form .form-item.form-type-managed-file .file-widget.populated {
-      background: #fff;
-      border-radius: 2px;
-      margin-bottom: 5px;
-      padding: 10px; }
-      form .form-item.form-type-managed-file .image-widget.populated .image-preview,
-      form .form-item.form-type-managed-file .file-widget.populated .image-preview {
-        margin: 0 10px 0 0;
-        line-height: 0px;
-        padding: 0; }
-      form .form-item.form-type-managed-file .image-widget.populated .image-widget-data,
-      form .form-item.form-type-managed-file .file-widget.populated .image-widget-data {
-        background: transparent;
-        border-radius: 0px;
-        margin: 10px 0; }
-        form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper,
-        form .form-item.form-type-managed-file .file-widget.populated .image-widget-data .submit-wrapper {
-          margin: 0 0 0 10px; }
-          form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit,
-          form .form-item.form-type-managed-file .file-widget.populated .image-widget-data .submit-wrapper .form-submit {
-            display: inline-block;
-            height: 34px;
-            font-size: 12px;
-            font-size: 1.2rem;
-            line-height: 12px;
-            line-height: 34px;
-            border-radius: 34px;
-            color: #fff;
-            padding: 0 20px;
-            font-weight: 500;
-            text-transform: uppercase;
-            border-bottom: 0 none;
-            background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
-            background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
-            background-position: 20px 11px;
-            padding-left: 42px;
-            background-color: #454545;
-            -webkit-transition: background-color 0.1s ease-in-out;
-            -moz-transition: background-color 0.1s ease-in-out;
-            transition: background-color 0.1s ease-in-out;
-            height: 24px;
-            line-height: 24px;
-            border-radius: 24px;
-            background-position: 10px 6px;
-            padding: 0 10px 0 26px;
-            margin-right: 8px;
-            margin: 0; }
-            form .form-item.form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover,
-            form .form-item.form-type-managed-file .file-widget.populated .image-widget-data .submit-wrapper .form-submit:hover {
-              background-color: #303030; }
-  form .form-item.form-type-managed-file .description {
-    clear: both; }
-form .form-text {
-  padding: 10px;
-  border-radius: 2px;
-  margin-bottom: 5px;
-  max-width: 100%; }
-  form .form-text.form-autocomplete {
-    padding: 10px 30px 10px 10px; }
-    .js form .form-text.form-autocomplete {
-      background-image: none; }
-      .js form .form-text.form-autocomplete.throbbing {
-        background-image: none; }
-  form .form-text.required {
-    padding: 10px 30px;
-    height: 39px; }
-  form .form-text:focus {
-    box-shadow: 0 0 3px #a2a2a2; }
-form .submit-wrapper {
-  display: inline-block; }
-  form .submit-wrapper .form-submit {
-    margin-right: 10px; }
-
-#ui-datepicker-div {
-  font-family: "Roboto", sans-serif;
-  background: #fff;
-  border-right: 0px none;
-  border-bottom: 0px none;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 2px; }
-  #ui-datepicker-div.ui-datepicker {
-    padding: 0px; }
-    #ui-datepicker-div.ui-datepicker .ui-datepicker-header {
-      margin: 0;
-      padding: 5px;
-      background: #f9a500;
-      overflow: hidden;
-      border-radius: 2px 2px 0 0; }
-      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev,
-      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
-        width: 22px;
-        height: 22px;
-        border-bottom: 0 none;
-        top: 8px;
-        cursor: pointer; }
-        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev:hover,
-        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next:hover {
-          border-bottom: 0 none; }
-        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev span,
-        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next span {
-          left: 4px;
-          top: 4px;
-          margin: 0;
-          width: 14px;
-          height: 14px;
-          overflow: hidden;
-          color: #f9a500;
-          font-size: 0;
-          line-height: 0; }
-      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
-        left: 5px; }
-        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev span {
-          background: url("../graphics/date_left.png") transparent 0 0 no-repeat;
-          background: none, url("../graphics/date_left.svg") transparent 0 0 no-repeat; }
-      #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
-        right: 5px; }
-        #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next span {
-          background: url("../graphics/date_right.png") transparent 0 0 no-repeat;
-          background: none, url("../graphics/date_right.svg") transparent 0 0 no-repeat; }
-    #ui-datepicker-div.ui-datepicker .ui-datepicker-title {
-      overflow: hidden;
-      margin: 0 27px; }
-      #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-month,
-      #ui-datepicker-div.ui-datepicker .ui-datepicker-title select.ui-datepicker-year {
-        border-radius: 2px;
-        background: #fde4b3;
-        padding: 0 5px; }
-    #ui-datepicker-div.ui-datepicker table thead {
-      background: #f3f4f8; }
-      #ui-datepicker-div.ui-datepicker table thead th {
-        padding: 5px; }
-    #ui-datepicker-div.ui-datepicker table tbody td {
-      padding: 1px; }
-      #ui-datepicker-div.ui-datepicker table tbody td a {
-        padding: 5px;
-        border: 0px none;
-        text-align: center; }
-        #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-highlight {
-          border-radius: 2px;
-          background: #fef2d9; }
-        #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active {
-          border-radius: 2px;
-          background: #f9a500;
-          color: #fff;
-          font-weight: 700; }
-          #ui-datepicker-div.ui-datepicker table tbody td a.ui-state-active:hover {
-            background: #f9a500; }
-        #ui-datepicker-div.ui-datepicker table tbody td a:hover {
-          background: #fde4b3;
-          font-weight: 700;
-          border-radius: 2px; }
-
-form.confirmation {
-  font-size: 16px;
-  font-size: 1.6rem;
-  line-height: 24px;
-  display: inline-block;
-  font-weight: 700;
-  padding: 50px 40px;
-  background: #fff;
-  width: 100%; }
-  form.confirmation input {
-    display: inline-block;
-    height: 34px;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 12px;
-    line-height: 34px;
-    border-radius: 34px;
-    color: #fff;
-    padding: 0 20px;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-bottom: 0 none;
-    background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
-    background-position: 20px 13px;
-    padding-left: 42px;
-    background-color: #454545;
-    -webkit-transition: background-color 0.1s ease-in-out;
-    -moz-transition: background-color 0.1s ease-in-out;
-    transition: background-color 0.1s ease-in-out;
-    display: inline; }
-    form.confirmation input:hover {
-      background-color: #303030; }
-  form.confirmation .form-actions.form-wrapper {
-    display: inline-block;
-    margin-top: 20px;
-    width: 100%; }
-    form.confirmation .form-actions.form-wrapper .submit-wrapper {
-      display: inline; }
-    form.confirmation .form-actions.form-wrapper #edit-submit {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0 none;
-      background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
-      background-position: 20px 13px;
-      padding-left: 42px;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out; }
-      form.confirmation .form-actions.form-wrapper #edit-submit:hover {
-        background-color: #303030; }
-
-#edit-log {
-  border: 0;
-  margin-top: 10px; }
-
-.form-item label[for=edit-field-document-type-und],
-.form-item label[for=edit-field-manual-type-und] {
-  background: #c8cacd;
-  border-radius: 2px 2px 0 0;
-  display: block;
-  font-size: 1.4rem;
-  font-size: 14px;
-  font-weight: 700;
-  height: 40px;
-  line-height: 18.2px;
-  margin-bottom: 0;
-  padding: 10px 0 11px 0;
-  text-align: left;
-  text-transform: none; }
-  .form-item label[for=edit-field-document-type-und] .form-required,
-  .form-item label[for=edit-field-manual-type-und] .form-required {
-    background: url("../graphics/required.png") transparent 5px center no-repeat;
-    background: none, url("../graphics/required.svg") transparent 5px center no-repeat;
-    color: transparent;
-    display: block;
-    float: left;
-    font-size: 0px;
-    height: 18px;
-    line-height: 0;
-    margin-right: 12px;
-    overflow: hidden;
-    text-indent: 100px;
-    width: 18px; }
-
-#edit-field-document-type-und,
-#edit-field-manual-type-und {
-  background: #fff;
-  border-radius: 0 0 2px 2px;
-  padding: 15px 10px;
-  overflow: hidden; }
-  #edit-field-document-type-und .form-item,
-  #edit-field-manual-type-und .form-item {
-    margin-bottom: 10px; }
-    #edit-field-document-type-und .form-item:last-child,
-    #edit-field-manual-type-und .form-item:last-child {
-      margin-bottom: 0px; }
-
-.form-type-managed-file.form-item label {
-  display: block; }
 
 .tabs {
   background: #ebedf1;
@@ -3728,57 +3598,59 @@ form.confirmation {
         height: 42px;
         margin-top: -1px; }
 
-.htabs-wrapper {
+.field-group-htabs-wrapper {
   background: #fff;
-  padding: 40px 0; }
-  .htabs-wrapper .horizontal-tabs {
-    border: 0px none; }
-    .htabs-wrapper .horizontal-tabs fieldset.horizontal-tabs-pane {
+  padding: 40px; }
+  .field-group-htabs-wrapper .horizontal-tabs {
+    border: 0px none;
+    width: 50%;
+    margin: 0 auto;
+    min-width: 700px; }
+    .field-group-htabs-wrapper .horizontal-tabs fieldset.horizontal-tabs-pane {
       padding: 0;
       margin: 0; }
-  .htabs-wrapper ul.horizontal-tabs-list {
+  .field-group-htabs-wrapper ul.horizontal-tabs-list {
     display: block;
     overflow: hidden;
     position: relative;
     z-index: 10;
-    padding: 0 40px;
+    padding: 0;
     background: transparent;
     border-right: 0px none; }
-    .htabs-wrapper ul.horizontal-tabs-list li {
+    .field-group-htabs-wrapper ul.horizontal-tabs-list li {
       background: transparent;
       border-right: 0px; }
-      .htabs-wrapper ul.horizontal-tabs-list li a {
+      .field-group-htabs-wrapper ul.horizontal-tabs-list li a {
         border: 0px none;
         padding: 0 19px;
         line-height: 40px;
         color: #797979; }
-        .htabs-wrapper ul.horizontal-tabs-list li a:hover {
+        .field-group-htabs-wrapper ul.horizontal-tabs-list li a:hover {
           background: transparent;
           color: #282828; }
-        .htabs-wrapper ul.horizontal-tabs-list li a strong {
+        .field-group-htabs-wrapper ul.horizontal-tabs-list li a strong {
           font-weight: 400; }
-        .htabs-wrapper ul.horizontal-tabs-list li a .form-required {
+        .field-group-htabs-wrapper ul.horizontal-tabs-list li a .form-required {
           color: #c04343; }
-      .htabs-wrapper ul.horizontal-tabs-list li.selected {
+      .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected {
         background: #fafbfc;
-        border-top: 1px solid #f3f4f8;
-        border-right: 1px solid #f3f4f8;
-        border-left: 1px solid #f3f4f8; }
-        .htabs-wrapper ul.horizontal-tabs-list li.selected a,
-        .htabs-wrapper ul.horizontal-tabs-list li.selected a:hover {
+        border-top: 1px solid #e0e2e6;
+        border-right: 1px solid #e0e2e6;
+        border-left: 1px solid #e0e2e6; }
+        .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected a,
+        .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected a:hover {
           padding: 0 19px; }
-          .htabs-wrapper ul.horizontal-tabs-list li.selected a strong,
-          .htabs-wrapper ul.horizontal-tabs-list li.selected a:hover strong {
+          .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected a strong,
+          .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected a:hover strong {
             font-weight: 700; }
-        .htabs-wrapper ul.horizontal-tabs-list li.selected:hover {
+        .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected:hover {
           background: #fafbfc; }
-      .htabs-wrapper ul.horizontal-tabs-list li:hover {
+      .field-group-htabs-wrapper ul.horizontal-tabs-list li:hover {
         background: transparent; }
-  .htabs-wrapper .horizontal-tabs-panes {
+  .field-group-htabs-wrapper .horizontal-tabs-panes {
     background: #fafbfc;
     padding: 40px;
-    border-top: 1px solid #f3f4f8;
-    border-bottom: 1px solid #f3f4f8;
+    border: 1px solid #e0e2e6;
     position: relative;
     z-index: 5;
     margin-top: -1px; }
@@ -3837,13 +3709,17 @@ form#user-login,
     background-color: transparent;
     background-position: 0 0;
     width: 15px;
-    height: 15px; }
+    height: 15px;
+    border: 0px none; }
   form#user-login .form-text,
   #user-pass .form-text,
   #yubikey-lost .form-text {
     background: #1a1a1a;
     padding: 10px 10px 10px 41px;
+    margin-bottom: 5px;
+    border: 0px none;
     width: 100%;
+    height: 39px;
     color: #fff; }
     form#user-login .form-text#edit-name,
     #user-pass .form-text#edit-name,
@@ -4239,6 +4115,35 @@ form#user-login,
   background: #fff;
   padding: 5px 5px 5px 20px;
   text-align: left; }
+
+#ctrl-status:after {
+  content: "";
+  display: table;
+  clear: both; }
+#ctrl-status h3 {
+  display: block;
+  font-weight: 500;
+  color: #797979;
+  padding-bottom: 0.5em;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 16px;
+  border-bottom: 2px solid #e0e2e6;
+  margin: 2em 0 1em; }
+#ctrl-status .field-widget-options-select {
+  float: left;
+  margin-right: 1em; }
+#ctrl-status .field-type-date {
+  float: left; }
+#ctrl-status .form-type-select label {
+  display: inline-block;
+  color: #282828;
+  border: 0px none;
+  margin: 9px 5px 0 0;
+  padding: 0;
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 14px; }
 
 .node-kontrolluppgift.view-mode-full,
 .node-kontrolluppgift-privat.view-mode-full {

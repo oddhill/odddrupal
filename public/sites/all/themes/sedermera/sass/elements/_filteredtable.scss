@@ -135,14 +135,31 @@
 table {
   width: 100%;
 
+  &.sticky-header {
+    z-index: 10;
+    border-left: 1px solid $wool;
+    border-right: 1px solid $wool;
+
+    label {
+      padding: 0;
+      margin: 0;
+      @include font-size(1.4,1);
+      font-weight: 700;
+      color: $coffee;
+      border: 0px none;
+    }
+  }
+
   thead {
     background: $aluminium;
     border-bottom: 1px solid $wool;
-    border-top: 1px solid $wool;
     font-weight: 700;
 
+    tr {
+      border-bottom: 1px solid $wool;
+    }
+
     th {
-      height: 42px;
       text-align: left;
 
       &.views-field {
@@ -171,7 +188,7 @@ table {
 
   td {
     height: 44px;
-    padding: 10px 0 10px 10px;
+    padding: 10px;
     vertical-align: middle;
 
     .form-actions {
@@ -236,11 +253,10 @@ table {
   }
 
   tr {
+    border-bottom: 1px solid $light-grey;
 
     &.even {
       background: tint($light-grey,60%);
-      border-bottom: 1px solid $light-grey;
-      border-top: 1px solid $light-grey;
 
       .ajax-progress {
         background: tint($light-grey,60%);

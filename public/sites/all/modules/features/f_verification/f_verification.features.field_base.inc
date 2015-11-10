@@ -26,8 +26,8 @@ function f_verification_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'approved_to' => 'Till och med',
-        'approved_until_further_notice' => 'Från och med',
+        'approved_to' => 't.o.m.',
+        'approved_until_further_notice' => 'fr.o.m.',
       ),
       'allowed_values_function' => '',
     ),

@@ -1,0 +1,85 @@
+div.checker {
+  margin-right: 5px;
+  border: 1px solid $steel;
+  background-color: $snow;
+  border-radius: 2px;
+
+  input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  span {
+    background: transparent;
+    width: 16px;
+    height: 16px;
+
+    &:before {
+      display: none;
+      content: '';
+      background: $dark-grey;
+      position: absolute;
+      left: 4px;
+      top: 7px;
+      width: 10px;
+      height: 2px;
+      @include transform(rotate(-45deg));
+    }
+
+    &:after {
+      display: none;
+      content: '';
+      width: 2px;
+      height: 5px;
+      background: $dark-grey;
+      position: absolute;
+      left: 4px;
+      top: 7px;
+      @include transform(rotate(-45deg));
+    }
+
+    &.checked {
+
+      &:before {
+        display: block;
+      }
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  &.focus {
+    box-shadow: 0 0 3px tint($dark-grey,80%);
+  }
+
+  &.focus.active {
+
+    span {
+
+    }
+  }
+
+  &.hover {
+
+    span {
+
+    }
+  }
+
+  &.hover.active {
+
+    span {
+
+    }
+  }
+}
+
+div.checker.disabled {
+
+  span {
+
+  }
+}

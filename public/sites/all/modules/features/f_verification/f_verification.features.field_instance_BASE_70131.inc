@@ -59,8 +59,8 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 7,
+      'type' => 'options_buttons',
+      'weight' => 43,
     ),
   );
 
@@ -128,7 +128,7 @@ function f_verification_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 8,
+      'weight' => 44,
     ),
   );
 
@@ -183,7 +183,7 @@ function f_verification_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 4,
+      'weight' => 41,
     ),
   );
 
@@ -267,10 +267,10 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 3,
+        'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 42,
     ),
   );
 

@@ -1,0 +1,29 @@
+fieldset {
+  border: 3px solid $wool;
+  padding: 15px 18px;
+
+  legend {
+    float: left;
+    width: 100%;
+    text-transform: uppercase;
+    @include font-size(1.4,1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .fieldset-wrapper {
+    clear: both;
+    padding-top: 15px;
+  }
+
+  .fieldset-description {
+    @include font-size(1.2,1.4);
+    font-style: italic;
+    margin-bottom: 1.5em;
+  }
+
+  &.collapsed {
+    height: auto !important;
+    border-width: 3px !important;
+  }
+}

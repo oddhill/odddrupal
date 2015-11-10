@@ -344,49 +344,7 @@ form#views-form-dokument-page-1 {
   table#draggableviews-table-dokument-doc-sort-page,
   table#draggableviews-table-dokument-page-1 {
 
-    a.tabledrag-handle {
-      display: block;
-      width: 19px;
-      height: 19px;
-      border: 0px none;
-      margin: 0 10px 0 0;
-      cursor: -webkit-grab;
-      cursor: -moz-grab;
-
-      .handle {
-        margin: 3px;
-        width: 13px;
-        height: 13px;
-        padding: 0;
-        @include svg-bg(drag_grey);
-      }
-
-      &:hover {
-
-        .handle {
-          @include svg-bg(drag_dark_grey);
-        }
-      }
-    }
-
-    tr.draggable {
-      @include transition(background 0.2s ease-in-out);
-    }
-
     tr.drag {
-      background: tint($honey,60%);
-
-      a.tabledrag-handle {
-        cursor: -webkit-grabbing;
-        cursor: -moz-grabbing;
-
-        &:hover {
-
-          .handle {
-            @include svg-bg(drag_dark_grey);
-          }
-        }
-      }
 
       td.views-field-title {
 
@@ -395,10 +353,6 @@ form#views-form-dokument-page-1 {
           border-bottom: 0px none;
         }
       }
-    }
-
-    tr.drag-previous {
-      background: tint($honey,80%);
     }
   }
 }
