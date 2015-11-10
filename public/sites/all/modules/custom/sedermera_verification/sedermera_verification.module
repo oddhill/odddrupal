@@ -7,9 +7,8 @@
 
 // Constants for the different verification statuses.
 define('SEDERMERA_VERIFICATION_NOT_APPROVED', 0);
-define('SEDERMERA_VERIFICATION_EXPIRED', 1);
-define('SEDERMERA_VERIFICATION_EXPIRING', 2);
-define('SEDERMERA_VERIFICATION_APPROVED', 3);
+define('SEDERMERA_VERIFICATION_EXPIRING', 1);
+define('SEDERMERA_VERIFICATION_APPROVED', 2);
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -425,6 +424,12 @@ function sedermera_verification_views_api() {
  *
  * @return int
  *   A constant which indicates the status for the verification.
+ *
+ * TODO: This function is deprecated, and should be removed once the new helper
+ * functions are being used instead.
+ *
+ * @see sedermera_verification_get_status_single()
+ * @see sedermera_verification_get_status_multiple()
  */
 function sedermera_verification_get_status($id, $investor_id = NULL) {
   // Get the approved boolan and expiration date.
@@ -450,6 +455,90 @@ function sedermera_verification_get_status($id, $investor_id = NULL) {
 
   // Everything has been checked, which means that the verification is approved.
   return SEDERMERA_VERIFICATION_APPROVED;
+}
+
+/**
+ * Get the status for a single verification.
+ *
+ * @param int $id
+ *   The verification ID.
+ *
+ * @return int
+ *   One of the following constants:
+ *   - SEDERMERA_VERIFICATION_NOT_APPROVED
+ *   - SEDERMERA_VERIFICATION_EXPIRING
+ *   - SEDERMERA_VERIFICATION_APPROVED
+ *
+ * @see sedermera_verification_get_status_multiple()
+ */
+function sedermera_verification_get_status_single($id) {
+  $wrapper = entity_metadata_wrapper('node', $id);
+
+  // Fetch the date.
+  $date = $wrapper->field_ctrl_date->value();
+
+  // Exit early if there's no date set.
+  if (!$date) {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+
+  // Perform different comparation depending on the date type.
+  switch ($wrapper->field_ctrl_app->value()) {
+    case 'approved_to':
+      // The date is always set to 00:00 of the specified day since the user
+      // isn't allowed to select the time. We need to adjust the timestamp so
+      // that it points to 23:59 instead, since the specified date is the last
+      // valid date.
+      $date += (60 * 60 * 23) + (60 * 59) + 59;
+
+      if ($date < REQUEST_TIME) {
+        // The date has passed.
+        return SEDERMERA_VERIFICATION_NOT_APPROVED;
+      }
+
+      if ($date - REQUEST_TIME <= (60 * 60 * 24 * 30)) {
+        // The date is within the next 30 days.
+        return SEDERMERA_VERIFICATION_EXPIRING;
+      }
+
+      // Everything seems to be in order.
+      return SEDERMERA_VERIFICATION_APPROVED;
+      break;
+
+    case 'approved_until_further_notice':
+      // The verification is valid from the specified date. Simply verify that
+      // the date is in the past.
+      return $date <= REQUEST_TIME ? SEDERMERA_VERIFICATION_APPROVED : SEDERMERA_VERIFICATION_NOT_APPROVED;
+      break;
+
+    default:
+      // The date type hasn't been set. Assume that it's not approved.
+      return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+}
+
+/**
+ * Get the status for multiple verifications.
+ *
+ * @param array $ids
+ *   The verification IDs.
+ *
+ * @return array
+ *   An array where the keys are the verification IDs, and the values are
+ *   integeres which represents the status.
+ *
+ * @see sedermera_verification_get_status_single()
+ */
+function sedermera_verification_get_status_multiple(array $ids) {
+  $statuses = array();
+
+  // Fetch the status for each id.
+  foreach ($ids as $id) {
+    $statuses[$id] = sedermera_verification_get_status_single($id);
+  }
+
+  // Return our findings.
+  return $statuses;
 }
 
 /**
