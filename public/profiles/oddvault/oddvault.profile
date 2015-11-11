@@ -4,8 +4,6 @@
  * Custom installation profile for Odd Hill.
  */
 
-define('ODDVAULT_VERSION', '7.x-1.10');
-
 /**
  * Implements hook_boot().
  */
@@ -87,20 +85,4 @@ function oddvault_alterations_strip_form(&$elements, $ignore) {
       oddvault_alterations_strip_form($elements[$key], $ignore);
     }
   }
-}
-
-/**
- * Implements hook_init().
- */
-function oddvault_init() {
-  // Add an HTML head tag which indicates what version of Odd Vault that is
-  // running. This number should be updated for every new release.
-  $element = array(
-    '#tag' => 'meta',
-    '#attributes' => array(
-      'name' => 'Odd Vault version',
-      'content' => ODDVAULT_VERSION,
-    ),
-  );
-  drupal_add_html_head($element, 'oddvault-version');
 }
