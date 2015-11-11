@@ -115,6 +115,41 @@ function sedermera_transaction_intresent() {
 
       $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
 
+      if (empty($results)) {
+        $drop_down = array(
+          '#prefix' => 'Inga avtalsparter',
+          );
+      }
+      else {
+        $drop_down = array(
+          '#prefix' => '<div class="select-container partners">',
+          '#suffix' => '</div>',
+          'select' => array(
+            '#markup' => '<div class="select">Avtalspartners</div>',
+          ),
+          'options' => array(
+            '#prefix' => '<div class="dropdown">',
+            '#suffix' => '</div>',
+          ),
+        );
+
+        $partner_types = array();
+
+        $results = db_query("SELECT n.nid AS nid, n.title AS name FROM node AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
+
+        foreach ($results as $value) {
+          $partner_types[$value->nid] = $value->name;
+        }
+
+        foreach ($partner_types as $key => $title) {
+          $drop_down['options'][$key] = array(
+            '#type' => 'checkbox',
+            '#title' => $title,
+            '#default_value' => isset($form_state['values']['select']['options'][$key]) ? TRUE : FALSE,
+          );
+        }
+      }
+
       $rows[] = array(
         array(
           'class' => 'logo-head',
@@ -123,8 +158,7 @@ function sedermera_transaction_intresent() {
           'data' => $person->title,
         ),
         array(
-          'data' => 'drop_down',
-          'class' => 'dropdown',
+          'data' => $drop_down,
         ),
       );
 
@@ -250,8 +284,14 @@ function sedermera_transaction_intresent() {
         'data' => $sum . " :-",
       );
 
+      $field = field_view_field('node', $person, 'field_user_id_ctrl',
+            array(
+              'label'=>'hidden',
+              'type' => 'sedermera_verification_status',
+            ));
+
       $rows[$row][] = array(
-        'data' => sedermera_verification_get_status_single($person->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id']),
+        'data' => render($field),
       );
 
       $done = 0;
@@ -267,32 +307,155 @@ function sedermera_transaction_intresent() {
       }
 
       if ($done == 0 && $count == 0) {
-        $ctrl = "0 valda";
+        $next = "0 valda";
       }
       else {
-        $ctrl = $done ."/" . $count . " klara";
+        $next = $done ."/" . $count . " klara";
       }
 
       $rows[$row][] = array(
-        'data' => $ctrl,
+        'data' => $next,
       );
 
+      foreach ($transaction->field_transaction_investor as $value) {
+        foreach ($value as $val) {
+          // dprint_r($val['target_id']); die;
+          $transaction_ap = node_load($val['target_id']);
 
+          $rows[] = array(
+            array(
+              'class' => 'logo-head',
+            ),
+            array(
+              'data' => 'AP',
+            ),
+            array(
+              'data' => '',
+            ),
+          );
 
+          $row = count($rows) - 1;
 
+          $sum = 0;
 
+          if ($fe_sign) {
+            $sum += $transaction_ap->field_transaction_ap_fe_sign[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_sign',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+          if ($fe_warr) {
+            $sum += $transaction_ap->field_transaction_fe_warant[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_warant',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
 
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+          if ($le_sign) {
+            $sum += $transaction_ap->field_transaction_le_sign[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_sign',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
 
-      // $rows[$row][] = array('data' => $person->title,
-      //     // 'class' => $rowClass,
-      //     );
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+          if ($le_warr) {
+            $sum += $transaction_ap->field_transaction_le_warrant[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_warrant',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
 
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+          if ($pp_sign) {
+            $sum += $transaction_ap->field_transaction_pp_sign[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_pp_sign',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
 
-      // dprint_r($rows); die;
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+          if ($re_sign) {
+            $sum += $transaction_ap->field_transaction_re_sign[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_re_sign',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
 
-      // foreach ($variable as $key => $value) {
-      //   # code...
-      // }
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+          if ($bl_sum) {
+            $sum += $transaction_ap->field_transaction_bridging[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_bridging',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
+
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+          if ($bp_sum) {
+            $sum += $transaction_ap->field_transaction_block[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_block',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
+
+            $rows[$row][] = array(
+              'data' => render($field),
+            );
+          }
+
+          $sum = number_format($sum, 0, "", "'");
+
+          $rows[$row][] = array(
+            'data' => $sum . " :-",
+          );
+
+          $rows[$row][] = array(
+            'data' => 'ctrl',
+            // sedermera_verification_get_status_single($person->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id']),
+          );
+
+          $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
+                array(
+                  'label'=>'hidden',
+                  'type' => 'editable',
+                ));
+
+          $rows[$row][] = array(
+            'data' => render($field),
+          );
+        }
+      }
     }
 
     // Create table.
@@ -306,7 +469,7 @@ function sedermera_transaction_intresent() {
     );
   }
   else {
-    drupal_set_title('Det finns inga dokument');
+    drupal_set_title('Det finns inga transaktioner');
     return array(
       '#theme' => 'table',
       '#header' => array(),
