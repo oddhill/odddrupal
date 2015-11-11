@@ -523,9 +523,10 @@ function sedermera_verification_get_status_single($id) {
  * @param array $ids
  *   The verification IDs.
  *
- * @return array
- *   An array where the keys are the verification IDs, and the values are
- *   integeres which represents the status.
+ * @return int
+ *   The "lowest" status for all of the verifications. E.g. if two verification
+ *   IDs are passed to the function, and one of them is approved and the other
+ *   is expiring, expiring will be returned.
  *
  * @see sedermera_verification_get_status_single()
  */
@@ -534,11 +535,21 @@ function sedermera_verification_get_status_multiple(array $ids) {
 
   // Fetch the status for each id.
   foreach ($ids as $id) {
-    $statuses[$id] = sedermera_verification_get_status_single($id);
+    $status = sedermera_verification_get_status_single($id);
+
+    // Bail out early if the status is not approved, since there's no need to
+    // check the other verifications in that case.
+    if ($status === SEDERMERA_VERIFICATION_NOT_APPROVED) {
+      return $status;
+    }
+
+    // Store the status for later evaluation.
+    $statuses[] = $status;
   }
 
-  // Return our findings.
-  return $statuses;
+  // Return the lowest status. It's safe to use min() since the status constants
+  // are defined incrementally.
+  return min($statuses);
 }
 
 /**
