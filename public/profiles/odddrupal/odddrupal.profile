@@ -6,7 +6,6 @@
 
 define('ODDDRUPAL_DEFAULT_COUNTRY', 'SE');
 define('ODDDRUPAL_DEFAULT_TIMEZONE', 'Europe/Stockholm');
-define('ODDDRUPAL_VERSION', '7.x-1.25');
 
 /**
  * Implements hook_install_tasks().
@@ -267,17 +266,6 @@ function odddrupal_page_alter(&$page) {
  * Implements hook_init().
  */
 function odddrupal_init() {
-  // Add an HTML head tag which indicates what version of Odd Drupal that is
-  // running. This number should be updated for every new release.
-  $element = array(
-    '#tag' => 'meta',
-    '#attributes' => array(
-      'name' => 'Odd Drupal version',
-      'content' => ODDDRUPAL_VERSION,
-    ),
-  );
-  drupal_add_html_head($element, 'odddrupal-version');
-
   // Alter the language when Drupal is being accessed via the CLI.
   if (drupal_is_cli()) {
     // Load user 1, and all the available languages.
