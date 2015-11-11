@@ -11,6 +11,105 @@ define('SEDERMERA_VERIFICATION_EXPIRING', 1);
 define('SEDERMERA_VERIFICATION_APPROVED', 2);
 
 /**
+ * Implements hook_field_formatter_info().
+ */
+function sedermera_verification_field_formatter_info() {
+  return array(
+    'sedermera_verification_status' => array(
+      'label' => t('Verification status'),
+      'description' => t('Prints the status of the referred verification node.'),
+      'field types' => array('entityreference'),
+      'settings' => array('ajax' => FALSE),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function sedermera_verification_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  return $settings['ajax'] ? t('Load via AJAX') : t("Don't load via AJAX");
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function sedermera_verification_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  // Add checkbox for AJAX loading.
+  // TODO: Implement support for this.
+  $element['ajax'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Load via AJAX'),
+    '#description' => t('Loads the status via AJAX in order to improve the response time for the page request.'),
+    '#default_value' => $settings['ajax'],
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_prepare_view().
+ */
+function sedermera_verification_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
+  foreach ($items as $entity_id => &$values) {
+    // Build an array which stores the verification IDs.
+    $verifications = array();
+    foreach ($values as $value) {
+      $verifications[] = $value['target_id'];
+    }
+
+    // Get the status for all of the verifications.
+    $status = sedermera_verification_get_status_multiple($verifications);
+
+    // Replace every field value with a single item that represents the status.
+    $values = array(array('status' => $status));
+  }
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function sedermera_verification_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $settings = $display['settings'];
+
+  foreach ($items as $item) {
+    // Set a different text and class depending on the status.
+    switch ($item['status']) {
+      case SEDERMERA_VERIFICATION_NOT_APPROVED:
+        $text = 'Ej godkänd';
+        $class = 'not-approved';
+        break;
+
+      case SEDERMERA_VERIFICATION_EXPIRING:
+        $text = 'Utgående';
+        $class = 'expiring';
+        break;
+
+      case SEDERMERA_VERIFICATION_APPROVED:
+        $text = 'Godkänd';
+        $class = 'approved';
+        break;
+    }
+
+    // Add the markup.
+    $element[] = array(
+      '#prefix' => '<span class="' . $class . '">',
+      '#markup' => $text,
+      '#suffix' => '</span>',
+    );
+  }
+
+  return $element;
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 // function sedermera_verification_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
