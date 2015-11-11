@@ -1215,8 +1215,8 @@ function f_capital_raising_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'investor_bolag' => 'investor_bolag',
-          'investor_privat' => 'investor_privat',
+          'investor_company' => 'investor_company',
+          'investor_private' => 'investor_private',
         ),
       ),
       'target_type' => 'node',
@@ -1660,7 +1660,7 @@ function f_capital_raising_field_default_field_bases() {
   // Exported field_base: 'field_transaction_investor'.
   $field_bases['field_transaction_investor'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_transaction_investor',
