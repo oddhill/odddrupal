@@ -54,34 +54,79 @@ function sedermera_verification_field_formatter_settings_form($field, $instance,
 }
 
 /**
- * Implements hook_field_formatter_prepare_view().
- */
-function sedermera_verification_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
-  foreach ($items as $entity_id => &$values) {
-    // Build an array which stores the verification IDs.
-    $verifications = array();
-    foreach ($values as $value) {
-      $verifications[] = $value['target_id'];
-    }
-
-    // Get the status for all of the verifications.
-    $status = sedermera_verification_get_status_multiple($verifications);
-
-    // Replace every field value with a single item that represents the status.
-    $values = array(array('status' => $status));
-  }
-}
-
-/**
  * Implements hook_field_formatter_view().
  */
 function sedermera_verification_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $element = array();
-  $settings = $display['settings'];
-
+  // Build an array which stores the verification IDs.
+  $verifications = array();
   foreach ($items as $item) {
+    $verifications[] = $item['target_id'];
+  }
+
+  // Get the status for all of the verifications.
+  $status = sedermera_verification_get_status_multiple($verifications);
+
+  // Set a different text and class depending on the status.
+  switch ($status) {
+    case SEDERMERA_VERIFICATION_NOT_APPROVED:
+      $text = 'Ej godkänd';
+      $class = 'not-approved';
+      break;
+
+    case SEDERMERA_VERIFICATION_EXPIRING:
+      $text = 'Utgående';
+      $class = 'expiring';
+      break;
+
+    case SEDERMERA_VERIFICATION_APPROVED:
+      $text = 'Godkänd';
+      $class = 'approved';
+      break;
+  }
+
+  // Add the markup.
+  $element[] = array(
+    '#prefix' => '<span class="' . $class . '">',
+    '#markup' => $text,
+    '#suffix' => '</span>',
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function sedermera_verification_field_extra_fields() {
+  // Add the pseudo field for verification statuses to every node type.
+  foreach (node_type_get_types() as $type => $info) {
+    $extra['node'][$type] = array(
+      'display' => array(
+        'verification_status' => array(
+          'label' => t('Verification status'),
+          'description' => t('Displays the overall verification status for every referred verification entity.'),
+          'weight' => 0,
+        ),
+      )
+    );
+  }
+
+  return $extra;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function sedermera_verification_node_view($node, $view_mode, $langcode) {
+  // Get the display settings for the pseudo fields.
+  $display = field_extra_fields_get_display('node', $node->type, $view_mode);
+
+  // Render the verification status if it should be displayed.
+  if (isset($display['verification_status']) && $display['verification_status']['visible']) {
+    $status = sedermera_verification_get_status_node($node->nid);
+
     // Set a different text and class depending on the status.
-    switch ($item['status']) {
+    switch ($status) {
       case SEDERMERA_VERIFICATION_NOT_APPROVED:
         $text = 'Ej godkänd';
         $class = 'not-approved';
@@ -99,14 +144,12 @@ function sedermera_verification_field_formatter_view($entity_type, $entity, $fie
     }
 
     // Add the markup.
-    $element[] = array(
+    $node->content['verification_status'] = array(
       '#prefix' => '<span class="' . $class . '">',
       '#markup' => $text,
       '#suffix' => '</span>',
     );
   }
-
-  return $element;
 }
 
 /**
@@ -649,6 +692,61 @@ function sedermera_verification_get_status_multiple(array $ids) {
   // Return the lowest status. It's safe to use min() since the status constants
   // are defined incrementally.
   return min($statuses);
+}
+
+/**
+ * Get the status for an entire node.
+ *
+ * @param array $nid
+ *   The node ID.
+ *
+ * @return int
+ *   The "lowest" status for all of the verifications among the fields which
+ *   refers to a verification node.
+ *
+ * @see sedermera_verification_get_status_multiple()
+ */
+function sedermera_verification_get_status_node($nid) {
+  // Load the node.
+  $node = entity_metadata_wrapper('node', $nid);
+
+  // Store the verification IDs.
+  $verifications = array();
+
+  // Iterate through every property in order to find entityreference fields
+  // which points to verification nodes.
+  foreach ($node->getPropertyInfo() as $property_name => $property_info) {
+    if (!$property_info['field']) {
+      // This is not a field.
+      continue;
+    }
+
+    // Load the field info.
+    $field = field_info_field($property_name);
+
+    if ($field['type'] != 'entityreference' || !in_array('ctrl', $field['settings']['handler_settings']['target_bundles'])) {
+      // The field isn't a reference field which points to the verification
+      // bundle.
+      continue;
+    }
+
+    $values = $node->$property_name->value();
+    if (!is_array($values)) {
+      // Single value field.
+      $verifications[] = $values->nid;
+    }
+    else {
+      // Multiple value field, add each nid.
+      foreach ($values as $value) {
+        if (isset($value->nid)) {
+          $verifications[] = $value->nid;
+        }
+      }
+    }
+  }
+
+  // Return the verification status based on our findings.
+  return sedermera_verification_get_status_multiple($verifications);
 }
 
 /**
