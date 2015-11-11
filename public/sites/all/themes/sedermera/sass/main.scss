@@ -76,20 +76,8 @@ body {
 "uniform",
 "toc";
 
-// Import page content
-@import
-"content/transaction-email-process",
-"content/edit",
-"content/documents",
-"content/document-create",
-"content/document-revision",
-"content/company",
-"content/user",
-"content/transaction-contactlist",
-"content/transaction-email-preview",
-"content/transaction-overview",
-"content/transaction-stakeholders",
-"content/transaction-history";
+// Import content modules
+@import 'content/*';
 
 @import 'elements/forms/*';
 

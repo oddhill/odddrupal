@@ -34,9 +34,19 @@
   float: left;
 }
 
+// Node barrier
+.node-barrier {
+  padding: 0 40px;
+}
+
 // Content wrapper
 .content-wrapper {
   margin: 0;
+  background: $snow;
+
+  .not-logged-in & {
+    background: transparent;
+  }
 
   // Sidebar second main wrapper
   .content-sidebar {
@@ -144,7 +154,9 @@
 
 .node.view-mode-full {
    @include outer-container;
-   max-width: 800px;
+   max-width: 960px;
+   margin-top: 40px;
+   padding-bottom: 60px;
 }
 
 // Pop up message on log in

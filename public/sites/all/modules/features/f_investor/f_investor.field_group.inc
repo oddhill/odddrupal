@@ -61,7 +61,8 @@ function f_investor_field_group_info() {
       0 => 'field_invest_pvt_notes',
       1 => 'field_shared_cust_id',
       2 => 'field_shared_cont_pers',
-      3 => 'title',
+      3 => 'field_invest_pvt_address',
+      4 => 'title',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

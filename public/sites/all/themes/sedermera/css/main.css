@@ -25,8 +25,8 @@ h3 {
   line-height: 48px;
   border-bottom: 2px solid #f3f4f8;
   font-weight: 500;
-  margin-bottom: 33px;
-  padding: 0 0 33px 0;
+  margin-bottom: 30px;
+  padding: 0 0 30px 0;
   text-align: center; }
 
 p {
@@ -476,237 +476,311 @@ div.button {
   .nav-list > li.active > a {
     font-weight: 500; }
 
-.page-node-kontaktlista .process-steps {
+.node-type-company .content-wrapper {
   background: #fff;
-  margin-bottom: 30px;
-  text-align: right;
-  width: 100%; }
-  .page-node-kontaktlista .process-steps ul {
-    list-style-type: none; }
-    .page-node-kontaktlista .process-steps ul li {
-      font-size: 18px;
-      font-size: 1.8rem;
-      line-height: 27px;
-      border: 2px solid #d4d6d9;
-      border-radius: 100px;
-      font-weight: 500;
-      display: inline;
-      margin-right: 15px;
-      padding: 4px 10px 4px 10px; }
-      .page-node-kontaktlista .process-steps ul li.active {
-        border: 2px solid #f9a500; }
+  padding-bottom: 40px; }
 
-#views-form-offers-page {
-  clear: both; }
+.field-comp-logo {
+  margin-top: 10px; }
 
-form.views-send-preview .views-send-preview-value {
-  border: none; }
-form.views-send-preview .form-type-item {
-  border-top: 1px solid #f3f4f8;
-  padding: 10px; }
-  form.views-send-preview .form-type-item:nth-child(even) {
-    background: #fff; }
-  form.views-send-preview .form-type-item:nth-child(odd) {
-    background: #fafafc; }
-form.views-send-preview .form-item {
-  margin-bottom: 0; }
-form.views-send-preview .form-actions {
-  margin-top: 40px; }
+.node-company-form {
+  padding: 50px 40px 0 40px; }
 
-#message-preview-link {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
+.page-node-add-company #company-node-form {
+  padding: 0; }
+
+#views-exposed-form-document-log-document-log .description {
+  display: none; }
+
+#edit-submit-document-log {
   display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin-bottom: 25px; }
+  #edit-submit-document-log:hover {
+    background-color: #303030; }
+
+#edit-field-dokument-relation th,
+#edit-field-manual-relation th,
+#edit-field-document-appendix th,
+#edit-field-manual-appendix th {
+  height: auto;
+  padding: 0; }
+#edit-field-dokument-relation td,
+#edit-field-manual-relation td,
+#edit-field-document-appendix td,
+#edit-field-manual-appendix td {
+  padding: 0; }
+#edit-field-dokument-relation .draggable,
+#edit-field-manual-relation .draggable,
+#edit-field-document-appendix .draggable,
+#edit-field-manual-appendix .draggable {
+  background: none; }
+#edit-field-dokument-relation .form-item .form-text,
+#edit-field-manual-relation .form-item .form-text,
+#edit-field-document-appendix .form-item .form-text,
+#edit-field-manual-appendix .form-item .form-text {
+  margin-top: 0; }
+#edit-field-dokument-relation .tabledrag-processed,
+#edit-field-manual-relation .tabledrag-processed,
+#edit-field-document-appendix .tabledrag-processed,
+#edit-field-manual-appendix .tabledrag-processed {
+  margin-bottom: 5px;
+  border-bottom: 0; }
+  #edit-field-dokument-relation .tabledrag-processed tbody tr,
+  #edit-field-manual-relation .tabledrag-processed tbody tr,
+  #edit-field-document-appendix .tabledrag-processed tbody tr,
+  #edit-field-manual-appendix .tabledrag-processed tbody tr {
+    border: 0; }
+
+.node-form-revision-information .form-type-textarea {
+  margin-top: 0; }
+
+.form-item label[for=edit-revision-operation] {
   font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0px 0 15px 0; }
+
+.cke {
+  border: 0 !important; }
+
+.group-document-footer .fieldset-wrapper,
+.group-manual-footer .fieldset-wrapper {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .group-document-footer .fieldset-wrapper:after,
+  .group-manual-footer .fieldset-wrapper:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .group-document-footer .fieldset-wrapper .field-type-text,
+  .group-manual-footer .fieldset-wrapper .field-type-text {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%; }
+    .group-document-footer .fieldset-wrapper .field-type-text:last-child,
+    .group-manual-footer .fieldset-wrapper .field-type-text:last-child {
+      margin-right: 0; }
+    .group-document-footer .fieldset-wrapper .field-type-text:nth-child(2n),
+    .group-manual-footer .fieldset-wrapper .field-type-text:nth-child(2n) {
+      margin-right: 0; }
+    .group-document-footer .fieldset-wrapper .field-type-text:nth-child(2n+1),
+    .group-manual-footer .fieldset-wrapper .field-type-text:nth-child(2n+1) {
+      clear: left; }
+    .group-document-footer .fieldset-wrapper .field-type-text input[type=text],
+    .group-manual-footer .fieldset-wrapper .field-type-text input[type=text] {
+      width: 100%; }
+    .group-document-footer .fieldset-wrapper .field-type-text .form-item,
+    .group-manual-footer .fieldset-wrapper .field-type-text .form-item {
+      margin-bottom: 10px; }
+
+.tabs.secondary {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 21px;
+  background: #fff;
+  border: 0;
+  float: left;
+  margin: 50px 0 20px 20px; }
+  .page-node-revisions-view .tabs.secondary {
+    margin: 40px 0 55px 0; }
+  .tabs.secondary li {
+    font-size: 13px;
+    font-size: 1.3rem;
+    line-height: 19.5px;
+    background: #d5d7da;
+    border-radius: 34px;
+    margin: 0 10px 20px 0; }
+    .tabs.secondary li a {
+      border-right: 0;
+      border-bottom: 0 none;
+      color: #282828;
+      display: inline-block;
+      font-weight: 500;
+      height: 25px;
+      line-height: 25px; }
+      .tabs.secondary li a:hover {
+        background-color: #cacccf;
+        border-bottom: 0 none;
+        border-radius: 34px;
+        height: 25px; }
+    .tabs.secondary li.active a {
+      background: #fbc966;
+      border-bottom: 0 none;
+      border-left: 0 none;
+      border-radius: 34px;
+      border-top: 0;
+      font-weight: 700;
+      height: 25px;
+      line-height: 25px;
+      margin-top: 0; }
+      .tabs.secondary li.active a:hover {
+        background-color: #eebf61;
+        border-bottom: 0 none; }
+    .tabs.secondary li.edit a {
+      background: none;
+      border: 0;
+      padding-left: 15px; }
+
+.page-node-revisions .node-document-form {
+  padding: 0 0 40px 20px; }
+  .page-node-revisions .node-document-form .form-body {
+    padding: 0 20px 40px 20px; }
+
+#revisioning-revisions-summary {
+  padding: 0 20px 60px 20px; }
+
+.revisioning-ux-buttons {
+  margin-top: 30px; }
+
+input[value="Compare"]#edit-submit,
+input[value="Jämför"]#edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
   text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/magnifier.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/magnifier.svg") transparent 0 0 no-repeat;
-  background-color: #fbc966;
-  background-position: 95% 7px;
-  padding-right: 28px;
-  margin-top: -2px; }
-  #message-preview-link:hover {
-    background-color: #e2b55c;
-    border: 0 none; }
+  border-bottom: 0 none;
+  background: url("../graphics/compare_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/compare_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  input[value="Compare"]#edit-submit:hover,
+  input[value="Jämför"]#edit-submit:hover {
+    background-color: #303030; }
 
-.recipients-counter {
-  cursor: pointer;
-  position: relative; }
-  .recipients-counter:after {
-    background: url("../graphics/arrow-down.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/arrow-down.svg") transparent 0 0 no-repeat;
-    display: inline-block;
-    background-repeat: no-repeat;
-    content: '';
-    width: 20px;
-    height: 20px;
-    right: 0;
-    position: absolute;
-    top: 0; }
+#edit-submit--3 {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #edit-submit--3:hover {
+    background-color: #303030; }
 
-.page-investor-person-edit .form-sidebar,
-.page-investor-company-edit .form-sidebar,
-.page-investor-lead-edit .form-sidebar {
-  background: transparent;
-  padding: 0 20px 0 0; }
-.page-investor-person-edit .form-body,
-.page-investor-company-edit .form-body,
-.page-investor-lead-edit .form-body {
-  background: transparent;
-  overflow: hidden;
-  padding: 0; }
-.page-investor-person-edit .form-actions,
-.page-investor-company-edit .form-actions,
-.page-investor-lead-edit .form-actions {
-  padding-top: 20px; }
+.revisioning-ux-buttons {
+  display: none; }
 
-.field-type-entityreference .submit-wrapper {
-  position: relative;
-  margin-right: 10px; }
-  .field-type-entityreference .submit-wrapper .form-submit {
+#revisioning-ux-publish #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/publish_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/publish_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 22px 13px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #revisioning-ux-publish #edit-submit:hover {
+    background-color: #303030; }
+
+#revisioning-ux-unpublish #edit-submit,
+#revisioning-ux-unpublish #edit-submit--2 {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/unpublish_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/unpublish_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #revisioning-ux-unpublish #edit-submit:hover,
+  #revisioning-ux-unpublish #edit-submit--2:hover {
+    background-color: #303030; }
+
+#revisioning-ux-delete-all {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #revisioning-ux-delete-all:hover {
+    background-color: #303030; }
+  #revisioning-ux-delete-all input {
+    background: #454545;
+    padding: 0;
+    text-transform: uppercase; }
+    #revisioning-ux-delete-all input:hover {
+      background-color: #303030; }
+  #revisioning-ux-delete-all .form .submit-wrapper.form-submit {
     margin-right: 0; }
-.field-type-entityreference .ajax-progress {
-  left: 0;
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 24px;
-  background: #303030;
-  border-radius: 12px;
-  padding: 2px;
-  color: #fff; }
-  .field-type-entityreference .ajax-progress .message {
-    padding-left: 5px;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 18px;
-    font-weight: 500;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
-
-.field-type-entityreference .submit-wrapper input {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  height: 24px;
-  line-height: 24px;
-  border-radius: 24px;
-  background-position: 10px 6px;
-  padding: 0 10px 0 26px;
-  margin-right: 8px;
-  background-position: 11px 7px; }
-  .field-type-entityreference .submit-wrapper input:hover {
-    background-color: #303030; }
-.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/check_mini_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/check_mini_light.svg") transparent 0 0 no-repeat;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  height: 24px;
-  line-height: 24px;
-  border-radius: 24px;
-  background-position: 10px 6px;
-  padding: 0 10px 0 26px;
-  margin-right: 8px;
-  background-position: 11px 7px; }
-  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save:hover {
-    background-color: #303030; }
-.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  height: 24px;
-  line-height: 24px;
-  border-radius: 24px;
-  background-position: 10px 6px;
-  padding: 0 10px 0 26px;
-  margin-right: 8px;
-  background-position: 11px 7px; }
-  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel:hover {
-    background-color: #303030; }
-
-#edit-field-shared-industries-und .form-item,
-#edit-field-shared-interests-und .form-item {
-  margin-bottom: 0; }
-  #edit-field-shared-industries-und .form-item:last-child,
-  #edit-field-shared-interests-und .form-item:last-child {
-    margin-bottom: 10px; }
-
-.page-node-edit.node-type-capital-raising .form-sidebar {
-  background: transparent;
-  padding: 0 20px 0 0; }
-.page-node-edit.node-type-capital-raising #title-wrapper {
-  background: #e0e2e6;
-  border-radius: 2px;
-  margin-bottom: 20px;
-  padding: 10px; }
-.page-node-edit.node-type-capital-raising .form-body {
-  background: transparent;
-  overflow: hidden;
-  padding: 0; }
-  .page-node-edit.node-type-capital-raising .form-body .field-name-body {
-    background: #e0e2e6;
-    border-radius: 2px;
-    margin-bottom: 20px;
-    padding: 10px; }
-.page-node-edit .form-actions {
-  padding-top: 20px; }
 
 .node-type-document .content-wrapper,
 .node-type-manual .content-wrapper {
@@ -1111,10 +1185,48 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   font-weight: 500;
   border-bottom: 0px none; }
 
-#views-exposed-form-document-log-document-log .description {
-  display: none; }
+.page-investor-person-edit .form-sidebar,
+.page-investor-company-edit .form-sidebar,
+.page-investor-lead-edit .form-sidebar {
+  background: transparent;
+  padding: 0 20px 0 0; }
+.page-investor-person-edit .form-body,
+.page-investor-company-edit .form-body,
+.page-investor-lead-edit .form-body {
+  background: transparent;
+  overflow: hidden;
+  padding: 0; }
+.page-investor-person-edit .form-actions,
+.page-investor-company-edit .form-actions,
+.page-investor-lead-edit .form-actions {
+  padding-top: 20px; }
 
-#edit-submit-document-log {
+.field-type-entityreference .submit-wrapper {
+  position: relative;
+  margin-right: 10px; }
+  .field-type-entityreference .submit-wrapper .form-submit {
+    margin-right: 0; }
+.field-type-entityreference .ajax-progress {
+  left: 0;
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 24px;
+  background: #303030;
+  border-radius: 12px;
+  padding: 2px;
+  color: #fff; }
+  .field-type-entityreference .ajax-progress .message {
+    padding-left: 5px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+
+.field-type-entityreference .submit-wrapper input {
   display: inline-block;
   height: 34px;
   font-size: 12px;
@@ -1127,355 +1239,191 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   font-weight: 500;
   text-transform: uppercase;
   border-bottom: 0 none;
+  background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
   background-color: #454545;
   -webkit-transition: background-color 0.1s ease-in-out;
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out;
-  margin-bottom: 25px; }
-  #edit-submit-document-log:hover {
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .submit-wrapper input:hover {
+    background-color: #303030; }
+.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/check_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/check_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save:hover {
+    background-color: #303030; }
+.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel:hover {
     background-color: #303030; }
 
-#edit-field-dokument-relation th,
-#edit-field-manual-relation th,
-#edit-field-document-appendix th,
-#edit-field-manual-appendix th {
-  height: auto;
+#edit-field-shared-industries-und .form-item,
+#edit-field-shared-interests-und .form-item {
+  margin-bottom: 0; }
+  #edit-field-shared-industries-und .form-item:last-child,
+  #edit-field-shared-interests-und .form-item:last-child {
+    margin-bottom: 10px; }
+
+.page-node-edit.node-type-capital-raising .form-sidebar {
+  background: transparent;
+  padding: 0 20px 0 0; }
+.page-node-edit.node-type-capital-raising #title-wrapper {
+  background: #e0e2e6;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  padding: 10px; }
+.page-node-edit.node-type-capital-raising .form-body {
+  background: transparent;
+  overflow: hidden;
   padding: 0; }
-#edit-field-dokument-relation td,
-#edit-field-manual-relation td,
-#edit-field-document-appendix td,
-#edit-field-manual-appendix td {
-  padding: 0; }
-#edit-field-dokument-relation .draggable,
-#edit-field-manual-relation .draggable,
-#edit-field-document-appendix .draggable,
-#edit-field-manual-appendix .draggable {
-  background: none; }
-#edit-field-dokument-relation .form-item .form-text,
-#edit-field-manual-relation .form-item .form-text,
-#edit-field-document-appendix .form-item .form-text,
-#edit-field-manual-appendix .form-item .form-text {
-  margin-top: 0; }
-#edit-field-dokument-relation .tabledrag-processed,
-#edit-field-manual-relation .tabledrag-processed,
-#edit-field-document-appendix .tabledrag-processed,
-#edit-field-manual-appendix .tabledrag-processed {
-  margin-bottom: 5px;
-  border-bottom: 0; }
-  #edit-field-dokument-relation .tabledrag-processed tbody tr,
-  #edit-field-manual-relation .tabledrag-processed tbody tr,
-  #edit-field-document-appendix .tabledrag-processed tbody tr,
-  #edit-field-manual-appendix .tabledrag-processed tbody tr {
-    border: 0; }
+  .page-node-edit.node-type-capital-raising .form-body .field-name-body {
+    background: #e0e2e6;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    padding: 10px; }
+.page-node-edit .form-actions {
+  padding-top: 20px; }
 
-.node-form-revision-information .form-type-textarea {
-  margin-top: 0; }
-
-.form-item label[for=edit-revision-operation] {
-  font-weight: 700;
-  padding: 0px 0 15px 0; }
-
-.cke {
-  border: 0 !important; }
-
-.group-document-footer .fieldset-wrapper,
-.group-manual-footer .fieldset-wrapper {
-  max-width: 1800px;
-  margin-left: auto;
-  margin-right: auto; }
-  .group-document-footer .fieldset-wrapper:after,
-  .group-manual-footer .fieldset-wrapper:after {
+.node-person.view-mode-full .node-section {
+  display: block;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f3f4f8;
+  margin-bottom: 30px; }
+  .node-person.view-mode-full .node-section:after {
     content: "";
     display: table;
     clear: both; }
-  .group-document-footer .fieldset-wrapper .field-type-text,
-  .group-manual-footer .fieldset-wrapper .field-type-text {
-    float: left;
+.node-person.view-mode-full .person-stakeholder {
+  overflow: hidden; }
+  .node-person.view-mode-full .person-stakeholder h3 {
     display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%; }
-    .group-document-footer .fieldset-wrapper .field-type-text:last-child,
-    .group-manual-footer .fieldset-wrapper .field-type-text:last-child {
-      margin-right: 0; }
-    .group-document-footer .fieldset-wrapper .field-type-text:nth-child(2n),
-    .group-manual-footer .fieldset-wrapper .field-type-text:nth-child(2n) {
-      margin-right: 0; }
-    .group-document-footer .fieldset-wrapper .field-type-text:nth-child(2n+1),
-    .group-manual-footer .fieldset-wrapper .field-type-text:nth-child(2n+1) {
-      clear: left; }
-    .group-document-footer .fieldset-wrapper .field-type-text input[type=text],
-    .group-manual-footer .fieldset-wrapper .field-type-text input[type=text] {
-      width: 100%; }
-    .group-document-footer .fieldset-wrapper .field-type-text .form-item,
-    .group-manual-footer .fieldset-wrapper .field-type-text .form-item {
-      margin-bottom: 10px; }
-
-.tabs.secondary {
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 21px;
-  background: #fff;
-  border: 0;
-  float: left;
-  margin: 50px 0 20px 20px; }
-  .page-node-revisions-view .tabs.secondary {
-    margin: 40px 0 55px 0; }
-  .tabs.secondary li {
-    font-size: 13px;
-    font-size: 1.3rem;
-    line-height: 19.5px;
-    background: #d5d7da;
-    border-radius: 34px;
-    margin: 0 10px 20px 0; }
-    .tabs.secondary li a {
-      border-right: 0;
-      border-bottom: 0 none;
-      color: #282828;
-      display: inline-block;
-      font-weight: 500;
-      height: 25px;
-      line-height: 25px; }
-      .tabs.secondary li a:hover {
-        background-color: #cacccf;
-        border-bottom: 0 none;
+    float: left;
+    margin-right: 1em;
+    line-height: 34px; }
+  .node-person.view-mode-full .person-stakeholder ul {
+    display: block;
+    list-style: none; }
+    .node-person.view-mode-full .person-stakeholder ul li {
+      display: block;
+      float: left;
+      margin-right: 0.5em; }
+      .node-person.view-mode-full .person-stakeholder ul li a {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
         border-radius: 34px;
-        height: 25px; }
-    .tabs.secondary li.active a {
-      background: #fbc966;
-      border-bottom: 0 none;
-      border-left: 0 none;
-      border-radius: 34px;
-      border-top: 0;
-      font-weight: 700;
-      height: 25px;
-      line-height: 25px;
-      margin-top: 0; }
-      .tabs.secondary li.active a:hover {
-        background-color: #eebf61;
-        border-bottom: 0 none; }
-    .tabs.secondary li.edit a {
-      background: none;
-      border: 0;
-      padding-left: 15px; }
-
-.page-node-revisions .node-document-form {
-  padding: 0 0 40px 20px; }
-  .page-node-revisions .node-document-form .form-body {
-    padding: 0 20px 40px 20px; }
-
-#revisioning-revisions-summary {
-  padding: 0 20px 60px 20px; }
-
-.revisioning-ux-buttons {
-  margin-top: 30px; }
-
-input[value="Compare"]#edit-submit,
-input[value="Jämför"]#edit-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/compare_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/compare_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  input[value="Compare"]#edit-submit:hover,
-  input[value="Jämför"]#edit-submit:hover {
-    background-color: #303030; }
-
-#edit-submit--3 {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  #edit-submit--3:hover {
-    background-color: #303030; }
-
-.revisioning-ux-buttons {
-  display: none; }
-
-#revisioning-ux-publish #edit-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/publish_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/publish_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 22px 13px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  #revisioning-ux-publish #edit-submit:hover {
-    background-color: #303030; }
-
-#revisioning-ux-unpublish #edit-submit,
-#revisioning-ux-unpublish #edit-submit--2 {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/unpublish_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/unpublish_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  #revisioning-ux-unpublish #edit-submit:hover,
-  #revisioning-ux-unpublish #edit-submit--2:hover {
-    background-color: #303030; }
-
-#revisioning-ux-delete-all {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  #revisioning-ux-delete-all:hover {
-    background-color: #303030; }
-  #revisioning-ux-delete-all input {
-    background: #454545;
-    padding: 0;
-    text-transform: uppercase; }
-    #revisioning-ux-delete-all input:hover {
-      background-color: #303030; }
-  #revisioning-ux-delete-all .form .submit-wrapper.form-submit {
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out; }
+        .node-person.view-mode-full .person-stakeholder ul li a:hover {
+          background-color: #303030; }
+.node-person.view-mode-full .person-details .detail {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right; }
+  .node-person.view-mode-full .person-details .detail:last-child {
     margin-right: 0; }
-
-.node-type-company .content-wrapper {
-  background: #fff;
-  padding-bottom: 40px; }
-
-.field-comp-logo {
-  margin-top: 10px; }
-
-.node-company-form {
-  padding: 50px 40px 0 40px; }
-
-.page-node-add-company #company-node-form {
-  padding: 0; }
-
-#user-pass-reset {
-  color: #fff;
-  margin-top: 30px; }
-  #user-pass-reset #edit-submit {
-    margin: 10px 0 0;
-    display: inline-block;
-    height: 34px;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 12px;
-    line-height: 34px;
-    border-radius: 34px;
-    color: #fff;
-    padding: 0 20px;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-bottom: 0 none;
-    background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
-    color: #282828;
-    background-position: 20px 11px;
-    padding-left: 42px;
-    background-color: #f9a500;
-    -webkit-transition: background-color 0.1s ease-in-out;
-    -moz-transition: background-color 0.1s ease-in-out;
-    transition: background-color 0.1s ease-in-out; }
-    #user-pass-reset #edit-submit:hover {
-      background-color: #ae7400; }
-    #user-pass-reset #edit-submit:hover {
-      background-color: #fbc04d;
-      box-shadow: 0 0 3px #232323; }
-
-#user-pass #edit-submit,
-#yubikey-lost #edit-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/arrow-right.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/arrow-right.svg") transparent 0 0 no-repeat;
-  background-position: 16px 11px;
-  padding-left: 42px;
-  background-color: #f9a500;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin: 10px 0 0;
-  color: #1a1a1a; }
-  #user-pass #edit-submit:hover,
-  #yubikey-lost #edit-submit:hover {
-    background-color: #ae7400; }
+  .node-person.view-mode-full .person-details .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-person.view-mode-full .person-details .detail:nth-child(2n+1) {
+    clear: left; }
+  .node-person.view-mode-full .person-details .detail span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+.node-person.view-mode-full .person-other .other {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: left; }
+  .node-person.view-mode-full .person-other .other:last-child {
+    margin-right: 0; }
+  .node-person.view-mode-full .person-other .other:nth-child(2n) {
+    margin-right: 0; }
+  .node-person.view-mode-full .person-other .other:nth-child(2n+1) {
+    clear: left; }
+  .node-person.view-mode-full .person-other .other span.label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5em; }
 
 .view-offers .add-more {
   display: inline-block;
@@ -1605,6 +1553,95 @@ input[value="Jämför"]#edit-submit {
 .html-mail-fields p {
   display: inline-block; }
 
+.page-node-kontaktlista .process-steps {
+  background: #fff;
+  margin-bottom: 30px;
+  text-align: right;
+  width: 100%; }
+  .page-node-kontaktlista .process-steps ul {
+    list-style-type: none; }
+    .page-node-kontaktlista .process-steps ul li {
+      font-size: 18px;
+      font-size: 1.8rem;
+      line-height: 27px;
+      border: 2px solid #d4d6d9;
+      border-radius: 100px;
+      font-weight: 500;
+      display: inline;
+      margin-right: 15px;
+      padding: 4px 10px 4px 10px; }
+      .page-node-kontaktlista .process-steps ul li.active {
+        border: 2px solid #f9a500; }
+
+#views-form-offers-page {
+  clear: both; }
+
+form.views-send-preview .views-send-preview-value {
+  border: none; }
+form.views-send-preview .form-type-item {
+  border-top: 1px solid #f3f4f8;
+  padding: 10px; }
+  form.views-send-preview .form-type-item:nth-child(even) {
+    background: #fff; }
+  form.views-send-preview .form-type-item:nth-child(odd) {
+    background: #fafafc; }
+form.views-send-preview .form-item {
+  margin-bottom: 0; }
+form.views-send-preview .form-actions {
+  margin-top: 40px; }
+
+#message-preview-link {
+  font-size: 11px;
+  font-size: 1.1rem;
+  line-height: 16.5px;
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+  background: url("../graphics/magnifier.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/magnifier.svg") transparent 0 0 no-repeat;
+  background-color: #fbc966;
+  background-position: 95% 7px;
+  padding-right: 28px;
+  margin-top: -2px; }
+  #message-preview-link:hover {
+    background-color: #e2b55c;
+    border: 0 none; }
+
+.recipients-counter {
+  cursor: pointer;
+  position: relative; }
+  .recipients-counter:after {
+    background: url("../graphics/arrow-down.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/arrow-down.svg") transparent 0 0 no-repeat;
+    display: inline-block;
+    background-repeat: no-repeat;
+    content: '';
+    width: 20px;
+    height: 20px;
+    right: 0;
+    position: absolute;
+    top: 0; }
+
+.node.node-transaction-history.view-mode-full {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto; }
+  .node.node-transaction-history.view-mode-full:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .node.node-transaction-history.view-mode-full .col .field .label {
+    display: inline-block;
+    width: 40%;
+    margin-bottom: 10px; }
+
 .transaction-information img {
   height: auto;
   width: 100%; }
@@ -1671,18 +1708,65 @@ input[value="Jämför"]#edit-submit {
   background: #fff;
   padding: 0 0 30px; }
 
-.node.node-transaction-history.view-mode-full {
-  max-width: 1800px;
-  margin-left: auto;
-  margin-right: auto; }
-  .node.node-transaction-history.view-mode-full:after {
-    content: "";
-    display: table;
-    clear: both; }
-  .node.node-transaction-history.view-mode-full .col .field .label {
+#user-pass-reset {
+  color: #fff;
+  margin-top: 30px; }
+  #user-pass-reset #edit-submit {
+    margin: 10px 0 0;
     display: inline-block;
-    width: 40%;
-    margin-bottom: 10px; }
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/login_small_dark.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/login_small_dark.svg") transparent 0 0 no-repeat;
+    color: #282828;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #f9a500;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out; }
+    #user-pass-reset #edit-submit:hover {
+      background-color: #ae7400; }
+    #user-pass-reset #edit-submit:hover {
+      background-color: #fbc04d;
+      box-shadow: 0 0 3px #232323; }
+
+#user-pass #edit-submit,
+#yubikey-lost #edit-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/arrow-right.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/arrow-right.svg") transparent 0 0 no-repeat;
+  background-position: 16px 11px;
+  padding-left: 42px;
+  background-color: #f9a500;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  margin: 10px 0 0;
+  color: #1a1a1a; }
+  #user-pass #edit-submit:hover,
+  #yubikey-lost #edit-submit:hover {
+    background-color: #ae7400; }
 
 div.checker {
   margin-right: 5px;
@@ -2868,8 +2952,14 @@ table.tabledrag-processed {
 .page-title {
   float: left; }
 
+.node-barrier {
+  padding: 0 40px; }
+
 .content-wrapper {
-  margin: 0; }
+  margin: 0;
+  background: #fff; }
+  .not-logged-in .content-wrapper {
+    background: transparent; }
   .content-wrapper .content-sidebar {
     background: #e0e2e6;
     padding-bottom: 30px;
@@ -2972,7 +3062,9 @@ table.tabledrag-processed {
   max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px; }
+  max-width: 960px;
+  margin-top: 40px;
+  padding-bottom: 60px; }
   .node.view-mode-full:after {
     content: "";
     display: table;
@@ -4049,11 +4141,6 @@ form#user-login,
   #edit-archive:hover {
     background-color: #303030; }
 
-.other {
-  font-size: 13px;
-  padding: 15px 15px 5px 15px;
-  text-align: left; }
-
 .activities-wrapper .sidebar-block {
   background: transparent;
   margin-bottom: 0;
@@ -4250,7 +4337,8 @@ form#user-login,
   float: left;
   margin-right: 1em; }
 #ctrl-status .field-type-date {
-  float: left; }
+  float: left;
+  clear: none; }
 #ctrl-status .form-type-select label {
   display: inline-block;
   color: #282828;
