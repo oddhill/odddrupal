@@ -9,13 +9,13 @@
  * Implements hook_menu().
  */
 function sedermera_offer_menu() {
-  $items['node/%/intressenter/%/teckna'] = array(
-    'type' => MENU_CALLBACK,
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('sedermera_offer_sign_confirm', 1, 3),
-    'access callback' => 'sedermera_offer_person_admin_access',
-    'access arguments' => array(1, 'eck administer offer offer entities'),
-  );
+  // $items['node/%/intressenter/%/teckna'] = array(
+  //   'type' => MENU_CALLBACK,
+  //   'page callback' => 'drupal_get_form',
+  //   'page arguments' => array('sedermera_offer_sign_confirm', 1, 3),
+  //   'access callback' => 'sedermera_offer_person_admin_access',
+  //   'access arguments' => array(1, 'eck administer offer offer entities'),
+  // );
 
   $items['node/%/kontaktlista/lagg-till'] = array(
     'title' => 'Lägg till kontaktperson',
@@ -37,6 +37,9 @@ function sedermera_offer_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_node_presave
+ */
 function sedermera_offer_node_presave($node) {
   if ($node->type == 'erbjudande') {
 

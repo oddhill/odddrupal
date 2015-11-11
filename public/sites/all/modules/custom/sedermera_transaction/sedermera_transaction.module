@@ -1,0 +1,328 @@
+<?php
+
+/**
+ * @file sedermera_offer.module
+ * Main module file for the Sedermera Offer module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_transaction_menu() {
+  $items['node/%/intressenter'] = array(
+    'title' => 'Intressenter',
+    'page callback' => 'sedermera_transaction_intresent',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+
+  return $items;
+}
+
+/**
+ * Render intresent table
+ */
+function sedermera_transaction_intresent() {
+  $transactions = get_transactions(arg(1));
+
+  if (!empty($transactions)) {
+    $offer = node_load(arg(1));
+
+    $fe_sign = !empty($offer->field_offer_type_fe_sign);
+    $fe_warr = !empty($offer->field_offer_type_fe_warrant);
+    $le_sign = !empty($offer->field_offer_type_le_sign);
+    $le_warr = !empty($offer->ffield_offer_type_le_warrant);
+    $pp_sign = !empty($offer->field_offer_type_pp_sign);
+    $re_sign = !empty($offer->field_offer_type_re_sign);
+    $bl_sum  = !empty($offer->field_offer_type_bl_sum);
+    $bp_sum  = !empty($offer->field_offer_type_bp_sum);
+
+    $header = array(
+      array('class' => array('table-head', 'logo-head')),
+      array('data' => 'Kontaktperson', 'class' => array('table-head')),
+      array('data' => '', 'class' => array('table-head')),
+    );
+
+    if ($fe_sign) {
+      $header[] = array(
+        'data' => 'Teckningsförbindelse',
+        'class' => array('table-head')
+      );
+    }
+    if ($fe_warr) {
+      $header[] = array(
+        'data' => 'Garantiåtagande',
+        'class' => array('table-head')
+      );
+    }
+    if ($le_sign) {
+      $header[] = array(
+        'data' => 'Teckningsförbindelse',
+        'class' => array('table-head')
+      );
+    }
+    if ($le_warr) {
+      $header[] = array(
+        'data' => 'Garantiåtagande',
+        'class' => array('table-head')
+      );
+    }
+    if ($pp_sign) {
+      $header[] = array(
+        'data' => 'Teckningsförbindelse',
+        'class' => array('table-head')
+      );
+    }
+    if ($re_sign) {
+      $header[] = array(
+        'data' => 'Teckningsförbindelse',
+        'class' => array('table-head')
+      );
+    }
+    if ($bl_sum) {
+      $header[] = array(
+        'data' => 'Brygglån',
+        'class' => array('table-head')
+      );
+    }
+    if ($bp_sum) {
+      $header[] = array(
+        'data' => 'Blockpost',
+        'class' => array('table-head')
+      );
+    }
+
+    $header[] = array(
+      'data' => 'Summa',
+      'class' => array('table-head')
+    );
+
+    $header[] = array(
+      'data' => '',
+      'class' => array('table-head')
+    );
+
+    $header[] = array(
+      'data' => 'Till kontroll',
+      'class' => array('table-head')
+    );
+
+    $rows = array();
+    foreach ($transactions as $transaction_nid) {
+      $transaction = node_load($transaction_nid);
+
+      $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
+
+      $rows[] = array(
+        array(
+          'class' => 'logo-head',
+        ),
+        array(
+          'data' => $person->title,
+        ),
+        array(
+          'data' => 'drop_down',
+          'class' => 'dropdown',
+        ),
+      );
+
+      $row = count($rows) - 1;
+
+      $sum = 0;
+
+      if ($fe_sign) {
+        $sum += $transaction->field_transaction_fe_sign[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_fe_sign',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+      if ($fe_warr) {
+        $sum += $transaction->field_transaction_fe_warant[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_fe_warant',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+      if ($le_sign) {
+        $sum += $transaction->field_transaction_le_sign[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_le_sign',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+      if ($le_warr) {
+        $sum += $transaction->field_transaction_le_warrant[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_le_warrant',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+      if ($pp_sign) {
+        $sum += $transaction->field_transaction_pp_sign[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_pp_sign',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+      if ($re_sign) {
+        $sum += $transaction->field_transaction_re_sign[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_re_sign',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+      if ($bl_sum) {
+        $sum += $transaction->field_transaction_bridging[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_bridging',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+      if ($bp_sum) {
+        $sum += $transaction->field_transaction_block[LANGUAGE_NONE][0]['value'];
+        $field = field_view_field('node', $transaction, 'field_transaction_block',
+              array(
+                'label'=>'hidden',
+                'settings' => array(
+                  'thousand_separator' => '\'',
+                ),
+              ));
+
+        $rows[$row][] = array(
+          'data' => render($field),
+        );
+      }
+
+      $sum = number_format($sum, 0, "", "'");
+
+      $rows[$row][] = array(
+        'data' => $sum . " :-",
+      );
+
+      $rows[$row][] = array(
+        'data' => sedermera_verification_get_status_single($person->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id']),
+      );
+
+      $done = 0;
+      $count = 0;
+
+      foreach ($transaction->field_transaction_investor as $value) {
+        foreach ($value as $val) {
+          $result = db_query("SELECT field_transaction_ap_ctrl_value AS value FROM {field_data_field_transaction_ap_ctrl} WHERE entity_id = :eid", array(':eid' => $val['target_id']))->fetchAll();
+
+          $done += $result[0]->value;
+          $count++;
+        }
+      }
+
+      if ($done == 0 && $count == 0) {
+        $ctrl = "0 valda";
+      }
+      else {
+        $ctrl = $done ."/" . $count . " klara";
+      }
+
+      $rows[$row][] = array(
+        'data' => $ctrl,
+      );
+
+
+
+
+
+
+
+      // $rows[$row][] = array('data' => $person->title,
+      //     // 'class' => $rowClass,
+      //     );
+
+
+      // dprint_r($rows); die;
+
+      // foreach ($variable as $key => $value) {
+      //   # code...
+      // }
+    }
+
+    // Create table.
+    // $block = generateTable($header, $rows);
+    return array(
+      '#theme' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+      '#prefix' => '<div class="table-wrapper">',
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    drupal_set_title('Det finns inga dokument');
+    return array(
+      '#theme' => 'table',
+      '#header' => array(),
+      '#rows' => NULL,
+      '#prefix' => '<div class="table-wrapper">',
+      '#suffix' => '</div>',
+    );
+  }
+}
+
+/**
+ * Get documents
+ * @return entity loaded documents
+ */
+function get_transactions($nid) {
+  $result = db_query("SELECT entity_id AS nid FROM {field_data_field_transaction_offer} WHERE field_transaction_offer_target_id = :nid", array(':nid' => $nid))->fetchAllAssoc('nid');
+
+  return array_keys($result);
+}
