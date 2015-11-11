@@ -3432,7 +3432,7 @@ function f_capital_raising_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => '',
+      'suffix' => ' :-',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -4787,7 +4787,7 @@ function f_capital_raising_field_default_field_instances() {
     'label' => 'Tecknad den',
     'required' => 0,
     'settings' => array(
-      'default_value' => 'now',
+      'default_value' => 'blank',
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',
