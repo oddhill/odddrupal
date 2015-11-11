@@ -83,17 +83,14 @@ function sedermera_verification_field_formatter_view($entity_type, $entity, $fie
     // Set a different text and class depending on the status.
     switch ($item['status']) {
       case SEDERMERA_VERIFICATION_NOT_APPROVED:
-        $text = 'Ej godkänd';
         $class = 'not-approved';
         break;
 
       case SEDERMERA_VERIFICATION_EXPIRING:
-        $text = 'Utgående';
         $class = 'expiring';
         break;
 
       case SEDERMERA_VERIFICATION_APPROVED:
-        $text = 'Godkänd';
         $class = 'approved';
         break;
     }
