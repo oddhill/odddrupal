@@ -115,6 +115,8 @@ function sedermera_transaction_intresent() {
 
       $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
 
+      $results = db_query("SELECT n.nid AS nid, n.title AS name FROM node AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
+
       if (empty($results)) {
         $drop_down = array(
           '#prefix' => 'Inga avtalsparter',
@@ -134,8 +136,6 @@ function sedermera_transaction_intresent() {
         );
 
         $partner_types = array();
-
-        $results = db_query("SELECT n.nid AS nid, n.title AS name FROM node AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
 
         foreach ($results as $value) {
           $partner_types[$value->nid] = $value->name;
