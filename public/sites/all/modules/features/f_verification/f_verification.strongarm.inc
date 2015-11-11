@@ -68,16 +68,16 @@ function f_verification_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '3',
+          'weight' => '40',
         ),
         'title' => array(
-          'weight' => '0',
+          'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '30',
         ),
         'redirect' => array(
-          'weight' => '2',
+          'weight' => '30',
         ),
       ),
       'display' => array(),

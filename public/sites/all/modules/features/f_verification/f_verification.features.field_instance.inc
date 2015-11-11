@@ -125,7 +125,7 @@ function f_verification_field_default_field_instances() {
         'label_position' => 'above',
         'no_fieldset' => 1,
         'text_parts' => array(),
-        'year_range' => '-3:+3',
+        'year_range' => '-0:+10',
       ),
       'type' => 'date_popup',
       'weight' => 8,
