@@ -123,17 +123,10 @@ function sedermera_transaction_intresent() {
           );
       }
       else {
-        $drop_down = array(
-          '#prefix' => '<div class="select-container partners">',
-          '#suffix' => '</div>',
-          'select' => array(
-            '#markup' => '<div class="select">Avtalspartners</div>',
-          ),
-          'options' => array(
+        $options = array(
             '#prefix' => '<div class="dropdown">',
             '#suffix' => '</div>',
-          ),
-        );
+          );
 
         $partner_types = array();
 
@@ -142,12 +135,38 @@ function sedermera_transaction_intresent() {
         }
 
         foreach ($partner_types as $key => $title) {
-          $drop_down['options'][$key] = array(
+          $tf = FALSE;
+          $attributes = array();
+
+          foreach ($transaction->field_transaction_investor[LANGUAGE_NONE] as $value) {
+            $res = db_query("SELECT COUNT(*) AS tf FROM {field_data_field_transaction_ap_ap} WHERE entity_id = :eid AND field_transaction_ap_ap_target_id = :tid", array(':eid' => $value['target_id'], ':tid' => $key))->fetchAssoc();
+
+            if ($res['tf'] == 1) {
+              $tf = TRUE;
+              $attributes = array('checked' => 'checked');
+              break;
+            }
+          }
+
+          $options[$key] = array(
             '#type' => 'checkbox',
             '#title' => $title,
-            '#default_value' => isset($form_state['values']['select']['options'][$key]) ? TRUE : FALSE,
+            '#default_value' => $tf,
+            '#attributes' => $attributes,
+            '#disabled' => $tf,
           );
         }
+
+        $drop_down = array(
+          '#type' => 'checkboxes',
+          '#prefix' => '<div class="select-container partners">',
+          '#suffix' => '</div>',
+          'select' => array(
+            '#markup' => '<div class="select">Avtalspartners</div>',
+          ),
+          'options' => $options,
+
+        );
       }
 
       $rows[] = array(
@@ -300,7 +319,6 @@ function sedermera_transaction_intresent() {
       foreach ($transaction->field_transaction_investor as $value) {
         foreach ($value as $val) {
           $result = db_query("SELECT field_transaction_ap_ctrl_value AS value FROM {field_data_field_transaction_ap_ctrl} WHERE entity_id = :eid", array(':eid' => $val['target_id']))->fetchAll();
-
           $done += $result[0]->value;
           $count++;
         }
@@ -317,17 +335,29 @@ function sedermera_transaction_intresent() {
         'data' => $next,
       );
 
+      $fe_sign_sum = 0;
+      $fe_warr_sum = 0;
+      $le_sign_sum = 0;
+      $le_warr_sum = 0;
+      $pp_sign_sum = 0;
+      $re_sign_sum = 0;
+      $bl_sum      = 0;
+      $bp_sum      = 0;
+      $total_sum   = 0;
+
+      // AP rows
       foreach ($transaction->field_transaction_investor as $value) {
         foreach ($value as $val) {
-          // dprint_r($val['target_id']); die;
           $transaction_ap = node_load($val['target_id']);
+
+          $ap = node_load($transaction_ap->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
 
           $rows[] = array(
             array(
               'class' => 'logo-head',
             ),
             array(
-              'data' => 'AP',
+              'data' => $ap->title,
             ),
             array(
               'data' => '',
@@ -339,6 +369,7 @@ function sedermera_transaction_intresent() {
           $sum = 0;
 
           if ($fe_sign) {
+            $fe_sign_sum += $transaction_ap->field_transaction_ap_fe_sign[LANGUAGE_NONE][0]['value'];
             $sum += $transaction_ap->field_transaction_ap_fe_sign[LANGUAGE_NONE][0]['value'];
             $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_sign',
                   array(
@@ -350,89 +381,91 @@ function sedermera_transaction_intresent() {
             );
           }
           if ($fe_warr) {
-            $sum += $transaction_ap->field_transaction_fe_warant[LANGUAGE_NONE][0]['value'];
-            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_warant',
+            $fe_warr_sum += $transaction_ap->field_transaction_ap_fe_warrant[LANGUAGE_NONE][0]['value'];
+            $sum += $transaction_ap->field_transaction_ap_fe_warrant[LANGUAGE_NONE][0]['value'];
+            $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_warrant',
                   array(
                     'label'=>'hidden',
                     'type' => 'editable',
                   ));
-
             $rows[$row][] = array(
               'data' => render($field),
             );
           }
           if ($le_sign) {
-            $sum += $transaction_ap->field_transaction_le_sign[LANGUAGE_NONE][0]['value'];
+            $le_sign_sum += $transaction_ap->field_transaction_ap_le_sign[LANGUAGE_NONE][0]['value'];
+            $sum += $transaction_ap->field_transaction_ap_le_sign[LANGUAGE_NONE][0]['value'];
             $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_sign',
                   array(
                     'label'=>'hidden',
                     'type' => 'editable',
                   ));
-
             $rows[$row][] = array(
               'data' => render($field),
             );
           }
           if ($le_warr) {
-            $sum += $transaction_ap->field_transaction_le_warrant[LANGUAGE_NONE][0]['value'];
+            $le_warr_sum += $transaction_ap->field_transaction_ap_le_warrant[LANGUAGE_NONE][0]['value'];
+            $sum += $transaction_ap->field_transaction_ap_le_warrant[LANGUAGE_NONE][0]['value'];
             $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_warrant',
                   array(
                     'label'=>'hidden',
                     'type' => 'editable',
                   ));
-
             $rows[$row][] = array(
               'data' => render($field),
             );
           }
           if ($pp_sign) {
-            $sum += $transaction_ap->field_transaction_pp_sign[LANGUAGE_NONE][0]['value'];
+            $pp_sign_sum += $transaction_ap->field_transaction_ap_pp_sign[LANGUAGE_NONE][0]['value'];
+            $sum += $transaction_ap->field_transaction_ap_pp_sign[LANGUAGE_NONE][0]['value'];
             $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_pp_sign',
                   array(
                     'label'=>'hidden',
                     'type' => 'editable',
                   ));
-
             $rows[$row][] = array(
               'data' => render($field),
             );
           }
           if ($re_sign) {
-            $sum += $transaction_ap->field_transaction_re_sign[LANGUAGE_NONE][0]['value'];
+            $re_sign_sum += $transaction_ap->field_transaction_ap_re_sign[LANGUAGE_NONE][0]['value'];
+            $sum += $transaction_ap->field_transaction_ap_re_sign[LANGUAGE_NONE][0]['value'];
             $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_re_sign',
                   array(
                     'label'=>'hidden',
                     'type' => 'editable',
                   ));
-
             $rows[$row][] = array(
               'data' => render($field),
             );
           }
           if ($bl_sum) {
-            $sum += $transaction_ap->field_transaction_bridging[LANGUAGE_NONE][0]['value'];
+            $bl_sum += $transaction_ap->field_transaction_ap_bridging[LANGUAGE_NONE][0]['value'];
+            $sum += $transaction_ap->field_transaction_ap_bridging[LANGUAGE_NONE][0]['value'];
             $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_bridging',
                   array(
                     'label'=>'hidden',
                     'type' => 'editable',
                   ));
-
             $rows[$row][] = array(
               'data' => render($field),
             );
           }
           if ($bp_sum) {
-            $sum += $transaction_ap->field_transaction_block[LANGUAGE_NONE][0]['value'];
+            $bp_sum += $transaction_ap->field_transaction_ap_block[LANGUAGE_NONE][0]['value'];
+            $sum += $transaction_ap->field_transaction_ap_block[LANGUAGE_NONE][0]['value'];
             $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_block',
                   array(
                     'label'=>'hidden',
                     'type' => 'editable',
                   ));
-
             $rows[$row][] = array(
               'data' => render($field),
             );
           }
+
+          $total_sum += $sum;
 
           $sum = number_format($sum, 0, "", "'");
 
@@ -440,26 +473,109 @@ function sedermera_transaction_intresent() {
             'data' => $sum . " :-",
           );
 
-          $rows[$row][] = array(
-            'data' => 'ctrl',
-            // sedermera_verification_get_status_single($person->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id']),
-          );
-
-          $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
-                array(
-                  'label'=>'hidden',
-                  'type' => 'editable',
-                ));
+          $ap_view_full = node_view($ap);
 
           $rows[$row][] = array(
-            'data' => render($field),
+            'data' => render($ap_view_full['verification_status']),
           );
+
+
+          // if ($transaction_ap->field_transaction_ap_ctrl[LANGUAGE_NONE][0]['value']) {
+          //   $to_ctrl = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
+          //         array(
+          //           'label'=>'hidden',
+          //           'type' => 'editable',
+          //           'disabled' => TRUE,
+          //         ));
+
+          //   $rows[$row][] = array(
+          //     'data' => render($to_ctrl),
+          //   );
+          // }
+          // else {
+            $to_ctrl = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
+                  array(
+                    'label'=>'hidden',
+                    'type' => 'editable',
+                  ));
+
+            $rows[$row][] = array(
+              'data' => render($to_ctrl),
+            );
+          // }
         }
       }
+
+      // Sum row
+      $rows[] = array(
+        array(
+          'data' => '',
+        ),
+        array(
+          'data' => '',
+        ),
+        array(
+          'data' => '<strong>Summa kontaktperson:</strong>',
+        ),
+      );
+
+      $row = count($rows) - 1;
+
+      if ($fe_sign) {
+        $rows[$row][] = array(
+          'data' => number_format($fe_sign_sum, 0, "", "'") . ' :-',
+        );
+      }
+      if ($fe_warr) {
+        $rows[$row][] = array(
+          'data' => number_format($fe_warr_sum, 0, "", "'") . ' :-',
+        );
+      }
+      if ($le_sign) {
+        $rows[$row][] = array(
+          'data' => number_format($le_sign_sum, 0, "", "'") . ' :-',
+        );
+      }
+      if ($le_warr) {
+        $rows[$row][] = array(
+          'data' => number_format($le_warr_sum, 0, "", "'") . ' :-',
+        );
+      }
+      if ($pp_sign) {
+        $rows[$row][] = array(
+          'data' => number_format($pp_sign_sum, 0, "", "'") . ' :-',
+        );
+      }
+      if ($re_sign) {
+        $rows[$row][] = array(
+          'data' => number_format($re_sign_sum, 0, "", "'") . ' :-',
+        );
+      }
+      if ($bl_sum) {
+        $rows[$row][] = array(
+          'data' => number_format($bl_sum, 0, "", "'") . ' :-',
+        );
+      }
+      if ($bp_sum) {
+        $rows[$row][] = array(
+          'data' => number_format($bp_sum, 0, "", "'") . ' :-',
+        );
+      }
+
+      $rows[$row][] = array(
+        'data' => number_format($total_sum, 0, "", "'") . ' :-',
+      );
+
+      $rows[$row][] = array(
+        'data' => '',
+      );
+
+      $rows[$row][] = array(
+        'data' => '',
+      );
     }
 
     // Create table.
-    // $block = generateTable($header, $rows);
     return array(
       '#theme' => 'table',
       '#header' => $header,

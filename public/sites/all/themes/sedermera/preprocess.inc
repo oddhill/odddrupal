@@ -261,3 +261,9 @@ function sedermera_preprocess_views_view_table(&$vars) {
     $vars['disable'] = $view->disable;
   }
 }
+
+function sedermera_preprocess_page(&$variables) {
+  if (arg(2) === 'intressenter') {
+    drupal_add_js(drupal_get_path('module', 'sedermera_core') . '/js/page_editable_field_reload.js');
+  }
+}
