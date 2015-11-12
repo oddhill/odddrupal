@@ -31,8 +31,8 @@ function f_verification_field_group_info() {
       'label' => 'Kontrollstatus',
       'instance_settings' => array(
         'required_fields' => 1,
-        'id' => 'ctrl-status',
-        'classes' => '',
+        'id' => '',
+        'classes' => 'ctrl-status',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',

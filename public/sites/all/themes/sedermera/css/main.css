@@ -4330,11 +4330,11 @@ form#user-login,
   padding: 5px 5px 5px 20px;
   text-align: left; }
 
-#ctrl-status:after {
+.ctrl-status:after {
   content: "";
   display: table;
   clear: both; }
-#ctrl-status h3 {
+.ctrl-status h3 {
   display: block;
   font-weight: 500;
   color: #797979;
@@ -4344,13 +4344,13 @@ form#user-login,
   line-height: 16px;
   border-bottom: 2px solid #e0e2e6;
   margin: 2em 0 1em; }
-#ctrl-status .field-widget-options-select {
+.ctrl-status .field-widget-options-select {
   float: left;
   margin-right: 1em; }
-#ctrl-status .field-type-date {
+.ctrl-status .field-type-date {
   float: left;
   clear: none; }
-#ctrl-status .form-type-select label {
+.ctrl-status .form-type-select label {
   display: inline-block;
   color: #282828;
   border: 0px none;
