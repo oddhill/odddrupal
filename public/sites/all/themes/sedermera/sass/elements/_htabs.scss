@@ -11,6 +11,10 @@
     fieldset.horizontal-tabs-pane {
       padding: 0;
       margin: 0;
+
+      > .fieldset-wrapper {
+        padding-top: 0;
+      }
     }
   }
 

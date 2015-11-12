@@ -44,6 +44,13 @@
   margin: 0;
   background: $snow;
 
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+    clear: both;
+  }
+
   .not-logged-in & {
     background: transparent;
   }

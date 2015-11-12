@@ -130,7 +130,7 @@ fieldset {
 }
 
 .form-wrapper {
-  margin-bottom: 2em;
+  margin-bottom: 4rem;
   clear: both;
 }
 
@@ -144,7 +144,7 @@ fieldset {
     padding-bottom: 0.5em;
     @include font-size(1.6,1);
     border-bottom: 2px solid $wool;
-    margin: 2em 0 1em;
+    margin: 3rem 0 1em;
 
     &.option {
       display: inline-block;
@@ -165,6 +165,14 @@ fieldset {
   }
 }
 
+.submit-wrapper {
+  display: inline-block;
+
+  .form-submit {
+    margin-right: 10px;
+  }
+}
+
 // Overrides
 // Make address fields look prettier :)
 div.street-block,
@@ -177,11 +185,54 @@ div.addressfield-container-inline {
   }
 }
 
-.submit-wrapper {
-  display: inline-block;
+// Layout adjustments
+#person-node-form {
 
-  .form-submit {
-    margin-right: 10px;
+  #edit-field-user-branches {
+
+    &:before {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+#investor-private-node-form {
+
+  #edit-field-invest-pvt-notes {
+
+    &:before {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+#investor-company-node-form {
+
+  #edit-field-investor-comp-address {
+    padding-top: 2em;
+  }
+
+  #edit-field-investor-comp-notes {
+    margin-bottom: 0;
+
+    .form-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#investor-private-node-form {
+
+  #edit-field-invest-pvt-address {
+    margin-bottom: 0;
+
+    .form-wrapper {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -191,12 +242,32 @@ div.addressfield-container-inline {
   .field-name-field-user-ssn,
   .field-name-field-user-mail,
   .field-name-field-user-phone,
-  .field-name-field-user-cell {
+  .field-name-field-user-cell,
+  .field-name-field-user-fax {
     margin: 0;
   }
 }
 
-// Person details two-column layout
+#investor-company-node-form {
+
+  .field-name-field-shared-cust-id,
+  .field-name-field-investor-comp-org-nbr,
+  .field-name-field-shared-cont-pers,
+  .field-name-field-investor-comp-real,
+  .field-name-field-investor-comp-owners {
+    margin: 0;
+  }
+}
+
+#investor-private-node-form {
+
+  .field-name-field-shared-cust-id,
+  .field-name-field-shared-cont-pers {
+    margin: 0;
+  }
+}
+
+// Details two-column layouts
 #person-node-form {
 
   .form-item-title,
@@ -208,5 +279,66 @@ div.addressfield-container-inline {
     @include span-columns(6 of 12);
     @include omega(2n);
     clear: none;
+  }
+}
+
+#investor-company-node-form {
+
+  .field-name-field-shared-cust-id,
+  .form-item-title,
+  .field-name-field-investor-comp-org-nbr,
+  .field-name-field-shared-cont-pers,
+  .field-name-field-investor-comp-real,
+  .field-name-field-investor-comp-owners {
+    @include span-columns(6 of 12);
+    @include omega(2n);
+    clear: none;
+  }
+}
+
+#investor-private-node-form {
+
+  .field-name-field-shared-cust-id,
+  .field-name-field-shared-cont-pers {
+    @include span-columns(6 of 12);
+    @include omega(3n);
+    clear: none;
+  }
+}
+
+// Investor type selector (Add investor)
+.page-avtalsparter-skapa {
+
+  ul.create-type-list {
+    display: block;
+    width: 50%;
+    margin: 40px auto;
+    min-width: 700px;
+    list-style: none;
+    border: 1px solid $wool;
+    background: tint($light-grey,60%);
+    padding: 2em 0;
+
+    li {
+      display: block;
+      background: $snow;
+      margin-bottom: 1em;
+    }
+
+    a {
+      display: block;
+      border: 1px solid $wool;
+      padding: 1em;
+      margin: 0 -1px;
+
+      .title {
+        font-weight: 700;
+        display: block;
+      }
+
+      &:hover {
+        border-color: $cloudy;
+      }
+    }
   }
 }

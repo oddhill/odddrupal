@@ -2462,7 +2462,7 @@ fieldset .container-inline-date {
   display: none; }
 
 .form-wrapper {
-  margin-bottom: 2em;
+  margin-bottom: 4rem;
   clear: both; }
 
 .form-item {
@@ -2476,7 +2476,7 @@ fieldset .container-inline-date {
     font-size: 1.6rem;
     line-height: 16px;
     border-bottom: 2px solid #e0e2e6;
-    margin: 2em 0 1em; }
+    margin: 3rem 0 1em; }
     .form-item label.option {
       display: inline-block;
       margin: 0;
@@ -2495,6 +2495,11 @@ fieldset .container-inline-date {
     margin-top: 3px;
     color: #797979; }
 
+.submit-wrapper {
+  display: inline-block; }
+  .submit-wrapper .form-submit {
+    margin-right: 10px; }
+
 div.street-block,
 div.addressfield-container-inline {
   clear: both; }
@@ -2503,15 +2508,44 @@ div.addressfield-container-inline {
     float: left;
     margin-right: 1em; }
 
-.submit-wrapper {
-  display: inline-block; }
-  .submit-wrapper .form-submit {
-    margin-right: 10px; }
+#person-node-form #edit-field-user-branches:before {
+  content: ' ';
+  display: table;
+  clear: both; }
+
+#investor-private-node-form #edit-field-invest-pvt-notes:before {
+  content: ' ';
+  display: table;
+  clear: both; }
+
+#investor-company-node-form #edit-field-investor-comp-address {
+  padding-top: 2em; }
+#investor-company-node-form #edit-field-investor-comp-notes {
+  margin-bottom: 0; }
+  #investor-company-node-form #edit-field-investor-comp-notes .form-item {
+    margin-bottom: 0; }
+
+#investor-private-node-form #edit-field-invest-pvt-address {
+  margin-bottom: 0; }
+  #investor-private-node-form #edit-field-invest-pvt-address .form-wrapper {
+    margin-bottom: 0; }
 
 #person-node-form .field-name-field-user-ssn,
 #person-node-form .field-name-field-user-mail,
 #person-node-form .field-name-field-user-phone,
-#person-node-form .field-name-field-user-cell {
+#person-node-form .field-name-field-user-cell,
+#person-node-form .field-name-field-user-fax {
+  margin: 0; }
+
+#investor-company-node-form .field-name-field-shared-cust-id,
+#investor-company-node-form .field-name-field-investor-comp-org-nbr,
+#investor-company-node-form .field-name-field-shared-cont-pers,
+#investor-company-node-form .field-name-field-investor-comp-real,
+#investor-company-node-form .field-name-field-investor-comp-owners {
+  margin: 0; }
+
+#investor-private-node-form .field-name-field-shared-cust-id,
+#investor-private-node-form .field-name-field-shared-cont-pers {
   margin: 0; }
 
 #person-node-form .form-item-title,
@@ -2546,6 +2580,80 @@ div.addressfield-container-inline {
   #person-node-form .field-name-field-user-cell:nth-child(2n+1),
   #person-node-form .field-name-field-user-fax:nth-child(2n+1) {
     clear: left; }
+
+#investor-company-node-form .field-name-field-shared-cust-id,
+#investor-company-node-form .form-item-title,
+#investor-company-node-form .field-name-field-investor-comp-org-nbr,
+#investor-company-node-form .field-name-field-shared-cont-pers,
+#investor-company-node-form .field-name-field-investor-comp-real,
+#investor-company-node-form .field-name-field-investor-comp-owners {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  clear: none; }
+  #investor-company-node-form .field-name-field-shared-cust-id:last-child,
+  #investor-company-node-form .form-item-title:last-child,
+  #investor-company-node-form .field-name-field-investor-comp-org-nbr:last-child,
+  #investor-company-node-form .field-name-field-shared-cont-pers:last-child,
+  #investor-company-node-form .field-name-field-investor-comp-real:last-child,
+  #investor-company-node-form .field-name-field-investor-comp-owners:last-child {
+    margin-right: 0; }
+  #investor-company-node-form .field-name-field-shared-cust-id:nth-child(2n),
+  #investor-company-node-form .form-item-title:nth-child(2n),
+  #investor-company-node-form .field-name-field-investor-comp-org-nbr:nth-child(2n),
+  #investor-company-node-form .field-name-field-shared-cont-pers:nth-child(2n),
+  #investor-company-node-form .field-name-field-investor-comp-real:nth-child(2n),
+  #investor-company-node-form .field-name-field-investor-comp-owners:nth-child(2n) {
+    margin-right: 0; }
+  #investor-company-node-form .field-name-field-shared-cust-id:nth-child(2n+1),
+  #investor-company-node-form .form-item-title:nth-child(2n+1),
+  #investor-company-node-form .field-name-field-investor-comp-org-nbr:nth-child(2n+1),
+  #investor-company-node-form .field-name-field-shared-cont-pers:nth-child(2n+1),
+  #investor-company-node-form .field-name-field-investor-comp-real:nth-child(2n+1),
+  #investor-company-node-form .field-name-field-investor-comp-owners:nth-child(2n+1) {
+    clear: left; }
+
+#investor-private-node-form .field-name-field-shared-cust-id,
+#investor-private-node-form .field-name-field-shared-cont-pers {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  clear: none; }
+  #investor-private-node-form .field-name-field-shared-cust-id:last-child,
+  #investor-private-node-form .field-name-field-shared-cont-pers:last-child {
+    margin-right: 0; }
+  #investor-private-node-form .field-name-field-shared-cust-id:nth-child(3n),
+  #investor-private-node-form .field-name-field-shared-cont-pers:nth-child(3n) {
+    margin-right: 0; }
+  #investor-private-node-form .field-name-field-shared-cust-id:nth-child(3n+1),
+  #investor-private-node-form .field-name-field-shared-cont-pers:nth-child(3n+1) {
+    clear: left; }
+
+.page-avtalsparter-skapa ul.create-type-list {
+  display: block;
+  width: 50%;
+  margin: 40px auto;
+  min-width: 700px;
+  list-style: none;
+  border: 1px solid #e0e2e6;
+  background: #fafbfc;
+  padding: 2em 0; }
+  .page-avtalsparter-skapa ul.create-type-list li {
+    display: block;
+    background: #fff;
+    margin-bottom: 1em; }
+  .page-avtalsparter-skapa ul.create-type-list a {
+    display: block;
+    border: 1px solid #e0e2e6;
+    padding: 1em;
+    margin: 0 -1px; }
+    .page-avtalsparter-skapa ul.create-type-list a .title {
+      font-weight: 700;
+      display: block; }
+    .page-avtalsparter-skapa ul.create-type-list a:hover {
+      border-color: #b2b3b6; }
 
 table.field-multiple-table {
   margin-bottom: 20px;
@@ -2958,6 +3066,10 @@ table.tabledrag-processed {
 .content-wrapper {
   margin: 0;
   background: #fff; }
+  .content-wrapper:before, .content-wrapper:after {
+    content: ' ';
+    display: table;
+    clear: both; }
   .not-logged-in .content-wrapper {
     background: transparent; }
   .content-wrapper .content-sidebar {
@@ -3756,6 +3868,8 @@ table {
     .field-group-htabs-wrapper .horizontal-tabs fieldset.horizontal-tabs-pane {
       padding: 0;
       margin: 0; }
+      .field-group-htabs-wrapper .horizontal-tabs fieldset.horizontal-tabs-pane > .fieldset-wrapper {
+        padding-top: 0; }
   .field-group-htabs-wrapper ul.horizontal-tabs-list {
     display: block;
     overflow: hidden;
