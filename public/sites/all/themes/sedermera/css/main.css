@@ -3153,30 +3153,35 @@ table.tabledrag-processed {
       font-weight: 500;
       line-height: 20px;
       padding-left: 30px; }
-      .main-navigation .menu li a.active-trail#overview {
-        background: url("../graphics/overview_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/overview_white.svg") transparent 0 0 no-repeat;
+      .main-navigation .menu li a.active-trail {
         color: #fff; }
-      .main-navigation .menu li a.active-trail#investors {
-        background: url("../graphics/investors_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/investors_white.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a.active-trail#companies {
-        background: url("../graphics/company_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/company_white.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a.active-trail#offers {
-        background: url("../graphics/offers_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/offers_white.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a.active-trail#documents {
-        background: url("../graphics/documents_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/documents_white.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a.active-trail#manuals {
-        background: url("../graphics/manuals_white.png") transparent 0 0 no-repeat;
-        background: none, url("../graphics/manuals_white.svg") transparent 0 0 no-repeat; }
-      .main-navigation .menu li a:hover {
-        color: #d9d9db; }
+        .main-navigation .menu li a.active-trail#overview {
+          background: url("../graphics/overview_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/overview_white.svg") transparent 0 0 no-repeat; }
+        .main-navigation .menu li a.active-trail#persons {
+          background: url("../graphics/persons_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/persons_white.svg") transparent 0 0 no-repeat; }
+        .main-navigation .menu li a.active-trail#investors {
+          background: url("../graphics/investors_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/investors_white.svg") transparent 0 0 no-repeat; }
+        .main-navigation .menu li a.active-trail#companies {
+          background: url("../graphics/company_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/company_white.svg") transparent 0 0 no-repeat; }
+        .main-navigation .menu li a.active-trail#offers {
+          background: url("../graphics/offers_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/offers_white.svg") transparent 0 0 no-repeat; }
+        .main-navigation .menu li a.active-trail#documents {
+          background: url("../graphics/documents_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/documents_white.svg") transparent 0 0 no-repeat; }
+        .main-navigation .menu li a.active-trail#manuals {
+          background: url("../graphics/manuals_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/manuals_white.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a#overview {
         background: url("../graphics/overview_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/overview_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#persons {
+        background: url("../graphics/persons_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/persons_grey.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a#investors {
         background: url("../graphics/investors_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/investors_grey.svg") transparent 0 0 no-repeat; }
@@ -3216,6 +3221,8 @@ table.tabledrag-processed {
       .main-navigation .menu li a#document-log {
         background: url("../graphics/log_small_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/log_small_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a:hover {
+        color: #d9d9db; }
     .main-navigation .menu li ul {
       margin-top: 3px; }
     .main-navigation .menu li li {
@@ -3457,6 +3464,7 @@ table.tabledrag-processed {
     background: #c8cacd; }
 
 .table-filter {
+  display: none;
   background: #e0e2e6;
   width: 23%; }
   .table-filter h2.filter-icon {
@@ -3572,7 +3580,8 @@ table.tabledrag-processed {
   overflow-y: hidden;
   overflow-x: scroll;
   position: relative;
-  width: 77%; }
+  width: 100%;
+  border: 1px solid #e0e2e6; }
 
 table {
   width: 100%; }
@@ -3663,6 +3672,8 @@ table {
       background: #fff; }
       table tr.odd .ajax-progress {
         background: #fff; }
+    table tr.views-row-last {
+      border-bottom: 0px none; }
   table td {
     color: #363636; }
   table input {

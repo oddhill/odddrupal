@@ -68,10 +68,14 @@
         padding-left: 30px;
 
         &.active-trail {
+          color: $snow;
 
           &#overview {
             @include svg-bg(overview_white);
-            color: $snow;
+          }
+
+          &#persons {
+            @include svg-bg(persons_white);
           }
 
           &#investors {
@@ -95,12 +99,12 @@
           }
         }
 
-        &:hover {
-          color: tint($cloudy,50%);
-        }
-
         &#overview {
           @include svg-bg(overview_grey);
+        }
+
+        &#persons {
+          @include svg-bg(persons_grey);
         }
 
         &#investors {
@@ -123,7 +127,7 @@
           @include svg-bg(list_small_grey);
         }
 
-         &.add {
+        &.add {
           @include svg-bg(add_small_grey);
         }
 
@@ -154,6 +158,10 @@
 
         &#document-log {
           @include svg-bg(log_small_grey);
+        }
+
+        &:hover {
+          color: tint($cloudy,50%);
         }
       }
 

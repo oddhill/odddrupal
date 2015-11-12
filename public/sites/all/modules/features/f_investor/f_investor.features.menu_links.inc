@@ -98,13 +98,15 @@ function f_investor_menu_default_menu_links() {
     'router_path' => 'kontaktpersoner',
     'link_title' => 'Kontaktpersoner',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_kontaktpersoner:kontaktpersoner',
+      'attributes' => array(
+        'id' => 'persons',
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_kontaktpersoner:kontaktpersoner',
     ),
     'module' => 'menu',
     'hidden' => 0,

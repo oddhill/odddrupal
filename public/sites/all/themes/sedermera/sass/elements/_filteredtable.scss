@@ -1,5 +1,6 @@
 // Wraps the entire filter
 .table-filter {
+  display: none; // Remove temporarily until we figured this one out
   background: $wool;
   width: 23%;
 
@@ -129,7 +130,8 @@
   overflow-y: hidden;
   overflow-x: scroll;
   position: relative;
-  width: 77%;
+  width: 100%; // width: 77%; // Commented out until we know what to do with the filter
+  border: 1px solid $wool;
 }
 
 table {
@@ -269,6 +271,10 @@ table {
       .ajax-progress {
         background: $snow;
       }
+    }
+
+    &.views-row-last {
+      border-bottom: 0px none;
     }
   }
 
