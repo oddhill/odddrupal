@@ -101,7 +101,14 @@ function f_investor_strongarm() {
           'weight' => '1',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'verification_status' => array(
+          'full' => array(
+            'weight' => '12',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__investor_company'] = $strongarm;
@@ -155,7 +162,14 @@ function f_investor_strongarm() {
           'weight' => '1',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'verification_status' => array(
+          'full' => array(
+            'weight' => '9',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__investor_private'] = $strongarm;

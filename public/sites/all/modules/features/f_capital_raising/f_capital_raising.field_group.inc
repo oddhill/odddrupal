@@ -16,7 +16,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_body|node|erbjudande|form';
   $field_group->group_name = 'group_body';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'step_offer_1';
   $field_group->data = array(
@@ -51,7 +51,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_offer_type_bl|node|erbjudande|form';
   $field_group->group_name = 'group_offer_type_bl';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_types';
   $field_group->data = array(
@@ -82,7 +82,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_offer_type_bp|node|erbjudande|form';
   $field_group->group_name = 'group_offer_type_bp';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_types';
   $field_group->data = array(
@@ -113,7 +113,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_offer_type_fe|node|erbjudande|form';
   $field_group->group_name = 'group_offer_type_fe';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_types';
   $field_group->data = array(
@@ -150,7 +150,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_offer_type_le|node|erbjudande|form';
   $field_group->group_name = 'group_offer_type_le';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_types';
   $field_group->data = array(
@@ -190,7 +190,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_offer_type_pp|node|erbjudande|form';
   $field_group->group_name = 'group_offer_type_pp';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_types';
   $field_group->data = array(
@@ -223,7 +223,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_offer_type_re|node|erbjudande|form';
   $field_group->group_name = 'group_offer_type_re';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_types';
   $field_group->data = array(
@@ -256,7 +256,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_offer_types|node|erbjudande|form';
   $field_group->group_name = 'group_offer_types';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_sidebar';
   $field_group->data = array(
@@ -289,7 +289,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_sidebar|node|erbjudande|form';
   $field_group->group_name = 'group_sidebar';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'step_offer_1';
   $field_group->data = array(
@@ -324,7 +324,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_title|node|erbjudande|form';
   $field_group->group_name = 'group_title';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_sidebar';
   $field_group->data = array(
@@ -359,7 +359,7 @@ function f_capital_raising_field_group_info() {
   $field_group->identifier = 'group_types|node|erbjudande|form';
   $field_group->group_name = 'group_types';
   $field_group->entity_type = 'node';
-  $field_group->bundle = 'erbjudande';
+  $field_group->bundle = 'offer';
   $field_group->mode = 'form';
   $field_group->parent_name = 'step_offer_2';
   $field_group->data = array(

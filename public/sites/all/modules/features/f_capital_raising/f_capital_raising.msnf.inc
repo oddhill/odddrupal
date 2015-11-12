@@ -16,7 +16,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf->identifier = 'step_offer_1|node|erbjudande';
   $msnf->step_name = 'step_offer_1';
   $msnf->entity_type = 'node';
-  $msnf->bundle = 'erbjudande';
+  $msnf->bundle = 'offer';
   $msnf->data = array(
     'label' => '1. Allmän information',
     'weight' => '0',
@@ -50,7 +50,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf->identifier = 'step_offer_2|node|erbjudande';
   $msnf->step_name = 'step_offer_2';
   $msnf->entity_type = 'node';
-  $msnf->bundle = 'erbjudande';
+  $msnf->bundle = 'offer';
   $msnf->data = array(
     'label' => '2. Information om investering',
     'weight' => '1',
@@ -83,7 +83,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf->identifier = 'step_offer_3|node|erbjudande';
   $msnf->step_name = 'step_offer_3';
   $msnf->entity_type = 'node';
-  $msnf->bundle = 'erbjudande';
+  $msnf->bundle = 'offer';
   $msnf->data = array(
     'label' => '3',
     'weight' => '2',
@@ -114,7 +114,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf->identifier = 'step_offer_4|node|erbjudande';
   $msnf->step_name = 'step_offer_4';
   $msnf->entity_type = 'node';
-  $msnf->bundle = 'erbjudande';
+  $msnf->bundle = 'offer';
   $msnf->data = array(
     'label' => '4',
     'weight' => '3',

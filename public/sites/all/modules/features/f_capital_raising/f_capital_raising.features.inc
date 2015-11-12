@@ -57,7 +57,7 @@ function f_capital_raising_views_api($module = NULL, $api = NULL) {
  */
 function f_capital_raising_node_info() {
   $items = array(
-    'erbjudande' => array(
+    'offer' => array(
       'name' => t('Erbjudande'),
       'base' => 'node_content',
       'description' => '',
