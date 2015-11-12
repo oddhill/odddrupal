@@ -13,12 +13,28 @@ function sedermera_transaction_menu() {
     'title' => 'Intressenter',
     'page callback' => 'sedermera_transaction_intresent',
     'page arguments' => array(1),
-    'access callback' => TRUE,
+    'access callback' => 'sedermera_transaction_offer_access',
     'type' => MENU_LOCAL_TASK,
     'weight' => 1,
   );
 
   return $items;
+}
+
+/**
+ * Checks if the current node should have access to intressent list
+ * @return boolean TRUE if ok else FALSE
+ */
+function sedermera_transaction_offer_access() {
+  // Load node
+  $node = node_load(arg(1));
+
+  // Check if node is of type offer
+  if ($node->type === 'offer') {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 /**
@@ -480,19 +496,12 @@ function sedermera_transaction_intresent() {
           );
 
 
-          // if ($transaction_ap->field_transaction_ap_ctrl[LANGUAGE_NONE][0]['value']) {
-          //   $to_ctrl = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
-          //         array(
-          //           'label'=>'hidden',
-          //           'type' => 'editable',
-          //           'disabled' => TRUE,
-          //         ));
-
-          //   $rows[$row][] = array(
-          //     'data' => render($to_ctrl),
-          //   );
-          // }
-          // else {
+          if ($transaction_ap->field_transaction_ap_ctrl[LANGUAGE_NONE][0]['value']) {
+            $rows[$row][] = array(
+              'data' => '<span></span> kontrollera',
+            );
+          }
+          else {
             $to_ctrl = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
                   array(
                     'label'=>'hidden',
@@ -502,7 +511,7 @@ function sedermera_transaction_intresent() {
             $rows[$row][] = array(
               'data' => render($to_ctrl),
             );
-          // }
+          }
         }
       }
 
