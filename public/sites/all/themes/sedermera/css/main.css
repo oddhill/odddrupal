@@ -2845,6 +2845,8 @@ div.addressfield-container-inline {
     display: block;
     background: #fff;
     margin-bottom: 1em; }
+    .page-avtalsparter-skapa ul.create-type-list li:last-child {
+      margin-bottom: 0; }
   .page-avtalsparter-skapa ul.create-type-list a {
     display: block;
     border: 1px solid #e0e2e6;
