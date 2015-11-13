@@ -238,14 +238,14 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
     // Add checkbox for each investor connected to the contact person
     // Mark as selected if already selected
     foreach ($investors as $investor) {
-      $tf = FALSE;
+      $selected = FALSE;
       $attributes = array();
 
       foreach ($transaction_wrap->field_transaction_investor->value() as $node) {
-        $res = db_query("SELECT COUNT(*) AS tf FROM {field_data_field_transaction_ap_ap} WHERE entity_id = :eid AND field_transaction_ap_ap_target_id = :tid", array(':eid' => $node->nid, ':tid' => $investor->nid))->fetchAssoc();
+        $res = db_query("SELECT COUNT(*) AS selected FROM {field_data_field_transaction_ap_ap} WHERE entity_id = :eid AND field_transaction_ap_ap_target_id = :tid", array(':eid' => $node->nid, ':tid' => $investor->nid))->fetchAssoc();
 
-        if ($res['tf'] == 1) {
-          $tf = TRUE;
+        if ($res['selected'] == 1) {
+          $selected = TRUE;
           $attributes = array(
             'checked' => 'checked',
             'disabled' => 'disabled',
@@ -257,7 +257,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
       $options[$investor->nid] = array(
         '#type' => 'checkbox',
         '#title' => $investor->name,
-        '#default_value' => $tf,
+        '#default_value' => $selected,
         '#attributes' => $attributes,
       );
     }
