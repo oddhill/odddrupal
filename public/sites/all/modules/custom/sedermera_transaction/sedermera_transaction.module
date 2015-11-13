@@ -112,60 +112,80 @@ function sedermera_transaction_intresent() {
  * @param  array $type_investment The active investment types used in the offer
  */
 function generate_header_row(&$header, $type_investment) {
+  // Collapsible column
   $header[] = array(
-    'class' => array('table-head', 'logo-head')
+    'class' => array('table-head', 'Collapsible-head')
   );
+
+  // Name column
   $header[] = array(
     'data' => 'Kontaktperson',
     'class' => array('table-head')
   );
+
+  // Dropdown column
   $header[] = array(
     'data' => '',
     'class' => array('table-head')
   );
 
+  // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
       'class' => array('table-head')
     );
   }
+
+  // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
     $header[] = array(
       'data' => 'Garantiåtagande',
       'class' => array('table-head')
     );
   }
+
+  // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
       'class' => array('table-head')
     );
   }
+
+  // Garantiåtagande if Listningsemission column
   if ($type_investment['le_warr']) {
     $header[] = array(
       'data' => 'Garantiåtagande',
       'class' => array('table-head')
     );
   }
+
+  // Teckningsförbindelse if Private placement column
   if ($type_investment['pp_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
       'class' => array('table-head')
     );
   }
+
+  // Teckningsförbindelse if Riktad emission column
   if ($type_investment['re_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
       'class' => array('table-head')
     );
   }
+
+  // Sum if Brygglån column
   if ($type_investment['bl_sum']) {
     $header[] = array(
       'data' => 'Brygglån',
       'class' => array('table-head')
     );
   }
+
+  // Sum if Blockpost column
   if ($type_investment['bp_sum']) {
     $header[] = array(
       'data' => 'Blockpost',
@@ -173,16 +193,19 @@ function generate_header_row(&$header, $type_investment) {
     );
   }
 
+  // Summation column
   $header[] = array(
     'data' => 'Summa',
     'class' => array('table-head')
   );
 
+  // Control column
   $header[] = array(
     'data' => '',
     'class' => array('table-head')
   );
 
+  // To control column
   $header[] = array(
     'data' => 'Till kontroll',
     'class' => array('table-head')
@@ -473,6 +496,7 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
         'data' => render($field),
       );
     }
+
     // Garantiåtagande if Företrädesemission column
     if ($type_investment['fe_warr']) {
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_warrant',
@@ -484,6 +508,7 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
         'data' => render($field),
       );
     }
+
     // Teckningsförbindelse if Listningsemission column
     if ($type_investment['le_sign']) {
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_sign',
@@ -495,6 +520,7 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
         'data' => render($field),
       );
     }
+
     // Garantiåtagande if Listningsemission column
     if ($type_investment['le_warr']) {
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_warrant',
@@ -506,6 +532,7 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
         'data' => render($field),
       );
     }
+
     // Teckningsförbindelse if Private placement column
     if ($type_investment['pp_sign']) {
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_pp_sign',
@@ -517,6 +544,7 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
         'data' => render($field),
       );
     }
+
     // Teckningsförbindelse if Riktad emission column
     if ($type_investment['re_sign']) {
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_re_sign',
@@ -528,6 +556,7 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
         'data' => render($field),
       );
     }
+
     // Sum if Brygglån column
     if ($type_investment['bl_sum']) {
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_bridging',
@@ -539,6 +568,7 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
         'data' => render($field),
       );
     }
+
     // Sum if Blockpost column
     if ($type_investment['bp_sum']) {
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_block',
@@ -632,6 +662,7 @@ function generate_sum_row(&$rows, $type_investment) {
       'class' => array('sum-row'),
     );
   }
+
   // Garantiåtagande if Listnigsemission column
   if ($type_investment['le_warr']) {
     $rows[$row][] = array(
@@ -639,6 +670,7 @@ function generate_sum_row(&$rows, $type_investment) {
       'class' => array('sum-row'),
     );
   }
+
   // Teckningsförbindelse if Private Placement column
   if ($type_investment['pp_sign']) {
     $rows[$row][] = array(
