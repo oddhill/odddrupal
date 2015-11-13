@@ -126,61 +126,6 @@ $(document).ready(function() {
   if (!$('.document-head-content').children().length)$('.document-head-content').hide();
 });
 
-// Override module javascript and use try catch to isolate errors.
-Drupal.behaviors.form_placeholder = {
-  attach: function(context, settings) {
-    try {
-      var include = settings.form_placeholder.include;
-      if (include) {
-        include += ', ';
-      }
-      include += '.form-placeholder-include-children *';
-      include += ', .form-placeholder-include';
-      var exclude = settings.form_placeholder.exclude;
-      if (exclude) {
-        exclude += ', ';
-      }
-      exclude += '.form-placeholder-exclude-children *';
-      exclude += ', .form-placeholder-exclude';
-      exclude += ', .form-placeholder-processed';
-
-      var required_indicator = settings.form_placeholder.required_indicator;
-
-      $(include).not(exclude).each(function() {
-        $textfield = $(this);
-
-        // Check if element is a textfield.
-        if (!$textfield.is('input[type=text], input[type=email], input[type=password], textarea')) {
-          return;
-        }
-        // Placeholder is supported.
-        else if (Drupal.form_placeholder.placeholderIsSupported() || settings.form_placeholder.fallback_support) {
-          $form = $textfield.closest('form');
-          $label = $form.find('label[for=' + this.id + ']');
-
-          if (required_indicator === 'append') {
-            $label.find('.form-required').insertAfter($textfield).prepend('&nbsp;');
-          }
-          else if (required_indicator === 'remove') {
-            $label.find('.form-required').remove();
-          }
-          else if (required_indicator === 'text') {
-            $label.find('.form-required').text('(' + Drupal.t('required') + ')');
-          }
-
-          $textfield.attr('placeholder', $.trim($label.text()));
-          $label.hide();
-
-          // Fallback support for older browsers.
-          if (!Drupal.form_placeholder.placeholderIsSupported() && settings.form_placeholder.fallback_support) {
-            $textfield.placeholder();
-          }
-        }
-      }).addClass('form-placeholder-processed');
-    } catch(err) {}
-  }
-};
-
 /**
  * Function that sets the value of the image field to the new
  * text field that is used as a substitute.
