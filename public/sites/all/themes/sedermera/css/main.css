@@ -119,6 +119,28 @@ body {
 .label {
   font-weight: 700; }
 
+.verification {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0px;
+  color: transparent; }
+  .verification:before {
+    content: '';
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8); }
+  .verification:before {
+    margin-right: 0; }
+  .verification.approved:before {
+    background: #6c9e65; }
+  .verification.expiring:before {
+    background: #f9a500; }
+  .verification.not-approved:before {
+    background: #c04343; }
+
 @-webkit-keyframes rotate {
   from {
     -webkit-transform: rotate(0deg); }
@@ -1341,6 +1363,87 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 .page-node-edit .form-actions {
   padding-top: 20px; }
 
+.node-investor-private.view-mode-full .node-section {
+  display: block;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f3f4f8;
+  margin-bottom: 30px; }
+  .node-investor-private.view-mode-full .node-section:after {
+    content: "";
+    display: table;
+    clear: both; }
+.node-investor-private.view-mode-full .verification {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px;
+  line-height: 20px;
+  color: #282828;
+  float: right;
+  margin-top: 1.4em; }
+  .node-investor-private.view-mode-full .verification:before {
+    content: '';
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8); }
+  .node-investor-private.view-mode-full .verification:before {
+    margin-right: 1rem; }
+  .node-investor-private.view-mode-full .verification.approved:before {
+    background: #6c9e65; }
+  .node-investor-private.view-mode-full .verification.expiring:before {
+    background: #f9a500; }
+  .node-investor-private.view-mode-full .verification.not-approved:before {
+    background: #c04343; }
+.node-investor-private.view-mode-full .title h2 {
+  text-align: left; }
+.node-investor-private.view-mode-full .investor-details .detail {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right; }
+  .node-investor-private.view-mode-full .investor-details .detail:last-child {
+    margin-right: 0; }
+  .node-investor-private.view-mode-full .investor-details .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-investor-private.view-mode-full .investor-details .detail:nth-child(2n+1) {
+    clear: left; }
+  .node-investor-private.view-mode-full .investor-details .detail span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-investor-private.view-mode-full .investor-details .detail .verification {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-investor-private.view-mode-full .investor-details .detail .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-investor-private.view-mode-full .investor-details .detail .verification:before {
+      margin-right: 0; }
+    .node-investor-private.view-mode-full .investor-details .detail .verification.approved:before {
+      background: #6c9e65; }
+    .node-investor-private.view-mode-full .investor-details .detail .verification.expiring:before {
+      background: #f9a500; }
+    .node-investor-private.view-mode-full .investor-details .detail .verification.not-approved:before {
+      background: #c04343; }
+
 .node-person.view-mode-full .node-section {
   display: block;
   padding-bottom: 30px;
@@ -2258,102 +2361,6 @@ fieldset {
   transition: background-color 0.1s ease-in-out; }
   #edit-previous:hover {
     background-color: #303030; }
-
-.approved {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/approved.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/approved.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  color: #6c9e65;
-  padding-left: 28px;
-  background-color: #b6e0af; }
-  .approved:hover {
-    background-color: #a4ca9e;
-    border: 0 none; }
-
-.not-approved {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/unapproved.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/unapproved.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  color: #9e6565;
-  padding-left: 28px;
-  background-color: #e0afaf; }
-  .not-approved:hover {
-    background-color: #ca9e9e;
-    border: 0 none; }
-
-.expiring {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/exclamation.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/exclamation.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  padding-left: 28px;
-  color: #454545;
-  background-color: #fbc966; }
-  .expiring:hover {
-    background-color: #e2b55c;
-    border: 0 none; }
-
-.expired {
-  font-size: 11px;
-  font-size: 1.1rem;
-  line-height: 16.5px;
-  border-radius: 28px;
-  border-bottom: 0 none;
-  display: inline-block;
-  font-weight: 700;
-  height: 28px;
-  line-height: 28px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-transform: uppercase;
-  width: auto;
-  background: url("../graphics/expired.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/expired.svg") transparent 0 0 no-repeat;
-  background-position: 5px 4px;
-  padding-left: 28px;
-  color: #454545;
-  background-color: #d4d6d9; }
-  .expired:hover {
-    background-color: #bfc1c3;
-    border: 0 none; }
 
 form#user-login #edit-submit {
   display: inline-block;

@@ -23,26 +23,6 @@
   @include button($dark-grey, previous);
 }
 
-// Approved button
-.approved {
-  @include status-button($avocado, approved);
-}
-
-// Not approved button
-.not-approved {
-  @include status-button($bubblegum, unapproved);
-}
-
-// Expiring button
-.expiring {
-  @include status-button($honey, expiring);
-}
-
-// Expired button
-.expired {
-  @include status-button($steel, expired);
-}
-
 // Login button (User log in page)
 form#user-login {
 

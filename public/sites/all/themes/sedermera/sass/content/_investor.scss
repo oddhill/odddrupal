@@ -1,0 +1,47 @@
+.node-investor-private {
+
+  &.view-mode-full {
+
+    .node-section {
+      @include row();
+      padding-bottom: 30px;
+      border-bottom: 2px solid $light-grey;
+      margin-bottom: 30px;
+    }
+
+    .verification {
+      @include verification(true);
+      float: right;
+      margin-top: 1.4em;
+    }
+
+    .title h2 {
+      text-align: left;
+    }
+
+    .investor-details {
+
+      .detail {
+        @include span-columns(6 of 12);
+        @include pad(10px);
+        @include omega(2n);
+        border: 2px solid $light-grey;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+        text-align: right;
+
+        span.label {
+          display: block;
+          float: left;
+          text-align: left;
+          margin-right: 1em;
+        }
+
+        .verification {
+          @include verification(false);
+          margin: -1px 0;
+        }
+      }
+    }
+  }
+}

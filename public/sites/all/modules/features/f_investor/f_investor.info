@@ -29,6 +29,7 @@ dependencies[] = options
 dependencies[] = revisioning
 dependencies[] = sedermera_investor
 dependencies[] = sedermera_transaction_history
+dependencies[] = sedermera_verification
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = taxonomy_access_fix

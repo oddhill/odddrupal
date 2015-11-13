@@ -170,34 +170,6 @@
   text-transform: uppercase;
   width: auto;
 
-  @if $icon == approved {
-    @include svg-bg(approved);
-    background-position: 5px 4px;
-    color: $pear;
-    padding-left: 28px;
-  }
-
-  @if $icon == unapproved {
-    @include svg-bg(unapproved);
-    background-position: 5px 4px;
-    color: $dark-rose;
-    padding-left: 28px;
-  }
-
-  @if $icon == expiring {
-    @include svg-bg(exclamation);
-    background-position: 5px 4px;
-    padding-left: 28px;
-    color: $dark-grey;
-  }
-
-  @if $icon == expired {
-    @include svg-bg(expired);
-    background-position: 5px 4px;
-    padding-left: 28px;
-    color: $dark-grey;
-  }
-
   &:hover {
     background-color: shade($background,10%);
     border: 0 none;
@@ -221,8 +193,63 @@
   @include animation(load 0.9s linear infinite);
 }
 
+@mixin verification($text: default) {
+  display: inline-block;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.8);
+  }
+
+  @if $text == true {
+    @include font-size(1.6);
+    line-height: 20px;
+    color: $coffee;
+
+    &:before {
+      margin-right: 1rem;
+    }
+  }
+
+  @if $text == false {
+    font-size: 0px;
+    color: transparent;
+
+    &:before {
+      margin-right: 0;
+    }
+  }
+
+  &.approved {
+
+    &:before {
+      background: $pear;
+    }
+  }
+
+  &.expiring {
+
+    &:before {
+      background: $mustard;
+    }
+  }
+
+  &.not-approved {
+
+    &:before {
+      background: $wine;
+    }
+  }
+}
+
 @mixin wysiwyg {
-  
+
   html {
     font-size: 62.5%;
   }

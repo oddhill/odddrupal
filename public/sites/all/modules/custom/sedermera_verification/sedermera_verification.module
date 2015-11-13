@@ -86,7 +86,7 @@ function sedermera_verification_field_formatter_view($entity_type, $entity, $fie
 
   // Add the markup.
   $element[] = array(
-    '#prefix' => '<span class="' . $class . '">',
+    '#prefix' => '<span class="verification ' . $class . '">',
     '#markup' => $text,
     '#suffix' => '</span>',
   );
@@ -145,7 +145,7 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
 
     // Add the markup.
     $node->content['verification_status'] = array(
-      '#prefix' => '<span class="' . $class . '">',
+      '#prefix' => '<span class="verification ' . $class . '">',
       '#markup' => $text,
       '#suffix' => '</span>',
     );
