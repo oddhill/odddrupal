@@ -90,11 +90,11 @@ function f_investor_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'sedermera_verification',
         'settings' => array(
-          'link' => FALSE,
+          'ajax' => FALSE,
         ),
-        'type' => 'entityreference_label',
+        'type' => 'sedermera_verification_status',
         'weight' => 9,
       ),
     ),
@@ -142,11 +142,11 @@ function f_investor_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'sedermera_verification',
         'settings' => array(
-          'link' => FALSE,
+          'ajax' => FALSE,
         ),
-        'type' => 'entityreference_label',
+        'type' => 'sedermera_verification_status',
         'weight' => 11,
       ),
     ),
@@ -194,11 +194,11 @@ function f_investor_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'sedermera_verification',
         'settings' => array(
-          'link' => FALSE,
+          'ajax' => FALSE,
         ),
-        'type' => 'entityreference_label',
+        'type' => 'sedermera_verification_status',
         'weight' => 8,
       ),
     ),
@@ -246,11 +246,11 @@ function f_investor_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'sedermera_verification',
         'settings' => array(
-          'link' => FALSE,
+          'ajax' => FALSE,
         ),
-        'type' => 'entityreference_label',
+        'type' => 'sedermera_verification_status',
         'weight' => 10,
       ),
     ),
@@ -298,11 +298,11 @@ function f_investor_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'sedermera_verification',
         'settings' => array(
-          'link' => FALSE,
+          'ajax' => FALSE,
         ),
-        'type' => 'entityreference_label',
+        'type' => 'sedermera_verification_status',
         'weight' => 7,
       ),
     ),
@@ -496,7 +496,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 3,
@@ -542,7 +542,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 4,

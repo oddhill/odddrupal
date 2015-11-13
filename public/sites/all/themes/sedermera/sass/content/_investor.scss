@@ -2,13 +2,6 @@
 
   &.view-mode-full {
 
-    .node-section {
-      @include row();
-      padding-bottom: 30px;
-      border-bottom: 2px solid $light-grey;
-      margin-bottom: 30px;
-    }
-
     .verification {
       @include verification(true);
       float: right;
@@ -22,24 +15,45 @@
     .investor-details {
 
       .detail {
-        @include span-columns(6 of 12);
-        @include pad(10px);
-        @include omega(2n);
-        border: 2px solid $light-grey;
-        margin-bottom: 0.5em;
-        margin-top: 0.5em;
-        text-align: right;
+        @include node-section-detail;
+      }
+    }
+  }
+}
+
+.node-investor-company {
+
+  &.view-mode-full {
+
+    .verification {
+      @include verification(true);
+      float: right;
+      margin-top: 1.4em;
+    }
+
+    .title h2 {
+      text-align: left;
+    }
+
+    .investor-details,
+    .investor-verifications {
+
+      .detail,
+      .investor-control {
+        @include node-section-detail;
+      }
+    }
+
+    .investor-other {
+
+      .other {
+        @include node-section-detail;
+        text-align: left;
 
         span.label {
           display: block;
-          float: left;
-          text-align: left;
-          margin-right: 1em;
-        }
-
-        .verification {
-          @include verification(false);
-          margin: -1px 0;
+          float: none;
+          margin-bottom: 0.5em;
         }
       }
     }

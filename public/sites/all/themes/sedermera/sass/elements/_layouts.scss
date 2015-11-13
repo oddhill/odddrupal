@@ -39,6 +39,14 @@
   padding: 0 40px;
 }
 
+// Node section
+.node-section {
+  @include row();
+  padding-bottom: 30px;
+  border-bottom: 2px solid $light-grey;
+  margin-bottom: 30px;
+}
+
 // Content wrapper
 .content-wrapper {
   margin: 0;

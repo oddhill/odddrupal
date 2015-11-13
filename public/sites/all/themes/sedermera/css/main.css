@@ -1363,15 +1363,6 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 .page-node-edit .form-actions {
   padding-top: 20px; }
 
-.node-investor-private.view-mode-full .node-section {
-  display: block;
-  padding-bottom: 30px;
-  border-bottom: 2px solid #f3f4f8;
-  margin-bottom: 30px; }
-  .node-investor-private.view-mode-full .node-section:after {
-    content: "";
-    display: table;
-    clear: both; }
 .node-investor-private.view-mode-full .verification {
   display: inline-block;
   overflow: hidden;
@@ -1444,6 +1435,159 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     .node-investor-private.view-mode-full .investor-details .detail .verification.not-approved:before {
       background: #c04343; }
 
+.node-investor-company.view-mode-full .verification {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px;
+  line-height: 20px;
+  color: #282828;
+  float: right;
+  margin-top: 1.4em; }
+  .node-investor-company.view-mode-full .verification:before {
+    content: '';
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8); }
+  .node-investor-company.view-mode-full .verification:before {
+    margin-right: 1rem; }
+  .node-investor-company.view-mode-full .verification.approved:before {
+    background: #6c9e65; }
+  .node-investor-company.view-mode-full .verification.expiring:before {
+    background: #f9a500; }
+  .node-investor-company.view-mode-full .verification.not-approved:before {
+    background: #c04343; }
+.node-investor-company.view-mode-full .title h2 {
+  text-align: left; }
+.node-investor-company.view-mode-full .investor-details .detail,
+.node-investor-company.view-mode-full .investor-details .investor-control,
+.node-investor-company.view-mode-full .investor-verifications .detail,
+.node-investor-company.view-mode-full .investor-verifications .investor-control {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right; }
+  .node-investor-company.view-mode-full .investor-details .detail:last-child,
+  .node-investor-company.view-mode-full .investor-details .investor-control:last-child,
+  .node-investor-company.view-mode-full .investor-verifications .detail:last-child,
+  .node-investor-company.view-mode-full .investor-verifications .investor-control:last-child {
+    margin-right: 0; }
+  .node-investor-company.view-mode-full .investor-details .detail:nth-child(2n),
+  .node-investor-company.view-mode-full .investor-details .investor-control:nth-child(2n),
+  .node-investor-company.view-mode-full .investor-verifications .detail:nth-child(2n),
+  .node-investor-company.view-mode-full .investor-verifications .investor-control:nth-child(2n) {
+    margin-right: 0; }
+  .node-investor-company.view-mode-full .investor-details .detail:nth-child(2n+1),
+  .node-investor-company.view-mode-full .investor-details .investor-control:nth-child(2n+1),
+  .node-investor-company.view-mode-full .investor-verifications .detail:nth-child(2n+1),
+  .node-investor-company.view-mode-full .investor-verifications .investor-control:nth-child(2n+1) {
+    clear: left; }
+  .node-investor-company.view-mode-full .investor-details .detail span.label,
+  .node-investor-company.view-mode-full .investor-details .investor-control span.label,
+  .node-investor-company.view-mode-full .investor-verifications .detail span.label,
+  .node-investor-company.view-mode-full .investor-verifications .investor-control span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-investor-company.view-mode-full .investor-details .detail .verification,
+  .node-investor-company.view-mode-full .investor-details .investor-control .verification,
+  .node-investor-company.view-mode-full .investor-verifications .detail .verification,
+  .node-investor-company.view-mode-full .investor-verifications .investor-control .verification {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-investor-company.view-mode-full .investor-details .detail .verification:before,
+    .node-investor-company.view-mode-full .investor-details .investor-control .verification:before,
+    .node-investor-company.view-mode-full .investor-verifications .detail .verification:before,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-investor-company.view-mode-full .investor-details .detail .verification:before,
+    .node-investor-company.view-mode-full .investor-details .investor-control .verification:before,
+    .node-investor-company.view-mode-full .investor-verifications .detail .verification:before,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:before {
+      margin-right: 0; }
+    .node-investor-company.view-mode-full .investor-details .detail .verification.approved:before,
+    .node-investor-company.view-mode-full .investor-details .investor-control .verification.approved:before,
+    .node-investor-company.view-mode-full .investor-verifications .detail .verification.approved:before,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.approved:before {
+      background: #6c9e65; }
+    .node-investor-company.view-mode-full .investor-details .detail .verification.expiring:before,
+    .node-investor-company.view-mode-full .investor-details .investor-control .verification.expiring:before,
+    .node-investor-company.view-mode-full .investor-verifications .detail .verification.expiring:before,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.expiring:before {
+      background: #f9a500; }
+    .node-investor-company.view-mode-full .investor-details .detail .verification.not-approved:before,
+    .node-investor-company.view-mode-full .investor-details .investor-control .verification.not-approved:before,
+    .node-investor-company.view-mode-full .investor-verifications .detail .verification.not-approved:before,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.not-approved:before {
+      background: #c04343; }
+.node-investor-company.view-mode-full .investor-other .other {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right;
+  text-align: left; }
+  .node-investor-company.view-mode-full .investor-other .other:last-child {
+    margin-right: 0; }
+  .node-investor-company.view-mode-full .investor-other .other:nth-child(2n) {
+    margin-right: 0; }
+  .node-investor-company.view-mode-full .investor-other .other:nth-child(2n+1) {
+    clear: left; }
+  .node-investor-company.view-mode-full .investor-other .other span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-investor-company.view-mode-full .investor-other .other .verification {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-investor-company.view-mode-full .investor-other .other .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-investor-company.view-mode-full .investor-other .other .verification:before {
+      margin-right: 0; }
+    .node-investor-company.view-mode-full .investor-other .other .verification.approved:before {
+      background: #6c9e65; }
+    .node-investor-company.view-mode-full .investor-other .other .verification.expiring:before {
+      background: #f9a500; }
+    .node-investor-company.view-mode-full .investor-other .other .verification.not-approved:before {
+      background: #c04343; }
+  .node-investor-company.view-mode-full .investor-other .other span.label {
+    display: block;
+    float: none;
+    margin-bottom: 0.5em; }
+
 .node-person.view-mode-full .node-section {
   display: block;
   padding-bottom: 30px;
@@ -1507,6 +1651,28 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     float: left;
     text-align: left;
     margin-right: 1em; }
+  .node-person.view-mode-full .person-details .detail .verification {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-person.view-mode-full .person-details .detail .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-person.view-mode-full .person-details .detail .verification:before {
+      margin-right: 0; }
+    .node-person.view-mode-full .person-details .detail .verification.approved:before {
+      background: #6c9e65; }
+    .node-person.view-mode-full .person-details .detail .verification.expiring:before {
+      background: #f9a500; }
+    .node-person.view-mode-full .person-details .detail .verification.not-approved:before {
+      background: #c04343; }
 .node-person.view-mode-full .person-other .other {
   float: left;
   display: block;
@@ -1516,6 +1682,7 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   border: 2px solid #f3f4f8;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
+  text-align: right;
   text-align: left; }
   .node-person.view-mode-full .person-other .other:last-child {
     margin-right: 0; }
@@ -1525,7 +1692,34 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     clear: left; }
   .node-person.view-mode-full .person-other .other span.label {
     display: block;
+    float: left;
     text-align: left;
+    margin-right: 1em; }
+  .node-person.view-mode-full .person-other .other .verification {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-person.view-mode-full .person-other .other .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-person.view-mode-full .person-other .other .verification:before {
+      margin-right: 0; }
+    .node-person.view-mode-full .person-other .other .verification.approved:before {
+      background: #6c9e65; }
+    .node-person.view-mode-full .person-other .other .verification.expiring:before {
+      background: #f9a500; }
+    .node-person.view-mode-full .person-other .other .verification.not-approved:before {
+      background: #c04343; }
+  .node-person.view-mode-full .person-other .other span.label {
+    display: block;
+    float: none;
     margin-bottom: 0.5em; }
 
 .view-offers .add-more {
@@ -3069,6 +3263,16 @@ table.tabledrag-processed {
 
 .node-barrier {
   padding: 0 40px; }
+
+.node-section {
+  display: block;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f3f4f8;
+  margin-bottom: 30px; }
+  .node-section:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .content-wrapper {
   margin: 0;

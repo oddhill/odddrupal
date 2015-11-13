@@ -38,37 +38,19 @@
     .person-details {
 
       .detail {
-        @include span-columns(6 of 12);
-        @include pad(10px);
-        @include omega(2n);
-        border: 2px solid $light-grey;
-        margin-bottom: 0.5em;
-        margin-top: 0.5em;
-        text-align: right;
-
-        span.label {
-          display: block;
-          float: left;
-          text-align: left;
-          margin-right: 1em;
-        }
+        @include node-section-detail;
       }
     }
 
     .person-other {
 
       .other {
-        @include span-columns(6 of 12);
-        @include pad(10px);
-        @include omega(2n);
-        border: 2px solid $light-grey;
-        margin-bottom: 0.5em;
-        margin-top: 0.5em;
+        @include node-section-detail;
         text-align: left;
 
         span.label {
           display: block;
-          text-align: left;
+          float: none;
           margin-bottom: 0.5em;
         }
       }
