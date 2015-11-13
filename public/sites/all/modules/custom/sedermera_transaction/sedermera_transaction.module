@@ -219,7 +219,8 @@ function generate_header_row(&$header, $type_investment) {
  * @param  array $type_investment The active investment types used in the offer
  */
 function generate_contact_person_head_row(&$rows, $transaction, $type_investment) {
-  $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
+  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
+  $person = $transaction_wrap->field_transaction_person->value();
   $investors = db_query("SELECT n.nid AS nid, n.title AS name FROM {node} AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
 
   // If no investors for the contact person create simple string
@@ -240,8 +241,8 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
       $tf = FALSE;
       $attributes = array();
 
-      foreach ($transaction->field_transaction_investor[LANGUAGE_NONE] as $value) {
-        $res = db_query("SELECT COUNT(*) AS tf FROM {field_data_field_transaction_ap_ap} WHERE entity_id = :eid AND field_transaction_ap_ap_target_id = :tid", array(':eid' => $value['target_id'], ':tid' => $investor->nid))->fetchAssoc();
+      foreach ($transaction_wrap->field_transaction_investor->value() as $node) {
+        $res = db_query("SELECT COUNT(*) AS tf FROM {field_data_field_transaction_ap_ap} WHERE entity_id = :eid AND field_transaction_ap_ap_target_id = :tid", array(':eid' => $node->nid, ':tid' => $investor->nid))->fetchAssoc();
 
         if ($res['tf'] == 1) {
           $tf = TRUE;
@@ -295,7 +296,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
-    $sum += $transaction->field_transaction_fe_sign[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_fe_sign->value();
     $field = field_view_field('node', $transaction, 'field_transaction_fe_sign',
           array(
             'label'=>'hidden',
@@ -310,7 +311,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
-    $sum += $transaction->field_transaction_fe_warant[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_fe_warant->value();
     $field = field_view_field('node', $transaction, 'field_transaction_fe_warant',
           array(
             'label'=>'hidden',
@@ -326,7 +327,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
-    $sum += $transaction->field_transaction_le_sign[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_le_sign->value();
     $field = field_view_field('node', $transaction, 'field_transaction_le_sign',
           array(
             'label'=>'hidden',
@@ -342,7 +343,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Garantiåtagande if Listningsemission column
   if ($type_investment['le_warr']) {
-    $sum += $transaction->field_transaction_le_warrant[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_le_warrant->value();
     $field = field_view_field('node', $transaction, 'field_transaction_le_warrant',
           array(
             'label'=>'hidden',
@@ -358,7 +359,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Teckningsförbindelse if Private Placement column
   if ($type_investment['pp_sign']) {
-    $sum += $transaction->field_transaction_pp_sign[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_pp_sign->value();
     $field = field_view_field('node', $transaction, 'field_transaction_pp_sign',
           array(
             'label'=>'hidden',
@@ -374,7 +375,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Teckningsförbindelse if Riktad emission column
   if ($type_investment['re_sign']) {
-    $sum += $transaction->field_transaction_re_sign[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_re_sign->value();
     $field = field_view_field('node', $transaction, 'field_transaction_re_sign',
           array(
             'label'=>'hidden',
@@ -390,7 +391,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Sum if Brygglån column
   if ($type_investment['bl_sum']) {
-    $sum += $transaction->field_transaction_bridging[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_bridging->value();
     $field = field_view_field('node', $transaction, 'field_transaction_bridging',
           array(
             'label'=>'hidden',
@@ -406,7 +407,7 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 
   // Sum if Blockpost column
   if ($type_investment['bp_sum']) {
-    $sum += $transaction->field_transaction_block[LANGUAGE_NONE][0]['value'];
+    $sum += $transaction_wrap->field_transaction_block->value();
     $field = field_view_field('node', $transaction, 'field_transaction_block',
           array(
             'label'=>'hidden',
@@ -463,9 +464,10 @@ function generate_contact_person_head_row(&$rows, $transaction, $type_investment
 function generate_investor_rows(&$rows, $investor_transactions, $type_investment) {
   foreach ($investor_transactions as $investor) {
     $transaction_ap = node_load($investor['target_id']);
+    $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
 
-    // Load investor from transaction
-    $investor = node_load($transaction_ap->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
+    // Get investor from transaction
+    $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
 
     $rows[] = array();
     $row = count($rows) - 1;
@@ -593,9 +595,9 @@ function generate_investor_rows(&$rows, $investor_transactions, $type_investment
     );
 
     // To control column
-    if ($transaction_ap->field_transaction_ap_ctrl[LANGUAGE_NONE][0]['value']) {
+    if ($transaction_ap_wrap->field_transaction_ap_ctrl->value()) {
       $rows[$row][] = array(
-        'data' => '<span></span> kontrollera',
+        'data' => '<span class="to-check-ctrl"></span> kontrollera',
       );
     }
     else {
@@ -729,6 +731,5 @@ function generate_sum_row(&$rows, $type_investment) {
  */
 function get_transactions($nid) {
   $result = db_query("SELECT entity_id AS nid FROM {field_data_field_transaction_offer} WHERE field_transaction_offer_target_id = :nid", array(':nid' => $nid))->fetchAllAssoc('nid');
-
   return array_keys($result);
 }
