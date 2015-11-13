@@ -44,6 +44,9 @@ function sedermera_core_update_7002() {
   path_save($path);
 }
 
+/**
+ * Delete unused fields
+ */
 function sedermera_core_update_7003() {
   field_delete_field('field_shared_veri_upp');
   field_delete_field('field_shared_veri_ptv');
@@ -59,6 +62,9 @@ function sedermera_core_update_7003() {
   field_purge_batch(100);
 }
 
+/**
+ * Generate alias for create content
+ */
 function sedermera_core_update_7004() {
   $path = array(
     'source' => 'node/add/person',
@@ -79,6 +85,9 @@ function sedermera_core_update_7004() {
   path_save($path);
 }
 
+/**
+ * Generate alias for create content
+ */
 function sedermera_core_update_7005() {
   $path = array(
     'source' => 'node/add/erbjudande',
@@ -87,9 +96,35 @@ function sedermera_core_update_7005() {
   path_save($path);
 }
 
+/**
+ * Generate alias for create content
+ */
 function sedermera_core_update_7006() {
   $path = array(
     'source' => 'node/add/erbjudande',
+    'alias' => 'erbjudanden/skapa',
+  );
+  path_save($path);
+}
+
+/**
+ * Update alias for create content
+ */
+function sedermera_core_update_7007() {
+  $path = array(
+    'source' => 'node/add/investor-private',
+    'alias' => 'avtalsparter/skapa/bolag',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-company',
+    'alias' => 'avtalsparter/skapa/privatperson',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/offer',
     'alias' => 'erbjudanden/skapa',
   );
   path_save($path);
