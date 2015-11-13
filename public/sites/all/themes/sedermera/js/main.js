@@ -196,4 +196,28 @@ Drupal.ajax.prototype.commands.viewsScrollTop = function (ajax, response, status
 
 };
 
+// Override the default event handler for the required state. We have configured
+// the form placeholder module to place the required asterix after the actual
+// input instead of within the label, since we're using the label as a
+// placeholder and hiding the regular label. This override will also place the
+// marker after the input instead of within the label.
+// @see misc/states.js.
+$(document).unbind('state:required');
+$(document).bind('state:required', function(e) {
+  if (e.trigger) {
+    var $input = $(e.target);
+    var $wrapper = $input.closest('.form-item, .form-wrapper');
+
+    if (e.value) {
+      // Avoids duplicate required markers on initialization.
+      if (!$wrapper.find('.form-required').length) {
+        $input.after('<span class="form-required">*</span>');
+      }
+    }
+    else {
+      $wrapper.find('.form-required').remove();
+    }
+  }
+});
+
 })(jQuery);
