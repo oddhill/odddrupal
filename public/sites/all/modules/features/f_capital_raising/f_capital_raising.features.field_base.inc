@@ -1769,7 +1769,7 @@ function f_capital_raising_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'erbjudande' => 'erbjudande',
+          'offer' => 'offer',
         ),
       ),
       'target_type' => 'node',
