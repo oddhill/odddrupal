@@ -689,6 +689,10 @@ function sedermera_verification_get_status_multiple(array $ids) {
     $statuses[] = $status;
   }
 
+  if (empty($statuses)) {
+    return 0;
+  }
+
   // Return the lowest status. It's safe to use min() since the status constants
   // are defined incrementally.
   return min($statuses);
