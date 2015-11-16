@@ -730,6 +730,11 @@ function generate_sum_row(&$rows, $type_investment) {
  * @return array List of transaction ids
  */
 function get_transactions($nid) {
-  $result = db_query("SELECT entity_id AS nid FROM {field_data_field_transaction_offer} WHERE field_transaction_offer_target_id = :nid", array(':nid' => $nid))->fetchAllAssoc('nid');
+  $result = db_query("SELECT o.entity_id AS nid
+      FROM {field_data_field_transaction_offer} AS o
+      INNER JOIN {field_data_field_transaction_interested} AS i
+      ON (o.entity_id = i.entity_id)
+      WHERE field_transaction_offer_target_id = :nid
+      AND field_transaction_interested_value = 1", array(':nid' => $nid))->fetchAllAssoc('nid');
   return array_keys($result);
 }
