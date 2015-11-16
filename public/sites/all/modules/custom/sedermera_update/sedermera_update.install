@@ -361,7 +361,7 @@ function sedermera_update_update_7016() {
 
 /**
  * Clear database of all old nodes to clear errors
- * @return String count
+ * @return String count deleted nodes
  */
 function sedermera_update_update_7017() {
   $results = db_select('node', 'n')
