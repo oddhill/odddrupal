@@ -787,6 +787,7 @@ function f_investor_ds_layout_settings_info() {
         9 => 'field_user_interests',
         10 => 'field_user_notes',
         11 => 'investors',
+        12 => 'field_user_id_ctrl',
       ),
     ),
     'fields' => array(
@@ -802,6 +803,7 @@ function f_investor_ds_layout_settings_info() {
       'field_user_interests' => 'ds_content',
       'field_user_notes' => 'ds_content',
       'investors' => 'ds_content',
+      'field_user_id_ctrl' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

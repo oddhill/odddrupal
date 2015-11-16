@@ -819,7 +819,7 @@ function f_investor_field_default_field_bases() {
         'view' => array(
           'args' => array(),
           'display_name' => 'entityreference_1',
-          'view_name' => 'kundansvarig',
+          'view_name' => 'customer_handler',
         ),
       ),
       'target_type' => 'user',

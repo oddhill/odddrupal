@@ -223,7 +223,14 @@ function f_investor_strongarm() {
           'weight' => '1',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'verification_status' => array(
+          'full' => array(
+            'weight' => '19',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__person'] = $strongarm;
