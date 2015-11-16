@@ -92,7 +92,7 @@ function sedermera_investor_admin_paths_alter(&$paths) {
 function sedermera_investor_create_page() {
   $items[] = array(
     'title' => 'Avtalspart Privat',
-    'href' => "node/add/investor-privat",
+    'href' => "node/add/investor-private",
     'description' => 'Lägg till en ny privatperson.',
     'localized_options' => array(
       'query' => array('destination' => 'avtalsparter'),
@@ -101,7 +101,7 @@ function sedermera_investor_create_page() {
 
   $items[] = array(
     'title' => 'Avtalspart Bolag',
-    'href' => "node/add/investor-bolag",
+    'href' => "node/add/investor-company",
     'description' => 'Lägg till ett nytt bolag.',
     'localized_options' => array(
       'query' => array('destination' => 'avtalsparter'),
