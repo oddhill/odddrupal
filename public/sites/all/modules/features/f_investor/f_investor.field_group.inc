@@ -95,6 +95,11 @@ function f_investor_field_group_info() {
       2 => 'field_investor_comp_ctrl_cred',
       3 => 'field_investor_comp_ctrl_reg',
       4 => 'field_investor_comp_ctrl_oth',
+      5 => 'field_investor_shared_ctrl_ua',
+      6 => 'field_investor_shared_ctrl_ptv',
+      7 => 'field_investor_shared_ctrl_cred',
+      8 => 'field_investor_shared_ctrl_ext',
+      9 => 'field_investor_shared_ctrl_oth',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -149,8 +154,8 @@ function f_investor_field_group_info() {
     'label' => 'Head',
     'weight' => '4',
     'children' => array(
-      0 => 'group_prv_ctrl',
-      1 => 'group_ap',
+      0 => 'group_ap',
+      1 => 'group_prv_ctrl',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -623,11 +628,11 @@ function f_investor_field_group_info() {
     'label' => 'Kontroll',
     'weight' => '15',
     'children' => array(
-      0 => 'field_invest_pvt_ctrl_ua',
-      1 => 'field_invest_pvt_ctrl_ptv',
-      2 => 'field_invest_pvt_ctrl_cred',
-      3 => 'field_invest_pvt_ctrl_ext',
-      4 => 'field_invest_pvt_ctrl_oth',
+      0 => 'field_investor_shared_ctrl_ua',
+      1 => 'field_investor_shared_ctrl_ptv',
+      2 => 'field_investor_shared_ctrl_cred',
+      3 => 'field_investor_shared_ctrl_ext',
+      4 => 'field_investor_shared_ctrl_oth',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
