@@ -154,449 +154,14 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
 
 /**
  * Implements hook_form_FORM_ID_alter().
+ * Hide control section when creating a person
  */
-// function sedermera_verification_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
-//   // Disable the fields for "Kontroller" for the regular entity form as we want
-//   // to present this at another form.
-//   sedermera_verification_disable_verification_elements($form);
-
-//   // Disable access to the verification approved and expiration field.
-//   $form['field_shared_veri_appr']['#access'] = FALSE;
-//   $form['field_shared_veri_expire']['#access'] = FALSE;
-// }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-// function sedermera_verification_form_eck__entity__form_add_investor_company_alter(&$form, &$form_state, $form_id) {
-//   // Disable the fields for "Kontroller" for the regular entity form as we want
-//   // to present this at another form.
-//   sedermera_verification_disable_verification_elements($form);
-
-//   // Disable access to the verification approved and expiration field.
-//   $form['field_shared_veri_appr']['#access'] = FALSE;
-//   $form['field_shared_veri_expire']['#access'] = FALSE;
-// }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-// function sedermera_verification_form_eck__entity__form_edit_investor_person_alter(&$form, &$form_state, $form_id) {
-//   if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
-//     return;
-//   }
-
-//   // We'll disable the verification elements.
-//   sedermera_verification_disable_verification_elements($form);
-
-//   // Disable access to the verification approved and expiration field.
-//   $form['field_shared_veri_appr']['#access'] = FALSE;
-//   $form['field_shared_veri_expire']['#access'] = FALSE;
-//   $form['field_ctrl_ok']['#access'] = FALSE;
-//   $form['field_shared_lead']['#access'] = FALSE;
-// }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-// function sedermera_verification_form_eck__entity__form_edit_investor_company_alter(&$form, &$form_state, $form_id) {
-//   if (isset($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'],'/file/ajax/') !== FALSE) {
-//     return;
-//   }
-
-//   // We'll disable the verification elements.
-//   sedermera_verification_disable_verification_elements($form);
-
-//   // Disable access to the verification approved and expiration field.
-//   $form['field_shared_veri_appr']['#access'] = FALSE;
-//   $form['field_shared_veri_expire']['#access'] = FALSE;
-//   $form['field_ctrl_ok']['#access'] = FALSE;
-//   $form['field_shared_lead']['#access'] = FALSE;
-// }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-// function sedermera_verification_form_kontrolluppgift_privat_node_form_alter(&$form, &$form_state, $form_id) {
-//   sedermera_verification_add_verification_header($form);
-//   sedermera_verification_mark_not_ok($form);
-//   $form['field_shared_veri_appr']['#access'] = FALSE;
-//   $form['field_shared_veri_expire']['#access'] = FALSE;
-//   $form['field_ctrl_ok']['#access'] = FALSE;
-//   $form['field_shared_lead']['#access'] = FALSE;
-// }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-// function sedermera_verification_form_kontrolluppgift_node_form_alter(&$form, &$form_state, $form_id) {
-//   sedermera_verification_add_verification_header($form);
-//   sedermera_verification_mark_not_ok($form);
-//   $form['field_shared_veri_appr']['#access'] = FALSE;
-//   $form['field_shared_veri_expire']['#access'] = FALSE;
-//   $form['field_ctrl_ok']['#access'] = FALSE;
-//   $form['field_shared_lead']['#access'] = FALSE;
-// }
-
 function sedermera_verification_form_person_node_form_alter(&$form, &$form_state, $form_id) {
   if (arg(1) == 'add' && arg(2) == 'person') {
     $form['field_user_id_ctrl']['#access'] = FALSE;
     unset($form['#groups']['group_id_ctrl']);
     unset($form['#fieldgroups']['group_id_ctrl']);
   }
-}
-
-/**
- * Implements hook_node_view().
- */
-// function sedermera_verification_node_view($node, $view_mode) {
-//   if (in_array($node->type, array('kontrolluppgift', 'kontrolluppgift_privat')) && $view_mode == 'full' && arg(3) == 'kontroll') {
-//     $fields = sedermera_verification_get_verification_fields();
-
-//     foreach ($fields as $field) {
-//       $check = 'field_ctrl_app_'. $field;
-//       $date = 'field_ctrl_date_'. $field;
-//       $group = 'group_ctrl_' . $field;
-
-
-//       if (isset($node->content[$check])) {
-//         if($node->content[$check]['#items'][0]['value'] == 0) {
-//           $node->content['#fieldgroups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
-//         }
-//       }
-//       if (isset($node->content[$date])) {
-//         if(strtotime($node->content[$date]['#items'][0]['value']) < REQUEST_TIME) {
-//           $node->content['#fieldgroups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
-//         }
-//       }
-//     }
-
-//     // Add the initial structure.
-//     $node->content['field_ctrl_ok'] = array(
-//       '#prefix' => '<div class="verification-header">',
-//       '#suffix' => '</div>',
-//       '#weight' => -100,
-//     );
-
-//     // Get the status.
-//     $status = sedermera_verification_get_status($node->nid);
-
-//     // Determine the class and text based on the status.
-//     switch ($status) {
-//       case SEDERMERA_VERIFICATION_NOT_APPROVED:
-//         $class = 'not-approved';
-//         $text = 'inte godkänd';
-//         break;
-
-//       case SEDERMERA_VERIFICATION_EXPIRED:
-//         $class = 'expired';
-//         $text = 'utgången';
-//         break;
-
-//       default:
-//         $class = 'approved';
-//         $text = 'godkänd';
-//     }
-
-//     // Add the status to the header.
-//     $node->content['field_ctrl_ok']['status'] = array(
-//       '#prefix' => '<h2>',
-//       '#markup' => "Kontrollen är <span class=\"$class\">$text</span>",
-//       '#suffix' => '</h2>',
-//     );
-
-//     // Add the expiration date to the header, if the verification is approved or
-//     // about to expire.
-//     if (in_array($status, array(SEDERMERA_VERIFICATION_EXPIRING, SEDERMERA_VERIFICATION_APPROVED)) && ($expire = sedermera_verification_get_expiration_date($node->nid))) {
-//       $node->content['field_ctrl_ok']['expire'] = array(
-//         '#prefix' => '<span class="expires">',
-//         '#markup' => format_string('Förfaller den @date', array('@date' => format_date($expire, 'custom', 'j/n Y'))),
-//         '#suffix' => '</span>',
-//       );
-//     }
-//   }
-// }
-
-/**
- * Implements hook_menu().
- */
-function sedermera_verification_menu_alter(&$items) {
-  // Get info about the investor entities in order to get the bundles.
-  // $entity_info = entity_get_info('investor');
-
-  // Add a "Kontroller" page for every bundle.
-  // foreach ($entity_info['bundles'] as $bundle => $info) {
-  //   if ($bundle == 'lead') {
-  //     continue;
-  //   }
-
-  //   // Get the base path for this bundle.
-  //   $base = "investor/$bundle/%eckentity";
-
-  //   $items["$base/kontroll"] = array(
-  //     'title' => t('Kontroll'),
-  //     'access callback' => TRUE,
-  //     'type' => MENU_LOCAL_TASK,
-  //     'weight' => 50,
-  //   );
-
-  //   // Callback for the verification status that is fetched via AJAX.
-  //   $items["$base/kontroll/check"] = array(
-  //     'page callback' => 'sedermera_verification_status_field_ajax',
-  //     'page arguments' => array(2),
-  //     'access callback' => 'user_is_logged_in',
-  //     'type' => MENU_CALLBACK,
-  //   );
-
-  //   $items["$base/transaktionshistoria"] = array(
-  //     'title' => t('Transaktionshistoria'),
-  //     'access callback' => TRUE,
-  //     'type' => MENU_LOCAL_TASK,
-  //     'weight' => 50,
-  //   );
-  // }
-
-  // $items['node/%/revisions/return'] = array(
-  //   'title' => 'Återgå till investerare',
-  //   'page callback' => 'return_to_investor',
-  //   'page arguments' => array(1),
-  //   'access callback' => 'sedermera_verification_investor_page',
-  //   'type' => MENU_LOCAL_TASK,
-  // );
-}
-
-/**
-* Page callback.
-*/
-// function return_to_investor($nid) {
-//   $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl` WHERE field_shared_ctrl_target_id = $nid)")->fetchObject();
-
-//   if (!$investor) {
-//     $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl_pvt` WHERE field_shared_ctrl_pvt_target_id = $nid)")->fetchObject();
-//   }
-
-//   $exp = explode(' ', $investor->title);
-//   $title = strtolower($exp[0]);
-//   drupal_goto("investerare/lista/$title/kontroll");
-// }
-
-/**
- * Access callback.
- *
- * Check if item is investor.
- *
- * @return bool
- */
-// function sedermera_verification_investor_page() {
-//   $node = node_load(arg(1));
-
-//   if ($node->type == 'kontrolluppgift_privat' || $node->type == 'kontrolluppgift') {
-//     return TRUE;
-//   }
-//   else {
-//     return FALSE;
-//   }
-// }
-
-
-/**
- * Access callback for the verification form.
- *
- * This will allow access if the regular access check approves it, but will
- * also allow users with the view permission to access the page.
- *
- * return bool
- *   TRUE or FALSE depending on whether or not the user should have access to
- *   the page.
- */
-function sedermera_verification_page_access() {
-  // Get the arguments for this function, and pop of the regular access
-  // callback.
-  $args = func_get_args();
-  $regular = array_pop($args);
-
-  // Return TRUE if the regular access callback does it, or fallback to the view
-  // permission.
-  return call_user_func_array($regular, $args) ? TRUE : user_access('eck view verification verification entities');
-}
-
-/**
- * AJAX callback for the verification status field.
- *
- * @param obj $investor
- *   The investor entity.
- *
- * @return bool
- *   JSON encoded boolean which will be handled by the javascript callback.
- */
-function sedermera_verification_status_field_ajax($investor) {
-  $status = sedermera_verification_get_status($investor->field_shared_ctrl[LANGUAGE_NONE][0]['target_id']);
-  drupal_json_output($status);
-}
-
-/**
- * Disables the "verification" form elements for an investor form.
- *
- * @param array $form
- *   A structured form array.
- */
-function sedermera_verification_disable_verification_elements(&$form) {
-  // Loop through every investor form element and disable access to it.
-  foreach (sedermera_verification_get_verification_field() as $name) {
-    $form[$name]['#access'] = FALSE;
-  }
-}
-
-function sedermera_verification_mark_not_ok(&$form) {
-  $fields = sedermera_verification_get_verification_fields();
-
-  if (!$form['#entity']) {
-    return;
-  }
-
-  $wrapper = entity_metadata_wrapper('node', $form['#entity']);
-
-  foreach ($fields as $field) {
-    $check = 'field_ctrl_app_'. $field;
-    $date = 'field_ctrl_date_'. $field;
-    $group = 'group_ctrl_' . $field;
-
-    if (isset($wrapper->$check)) {
-      if($wrapper->$check->value() == 0) {
-        $form['#groups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
-      }
-    }
-    if (isset($wrapper->$date)) {
-      if($wrapper->$date->value() < REQUEST_TIME) {
-        $form['#groups'][$group]->format_settings['instance_settings']['classes'] = 'not-approved-control';
-      }
-    }
-  }
-}
-
-/**
- * Adds the header to the verification form.
- *
- * @param array $form
- *   A structured form array.
- */
-function sedermera_verification_add_verification_header(&$form) {
-  // Add the initial structure and a placeholder for TOC.
-  $form['header'] = array(
-    '#prefix' => '<div class="verification-header">',
-    '#suffix' => '</div><div id="toc"></div>',
-    '#weight' => -100,
-  );
-
-  // Get the status.
-  $status = sedermera_verification_get_status($form['nid']['#value']);
-
-  // Determine the class and text based on the status.
-  switch ($status) {
-    case SEDERMERA_VERIFICATION_NOT_APPROVED:
-      $class = 'not-approved';
-      $text = 'inte godkänd';
-      break;
-
-    case SEDERMERA_VERIFICATION_EXPIRED:
-      $class = 'expired';
-      $text = 'utgången';
-      break;
-
-    default:
-      $class = 'approved';
-      $text = 'godkänd';
-  }
-
-  // Add the status to the header.
-  $form['header']['status'] = array(
-    '#prefix' => '<h2>',
-    '#markup' => "Kontrollen är <span class=\"$class\">$text</span>",
-    '#suffix' => '</h2>',
-  );
-
-  // Add the expiration date to the header, if the verification is approved or
-  // about to expire.
-  if (in_array($status, array(SEDERMERA_VERIFICATION_EXPIRING, SEDERMERA_VERIFICATION_APPROVED)) && ($expire = sedermera_verification_get_expiration_date($form['nid']['#value']))) {
-    $form['header']['expire'] = array(
-      '#prefix' => '<span class="expires">',
-      '#markup' => format_string('Förfaller den @date', array('@date' => format_date($expire, 'custom', 'j/n Y'))),
-      '#suffix' => '</span>',
-    );
-  }
-}
-
-/**
- * Minor alterations for the verification form.
- *
- * @param array $form
- *   A structured form array.
- */
-function sedermera_verification_custom_form_alter(&$form) {
-  // Add a submit button for the verification form.
-  $form['actions']['submit']['#submit'][] = 'sedermera_verification_custom_form_submit';
-}
-
-/**
- * Submit callback for the verification form.
- *
- * This will be executed after the regular submit callbacks.
- */
-function sedermera_verification_custom_form_submit($form, &$form_state) {
-  // Get the entity, and redirect the user to the verification form.
-  $entity = $form_state['values']['entity'];
-  $form_state['redirect'] = "investor/{$entity->type}/{$entity->id}/kontroll";
-}
-
-/**
- * Implements hook_views_api().
- */
-function sedermera_verification_views_api() {
-  return array(
-    'api' => 3,
-    'path' => drupal_get_path('module', 'sedermera_verification') . '/views',
-  );
-}
-
-/**
- * Get the status for a verification, based on the ID for an investor.
- *
- * @param int $id
- *   The investor ID.
- *
- * @return int
- *   A constant which indicates the status for the verification.
- *
- * TODO: This function is deprecated, and should be removed once the new helper
- * functions are being used instead.
- *
- * @see sedermera_verification_get_status_single()
- * @see sedermera_verification_get_status_multiple()
- */
-function sedermera_verification_get_status($id, $investor_id = NULL) {
-  // Get the approved boolan and expiration date.
-  $approved = sedermera_verification_get_approved($id);
-  $expire = sedermera_verification_get_expiration_date($id);
-
-  // Check if the verification is approved.
-  if (!$approved) {
-    return SEDERMERA_VERIFICATION_NOT_APPROVED;
-  }
-
-  // Check if the verification has expired.
-  if ($expire < REQUEST_TIME) {
-    return SEDERMERA_VERIFICATION_EXPIRED;
-  }
-
-  // Check if the verification is about to expire.
-  $query = sedermera_verification_get_expiring_query($investor_id);
-  $result = $query->execute();
-  if ($result->rowCount()) {
-    return SEDERMERA_VERIFICATION_EXPIRING;
-  }
-
-  // Everything has been checked, which means that the verification is approved.
-  return SEDERMERA_VERIFICATION_APPROVED;
 }
 
 /**
@@ -673,8 +238,6 @@ function sedermera_verification_get_status_single($id) {
  * @see sedermera_verification_get_status_single()
  */
 function sedermera_verification_get_status_multiple(array $ids) {
-  $statuses = array();
-
   // Bail out early if no ids exists
   if (empty($ids)) {
     return SEDERMERA_VERIFICATION_NOT_APPROVED;
@@ -695,14 +258,11 @@ function sedermera_verification_get_status_multiple(array $ids) {
     if ($status === SEDERMERA_VERIFICATION_EXPIRING) {
       return $status;
     }
-
-    // Store the status for later evaluation.
-    $statuses[] = $status;
   }
 
   // Return the lowest status. It's safe to use min() since the status constants
   // are defined incrementally.
-  return min($statuses);
+  return SEDERMERA_VERIFICATION_APPROVED;
 }
 
 /**
@@ -761,120 +321,6 @@ function sedermera_verification_get_status_node($nid) {
 }
 
 /**
- * Get the approved status for a verification, based on the ID for an control.
- *
- * @param int $id
- *   The control ID.
- *
- * @return bool
- *   Boolean indicating whether or not the verification is approved.
- */
-function sedermera_verification_get_approved($id) {
-  // Get the verification fields, and the available properties for this investor
-  // in order to only check the available verification fields.
-  $fields = sedermera_verification_get_verification_fields();
-
-  $node = node_load($id);
-
-  if (!$node) {
-    return FALSE;
-  }
-
-  $node_wrapper = entity_metadata_wrapper('node', $node);
-
-  // Iterate through every available investor field.
-  foreach ($fields as $field) {
-    $current = 'field_ctrl_app_'. $field;
-
-    if (isset($node_wrapper->$current)) {
-      if($node_wrapper->$current->value() == 0) {
-        return FALSE;
-      }
-    }
-  }
-
-  // Everything passed, which means that the verification is ok.
-  return TRUE;
-}
-
-/**
- * Get the expiration date for a verification, based on the ID for an investor.
- *
- * @param int $id
- *   The investor ID.
- *
- * @return timestamp
- *   A UNIX timestamp for when the verification will expire, or 0 if it won't
- *   expire.
- */
-function sedermera_verification_get_expiration_date($id) {
-  // Set the initial return value.
-  $return = 0;
-
-  // Get the verification fields, and the available properties for this investor
-  // in order to only check the available verification fields.
-  $fields = sedermera_verification_get_verification_fields();
-
-  $node = node_load($id);
-
-  if (!$node) {
-    return $return;
-  }
-
-  $node_wrapper = entity_metadata_wrapper('node', $node);
-
-  // Iterate through every available investor field.
-  foreach ($fields as $field) {
-    $current = 'field_ctrl_date_'. $field;
-
-    if (isset($node_wrapper->$current)) {
-      $expire = $node_wrapper->$current->value();
-
-      if (empty($return) || $expire < $return) {
-        $return = $expire;
-      }
-    }
-  }
-
-  // Return the smallest expiration date.
-  return $return;
-}
-
-/**
- * Get the the verification fields.
- *
- * @return array
- *   An array with the name of the verification field.
- */
-function sedermera_verification_get_verification_field() {
-  return array(
-    'field_shared_ctrl',
-    'field_shared_ctrl_pvt',
-  );
-}
-
-/**
- * Get the the verification fields.
- *
- * @return array
- *   An array with the names of the verification fields.
- */
-function sedermera_verification_get_verification_fields() {
-  return array(
-    'upp',
-    'ptv',
-    'id',
-    'id_real',
-    'reg',
-    'eu',
-    'credit',
-    'comp',
-    'oth',
-    'ext',
-  );
-}
-
-/**
  * Get a query which is used to fetch expiring verifications.
  *
  * Expiring verifications are determined by comparing the expiration date with
@@ -888,88 +334,50 @@ function sedermera_verification_get_verification_fields() {
  * @return SelectQuery
  *   The unexecuted query.
  */
-function sedermera_verification_get_expiring_query($investor_id = NULL) {
-  // Start of from the investor table.
-  $query = db_select('eck_investor', 'investor');
+// function sedermera_verification_get_expiring_query($investor_id = NULL) {
+//   // Start of from the investor table.
+//   $query = db_select('eck_investor', 'investor');
 
-  // Join the capital raisings via the offer entity, in order to filter on the
-  // published capital raisings and to get their expiration date.
-  $query->join('field_data_field_offer_investor', 'offer_investor', 'investor.id = offer_investor.field_offer_investor_target_id');
-  $query->join('field_data_field_offer_cap_rais', 'offer_capital_raising', 'offer_investor.entity_id = offer_capital_raising.entity_id');
-  $query->join('node', 'node_capital_raising', 'offer_capital_raising.field_offer_cap_rais_target_id = node_capital_raising.nid');
-  $query->join('field_data_field_cap_rais_date', 'capital_raising_expire', 'node_capital_raising.nid = capital_raising_expire.entity_id');
+//   // Join the capital raisings via the offer entity, in order to filter on the
+//   // published capital raisings and to get their expiration date.
+//   $query->join('field_data_field_offer_investor', 'offer_investor', 'investor.id = offer_investor.field_offer_investor_target_id');
+//   $query->join('field_data_field_offer_cap_rais', 'offer_capital_raising', 'offer_investor.entity_id = offer_capital_raising.entity_id');
+//   $query->join('node', 'node_capital_raising', 'offer_capital_raising.field_offer_cap_rais_target_id = node_capital_raising.nid');
+//   $query->join('field_data_field_cap_rais_date', 'capital_raising_expire', 'node_capital_raising.nid = capital_raising_expire.entity_id');
 
-  // Join the verification expiration date and status for the investors.
-  $query->join('field_data_field_shared_veri_expire', 'investor_verification_expire', 'investor.id = investor_verification_expire.entity_id');
-  $query->join('field_data_field_shared_veri_appr', 'investor_verification_approved', 'investor.id = investor_verification_approved.entity_id');
+//   // Join the verification expiration date and status for the investors.
+//   $query->join('field_data_field_shared_veri_expire', 'investor_verification_expire', 'investor.id = investor_verification_expire.entity_id');
+//   $query->join('field_data_field_shared_veri_appr', 'investor_verification_approved', 'investor.id = investor_verification_approved.entity_id');
 
-  // Add the relevant fields.
-  $query->addField('investor', 'id', 'id');
-  $query->addField('investor', 'type', 'type');
-  $query->addField('investor', 'title', 'name');
-  $query->addField('investor_verification_expire', 'field_shared_veri_expire_value', 'verification');
-  $query->addField('investor_verification_approved', 'field_shared_veri_appr_value', 'approved');
+//   // Add the relevant fields.
+//   $query->addField('investor', 'id', 'id');
+//   $query->addField('investor', 'type', 'type');
+//   $query->addField('investor', 'title', 'name');
+//   $query->addField('investor_verification_expire', 'field_shared_veri_expire_value', 'verification');
+//   $query->addField('investor_verification_approved', 'field_shared_veri_appr_value', 'approved');
 
-  // Filter on published capital raisings.
-  $query->condition('node_capital_raising.status', 1);
+//   // Filter on published capital raisings.
+//   $query->condition('node_capital_raising.status', 1);
 
-  // Add a filter which gets the verification that are going to expire before or
-  // on the same day as the capital raising, or where the verification isn't
-  // approved.
-  $condition = db_or();
-  $condition->condition('field_shared_veri_appr_value', 0);
-  $condition->where('field_shared_veri_expire_value <= field_cap_rais_date_value2');
-  $query->condition($condition);
+//   // Add a filter which gets the verification that are going to expire before or
+//   // on the same day as the capital raising, or where the verification isn't
+//   // approved.
+//   $condition = db_or();
+//   $condition->condition('field_shared_veri_appr_value', 0);
+//   $condition->where('field_shared_veri_expire_value <= field_cap_rais_date_value2');
+//   $query->condition($condition);
 
-  // Filter by a investor, if one has been specified.
-  if ($investor_id) {
-    $query->condition('investor.id', $investor_id);
-  }
+//   // Filter by a investor, if one has been specified.
+//   if ($investor_id) {
+//     $query->condition('investor.id', $investor_id);
+//   }
 
-  // Order by the verification status and expiration date, and group by the
-  // investor names.
-  $query->orderBy('field_shared_veri_appr_value')
-    ->orderBy('verification')
-    ->groupBy('name');
+//   // Order by the verification status and expiration date, and group by the
+//   // investor names.
+//   $query->orderBy('field_shared_veri_appr_value')
+//     ->orderBy('verification')
+//     ->groupBy('name');
 
-  // Return the query.
-  return $query;
-}
-
-function sedermera_verification_node_presave($node) {
-  if (!$node->is_new) {
-    if ($node->type == 'kontrolluppgift') {
-      $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl` WHERE field_shared_ctrl_target_id = $node->nid)")->fetchObject();
-
-      $node->title = $investor->title . ' kontrolluppgift';
-    }
-    if ($node->type == 'kontrolluppgift_privat') {
-      $investor = db_query("SELECT title FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl_pvt` WHERE field_shared_ctrl_pvt_target_id = $node->nid)")->fetchObject();
-
-      $node->title = $investor->title . ' kontrolluppgift';
-    }
-  }
-}
-
-function sedermera_verification_revision_publish($node) {
-  if ($node->type == 'kontrolluppgift') {
-    $investor = db_query("SELECT id FROM `eck_investor` WHERE id = (SELECT entity_id FROM `field_data_field_shared_ctrl` WHERE field_shared_ctrl_target_id = $node->nid)")->fetchObject();
-
-    $entity = entity_load_single('investor', $investor->id);
-
-    if ($entity) {
-      // Get the expiration status for this investor, and save the status to the
-      // investor entity if it has been set.
-      $approved = (sedermera_verification_get_approved($investor->id)) ? 1 : 0;
-      $entity->field_shared_veri_appr = array(LANGUAGE_NONE => array(array('value' => intval($approved))));
-
-      // Get the expiration date for this investor, and save the date to the
-      // investor entity if it has been set.
-      $expire = sedermera_verification_get_expiration_date($investor->id);
-      $date = new DateObject($expire);
-      $entity->field_shared_veri_expire = array(LANGUAGE_NONE => array(array('value' => $date->format(DATE_FORMAT_ISO))));
-
-      entity_save('investor', $entity);
-    }
-  }
-}
+//   // Return the query.
+//   return $query;
+// }
