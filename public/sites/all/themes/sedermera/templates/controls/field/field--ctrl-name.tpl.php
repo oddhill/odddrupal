@@ -45,11 +45,7 @@
  */
 ?>
 
-<div class="field app <?php print $field_name_css; ?>">
-  <?php if (!$label_hidden): ?>
-    <span class="label" <?php print $title_attributes; ?>><?php print $label ?>:&nbsp;</span>
-  <?php endif; ?>
-
+<div class="verification-info">
   <?php foreach ($items as $delta => $item): ?>
     <?php print render($item); ?>
   <?php endforeach; ?>

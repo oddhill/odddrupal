@@ -64,16 +64,16 @@ function sedermera_verification_ap_name_and_type($field) {
 
   $fields['type'] = array(
     '#type' => 'markup',
-    '#prefix' => '<h2 class="ctrl-ap-type">',
+    '#prefix' => '<div class="ver-type">',
     '#markup' => $type,
-    '#suffix' => '</h2>',
+    '#suffix' => '</div>',
   );
 
   $fields['name'] = array(
     '#type' => 'markup',
-    '#prefix' => '<h1 class="ctrl-ap-name">',
+    '#prefix' => '<h2 class="ver-title">',
     '#markup' => $node_ap->title,
-    '#suffix' => '</h1>',
+    '#suffix' => '</h2>',
   );
 
   return drupal_render($fields);

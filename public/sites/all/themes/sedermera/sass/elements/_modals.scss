@@ -13,6 +13,22 @@
       margin: 0;
       padding: 0;
     }
+
+    .node-ctrl {
+      border-top: 10px solid $coffee;
+
+      &.approved {
+        border-color: $pear;
+      }
+
+      &.expiring {
+        border-color: $mustard;
+      }
+
+      &.not-approved {
+        border-color: $wine;
+      }
+    }
   }
 }
 

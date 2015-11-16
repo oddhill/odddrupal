@@ -239,51 +239,6 @@
   }
 }
 
-// Verification header
-.verification-header {
-  margin-bottom: 20px;
-  overflow: hidden;
-  border-bottom: 2px solid $light-grey;
-  padding-bottom: 20px;
-
-  h2 {
-    @include font-size(2.5);
-    display: inline-block;
-    float: left;
-  }
-
-  // Approved, not approved, expired text
-  .approved,
-  .not-approved,
-  .expired {
-    @include font-size(2.5);
-    background: none;
-    height: auto;
-    padding: 0;
-    text-transform: lowercase;
-    width: auto;
-  }
-
-  .approved {
-    color: $pear;
-  }
-
-  .not-approved,
-  .expired {
-    color: $wine;
-  }
-
-  // Expiring date
-  .expires {
-    color: $cloudy;
-    display: inline-block;
-    float: right;
-    font-weight: 500;
-    margin-top: 17px;
-    text-transform: lowercase;
-  }
-}
-
 // When logged in as inspector (granskare) styling
 .title-container {
   background: $light-concrete;

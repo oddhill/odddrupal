@@ -105,17 +105,17 @@ function sedermera_preprocess_node(&$variables) {
     // Set a variable to use with template depending on status
     switch ($status) {
       case SEDERMERA_VERIFICATION_NOT_APPROVED:
-        $text = 'Ej godkänd';
+        $variables['ver_text'] = 'ej godkänd';
         $variables['ver_status'] = 'not-approved';
         break;
 
       case SEDERMERA_VERIFICATION_EXPIRING:
-        $text = 'Utgående';
+        $variables['ver_text'] = 'utgående';
         $variables['ver_status'] = 'expiring';
         break;
 
       case SEDERMERA_VERIFICATION_APPROVED:
-        $text = 'Godkänd';
+        $variables['ver_text'] = 'godkänd';
         $variables['ver_status'] = 'approved';
         break;
     }

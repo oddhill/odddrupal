@@ -12,5 +12,25 @@
  */
 ?>
 <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> <?php print $ver_status; ?>">
-  <?php print $ds_content; ?>
+
+  <div class="verification-header">
+
+    <div class="verification-status">
+      Kontrollen är <span class="ctrl-verification <?php print $ver_status; ?>"><?php print $ver_text; ?></span>
+    </div>
+
+    <?php print render($content['ctrl_name']); ?>
+
+    <div class="verification-info">
+      <div class="ver-type">Uppdragsavtal</div>
+      <h2 class="ver-title">John Smith</h2>
+    </div>
+  </div>
+
+  <div class="verification-body">
+    <?php print render($content['field_ctrl_files']); ?>
+    <?php print render($content['field_ctrl_app']); ?>
+    <?php print render($content['field_ctrl_date']); ?>
+    <?php print render($content['field_ctrl_notes']); ?>
+  </div>
 </div>

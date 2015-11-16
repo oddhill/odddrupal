@@ -511,6 +511,54 @@ div.button {
 .page-node-add-company #company-node-form {
   padding: 0; }
 
+.node-ctrl.view-mode-full .verification-header {
+  padding: 40px;
+  overflow: hidden; }
+.node-ctrl.view-mode-full .verification-status {
+  float: right;
+  margin-top: 2.4em; }
+  .node-ctrl.view-mode-full .verification-status .ctrl-verification {
+    font-weight: 700; }
+    .node-ctrl.view-mode-full .verification-status .ctrl-verification.not-approved {
+      color: #c04343; }
+    .node-ctrl.view-mode-full .verification-status .ctrl-verification.expiring {
+      color: #f9a500; }
+    .node-ctrl.view-mode-full .verification-status .ctrl-verification.approved {
+      color: #6c9e65; }
+.node-ctrl.view-mode-full .verification-info {
+  overflow: hidden; }
+  .node-ctrl.view-mode-full .verification-info .ver-type {
+    text-transform: uppercase; }
+  .node-ctrl.view-mode-full .verification-info h2 {
+    font-size: 30px;
+    font-size: 3rem;
+    line-height: 36px; }
+.node-ctrl.view-mode-full .verification-body {
+  padding: 40px;
+  background: #fafbfc;
+  border-top: 1px solid #e0e2e6;
+  border-bottom: 1px solid #e0e2e6; }
+  .node-ctrl.view-mode-full .verification-body .ctrl {
+    margin-bottom: 30px; }
+  .node-ctrl.view-mode-full .verification-body .ctrl-label {
+    font-weight: 500;
+    color: #797979;
+    padding-bottom: 15px;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 16px;
+    border-bottom: 2px solid #a8a8a8;
+    margin-bottom: 15px; }
+.node-ctrl.view-mode-full .ctrl-files-list {
+  border: 1px solid #e0e2e6;
+  background: #fff; }
+  .node-ctrl.view-mode-full .ctrl-files-list .file {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #e0e2e6; }
+    .node-ctrl.view-mode-full .ctrl-files-list .file:last-child {
+      border-bottom: 0px none; }
+
 #views-exposed-form-document-log-document-log .description {
   display: none; }
 
@@ -2316,41 +2364,6 @@ form.views-send-preview .form-actions {
   #eck-entity-form-edit-investor-company form .form-item {
     margin-bottom: 5px; }
 
-.verification-header {
-  margin-bottom: 20px;
-  overflow: hidden;
-  border-bottom: 2px solid #f3f4f8;
-  padding-bottom: 20px; }
-  .verification-header h2 {
-    font-size: 25px;
-    font-size: 2.5rem;
-    line-height: 37.5px;
-    display: inline-block;
-    float: left; }
-  .verification-header .approved,
-  .verification-header .not-approved,
-  .verification-header .expired {
-    font-size: 25px;
-    font-size: 2.5rem;
-    line-height: 37.5px;
-    background: none;
-    height: auto;
-    padding: 0;
-    text-transform: lowercase;
-    width: auto; }
-  .verification-header .approved {
-    color: #6c9e65; }
-  .verification-header .not-approved,
-  .verification-header .expired {
-    color: #c04343; }
-  .verification-header .expires {
-    color: #b2b3b6;
-    display: inline-block;
-    float: right;
-    font-weight: 500;
-    margin-top: 17px;
-    text-transform: lowercase; }
-
 .title-container {
   background: #c8cacd;
   border-bottom: 1px solid #e0e2e6;
@@ -2570,9 +2583,6 @@ form.views-send-preview .form-actions {
     width: 20px; }
 .block-sedermera-dashboard-verifications th {
   padding: 10px 0px 10px 10px; }
-
-.verification-status {
-  width: 20%; }
 
 .empty-wrapper {
   padding: 80px 30px; }
@@ -3195,6 +3205,14 @@ form#user-login,
   .mfp-ajax-holder .mfp-content .node {
     margin: 0;
     padding: 0; }
+  .mfp-ajax-holder .mfp-content .node-ctrl {
+    border-top: 10px solid #282828; }
+    .mfp-ajax-holder .mfp-content .node-ctrl.approved {
+      border-color: #6c9e65; }
+    .mfp-ajax-holder .mfp-content .node-ctrl.expiring {
+      border-color: #f9a500; }
+    .mfp-ajax-holder .mfp-content .node-ctrl.not-approved {
+      border-color: #c04343; }
 
 .mfp-close-btn-in .mfp-close {
   color: #fff;

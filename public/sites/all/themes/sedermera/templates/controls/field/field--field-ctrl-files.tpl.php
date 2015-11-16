@@ -45,12 +45,15 @@
  */
 ?>
 
-<div class="field app <?php print $field_name_css; ?>">
-  <?php if (!$label_hidden): ?>
-    <span class="label" <?php print $title_attributes; ?>><?php print $label ?>:&nbsp;</span>
-  <?php endif; ?>
+<div class="ctrl ctrl-files">
 
-  <?php foreach ($items as $delta => $item): ?>
-    <?php print render($item); ?>
-  <?php endforeach; ?>
+  <div class="ctrl-label">
+    <?php print $label ?>
+  </div>
+
+  <div class="ctrl-files-list">
+    <?php foreach ($items as $delta => $item): ?>
+      <?php print render($item); ?>
+    <?php endforeach; ?>
+  </div>
 </div>
