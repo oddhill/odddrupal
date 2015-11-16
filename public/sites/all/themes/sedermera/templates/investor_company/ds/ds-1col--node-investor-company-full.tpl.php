@@ -12,7 +12,7 @@
  */
 ?>
 <div class="node-barrier">
-  
+
   <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
 
     <?php print render($content['verification_status']); ?>
@@ -31,11 +31,11 @@
     </div>
 
     <div class="investor-verifications node-section">
-      <?php print render($content['field_investor_comp_ctrl_ua']) ?>
-      <?php print render($content['field_investor_comp_ctrl_ptv']); ?>
-      <?php print render($content['field_investor_comp_ctrl_cred']); ?>
-      <?php print render($content['field_investor_comp_ctrl_reg']); ?>
-      <?php print render($content['field_investor_comp_ctrl_oth']); ?>
+      <?php print render($content['field_investor_shared_ctrl_ua']) ?>
+      <?php print render($content['field_investor_shared_ctrl_ptv']); ?>
+      <?php print render($content['field_investor_shared_ctrl_cred']); ?>
+      <?php print render($content['field_investor_shared_ctrl_reg']); ?>
+      <?php print render($content['field_investor_shared_ctrl_oth']); ?>
     </div>
   </div>
 </div>

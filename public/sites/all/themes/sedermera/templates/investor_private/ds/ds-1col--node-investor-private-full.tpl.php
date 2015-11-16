@@ -21,11 +21,11 @@
     <div class="investor-details node-section">
       <?php print render($content['field_shared_cust_id']); ?>
       <?php print render($content['field_shared_cont_pers']); ?>
-      <?php print render($content['field_invest_pvt_ctrl_ua']); ?>
-      <?php print render($content['field_invest_pvt_ctrl_ptv']); ?>
-      <?php print render($content['field_invest_pvt_ctrl_cred']); ?>
-      <?php print render($content['field_invest_pvt_ctrl_ext']); ?>
-      <?php print render($content['field_invest_pvt_ctrl_oth']); ?>
+      <?php print render($content['field_invest_shared_ctrl_ua']); ?>
+      <?php print render($content['field_invest_shared_ctrl_ptv']); ?>
+      <?php print render($content['field_invest_shared_ctrl_cred']); ?>
+      <?php print render($content['field_invest_shared_ctrl_ext']); ?>
+      <?php print render($content['field_invest_shared_ctrl_oth']); ?>
     </div>
   </div>
 </div>
