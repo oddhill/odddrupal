@@ -84,24 +84,5 @@ body {
 // Import content modules
 @import 'content/*';
 
-@import 'elements/forms/*';
-
 // Import page elements
-@import
-"elements/layouts",
-"elements/sidebar",
-"elements/messages",
-"elements/pager",
-"elements/filteredtable",
-"elements/tabs",
-"elements/htabs",
-"elements/vtabs",
-"elements/login",
-"elements/sidebar-second",
-"elements/activities",
-"elements/transaction-history",
-"elements/dashboard",
-"elements/empty",
-"elements/controls",
-"elements/transaction",
-"elements/table";
+@import 'elements/**/*';

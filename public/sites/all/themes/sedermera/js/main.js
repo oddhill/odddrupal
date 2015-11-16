@@ -78,6 +78,32 @@ var tocInitiator = function() {
   });
 };
 
+// View and edit content in modals.
+var initiateModals = function() {
+
+  $('.mfp-verification-view').magnificPopup({
+    type: 'ajax',
+
+    callbacks: {
+      parseAjax: function(mfpResponse) {
+        // mfpResponse.data is a "data" object from ajax "success" callback
+        // for simple HTML file, it will be just String
+        // You may modify it to change contents of the popup
+        // For example, to show just #some-element:
+        mfpResponse.data = $(mfpResponse.data).find('.node-ctrl');
+
+        // mfpResponse.data must be a String or a DOM (jQuery) element
+
+        console.log('Ajax content loaded:', mfpResponse);
+      },
+      ajaxContentAdded: function() {
+        // Ajax content is loaded and appended to DOM
+        console.log(this.content);
+      }
+    }
+  });
+};
+
 // Run once when the DOM is ready (page load)
 $(document).ready(function() {
   var ischeck = 0;
@@ -101,6 +127,9 @@ $(document).ready(function() {
 
   // Add a TOC to controls
   tocInitiator();
+
+  // Initiate modals
+  initiateModals();
 
   // Fade out the date format (Kontaktlista)
   $(".form-type-date-combo .date-date .form-text").on('focusout', function() {

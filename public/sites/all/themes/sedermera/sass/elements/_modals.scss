@@ -1,0 +1,26 @@
+.mfp-container {
+  padding: 44px;
+}
+
+.mfp-ajax-holder {
+
+  .mfp-content {
+    padding: 0;
+    width: 90%;
+    max-width: 600px;
+
+    .node {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.mfp-close-btn-in {
+
+  .mfp-close {
+    color: $snow;
+    top: -44px;
+    right: -17px;
+  }
+}

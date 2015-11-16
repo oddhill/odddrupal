@@ -96,11 +96,36 @@ function sedermera_preprocess_field(&$variables) {
  * Implements template_preprocess_node().
  */
 function sedermera_preprocess_node(&$variables) {
+
+  if ($variables['type'] == 'ctrl' && $variables['view_mode'] == 'full') {
+
+    // Check status of current control
+    $status = sedermera_verification_get_status_single($variables['nid']);
+
+    // Set a variable to use with template depending on status
+    switch ($status) {
+      case SEDERMERA_VERIFICATION_NOT_APPROVED:
+        $text = 'Ej godkänd';
+        $variables['ver_status'] = 'not-approved';
+        break;
+
+      case SEDERMERA_VERIFICATION_EXPIRING:
+        $text = 'Utgående';
+        $variables['ver_status'] = 'expiring';
+        break;
+
+      case SEDERMERA_VERIFICATION_APPROVED:
+        $text = 'Godkänd';
+        $variables['ver_status'] = 'approved';
+        break;
+    }
+  }
+
   if ($variables['type'] == 'document' && $variables['view_mode'] == 'full') {
     if (sizeof(arg()) <= 2) {
       $user_id = $variables['user']->uid;
-      // Only registered users should sign the document.
-      // Exclude anonymous and root users.
+      // Only registered users should sign the document
+      // Exclude anonymous and root users
       if ($user_id >= 2) {
         $variables['show_sidebar'] = TRUE;
         // Get list of users who have signed the document.
