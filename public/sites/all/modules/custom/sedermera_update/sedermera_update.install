@@ -358,3 +358,21 @@ function sedermera_update_update_7016() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Clear database of all old nodes to clear errors
+ * @return String count
+ */
+function sedermera_update_update_7017() {
+  $results = db_select('node', 'n')
+              ->fields('n', array('nid'))
+              ->execute();
+  foreach ($results as $result) {
+    $nids[] = $result->nid;
+  }
+
+  if (!empty($nids)) {
+    node_delete_multiple($nids);
+    return t('Deleted %count nodes.', array('%count' => count($nids)));
+  }
+}
