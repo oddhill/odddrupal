@@ -11,6 +11,76 @@ define('SEDERMERA_VERIFICATION_EXPIRING', 1);
 define('SEDERMERA_VERIFICATION_APPROVED', 2);
 
 /**
+ * Implements hook_ds_fields_info().
+ */
+function sedermera_verification_ds_fields_info($entity_type) {
+  $fields = array();
+
+  if ($entity_type == 'node') {
+    $fields['ctrl_name'] = array(
+      'title'       => t('Avtalspart kontroll typ och namn'),
+      'field_type'  => DS_FIELD_TYPE_FUNCTION,
+      'function'    => 'sedermera_verification_ap_name_and_type',
+      'ui_limit'    => array('ctrl|*'),
+    );
+
+    return array($entity_type => $fields);
+  }
+
+  return;
+}
+
+function sedermera_verification_ap_name_and_type($field) {
+  $result = db_query("SELECT *
+    FROM {field_data_field_investor_shared_ctrl_ua} AS ua
+    INNER JOIN {field_data_field_investor_shared_ctrl_cred} AS cred ON (ua.entity_id = cred.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_ext} AS ext ON (ua.entity_id = ext.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_oth} AS oth ON (ua.entity_id = oth.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_ptv} AS ptv ON (ua.entity_id = ptv.entity_id)
+    WHERE field_investor_shared_ctrl_ua_target_id = :nid
+    OR field_investor_shared_ctrl_cred_target_id = :nid
+    OR field_investor_shared_ctrl_ext_target_id = :nid
+    OR field_investor_shared_ctrl_oth_target_id = :nid
+    OR field_investor_shared_ctrl_ptv_target_id = :nid",
+    array(':nid' => 303))->fetchAssoc();
+
+  if ($field['entity']->nid === $result['field_investor_shared_ctrl_ua_target_id']) {
+    $type = 'Uppdragsavtal';
+  }
+  if ($field['entity']->nid === $result['field_investor_shared_ctrl_cred_target_id']) {
+    $type = 'Kreditkontroll';
+  }
+  if ($field['entity']->nid === $result['field_investor_shared_ctrl_ext_target_id']) {
+    $type = 'Externt register';
+  }
+  if ($field['entity']->nid === $result['field_investor_shared_ctrl_oth_target_id']) {
+    $type = 'Övriga dokument/tillägg';
+  }
+  if ($field['entity']->nid === $result['field_investor_shared_ctrl_ptv_target_id']) {
+    $type = 'PTV-blankett';
+  }
+
+  $node_ap = node_load($result['entity_id']);
+
+  $fields['type'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<h2 class="ctrl-ap-type">',
+    '#markup' => $type,
+    '#suffix' => '</h2>',
+  );
+
+  $fields['name'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<h1 class="ctrl-ap-name">',
+    '#markup' => $node_ap->title,
+    '#suffix' => '</h1>',
+  );
+
+  return drupal_render($fields);
+}
+
+
+/**
  * Implements hook_field_formatter_info().
  */
 function sedermera_verification_field_formatter_info() {
