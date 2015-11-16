@@ -339,3 +339,22 @@ function sedermera_update_update_7015() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7016() {
+  field_delete_field('field_invest_pvt_ctrl_cred');
+  field_delete_field('field_invest_pvt_ctrl_ext');
+  field_delete_field('field_invest_pvt_ctrl_oth');
+  field_delete_field('field_invest_pvt_ctrl_ptv');
+  field_delete_field('field_invest_pvt_ctrl_ua');
+  field_delete_field('field_investor_comp_ctrl_cred');
+  field_delete_field('field_investor_comp_ctrl_oth');
+  field_delete_field('field_investor_comp_ctrl_ptv');
+  field_delete_field('field_investor_comp_ctrl_reg');
+  field_delete_field('field_investor_comp_ctrl_ua');
+
+  field_purge_batch(1000);
+}
