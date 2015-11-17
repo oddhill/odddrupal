@@ -248,19 +248,29 @@ function sedermera_update_update_7012() {
 function sedermera_update_update_7013() {
   ctools_include('export');
   $view = ctools_export_crud_load('views_view', 'erbjudande');
-  $view->delete();
+  if ($view) {
+    $view->delete();
+  }
 
   $view = ctools_export_crud_load('views_view', 'avtalsparter');
-  $view->delete();
+  if ($view) {
+    $view->delete();
+  }
 
   $view = ctools_export_crud_load('views_view', 'offers');
-  $view->delete();
+  if ($view) {
+    $view->delete();
+  }
 
   $view = ctools_export_crud_load('views_view', 'transaktions_historia');
-  $view->delete();
+  if ($view) {
+    $view->delete();
+  }
 
   $view = ctools_export_crud_load('views_view', 'kundansvarig');
-  $view->delete();
+  if ($view) {
+    $view->delete();
+  }
 }
 
 /**
