@@ -303,11 +303,6 @@ function f_core_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'nodeaccess_authors';
   $strongarm->value = array(
-    'erbjudande' => array(
-      'grant_view' => 0,
-      'grant_update' => 0,
-      'grant_delete' => 0,
-    ),
     'transaction' => array(
       'grant_view' => 0,
       'grant_update' => 0,
@@ -354,6 +349,11 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     'investor_private' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    'offer' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
