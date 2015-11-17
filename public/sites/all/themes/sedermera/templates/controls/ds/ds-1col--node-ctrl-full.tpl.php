@@ -20,11 +20,6 @@
     </div>
 
     <?php print render($content['ctrl_name']); ?>
-
-    <div class="verification-info">
-      <div class="ver-type">Uppdragsavtal</div>
-      <h2 class="ver-title">John Smith</h2>
-    </div>
   </div>
 
   <div class="verification-body">
