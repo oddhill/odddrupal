@@ -47,18 +47,38 @@
       border-top: 1px solid $wool;
       border-bottom: 1px solid $wool;
 
-      .ctrl {
+      .empty {
+        @include font-size(1.6);
+        font-weight: 500;
+        text-align: center;
         margin-bottom: 30px;
       }
+    }
 
-      .ctrl-label {
-        font-weight: 500;
-        color: $grey;
-        padding-bottom: 15px;
-        @include font-size(1.6,1);
-        border-bottom: 2px solid tint($grey,35%);
-        margin-bottom: 15px;
+    .verification-footer {
+      padding: 40px;
+      text-align: center;
+
+      .modal-close {
+        @include button($dark-grey, confirm);
       }
+    }
+
+    .ctrl {
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .ctrl-label {
+      font-weight: 500;
+      color: $grey;
+      padding-bottom: 15px;
+      @include font-size(1.6,1);
+      border-bottom: 2px solid tint($grey,35%);
+      margin-bottom: 15px;
     }
 
     .ctrl-files-list {
@@ -72,6 +92,19 @@
 
         &:last-child {
           border-bottom: 0px none;
+        }
+      }
+    }
+
+    .ctrl-notes-list {
+
+      .note {
+        color: $grey;
+        margin-bottom: 1em;
+
+        &:last-child {
+          margin-bottom: 0;
+          color: $coffee;
         }
       }
     }

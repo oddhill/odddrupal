@@ -23,9 +23,25 @@
   </div>
 
   <div class="verification-body">
+    <?php if ($incomplete): ?>
+      <div class="empty">Kontrollen är ej färdig</div>
+    <?php endif; ?>
+
     <?php print render($content['field_ctrl_files']); ?>
-    <?php print render($content['field_ctrl_app']); ?>
-    <?php print render($content['field_ctrl_date']); ?>
+
+    <?php if (!$empty_date): ?>
+      <div class="ctrl ctrl-status">
+        <div class="ctrl-label">Status</div>
+        <?php print render($content['field_ctrl_app']); ?>
+        <?php print render($content['field_ctrl_date']); ?>
+      </div>
+    <?php endif; ?>
+
     <?php print render($content['field_ctrl_notes']); ?>
+
+  </div>
+
+  <div class="verification-footer">
+    <button title="Close (Esc)" type="button" class="modal-close">OK</button>
   </div>
 </div>

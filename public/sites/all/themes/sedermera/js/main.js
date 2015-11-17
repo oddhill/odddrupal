@@ -99,6 +99,11 @@ var initiateModals = function() {
       ajaxContentAdded: function() {
         // Ajax content is loaded and appended to DOM
         console.log(this.content);
+
+        // Close modal when clicking "OK" button
+        $('.modal-close').on('click', function() {
+          $.magnificPopup.close();
+        });
       }
     }
   });

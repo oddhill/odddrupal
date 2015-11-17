@@ -99,6 +99,19 @@ function sedermera_preprocess_node(&$variables) {
 
   if ($variables['type'] == 'ctrl' && $variables['view_mode'] == 'full') {
 
+    $node = entity_metadata_wrapper('node', $variables['nid']);
+
+    $variables['incomplete'] = FALSE;
+    $variables['empty_date'] = FALSE;
+
+    if ($node->field_ctrl_date->value() == '' || empty($node->field_ctrl_files->value()) || empty($node->field_ctrl_notes->value())) {
+      $variables['incomplete'] = TRUE;
+    }
+
+    if ($node->field_ctrl_date->value() == '') {
+      $variables['empty_date'] = TRUE;
+    }
+
     // Check status of current control
     $status = sedermera_verification_get_status_single($variables['nid']);
 
