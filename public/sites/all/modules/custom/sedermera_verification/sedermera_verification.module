@@ -30,7 +30,11 @@ function sedermera_verification_ds_fields_info($entity_type) {
   return;
 }
 
+/**
+ * Gets and prints kontrol owner and type
+ */
 function sedermera_verification_ap_name_and_type($field) {
+  // Retrieve info from database
   $result = db_query("SELECT *
     FROM {field_data_field_investor_shared_ctrl_ua} AS ua
     INNER JOIN {field_data_field_investor_shared_ctrl_cred} AS cred ON (ua.entity_id = cred.entity_id)
@@ -42,8 +46,9 @@ function sedermera_verification_ap_name_and_type($field) {
     OR field_investor_shared_ctrl_ext_target_id = :nid
     OR field_investor_shared_ctrl_oth_target_id = :nid
     OR field_investor_shared_ctrl_ptv_target_id = :nid",
-    array(':nid' => 303))->fetchAssoc();
+    array(':nid' => $field['entity']->nid))->fetchAssoc();
 
+  // Determine what type of control it is
   if ($field['entity']->nid === $result['field_investor_shared_ctrl_ua_target_id']) {
     $type = 'Uppdragsavtal';
   }
@@ -60,15 +65,16 @@ function sedermera_verification_ap_name_and_type($field) {
     $type = 'PTV-blankett';
   }
 
+  // Load AP to get AP name
   $node_ap = node_load($result['entity_id']);
 
+  // Add markup
   $fields['type'] = array(
     '#type' => 'markup',
     '#prefix' => '<div class="ver-type">',
     '#markup' => $type,
     '#suffix' => '</div>',
   );
-
   $fields['name'] = array(
     '#type' => 'markup',
     '#prefix' => '<h2 class="ver-title">',
@@ -76,6 +82,7 @@ function sedermera_verification_ap_name_and_type($field) {
     '#suffix' => '</h2>',
   );
 
+  // Return rendarable array
   return drupal_render($fields);
 }
 
