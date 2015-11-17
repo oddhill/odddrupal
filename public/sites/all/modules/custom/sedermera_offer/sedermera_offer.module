@@ -41,7 +41,7 @@ function sedermera_offer_menu() {
  * Implements hook_node_presave
  */
 function sedermera_offer_node_presave($node) {
-  if ($node->type == 'erbjudande') {
+  if ($node->type == 'offer') {
 
     // React if info logout checkbox has been checked else proceed as normal
     if ($node->original->field_offer_logout_info[und][0]['value'] == 0 && $node->field_offer_logout_info[und][0]['value'] == 1) {
@@ -633,12 +633,12 @@ function sedermera_offer_capital_raising_get_signed_guaranteed($node) {
  */
 function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bundle, $form, $form_state = array()) {
   // Disable every step when editing an existing capital raising node.
-  if ($entity_type == 'node' && $bundle == 'erbjudande' && !empty($form['node']->nid)) {
+  if ($entity_type == 'node' && $bundle == 'offer' && !empty($form['node']->nid)) {
     $steps_cached = array();
   }
 }
 
-function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $form_id) {
+function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_id) {
   $fe = ($form['#node']->field_offer_type_fe[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
   $le = ($form['#node']->field_offer_type_le[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
   $pp = ($form['#node']->field_offer_type_pp[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
@@ -675,6 +675,9 @@ function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $
     return;
   }
 
+  // Hide logout on create offer
+  $form['field_offer_logout_info']['#access'] = FALSE;
+
   // Add the offer display from the person view as a prefix to the form. The
   // view is needed in order to filter among the person. The view can't be
   // embedded as a subform within the node form, since this will break the AJAX
@@ -692,7 +695,7 @@ function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $
   asort($selected_persons);
 
   // Add checkboxes for every available investor. This will be added to the
-  // second step, and will get its values from the embedded view. See the
+  // third step, and will get its values from the embedded view. See the
   // attached javascript for more information about what's going on.
   $form['person'] = array(
     '#type' => 'checkboxes',
@@ -754,7 +757,7 @@ function sedermera_offer_form_erbjudande_node_form_alter(&$form, &$form_state, $
  * Implements hook_node_insert().
  */
 function sedermera_offer_node_insert($node) {
-  if ($node->type != 'erbjudande' || empty($node->selected_persons)) {
+  if ($node->type != 'offer' || empty($node->selected_persons)) {
     return;
   }
 
