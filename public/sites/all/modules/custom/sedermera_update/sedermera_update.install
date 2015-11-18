@@ -386,3 +386,10 @@ function sedermera_update_update_7017() {
     return t('Deleted %count nodes.', array('%count' => count($nids)));
   }
 }
+
+/**
+ * Remove the erbjudande node type.
+ */
+function sedermera_update_update_7018() {
+  node_type_delete('erbjudande');
+}

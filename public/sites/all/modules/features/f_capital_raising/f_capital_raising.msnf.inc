@@ -13,7 +13,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf = new stdClass();
   $msnf->disabled = FALSE; /* Edit this to true to make a default msnf disabled initially */
   $msnf->api_version = 1;
-  $msnf->identifier = 'step_offer_1|node|erbjudande';
+  $msnf->identifier = 'step_offer_1|node|offer';
   $msnf->step_name = 'step_offer_1';
   $msnf->entity_type = 'node';
   $msnf->bundle = 'offer';
@@ -42,12 +42,12 @@ function f_capital_raising_msnf_step_info() {
       ),
     ),
   );
-  $export['step_offer_1|node|erbjudande'] = $msnf;
+  $export['step_offer_1|node|offer'] = $msnf;
 
   $msnf = new stdClass();
   $msnf->disabled = FALSE; /* Edit this to true to make a default msnf disabled initially */
   $msnf->api_version = 1;
-  $msnf->identifier = 'step_offer_2|node|erbjudande';
+  $msnf->identifier = 'step_offer_2|node|offer';
   $msnf->step_name = 'step_offer_2';
   $msnf->entity_type = 'node';
   $msnf->bundle = 'offer';
@@ -75,12 +75,12 @@ function f_capital_raising_msnf_step_info() {
       ),
     ),
   );
-  $export['step_offer_2|node|erbjudande'] = $msnf;
+  $export['step_offer_2|node|offer'] = $msnf;
 
   $msnf = new stdClass();
   $msnf->disabled = FALSE; /* Edit this to true to make a default msnf disabled initially */
   $msnf->api_version = 1;
-  $msnf->identifier = 'step_offer_3|node|erbjudande';
+  $msnf->identifier = 'step_offer_3|node|offer';
   $msnf->step_name = 'step_offer_3';
   $msnf->entity_type = 'node';
   $msnf->bundle = 'offer';
@@ -106,12 +106,12 @@ function f_capital_raising_msnf_step_info() {
       ),
     ),
   );
-  $export['step_offer_3|node|erbjudande'] = $msnf;
+  $export['step_offer_3|node|offer'] = $msnf;
 
   $msnf = new stdClass();
   $msnf->disabled = FALSE; /* Edit this to true to make a default msnf disabled initially */
   $msnf->api_version = 1;
-  $msnf->identifier = 'step_offer_4|node|erbjudande';
+  $msnf->identifier = 'step_offer_4|node|offer';
   $msnf->step_name = 'step_offer_4';
   $msnf->entity_type = 'node';
   $msnf->bundle = 'offer';
@@ -137,7 +137,7 @@ function f_capital_raising_msnf_step_info() {
       ),
     ),
   );
-  $export['step_offer_4|node|erbjudande'] = $msnf;
+  $export['step_offer_4|node|offer'] = $msnf;
 
   return $export;
 }

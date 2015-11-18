@@ -284,7 +284,7 @@ function f_core_strongarm() {
   $strongarm->name = 'nodeaccess-types';
   $strongarm->value = array(
     'capital_raising' => 0,
-    'erbjudande' => 0,
+    'offer' => 0,
     'transaction' => 0,
     'transaktion_ap' => 0,
     'company' => 0,

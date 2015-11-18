@@ -13,7 +13,7 @@ function f_capital_raising_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_body|node|erbjudande|form';
+  $field_group->identifier = 'group_body|node|offer|form';
   $field_group->group_name = 'group_body';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -43,12 +43,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_body|node|erbjudande|form'] = $field_group;
+  $export['group_body|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_type_bl|node|erbjudande|form';
+  $field_group->identifier = 'group_offer_type_bl|node|offer|form';
   $field_group->group_name = 'group_offer_type_bl';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -74,12 +74,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_bl|node|erbjudande|form'] = $field_group;
+  $export['group_offer_type_bl|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_type_bp|node|erbjudande|form';
+  $field_group->identifier = 'group_offer_type_bp|node|offer|form';
   $field_group->group_name = 'group_offer_type_bp';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -105,12 +105,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_bp|node|erbjudande|form'] = $field_group;
+  $export['group_offer_type_bp|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_type_fe|node|erbjudande|form';
+  $field_group->identifier = 'group_offer_type_fe|node|offer|form';
   $field_group->group_name = 'group_offer_type_fe';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -142,12 +142,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_fe|node|erbjudande|form'] = $field_group;
+  $export['group_offer_type_fe|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_type_le|node|erbjudande|form';
+  $field_group->identifier = 'group_offer_type_le|node|offer|form';
   $field_group->group_name = 'group_offer_type_le';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -182,12 +182,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_le|node|erbjudande|form'] = $field_group;
+  $export['group_offer_type_le|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_type_pp|node|erbjudande|form';
+  $field_group->identifier = 'group_offer_type_pp|node|offer|form';
   $field_group->group_name = 'group_offer_type_pp';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -215,12 +215,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_pp|node|erbjudande|form'] = $field_group;
+  $export['group_offer_type_pp|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_type_re|node|erbjudande|form';
+  $field_group->identifier = 'group_offer_type_re|node|offer|form';
   $field_group->group_name = 'group_offer_type_re';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -248,12 +248,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_re|node|erbjudande|form'] = $field_group;
+  $export['group_offer_type_re|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_types|node|erbjudande|form';
+  $field_group->identifier = 'group_offer_types|node|offer|form';
   $field_group->group_name = 'group_offer_types';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -281,12 +281,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_types|node|erbjudande|form'] = $field_group;
+  $export['group_offer_types|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_sidebar|node|erbjudande|form';
+  $field_group->identifier = 'group_sidebar|node|offer|form';
   $field_group->group_name = 'group_sidebar';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -316,12 +316,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_sidebar|node|erbjudande|form'] = $field_group;
+  $export['group_sidebar|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_title|node|erbjudande|form';
+  $field_group->identifier = 'group_title|node|offer|form';
   $field_group->group_name = 'group_title';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -351,12 +351,12 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_title|node|erbjudande|form'] = $field_group;
+  $export['group_title|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_types|node|erbjudande|form';
+  $field_group->identifier = 'group_types|node|offer|form';
   $field_group->group_name = 'group_types';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
@@ -389,7 +389,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_types|node|erbjudande|form'] = $field_group;
+  $export['group_types|node|offer|form'] = $field_group;
 
   return $export;
 }
