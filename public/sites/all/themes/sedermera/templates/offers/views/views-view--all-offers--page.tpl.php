@@ -12,22 +12,25 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div class="<?php print $classes; ?> padding">
+<div class="offers-list">
   <?php print $header; ?>
   <?php print $exposed; ?>
   <?php print $attachment_before; ?>
-  <?php print $rows; ?>
 
-  <?php if ($empty): ?>
-    <div class="empty-wrapper">
-      <div class="empty-icon"></div>
-      <p><?php print $empty; ?></p>
-    </div>
- <?php endif; ?>
+  <div class="table-wrapper">
+    
+    <?php print $rows; ?>
+
+    <?php if ($empty): ?>
+      <div class="view-empty">
+        <?php print $empty; ?>
+      </div>
+    <?php endif; ?>
+
+  </div>
 
   <?php print $pager; ?>
   <?php print $attachment_after; ?>
   <?php print $more; ?>
   <?php print $footer; ?>
 </div>
-

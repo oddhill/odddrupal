@@ -1,24 +1,17 @@
 // Empty filter message
-.empty-wrapper {
-  padding: 80px 30px;
+.view-empty {
+  padding: 40px;
+  @include font-size(1.6);
+  text-align: center;
+  font-weight: 500;
 
-  p {
-    @include font-size(2.0);
-    font-weight: 500;
-    padding-top: 30px;
-    text-align: center;
+  &:before {
+    display: block;
+    content: '';
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    @include svg-bg(empty);
+    background-size: 80px 80px;
   }
-}
-
-// Empty icon
-.empty-icon {
-  @include svg-bg(sad_computer, $background-color: transparent, $background-position: center top);
-  height: 93px;
-}
-
-// Empty message
-.empty-container {
-  background: $snow;
-  padding: 5px 5px 5px 20px;
-  text-align: left;
 }

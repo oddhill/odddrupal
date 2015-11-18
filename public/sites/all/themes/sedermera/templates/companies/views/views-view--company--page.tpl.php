@@ -12,7 +12,7 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div class="flex-box <?php print $classes; ?>">
+<div class="companies-list">
   <?php print $header; ?>
 
   <div class="view-filters table-filter">
@@ -27,9 +27,8 @@
     <?php print $rows; ?>
 
     <?php if ($empty): ?>
-     <div class="empty-wrapper">
-        <div class="empty-icon"></div>
-          <p><?php print $empty; ?></p>
+      <div class="view-empty">
+        <?php print $empty; ?>
       </div>
     <?php endif; ?>
 

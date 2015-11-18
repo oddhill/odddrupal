@@ -12,7 +12,7 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div class="flex-box <?php print $classes; ?>">
+<div class="persons-list">
   <?php print $header; ?>
 
   <div class="view-filters table-filter">
@@ -22,21 +22,20 @@
 
   <?php print $attachment_before; ?>
 
-   <div class="table-wrapper">
+  <div class="table-wrapper">
 
     <?php print $rows; ?>
 
     <?php if ($empty): ?>
-     <div class="empty-wrapper">
-        <div class="empty-icon"></div>
-          <p><?php print $empty; ?></p>
+      <div class="view-empty">
+        <?php print $empty; ?>
       </div>
     <?php endif; ?>
 
-    <?php print $attachment_after; ?>
-    <?php print $more; ?>
-    <?php print $footer; ?>
-    <?php print $pager; ?>
-
   </div>
+
+  <?php print $attachment_after; ?>
+  <?php print $more; ?>
+  <?php print $footer; ?>
+  <?php print $pager; ?>
 </div>

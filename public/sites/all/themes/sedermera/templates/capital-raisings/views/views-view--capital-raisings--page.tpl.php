@@ -27,9 +27,9 @@
     <?php print $rows; ?>
 
     <?php if ($empty): ?>
-     <div class="empty-wrapper">
+      <div class="empty-wrapper">
         <div class="empty-icon"></div>
-          <p><?php print $empty; ?></p>
+        <p><?php print $empty; ?></p>
       </div>
     <?php endif; ?>
 

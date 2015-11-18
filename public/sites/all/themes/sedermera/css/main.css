@@ -2641,25 +2641,22 @@ form.views-send-preview .form-actions {
 .block-sedermera-dashboard-verifications th {
   padding: 10px 0px 10px 10px; }
 
-.empty-wrapper {
-  padding: 80px 30px; }
-  .empty-wrapper p {
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 30px;
-    font-weight: 500;
-    padding-top: 30px;
-    text-align: center; }
-
-.empty-icon {
-  background: url("../graphics/sad_computer.png") transparent center top no-repeat;
-  background: none, url("../graphics/sad_computer.svg") transparent center top no-repeat;
-  height: 93px; }
-
-.empty-container {
-  background: #fff;
-  padding: 5px 5px 5px 20px;
-  text-align: left; }
+.view-empty {
+  padding: 40px;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 500; }
+  .view-empty:before {
+    display: block;
+    content: '';
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: url("../graphics/empty.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/empty.svg") transparent 0 0 no-repeat;
+    background-size: 80px 80px; }
 
 .table-filter {
   display: none;
