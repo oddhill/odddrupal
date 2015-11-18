@@ -211,7 +211,7 @@ function f_verification_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 4,
+      'weight' => 2,
     ),
   );
 
@@ -305,7 +305,7 @@ function f_verification_field_default_field_instances() {
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 4,
     ),
   );
 

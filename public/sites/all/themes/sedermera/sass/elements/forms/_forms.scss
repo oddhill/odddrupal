@@ -56,6 +56,11 @@ form {
     font-weight: 500;
     margin-left: 5px;
   }
+
+  .field-add-more-submit {
+    @include button($dark-grey, add-mini, small);
+    background-position: 11px 7px;
+  }
 }
 
 fieldset {

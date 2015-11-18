@@ -13,15 +13,50 @@ function f_verification_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_ctrl_status|node|ctrl|form';
-  $field_group->group_name = 'group_ctrl_status';
+  $field_group->identifier = 'group_ctrl_items|node|ctrl|form';
+  $field_group->group_name = 'group_ctrl_items';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
+    'label' => 'Form items',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_ctrl_files',
+      1 => 'field_ctrl_notes',
+      2 => 'group_ctrl_status',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Form items',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'form-items-wrapper',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_ctrl_items|node|ctrl|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_ctrl_status|node|ctrl|form';
+  $field_group->group_name = 'group_ctrl_status';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'ctrl';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_ctrl_items';
+  $field_group->data = array(
     'label' => 'Kontrollstatus',
-    'weight' => '5',
+    'weight' => '3',
     'children' => array(
       0 => 'field_ctrl_app',
       1 => 'field_ctrl_date',

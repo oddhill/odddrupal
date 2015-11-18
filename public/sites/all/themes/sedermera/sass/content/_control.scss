@@ -110,3 +110,34 @@
     }
   }
 }
+
+.node-ctrl-form {
+
+  .form-items-wrapper {
+    padding: 40px;
+    background: tint($light-grey,60%);
+    border-top: 1px solid $wool;
+    border-bottom: 1px solid $wool;
+  }
+
+  .vertical-tabs-panes {
+    display: none;
+  }
+
+  .field-name-field-ctrl-notes {
+    margin-bottom: 0;
+
+    #field-ctrl-notes-add-more-wrapper {
+
+      > .form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .form-actions {
+    padding: 40px;
+    text-align: center;
+    margin: 0;
+  }
+}

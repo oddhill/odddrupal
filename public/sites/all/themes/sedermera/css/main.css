@@ -600,6 +600,22 @@ div.button {
     margin-bottom: 0;
     color: #282828; }
 
+.node-ctrl-form .form-items-wrapper {
+  padding: 40px;
+  background: #fafbfc;
+  border-top: 1px solid #e0e2e6;
+  border-bottom: 1px solid #e0e2e6; }
+.node-ctrl-form .vertical-tabs-panes {
+  display: none; }
+.node-ctrl-form .field-name-field-ctrl-notes {
+  margin-bottom: 0; }
+  .node-ctrl-form .field-name-field-ctrl-notes #field-ctrl-notes-add-more-wrapper > .form-item {
+    margin-bottom: 0; }
+.node-ctrl-form .form-actions {
+  padding: 40px;
+  text-align: center;
+  margin: 0; }
+
 #views-exposed-form-document-log-document-log .description {
   display: none; }
 
@@ -3242,7 +3258,8 @@ form#user-login,
 .mfp-ajax-holder .mfp-content {
   padding: 0;
   width: 90%;
-  max-width: 600px; }
+  max-width: 600px;
+  margin: 40px 0; }
   .mfp-ajax-holder .mfp-content .node {
     margin: 0;
     padding: 0; }
@@ -4522,6 +4539,35 @@ form .messages {
 form .field-suffix {
   font-weight: 500;
   margin-left: 5px; }
+form .field-add-more-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  form .field-add-more-submit:hover {
+    background-color: #303030; }
 
 fieldset .container-inline-date {
   position: relative;
