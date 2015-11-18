@@ -31,6 +31,13 @@ function f_offers_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga erbjudanden att visa';
+  $handler->display->display_options['empty']['area']['format'] = 'document_html';
   /* Field: Content: Företag */
   $handler->display->display_options['fields']['field_offer_company']['id'] = 'field_offer_company';
   $handler->display->display_options['fields']['field_offer_company']['table'] = 'field_data_field_offer_company';
@@ -77,6 +84,7 @@ function f_offers_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Det finns inga erbjudanden att visa'),
     t('Företag'),
     t('Title'),
     t('Alla'),
