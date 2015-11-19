@@ -1,0 +1,28 @@
+.node-offer {
+
+  &.view-mode-full {
+
+  }
+}
+
+#preview-wrapper {
+  position: relative;
+
+  #preview-transaction {
+    padding: 0 40px 0;
+    margin-right: 300px;
+  }
+
+  #preview-person {
+    width: 300px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    padding: 30px;
+    border-top: 1px solid $wool;
+    border-left: 1px solid $wool;
+    border-bottom: 1px solid $wool;
+    background: tint($light-grey,60%);
+  }
+}

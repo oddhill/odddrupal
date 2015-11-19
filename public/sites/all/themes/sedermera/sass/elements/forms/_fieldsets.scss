@@ -2,6 +2,10 @@ fieldset {
   border: 3px solid $wool;
   padding: 15px 18px;
 
+  &.group-hidden {
+    display: none;
+  }
+
   legend {
     float: left;
     width: 100%;

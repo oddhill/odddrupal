@@ -23,6 +23,13 @@
     border-radius: 0 2px 2px 0;
   }
 
+  .field-suffix {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    color: $cloudy;
+  }
+
   #autocomplete {
     border: 0 none;
     margin: 3px 0 0;
@@ -68,7 +75,7 @@
   border-radius: 2px;
   width: 100%;
   border: 1px solid $steel;
-  padding: 1px 30px 1px 5px;
+  padding: 1px 40px 1px 5px;
 
   &.form-autocomplete {
 

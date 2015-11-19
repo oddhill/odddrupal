@@ -720,14 +720,14 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
     // Add the rendered node as a preview to the left fieldset. This fieldset will
     // be added to the third step.
     $form['preview_node'] = node_view($node);
-    $form['preview_node']['#prefix'] = '<div id="preview-transaction" class="column">';
+    $form['preview_node']['#prefix'] = '<div id="preview-wrapper"><div id="preview-transaction" class="column">';
     $form['preview_node']['#suffix'] = '</div>';
     $form['#step_children']['preview_node'] =  'step_offer_4';
 
     // Add a wrapper for all the elements in the right column.
     $form['right'] = array(
       '#prefix' => '<div id="preview-person" class="column">',
-      '#suffix' => '</div>',
+      '#suffix' => '</div></div>',
     );
     $form['#step_children']['right'] =  'step_offer_4';
 

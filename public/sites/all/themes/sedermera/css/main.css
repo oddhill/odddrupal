@@ -1693,6 +1693,23 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     float: none;
     margin-bottom: 0.5em; }
 
+#preview-wrapper {
+  position: relative; }
+  #preview-wrapper #preview-transaction {
+    padding: 0 40px 0;
+    margin-right: 300px; }
+  #preview-wrapper #preview-person {
+    width: 300px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    padding: 30px;
+    border-top: 1px solid #e0e2e6;
+    border-left: 1px solid #e0e2e6;
+    border-bottom: 1px solid #e0e2e6;
+    background: #fafbfc; }
+
 .node-person.view-mode-full .node-section {
   display: block;
   padding-bottom: 30px;
@@ -4195,6 +4212,8 @@ form.confirmation {
 fieldset {
   border: 3px solid #e0e2e6;
   padding: 15px 18px; }
+  fieldset.group-hidden {
+    display: none; }
   fieldset legend {
     float: left;
     width: 100%;
@@ -4719,6 +4738,26 @@ div.addressfield-container-inline {
   margin: 0; }
   #offer-node-form .group-offer-types .form-wrapper {
     margin: 0; }
+#offer-node-form .group-offer-define .group-offer-type-fe,
+#offer-node-form .group-offer-define .group-offer-type-le,
+#offer-node-form .group-offer-define .group-offer-type-pp,
+#offer-node-form .group-offer-define .group-offer-type-re,
+#offer-node-form .group-offer-define .group-offer-type-bl,
+#offer-node-form .group-offer-define .group-offer-type-bp {
+  margin-bottom: 0; }
+  #offer-node-form .group-offer-define .group-offer-type-fe .form-wrapper,
+  #offer-node-form .group-offer-define .group-offer-type-le .form-wrapper,
+  #offer-node-form .group-offer-define .group-offer-type-pp .form-wrapper,
+  #offer-node-form .group-offer-define .group-offer-type-re .form-wrapper,
+  #offer-node-form .group-offer-define .group-offer-type-bl .form-wrapper,
+  #offer-node-form .group-offer-define .group-offer-type-bp .form-wrapper {
+    margin-bottom: 0; }
+#offer-node-form .group-offer-define .group-offer-type-fe .field-name-field-offer-type-fe-warrant-type,
+#offer-node-form .group-offer-define .group-offer-type-fe .field-name-field-offer-type-fe-terms {
+  margin-bottom: 4rem; }
+#offer-node-form .group-offer-define .group-offer-type-le .field-name-field-offer-type-le-warrant-type,
+#offer-node-form .group-offer-define .group-offer-type-le .field-name-field-offer-type-le-terms {
+  margin-bottom: 4rem; }
 #offer-node-form .field-name-field-offer-text {
   margin-top: 0; }
   #offer-node-form .field-name-field-offer-text label {
@@ -5178,6 +5217,11 @@ table.tabledrag-processed {
     line-height: 0px;
     border: 1px solid #d4d6d9;
     border-radius: 0 2px 2px 0; }
+  .form-type-textfield .field-suffix {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    color: #b2b3b6; }
   .form-type-textfield #autocomplete {
     border: 0 none;
     margin: 3px 0 0;
@@ -5212,7 +5256,7 @@ table.tabledrag-processed {
   border-radius: 2px;
   width: 100%;
   border: 1px solid #d4d6d9;
-  padding: 1px 30px 1px 5px; }
+  padding: 1px 40px 1px 5px; }
   .js .form-text.form-autocomplete {
     background-image: none; }
     .js .form-text.form-autocomplete.throbbing {
