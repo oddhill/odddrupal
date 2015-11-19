@@ -4095,6 +4095,24 @@ form.confirmation {
       form.confirmation .form-actions.form-wrapper #edit-submit:hover {
         background-color: #303030; }
 
+.date-combo .fieldset-wrapper {
+  display: block; }
+  .date-combo .fieldset-wrapper:after {
+    content: "";
+    display: table;
+    clear: both; }
+.date-combo .container-inline-date {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  clear: none; }
+  .date-combo .container-inline-date:last-child {
+    margin-right: 0; }
+  .date-combo .container-inline-date.end-date-wrapper label {
+    margin-top: -28px;
+    border-bottom: 0px none; }
+
 #ui-datepicker-div {
   font-family: "Roboto", sans-serif;
   background: #fff;
@@ -4697,6 +4715,19 @@ div.addressfield-container-inline {
 #investor-private-node-form .field-name-field-shared-cont-pers {
   margin: 0; }
 
+#offer-node-form .group-offer-types {
+  margin: 0; }
+  #offer-node-form .group-offer-types .form-wrapper {
+    margin: 0; }
+#offer-node-form .field-name-field-offer-text {
+  margin-top: 0; }
+  #offer-node-form .field-name-field-offer-text label {
+    margin-top: 0; }
+#offer-node-form .field-name-field-offer-files {
+  margin-bottom: 0; }
+  #offer-node-form .field-name-field-offer-files .form-wrapper {
+    margin-bottom: 0; }
+
 #person-node-form .form-item-title,
 #person-node-form .field-name-field-user-ssn,
 #person-node-form .field-name-field-user-mail,
@@ -5109,6 +5140,10 @@ table.tabledrag-processed {
 .form-type-textarea .mce-panel {
   border: 0 solid #ebedf1;
   background: #ebedf1; }
+.form-type-textarea .cke_chrome {
+  box-shadow: 0 0 0 transparent; }
+  .form-type-textarea .cke_chrome .cke_inner {
+    border: 1px solid #e0e2e6; }
 .form-type-textarea textarea {
   -webkit-appearance: none;
   outline: none; }

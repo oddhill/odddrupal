@@ -16,7 +16,7 @@ function f_capital_raising_field_default_field_instances() {
     'default_value' => array(
       0 => array(
         'value' => '<p>Detta är en standardtext som går att modifiera om man vill. Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum.</p><p>TODO: Implementera rätt text.</p>',
-        'format' => 'filtered_html',
+        'format' => 'document_html',
       ),
     ),
     'deleted' => 0,
@@ -50,9 +50,9 @@ function f_capital_raising_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'document_html' => 0,
+          'document_html' => 'document_html',
           'ds_code' => 0,
-          'filtered_html' => 'filtered_html',
+          'filtered_html' => 0,
           'full_html' => 0,
           'plain_text' => 0,
         ),
@@ -85,10 +85,10 @@ function f_capital_raising_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 3,
+        'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 43,
     ),
   );
 
@@ -189,7 +189,7 @@ function f_capital_raising_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 7,
+      'weight' => 44,
     ),
   );
 
@@ -239,7 +239,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 34,
+      'weight' => 9,
     ),
   );
 
@@ -278,9 +278,9 @@ function f_capital_raising_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'document_html' => 0,
+          'document_html' => 'document_html',
           'ds_code' => 0,
-          'filtered_html' => 'filtered_html',
+          'filtered_html' => 0,
           'full_html' => 0,
           'plain_text' => 0,
         ),
@@ -313,10 +313,10 @@ function f_capital_raising_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 40,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 42,
     ),
   );
 
@@ -385,7 +385,7 @@ function f_capital_raising_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 

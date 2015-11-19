@@ -1,0 +1,19 @@
+.date-combo {
+
+  .fieldset-wrapper {
+    @include row;
+  }
+
+  .container-inline-date {
+    @include span-columns(6 of 12);
+    clear: none;
+
+    &.end-date-wrapper {
+
+      label {
+        margin-top: -28px;
+        border-bottom: 0px none;
+      }
+    }
+  }
+}

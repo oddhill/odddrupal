@@ -21,8 +21,7 @@ function f_capital_raising_msnf_step_info() {
     'label' => '1. Allmän information',
     'weight' => '0',
     'children' => array(
-      0 => 'group_sidebar',
-      1 => 'group_body',
+      0 => 'group_offer_step_1',
     ),
     'format_type' => 'default',
     'format_settings' => array(
@@ -33,7 +32,7 @@ function f_capital_raising_msnf_step_info() {
         'classes' => '',
         'description' => '',
         'show_label' => '1',
-        'label_element' => 'h3',
+        'label_element' => 'h2',
         'buttons' => array(
           'previous' => 'Tillbaka',
           'next' => 'Nästa steg',
@@ -55,7 +54,7 @@ function f_capital_raising_msnf_step_info() {
     'label' => '2. Information om investering',
     'weight' => '1',
     'children' => array(
-      0 => 'group_types',
+      0 => 'group_offer_step_2',
     ),
     'format_type' => 'default',
     'format_settings' => array(
@@ -66,7 +65,7 @@ function f_capital_raising_msnf_step_info() {
         'classes' => '',
         'description' => '',
         'show_label' => '1',
-        'label_element' => 'h3',
+        'label_element' => 'h2',
         'buttons' => array(
           'previous' => 'Tillbaka',
           'next' => 'Nästa steg',
@@ -86,7 +85,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf->bundle = 'offer';
   $msnf->data = array(
     'label' => '3',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(),
     'format_type' => 'default',
     'format_settings' => array(
@@ -117,7 +116,7 @@ function f_capital_raising_msnf_step_info() {
   $msnf->bundle = 'offer';
   $msnf->data = array(
     'label' => '4',
-    'weight' => '3',
+    'weight' => '4',
     'children' => array(),
     'format_type' => 'default',
     'format_settings' => array(

@@ -5,6 +5,14 @@
     background: $aluminium;
   }
 
+  .cke_chrome {
+    box-shadow: 0 0 0 transparent;
+
+    .cke_inner {
+      border: 1px solid $wool;
+    }
+  }
+
   textarea {
     -webkit-appearance: none;
     outline: none;

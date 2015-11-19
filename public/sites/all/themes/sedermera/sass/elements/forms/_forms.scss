@@ -272,6 +272,33 @@ div.addressfield-container-inline {
   }
 }
 
+#offer-node-form {
+
+  .group-offer-types {
+    margin: 0; // Improve layout
+
+    .form-wrapper {
+      margin: 0;
+    }
+  }
+
+  .field-name-field-offer-text {
+    margin-top: 0;
+
+    label {
+      margin-top: 0;
+    }
+  }
+
+  .field-name-field-offer-files {
+    margin-bottom: 0;
+
+    .form-wrapper {
+      margin-bottom: 0;
+    }
+  }
+}
+
 // Details two-column layouts
 #person-node-form {
 

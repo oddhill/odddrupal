@@ -17,13 +17,17 @@ function f_offers_menu_default_menu_links() {
     'router_path' => 'erbjudanden/lista',
     'link_title' => 'Alla erbjudanden',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_alla-erbjudanden:erbjudanden/lista',
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_alla-erbjudanden:erbjudanden/lista',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -41,13 +45,15 @@ function f_offers_menu_default_menu_links() {
     'router_path' => 'erbjudanden',
     'link_title' => 'Erbjudanden',
     'options' => array(
-      'attributes' => array(),
+      'identifier' => 'main-menu_erbjudanden:erbjudanden',
+      'attributes' => array(
+        'id' => 'offers',
+      ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_erbjudanden:erbjudanden',
     ),
     'module' => 'menu',
     'hidden' => 0,

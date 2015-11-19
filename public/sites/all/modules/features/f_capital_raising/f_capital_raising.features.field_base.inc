@@ -88,7 +88,7 @@ function f_capital_raising_field_default_field_bases() {
   // Exported field_base: 'field_offer_files'.
   $field_bases['field_offer_files'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_offer_files',

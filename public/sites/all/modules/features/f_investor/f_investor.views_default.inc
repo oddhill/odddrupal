@@ -155,6 +155,13 @@ function f_investor_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga avtalsparter att visa';
+  $handler->display->display_options['empty']['area']['format'] = 'document_html';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['id'] = 'field_shared_cont_pers_target_id';
   $handler->display->display_options['relationships']['field_shared_cont_pers_target_id']['table'] = 'field_data_field_shared_cont_pers';
@@ -292,6 +299,7 @@ function f_investor_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Det finns inga avtalsparter att visa'),
     t('Content entity referenced from field_shared_cont_pers'),
     t('Namn'),
     t('Kundnummer'),
@@ -407,6 +415,13 @@ function f_investor_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga kontaktpersoner att visa';
+  $handler->display->display_options['empty']['area']['format'] = 'document_html';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -678,6 +693,7 @@ function f_investor_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Det finns inga kontaktpersoner att visa'),
     t('Namn'),
     t('E-post'),
     t('Mobil'),
