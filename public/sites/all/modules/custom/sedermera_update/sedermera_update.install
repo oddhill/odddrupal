@@ -393,3 +393,11 @@ function sedermera_update_update_7017() {
 function sedermera_update_update_7018() {
   node_type_delete('erbjudande');
 }
+
+/**
+ * Remove the Investor bolag and privat node types.
+ */
+function sedermera_update_update_7019() {
+  node_type_delete('investor_bolag');
+  node_type_delete('investor_privat');
+}

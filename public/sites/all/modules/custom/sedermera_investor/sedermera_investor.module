@@ -228,7 +228,7 @@ function sedermera_investor_node_presave($node) {
 /**
  * Implements hook_form_FORM_ID_alter
  */
-function sedermera_investor_form_investor_bolag_node_form_alter(&$form, &$form_state, $form_id) {
+function sedermera_investor_form_investor_company_node_form_alter(&$form, &$form_state, $form_id) {
   if (!isset($form_state['node']->nid)) {
     $id = get_next_cust_id();
     $form['field_shared_cust_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $id;
@@ -238,7 +238,7 @@ function sedermera_investor_form_investor_bolag_node_form_alter(&$form, &$form_s
 /**
  * Implements hook_form_FORM_ID_alter
  */
-function sedermera_investor_form_investor_privat_node_form_alter(&$form, &$form_state, $form_id) {
+function sedermera_investor_form_investor_private_node_form_alter(&$form, &$form_state, $form_id) {
   if (!isset($form_state['node']->nid)) {
     $id = get_next_cust_id();
     $form['field_shared_cust_id'][LANGUAGE_NONE][0]['value']['#default_value'] = $id;
@@ -289,7 +289,7 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
       }
     }
   }
-  if ($form_state['values']['type'] == 'investor_bolag') {
+  if ($form_state['values']['type'] == 'investor_company') {
     $org_nbr = $node->field_investor_comp_org_nbr[LANGUAGE_NONE][0]['value'];
     $cust_id = $form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'];
 
@@ -314,7 +314,7 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
       }
     }
   }
-  if ($form_state['values']['type'] == 'investor_privat') {
+  if ($form_state['values']['type'] == 'investor_private') {
     $cust_id = $form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'];
     if (isset($node->nid)) {
       if (!cust_id_is_same($cust_id, $node->nid) && cust_id_exists($cust_id)) {

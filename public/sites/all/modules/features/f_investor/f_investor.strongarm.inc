@@ -660,6 +660,20 @@ function f_investor_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_investor_company';
+  $strongarm->value = 1;
+  $export['node_view_permissions_investor_company'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_investor_private';
+  $strongarm->value = 1;
+  $export['node_view_permissions_investor_private'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_investor_pattern';
   $strongarm->value = 'investerare/lista/[investor:title]';
   $export['pathauto_investor_pattern'] = $strongarm;

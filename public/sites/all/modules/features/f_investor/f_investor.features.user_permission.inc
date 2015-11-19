@@ -38,6 +38,26 @@ function f_investor_user_default_permissions() {
     'module' => 'sedermera_investor',
   );
 
+  // Exported permission: 'create investor_company content'.
+  $permissions['create investor_company content'] = array(
+    'name' => 'create investor_company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create investor_private content'.
+  $permissions['create investor_private content'] = array(
+    'name' => 'create investor_private content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create person content'.
   $permissions['create person content'] = array(
     'name' => 'create person content',
@@ -76,9 +96,49 @@ function f_investor_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'edit any investor_company content'.
+  $permissions['edit any investor_company content'] = array(
+    'name' => 'edit any investor_company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any investor_private content'.
+  $permissions['edit any investor_private content'] = array(
+    'name' => 'edit any investor_private content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any person content'.
   $permissions['edit any person content'] = array(
     'name' => 'edit any person content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own investor_company content'.
+  $permissions['edit own investor_company content'] = array(
+    'name' => 'edit own investor_company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own investor_private content'.
+  $permissions['edit own investor_private content'] = array(
+    'name' => 'edit own investor_private content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Redaktör' => 'Redaktör',
@@ -112,6 +172,28 @@ function f_investor_user_default_permissions() {
       'Administratör' => 'Administratör',
     ),
     'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'view any investor_company content'.
+  $permissions['view any investor_company content'] = array(
+    'name' => 'view any investor_company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any investor_private content'.
+  $permissions['view any investor_private content'] = array(
+    'name' => 'view any investor_private content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
   );
 
   // Exported permission: 'view any person content'.

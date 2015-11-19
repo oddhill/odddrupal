@@ -13,7 +13,7 @@ function f_investor_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_ap|node|investor_bolag|form';
+  $field_group->identifier = 'group_ap|node|investor_company|form';
   $field_group->group_name = 'group_ap';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'investor_company';
@@ -43,12 +43,12 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_ap|node|investor_bolag|form'] = $field_group;
+  $export['group_ap|node|investor_company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_ap|node|investor_privat|form';
+  $field_group->identifier = 'group_ap|node|investor_private|form';
   $field_group->group_name = 'group_ap';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'investor_private';
@@ -75,12 +75,12 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_ap|node|investor_privat|form'] = $field_group;
+  $export['group_ap|node|investor_private|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_comp_ctrl|node|investor_bolag|form';
+  $field_group->identifier = 'group_comp_ctrl|node|investor_company|form';
   $field_group->group_name = 'group_comp_ctrl';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'investor_company';
@@ -113,12 +113,12 @@ function f_investor_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_comp_ctrl|node|investor_bolag|form'] = $field_group;
+  $export['group_comp_ctrl|node|investor_company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_head|node|investor_bolag|form';
+  $field_group->identifier = 'group_head|node|investor_company|form';
   $field_group->group_name = 'group_head';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'investor_company';
@@ -139,12 +139,12 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_head|node|investor_bolag|form'] = $field_group;
+  $export['group_head|node|investor_company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_head|node|investor_privat|form';
+  $field_group->identifier = 'group_head|node|investor_private|form';
   $field_group->group_name = 'group_head';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'investor_private';
@@ -165,7 +165,7 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_head|node|investor_privat|form'] = $field_group;
+  $export['group_head|node|investor_private|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -618,7 +618,7 @@ function f_investor_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_prv_ctrl|node|investor_privat|form';
+  $field_group->identifier = 'group_prv_ctrl|node|investor_private|form';
   $field_group->group_name = 'group_prv_ctrl';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'investor_private';
@@ -646,7 +646,7 @@ function f_investor_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_prv_ctrl|node|investor_privat|form'] = $field_group;
+  $export['group_prv_ctrl|node|investor_private|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
