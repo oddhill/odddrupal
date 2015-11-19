@@ -253,9 +253,11 @@ Drupal.behaviors.sedermera = {
  * Override the Views AJAX scroll behavior when loading new content with an
  * empty function in order to disable the scrolling.
  */
-Drupal.ajax.prototype.commands.viewsScrollTop = function (ajax, response, status) {
+if (Drupal.ajax) {
+  Drupal.ajax.prototype.commands.viewsScrollTop = function (ajax, response, status) {
 
-};
+  };
+}
 
 // Override the default event handler for the required state. We have configured
 // the form placeholder module to place the required asterix after the actual
