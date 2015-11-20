@@ -1,4 +1,0 @@
-name = Letmein
-description = Allows any user to login with any password.
-core = 7.x
-dependencies[] = bad_judgement
