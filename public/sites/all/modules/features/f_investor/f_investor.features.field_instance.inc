@@ -262,52 +262,6 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-investor_company-field_investor_comp_real'.
-  $field_instances['node-investor_company-field_investor_comp_real'] = array(
-    'bundle' => 'investor_company',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 13,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_investor_comp_real',
-    'label' => 'Verklig huvudman',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 24,
-    ),
-  );
-
   // Exported field_instance:
   // 'node-investor_company-field_investor_shared_ctrl_cred'.
   $field_instances['node-investor_company-field_investor_shared_ctrl_cred'] = array(
@@ -593,7 +547,7 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
     ),
     'entity_type' => 'node',
@@ -2647,7 +2601,6 @@ function f_investor_field_default_field_instances() {
   t('Transaktions ID');
   t('Transaktions titel');
   t('Uppdragsavtal');
-  t('Verklig huvudman');
   t('Ägare');
   t('ÅÅMMDD-XXXX');
   t('Övriga dokument/tillägg');

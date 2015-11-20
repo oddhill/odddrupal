@@ -401,3 +401,17 @@ function sedermera_update_update_7019() {
   node_type_delete('investor_bolag');
   node_type_delete('investor_privat');
 }
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7020() {
+  field_delete_field('field_transaction_ap_aggrement');
+  field_delete_field('field_transaction_ap_to_sign');
+  field_delete_field('field_transaction_ap_signed');
+  field_delete_field('field_transaction_ap_signed_date');
+  field_delete_field('field_investor_comp_real');
+
+  field_purge_batch(1000);
+}

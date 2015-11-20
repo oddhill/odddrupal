@@ -86,7 +86,6 @@ function sedermera_verification_ap_name_and_type($field) {
   return drupal_render($fields);
 }
 
-
 /**
  * Implements hook_field_formatter_info().
  */
@@ -184,6 +183,11 @@ function sedermera_verification_field_extra_fields() {
           'description' => t('Displays the overall verification status for every referred verification entity.'),
           'weight' => 0,
         ),
+        'verification_status_id' => array(
+          'label' => t('Verification status id'),
+          'description' => t('Displays the overall verification status for every referred verification entity.'),
+          'weight' => 0,
+        ),
       )
     );
   }
@@ -227,6 +231,36 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
       '#suffix' => '</span>',
     );
   }
+
+  // Render the verification status if it should be displayed.
+  if (isset($display['verification_status_id']) && $display['verification_status_id']['visible']) {
+    $status = sedermera_verification_get_status_owner_node($node->nid);
+
+    // Set a different text and class depending on the status.
+    switch ($status) {
+      case SEDERMERA_VERIFICATION_NOT_APPROVED:
+        $text = 'Ej godkänd';
+        $class = 'not-approved';
+        break;
+
+      case SEDERMERA_VERIFICATION_EXPIRING:
+        $text = 'Utgående';
+        $class = 'expiring';
+        break;
+
+      case SEDERMERA_VERIFICATION_APPROVED:
+        $text = 'Godkänd';
+        $class = 'approved';
+        break;
+    }
+
+    // Add the markup.
+    $node->content['verification_status_id'] = array(
+      '#prefix' => '<span class="verification ' . $class . '">',
+      '#markup' => $text,
+      '#suffix' => '</span>',
+    );
+  }
 }
 
 /**
@@ -239,6 +273,25 @@ function sedermera_verification_form_person_node_form_alter(&$form, &$form_state
     unset($form['#groups']['group_id_ctrl']);
     unset($form['#fieldgroups']['group_id_ctrl']);
   }
+}
+
+function sedermera_verification_form_ctrl_pen_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#description'];
+  $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#description'] = '';
+
+  $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'];
+  $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'] = '';
+
+  // dprint_r($form['field_ctrl_complex']); die;
+
+  $form['field_ctrl_complex'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_complex'][LANGUAGE_NONE]['0']['value']['#description'];
+  $form['field_ctrl_complex'][LANGUAGE_NONE]['0']['value']['#description'] = '';
+
+
+  // TODO checkboxes on ctrl_pen
+
+
+
 }
 
 /**
@@ -395,6 +448,61 @@ function sedermera_verification_get_status_node($nid) {
 
   // Return the verification status based on our findings.
   return sedermera_verification_get_status_multiple($verifications);
+}
+
+/**
+ * Get the status for the owners id of a investor.
+ *
+ * @param array $nid
+ *   The node ID.
+ *
+ * @return int
+ *   The "lowest" status for all of the verifications among the fields which
+ *   refers to a verification node.
+ *
+ * @see sedermera_verification_get_status_multiple()
+ */
+function sedermera_verification_get_status_owner_node($nid) {
+  // Load the node.
+  $node = entity_metadata_wrapper('node', $nid);
+
+  if ($node->type->value() !== 'investor_company' && $node->type->value() !== 'investor_private') {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+
+  // If private investor
+  if ($node->type->value() !== 'investor_private') {
+    // Load the owner
+    $owner = $node->field_shared_cont_pers->value();
+    $owner_wrap = entity_metadata_wrapper('node', $owner);
+
+    // Load control of the owner
+    $ctrl = $owner_wrap->field_user_id_ctrl->value();
+
+    // Return the verification status based on our findings.
+    return sedermera_verification_get_status_single($ctrl->nid);
+  }
+
+  // If company investor
+  if ($node->type->value() === 'investor_company') {
+    // Store the verification IDs.
+    $verifications = array();
+
+    // Iterate through every property in order to find entityreference fields
+    // which points to verification nodes.
+    foreach ($node->field_investor_comp_owners->value() as $owner) {
+      $owner_wrap = entity_metadata_wrapper('node', $owner);
+
+      // Load control of the owner
+      $ctrl = $owner_wrap->field_user_id_ctrl->value();
+
+      // Add control nid to array
+      $verifications[] = $ctrl->nid;
+    }
+
+    // Return the verification status based on our findings.
+    return sedermera_verification_get_status_multiple($verifications);
+  }
 }
 
 /**

@@ -4615,9 +4615,290 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-body'.
-  $field_instances['node-transaktion_ap-body'] = array(
-    'bundle' => 'transaktion_ap',
+  // Exported field_instance:
+  // 'node-transaction_agreement-field_transaction_agree_ctrl'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_ctrl'] = array(
+    'bundle' => 'transaction_agreement',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_agree_ctrl',
+    'label' => 'Penningtvätt',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'allow_new' => 1,
+          'delete_references' => 0,
+          'label_plural' => 'nodes',
+          'label_singular' => 'node',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 42,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_agreement-field_transaction_agree_doc'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_doc'] = array(
+    'bundle' => 'transaction_agreement',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_agree_doc',
+    'label' => 'Kundavtal',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => 'transaction/agreement',
+      'file_extensions' => 'pdf',
+      'max_filesize' => '16 MB',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 43,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_agreement-field_transaction_agree_sign'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_sign'] = array(
+    'bundle' => 'transaction_agreement',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_agree_sign',
+    'label' => 'Teckning',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 45,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_agreement-field_transaction_agree_sign_dat'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_sign_dat'] = array(
+    'bundle' => 'transaction_agreement',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_agree_sign_dat',
+    'label' => 'Tecknings datum',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 46,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_agreement-field_transaction_agree_to_sign'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_to_sign'] = array(
+    'bundle' => 'transaction_agreement',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_agree_to_sign',
+    'label' => 'Att teckna',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 44,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_agreement-field_transaction_agree_type_rea'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_type_rea'] = array(
+    'bundle' => 'transaction_agreement',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_agree_type_rea',
+    'label' => 'Type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-transaction_ap-body'.
+  $field_instances['node-transaction_ap-body'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -4659,19 +4940,21 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_aggrement'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_aggrement'] = array(
-    'bundle' => 'transaktion_ap',
+  // Exported field_instance: 'node-transaction_ap-field_transaction_ap_agree'.
+  $field_instances['node-transaction_ap-field_transaction_ap_agree'] = array(
+    'bundle' => 'transaction_ap',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
-        'weight' => 11,
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4681,30 +4964,28 @@ function f_capital_raising_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_ap_aggrement',
-    'label' => 'Kundavtal',
+    'field_name' => 'field_transaction_ap_agree',
+    'label' => 'Avtal',
     'required' => 0,
     'settings' => array(
-      'description_field' => 0,
-      'file_directory' => 'avtal',
-      'file_extensions' => 'pdf',
-      'max_filesize' => '16 MB',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'file',
+      'module' => 'entityreference',
       'settings' => array(
-        'progress_indicator' => 'throbber',
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
       ),
-      'type' => 'file_generic',
+      'type' => 'entityreference_autocomplete',
       'weight' => 16,
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_ap'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_ap'] = array(
-    'bundle' => 'transaktion_ap',
+  // Exported field_instance: 'node-transaction_ap-field_transaction_ap_ap'.
+  $field_instances['node-transaction_ap-field_transaction_ap_ap'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -4745,9 +5026,9 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_block'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_block'] = array(
-    'bundle' => 'transaktion_ap',
+  // Exported field_instance: 'node-transaction_ap-field_transaction_ap_block'.
+  $field_instances['node-transaction_ap-field_transaction_ap_block'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -4792,9 +5073,9 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_bridging'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_bridging'] = array(
-    'bundle' => 'transaktion_ap',
+  // 'node-transaction_ap-field_transaction_ap_bridging'.
+  $field_instances['node-transaction_ap-field_transaction_ap_bridging'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -4838,9 +5119,9 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_ctrl'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_ctrl'] = array(
-    'bundle' => 'transaktion_ap',
+  // Exported field_instance: 'node-transaction_ap-field_transaction_ap_ctrl'.
+  $field_instances['node-transaction_ap-field_transaction_ap_ctrl'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => array(
       0 => array(
         'value' => 0,
@@ -4882,9 +5163,159 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_fe_sign'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_fe_sign'] = array(
-    'bundle' => 'transaktion_ap',
+  // 'node-transaction_ap-field_transaction_ap_ctrl_comp'.
+  $field_instances['node-transaction_ap-field_transaction_ap_ctrl_comp'] = array(
+    'bundle' => 'transaction_ap',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_ap_ctrl_comp',
+    'label' => 'Kompleterande frågor',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'allow_new' => 1,
+          'delete_references' => 0,
+          'label_plural' => 'nodes',
+          'label_singular' => 'node',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_ap-field_transaction_ap_ctrl_cred'.
+  $field_instances['node-transaction_ap-field_transaction_ap_ctrl_cred'] = array(
+    'bundle' => 'transaction_ap',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_ap_ctrl_cred',
+    'label' => 'Kreditkontroll',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'allow_new' => 1,
+          'delete_references' => 0,
+          'label_plural' => 'nodes',
+          'label_singular' => 'node',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 18,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_ap-field_transaction_ap_ctrl_eu'.
+  $field_instances['node-transaction_ap-field_transaction_ap_ctrl_eu'] = array(
+    'bundle' => 'transaction_ap',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_ap_ctrl_eu',
+    'label' => 'EU:s sanktionsförordningar',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'allow_new' => 1,
+          'delete_references' => 0,
+          'label_plural' => 'nodes',
+          'label_singular' => 'node',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_ap-field_transaction_ap_fe_sign'.
+  $field_instances['node-transaction_ap-field_transaction_ap_fe_sign'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -4929,9 +5360,9 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_fe_warrant'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_fe_warrant'] = array(
-    'bundle' => 'transaktion_ap',
+  // 'node-transaction_ap-field_transaction_ap_fe_warrant'.
+  $field_instances['node-transaction_ap-field_transaction_ap_fe_warrant'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -4976,9 +5407,9 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_le_sign'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_le_sign'] = array(
-    'bundle' => 'transaktion_ap',
+  // 'node-transaction_ap-field_transaction_ap_le_sign'.
+  $field_instances['node-transaction_ap-field_transaction_ap_le_sign'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -5023,9 +5454,9 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_le_warrant'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_le_warrant'] = array(
-    'bundle' => 'transaktion_ap',
+  // 'node-transaction_ap-field_transaction_ap_le_warrant'.
+  $field_instances['node-transaction_ap-field_transaction_ap_le_warrant'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -5070,9 +5501,9 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_pp_sign'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_pp_sign'] = array(
-    'bundle' => 'transaktion_ap',
+  // 'node-transaction_ap-field_transaction_ap_pp_sign'.
+  $field_instances['node-transaction_ap-field_transaction_ap_pp_sign'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -5117,9 +5548,9 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_re_sign'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_re_sign'] = array(
-    'bundle' => 'transaktion_ap',
+  // 'node-transaction_ap-field_transaction_ap_re_sign'.
+  $field_instances['node-transaction_ap-field_transaction_ap_re_sign'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -5163,108 +5594,9 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_signed'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_signed'] = array(
-    'bundle' => 'transaktion_ap',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 14,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_ap_signed',
-    'label' => 'Teckning',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 18,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_signed_date'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_signed_date'] = array(
-    'bundle' => 'transaktion_ap',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 15,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_ap_signed_date',
-    'label' => 'Tecknad den',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'blank',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'increment' => 15,
-        'input_format' => 'Y-m-d H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'no_fieldset' => 0,
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
-      ),
-      'type' => 'date_text',
-      'weight' => 19,
-    ),
-  );
-
-  // Exported field_instance: 'node-transaktion_ap-field_transaction_ap_sum'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_sum'] = array(
-    'bundle' => 'transaktion_ap',
+  // Exported field_instance: 'node-transaction_ap-field_transaction_ap_sum'.
+  $field_instances['node-transaction_ap-field_transaction_ap_sum'] = array(
+    'bundle' => 'transaction_ap',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -5308,59 +5640,17 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'node-transaktion_ap-field_transaction_ap_to_sign'.
-  $field_instances['node-transaktion_ap-field_transaction_ap_to_sign'] = array(
-    'bundle' => 'transaktion_ap',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 13,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_ap_to_sign',
-    'label' => 'Att teckna',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 17,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Anteckning');
   t('Att teckna');
+  t('Avtal');
   t('Avtalspart');
   t('Beräknad noteringstidpunkt');
   t('Blockpost');
   t('Body');
   t('Brygglån');
+  t('EU:s sanktionsförordningar');
   t('Emissionsbelopp');
   t('Erbjudande');
   t('Filer');
@@ -5379,7 +5669,9 @@ function f_capital_raising_field_default_field_instances() {
   t('Intresserad');
   t('Intresserad den');
   t('Investor');
+  t('Kompleterande frågor');
   t('Kontrollera');
+  t('Kreditkontroll');
   t('Kundavtal');
   t('Listningsemission');
   t('Lägstagräns');
@@ -5387,6 +5679,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Löptid');
   t('Marknadsplats');
   t('Offer');
+  t('Penningtvätt');
   t('Person');
   t('Planerad inbetalning');
   t('Pre-money värdering');
@@ -5395,8 +5688,8 @@ function f_capital_raising_field_default_field_instances() {
   t('Riktad emission');
   t('Ränta');
   t('Summa');
-  t('Tecknad den');
   t('Teckning');
+  t('Tecknings datum');
   t('Teckningsförbindelse');
   t('Teckningsförbindelse fe');
   t('Teckningsförbindelse le');
@@ -5407,6 +5700,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Tedkningsförbindelse');
   t('Text');
   t('Tillägsinformation');
+  t('Type');
   t('Utloggning av insynsinformation');
   t('Vilkor för teckningsoptioner');
 

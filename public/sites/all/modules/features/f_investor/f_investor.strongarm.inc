@@ -108,6 +108,12 @@ function f_investor_strongarm() {
             'visible' => TRUE,
           ),
         ),
+        'verification_status_id' => array(
+          'full' => array(
+            'weight' => '13',
+            'visible' => TRUE,
+          ),
+        ),
       ),
     ),
   );

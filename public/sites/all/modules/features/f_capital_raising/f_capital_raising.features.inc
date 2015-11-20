@@ -73,7 +73,15 @@ function f_capital_raising_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
-    'transaktion_ap' => array(
+    'transaction_agreement' => array(
+      'name' => t('Transaktion avtal'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'transaction_ap' => array(
       'name' => t('Transaktion AP'),
       'base' => 'node_content',
       'description' => '',
