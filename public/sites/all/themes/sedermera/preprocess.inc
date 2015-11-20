@@ -97,6 +97,7 @@ function sedermera_preprocess_field(&$variables) {
  */
 function sedermera_preprocess_node(&$variables) {
 
+  // TODO Move logic to module
   if ($variables['type'] == 'ctrl' && $variables['view_mode'] == 'full') {
 
     $node = entity_metadata_wrapper('node', $variables['nid']);
