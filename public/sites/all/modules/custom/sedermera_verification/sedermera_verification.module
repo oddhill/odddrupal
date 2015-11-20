@@ -264,7 +264,7 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_form_FORM_ID_alter()
  * Hide control section when creating a person
  */
 function sedermera_verification_form_person_node_form_alter(&$form, &$form_state, $form_id) {
@@ -275,24 +275,94 @@ function sedermera_verification_form_person_node_form_alter(&$form, &$form_state
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * Sets description as label because of lengt.
+ */
 function sedermera_verification_form_ctrl_pen_node_form_alter(&$form, &$form_state, $form_id) {
   $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#description'];
   $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#description'] = '';
 
   $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'];
   $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'] = '';
-
-  // dprint_r($form['field_ctrl_complex']); die;
-
-  $form['field_ctrl_complex'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_complex'][LANGUAGE_NONE]['0']['value']['#description'];
-  $form['field_ctrl_complex'][LANGUAGE_NONE]['0']['value']['#description'] = '';
-
-
-  // TODO checkboxes on ctrl_pen
-
-
-
 }
+
+function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, $form_id) {
+  // Retrieve info from database
+  $result = db_query("SELECT *
+    FROM {field_data_field_investor_shared_ctrl_ua} AS ua
+    INNER JOIN {field_data_field_investor_shared_ctrl_cred} AS cred ON (ua.entity_id = cred.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_ext} AS ext ON (ua.entity_id = ext.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_oth} AS oth ON (ua.entity_id = oth.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_ptv} AS ptv ON (ua.entity_id = ptv.entity_id)
+    WHERE field_investor_shared_ctrl_ua_target_id = :nid
+    OR field_investor_shared_ctrl_cred_target_id = :nid
+    OR field_investor_shared_ctrl_ext_target_id = :nid
+    OR field_investor_shared_ctrl_oth_target_id = :nid
+    OR field_investor_shared_ctrl_ptv_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+  // Determine what type of control it is
+  switch ($form['nid']['#value']) {
+    case $result['field_investor_shared_ctrl_ua_target_id']:
+      $type = 'Uppdragsavtal';
+      break;
+    case $result['field_investor_shared_ctrl_cred_target_id']:
+      $type = 'Kreditkontroll';
+      break;
+    case $result['field_investor_shared_ctrl_ext_target_id']:
+      $type = 'Externt register';
+      break;
+    case $result['field_investor_shared_ctrl_oth_target_id']:
+      $type = 'Övriga dokument/tillägg';
+      break;
+    case $result['field_investor_shared_ctrl_ptv_target_id']:
+      $type = 'PTV-blankett';
+      break;
+  }
+
+  // Load AP to get AP name
+  $node_ap = node_load($result['entity_id']);
+
+  // Get status for the control
+  $status = sedermera_verification_get_status_single($form['nid']['#value']);
+
+  // Set variables based on the control
+  switch ($status) {
+    case SEDERMERA_VERIFICATION_NOT_APPROVED:
+      $class = 'not-approved';
+      $text = 'ej godkänd';
+      break;
+    case SEDERMERA_VERIFICATION_EXPIRING:
+      $class = 'expiring';
+      $text = 'utgående';
+      break;
+    case SEDERMERA_VERIFICATION_APPROVED:
+      $class = 'approved';
+      $text = 'godkänd';
+      break;
+  }
+
+  // Add class to the form
+  $form['#attributes']['class'][] = $class;
+
+  // Add markup for prefix
+  $form['prefix'] = array(
+    '#type' => 'markup',
+    '#markup' => '
+    <div class="verification-header">
+      <div class="verification-status">
+        Kontrollen är <span class="ctrl-verification ' . $class . '">' . $text . '</span>
+      </div>
+      <div class="verification-info">
+        <div class="ver-type">' . $type . '</div>
+        <h2 class="ver-title">' . $node_ap->title . '</h2>
+      </div>
+    </div>
+    ',
+  );
+}
+
 
 /**
  * Get the status for a single verification.
