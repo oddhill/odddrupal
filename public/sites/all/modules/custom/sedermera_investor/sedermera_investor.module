@@ -36,26 +36,6 @@ function sedermera_investor_menu() {
 }
 
 /**
- * Implements hook_menu_alter().
- */
-// function sedermera_investor_menu_alter(&$items) {
-//   // Get the entity info for the investor entity type.
-//   $investor_info = entity_get_info('investor');
-
-//   // Iterate through the bundles.
-//   foreach ($investor_info['bundles'] as $bundle_name => $bundle_info) {
-//     // Change the delete link for every bundle to a regular menu callback in
-//     // order to get rid of the tab.
-//     $items["investor/{$bundle_name}/%eckentity/delete"]['type'] = MENU_CALLBACK;
-
-//     // Change the title callback for every bundle in order to use the entity
-//     // label.
-//     $items["investor/{$bundle_name}/%eckentity"]['title callback'] = 'sedermera_investor_entity_page_title';
-//     $items["investor/{$bundle_name}/%eckentity"]['title arguments'] = array(2);
-//   }
-// }
-
-/**
  * Implements hook_views_api().
  */
 function sedermera_investor_views_api() {
@@ -71,15 +51,6 @@ function sedermera_investor_views_api() {
 function sedermera_investor_entity_page_title($entity) {
   // Return the label of the entity.
   return entity_label('investor', $entity);
-}
-
-/**
- * Implements hook_admin_paths_alter().
- */
-function sedermera_investor_admin_paths_alter(&$paths) {
-  // Don't treat the add forms for investor bundles as administrative pages, in
-  // order to use the sites default theme rather than the administration theme.
-  $paths['admin/structure/entity-type/investor/*/add'] = FALSE;
 }
 
 /**
@@ -120,82 +91,6 @@ function sedermera_investor_field_widget_form_alter(&$element, &$form_state, $co
   // sure that we avoid any confusion for the end user.
   if ($element['#field_name'] == 'field_shared_temp') {
     $element['#access'] = FALSE;
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-// function sedermera_investor_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
-//   // Alter the exposed form for the investor page and offer embed displays.
-//   if (in_array($form['#id'], array('views-exposed-form-investors-page', 'views-exposed-form-investors-offer-embed'))) {
-//     // Get the country values from the database. We'll use a regular DB Query in
-//     // order to improve performance.
-//     $available_countries = db_query("SELECT DISTINCT field_shared_address_country FROM {field_data_field_shared_address}")->fetchAllKeyed();
-
-//     // Remove the options that aren't stored in the database.
-//     $form['country']['#options'] = array_intersect_key($form['country']['#options'], $available_countries);
-
-//     // Disable access to the country field and remove the label if the options
-//     // are empty.
-//     if (empty($form['country']['#options'])) {
-//       $form['country']['#access'] = FALSE;
-//       unset($form['#info']['filter-field_shared_address_country']);
-//     }
-
-//     // Get the industry values from the database. We'll use a regular DB Query
-//     // here as well, for the same reason as above...
-//     $available_industries = db_query("SELECT DISTINCT field_shared_industries_tid FROM {field_data_field_shared_industries}")->fetchAllKeyed();
-
-//     // Remove the options that aren't stored in the database, and disable access
-//     // to the field if the options are empty.
-//     $form['industries']['#options'] = array_intersect_key($form['industries']['#options'], $available_industries);
-
-//     // Disable access to the industries field and remove the label if the
-//     // options are empty.
-//     if (empty($form['industries']['#options'])) {
-//       $form['industries']['#access'] = FALSE;
-//       unset($form['#info']['filter-field_shared_industries_tid']);
-//     }
-//   }
-// }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_investor_form_eck__entity__form_add_investor_person_alter(&$form, &$form_state, $form_id) {
-  if (!empty($_POST['lead_id'])) {
-    $lead = entity_load_single('investor', $_POST['lead_id']);
-    $wrapper = entity_metadata_wrapper('investor', $lead);
-
-    $form['field_invest_pers_first_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_lead_first_name->value();
-    $form['field_invest_pers_last_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_lead_last_name->value();
-    $form['field_shared_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $wrapper->field_shared_email->value();
-    $form['field_shared_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_phone->value();
-    $form['field_shared_cell'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_cell->value();
-    $form['field_shared_notes'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_notes->value();
-
-    $lead->publish = 1;
-    $lead->save();
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_investor_form_eck__entity__form_add_investor_company_alter(&$form, &$form_state, $form_id) {
-  if (!empty($_POST['lead_id'])) {
-    $lead = entity_load_single('investor', $_POST['lead_id']);
-    $wrapper = entity_metadata_wrapper('investor', $lead);
-
-    $form['field_invest_comp_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_lead_first_name->value() . " " . $wrapper->field_lead_last_name->value();
-    $form['field_shared_email'][LANGUAGE_NONE][0]['email']['#default_value'] = $wrapper->field_shared_email->value();
-    $form['field_shared_phone'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_phone->value();
-    $form['field_shared_cell'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_cell->value();
-    $form['field_shared_notes'][LANGUAGE_NONE][0]['value']['#default_value'] = $wrapper->field_shared_notes->value();
-
-    $lead->publish = 1;
-    $lead->save();
   }
 }
 
