@@ -13,7 +13,7 @@
 ?>
 <div class="node-barrier">
 
-  <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding">
+  <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
     <?php print $ds_content; ?>
   </div>
 </div>

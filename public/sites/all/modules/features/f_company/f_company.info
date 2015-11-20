@@ -22,6 +22,7 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[ds_field_settings][] = node|company|full
 features[ds_layout_settings][] = node|company|full
+features[ds_layout_settings][] = node|company|teaser
 features[features_api][] = api:2
 features[field_base][] = field_comp_legacy_id
 features[field_base][] = field_comp_logo

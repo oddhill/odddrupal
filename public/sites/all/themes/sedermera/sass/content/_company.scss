@@ -1,26 +1,7 @@
 // Company node
-.node-type-company {
+.node-company {
 
-  .content-wrapper {
-    background: $snow;
-    padding-bottom: 40px;
-  }
-}
+  &.view-mode-teaser {
 
-// Company logo
-.field-comp-logo {
-  margin-top: 10px;
-}
-
-// Padding for edit company page
-.node-company-form {
-  padding: 50px 40px 0 40px;
-}
-
-.page-node-add-company {
-
-  // Padding for create company page
-  #company-node-form {
-    padding: 0;
   }
 }

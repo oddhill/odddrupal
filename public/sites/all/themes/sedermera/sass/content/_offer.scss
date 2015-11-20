@@ -2,6 +2,51 @@
 
   &.view-mode-full {
 
+    .offer-time {
+      padding-bottom: 30px;
+      border-bottom: 2px solid $light-grey;
+      margin-bottom: 30px;
+      @include font-size(1.6);
+
+      .date-display-range {
+        display: inline-block;
+      }
+    }
+
+    .offer-sidebar {
+      float: right;
+      width: 40%;
+      max-width: 300px;
+      margin: 0 0 30px 30px;
+      border-left: 2px solid $light-grey;
+      padding-left: 30px;
+
+      .field {
+        margin-bottom: 1em;
+
+        .label,
+        .file {
+          display: block;
+          margin-bottom: 3px;
+        }
+      }
+    }
+
+    .offer-description {
+      overflow: hidden;
+    }
+
+    .offer-company {
+      float: right;
+      width: 140px;
+      margin: 0 0 1em 2em;
+      text-align: center;
+    }
+
+    .offer-additional-information {
+      margin-top: 3em;
+      color: $grey;
+    }
   }
 }
 

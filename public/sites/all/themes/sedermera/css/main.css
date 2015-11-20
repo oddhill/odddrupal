@@ -498,19 +498,6 @@ div.button {
   .nav-list > li.active > a {
     font-weight: 500; }
 
-.node-type-company .content-wrapper {
-  background: #fff;
-  padding-bottom: 40px; }
-
-.field-comp-logo {
-  margin-top: 10px; }
-
-.node-company-form {
-  padding: 50px 40px 0 40px; }
-
-.page-node-add-company #company-node-form {
-  padding: 0; }
-
 .node-ctrl.view-mode-full .verification-header {
   padding: 40px;
   overflow: hidden; }
@@ -1692,6 +1679,39 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     display: block;
     float: none;
     margin-bottom: 0.5em; }
+
+.node-offer.view-mode-full .offer-time {
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f3f4f8;
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 24px; }
+  .node-offer.view-mode-full .offer-time .date-display-range {
+    display: inline-block; }
+.node-offer.view-mode-full .offer-sidebar {
+  float: right;
+  width: 40%;
+  max-width: 300px;
+  margin: 0 0 30px 30px;
+  border-left: 2px solid #f3f4f8;
+  padding-left: 30px; }
+  .node-offer.view-mode-full .offer-sidebar .field {
+    margin-bottom: 1em; }
+    .node-offer.view-mode-full .offer-sidebar .field .label,
+    .node-offer.view-mode-full .offer-sidebar .field .file {
+      display: block;
+      margin-bottom: 3px; }
+.node-offer.view-mode-full .offer-description {
+  overflow: hidden; }
+.node-offer.view-mode-full .offer-company {
+  float: right;
+  width: 140px;
+  margin: 0 0 1em 2em;
+  text-align: center; }
+.node-offer.view-mode-full .offer-additional-information {
+  margin-top: 3em;
+  color: #797979; }
 
 #preview-wrapper {
   position: relative; }
