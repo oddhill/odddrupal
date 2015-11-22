@@ -15,7 +15,8 @@
       padding: 0;
     }
 
-    .node-ctrl {
+    .node-ctrl,
+    .node-ctrl-form {
       border-top: 10px solid $coffee;
 
       &.approved {

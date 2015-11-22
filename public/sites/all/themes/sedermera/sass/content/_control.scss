@@ -113,6 +113,45 @@
 
 .node-ctrl-form {
 
+  // Verification header
+  .verification-header {
+    padding: 40px;
+    overflow: hidden;
+  }
+
+  .verification-status {
+    float: right;
+    margin-top: 2.4em;
+
+    .ctrl-verification {
+      font-weight: 700;
+
+      &.not-approved {
+        color: $wine;
+      }
+
+      &.expiring {
+        color: $mustard;
+      }
+
+      &.approved {
+        color: $pear;
+      }
+    }
+  }
+
+  .verification-info {
+    overflow: hidden;
+
+    .ver-type {
+      text-transform: uppercase;
+    }
+
+    h2 {
+      @include font-size(3.0,1.2);
+    }
+  }
+
   .form-items-wrapper {
     padding: 40px;
     background: tint($light-grey,60%);

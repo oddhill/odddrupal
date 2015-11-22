@@ -587,6 +587,28 @@ div.button {
     margin-bottom: 0;
     color: #282828; }
 
+.node-ctrl-form .verification-header {
+  padding: 40px;
+  overflow: hidden; }
+.node-ctrl-form .verification-status {
+  float: right;
+  margin-top: 2.4em; }
+  .node-ctrl-form .verification-status .ctrl-verification {
+    font-weight: 700; }
+    .node-ctrl-form .verification-status .ctrl-verification.not-approved {
+      color: #c04343; }
+    .node-ctrl-form .verification-status .ctrl-verification.expiring {
+      color: #f9a500; }
+    .node-ctrl-form .verification-status .ctrl-verification.approved {
+      color: #6c9e65; }
+.node-ctrl-form .verification-info {
+  overflow: hidden; }
+  .node-ctrl-form .verification-info .ver-type {
+    text-transform: uppercase; }
+  .node-ctrl-form .verification-info h2 {
+    font-size: 30px;
+    font-size: 3rem;
+    line-height: 36px; }
 .node-ctrl-form .form-items-wrapper {
   padding: 40px;
   background: #fafbfc;
@@ -3297,13 +3319,17 @@ form#user-login,
   .mfp-ajax-holder .mfp-content .node {
     margin: 0;
     padding: 0; }
-  .mfp-ajax-holder .mfp-content .node-ctrl {
+  .mfp-ajax-holder .mfp-content .node-ctrl,
+  .mfp-ajax-holder .mfp-content .node-ctrl-form {
     border-top: 10px solid #282828; }
-    .mfp-ajax-holder .mfp-content .node-ctrl.approved {
+    .mfp-ajax-holder .mfp-content .node-ctrl.approved,
+    .mfp-ajax-holder .mfp-content .node-ctrl-form.approved {
       border-color: #6c9e65; }
-    .mfp-ajax-holder .mfp-content .node-ctrl.expiring {
+    .mfp-ajax-holder .mfp-content .node-ctrl.expiring,
+    .mfp-ajax-holder .mfp-content .node-ctrl-form.expiring {
       border-color: #f9a500; }
-    .mfp-ajax-holder .mfp-content .node-ctrl.not-approved {
+    .mfp-ajax-holder .mfp-content .node-ctrl.not-approved,
+    .mfp-ajax-holder .mfp-content .node-ctrl-form.not-approved {
       border-color: #c04343; }
 
 .mfp-close-btn-in .mfp-close {
