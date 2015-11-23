@@ -62,7 +62,7 @@ function f_company_strongarm() {
         'custom_settings' => TRUE,
       ),
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -74,15 +74,6 @@ function f_company_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
-        'custom_settings' => FALSE,
-      ),
-      'PDF' => array(
-        'custom_settings' => FALSE,
-      ),
-      'control' => array(
-        'custom_settings' => FALSE,
-      ),
-      'mail' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -101,18 +92,7 @@ function f_company_strongarm() {
           'weight' => '3',
         ),
       ),
-      'display' => array(
-        'verification_status' => array(
-          'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
-          'teaser' => array(
-            'weight' => '9',
-            'visible' => FALSE,
-          ),
-        ),
-      ),
+      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__company'] = $strongarm;
