@@ -1,8 +1,188 @@
-th {
-  padding: 10px;
-  white-space: nowrap;
+// Wraps the table (all content and filtered content)
+.table-wrapper {
+  background: $snow;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  position: relative;
+  width: 100%; // width: 77%; // Commented out until we know what to do with the filter
+  border: 1px solid $wool;
 }
 
-td {
-  white-space: nowrap;
+table {
+  width: 100%;
+
+  &.sticky-header {
+    z-index: 10;
+    border-left: 1px solid $wool;
+    border-right: 1px solid $wool;
+
+    label {
+      padding: 0;
+      margin: 0;
+      @include font-size(1.4,1);
+      font-weight: 700;
+      color: $coffee;
+      border: 0px none;
+    }
+  }
+
+  thead {
+
+    tr {
+      border-bottom: 1px solid $wool;
+    }
+  }
+
+  tfoot {
+
+    tr {
+      border-top: 1px solid $wool;
+    }
+  }
+
+  thead,
+  tfoot {
+    background: $aluminium;
+    font-weight: 700;
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px;
+      white-space: nowrap;
+
+      &.views-field {
+
+        &.active {
+
+          a {
+            border-bottom: 2px solid $mustard;
+          }
+        }
+      }
+
+      a {
+        border-bottom: 0px none;
+        color: $coffee;
+        font-size: $standard;
+
+        img {
+          border-bottom: none;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  td {
+    color: $dark-concrete;
+    padding: 10px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  tr {
+    border-bottom: 1px solid $light-grey;
+
+    &.even {
+      background: tint($light-grey,60%);
+
+      .ajax-progress {
+        background: tint($light-grey,60%);
+      }
+    }
+
+    &.odd {
+      background: $snow;
+
+      .ajax-progress {
+        background: $snow;
+      }
+    }
+
+    &.views-row-last,
+    &:last-child {
+      border-bottom: 0px none;
+    }
+  }
+}
+
+// Inline forms in tables
+.views-form {
+
+  table {
+
+    .form-actions,
+    .form-wrapper {
+      margin: 0;
+    }
+
+    input {
+      border: 1px solid $light-concrete;
+    }
+
+    .form-item {
+      margin-bottom: 0;
+
+      .description {
+        display: none;
+      }
+
+      &.form-type-checkbox {
+        padding-top: 2px;
+
+        label.option {
+          display: inline-block;
+          line-height: 18px;
+          position: relative;
+
+          .checker {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+
+      &.form-type-textfield {
+
+        .form-text {
+          margin: 0;
+          padding: 0 2px;
+        }
+      }
+    }
+
+    .editablefield-item {
+      position: relative;
+
+      .form-actions {
+
+        .submit-wrapper {
+          display: block;
+        }
+
+        .ajax-progress {
+          height: 100%;
+          left: 0px;
+          padding-top: 6px;
+          position: absolute;
+          top: 0px;
+          width: 100%;
+
+          .throbber {
+            @include throbber;
+          }
+
+          .message {
+            padding-left: 24px;
+          }
+        }
+      }
+    }
+
+    td {
+      padding: 7px 10px;
+    }
+  }
 }

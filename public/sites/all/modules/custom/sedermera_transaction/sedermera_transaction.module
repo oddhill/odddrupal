@@ -64,12 +64,10 @@ function sedermera_transaction_intresent($offer_id) {
 
   // If no transactions exists for the offer present empty table with no content
   if (empty($transactions)) {
-    drupal_set_title('Det finns inga transaktioner');
+
     return array(
-      '#theme' => 'table',
-      '#header' => array(),
-      '#rows' => NULL,
-      '#prefix' => '<div id="intresent-table" class="table-wrapper">',
+      '#prefix' => '<div class="view-empty">',
+      '#markup' => 'Det finns inga intresserade kontaktpersoner',
       '#suffix' => '</div>',
     );
   }
@@ -118,8 +116,8 @@ function sedermera_transaction_intresent($offer_id) {
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
-      '#prefix' => '<div id="intresent-table" class="table-wrapper">',
-      '#suffix' => '</div>',
+      '#prefix' => '<div class="offer-interested-list"><div id="interested-table" class="table-wrapper">',
+      '#suffix' => '</div></div>',
     );
   }
 }
@@ -777,12 +775,13 @@ function sedermera_transaction_control() {
 
   // If no transactions exists for the offer present empty table with no content
   if (empty($transactions)) {
-    drupal_set_title('Det finns inga transaktioner');
+
     return array(
-      '#theme' => 'table',
-      '#header' => array(),
-      '#rows' => NULL,
-      '#prefix' => '<div class="table-wrapper">',
+      // '#theme' => 'table',
+      // '#header' => array(),
+      // '#rows' => NULL,
+      '#prefix' => '<div class="view-empty">',
+      '#markup' => 'Det finns inga transaktioner',
       '#suffix' => '</div>',
     );
   }
@@ -849,8 +848,8 @@ function sedermera_transaction_control() {
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
-      '#prefix' => '<div class="table-wrapper">',
-      '#suffix' => '</div>',
+      '#prefix' => '<div class="offer-transactions-list"><div id="transactions-list" class="table-wrapper">',
+      '#suffix' => '</div></div>',
     );
   }
 }

@@ -1702,6 +1702,39 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     float: none;
     margin-bottom: 0.5em; }
 
+.offer-contact-list {
+  padding: 40px; }
+  .offer-contact-list .add-more {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    margin-bottom: 40px; }
+    .offer-contact-list .add-more:hover {
+      background-color: #303030; }
+
+.page-node-kontaktlista-lagg-till .content-wrapper {
+  background: transparent; }
+
+.offer-interested-list {
+  padding: 40px; }
+
 .node-offer.view-mode-full .offer-time {
   padding-bottom: 30px;
   border-bottom: 2px solid #f3f4f8;
@@ -1886,101 +1919,6 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     float: none;
     margin-bottom: 0.5em; }
 
-.view-offers .add-more {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin-bottom: 25px; }
-  .view-offers .add-more:hover {
-    background-color: #303030; }
-.view-offers .views-field.views-field-field-offer-status input {
-  width: 180px; }
-.view-offers .form-type-date-combo {
-  position: relative; }
-  .view-offers .form-type-date-combo .description {
-    font-size: 11px;
-    font-size: 1.1rem;
-    line-height: 16.5px;
-    background-color: #ebedf1;
-    padding: 1px 5px 2px 5px;
-    position: absolute;
-    display: none; }
-  .view-offers .form-type-date-combo .date-date {
-    width: 145px; }
-.view-offers .views-field-field-offer-interested .checker {
-  margin-bottom: 4px;
-  margin-right: 5px; }
-.view-offers #views-form-offers-page .form-submit#edit-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/send_small_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/send_small_light.svg") transparent 0 0 no-repeat;
-  background-position: 20px 11px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  .view-offers #views-form-offers-page .form-submit#edit-submit:hover {
-    background-color: #303030; }
-
-#sedermera-offer-investors-add {
-  overflow: hidden;
-  text-align: right; }
-  #sedermera-offer-investors-add .form-actions {
-    display: inline-block; }
-    #sedermera-offer-investors-add .form-actions .form-submit {
-      display: inline-block;
-      height: 34px;
-      font-size: 12px;
-      font-size: 1.2rem;
-      line-height: 12px;
-      line-height: 34px;
-      border-radius: 34px;
-      color: #fff;
-      padding: 0 20px;
-      font-weight: 500;
-      text-transform: uppercase;
-      border-bottom: 0 none;
-      background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
-      background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
-      background-position: 20px 11px;
-      padding-left: 42px;
-      background-color: #454545;
-      -webkit-transition: background-color 0.1s ease-in-out;
-      -moz-transition: background-color 0.1s ease-in-out;
-      transition: background-color 0.1s ease-in-out;
-      margin-right: 0; }
-      #sedermera-offer-investors-add .form-actions .form-submit:hover {
-        background-color: #303030; }
-
 .mfp-content {
   background: #fff;
   margin: 0 auto;
@@ -2134,40 +2072,6 @@ form.views-send-preview .form-actions {
     display: inline-block;
     height: 20px;
     padding-left: 25px; }
-
-.view-offers .views-field-field-offer-amount input {
-  margin-right: 5px;
-  padding: 0 5px 0 5px 0; }
-.view-offers a.sedermera-verification-status-check {
-  cursor: pointer; }
-
-#sedermera-offer-sign-confirm #edit-submit {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
-  background-position: 20px 13px;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out; }
-  #sedermera-offer-sign-confirm #edit-submit:hover {
-    background-color: #303030; }
-
-.page-node-intressenter .content-wrapper {
-  background: #fff;
-  padding: 0 0 30px; }
 
 #user-pass-reset {
   color: #fff;
@@ -2828,110 +2732,6 @@ form.views-send-preview .form-actions {
         width: 100%; }
         .table-filter form .form-item.form-type-textfield .form-text:focus {
           box-shadow: 0 0 3px #a2a2a2; }
-
-.table-wrapper {
-  background: #fff;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  position: relative;
-  width: 100%;
-  border: 1px solid #e0e2e6; }
-
-table {
-  width: 100%; }
-  table.sticky-header {
-    z-index: 10;
-    border-left: 1px solid #e0e2e6;
-    border-right: 1px solid #e0e2e6; }
-    table.sticky-header label {
-      padding: 0;
-      margin: 0;
-      font-size: 14px;
-      font-size: 1.4rem;
-      line-height: 14px;
-      font-weight: 700;
-      color: #282828;
-      border: 0px none; }
-  table thead {
-    background: #ebedf1;
-    border-bottom: 1px solid #e0e2e6;
-    font-weight: 700; }
-    table thead tr {
-      border-bottom: 1px solid #e0e2e6; }
-    table thead th {
-      text-align: left; }
-      table thead th.views-field {
-        padding: 10px; }
-        table thead th.views-field.active a {
-          border-bottom: 2px solid #f9a500; }
-      table thead th a {
-        border-bottom: 0px none;
-        color: #282828;
-        font-size: 1.4; }
-        table thead th a img {
-          border-bottom: none;
-          margin-left: 5px; }
-  table td {
-    height: 44px;
-    padding: 10px;
-    vertical-align: middle; }
-    table td .form-actions {
-      margin: 0; }
-    table td .form-item {
-      margin-bottom: 0; }
-      table td .form-item.form-type-checkbox {
-        padding-top: 2px; }
-        table td .form-item.form-type-checkbox label.option {
-          display: inline-block;
-          line-height: 18px;
-          position: relative; }
-          table td .form-item.form-type-checkbox label.option .checker {
-            position: absolute;
-            left: 0;
-            top: 0; }
-      table td .form-item.form-type-textfield .form-text {
-        margin: 0;
-        padding: 0 2px; }
-    table td .editablefield-item {
-      position: relative; }
-      table td .editablefield-item .form-actions .submit-wrapper {
-        display: block; }
-      table td .editablefield-item .form-actions .ajax-progress {
-        height: 100%;
-        left: 0px;
-        padding-top: 3px;
-        position: absolute;
-        top: 0px;
-        width: 100%; }
-        table td .editablefield-item .form-actions .ajax-progress .throbber {
-          display: inline-block;
-          background: transparent;
-          width: 16px;
-          height: 16px;
-          border: 2px solid #f9a500;
-          border-radius: 50%;
-          border-top-color: transparent;
-          -webkit-animation: load 0.9s linear infinite;
-          -moz-animation: load 0.9s linear infinite;
-          animation: load 0.9s linear infinite; }
-        table td .editablefield-item .form-actions .ajax-progress .message {
-          padding-left: 24px; }
-  table tr {
-    border-bottom: 1px solid #f3f4f8; }
-    table tr.even {
-      background: #fafbfc; }
-      table tr.even .ajax-progress {
-        background: #fafbfc; }
-    table tr.odd {
-      background: #fff; }
-      table tr.odd .ajax-progress {
-        background: #fff; }
-    table tr.views-row-last {
-      border-bottom: 0px none; }
-  table td {
-    color: #363636; }
-  table input {
-    border: 1px solid #c8cacd; }
 
 .field-group-htabs-wrapper {
   background: #fff;
@@ -3850,12 +3650,128 @@ form#user-login,
     .user-status {
       display: none; } }
 
-th {
-  padding: 10px;
-  white-space: nowrap; }
+.table-wrapper {
+  background: #fff;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  position: relative;
+  width: 100%;
+  border: 1px solid #e0e2e6; }
 
-td {
-  white-space: nowrap; }
+table {
+  width: 100%; }
+  table.sticky-header {
+    z-index: 10;
+    border-left: 1px solid #e0e2e6;
+    border-right: 1px solid #e0e2e6; }
+    table.sticky-header label {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 14px;
+      font-weight: 700;
+      color: #282828;
+      border: 0px none; }
+  table thead tr {
+    border-bottom: 1px solid #e0e2e6; }
+  table tfoot tr {
+    border-top: 1px solid #e0e2e6; }
+  table thead,
+  table tfoot {
+    background: #ebedf1;
+    font-weight: 700; }
+    table thead th,
+    table thead td,
+    table tfoot th,
+    table tfoot td {
+      text-align: left;
+      padding: 10px;
+      white-space: nowrap; }
+      table thead th.views-field.active a,
+      table thead td.views-field.active a,
+      table tfoot th.views-field.active a,
+      table tfoot td.views-field.active a {
+        border-bottom: 2px solid #f9a500; }
+      table thead th a,
+      table thead td a,
+      table tfoot th a,
+      table tfoot td a {
+        border-bottom: 0px none;
+        color: #282828;
+        font-size: 1.4; }
+        table thead th a img,
+        table thead td a img,
+        table tfoot th a img,
+        table tfoot td a img {
+          border-bottom: none;
+          margin-left: 5px; }
+  table td {
+    color: #363636;
+    padding: 10px;
+    vertical-align: middle;
+    white-space: nowrap; }
+  table tr {
+    border-bottom: 1px solid #f3f4f8; }
+    table tr.even {
+      background: #fafbfc; }
+      table tr.even .ajax-progress {
+        background: #fafbfc; }
+    table tr.odd {
+      background: #fff; }
+      table tr.odd .ajax-progress {
+        background: #fff; }
+    table tr.views-row-last, table tr:last-child {
+      border-bottom: 0px none; }
+
+.views-form table .form-actions,
+.views-form table .form-wrapper {
+  margin: 0; }
+.views-form table input {
+  border: 1px solid #c8cacd; }
+.views-form table .form-item {
+  margin-bottom: 0; }
+  .views-form table .form-item .description {
+    display: none; }
+  .views-form table .form-item.form-type-checkbox {
+    padding-top: 2px; }
+    .views-form table .form-item.form-type-checkbox label.option {
+      display: inline-block;
+      line-height: 18px;
+      position: relative; }
+      .views-form table .form-item.form-type-checkbox label.option .checker {
+        position: absolute;
+        left: 0;
+        top: 0; }
+  .views-form table .form-item.form-type-textfield .form-text {
+    margin: 0;
+    padding: 0 2px; }
+.views-form table .editablefield-item {
+  position: relative; }
+  .views-form table .editablefield-item .form-actions .submit-wrapper {
+    display: block; }
+  .views-form table .editablefield-item .form-actions .ajax-progress {
+    height: 100%;
+    left: 0px;
+    padding-top: 6px;
+    position: absolute;
+    top: 0px;
+    width: 100%; }
+    .views-form table .editablefield-item .form-actions .ajax-progress .throbber {
+      display: inline-block;
+      background: transparent;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #f9a500;
+      border-radius: 50%;
+      border-top-color: transparent;
+      -webkit-animation: load 0.9s linear infinite;
+      -moz-animation: load 0.9s linear infinite;
+      animation: load 0.9s linear infinite; }
+    .views-form table .editablefield-item .form-actions .ajax-progress .message {
+      padding-left: 24px; }
+.views-form table td {
+  padding: 7px 10px; }
 
 .tabs {
   background: #ebedf1;
@@ -3883,7 +3799,7 @@ td {
         border-bottom: 0 none;
         height: 40px; }
     .tabs li.active a {
-      background: #fff;
+      background-color: #fff;
       border-bottom: 0 none;
       border-left: 0 none;
       border-top: 2px solid #f9a500;
@@ -3897,23 +3813,19 @@ td {
   .tabs .redigera {
     border-left: 1px solid #e0e2e6;
     float: right; }
-    .tabs .edit .edit,
-    .tabs .edit .redigera,
-    .tabs .redigera .edit,
-    .tabs .redigera .redigera {
+    .tabs .edit a,
+    .tabs .redigera a {
       background: url("../graphics/edit.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/edit.svg") transparent 0 0 no-repeat;
       background-position: 20px 13px;
-      padding-left: 40px; }
-      .tabs .edit .edit:hover,
-      .tabs .edit .redigera:hover,
-      .tabs .redigera .edit:hover,
-      .tabs .redigera .redigera:hover {
+      padding-left: 40px;
+      border-left: 0px none;
+      border-right: 0px none; }
+      .tabs .edit a:hover,
+      .tabs .redigera a:hover {
         background-color: #d5d7da; }
-      .tabs .edit .edit.active,
-      .tabs .edit .redigera.active,
-      .tabs .redigera .edit.active,
-      .tabs .redigera .redigera.active {
+      .tabs .edit a.active,
+      .tabs .redigera a.active {
         background-color: #fff;
         border-bottom: 0 none;
         border-left: 0 none;
@@ -4784,20 +4696,6 @@ div.addressfield-container-inline {
   margin: 0; }
   #offer-node-form .group-offer-types .form-wrapper {
     margin: 0; }
-#offer-node-form .group-offer-define .group-offer-type-fe,
-#offer-node-form .group-offer-define .group-offer-type-le,
-#offer-node-form .group-offer-define .group-offer-type-pp,
-#offer-node-form .group-offer-define .group-offer-type-re,
-#offer-node-form .group-offer-define .group-offer-type-bl,
-#offer-node-form .group-offer-define .group-offer-type-bp {
-  margin-bottom: 0; }
-  #offer-node-form .group-offer-define .group-offer-type-fe .form-wrapper,
-  #offer-node-form .group-offer-define .group-offer-type-le .form-wrapper,
-  #offer-node-form .group-offer-define .group-offer-type-pp .form-wrapper,
-  #offer-node-form .group-offer-define .group-offer-type-re .form-wrapper,
-  #offer-node-form .group-offer-define .group-offer-type-bl .form-wrapper,
-  #offer-node-form .group-offer-define .group-offer-type-bp .form-wrapper {
-    margin-bottom: 0; }
 #offer-node-form .group-offer-define .group-offer-type-fe .field-name-field-offer-type-fe-warrant-type,
 #offer-node-form .group-offer-define .group-offer-type-fe .field-name-field-offer-type-fe-terms {
   margin-bottom: 4rem; }

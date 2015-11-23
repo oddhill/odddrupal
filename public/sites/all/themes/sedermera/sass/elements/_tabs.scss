@@ -32,7 +32,7 @@
     &.active {
 
       a {
-        background: $snow;
+        background-color: $snow;
         border-bottom: 0 none;
         border-left: 0 none;
         border-top: 2px solid $mustard;
@@ -54,11 +54,12 @@
     border-left: 1px solid $wool;
     float: right;
 
-    .edit,
-    .redigera {
+    a {
       @include svg-bg(edit);
       background-position: 20px 13px;
       padding-left: 40px;
+      border-left: 0px none;
+      border-right: 0px none;
 
       &:hover {
         background-color: $stone;

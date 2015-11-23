@@ -1,0 +1,15 @@
+.offer-contact-list {
+  padding: 40px;
+
+  .add-more {
+    @include button($dark-grey,add);
+    margin-bottom: 40px;
+  }
+}
+
+.page-node-kontaktlista-lagg-till {
+
+  .content-wrapper {
+    background: transparent;
+  }
+}

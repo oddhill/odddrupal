@@ -152,21 +152,11 @@ $(document).ready(function() {
     }
   });
 
-  // Fade in the date format (Kontaktlista)
-  $(".form-type-date-combo .date-date .form-text").on('focusin', function() {
-    $(this).parent().siblings(".description").fadeIn();
-  });
-
   // Add a TOC to controls
   tocInitiator();
 
   // Initiate modals
   initiateModals();
-
-  // Fade out the date format (Kontaktlista)
-  $(".form-type-date-combo .date-date .form-text").on('focusout', function() {
-    $(this).siblings(".description").fadeOut();
-  });
 
   // Hide/show appendix in Document list (Dina dokument)
   $(".appendix").parent().hide();
