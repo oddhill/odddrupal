@@ -115,6 +115,12 @@ function f_capital_raising_strongarm() {
             'visible' => FALSE,
           ),
         ),
+        'verification_status_id' => array(
+          'full' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
       ),
     ),
   );
