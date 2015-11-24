@@ -53,14 +53,19 @@
 
   .throbber {
     display: inline-block;
+    position: absolute;
+    left: -17px;
+    top: 11px;
     width: 10px;
     height: 10px;
     border: 2px solid $wool;
-    margin-left: -23px;
     border-radius: 50%;
 
     &.throbbing {
-      margin: -3px -3px -3px -26px;
+      position: absolute;
+      left: -20px;
+      top: 7px;
+      margin: 0;
       width: 16px;
       height: 16px;
       border-color: $mustard;

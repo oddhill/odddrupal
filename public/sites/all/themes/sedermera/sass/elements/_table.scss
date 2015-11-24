@@ -33,6 +33,13 @@ table {
     }
   }
 
+  tbody {
+
+    td {
+      height: 44px;
+    }
+  }
+
   tfoot {
 
     tr {
@@ -156,7 +163,7 @@ table {
 
     .form-actions {
       margin: 0;
-      
+
       .submit-wrapper {
         display: block;
       }

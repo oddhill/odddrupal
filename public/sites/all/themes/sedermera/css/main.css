@@ -3675,6 +3675,8 @@ table {
       border: 0px none; }
   table thead tr {
     border-bottom: 1px solid #e0e2e6; }
+  table tbody td {
+    height: 44px; }
   table tfoot tr {
     border-top: 1px solid #e0e2e6; }
   table thead,
@@ -5237,13 +5239,18 @@ table.tabledrag-processed {
         background: #f3f4f8; }
   .form-type-textfield .throbber {
     display: inline-block;
+    position: absolute;
+    left: -17px;
+    top: 11px;
     width: 10px;
     height: 10px;
     border: 2px solid #e0e2e6;
-    margin-left: -23px;
     border-radius: 50%; }
     .form-type-textfield .throbber.throbbing {
-      margin: -3px -3px -3px -26px;
+      position: absolute;
+      left: -20px;
+      top: 7px;
+      margin: 0;
       width: 16px;
       height: 16px;
       border-color: #f9a500;
