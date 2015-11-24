@@ -28,10 +28,12 @@ function sedermera_offer_menu() {
     'access arguments' => array(1, 'eck add offer offer entities'),
   );
 
-  $items['offer/send-info'] = array(
+  $items['offer/send-info/%'] = array(
     'page callback' => 'transaction_transparency_info_send_mail',
+    'page arguments' => array(2),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
   );
 
   return $items;
@@ -45,16 +47,11 @@ function sedermera_offer_node_presave($node) {
 
     // React if info logout checkbox has been checked else proceed as normal
     if ($node->original->field_offer_logout_info[und][0]['value'] == 0 && $node->field_offer_logout_info[und][0]['value'] == 1) {
+      $wrapper = entity_metadata_wrapper('node', $node);
 
       // Build mail.
       // Subject.
       $params['subject'] = 'Insynsinformation';
-      // Message.
-      $params['message'][] = 'Hej XX,';
-      $params['message'][] = 'Ni har härmed blivit utloggade från Er insynsställning i BOLAGET.';
-      $params['message'][] = 'Om Ni har några frågor eller funderingar, vänligen kontakta mig.';
-      $params['message'][] = 'Med vänlig hälsning';
-      $params['message'][] = 'Signatur';
 
       // Get transactions connected to this offer
       $result = db_query("SELECT entity_id FROM field_data_field_transaction_offer WHERE field_transaction_offer_target_id = :nid", array(':nid' => $node->nid))->fetchAll();
@@ -66,6 +63,13 @@ function sedermera_offer_node_presave($node) {
 
         // Only send if they have recieved information.
         if ($transaction->field_transaction_info[LANGUAGE_NONE][0]['value'] == 1) {
+          // Message.
+          $params['message'][] = theme('sedermera_offer_unsigned_mail', array(
+            'recipient' => $person->title,
+            'sender' => format_username($GLOBALS['user']),
+            'company' => $wrapper->field_offer_company->title->value(),
+          ));
+
           $mail = $person->field_user_mail[LANGUAGE_NONE][0]['email'];
           drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
         }
@@ -74,36 +78,63 @@ function sedermera_offer_node_presave($node) {
   }
 }
 
-function transaction_transparency_info_send_mail() {
+/**
+ * AJAX callback for sending the transparency info via mail.
+ *
+ * @param int $transaction_nid
+ *   Node ID for the transaction.
+ *
+ * @return array
+ *   Array with AJAX commands.
+ */
+function transaction_transparency_info_send_mail($transaction_nid) {
   // Load entitys to retrieve info
-  global $user;
-  $transaction = node_load(arg(2));
-  $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
-  $offer = node_load($transaction->field_transaction_offer[LANGUAGE_NONE][0]['target_id']);
-  $company = node_load($offer->field_offer_company[LANGUAGE_NONE][0]['target_id']);
+  $transaction = entity_metadata_wrapper('node', $transaction_nid);
+  $person = $transaction->field_transaction_person->value();
+  $offer = $transaction->field_transaction_offer->value();
+  $company = $transaction->field_transaction_offer->field_offer_company->value();
 
   // Build mail.
   // Subject.
   $params['subject'] = 'Insynsinformation';
 
   // Message.
-  $params['message'][] = "Hej $person->title,";
-
-  $params['message'][] = "Ni har härmed erhållit insiderinformation i $company->title och därigenom blivit insynsloggad, vilket innebär att Ni inte får utnyttja informationen för egen eller någon annans räkning. Vidare får informationen inte vidarebefordras och inte heller på annat sätt göras tillgänglig för andra. Informationen skall behandlas med strikt sekretess.";
-
-  $params['message'][] = 'Om Ni har några frågor eller funderingar, vänligen kontakta mig.';
-  $params['message'][] = 'Med vänlig hälsning';
-  $params['message'][] = "$user->name";
+  $params['message'][] = theme('sedermera_offer_signed_mail', array(
+    'recipient' => $person->title,
+    'sender' => format_username($GLOBALS['user']),
+    'company' => $company->title,
+  ));
 
   // Send Mail
-  drupal_mail('sedermera_offer', 'info', $investor_mail, LANGUAGE_NONE, $params);
+  drupal_mail('sedermera_offer', 'info', $person->mail, LANGUAGE_NONE, $params);
 
   // Mark offer as gotten transparency information
-  $transaction->field_transaction_info[LANGUAGE_NONE][0]['value'] = 1;
-  node_save($transaction);
+  $transaction->field_transaction_info = TRUE;
+  $transaction->save();
 
-  // Return to contactlist.
-  drupal_goto("erbjudanden/lista/".$offer->title."/kontaktlista");
+  // Replace the old view with a new one.
+  $view = views_get_view('transactions');
+  return array(
+    '#type' => 'ajax',
+    '#commands' => array(ajax_command_replace('div.offer-contact-list', $view->preview('page', array($offer->nid)))),
+  );
+}
+
+/**
+ * Implements template_preprocess_views_view()..
+ */
+function sedermera_offer_preprocess_views_view(&$variables) {
+  // Add custom JS for AJAX behavior on the contact list view for offers.
+  if ($variables['view']->name == 'transactions' && $variables['view']->current_display == 'page') {
+    $variables['rows']['#attached'] = array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/js/sedermera_offer_send_mail.js',
+      ),
+      'library' => array(
+        array('system', 'drupal.ajax'),
+      ),
+    );
+  }
 }
 
 /**
@@ -347,6 +378,8 @@ function get_title($nid) {
  * Implements hook_theme().
  */
 function sedermera_offer_theme() {
+  $path = drupal_get_path('module', 'sedermera_offer') . '/theme';
+
   return array(
     'sedermera_offer_block_remaining' => array(
       'template' => 'sedermera-offer-block-remaining',
@@ -355,6 +388,16 @@ function sedermera_offer_theme() {
         'committed' => NULL,
         'total' => array('max' => '?', 'percentage' => 0, 'amount' => 0),
       ),
+    ),
+    'sedermera_offer_signed_mail' => array(
+      'template' => 'sedermera-offer-signed-mail',
+      'variables' => array('recipient' => '', 'sender' => '', 'company' => ''),
+      'path' => $path,
+    ),
+    'sedermera_offer_unsigned_mail' => array(
+      'template' => 'sedermera-offer-unsigned-mail',
+      'variables' => array('recipient' => '', 'sender' => '', 'company' => ''),
+      'path' => $path,
     ),
   );
 }
