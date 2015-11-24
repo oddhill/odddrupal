@@ -188,6 +188,11 @@ function sedermera_verification_field_extra_fields() {
           'description' => t('Displays the overall verification status for every referred verification entity.'),
           'weight' => 0,
         ),
+        'verification_status_sign' => array(
+          'label' => t('Verification status sign'),
+          'description' => t('Displays the overall verification status for every referred verification entity.'),
+          'weight' => 0,
+        ),
       )
     );
   }
@@ -263,6 +268,91 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
       '#suffix' => '</span>',
     );
   }
+
+  // Render the verification status if it should be displayed.
+  if (isset($display['verification_status_sign']) && $display['verification_status_sign']['visible']) {
+
+    $agreement = entity_metadata_wrapper('node', $node);
+
+    $result = db_query("SELECT entity_id AS nid FROM {field_data_field_transaction_ap_agree}
+      WHERE field_transaction_ap_agree_target_id = :nid", array(':nid' => $node->nid))->fetchAssoc();
+
+    $investor = entity_metadata_wrapper('node', $result['nid']);
+
+    $status = array();
+
+    // Status complementing questions
+    $status['comp'] = sedermera_verification_get_status_complementing($agreement->field_transaction_agree_ctrl->value());
+
+    // Status ownder ID
+    $status['owne'] = sedermera_verification_get_status_owner_node($investor->field_transaction_ap_ap->value()->nid);
+
+    // Status contact person ID
+    $status['ides'] = sedermera_verification_get_status_contact_person($investor->nid->value());
+
+    // Status investor ctrl
+    $status['inve'] = sedermera_verification_get_status_node($investor->field_transaction_ap_ap->value()->nid);
+
+    // Status transaction ctrl
+    $status['tran'] = sedermera_verification_get_status_node($investor->nid->value());
+
+    // Set a different text and class depending on the status.
+    switch (min($status)) {
+      case SEDERMERA_VERIFICATION_NOT_APPROVED:
+        $text = 'Ej godkänd';
+        $class = 'not-approved';
+        break;
+
+      case SEDERMERA_VERIFICATION_EXPIRING:
+        $text = 'Utgående';
+        $class = 'expiring';
+        break;
+
+      case SEDERMERA_VERIFICATION_APPROVED:
+        $text = 'Godkänd';
+        $class = 'approved';
+        break;
+    }
+
+    // Add the markup.
+    $node->content['verification_status_sign'] = array(
+      '#prefix' => '<span class="verification ' . $class . '">',
+      '#markup' => $text,
+      '#suffix' => '</span>',
+    );
+  }
+}
+
+/**
+ * Gets status for the complementing questions
+ * @param  stdClass $control control node
+ * @return Control status
+ */
+function sedermera_verification_get_status_complementing(stdClass $control) {
+  $wrap = entity_metadata_wrapper('node', $control);
+
+  if ($wrap->field_ctrl_pen_ok->value()) {
+    return SEDERMERA_VERIFICATION_APPROVED;
+  }
+  else {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+}
+
+/**
+ * Get status for the contact person involved
+ * @param  integer $nid of the investor
+ * @return Control status
+ */
+function sedermera_verification_get_status_contact_person($nid) {
+  $result = db_query("SELECT field_user_id_ctrl_target_id AS nid FROM {field_data_field_transaction_investor} AS investor
+    INNER JOIN {field_data_field_transaction_person} AS person
+    ON (investor.entity_id = person.entity_id)
+    INNER JOIN {field_data_field_user_id_ctrl} AS ctrl
+    ON (ctrl.entity_id = person.field_transaction_person_target_id)
+    WHERE field_transaction_investor_target_id = :nid", array(':nid' => $nid))->fetchAssoc();
+
+  return sedermera_verification_get_status_single($result['nid']);
 }
 
 /**
@@ -279,7 +369,7 @@ function sedermera_verification_form_person_node_form_alter(&$form, &$form_state
 
 /**
  * Implements hook_form_FORM_ID_alter()
- * Sets description as label because of lengt.
+ * Sets description as label because of length.
  */
 function sedermera_verification_form_ctrl_pen_node_form_alter(&$form, &$form_state, $form_id) {
   $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#description'];
@@ -289,6 +379,10 @@ function sedermera_verification_form_ctrl_pen_node_form_alter(&$form, &$form_sta
   $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'] = '';
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * Add control type and investor name to control edit form
+ */
 function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, $form_id) {
   // Retrieve info from database
   $result = db_query("SELECT *
@@ -576,65 +670,3 @@ function sedermera_verification_get_status_owner_node($nid) {
     return sedermera_verification_get_status_multiple($verifications);
   }
 }
-
-/**
- * Get a query which is used to fetch expiring verifications.
- *
- * Expiring verifications are determined by comparing the expiration date with
- * the expiration date for a capital raising which the investor is connected to.
- * A verification will be considered as expiring when the expiration date is
- * before the capital raising date, or if the verification isn't approved.
- *
- * @param int $investor_id
- *   Optional ID for an investor if you don't want to check every investor.
- *
- * @return SelectQuery
- *   The unexecuted query.
- */
-// function sedermera_verification_get_expiring_query($investor_id = NULL) {
-//   // Start of from the investor table.
-//   $query = db_select('eck_investor', 'investor');
-
-//   // Join the capital raisings via the offer entity, in order to filter on the
-//   // published capital raisings and to get their expiration date.
-//   $query->join('field_data_field_offer_investor', 'offer_investor', 'investor.id = offer_investor.field_offer_investor_target_id');
-//   $query->join('field_data_field_offer_cap_rais', 'offer_capital_raising', 'offer_investor.entity_id = offer_capital_raising.entity_id');
-//   $query->join('node', 'node_capital_raising', 'offer_capital_raising.field_offer_cap_rais_target_id = node_capital_raising.nid');
-//   $query->join('field_data_field_cap_rais_date', 'capital_raising_expire', 'node_capital_raising.nid = capital_raising_expire.entity_id');
-
-//   // Join the verification expiration date and status for the investors.
-//   $query->join('field_data_field_shared_veri_expire', 'investor_verification_expire', 'investor.id = investor_verification_expire.entity_id');
-//   $query->join('field_data_field_shared_veri_appr', 'investor_verification_approved', 'investor.id = investor_verification_approved.entity_id');
-
-//   // Add the relevant fields.
-//   $query->addField('investor', 'id', 'id');
-//   $query->addField('investor', 'type', 'type');
-//   $query->addField('investor', 'title', 'name');
-//   $query->addField('investor_verification_expire', 'field_shared_veri_expire_value', 'verification');
-//   $query->addField('investor_verification_approved', 'field_shared_veri_appr_value', 'approved');
-
-//   // Filter on published capital raisings.
-//   $query->condition('node_capital_raising.status', 1);
-
-//   // Add a filter which gets the verification that are going to expire before or
-//   // on the same day as the capital raising, or where the verification isn't
-//   // approved.
-//   $condition = db_or();
-//   $condition->condition('field_shared_veri_appr_value', 0);
-//   $condition->where('field_shared_veri_expire_value <= field_cap_rais_date_value2');
-//   $query->condition($condition);
-
-//   // Filter by a investor, if one has been specified.
-//   if ($investor_id) {
-//     $query->condition('investor.id', $investor_id);
-//   }
-
-//   // Order by the verification status and expiration date, and group by the
-//   // investor names.
-//   $query->orderBy('field_shared_veri_appr_value')
-//     ->orderBy('verification')
-//     ->groupBy('name');
-
-//   // Return the query.
-//   return $query;
-// }

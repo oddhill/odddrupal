@@ -27,6 +27,15 @@ function sedermera_transaction_menu() {
     'weight' => 1,
   );
 
+  $items['node/%/teckningslista'] = array(
+    'title' => 'Teckningslista',
+    'page callback' => 'sedermera_transaction_sign',
+    'page arguments' => array(1),
+    'access callback' => 'sedermera_transaction_offer_access',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+
   $items['transaction/add-ap/%/%'] = array(
     'title' => 'Lägg till avtalspart',
     'page callback' => 'sedermera_transaction_add_ap',
@@ -1154,8 +1163,8 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
  * @param  integer $transaction_ap nid of current investor
  */
 function generate_agreement_rows_control(array &$rows, $agreement, $transaction_ap) {
-  $agremment_node = node_load($agreement);
-  $agremment_node_wrap = entity_metadata_wrapper('node', $agremment_node);
+  $agreement_node = node_load($agreement);
+  $agreement_node_wrap = entity_metadata_wrapper('node', $agreement_node);
 
   $transaction_node = node_load($transaction_ap);
   $transaction_ap_wrap = entity_metadata_wrapper('node',  $transaction_node);
@@ -1163,7 +1172,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
   $sum = 0;
 
   //Get the correct sum for the agreement
-  switch ($agremment_node_wrap->field_transaction_agree_type_rea->value()) {
+  switch ($agreement_node_wrap->field_transaction_agree_type_rea->value()) {
     case 'fe_sign':
       $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
       $type = 'Teckningsförbindelse';
@@ -1252,7 +1261,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
   );
 
   // Control PEN column
-  $field = field_view_field('node', $agremment_node, 'field_transaction_agree_ctrl',
+  $field = field_view_field('node', $agreement_node, 'field_transaction_agree_ctrl',
         array(
           'label'=>'hidden',
           'type' => 'sedermera_verification_status',
@@ -1262,19 +1271,19 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
   );
 
   // Control agreement column
-  $nid = $agremment_node->nid;
+  $nid = $agreement_node->nid;
   $rows[$row][] = array(
     'data' => l('Hantera avtal', "node/$nid/edit/control"),
   );
 
   // To sign column
-  if ($agremment_node_wrap->field_transaction_agree_to_sign->value()) {
+  if ($agreement_node_wrap->field_transaction_agree_to_sign->value()) {
     $rows[$row][] = array(
       'data' => '<span class="to-sign-ctrl"></span> att teckna',
     );
   }
   else {
-    $to_sign = field_view_field('node', $agremment_node, 'field_transaction_agree_to_sign',
+    $to_sign = field_view_field('node', $agreement_node, 'field_transaction_agree_to_sign',
           array(
             'label'=>'hidden',
             'type' => 'editable',
@@ -1283,6 +1292,239 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       'data' => render($to_sign),
     );
   }
+}
+
+/**
+ * Render sign table
+ */
+function sedermera_transaction_sign() {
+  // Load all transaction ids corresponding to the current offer
+  $transactions = get_control_transactions(arg(1));
+
+  // Load all agreements ids to be signed from transactions
+  $agreements = get_agreements($transactions);
+
+  // If no transactions exists for the offer present empty table with no content
+  if (empty($agreements)) {
+    drupal_set_title('Det finns inga avtal att teckna');
+    return array(
+      '#theme' => 'table',
+      '#header' => array(),
+      '#rows' => NULL,
+      '#prefix' => '<div class="table-wrapper">',
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    // Load the current offer
+    $offer = node_load(arg(1));
+
+    // Arrays holding the content used to build the table
+    $header = array();
+    $rows = array();
+
+    // Generate the table header
+    generate_header_row_sign($header);
+
+    // Generate agreement rows
+    foreach ($agreements as $transaction => $transaction_agreements) {
+      generate_agreement_row($rows, $transaction, $transaction_agreements);
+    }
+
+    // Generate rendarable array for the table and return it.
+    return array(
+      '#theme' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+      '#prefix' => '<div class="table-wrapper">',
+      '#suffix' => '</div>',
+    );
+  }
+}
+
+/**
+ * Generates the header row for sign
+ * @param  array &$header To store the header
+ */
+function generate_header_row_sign(array &$header) {
+  // Name column
+  $header[] = array(
+    'data' => 'Kontaktperson',
+    'class' => array('table-head')
+  );
+
+  // Investor column
+  $header[] = array(
+    'data' => 'Avtalspart',
+    'class' => array('table-head')
+  );
+
+  // Type column
+  $header[] = array(
+    'data' => 'Tranasktionstyp',
+    'class' => array('table-head')
+  );
+
+  // Summation column
+  $header[] = array(
+    'data' => 'Summa',
+    'class' => array('table-head')
+  );
+
+  // Control column
+  $header[] = array(
+    'data' => 'Kontroller',
+    'class' => array('table-head')
+  );
+
+  // Agreement column
+  $header[] = array(
+    'data' => 'Kundavtal',
+    'class' => array('table-head')
+  );
+
+  // Sign column
+  $header[] = array(
+    'data' => 'Teckning',
+    'class' => array('table-head')
+  );
+}
+
+/**
+ * Generate agreement rows
+ * @param  array  &$rows To store the rows
+ * @param  $transaction The current transaction
+ * @param  array  $agreements  All agreements connected to the transaction
+ */
+function generate_agreement_row(array &$rows, $transaction, array $agreements) {
+  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
+  $person = $transaction_wrap->field_transaction_person->value();
+
+  foreach ($agreements as $agreement) {
+    $rows[] = array();
+    $row = count($rows) - 1;
+
+    $agreement_node = node_load($agreement);
+    $agreement_wrap = entity_metadata_wrapper('node', $agreement_node);
+    $transaction_ap = node_load(get_investor_nid($transaction_wrap->nid->value(), $agreement_wrap->nid->value()));
+    $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
+
+    $sum = 0;
+
+    //Get the correct sum and type for the agreement
+    switch ($agreement_wrap->field_transaction_agree_type_rea->value()) {
+      case 'fe_sign':
+        $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
+        $type = 'Teckningsförbindelse';
+        break;
+      case 'fe_warrant':
+        $sum = $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
+        $type = 'Garantiåtagande';
+        break;
+      case 'le_sign':
+        $sum = $transaction_ap_wrap->field_transaction_ap_le_sign->value();
+        $type = 'Teckningsförbindelse';
+        break;
+      case 'le_warrant':
+        $sum = $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
+        $type = 'Garantiåtagande';
+        break;
+      case 'pp_sign':
+        $sum = $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
+        $type = 'Teckningsförbindelse';
+        break;
+      case 're_sign':
+        $sum = $transaction_ap_wrap->field_transaction_ap_re_sign->value();
+        $type = 'Teckningsförbindelse';
+        break;
+      case 'bridging':
+        $sum = $transaction_ap_wrap->field_transaction_ap_bridging->value();
+        $type = 'Brygglån';
+        break;
+      case 'block':
+        $sum = $transaction_ap_wrap->field_transaction_ap_block->value();
+        $type = 'Blockpost';
+        break;
+    }
+
+    // Name column
+    $rows[$row][] = array(
+      'data' => $person->title,
+    );
+
+    // Investor column
+    $rows[$row][] = array(
+      'data' => $transaction_ap_wrap->field_transaction_ap_ap->value()->title,
+    );
+
+    // Type column
+    $rows[$row][] = array(
+      'data' => $type,
+    );
+
+    // Summation column
+    $rows[$row][] = array(
+      'data' => number_format($sum, 0, "", "'") . " :-",
+    );
+
+    // Control column
+    $investor_view_full = node_view($agreement_node);
+    $rows[$row][] = array(
+      'data' => render($investor_view_full['verification_status_sign']),
+    );
+
+    // Agreement column
+    $nid = $agreement_node->nid;
+    $rows[$row][] = array(
+      'data' => l('Visa avtal', "node/$nid"),
+    );
+
+    // Sign column
+    $field = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
+          array(
+            'label'=>'hidden',
+            'type' => 'editable',
+          ));
+    $rows[$row][] = array(
+      'data' => render($field),
+    );
+  }
+}
+
+/**
+ * Get investor nid
+ * @param  $transaction_nid Transaction nid
+ * @param  $agreement_nid Agreement nid
+ * @return Investor nid
+ */
+function get_investor_nid($transaction_nid, $agreement_nid) {
+  $result = db_query("SELECT agree.entity_id AS nid FROM {field_data_field_transaction_ap_agree} AS agree
+    INNER JOIN {field_data_field_transaction_investor} AS investor
+    ON (agree.entity_id = investor.field_transaction_investor_target_id)
+    WHERE investor.entity_id = :t_nid AND agree.field_transaction_ap_agree_target_id = :a_nid",
+    array(':t_nid' => $transaction_nid, ':a_nid' => $agreement_nid))->fetchAssoc();
+
+  return $result['nid'];
+}
+
+/**
+ * Gett agreements connected to transaction
+ * @param  $transactions Transaction to get agreements for
+ * @return List of agreements
+ */
+function get_agreements($transactions) {
+  $agreements = array();
+
+  foreach ($transactions as $nid) {
+    $result = db_query("SELECT sign.entity_id AS nid FROM {field_data_field_transaction_agree_to_sign} AS sign
+      INNER JOIN {field_data_field_transaction_ap_agree} AS agree ON (agree.field_transaction_ap_agree_target_id = sign.entity_id)
+      INNER JOIN {field_data_field_transaction_investor} AS investor ON (investor.field_transaction_investor_target_id = agree.entity_id)
+      WHERE sign.field_transaction_agree_to_sign_value = 1
+      AND investor.entity_id = :nid", array(':nid' => $nid))->fetchAllAssoc('nid');
+
+    $agreements[$nid] = array_keys($result);
+  }
+  return $agreements;
 }
 
 /**
