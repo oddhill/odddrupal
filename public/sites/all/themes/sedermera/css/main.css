@@ -2748,12 +2748,13 @@ form.views-send-preview .form-actions {
         padding-top: 0; }
   .field-group-htabs-wrapper ul.horizontal-tabs-list {
     display: block;
-    overflow: hidden;
+    overflow: visible;
+    height: 41px;
     position: relative;
-    z-index: 10;
     padding: 0;
     background: transparent;
-    border-right: 0px none; }
+    border-right: 0px none;
+    border-bottom: 1px solid #e0e2e6; }
     .field-group-htabs-wrapper ul.horizontal-tabs-list li {
       background: transparent;
       border-right: 0px; }
@@ -2773,7 +2774,8 @@ form.views-send-preview .form-actions {
         background: #fafbfc;
         border-top: 1px solid #e0e2e6;
         border-right: 1px solid #e0e2e6;
-        border-left: 1px solid #e0e2e6; }
+        border-left: 1px solid #e0e2e6;
+        margin-bottom: -1px; }
         .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected a,
         .field-group-htabs-wrapper ul.horizontal-tabs-list li.selected a:hover {
           padding: 0 19px; }
@@ -2787,10 +2789,10 @@ form.views-send-preview .form-actions {
   .field-group-htabs-wrapper .horizontal-tabs-panes {
     background: #fafbfc;
     padding: 40px;
-    border: 1px solid #e0e2e6;
-    position: relative;
-    z-index: 5;
-    margin-top: -1px; }
+    border-left: 1px solid #e0e2e6;
+    border-right: 1px solid #e0e2e6;
+    border-bottom: 1px solid #e0e2e6;
+    position: relative; }
 
 @media screen and (max-width: 1600px) {
   .sub-menu-active .site-wrapper {
@@ -4160,7 +4162,8 @@ form.confirmation {
       #ui-datepicker-div.ui-datepicker table thead th {
         padding: 5px; }
     #ui-datepicker-div.ui-datepicker table tbody td {
-      padding: 1px; }
+      padding: 1px;
+      height: auto; }
       #ui-datepicker-div.ui-datepicker table tbody td a {
         padding: 5px;
         border: 0px none;

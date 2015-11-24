@@ -20,12 +20,13 @@
 
   ul.horizontal-tabs-list {
     display: block;
-    overflow: hidden;
+    overflow: visible;
+    height: 41px;
     position: relative;
-    z-index: 10;
     padding: 0;
     background: transparent;
     border-right: 0px none;
+    border-bottom: 1px solid $wool;
 
     li {
       background: transparent;
@@ -56,6 +57,7 @@
         border-top: 1px solid $wool;
         border-right: 1px solid $wool;
         border-left: 1px solid $wool;
+        margin-bottom: -1px;
 
         a,
         a:hover {
@@ -80,9 +82,9 @@
   .horizontal-tabs-panes {
     background: tint($light-grey,60%);
     padding: 40px;
-    border: 1px solid $wool;
+    border-left: 1px solid $wool;
+    border-right: 1px solid $wool;
+    border-bottom: 1px solid $wool;
     position: relative;
-    z-index: 5;
-    margin-top: -1px;
   }
 }
