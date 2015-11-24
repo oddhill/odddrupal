@@ -370,13 +370,12 @@ function sedermera_update_update_7016() {
 }
 
 /**
- * Clear database of all old nodes to clear errors
+ * Clear database of all old nodes except manual and documents to clear errors
  * @return String count deleted nodes
  */
 function sedermera_update_update_7017() {
-  $results = db_select('node', 'n')
-              ->fields('n', array('nid'))
-              ->execute();
+  $result = db_query("SELECT nid FROM {node} WHERE type <> 'manual' AND type <> 'document'")->fetchAll();
+
   foreach ($results as $result) {
     $nids[] = $result->nid;
   }
