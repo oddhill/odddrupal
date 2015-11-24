@@ -4008,6 +4008,15 @@ div.checker {
       display: block; }
   div.checker.focus {
     box-shadow: 0 0 3px #dadada; }
+  div.checker.hover {
+    border: 1px solid #bfc1c3;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); }
+  div.checker.disabled {
+    border: 1px solid #eaebec; }
+    div.checker.disabled span:before {
+      background: #b5b5b5; }
+    div.checker.disabled span:after {
+      background: #b5b5b5; }
 
 form.confirmation {
   font-size: 16px;

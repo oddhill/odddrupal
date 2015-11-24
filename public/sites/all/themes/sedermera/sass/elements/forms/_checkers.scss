@@ -63,6 +63,8 @@ div.checker {
   }
 
   &.hover {
+    border: 1px solid shade($steel,10%);
+    box-shadow: 0 0 2px rgba(0,0,0,0.1);
 
     span {
 
@@ -75,11 +77,19 @@ div.checker {
 
     }
   }
-}
 
-div.checker.disabled {
+  &.disabled {
+    border: 1px solid tint($steel,50%);
 
-  span {
+    span {
 
+      &:before {
+        background: tint($dark-grey,60%);
+      }
+
+      &:after {
+        background: tint($dark-grey,60%);
+      }
+    }
   }
 }
