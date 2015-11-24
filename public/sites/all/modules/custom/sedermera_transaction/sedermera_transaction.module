@@ -242,7 +242,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
   // If no investors for the contact person create simple string
   if (empty($investors)) {
     $drop_down = array(
-      '#prefix' => 'Inga avtalsparter',
+      '#prefix' => '<em>Inga avtalsparter</em>',
       );
   }
   else {
