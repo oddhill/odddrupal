@@ -202,8 +202,9 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
   // Get the display settings for the pseudo fields.
   $display = field_extra_fields_get_display('node', $node->type, $view_mode);
 
-  // Render the verification status if it should be displayed.
-  if (isset($display['verification_status']) && $display['verification_status']['visible']) {
+  // Render the verification status if it should be displayed and the nid has
+  // been set, meaning that the node actually has been created.
+  if (isset($display['verification_status']) && $display['verification_status']['visible'] && $node->nid) {
     $status = sedermera_verification_get_status_node($node->nid);
 
     // Set a different text and class depending on the status.
@@ -232,8 +233,9 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
     );
   }
 
-  // Render the verification status if it should be displayed.
-  if (isset($display['verification_status_id']) && $display['verification_status_id']['visible']) {
+  // Render the verification status if it should be displayed and the nid has
+  // been set, meaning that the node actually has been created.
+  if (isset($display['verification_status_id']) && $display['verification_status_id']['visible'] && $node->nid) {
     $status = sedermera_verification_get_status_owner_node($node->nid);
 
     // Set a different text and class depending on the status.
