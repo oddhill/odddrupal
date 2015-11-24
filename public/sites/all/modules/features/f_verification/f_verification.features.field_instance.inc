@@ -721,6 +721,49 @@ function f_verification_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-ctrl_pen-field_ctrl_pen_ok'.
+  $field_instances['node-ctrl_pen-field_ctrl_pen_ok'] = array(
+    'bundle' => 'ctrl_pen',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 12,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ctrl_pen_ok',
+    'label' => 'Kontroll genomförd',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 51,
+    ),
+  );
+
   // Exported field_instance: 'node-ctrl_pen-field_ctrl_risk'.
   $field_instances['node-ctrl_pen-field_ctrl_risk'] = array(
     'bundle' => 'ctrl_pen',
@@ -1031,6 +1074,7 @@ function f_verification_field_default_field_instances() {
   t('Godkänd');
   t('Kapitalets ursprung?');
   t('Kontroll av huruvida transaktionen är speciellt komplicerad, har ett ovanligt transaktionsmönster eller uppenbart saknar ekonomiskt/lagligt syfte.');
+  t('Kontroll genomförd');
   t('Kontrollfråga till kunden, om aktuell transaktion anses vara misstänkt, dvs. misstänkas utgöra särskild risk för penningtvätt eller finansiering av terrorism.');
   t('Low risk boolean');
   t('Risk boolean');

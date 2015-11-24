@@ -112,6 +112,18 @@ function f_verification_strongarm() {
             'visible' => TRUE,
           ),
         ),
+        'verification_status_id' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_sign' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
       ),
     ),
   );
@@ -175,6 +187,18 @@ function f_verification_strongarm() {
           'full' => array(
             'weight' => '0',
             'visible' => TRUE,
+          ),
+        ),
+        'verification_status_id' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_sign' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
           ),
         ),
       ),

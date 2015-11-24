@@ -107,11 +107,25 @@ function f_investor_strongarm() {
             'weight' => '12',
             'visible' => TRUE,
           ),
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'verification_status_id' => array(
           'full' => array(
             'weight' => '13',
             'visible' => TRUE,
+          ),
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_sign' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
           ),
         ),
       ),
@@ -174,6 +188,22 @@ function f_investor_strongarm() {
             'weight' => '9',
             'visible' => TRUE,
           ),
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_id' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_sign' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
         ),
       ),
     ),
@@ -235,6 +265,22 @@ function f_investor_strongarm() {
             'weight' => '19',
             'visible' => FALSE,
           ),
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_id' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_sign' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
         ),
       ),
     ),
@@ -271,6 +317,9 @@ function f_investor_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'control' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -287,7 +336,26 @@ function f_investor_strongarm() {
           'weight' => '2',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'verification_status' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_id' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'verification_status_sign' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__transaction_history'] = $strongarm;

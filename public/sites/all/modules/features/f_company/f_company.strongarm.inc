@@ -62,7 +62,7 @@ function f_company_strongarm() {
         'custom_settings' => TRUE,
       ),
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -107,17 +107,15 @@ function f_company_strongarm() {
             'weight' => '0',
             'visible' => TRUE,
           ),
-          'teaser' => array(
-            'weight' => '0',
-            'visible' => FALSE,
-          ),
         ),
         'verification_status_id' => array(
           'default' => array(
             'weight' => '0',
             'visible' => TRUE,
           ),
-          'teaser' => array(
+        ),
+        'verification_status_sign' => array(
+          'default' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),

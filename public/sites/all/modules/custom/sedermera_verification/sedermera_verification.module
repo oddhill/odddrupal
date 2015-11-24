@@ -272,6 +272,10 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
   // Render the verification status if it should be displayed.
   if (isset($display['verification_status_sign']) && $display['verification_status_sign']['visible']) {
 
+    if ($node->type !== 'transaction_agreement') {
+      return;
+    }
+
     $agreement = entity_metadata_wrapper('node', $node);
 
     $result = db_query("SELECT entity_id AS nid FROM {field_data_field_transaction_ap_agree}
@@ -476,6 +480,10 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
  */
 function sedermera_verification_get_status_single($id) {
   $wrapper = entity_metadata_wrapper('node', $id);
+
+  if ($wrapper->type->value() === 'ctrl_pen') {
+    return sedermera_verification_get_status_complementing(node_load($id));
+  }
 
   // Fetch the date.
   $date = $wrapper->field_ctrl_date->value();
