@@ -283,10 +283,10 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
     // Create drop_down menu for contact person
     $drop_down = array(
       '#type' => 'checkboxes',
-      '#prefix' => '<div class="select-container partners">',
+      '#prefix' => '<div class="select-container contracting-parties">',
       '#suffix' => '</div>',
       'select' => array(
-        '#markup' => '<div class="select">Avtalspartners</div>',
+        '#markup' => '<div class="select">Avtalsparter</div>',
       ),
       'options' => $options,
       '#attached' => array(

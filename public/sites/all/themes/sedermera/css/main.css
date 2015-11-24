@@ -3724,53 +3724,55 @@ table {
     table tr.views-row-last, table tr:last-child {
       border-bottom: 0px none; }
 
-.views-form table .form-actions,
-.views-form table .form-wrapper {
+table .form-actions,
+table .form-wrapper {
   margin: 0; }
-.views-form table input {
+table input {
   border: 1px solid #c8cacd; }
-.views-form table .form-item {
+table .form-item {
   margin-bottom: 0; }
-  .views-form table .form-item .description {
+  table .form-item .description {
     display: none; }
-  .views-form table .form-item.form-type-checkbox {
+  table .form-item.form-type-checkbox {
     padding-top: 2px; }
-    .views-form table .form-item.form-type-checkbox label.option {
+    table .form-item.form-type-checkbox label.option {
       display: inline-block;
       line-height: 18px;
       position: relative; }
-      .views-form table .form-item.form-type-checkbox label.option .checker {
+      table .form-item.form-type-checkbox label.option .checker {
         position: absolute;
         left: 0;
         top: 0; }
-  .views-form table .form-item.form-type-textfield .form-text {
+  table .form-item.form-type-textfield .form-text {
     margin: 0;
     padding: 0 2px; }
-.views-form table .editablefield-item {
+table .editablefield-item {
   position: relative; }
-  .views-form table .editablefield-item .form-actions .submit-wrapper {
-    display: block; }
-  .views-form table .editablefield-item .form-actions .ajax-progress {
-    height: 100%;
-    left: 0px;
-    padding-top: 6px;
-    position: absolute;
-    top: 0px;
-    width: 100%; }
-    .views-form table .editablefield-item .form-actions .ajax-progress .throbber {
-      display: inline-block;
-      background: transparent;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #f9a500;
-      border-radius: 50%;
-      border-top-color: transparent;
-      -webkit-animation: load 0.9s linear infinite;
-      -moz-animation: load 0.9s linear infinite;
-      animation: load 0.9s linear infinite; }
-    .views-form table .editablefield-item .form-actions .ajax-progress .message {
-      padding-left: 24px; }
-.views-form table td {
+  table .editablefield-item .form-actions {
+    margin: 0; }
+    table .editablefield-item .form-actions .submit-wrapper {
+      display: block; }
+    table .editablefield-item .form-actions .ajax-progress {
+      height: 100%;
+      left: 0px;
+      padding-top: 6px;
+      position: absolute;
+      top: 0px;
+      width: 100%; }
+      table .editablefield-item .form-actions .ajax-progress .throbber {
+        display: inline-block;
+        background: transparent;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f9a500;
+        border-radius: 50%;
+        border-top-color: transparent;
+        -webkit-animation: load 0.9s linear infinite;
+        -moz-animation: load 0.9s linear infinite;
+        animation: load 0.9s linear infinite; }
+      table .editablefield-item .form-actions .ajax-progress .message {
+        padding-left: 24px; }
+table td {
   padding: 7px 10px; }
 
 .tabs {
@@ -4973,6 +4975,52 @@ div.radio {
     color: #282828; }
   .selectboxit-container .selectboxit-options .selectboxit-option.selectboxit-option-last a {
     border-bottom: 0px none; }
+
+.select-container.contracting-parties {
+  position: relative; }
+  .select-container.contracting-parties .select {
+    border: 1px solid #e0e2e6;
+    border-radius: 2px;
+    padding: 5px 25px 5px 10px;
+    cursor: pointer; }
+    .select-container.contracting-parties .select:after {
+      position: absolute;
+      top: 13px;
+      right: 10px;
+      content: '';
+      display: block;
+      width: 0px;
+      height: 0px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #454545; }
+  .select-container.contracting-parties .dropdown {
+    display: none;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 100%;
+    border: 1px solid #e0e2e6;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); }
+    .select-container.contracting-parties .dropdown .form-item {
+      padding: 10px;
+      margin: 0;
+      border-bottom: 1px solid #e0e2e6; }
+      .select-container.contracting-parties .dropdown .form-item:last-child {
+        border-bottom: 0px none; }
+  .select-container.contracting-parties.active .select:after {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -webkit-animation: rotate 0.2s ease-in;
+    -moz-animation: rotate 0.2s ease-in;
+    animation: rotate 0.2s ease-in; }
+  .select-container.contracting-parties.active .dropdown {
+    display: block; }
 
 .tabledrag-changed-warning {
   background: #f9a500;

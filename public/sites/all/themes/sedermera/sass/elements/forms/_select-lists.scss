@@ -123,3 +123,65 @@
     }
   }
 }
+
+// Contracting parties select-box
+.select-container.contracting-parties {
+  position: relative;
+
+  .select {
+    border: 1px solid $wool;
+    border-radius: 2px;
+    padding: 5px 25px 5px 10px;
+    cursor: pointer;
+
+    &:after {
+      position: absolute;
+      top: 13px;
+      right: 10px;
+      content: '';
+      display: block;
+      width: 0px;
+      height: 0px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid $dark-grey;
+    }
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 100%;
+    border: 1px solid $wool;
+    border-radius: 2px;
+    background: $snow;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+
+    .form-item {
+      padding: 10px;
+      margin: 0;
+      border-bottom: 1px solid $wool;
+
+      &:last-child {
+        border-bottom: 0px none;
+      }
+    }
+  }
+
+  &.active {
+
+    .select {
+
+      &:after {
+        @include transform(rotate(-180deg));
+        @include animation(rotate 0.2s ease-in);
+      }
+    }
+
+    .dropdown {
+      display: block;
+    }
+  }
+}

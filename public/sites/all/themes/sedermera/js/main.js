@@ -136,6 +136,25 @@ var initiateModals = function() {
   });
 };
 
+// Handle select container states
+var selectLookAlike = function() {
+
+  var $container = $('.select-container');
+  var $button = $container.find('.select');
+
+  $('html').on('click', function() {
+    $container.removeClass('active');
+  });
+
+  $button.on('click', function() {
+    $(this).parents('.select-container').toggleClass('active');
+  });
+
+  $container.click(function(event) {
+    event.stopPropagation();
+  });
+};
+
 // Run once when the DOM is ready (page load)
 $(document).ready(function() {
   var ischeck = 0;
@@ -213,6 +232,8 @@ Drupal.behaviors.sedermera = {
 
     // Use selectBoxit on our select lists.
     $('select').selectBoxIt();
+
+    selectLookAlike();
 
     // Add the file field value to the substitute text field when
     // we've chosen a file from the file browser.
