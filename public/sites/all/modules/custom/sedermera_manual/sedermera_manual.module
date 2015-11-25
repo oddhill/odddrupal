@@ -131,7 +131,10 @@ function getManuals() {
  */
 function orderManuals($manuals) {
   $orderedManuals = array();
-  $result = db_query("SELECT entity_id FROM draggableviews_structure WHERE view_name = 'manual' ORDER BY weight ASC")->fetchAll();
+  $result = db_query("SELECT entity_id
+    FROM draggableviews_structure
+    WHERE view_display = 'manual'
+    ORDER BY weight ASC")->fetchAll();
 
   if (empty($result)) {
     return $manuals;

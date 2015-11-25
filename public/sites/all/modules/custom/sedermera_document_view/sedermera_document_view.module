@@ -466,7 +466,10 @@ function getDocuments() {
  */
 function orderDocuments($documents) {
   $orderedDocuments = array();
-  $result = db_query("SELECT entity_id FROM draggableviews_structure WHERE view_name = 'dokument' ORDER BY weight ASC")->fetchAll();
+  $result = db_query("SELECT entity_id
+    FROM draggableviews_structure
+    WHERE view_display = 'document'
+    ORDER BY weight ASC")->fetchAll();
 
   if (empty($result)) {
     return $documents;

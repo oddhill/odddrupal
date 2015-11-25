@@ -242,7 +242,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
 
   /* Display: Sortera dokument */
-  $handler = $view->new_display('page', 'Sortera dokument', 'doc_sort_page');
+  $handler = $view->new_display('page', 'Sortera dokument', 'document');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Dokument sortering';
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
@@ -310,7 +310,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['path'] = 'dokument/sortera';
 
   /* Display: Sortera manual */
-  $handler = $view->new_display('page', 'Sortera manual', 'page_1');
+  $handler = $view->new_display('page', 'Sortera manual', 'manual');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Manual sortering';
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
