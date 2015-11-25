@@ -239,7 +239,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 9,
+      'weight' => 7,
     ),
   );
 
@@ -4199,6 +4199,10 @@ function f_capital_raising_field_default_field_instances() {
     'label' => 'Investor',
     'required' => 0,
     'settings' => array(
+      'field_lock_multi_values' => array(
+        'disable_reorder' => 0,
+        'lock_previous' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
