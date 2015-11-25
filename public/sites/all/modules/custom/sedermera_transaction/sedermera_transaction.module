@@ -312,27 +312,25 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
   }
 
   $rows[] = array(
-    'data' => array(),
+    'data' => array(
+      // Collapsible column
+      array(
+        'class' => 'collapsible',
+      ),
+      // Name column
+      array(
+        'data' => $person->title,
+      ),
+      // Dropdown column
+      array(
+        'data' => $drop_down,
+      ),
+    ),
     'class' => array('contact-person-row'),
     'data-id' => $person->nid,
   );
 
   $row = count($rows) -1;
-
-  // Collapsible column
-  $rows[$row]['data'][] = array(
-    'class' => 'collapsible',
-  );
-
-  // Name column
-  $rows[$row]['data'][] = array(
-    'data' => $person->title,
-  );
-
-  // Dropdown column
-  $rows[$row]['data'][] = array(
-    'data' => $drop_down,
-  );
 
   $sum = 0;
 
@@ -515,27 +513,23 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
     $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
 
     $rows[] = array(
-      'data' => array(),
+      'data' => array(
+        // Collapsible column
+        array(
+          'class' => 'collapsible-row',
+        ),
+        // Name column
+        array(
+          'data' => $investor->title,
+        ),
+        // Dropdown column
+        array(),
+      ),
       'class' => array('investor-row'),
       'data-id' => $person->nid,
     );
 
     $row = count($rows) - 1;
-
-    // Collapsible column
-    $rows[$row]['data'][] = array(
-      'class' => 'collapsible-row',
-    );
-
-    // Name column
-    $rows[$row]['data'][] = array(
-      'data' => $investor->title,
-    );
-
-    // Dropdown column
-    $rows[$row]['data'][] = array(
-      'data' => '',
-    );
 
     // Teckningsförbindelse if Företrädesemission column
     if ($type_investment['fe_sign']) {
@@ -673,36 +667,28 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   $person = $transaction_wrap->field_transaction_person->value();
 
   $rows[] = array(
-    'data' => array(),
+    'data' => array(
+      // Collapsible column
+      array(
+        'class' => array('collapsible-row'),
+      ),
+      // Name column
+      array(),
+      // Dropdown column
+      array(
+        'data' => '<strong>Summa kontaktperson:</strong>',
+      ),
+    ),
     'class' => array('summation-row'),
     'data-id' => $person->nid,
   );
 
   $row = count($rows) - 1;
 
-  // Collapsible column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-    'class' => array('sum-row', 'collapsible-row'),
-  );
-
-  // Name column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-    'class' => array('sum-row'),
-  );
-
-  // Dropdown column
-  $rows[$row]['data'][] = array(
-    'data' => '<strong>Summa kontaktperson:</strong>',
-    'class' => array('sum-row'),
-  );
-
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
@@ -710,7 +696,6 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   if ($type_investment['fe_warr']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
@@ -718,7 +703,6 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   if ($type_investment['le_sign']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
@@ -726,7 +710,6 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   if ($type_investment['le_warr']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
@@ -734,7 +717,6 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   if ($type_investment['pp_sign']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
@@ -742,7 +724,6 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   if ($type_investment['re_sign']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
@@ -750,7 +731,6 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   if ($type_investment['bl_sum']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
@@ -758,27 +738,19 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   if ($type_investment['bp_sum']) {
     $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
-      'class' => array('sum-row'),
     );
   }
 
   // Summation column
   $rows[$row]['data'][] = array(
     'data' => 'SUM_TOT',
-    'class' => array('sum-row'),
   );
 
   // Control column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-    'class' => array('sum-row'),
-  );
+  $rows[$row]['data'][] = array();
 
   // To control column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-    'class' => array('sum-row'),
-  );
+  $rows[$row]['data'][] = array();
 }
 
 /**
@@ -807,9 +779,6 @@ function sedermera_transaction_control() {
   if (empty($transactions)) {
 
     return array(
-      // '#theme' => 'table',
-      // '#header' => array(),
-      // '#rows' => NULL,
       '#prefix' => '<div class="view-empty">',
       '#markup' => 'Det finns inga transaktioner',
       '#suffix' => '</div>',
@@ -979,80 +948,14 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
   $person = $transaction_wrap->field_transaction_person->value();
   $investors = db_query("SELECT n.nid AS nid, n.title AS name FROM {node} AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
 
-  $rows[] = array(
-    'data' => array(),
-    'class' => array('contact-person-row'),
-    'data-id' => $person->nid,
-  );
+  // Control ID
+  $ctrl_id = field_view_field('node', $person, 'field_user_id_ctrl',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
-  $row = count($rows) - 1;
-
-  // Collapsible column
-  $rows[$row]['data'][] = array(
-    'class' => 'collapsible-head',
-  );
-
-  // Name column
-  $rows[$row]['data'][] = array(
-    'data' => $person->title,
-  );
-
-  // Summation column
-  $rows[$row]['data'][] = array(
-    'data' => number_format($sum, 0, "", "'") . " :-",
-  );
-
-  // Control UA column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // Control PTV column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // Control ID column
-  $field = field_view_field('node', $person, 'field_user_id_ctrl',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row]['data'][] = array(
-    'data' => render($field),
-  );
-
-  // Control EXR column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // Control EU column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // Control KRE column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // Control KOM column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // Control PEN column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // Control agreement column
-  $rows[$row]['data'][] = array(
-    'data' => '',
-  );
-
-  // To sign column
+  // To sign
   $done = 0;
   $count = 0;
 
@@ -1064,8 +967,47 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
     }
   }
 
-  $rows[$row]['data'][] = array(
-    'data' => ($done == 0 && $count == 0) ? "0 valda" : $done ."/" . $count . " klara",
+  $rows[] = array(
+    'data' => array(
+      // Collapsible column
+      array(
+        'class' => 'collapsible-head',
+      ),
+      // Name column
+      array(
+        'data' => $person->title,
+      ),
+      // Summation column
+      array(
+        'data' => number_format($sum, 0, "", "'") . " :-",
+      ),
+      // Control UA column
+      array(),
+      // Control PTV column
+      array(),
+      // Control ID column
+      array(
+        'data' => render($ctrl_id),
+      ),
+      // Control EXR column
+      array(),
+      // Control EU column
+      array(),
+      // Control KRE column
+      array(),
+      // Control KOM column
+      array(),
+      // Control PEN column
+      array(),
+      // Control agreement column
+      array(),
+      // To sign column
+      array(
+        'data' => ($done == 0 && $count == 0) ? "0 valda" : $done ."/" . $count . " klara",
+      )
+    ),
+    'class' => array('contact-person-row'),
+    'data-id' => $person->nid,
   );
 }
 
