@@ -113,11 +113,11 @@ function sedermera_transaction_intresent($offer_id) {
 
       // Generate the investor rows with editable fields
       foreach ($transaction->field_transaction_investor as $investor_transactions) {
-        generate_investor_rows_interested($rows, $investor_transactions, $type_investment);
+        generate_investor_rows_interested($rows, $investor_transactions, $type_investment, $transaction);
       }
 
       // Generate the contactperson sum row
-      generate_sum_row_interested($rows, $type_investment);
+      generate_sum_row_interested($rows, $type_investment, $transaction);
     }
 
     // Generate rendarable array for the table and return it.
@@ -311,21 +311,26 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
     );
   }
 
-  $rows[] = array();
-  $row = count($rows) - 1;
+  $rows[] = array(
+    'data' => array(),
+    'class' => array('contact-person-row'),
+    'data-id' => $person->nid,
+  );
+
+  $row = count($rows) -1;
 
   // Collapsible column
-  $rows[$row][] = array(
-    'class' => 'collapsible-head',
+  $rows[$row]['data'][] = array(
+    'class' => 'collapsible',
   );
 
   // Name column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => $person->title,
   );
 
   // Dropdown column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => $drop_down,
   );
 
@@ -341,7 +346,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
               'thousand_separator' => '\'',
             ),
           ));
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
@@ -357,7 +362,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
             ),
           ));
 
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
@@ -373,7 +378,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
             ),
           ));
 
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
@@ -389,7 +394,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
             ),
           ));
 
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
@@ -405,7 +410,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
             ),
           ));
 
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
@@ -421,7 +426,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
             ),
           ));
 
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
@@ -437,7 +442,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
             ),
           ));
 
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
@@ -453,13 +458,13 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
             ),
           ));
 
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($field),
     );
   }
 
   // Summation column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => number_format($sum, 0, "", "'") . " :-",
   );
 
@@ -469,7 +474,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
           'label'=>'hidden',
           'type' => 'sedermera_verification_status',
         ));
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => render($field),
   );
 
@@ -485,8 +490,8 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
     }
   }
 
-  $rows[$row][] = array(
-    'data' => ($done == 0 && $count == 0) ? "0 valda" : $done ."/" . $count . " klara",
+  $rows[$row]['data'][] = array(
+    'data' => ($done === 0 && $count === 0) ? "0 valda" : $done ."/" . $count . " klara",
   );
 }
 
@@ -498,7 +503,10 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
  * contact person
  * @param  array $type_investment The active investment types used in the offer
  */
-function generate_investor_rows_interested(array &$rows, array $investor_transactions, array $type_investment) {
+function generate_investor_rows_interested(array &$rows, array $investor_transactions, array $type_investment, $transaction) {
+  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
+  $person = $transaction_wrap->field_transaction_person->value();
+
   foreach ($investor_transactions as $investor) {
     $transaction_ap = node_load($investor['target_id']);
     $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
@@ -506,21 +514,26 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
     // Get investor from transaction
     $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
 
-    $rows[] = array();
+    $rows[] = array(
+      'data' => array(),
+      'class' => array('investor-row'),
+      'data-id' => $person->nid,
+    );
+
     $row = count($rows) - 1;
 
     // Collapsible column
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'class' => 'collapsible-row',
     );
 
     // Name column
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => $investor->title,
     );
 
     // Dropdown column
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => '',
     );
 
@@ -531,7 +544,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
@@ -543,7 +556,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
@@ -555,7 +568,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
@@ -567,7 +580,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
@@ -579,7 +592,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
@@ -591,7 +604,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
@@ -603,7 +616,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
@@ -615,25 +628,25 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($field),
       );
     }
 
     // Summation column
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => "SUM_ROW",
     );
 
     // Control column
     $investor_view_full = node_view($investor);
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => render($investor_view_full['verification_status']),
     );
 
     // To control column
     if ($transaction_ap_wrap->field_transaction_ap_ctrl->value()) {
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => '<span class="to-check-ctrl"></span> kontrollera',
       );
     }
@@ -643,7 +656,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'label'=>'hidden',
               'type' => 'editable',
             ));
-      $rows[$row][] = array(
+      $rows[$row]['data'][] = array(
         'data' => render($to_ctrl),
       );
     }
@@ -655,31 +668,39 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
  * @param  array &$rows The array to store the table rows content in
  * @param  array $type_investment The active investment types used in the offer
  */
-function generate_sum_row_interested(array &$rows, array $type_investment) {
-  $rows[] = array();
+function generate_sum_row_interested(array &$rows, array $type_investment, $transaction) {
+  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
+  $person = $transaction_wrap->field_transaction_person->value();
+
+  $rows[] = array(
+    'data' => array(),
+    'class' => array('summation-row'),
+    'data-id' => $person->nid,
+  );
+
   $row = count($rows) - 1;
 
   // Collapsible column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
     'class' => array('sum-row', 'collapsible-row'),
   );
 
   // Name column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
     'class' => array('sum-row'),
   );
 
   // Dropdown column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '<strong>Summa kontaktperson:</strong>',
     'class' => array('sum-row'),
   );
 
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
@@ -687,7 +708,7 @@ function generate_sum_row_interested(array &$rows, array $type_investment) {
 
   // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
@@ -695,7 +716,7 @@ function generate_sum_row_interested(array &$rows, array $type_investment) {
 
   // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
@@ -703,7 +724,7 @@ function generate_sum_row_interested(array &$rows, array $type_investment) {
 
   // Garantiåtagande if Listnigsemission column
   if ($type_investment['le_warr']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
@@ -711,7 +732,7 @@ function generate_sum_row_interested(array &$rows, array $type_investment) {
 
   // Teckningsförbindelse if Private Placement column
   if ($type_investment['pp_sign']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
@@ -719,7 +740,7 @@ function generate_sum_row_interested(array &$rows, array $type_investment) {
 
   // Teckningsförbindelse if Riktat emission column
   if ($type_investment['re_sign']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
@@ -727,7 +748,7 @@ function generate_sum_row_interested(array &$rows, array $type_investment) {
 
   // Sum if Brygglån column
   if ($type_investment['bl_sum']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
@@ -735,26 +756,26 @@ function generate_sum_row_interested(array &$rows, array $type_investment) {
 
   // Sum if Blockpost column
   if ($type_investment['bp_sum']) {
-    $rows[$row][] = array(
+    $rows[$row]['data'][] = array(
       'data' => 'SUM_COL',
       'class' => array('sum-row'),
     );
   }
 
   // Summation column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => 'SUM_TOT',
     'class' => array('sum-row'),
   );
 
   // Control column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
     'class' => array('sum-row'),
   );
 
   // To control column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
     'class' => array('sum-row'),
   );
@@ -842,11 +863,11 @@ function sedermera_transaction_control() {
 
         // Generate investor head row for agreements
         foreach ($agreements as $key => $agreement) {
-          generate_investor_rows_control($rows, $key, $type_investment);
+          generate_investor_rows_control($rows, $key, $type_investment, $transaction);
 
           // Generate rows for all agreements for the transaction on this offer.
           foreach ($agreement as $value) {
-            generate_agreement_rows_control($rows, $value, $key);
+            generate_agreement_rows_control($rows, $value, $key, $transaction);
           }
         }
       }
@@ -958,31 +979,36 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
   $person = $transaction_wrap->field_transaction_person->value();
   $investors = db_query("SELECT n.nid AS nid, n.title AS name FROM {node} AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
 
-  $rows[] = array();
+  $rows[] = array(
+    'data' => array(),
+    'class' => array('contact-person-row'),
+    'data-id' => $person->nid,
+  );
+
   $row = count($rows) - 1;
 
   // Collapsible column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'class' => 'collapsible-head',
   );
 
   // Name column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => $person->title,
   );
 
   // Summation column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => number_format($sum, 0, "", "'") . " :-",
   );
 
   // Control UA column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
   // Control PTV column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
@@ -992,37 +1018,37 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
           'label'=>'hidden',
           'type' => 'sedermera_verification_status',
         ));
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => render($field),
   );
 
   // Control EXR column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
   // Control EU column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
   // Control KRE column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
   // Control KOM column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
   // Control PEN column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
   // Control agreement column
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => '',
   );
 
@@ -1038,7 +1064,7 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
     }
   }
 
-  $rows[$row][] = array(
+  $rows[$row]['data'][] = array(
     'data' => ($done == 0 && $count == 0) ? "0 valda" : $done ."/" . $count . " klara",
   );
 }
@@ -1049,110 +1075,110 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
  * @param  integer $investor         nid of the current investor
  * @param  array    $type_investment List of which transaction types used
  */
-function generate_investor_rows_control(array &$rows, $investor, array $type_investment) {
+function generate_investor_rows_control(array &$rows, $investor, array $type_investment, $transaction) {
   $transaction_ap = node_load($investor);
   $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
+
+  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
+  $person = $transaction_wrap->field_transaction_person->value();
 
   // Get investor from transaction
   $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
 
-  $rows[] = array();
-  $row = count($rows) - 1;
+  // Control UA
+  $ctrl_ua = field_view_field('node', $investor, 'field_investor_shared_ctrl_ua',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
-  // Collapsible column
-  $rows[$row][] = array(
-    'class' => 'collapsible-row',
-  );
+  // Control PTV
+  $ctrl_ptv = field_view_field('node', $investor, 'field_investor_shared_ctrl_ptv',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
-  // Name column
-  $rows[$row][] = array(
-    'data' => $investor->title,
-  );
-
-  // Summation column
-  $rows[$row][] = array(
-    'data' => "",
-  );
-
-  // Control UA column
-  $field = field_view_field('node', $investor, 'field_investor_shared_ctrl_ua',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row][] = array(
-    'data' => render($field),
-  );
-
-  // Control PTV column
-  $field = field_view_field('node', $investor, 'field_investor_shared_ctrl_ptv',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row][] = array(
-    'data' => render($field),
-  );
-
-  // Control ID column
+  // Control ID
   $investor_view_full = node_view($investor);
-  $rows[$row][] = array(
-    'data' => render($investor_view_full['verification_status_id']),
-  );
 
-  // Control EXR column
-  $field = field_view_field('node', $investor, 'field_investor_shared_ctrl_ext',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row][] = array(
-    'data' => render($field),
-  );
+  // Control EXR
+  $ctrl_exr = field_view_field('node', $investor, 'field_investor_shared_ctrl_ext',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
-  // Control EU column
-  $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_eu',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row][] = array(
-    'data' => render($field),
-  );
+  // Control EU
+  $ctrl_eu = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_eu',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
-  // Control KRE column
-  $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_cred',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row][] = array(
-    'data' => render($field),
-  );
+  // Control KRE
+  $ctrl_kre = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_cred',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
   // Control KOM column
-  $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_comp',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row][] = array(
-    'data' => render($field),
-  );
+  $ctrl_kom = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_comp',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
-  // Control PEN column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control agreement column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // To sign column
-  $rows[$row][] = array(
-    'data' => '',
+  $rows[] = array(
+    'data' => array(
+      // Collapsible column
+      array(
+        'class' => 'collapsible-row',
+      ),
+      // Name column
+      array(
+        'data' => $investor->title,
+      ),
+      // Summation column
+      array(),
+      // Control UA column
+      array(
+        'data' => render($ctrl_ua),
+      ),
+      // Control PTV column
+      array(
+        'data' => render($ctrl_ptv),
+      ),
+      // Control ID column
+      array(
+        'data' => render($investor_view_full['verification_status_id']),
+      ),
+      // Control EXR column
+      array(
+        'data' => render($ctrl_exr),
+      ),
+      // Control EU column
+      array(
+        'data' => render($ctrl_eu),
+      ),
+      // Control KRE column
+      array(
+        'data' => render($ctrl_kre),
+      ),
+      // Control KOM column
+      array(
+        'data' => render($ctrl_kom),
+      ),
+      // Control PEN column
+      array(),
+      // Control agreement column
+      array(),
+      // To sign column
+      array(),
+    ),
+    'class' => array('investor-row'),
+    'data-id' => $person->nid,
   );
 }
 
@@ -1162,7 +1188,10 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
  * @param  integer $agreement      nid of current agreement
  * @param  integer $transaction_ap nid of current investor
  */
-function generate_agreement_rows_control(array &$rows, $agreement, $transaction_ap) {
+function generate_agreement_rows_control(array &$rows, $agreement, $transaction_ap, $transaction) {
+  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
+  $person = $transaction_wrap->field_transaction_person->value();
+
   $agreement_node = node_load($agreement);
   $agreement_node_wrap = entity_metadata_wrapper('node', $agreement_node);
 
@@ -1207,91 +1236,70 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       break;
   }
 
-  $rows[] = array();
-  $row = count($rows) - 1;
+  // Create penningtvatt variable
+  $ctrl_pen = field_view_field('node', $agreement_node, 'field_transaction_agree_ctrl',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+    ));
 
-  // Collapsible column
-  $rows[$row][] = array(
-    'class' => 'collapsible-row',
-  );
-
-  // Name column
-  $rows[$row][] = array(
-    'data' => $type,
-  );
-
-  // Summation column
-  $rows[$row][] = array(
-    'data' => number_format($sum, 0, "", "'") . " :-",
-  );
-
-  // Control UA column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control PTV column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control ID column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control EXR column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control EU column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control KRE column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control KOM column
-  $rows[$row][] = array(
-    'data' => '',
-  );
-
-  // Control PEN column
-  $field = field_view_field('node', $agreement_node, 'field_transaction_agree_ctrl',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-        ));
-  $rows[$row][] = array(
-    'data' => render($field),
-  );
-
-  // Control agreement column
-  $nid = $agreement_node->nid;
-  $rows[$row][] = array(
-    'data' => l('Hantera avtal', "node/$nid/edit/control"),
-  );
-
-  // To sign column
+  // Create the to sign variable dependent on if already checked
   if ($agreement_node_wrap->field_transaction_agree_to_sign->value()) {
-    $rows[$row][] = array(
-      'data' => '<span class="to-sign-ctrl"></span> att teckna',
-    );
+    $to_sign = '<span class="to-sign-ctrl"></span> att teckna';
   }
   else {
-    $to_sign = field_view_field('node', $agreement_node, 'field_transaction_agree_to_sign',
-          array(
-            'label'=>'hidden',
-            'type' => 'editable',
-          ));
-    $rows[$row][] = array(
-      'data' => render($to_sign),
-    );
+    $field = field_view_field('node', $agreement_node, 'field_transaction_agree_to_sign',
+      array(
+        'label'=>'hidden',
+        'type' => 'editable',
+      ));
+    $to_sign = render($field);
   }
+
+  $rows[] = array(
+    'data' => array(
+      // Collapsible column
+      array(
+        'class' => 'collapsible-row',
+      ),
+      // Name column
+      array(
+        'data' => $type,
+      ),
+      // Summation column
+      array(
+        'data' => number_format($sum, 0, "", "'") . " :-",
+      ),
+      // Control UA column
+      array(),
+      // Control PTV column
+      array(),
+      // Control ID column
+      array(),
+      // Control EXR column
+      array(),
+      // Control EU column
+      array(),
+      // Control KRE column
+      array(),
+      // Control KOM column
+      array(),
+      // Control PEN column
+      array(
+        'data' => render($ctrl_pen),
+      ),
+      // Control agreement column
+      array(
+        'data' => l('Hantera avtal', "node/" . $agreement_node->nid . "/edit/control"),
+      ),
+      // To sign column
+      array(
+        'data' => $to_sign,
+      ),
+    ),
+    'class' => array('agreement-row'),
+    'data-id' => $person->nid,
+  );
 }
 
 /**
@@ -1401,9 +1409,6 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
   $person = $transaction_wrap->field_transaction_person->value();
 
   foreach ($agreements as $agreement) {
-    $rows[] = array();
-    $row = count($rows) - 1;
-
     $agreement_node = node_load($agreement);
     $agreement_wrap = entity_metadata_wrapper('node', $agreement_node);
     $transaction_ap = node_load(get_investor_nid($transaction_wrap->nid->value(), $agreement_wrap->nid->value()));
@@ -1447,46 +1452,49 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
         break;
     }
 
-    // Name column
-    $rows[$row][] = array(
-      'data' => $person->title,
-    );
-
-    // Investor column
-    $rows[$row][] = array(
-      'data' => $transaction_ap_wrap->field_transaction_ap_ap->value()->title,
-    );
-
-    // Type column
-    $rows[$row][] = array(
-      'data' => $type,
-    );
-
-    // Summation column
-    $rows[$row][] = array(
-      'data' => number_format($sum, 0, "", "'") . " :-",
-    );
-
-    // Control column
+    // Control
     $investor_view_full = node_view($agreement_node);
-    $rows[$row][] = array(
-      'data' => render($investor_view_full['verification_status_sign']),
-    );
 
-    // Agreement column
-    $nid = $agreement_node->nid;
-    $rows[$row][] = array(
-      'data' => l('Visa avtal', "node/$nid"),
-    );
+    // To sign
+    $to_sign = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
+      array(
+        'label'=>'hidden',
+        'type' => 'editable',
+      ));
 
-    // Sign column
-    $field = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
-          array(
-            'label'=>'hidden',
-            'type' => 'editable',
-          ));
-    $rows[$row][] = array(
-      'data' => render($field),
+    $rows[] = array(
+      'data' => array(
+        // Name column
+        array(
+          'data' => $person->title,
+        ),
+        // Investor column
+        array(
+          'data' => $transaction_ap_wrap->field_transaction_ap_ap->value()->title,
+        ),
+        // Type column
+        array(
+          'data' => $type,
+        ),
+        // Summation column
+        array(
+          'data' => number_format($sum, 0, "", "'") . " :-",
+        ),
+        // Control column
+        array(
+          'data' => render($investor_view_full['verification_status_sign']),
+        ),
+        // Agreement column
+        array(
+          'data' => l('Visa avtal', "node/" . $agreement_node->nid),
+        ),
+        // Sign column
+        array(
+          'data' => render($to_sign),
+        ),
+      ),
+      'class' => array(),
+      'data-id' => '',
     );
   }
 }
