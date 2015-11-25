@@ -35,6 +35,14 @@ table {
 
   tbody {
 
+    tr {
+
+      &.views-row-last,
+      &:last-child {
+        border-bottom: 0px none;
+      }
+    }
+
     td {
       height: 44px;
     }
@@ -105,11 +113,6 @@ table {
       .ajax-progress {
         background: $snow;
       }
-    }
-
-    &.views-row-last,
-    &:last-child {
-      border-bottom: 0px none;
     }
   }
 }

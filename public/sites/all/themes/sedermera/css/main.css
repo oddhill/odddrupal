@@ -1731,8 +1731,58 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     .page-node-kontaktlista-lagg-till .content-wrapper .form-submit:hover {
       background-color: #303030; }
 
+.offer-controller-list {
+  padding: 40px; }
+
 .offer-interested-list {
   padding: 40px; }
+
+#interested-table table .collapsible-head {
+  padding: 0;
+  width: 40px;
+  position: relative; }
+  #interested-table table .collapsible-head span.icon {
+    margin-top: -1px;
+    position: absolute;
+    left: 10px;
+    top: 9px; }
+#interested-table table span.icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url("../graphics/transaction-collapse.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/transaction-collapse.svg") transparent 0 0 no-repeat; }
+#interested-table table tr td.collapsible,
+#interested-table table tr td.collapsible-row {
+  position: relative; }
+  #interested-table table tr td.collapsible span.icon,
+  #interested-table table tr td.collapsible-row span.icon {
+    margin-top: -1px;
+    position: absolute;
+    left: 10px;
+    top: 12px; }
+#interested-table table tr.even {
+  background: #fff; }
+#interested-table table tr.contact-person-row span.icon {
+  background-position: 0 -20px;
+  cursor: pointer; }
+#interested-table table tr.contact-person-row.collapsed span.icon {
+  background-position: 0 -40px; }
+#interested-table table tr.investor-row {
+  background: #fafbfc; }
+  #interested-table table tr.investor-row span.icon {
+    background-position: 0 -60px; }
+  #interested-table table tr.investor-row.hidden {
+    display: none; }
+#interested-table table tr.summation-row {
+  background: #ebedf1;
+  border-top: 1px solid #e0e2e6;
+  border-bottom: 1px solid #e0e2e6; }
+  #interested-table table tr.summation-row td {
+    height: 30px;
+    padding: 0 10px; }
+  #interested-table table tr.summation-row.hidden {
+    display: none; }
 
 .node-offer.view-mode-full .offer-time {
   padding-bottom: 30px;
@@ -3676,6 +3726,8 @@ table {
       border: 0px none; }
   table thead tr {
     border-bottom: 1px solid #e0e2e6; }
+  table tbody tr.views-row-last, table tbody tr:last-child {
+    border-bottom: 0px none; }
   table tbody td {
     height: 44px; }
   table tfoot tr {
@@ -3724,8 +3776,6 @@ table {
       background: #fff; }
       table tr.odd .ajax-progress {
         background: #fff; }
-    table tr.views-row-last, table tr:last-child {
-      border-bottom: 0px none; }
 
 table .form-actions,
 table .form-wrapper {

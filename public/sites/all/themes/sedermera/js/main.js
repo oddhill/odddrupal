@@ -155,6 +155,25 @@ var selectLookAlike = function() {
   });
 };
 
+// Interested list collapsing
+var listCollapser = function() {
+
+  // Define vars
+  var $collapseCells, $investors, $button, collapseDataId;
+
+  // Store all collapisble cells
+  $collapseCells = $('td.collapsible');
+  $button = $collapseCells.find('span.icon');
+
+  // Add click behavior
+  $button.on('click', function() {
+    $(this).parents('tr').toggleClass('collapsed');
+    collapseDataId = $(this).parents('tr').data('id');
+    $('tr.investor-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
+    $('tr.summation-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
+  });
+};
+
 // Run once when the DOM is ready (page load)
 $(document).ready(function() {
   var ischeck = 0;
@@ -234,6 +253,7 @@ Drupal.behaviors.sedermera = {
     $('select').selectBoxIt();
 
     selectLookAlike();
+    listCollapser();
 
     // Add the file field value to the substitute text field when
     // we've chosen a file from the file browser.

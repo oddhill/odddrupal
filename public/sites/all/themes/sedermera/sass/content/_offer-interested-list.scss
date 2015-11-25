@@ -1,3 +1,90 @@
 .offer-interested-list {
   padding: 40px;
 }
+
+#interested-table {
+
+  table {
+
+    .collapsible-head {
+      padding: 0;
+      width: 40px;
+      position: relative;
+
+      span.icon {
+        margin-top: -1px;
+        position: absolute;
+        left: 10px;
+        top: 9px;
+      }
+    }
+
+    span.icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+      @include svg-bg(transaction-collapse);
+    }
+
+    tr {
+
+      td.collapsible,
+      td.collapsible-row {
+        position: relative;
+
+        span.icon {
+          margin-top: -1px;
+          position: absolute;
+          left: 10px;
+          top: 12px;
+        }
+      }
+
+      &.even {
+        background: $snow;
+      }
+
+      &.contact-person-row {
+
+        span.icon {
+          background-position: 0 -20px;
+          cursor: pointer;
+        }
+
+        &.collapsed {
+
+          span.icon {
+            background-position: 0 -40px;
+          }
+        }
+      }
+
+      &.investor-row {
+        background: tint($light-grey,60%);
+
+        span.icon {
+          background-position: 0 -60px;
+        }
+
+        &.hidden {
+          display: none;
+        }
+      }
+
+      &.summation-row {
+        background: $aluminium;
+        border-top: 1px solid $wool;
+        border-bottom: 1px solid $wool;
+
+        td {
+          height: 30px;
+          padding: 0 10px;
+        }
+
+        &.hidden {
+          display: none;
+        }
+      }
+    }
+  }
+}

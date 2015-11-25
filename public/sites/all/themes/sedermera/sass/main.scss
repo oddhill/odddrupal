@@ -82,7 +82,7 @@ body {
 "toc";
 
 // Import content modules
-@import 'content/*';
+@import 'content/**/*';
 
 // Import page elements
 @import 'elements/**/*';

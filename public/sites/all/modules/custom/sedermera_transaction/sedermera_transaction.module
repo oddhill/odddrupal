@@ -139,7 +139,8 @@ function sedermera_transaction_intresent($offer_id) {
 function generate_header_row_interested(array &$header, array $type_investment) {
   // Collapsible column
   $header[] = array(
-    'class' => array('table-head', 'Collapsible-head')
+    'class' => array('table-head', 'collapsible-head'),
+    'data' => '<span class="icon"></span>'
   );
 
   // Name column
@@ -316,6 +317,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
       // Collapsible column
       array(
         'class' => 'collapsible',
+        'data' => '<span class="icon"></span>',
       ),
       // Name column
       array(
@@ -517,6 +519,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
         // Collapsible column
         array(
           'class' => 'collapsible-row',
+          'data' => '<span class="icon"></span>',
         ),
         // Name column
         array(
