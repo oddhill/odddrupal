@@ -99,11 +99,6 @@ input[value="Jämför"]{
  }
 }
 
-// Submit button
-#edit-submit--3 {
-  @include button($dark-grey, delete);
-}
-
 // Don't display revisioning-ux-buttons
 .revisioning-ux-buttons {
   display: none;

@@ -11,5 +11,9 @@
 
   .content-wrapper {
     background: transparent;
+
+    .form-submit {
+      @include button($dark-grey,add);
+    }
   }
 }
