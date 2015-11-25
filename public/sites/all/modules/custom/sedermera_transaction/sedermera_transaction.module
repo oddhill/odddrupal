@@ -962,10 +962,13 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
   $done = 0;
   $count = 0;
 
-  foreach ($transaction->field_transaction_investor as $value) {
-    foreach ($value as $val) {
-      $result = db_query("SELECT field_transaction_agree_to_sign_value AS value FROM {field_data_field_transaction_agree_to_sign} WHERE entity_id = :eid", array(':eid' => $val['target_id']))->fetchAll();
-      $done += $result[0]->value;
+  foreach ($transaction_wrap->field_transaction_investor->value() as $object) {
+    foreach ($object->field_transaction_ap_agree[LANGUAGE_NONE] as $tid) {
+      $result = db_query("SELECT field_transaction_agree_to_sign_value AS value
+        FROM {field_data_field_transaction_agree_to_sign}
+        WHERE entity_id = :eid", array(':eid' => $tid['target_id']))->fetchAssoc();
+
+      $done += $result['value'];
       $count++;
     }
   }
