@@ -1192,7 +1192,7 @@ function f_capital_raising_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'ctrl_pen' => 'ctrl_pen',
+          'ctrl' => 'ctrl',
         ),
       ),
       'target_type' => 'node',
@@ -1889,7 +1889,7 @@ function f_capital_raising_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'transaction_ap' => 'transaction_ap',
+          'transaktion_ap' => 'transaktion_ap',
         ),
       ),
       'target_type' => 'node',
