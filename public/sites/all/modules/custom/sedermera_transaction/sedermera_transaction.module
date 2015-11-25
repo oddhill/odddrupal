@@ -963,6 +963,10 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
   $count = 0;
 
   foreach ($transaction_wrap->field_transaction_investor->value() as $object) {
+    if (empty($object->field_transaction_ap_agree)) {
+      continue;
+    }
+
     foreach ($object->field_transaction_ap_agree[LANGUAGE_NONE] as $tid) {
       $result = db_query("SELECT field_transaction_agree_to_sign_value AS value
         FROM {field_data_field_transaction_agree_to_sign}
@@ -1588,20 +1592,20 @@ function get_control_transactions_sum($nid, array $type_investment) {
 function sedermera_transaction_add_ap($transaction_id, $ap_id) {
   // Create the new Transaktion AP node with a reference to the AP, and save the
   // node.
-  $transaktion_ap = entity_create('node', array(
-    'type' => 'transaktion_ap',
+  $transaction_ap = entity_create('node', array(
+    'type' => 'transaction_ap',
     'field_transaction_ap_ap' => array(
       LANGUAGE_NONE => array(
         array('target_id' => $ap_id),
       ),
     ),
   ));
-  node_save($transaktion_ap);
+  node_save($transaction_ap);
 
   // Update the transaction node with a reference to the newly created
   // Transaktion AP node.
   $transaction = entity_metadata_wrapper('node', $transaction_id);
-  $transaction->field_transaction_investor[] = $transaktion_ap;
+  $transaction->field_transaction_investor[] = $transaction_ap;
   $transaction->save();
 
   // Re-render the table, and return an AJAX command which will replace the old
@@ -1609,6 +1613,6 @@ function sedermera_transaction_add_ap($transaction_id, $ap_id) {
   $table = sedermera_transaction_intresent($transaction->field_transaction_offer->nid->value());
   return array(
     '#type' => 'ajax',
-    '#commands' => array(ajax_command_replace('#intresent-table', render($table))),
+    '#commands' => array(ajax_command_replace('#interested-table', render($table))),
   );
 }
