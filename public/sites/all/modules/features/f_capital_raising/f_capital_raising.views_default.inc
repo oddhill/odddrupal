@@ -318,7 +318,8 @@ else {
   $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['text'] = 'Skicka';
   $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['path'] = 'test.php';
+  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['path'] = 'offer/send-offer/[nid]';
+  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['link_class'] = 'send-mail';
   $handler->display->display_options['fields']['field_transaction_info_offer']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_info_offer']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_info_offer']['settings'] = array(
