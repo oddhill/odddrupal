@@ -17,5 +17,5 @@ function template_preprocess_sedermera_offer_signed_mail(&$variables) {
  */
 function template_preprocess_sedermera_offer_unsigned_mail(&$variables) {
   // Add URL to the logo.
-  $variables['logo'] = url(drupal_get_path('theme', 'sedermera') . '/graphics/mail-logo.png');
+  $variables['logo'] = url(drupal_get_path('theme', 'sedermera') . '/graphics/mail-logo.png', array('absolute' => TRUE));
 }
