@@ -531,11 +531,13 @@ function sedermera_offer_theme() {
       'template' => 'sedermera-offer-signed-mail',
       'variables' => array('recipient' => '', 'sender' => '', 'company' => ''),
       'path' => $path,
+      'file' => 'theme.inc',
     ),
     'sedermera_offer_unsigned_mail' => array(
       'template' => 'sedermera-offer-unsigned-mail',
       'variables' => array('recipient' => '', 'sender' => '', 'company' => ''),
       'path' => $path,
+      'file' => 'theme.inc',
     ),
   );
 }

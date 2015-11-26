@@ -21,7 +21,7 @@
 
       <tr>
         <td align="center" style="border-bottom: 2px solid #eee; padding-bottom: 30px; padding-top: 30px;">
-          <img src="mail-logo.png" alt="Sedermera Fondkommission" style="display: block;" />
+          <img src="<?php print $logo; ?>" alt="Sedermera Fondkommission" style="display: block;" />
         </td>
       </tr>
 
