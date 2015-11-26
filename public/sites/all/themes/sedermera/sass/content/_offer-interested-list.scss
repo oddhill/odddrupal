@@ -26,6 +26,10 @@
       @include svg-bg(transaction-collapse);
     }
 
+    .to-check-ctrl {
+      cursor: pointer;
+    }
+
     tr {
 
       td.collapsible,
@@ -47,14 +51,14 @@
       &.contact-person-row {
 
         span.icon {
-          background-position: 0 -20px;
+          background-position: 0 -40px;
           cursor: pointer;
         }
 
         &.collapsed {
 
           span.icon {
-            background-position: 0 -40px;
+            background-position: 0 -20px;
           }
         }
       }

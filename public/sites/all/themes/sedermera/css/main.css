@@ -1752,6 +1752,8 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   height: 20px;
   background: url("../graphics/transaction-collapse.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/transaction-collapse.svg") transparent 0 0 no-repeat; }
+#interested-table table .to-check-ctrl {
+  cursor: pointer; }
 #interested-table table tr td.collapsible,
 #interested-table table tr td.collapsible-row {
   position: relative; }
@@ -1764,10 +1766,10 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 #interested-table table tr.even {
   background: #fff; }
 #interested-table table tr.contact-person-row span.icon {
-  background-position: 0 -20px;
+  background-position: 0 -40px;
   cursor: pointer; }
 #interested-table table tr.contact-person-row.collapsed span.icon {
-  background-position: 0 -40px; }
+  background-position: 0 -20px; }
 #interested-table table tr.investor-row {
   background: #fafbfc; }
   #interested-table table tr.investor-row span.icon {
