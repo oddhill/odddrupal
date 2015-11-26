@@ -1327,7 +1327,7 @@ function sedermera_offer_views_pre_render(&$view) {
       return;
     }
 
-    $node = node_load(arg(1));
+    $node = node_load($view->args[0]);
 
     $transaction_fe_sign = 0;
     $transaction_fe_warrant = 0;
