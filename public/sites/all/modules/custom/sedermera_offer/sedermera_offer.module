@@ -36,6 +36,14 @@ function sedermera_offer_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
+  $items['offer/send-offer/%'] = array(
+    'page callback' => 'sedermera_offer_send_offer_mail',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+
   return $items;
 }
 
@@ -196,6 +204,57 @@ function transaction_transparency_info_send_mail($transaction_nid) {
   return array(
     '#type' => 'ajax',
     '#commands' => array(ajax_command_replace('div.offer-contact-list', $view->preview('page', array($offer->nid)))),
+  );
+}
+
+/**
+ * AJAX callback for sending the offer information via mail.
+ *
+ * @param int $transaction_nid
+ *   Node ID for the transaction.
+ *
+ * @return array
+ *   Array with AJAX commands.
+ */
+function sedermera_offer_send_offer_mail($transaction_nid) {
+  $commands = array();
+
+  // Load relevant entities.
+  $transaction = entity_metadata_wrapper('node', $transaction_nid);
+  $person = $transaction->field_transaction_person;
+  $offer = $transaction->field_transaction_offer;
+
+  // Remove any existing messages.
+  $commands[] = ajax_command_remove('div.page-messages');
+
+  // Send the email only of the person has an email address.
+  if ($mail = $person->field_user_mail->value()) {
+    // Use the offer title as the mail subject.
+    $params['subject'] = $offer->title->value();
+
+    // Use the rendered offer node as the message.
+    $offer_view = node_view($offer->value(), 'mail');
+    $params['message'][] = render($offer_view);
+
+    // Send the mail.
+    drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
+
+    // Print a message.
+    drupal_set_message(format_string('Erbjudandet skickades till %email.', array('%email' => $mail)));
+  }
+  else {
+    // The person doesn't have an email address. Print a message which lets the
+    // user edit the person right away.
+    $offer_path = 'node/' . $offer->nid->value() . '/kontaktlista';
+    $edit_url = url($person->edit_url->value(), array('query' => array('destination' => $offer_path)));
+    drupal_set_message(format_string('Det finns ingen e-postadress för %person. <a href="@edit_url">Vill du lägga till en?</a>', array('%person' => $person->title->value(), '@edit_url' => $edit_url)), 'error');
+  }
+
+  // Print the new message, and return the commands.
+  $commands[] = ajax_command_before('div.page-title', '<div class="page-messages">' . theme('status_messages') . '</div>');
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
   );
 }
 

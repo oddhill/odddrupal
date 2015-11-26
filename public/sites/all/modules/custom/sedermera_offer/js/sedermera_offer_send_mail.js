@@ -7,6 +7,11 @@ Drupal.behaviors.sedermeraOfferSendMail = {
       e.preventDefault();
       var $this = $(this);
 
+      // Prompt the user before sending an email.
+      if (!confirm('Är du säker på att du vill skicka informationen via e-post?')) {
+        return;
+      }
+
       // Bail out if this already has been triggered.
       if ($this.prop('clicked')) {
         return;
@@ -24,6 +29,12 @@ Drupal.behaviors.sedermeraOfferSendMail = {
       // node.
       $.get($this.attr('href'), function(data, success) {
         var ajax = Drupal.ajax.prototype;
+
+        // Remove the throbber.
+        throbberElement.remove();
+
+        // Reset the clicked property.
+        $this.prop('clicked', false);
 
         // Set the AJAX effect.
         ajax.effect = 'none';
