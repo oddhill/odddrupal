@@ -60,7 +60,8 @@ function f_capital_raising_views_default_views() {
   /* Display: Kontaktlista */
   $handler = $view->new_display('page', 'Kontaktlista', 'page');
   $handler->display->display_options['defaults']['access'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'edit any offer content';
   $handler->display->display_options['defaults']['header'] = FALSE;
   /* Header: Global: Link */
   $handler->display->display_options['header']['link']['id'] = 'link';
