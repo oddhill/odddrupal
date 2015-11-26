@@ -306,7 +306,7 @@ else if ($node_tr->field_transaction_info[\'und\'][0][value]) {
   print \'Skickad\';
 }
 else {
-  print l(\'Skicka\', "offer/send-info/$row->nid");
+  print l(\'Skicka\', "offer/send-info/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
 }
 ?>';
   $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
