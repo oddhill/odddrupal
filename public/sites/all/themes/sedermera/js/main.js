@@ -146,7 +146,7 @@ var selectLookAlike = function() {
     $container.removeClass('active');
   });
 
-  $button.on('click', function() {
+  $button.once().on('click', function() {
     $(this).parents('.select-container').toggleClass('active');
   });
 
