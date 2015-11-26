@@ -2673,13 +2673,15 @@ form.views-send-preview .form-actions {
     background-size: 80px 80px; }
 
 .table-filter {
-  display: none;
-  background: #e0e2e6;
-  width: 23%; }
+  background: #fafbfc;
+  border-top: 1px solid #e0e2e6;
+  border-right: 1px solid #e0e2e6;
+  border-left: 1px solid #e0e2e6; }
   .table-filter h2.filter-icon {
     background: #454545;
-    border-bottom: 1px solid;
-    padding: 11px 0 11px 0; }
+    padding: 11px;
+    margin: -1px 0 0 -1px;
+    float: left; }
     .table-filter h2.filter-icon .icon {
       background: url("../graphics/filter_icon.png") transparent 0 0 no-repeat;
       background: none, url("../graphics/filter_icon.svg") transparent 0 0 no-repeat;
@@ -2692,10 +2694,11 @@ form.views-send-preview .form-actions {
       text-indent: 42px;
       width: 20px; }
   .table-filter form {
-    padding: 0 10px 20px; }
+    overflow: hidden;
+    padding: 20px;
+    text-align: center; }
     .table-filter form .submit-wrapper {
-      display: block;
-      height: 34px;
+      display: inline-block;
       position: relative; }
       .table-filter form .submit-wrapper .form-submit {
         display: inline-block;
@@ -2715,13 +2718,9 @@ form.views-send-preview .form-actions {
         -moz-transition: background-color 0.1s ease-in-out;
         transition: background-color 0.1s ease-in-out;
         text-align: center;
-        width: 100%; }
+        margin: 0; }
         .table-filter form .submit-wrapper .form-submit:hover {
           background-color: #303030; }
-      .page-node-add .table-filter form .submit-wrapper {
-        display: block; }
-        .page-node-add .table-filter form .submit-wrapper .form-submit {
-          margin: 0; }
       .table-filter form .submit-wrapper .ajax-progress {
         background: #303030;
         border-radius: 34px;
@@ -2748,41 +2747,9 @@ form.views-send-preview .form-actions {
           animation: load 0.9s linear infinite;
           margin: 0 auto;
           float: none; }
-    .table-filter form .filter-item {
-      margin: 20px 0; }
-      .table-filter form .filter-item > label {
-        background: #c8cacd;
-        border-bottom: 1px solid #e0e2e6;
-        border-radius: 2px 2px 0 0;
-        display: block;
-        font-weight: 700;
-        padding: 10px 0 11px 0;
-        text-align: center;
-        text-transform: uppercase; }
-      .table-filter form .filter-item > .form-item {
-        border-radius: 2px;
-        padding: 10px; }
     .table-filter form .form-item {
-      background: #d4d6d9;
-      font-size: 12px; }
-      .table-filter form .form-item.form-type-bef-checkbox {
-        height: 18px;
-        line-height: 18px;
-        margin-bottom: 5px;
-        padding-left: 23px;
-        position: relative; }
-        .table-filter form .form-item.form-type-bef-checkbox .checker {
-          left: 0;
-          position: absolute;
-          top: 0; }
-        .table-filter form .form-item.form-type-bef-checkbox:last-child {
-          margin-bottom: 0px; }
-      .table-filter form .form-item.form-type-textfield .form-text {
-        border-radius: 2px;
-        padding: 5px;
-        width: 100%; }
-        .table-filter form .form-item.form-type-textfield .form-text:focus {
-          box-shadow: 0 0 3px #a2a2a2; }
+      display: inline-block;
+      margin: 0 15px 0 0; }
 
 .field-group-htabs-wrapper {
   background: #fff;
@@ -4062,7 +4029,7 @@ div.checker {
     div.checker span.checked:after {
       display: block; }
   div.checker.focus {
-    box-shadow: 0 0 3px #dadada; }
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); }
   div.checker.hover {
     border: 1px solid #bfc1c3;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); }
@@ -5324,4 +5291,4 @@ table.tabledrag-processed {
     .js .form-text.form-autocomplete.throbbing {
       background-image: none; }
   .form-text:focus {
-    box-shadow: 0 0 3px #dadada; }
+    box-shadow: 0 0 2px #c8cacd; }

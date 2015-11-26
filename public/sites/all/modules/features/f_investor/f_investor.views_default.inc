@@ -328,8 +328,9 @@ function f_investor_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
-  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filtrera listan';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filtrera';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'general' => array(
       'allow_secondary' => 0,
@@ -470,7 +471,7 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['title']['operator'] = 'contains';
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Namn';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Filtrera på namn';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
   $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
@@ -679,7 +680,7 @@ function f_investor_views_default_views() {
     t('Master'),
     t('Kontaktpersoner'),
     t('more'),
-    t('Filtrera listan'),
+    t('Filtrera'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
@@ -698,6 +699,7 @@ function f_investor_views_default_views() {
     t('E-post'),
     t('Mobil'),
     t('Telefon'),
+    t('Filtrera på namn'),
     t('Lista'),
     t('Skapa erbjudande'),
     t('- Choose an operation -'),

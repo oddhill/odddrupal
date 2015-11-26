@@ -1,13 +1,14 @@
-// Wraps the entire filter
 .table-filter {
-  display: none; // Remove temporarily until we figured this one out
-  background: $wool;
-  width: 23%;
+  background: tint($light-grey,60%);
+  border-top: 1px solid $wool;
+  border-right: 1px solid $wool;
+  border-left: 1px solid $wool;
 
   h2.filter-icon {
     background: $dark-grey;
-    border-bottom: 1px solid;
-    padding: 11px 0 11px 0;
+    padding: 11px;
+    margin: -1px 0 0 -1px;
+    float: left;
 
     .icon {
       @include svg-bg(filter_icon);
@@ -23,25 +24,18 @@
   }
 
   form {
-    padding: 0 10px 20px;
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
 
     .submit-wrapper {
-      display: block;
-      height: 34px;
+      display: inline-block;
       position: relative;
 
       .form-submit {
         @include button($dark-grey);
         text-align: center;
-        width: 100%;
-      }
-
-      .page-node-add & {
-        display: block;
-
-        .form-submit {
-          margin: 0;
-        }
+        margin: 0;
       }
 
       .ajax-progress {
@@ -66,60 +60,9 @@
       }
     }
 
-    .filter-item {
-      margin: 20px 0;
-
-      > label {
-        background: $light-concrete;
-        border-bottom: 1px solid $wool;
-        border-radius: 2px 2px 0 0;
-        display: block;
-        font-weight: 700;
-        padding: 10px 0 11px 0;
-        text-align: center;
-        text-transform: uppercase;
-      }
-
-      > .form-item {
-        border-radius: 2px;
-        padding: 10px;
-      }
-    }
-
     .form-item {
-      background: $steel;
-      font-size: 12px;
-
-      &.form-type-bef-checkbox {
-        height: 18px;
-        line-height: 18px;
-        margin-bottom: 5px;
-        padding-left: 23px;
-        position: relative;
-
-        .checker {
-          left: 0;
-          position: absolute;
-          top: 0;
-        }
-
-        &:last-child {
-          margin-bottom: 0px;
-        }
-      }
-
-      &.form-type-textfield {
-
-        .form-text {
-          border-radius: 2px;
-          padding: 5px;
-          width: 100%;
-
-          &:focus {
-            box-shadow: 0 0 3px tint($dark-grey,50%);
-          }
-        }
-      }
+      display: inline-block;
+      margin: 0 15px 0 0;
     }
   }
 }
