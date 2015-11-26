@@ -30,7 +30,7 @@ function f_company_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
-  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filtrera listan';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filtrera';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'general' => array(
@@ -153,7 +153,7 @@ function f_company_views_default_views() {
     t('Master'),
     t('Alla kundbolag'),
     t('more'),
-    t('Filtrera listan'),
+    t('Filtrera'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
