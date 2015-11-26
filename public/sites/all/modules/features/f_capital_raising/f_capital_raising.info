@@ -302,6 +302,7 @@ features[variable][] = node_submitted_transaction_ap
 features[variable][] = node_view_permissions_offer
 features[variable][] = nodeaccess_ctrl
 features[variable][] = nodeaccess_erbjudande
+features[variable][] = nodeaccess_offer
 features[variable][] = nodeaccess_person
 features[variable][] = nodeaccess_transaction
 features[variable][] = pathauto_node_offer_pattern
