@@ -1613,6 +1613,6 @@ function sedermera_transaction_add_ap($transaction_id, $ap_id) {
   $table = sedermera_transaction_intresent($transaction->field_transaction_offer->nid->value());
   return array(
     '#type' => 'ajax',
-    '#commands' => array(ajax_command_replace('#interested-table', render($table))),
+    '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
   );
 }
