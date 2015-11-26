@@ -175,35 +175,56 @@ function create_agreement_node($title, $type) {
  *   Array with AJAX commands.
  */
 function transaction_transparency_info_send_mail($transaction_nid) {
-  // Load entitys to retrieve info
+  $commands = array();
+
+  // Load relevant entities.
   $transaction = entity_metadata_wrapper('node', $transaction_nid);
-  $person = $transaction->field_transaction_person->value();
-  $offer = $transaction->field_transaction_offer->value();
-  $company = $transaction->field_transaction_offer->field_offer_company->value();
+  $person = $transaction->field_transaction_person;
+  $offer = $transaction->field_transaction_offer;
+  $company = $transaction->field_transaction_offer->field_offer_company;
 
-  // Build mail.
-  // Subject.
-  $params['subject'] = 'Insynsinformation';
+  // Remove any existing messages.
+  $commands[] = ajax_command_remove('div.page-messages');
 
-  // Message.
-  $params['message'][] = theme('sedermera_offer_signed_mail', array(
-    'recipient' => $person->title,
-    'sender' => format_username($GLOBALS['user']),
-    'company' => $company->title,
-  ));
+  // Send the email only of the person has an email address.
+  if ($mail = $person->field_user_mail->value()) {
+    // Subject.
+    $params['subject'] = 'Insynsinformation';
 
-  // Send Mail
-  drupal_mail('sedermera_offer', 'info', $person->mail, LANGUAGE_NONE, $params);
+    // Message.
+    $params['message'][] = theme('sedermera_offer_signed_mail', array(
+      'recipient' => $person->title->value(),
+      'sender' => format_username($GLOBALS['user']),
+      'company' => $company->title->value(),
+    ));
 
-  // Mark offer as gotten transparency information
-  $transaction->field_transaction_info = TRUE;
-  $transaction->save();
+    // Send Mail
+    drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
 
-  // Replace the old view with a new one.
-  $view = views_get_view('transactions');
+    // Mark offer as gotten transparency information
+    $transaction->field_transaction_info = TRUE;
+    $transaction->save();
+
+    // Replace the old view with a new one.
+    $view = views_get_view('transactions');
+    $commands[] = ajax_command_replace('div.offer-contact-list', $view->preview('page', array($offer->nid->value())));
+
+    // Print a message.
+    drupal_set_message(format_string('Informationen skickades till %email.', array('%email' => $mail)));
+  }
+  else {
+    // The person doesn't have an email address. Print a message which lets the
+    // user edit the person right away.
+    $offer_path = 'node/' . $offer->nid->value() . '/kontaktlista';
+    $edit_url = url($person->edit_url->value(), array('query' => array('destination' => $offer_path)));
+    drupal_set_message(format_string('Det finns ingen e-postadress för %person. <a href="@edit_url">Vill du lägga till en?</a>', array('%person' => $person->title->value(), '@edit_url' => $edit_url)), 'error');
+  }
+
+  // Print the new message, and return the commands.
+  $commands[] = ajax_command_before('div.page-title', '<div class="page-messages">' . theme('status_messages') . '</div>');
   return array(
     '#type' => 'ajax',
-    '#commands' => array(ajax_command_replace('div.offer-contact-list', $view->preview('page', array($offer->nid)))),
+    '#commands' => $commands,
   );
 }
 
