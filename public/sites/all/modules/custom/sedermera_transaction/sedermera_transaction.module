@@ -644,7 +644,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
     // To control column
     if ($transaction_ap_wrap->field_transaction_ap_ctrl->value()) {
       $rows[$row]['data'][] = array(
-        'data' => '<span class="to-check-ctrl"></span> kontrollera',
+        'data' => '<span class="to-check-ctrl"></span> Kontrollera',
       );
     }
     else {
