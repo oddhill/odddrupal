@@ -1,0 +1,37 @@
+name: Odd Drupal
+type: profile
+description: "Base profile that should be used for every site if there's no specific installation profile available."
+core: 8.x
+dependencies:
+  - node
+  - block
+  - breakpoint
+  - ckeditor
+  - config
+  - contextual
+  - menu_link_content
+  - datetime
+  - block_content
+  - quickedit
+  - editor
+  - help
+  - image
+  - locale
+  - menu_ui
+  - options
+  - path
+  - page_cache
+  - dynamic_page_cache
+  - taxonomy
+  - dblog
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - rdf
+  - views
+  - views_ui
+  - tour
+  - automated_cron
+themes:
+  - seven
