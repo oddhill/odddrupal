@@ -316,26 +316,6 @@ function sedermera_capital_raising_archive_form_submit($form, &$form_state) {
 }
 
 /**
- * Implements hook_node_presave().
- */
-function sedermera_capital_raising_node_presave($node) {
-  // Bail out if this isn't a capital raising node.
-  if ($node->type != 'capital_raising') {
-    return;
-  }
-
-  // Change the end date to the end of the day, if one has been provided.
-  if (isset($node->field_cap_rais_date[LANGUAGE_NONE][0]['value2'])) {
-    sedermera_capital_raising_adjust_end_date($node);
-  }
-
-  // Delete "wrong" field values if a type has been specified.
-  if (isset($node->field_cap_rais_type[LANGUAGE_NONE][0]['value'])) {
-    sedermera_capital_raising_delete_values($node, $node->field_cap_rais_type[LANGUAGE_NONE][0]['value']);
-  }
-}
-
-/**
  * Delete values which shouldn't exist based on the type of capital raising.
  *
  * This will delete the values for the stock fields if this is a units type, or
