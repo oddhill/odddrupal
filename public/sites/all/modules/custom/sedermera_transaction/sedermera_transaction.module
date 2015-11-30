@@ -89,11 +89,11 @@ function sedermera_transaction_intresent($offer_id) {
       'fe_sign' => !empty($offer->field_offer_type_fe_sign),
       'fe_warr' => !empty($offer->field_offer_type_fe_warrant),
       'le_sign' => !empty($offer->field_offer_type_le_sign),
-      'le_warr' => !empty($offer->ffield_offer_type_le_warrant),
+      'le_warr' => !empty($offer->field_offer_type_le_warrant),
       'pp_sign' => !empty($offer->field_offer_type_pp_sign),
       're_sign' => !empty($offer->field_offer_type_re_sign),
       'bl_sum'  => !empty($offer->field_offer_type_bl_sum),
-      'bp_sum ' => !empty($offer->field_offer_type_bp_sum),
+      'bp_sum'  => !empty($offer->field_offer_type_bp_sum),
     );
 
     // Arrays holding the content used to build the table
