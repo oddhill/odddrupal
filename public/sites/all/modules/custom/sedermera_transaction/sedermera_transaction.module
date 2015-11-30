@@ -507,12 +507,22 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
   $transaction_wrap = entity_metadata_wrapper('node', $transaction);
   $person = $transaction_wrap->field_transaction_person->value();
 
-  foreach ($investor_transactions as $investor) {
+  // Get indicator of last investor
+  $last = count($investor_transactions) - 1;
+
+  foreach ($investor_transactions as $key => $investor) {
     $transaction_ap = node_load($investor['target_id']);
     $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
 
     // Get investor from transaction
     $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
+
+    $row_class = '';
+
+    // If last investor add class
+    if ($last === $key) {
+      $row_class = 'last-investor';
+    }
 
     $rows[] = array(
       'data' => array(
@@ -528,7 +538,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
         // Dropdown column
         array(),
       ),
-      'class' => array('investor-row'),
+      'class' => array('investor-row', $row_class),
       'data-id' => $person->nid,
     );
 
