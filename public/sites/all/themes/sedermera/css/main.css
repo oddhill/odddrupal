@@ -1772,6 +1772,13 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   height: 20px;
   background: url("../graphics/transaction-collapse.png") transparent 0 0 no-repeat;
   background: none, url("../graphics/transaction-collapse.svg") transparent 0 0 no-repeat; }
+#controller-list table .ctrl {
+  width: 50px;
+  text-align: center; }
+  #controller-list table .ctrl .verification {
+    padding-top: 4px; }
+#controller-list table tr.hidden {
+  display: none; }
 #controller-list table tr td.collapsible,
 #controller-list table tr td.collapsible-row {
   position: relative; }
@@ -1797,15 +1804,15 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   border-top: 1px solid #f3f4f8; }
   #controller-list table tr.investor-row span.icon {
     background-position: 0 -60px; }
-  #controller-list table tr.investor-row.hidden {
-    display: none; }
 #controller-list table tr.agreement-row {
   background: #f3f4f8;
-  border-bottom: 0px none; }
+  border-bottom: 1px solid #fafbfc; }
   #controller-list table tr.agreement-row .empty-column {
     background: #fafbfc; }
-  #controller-list table tr.agreement-row.hidden {
-    display: none; }
+#controller-list table tr.empty-row {
+  background: #fafbfc; }
+  #controller-list table tr.empty-row td {
+    height: 20px; }
 
 .offer-interested-list {
   padding: 40px; }

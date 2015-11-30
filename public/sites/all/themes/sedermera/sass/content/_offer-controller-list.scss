@@ -26,7 +26,20 @@
       @include svg-bg(transaction-collapse);
     }
 
+    .ctrl {
+      width: 50px;
+      text-align: center;
+
+      .verification {
+        padding-top: 4px;
+      }
+    }
+
     tr {
+
+      &.hidden {
+        display: none;
+      }
 
       td.collapsible,
       td.collapsible-row {
@@ -69,22 +82,22 @@
         span.icon {
           background-position: 0 -60px;
         }
-
-        &.hidden {
-          display: none;
-        }
       }
 
       &.agreement-row {
         background: $light-grey;
-        border-bottom: 0px none;
+        border-bottom: 1px solid tint($light-grey,60%);
 
         .empty-column {
           background: tint($light-grey,60%);
         }
+      }
 
-        &.hidden {
-          display: none;
+      &.empty-row {
+        background: tint($light-grey,60%);
+
+        td {
+          height: 20px;
         }
       }
     }

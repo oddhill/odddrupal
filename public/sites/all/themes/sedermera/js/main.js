@@ -172,6 +172,7 @@ var listCollapser = function() {
     $('tr.investor-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
     $('tr.summation-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
     $('tr.agreement-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
+    $('tr.empty-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
   });
 };
 

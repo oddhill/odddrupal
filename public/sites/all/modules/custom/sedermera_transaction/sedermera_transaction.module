@@ -893,49 +893,49 @@ function generate_header_row_control(array &$header) {
   // Control UA column
   $header[] = array(
     'data' => 'UA',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control PTV column
   $header[] = array(
     'data' => 'PTV',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control ID column
   $header[] = array(
     'data' => 'ID',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control EXR column
   $header[] = array(
     'data' => 'EXR',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control EU column
   $header[] = array(
     'data' => 'EU',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control KRE column
   $header[] = array(
     'data' => 'KRE',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control KOM column
   $header[] = array(
     'data' => 'KOM',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control PEN column
   $header[] = array(
     'data' => 'PEN',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Control agreement column
@@ -1010,23 +1010,38 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
         'data' => number_format($sum, 0, "", "'") . " :-",
       ),
       // Control UA column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control PTV column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control ID column
       array(
         'data' => render($ctrl_id),
+        'class' => array('ctrl'),
       ),
       // Control EXR column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control EU column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control KRE column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control KOM column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control PEN column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control agreement column
       array(),
       // To sign column
@@ -1118,33 +1133,42 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
       // Control UA column
       array(
         'data' => render($ctrl_ua),
+        'class' => array('ctrl'),
       ),
       // Control PTV column
       array(
         'data' => render($ctrl_ptv),
+        'class' => array('ctrl'),
       ),
       // Control ID column
       array(
         'data' => render($investor_view_full['verification_status_id']),
+        'class' => array('ctrl'),
       ),
       // Control EXR column
       array(
         'data' => render($ctrl_exr),
+        'class' => array('ctrl'),
       ),
       // Control EU column
       array(
         'data' => render($ctrl_eu),
+        'class' => array('ctrl'),
       ),
       // Control KRE column
       array(
         'data' => render($ctrl_kre),
+        'class' => array('ctrl'),
       ),
       // Control KOM column
       array(
         'data' => render($ctrl_kom),
+        'class' => array('ctrl'),
       ),
       // Control PEN column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control agreement column
       array(),
       // To sign column
@@ -1246,22 +1270,37 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
         'data' => number_format($sum, 0, "", "'") . " :-",
       ),
       // Control UA column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control PTV column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control ID column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control EXR column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control EU column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control KRE column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control KOM column
-      array(),
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control PEN column
       array(
         'data' => render($ctrl_pen),
+        'class' => array('ctrl'),
       ),
       // Control agreement column
       array(
@@ -1317,6 +1356,8 @@ function generate_empty_row_control(array &$rows, $transaction) {
       // Control agreement column
       array(),
       // To sign column
+      array(),
+      // Empty column
       array(),
     ),
     'class' => array('empty-row'),
