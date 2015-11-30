@@ -1834,6 +1834,8 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   background: none, url("../graphics/transaction-collapse.svg") transparent 0 0 no-repeat; }
 #interested-table table .to-check-ctrl {
   cursor: pointer; }
+#interested-table table tr.hidden {
+  display: none; }
 #interested-table table tr td.collapsible,
 #interested-table table tr td.collapsible-row {
   position: relative; }
@@ -1854,8 +1856,6 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   background: #fafbfc; }
   #interested-table table tr.investor-row span.icon {
     background-position: 0 -60px; }
-  #interested-table table tr.investor-row.hidden {
-    display: none; }
   #interested-table table tr.investor-row.last-investor {
     border-bottom: 0px none; }
 #interested-table table tr.summation-row {
@@ -1865,8 +1865,6 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   #interested-table table tr.summation-row td {
     height: 30px;
     padding: 0 10px; }
-  #interested-table table tr.summation-row.hidden {
-    display: none; }
 
 .node-offer.view-mode-full .offer-time {
   padding-bottom: 30px;

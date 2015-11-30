@@ -32,6 +32,10 @@
 
     tr {
 
+      &.hidden {
+        display: none;
+      }
+
       td.collapsible,
       td.collapsible-row {
         position: relative;
@@ -70,10 +74,6 @@
           background-position: 0 -60px;
         }
 
-        &.hidden {
-          display: none;
-        }
-
         &.last-investor {
           border-bottom: 0px none;
         }
@@ -87,10 +87,6 @@
         td {
           height: 30px;
           padding: 0 10px;
-        }
-
-        &.hidden {
-          display: none;
         }
       }
     }
