@@ -2050,6 +2050,34 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     float: none;
     margin-bottom: 0.5em; }
 
+.node-transaction_agreement-form {
+  border-top: 10px solid #f9a500; }
+  .node-transaction_agreement-form .verification-header {
+    padding: 40px;
+    overflow: hidden; }
+  .node-transaction_agreement-form .verification-info {
+    overflow: hidden; }
+    .node-transaction_agreement-form .verification-info .ver-type {
+      text-transform: uppercase; }
+    .node-transaction_agreement-form .verification-info h2 {
+      font-size: 30px;
+      font-size: 3rem;
+      line-height: 36px; }
+  .node-transaction_agreement-form .field-type-file {
+    padding: 40px;
+    background: #fafbfc;
+    border-top: 1px solid #e0e2e6;
+    border-bottom: 1px solid #e0e2e6;
+    margin-bottom: 0; }
+    .node-transaction_agreement-form .field-type-file .form-wrapper {
+      margin-bottom: 0; }
+  .node-transaction_agreement-form .vertical-tabs-panes {
+    display: none; }
+  .node-transaction_agreement-form .form-actions {
+    padding: 40px;
+    text-align: center;
+    margin: 0; }
+
 .mfp-content {
   background: #fff;
   margin: 0 auto;

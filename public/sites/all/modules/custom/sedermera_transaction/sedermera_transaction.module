@@ -1304,7 +1304,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       ),
       // Control agreement column
       array(
-        'data' => l('Hantera avtal', "node/" . $agreement_node->nid . "/edit/control"),
+        'data' => l('Hantera avtal', "node/" . $agreement_node->nid . "/edit/control", array('attributes' => array('class' => array('mfp-verification-edit')))),
       ),
       // To sign column
       array(
@@ -1610,6 +1610,19 @@ function sedermera_transaction_form_transaction_agreement_node_form_alter(&$form
     unset($form['field_transaction_agree_sign_dat']);
     unset($form['field_transaction_agree_type_rea']);
     $form_state['#rebuild'] = TRUE;
+
+    // Add markup for prefix
+    $form['prefix'] = array(
+      '#type' => 'markup',
+      '#markup' => '
+      <div class="verification-header">
+        <div class="verification-info">
+          <div class="ver-type">Transaktion</div>
+          <h2 class="ver-title">Hantera avtal</h2>
+        </div>
+      </div>
+      ',
+    );
   }
 }
 

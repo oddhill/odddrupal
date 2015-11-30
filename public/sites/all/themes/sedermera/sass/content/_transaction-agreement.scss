@@ -1,0 +1,42 @@
+.node-transaction_agreement-form {
+  border-top: 10px solid $mustard;
+
+  .verification-header {
+    padding: 40px;
+    overflow: hidden;
+  }
+
+  .verification-info {
+    overflow: hidden;
+
+    .ver-type {
+      text-transform: uppercase;
+    }
+
+    h2 {
+      @include font-size(3.0,1.2);
+    }
+  }
+
+  .field-type-file {
+    padding: 40px;
+    background: tint($light-grey,60%);
+    border-top: 1px solid $wool;
+    border-bottom: 1px solid $wool;
+    margin-bottom: 0;
+
+    .form-wrapper {
+      margin-bottom: 0;
+    }
+  }
+
+  .vertical-tabs-panes {
+    display: none;
+  }
+
+  .form-actions {
+    padding: 40px;
+    text-align: center;
+    margin: 0;
+  }
+}
