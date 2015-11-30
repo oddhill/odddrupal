@@ -1398,6 +1398,11 @@ function sedermera_offer_views_pre_render(&$view) {
       'field_transaction_bridging' => number_format($transaction_bl_sum, 0, '.', ',') . " :-",
       'field_transaction_block' => number_format($transaction_bp_sum, 0, '.', ',') . " :-",
       'field_transaction_sum' => number_format($total_sum, 0, '.', ',') . " :-",
+      'note' => '',
+      'contact' => '',
+      'info' => '',
+      'offer' => '',
+      'interest' => '',
     );
     $view->disable = array(
       'field_transaction_fe_sign' => empty($node->field_offer_type_fe_sign),
@@ -1416,6 +1421,8 @@ function sedermera_offer_views_pre_render(&$view) {
   TODO DELETE
   */
   if ($view->name == 'offers' && ($view->current_display == 'page' || $view->current_display == 'interest')) {
+    dprint_r('DEL'); die;
+
     if (empty($view->result)) {
       return;
     }
