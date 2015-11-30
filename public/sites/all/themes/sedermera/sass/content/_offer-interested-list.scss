@@ -73,6 +73,10 @@
         &.hidden {
           display: none;
         }
+
+        &.last-investor {
+          border-bottom: 0px none;
+        }
       }
 
       &.summation-row {
