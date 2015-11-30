@@ -85,7 +85,7 @@ function f_capital_raising_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 15,
       ),
       'type' => 'text_textarea',
       'weight' => 43,
@@ -313,7 +313,7 @@ function f_capital_raising_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 10,
+        'rows' => 35,
       ),
       'type' => 'text_textarea',
       'weight' => 42,
@@ -1764,14 +1764,13 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 20,
+        'weight' => 57,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 19,
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1783,7 +1782,7 @@ function f_capital_raising_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_offer_type_fe_warrant_type',
     'label' => 'Garanatiåtagande typ',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -2746,7 +2745,7 @@ function f_capital_raising_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_offer_type_le_warrant_type',
     'label' => 'Garanatiåtagande typ',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),

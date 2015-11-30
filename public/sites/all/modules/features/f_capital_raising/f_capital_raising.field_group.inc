@@ -53,7 +53,7 @@ function f_capital_raising_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_offer_step_1';
   $field_group->data = array(
-    'label' => 'Description',
+    'label' => 'Beskrivning',
     'weight' => '42',
     'children' => array(
       0 => 'field_offer_text',
@@ -62,7 +62,7 @@ function f_capital_raising_field_group_info() {
     ),
     'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Description',
+      'label' => 'Beskrivning',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
@@ -145,14 +145,20 @@ function f_capital_raising_field_group_info() {
     'label' => 'Step 2',
     'weight' => '47',
     'children' => array(
-      0 => 'group_offer_define',
+      0 => 'group_offer_type_bl',
+      1 => 'group_offer_type_bp',
+      2 => 'group_offer_type_fe',
+      3 => 'group_offer_type_le',
+      4 => 'group_offer_type_pp',
+      5 => 'group_offer_type_re',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
-      'formatter' => '',
+      'label' => 'Step 2',
       'instance_settings' => array(
-        'classes' => 'group-offer-step-2 field-group-htabs',
+        'classes' => 'group-offer-step-2 field-group-htabs ',
       ),
+      'formatter' => '',
     ),
   );
   $export['group_offer_step_2|node|offer|form'] = $field_group;
@@ -165,7 +171,7 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_offer_define';
+  $field_group->parent_name = 'group_offer_step_2';
   $field_group->data = array(
     'label' => 'Brygglån',
     'weight' => '52',
@@ -196,7 +202,7 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_offer_define';
+  $field_group->parent_name = 'group_offer_step_2';
   $field_group->data = array(
     'label' => 'Blockpost',
     'weight' => '53',
@@ -227,7 +233,7 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_offer_define';
+  $field_group->parent_name = 'group_offer_step_2';
   $field_group->data = array(
     'label' => 'Företrädesemission',
     'weight' => '48',
@@ -238,10 +244,10 @@ function f_capital_raising_field_group_info() {
       3 => 'field_offer_type_fe_pre',
       4 => 'field_offer_type_fe_sign',
       5 => 'field_offer_type_fe_warrant',
-      6 => 'field_offer_type_fe_warrant_type',
-      7 => 'field_offer_type_fe_bonus',
-      8 => 'field_offer_type_fe_terms',
-      9 => 'field_offer_type_fe_payment',
+      6 => 'field_offer_type_fe_bonus',
+      7 => 'field_offer_type_fe_terms',
+      8 => 'field_offer_type_fe_payment',
+      9 => 'field_offer_type_fe_warrant_type',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -251,7 +257,7 @@ function f_capital_raising_field_group_info() {
         'classes' => 'group-offer-type-fe field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_offer_type_fe|node|offer|form'] = $field_group;
@@ -264,7 +270,7 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_offer_define';
+  $field_group->parent_name = 'group_offer_step_2';
   $field_group->data = array(
     'label' => 'Listningsemission',
     'weight' => '49',
@@ -304,7 +310,7 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_offer_define';
+  $field_group->parent_name = 'group_offer_step_2';
   $field_group->data = array(
     'label' => 'Private Placement',
     'weight' => '50',
@@ -337,7 +343,7 @@ function f_capital_raising_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'offer';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_offer_define';
+  $field_group->parent_name = 'group_offer_step_2';
   $field_group->data = array(
     'label' => 'Riktad emission',
     'weight' => '51',

@@ -856,22 +856,22 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
 
 
   if (!$fe) {
-    $form['#fieldgroups']['group_offer_type_fe']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+    unset($form['#fieldgroups']['group_offer_type_fe']);
   }
   if (!$le) {
-    $form['#fieldgroups']['group_offer_type_le']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+    unset($form['#fieldgroups']['group_offer_type_le']);
   }
   if (!$pp) {
-    $form['#fieldgroups']['group_offer_type_pp']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+    unset($form['#fieldgroups']['group_offer_type_pp']);
   }
   if (!$re) {
-    $form['#fieldgroups']['group_offer_type_re']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+    unset($form['#fieldgroups']['group_offer_type_re']);
   }
   if (!$bl) {
-    $form['#fieldgroups']['group_offer_type_bl']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+    unset($form['#fieldgroups']['group_offer_type_bl']);
   }
   if (!$bp) {
-    $form['#fieldgroups']['group_offer_type_bp']->format_settings['instance_settings']['classes'] .= ' group-hidden';
+    unset($form['#fieldgroups']['group_offer_type_bp']);
   }
 
   if ($form['#node']->field_offer_logout_info[LANGUAGE_NONE][0]['value'] == 1) {
@@ -886,12 +886,21 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
   // Hide logout on create offer
   $form['field_offer_logout_info']['#access'] = FALSE;
 
+  if ($form_state['storage']['step'] == 'step_offer_2') {
+    unset($form['field_offer_type_fe_warrant_type'][LANGUAGE_NONE]['#options']['_none']);
+    unset($form['field_offer_type_le_warrant_type'][LANGUAGE_NONE]['#options']['_none']);
+    unset($form['#step_children']['group_offer_step_1']);
+    unset($form['#fieldgroups']['group_offer_step_1']);
+  }
+
   // Add the offer display from the person view as a prefix to the form. The
   // view is needed in order to filter among the person. The view can't be
   // embedded as a subform within the node form, since this will break the AJAX
   // functionality. The reason is unknown, but that's just the way it is...
   if ($form_state['storage']['step'] == 'step_offer_3') {
     $form['#prefix'] = views_embed_view('person', 'offer_embed');
+    unset($form['#step_children']['group_offer_step_1']);
+    unset($form['#fieldgroups']['group_offer_step_1']);
   }
 
   // Get the available person from the database.
@@ -921,6 +930,9 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
 
   // Add elements that are required for the third step.
   if ($form_state['storage']['step'] == 'step_offer_4') {
+    unset($form['#step_children']['group_offer_step_1']);
+    unset($form['#fieldgroups']['group_offer_step_1']);
+
     // Build the node object based of the form values. This will be used to
     // generate the preview.
     $node = node_form_submit_build_node($form, $form_state);
