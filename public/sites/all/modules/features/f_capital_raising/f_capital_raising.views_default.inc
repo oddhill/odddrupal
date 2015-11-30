@@ -31,6 +31,13 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Inga kontaktpersoner har fått detta erbjudande';
+  $handler->display->display_options['empty']['area']['format'] = 'document_html';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -369,6 +376,7 @@ else {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Inga kontaktpersoner har fått detta erbjudande'),
     t('Title'),
     t('Kontaktlista'),
     t('Lägg till fler'),

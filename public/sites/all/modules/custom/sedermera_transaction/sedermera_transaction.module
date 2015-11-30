@@ -1276,12 +1276,10 @@ function sedermera_transaction_sign() {
 
   // If no transactions exists for the offer present empty table with no content
   if (empty($agreements)) {
-    drupal_set_title('Det finns inga avtal att teckna');
+    
     return array(
-      '#theme' => 'table',
-      '#header' => array(),
-      '#rows' => NULL,
-      '#prefix' => '<div class="table-wrapper">',
+      '#prefix' => '<div class="view-empty">',
+      '#markup' => 'Det finns inga avtal att teckna',
       '#suffix' => '</div>',
     );
   }
