@@ -1553,28 +1553,28 @@ function get_control_transactions_sum($nid, array $type_investment) {
   foreach (array_keys($result) as $value) {
     $node = entity_metadata_wrapper('node', node_load($value));
 
-    if ($type_investment['fe_sign']) {
+    if ($type_investment['fe_sign'] && isset($node->field_transaction_ap_fe_sign)) {
       $sum += $node->field_transaction_ap_fe_sign->value();
     }
-    if ($type_investment['fe_warr']) {
+    if ($type_investment['fe_warr'] && isset($node->field_transaction_ap_fe_warrant)) {
       $sum += $node->field_transaction_ap_fe_warrant->value();
     }
-    if ($type_investment['le_sign']) {
+    if ($type_investment['le_sign'] && isset($node->field_transaction_ap_le_sign)) {
       $sum += $node->field_transaction_ap_le_sign->value();
     }
-    if ($type_investment['le_warr']) {
+    if ($type_investment['le_warr'] && isset($node->field_transaction_ap_le_warrant)) {
       $sum += $node->field_transaction_ap_le_warrant->value();
     }
-    if ($type_investment['pp_sign']) {
+    if ($type_investment['pp_sign'] && isset($node->field_transaction_ap_pp_sign)) {
       $sum += $node->field_transaction_ap_pp_sign->value();
     }
-    if ($type_investment['re_sign']) {
+    if ($type_investment['re_sign'] && isset($node->field_transaction_ap_re_sign)) {
       $sum += $node->field_transaction_ap_re_sign->value();
     }
-    if ($type_investment['bl_sum']) {
+    if ($type_investment['bl_sum'] && isset($node->field_transaction_ap_bl_bridging)) {
       $sum += $node->field_transaction_ap_bl_bridging->value();
     }
-    if ($type_investment['bp_sum']) {
+    if ($type_investment['bp_sum'] && isset($node->field_transaction_ap_bp_block)) {
       $sum += $node->field_transaction_ap_bp_block->value();
     }
   }
