@@ -1373,12 +1373,12 @@ function sedermera_offer_views_pre_render(&$view) {
         $re_sign_row = $value->_field_data['nid']['entity']->field_transaction_re_sign[LANGUAGE_NONE][0]['value'];
         $transaction_re_sign += $re_sign_row;
       }
-      if (!empty($value->_field_data['nid']['entity']->field_transaction_bl_sum) && !empty($node->field_offer_type_bl_sum)) {
-        $bl_sum_row = $value->_field_data['nid']['entity']->field_transaction_bl_sum[LANGUAGE_NONE][0]['value'];
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_bridging) && !empty($node->field_offer_type_bl_sum)) {
+        $bl_sum_row = $value->_field_data['nid']['entity']->field_transaction_bridging[LANGUAGE_NONE][0]['value'];
         $transaction_bl_sum += $bl_sum_row;
       }
-      if (!empty($value->_field_data['nid']['entity']->field_transaction_bp_sum) && !empty($node->field_offer_type_bp_sum)) {
-        $bp_sum_row = $value->_field_data['nid']['entity']->field_transaction_bp_sum[LANGUAGE_NONE][0]['value'];
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_block) && !empty($node->field_offer_type_bp_sum)) {
+        $bp_sum_row = $value->_field_data['nid']['entity']->field_transaction_block[LANGUAGE_NONE][0]['value'];
         $transaction_bp_sum += $bp_sum_row;
       }
 
