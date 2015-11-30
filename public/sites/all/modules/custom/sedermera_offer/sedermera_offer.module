@@ -450,7 +450,7 @@ function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
   $form['#prefix'] = views_embed_view('person', 'offer_embed');
 
   // Get the exiting investors for this capital raising.
-  $existing_investors = sedermera_offer_get_investors_for_capital_raising($offer_nid);
+  $existing_investors = sedermera_offer_get_investors_for_offer($offer_nid);
 
   // Get the investors from the database, and remove the ones that are already
   // added.
@@ -989,7 +989,7 @@ function sedermera_offer_views_bulk_operations_form_alter(&$form, &$form_state, 
     // an existing capital raising.
     if (($nid = arg(1)) && is_numeric($nid)) {
       // Get the existing investors for this capital raising.
-      $existing_investors = sedermera_offer_get_investors_for_capital_raising($nid);
+      $existing_investors = sedermera_offer_get_investors_for_offer($nid);
 
       // Find the checkboxes that points to the existing investors.
       foreach (element_children($form['views_bulk_operations']) as $key) {
@@ -1276,35 +1276,22 @@ function sedermera_offer_form_editablefields_form_alter(&$form, &$form_state) {
 }
 
 /**
- * Get every investor that are connected to a capital raising via an offer
- * entity.
+ * Get every investor that are connected to a offer
  *
  * @param int $offer_nid.
- *   The node ID for the capital raising node.
+ *   The node ID for the offer node.
  *
  * @return array
  *   An array with the ID's for every investor entity.
  */
-function sedermera_offer_get_investors_for_capital_raising($offer_nid) {
-
-  // dprint_r($offer_nid); die;
-
-  $result = db_query("SELECT field_transaction_person_target_id FROM field_data_field_transaction_person AS p
-INNER JOIN field_data_field_transaction_offer AS o ON (o.field_transaction_offer_target_id = :offer_nid)", array(':offer_nid' => $offer_nid))->fetchCol();
+function sedermera_offer_get_investors_for_offer($offer_nid) {
+  $result = db_query("SELECT field_transaction_person_target_id
+    FROM field_data_field_transaction_person AS p
+    INNER JOIN field_data_field_transaction_offer AS o
+    ON (p.entity_id = o.entity_id)
+    WHERE o.field_transaction_offer_target_id = :offer_nid", array(':offer_nid' => $offer_nid))->fetchCol();
 
   return $result;
-
-  // dprint_r($result); die;
-
-  // // Create and execute the query.
-  // $query = db_select('field_data_field_offer_cap_rais', 'capital_raising');
-  // $query->addField('offer', 'field_offer_investor_target_id', 'investor');
-  // $query->join('field_data_field_offer_investor', 'offer', 'capital_raising.entity_id = offer.entity_id');
-  // $query->condition('field_offer_cap_rais_target_id', $offer_nid);
-  // $result = $query->execute();
-
-  // // Return the first column for the entire result.
-  // return $result->fetchCol();
 }
 
 /**
