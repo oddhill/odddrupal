@@ -860,7 +860,7 @@ function sedermera_transaction_control() {
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
-      '#prefix' => '<div class="offer-transactions-list"><div id="transactions-list" class="table-wrapper">',
+      '#prefix' => '<div class="offer-controller-list"><div id="controller-list" class="table-wrapper">',
       '#suffix' => '</div></div>',
     );
   }
@@ -873,7 +873,8 @@ function sedermera_transaction_control() {
 function generate_header_row_control(array &$header) {
   // Collapsible column
   $header[] = array(
-    'class' => array('table-head', 'Collapsible-head')
+    'class' => array('table-head', 'collapsible-head'),
+    'data' => '<span class="icon"></span>',
   );
 
   // Name column
@@ -947,6 +948,11 @@ function generate_header_row_control(array &$header) {
     'data' => 'Att teckna',
     'class' => array('table-head')
   );
+
+  // Empty column
+  $header[] = array(
+    'class' => array('table-head')
+  );
 }
 
 /**
@@ -991,7 +997,8 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
     'data' => array(
       // Collapsible column
       array(
-        'class' => 'collapsible-head',
+        'class' => 'collapsible',
+        'data' => '<span class="icon"></span>',
       ),
       // Name column
       array(
@@ -1024,7 +1031,9 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
       // To sign column
       array(
         'data' => ($done == 0 && $count == 0) ? "0 valda" : $done ."/" . $count . " klara",
-      )
+      ),
+      // Empty column
+      array(),
     ),
     'class' => array('contact-person-row'),
     'data-id' => $person->nid,
@@ -1097,6 +1106,7 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
       // Collapsible column
       array(
         'class' => 'collapsible-row',
+        'data' => '<span class="icon"></span>'
       ),
       // Name column
       array(
@@ -1137,6 +1147,8 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
       // Control agreement column
       array(),
       // To sign column
+      array(),
+      // Empty column
       array(),
     ),
     'class' => array('investor-row'),
@@ -1222,7 +1234,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
     'data' => array(
       // Collapsible column
       array(
-        'class' => 'collapsible-row',
+        'class' => 'empty-column',
       ),
       // Name column
       array(
@@ -1258,6 +1270,10 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       array(
         'data' => $to_sign,
       ),
+      // Empty column
+      array(
+        'class' => 'empty-column',
+      ),
     ),
     'class' => array('agreement-row'),
     'data-id' => $person->nid,
@@ -1276,7 +1292,7 @@ function sedermera_transaction_sign() {
 
   // If no transactions exists for the offer present empty table with no content
   if (empty($agreements)) {
-    
+
     return array(
       '#prefix' => '<div class="view-empty">',
       '#markup' => 'Det finns inga avtal att teckna',

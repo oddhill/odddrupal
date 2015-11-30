@@ -2,6 +2,91 @@
   padding: 40px;
 }
 
-#controller-table {
-  
+#controller-list {
+
+  table {
+
+    .collapsible-head {
+      padding: 0;
+      width: 40px;
+      position: relative;
+
+      span.icon {
+        margin-top: -1px;
+        position: absolute;
+        left: 10px;
+        top: 9px;
+      }
+    }
+
+    span.icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+      @include svg-bg(transaction-collapse);
+    }
+
+    tr {
+
+      td.collapsible,
+      td.collapsible-row {
+        position: relative;
+
+        span.icon {
+          margin-top: -1px;
+          position: absolute;
+          left: 10px;
+          top: 12px;
+        }
+      }
+
+      &.even {
+        background: $snow;
+      }
+
+      &.contact-person-row {
+        border-top: 1px solid $light-grey;
+        border-bottom: 0px none;
+
+        span.icon {
+          background-position: 0 -40px;
+          cursor: pointer;
+        }
+
+        &.collapsed {
+
+          span.icon {
+            background-position: 0 -20px;
+          }
+        }
+      }
+
+      &.investor-row {
+        background: tint($light-grey,60%);
+        border-bottom: 0px none;
+        border-top: 1px solid $light-grey;
+
+        span.icon {
+          background-position: 0 -60px;
+        }
+
+        &.hidden {
+          display: none;
+        }
+      }
+
+      &.agreement-row {
+        background: $light-grey;
+        border-bottom: 0px none;
+
+        .empty-column {
+          background: tint($light-grey,60%);
+        }
+
+        &.hidden {
+          display: none;
+        }
+      }
+    }
+  }
 }

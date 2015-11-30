@@ -171,6 +171,7 @@ var listCollapser = function() {
     collapseDataId = $(this).parents('tr').data('id');
     $('tr.investor-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
     $('tr.summation-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
+    $('tr.agreement-row[data-id=' + collapseDataId + ']').toggleClass('hidden');
   });
 };
 
