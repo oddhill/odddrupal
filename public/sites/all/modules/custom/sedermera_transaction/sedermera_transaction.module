@@ -851,6 +851,7 @@ function sedermera_transaction_control() {
           foreach ($agreement as $value) {
             generate_agreement_rows_control($rows, $value, $key, $transaction);
           }
+          generate_empty_row_control($rows, $transaction);
         }
       }
     }
@@ -1276,6 +1277,49 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       ),
     ),
     'class' => array('agreement-row'),
+    'data-id' => $person->nid,
+  );
+}
+
+/**
+ * Generate emtpy row
+ * @param  array $rows to store the rows
+ * @param  $transaction [description]
+ */
+function generate_empty_row_control(array &$rows, $transaction) {
+  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
+  $person = $transaction_wrap->field_transaction_person->value();
+
+  $rows[] = array(
+    'data' => array(
+      // Collapsible column
+      array(),
+      // Name column
+      array(),
+      // Summation column
+      array(),
+      // Control UA column
+      array(),
+      // Control PTV column
+      array(),
+      // Control ID column
+      array(),
+      // Control EXR column
+      array(),
+      // Control EU column
+      array(),
+      // Control KRE column
+      array(),
+      // Control KOM column
+      array(),
+      // Control PEN column
+      array(),
+      // Control agreement column
+      array(),
+      // To sign column
+      array(),
+    ),
+    'class' => array('empty-row'),
     'data-id' => $person->nid,
   );
 }
