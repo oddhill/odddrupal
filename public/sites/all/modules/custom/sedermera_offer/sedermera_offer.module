@@ -473,11 +473,15 @@ function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
     '#suffix' => '</div>',
   );
 
-  // Add the submit button.
+  // Add the submit and cancel buttons.
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Lägg till valda investerare',
+    '#value' => t('Add selected investors'),
+  );
+  $form['actions']['cancel'] = array(
+    '#markup' => l(t('Cancel'), arg(0) . '/' . arg(1) . '/' . arg(2)),
+    '#weight' => '1000',
   );
 
   return $form;
