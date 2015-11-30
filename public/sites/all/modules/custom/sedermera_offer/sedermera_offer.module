@@ -480,7 +480,7 @@ function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
     '#value' => t('Add selected investors'),
   );
   $form['actions']['cancel'] = array(
-    '#markup' => l(t('Cancel'), implode('/' , array_slice(arg(), 0, 3))),
+    '#markup' => l(t('Cancel'), implode('/' , array_slice(arg(), 0, 3)),  array('attributes' => array('class' => array('cancel-button')))),
     '#weight' => '1000',
   );
 

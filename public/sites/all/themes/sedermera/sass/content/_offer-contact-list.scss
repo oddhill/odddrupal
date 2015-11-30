@@ -12,8 +12,15 @@
   .content-wrapper {
     background: transparent;
 
-    .form-submit {
-      @include button($dark-grey,add);
+    .form-actions {
+
+      .form-submit {
+        @include button($dark-grey,add);
+      }
+
+      a.cancel-button {
+        @include button($wine,cancel);
+      }
     }
   }
 }
