@@ -147,6 +147,19 @@ function sedermera_offer_node_presave($node) {
 function create_agreement_node($title, $type) {
   global $user;
 
+  $ctrl_pen = new stdClass();
+  $ctrl_pen->title = $title;
+  $ctrl_pen->type = "ctrl_pen";
+  node_object_prepare($ctrl_pen); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+  $ctrl_pen->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+  $ctrl_pen->uid = $user->uid;
+  $ctrl_pen->status = 1; //(1 or 0): published or not
+  $ctrl_pen->promote = 0; //(1 or 0): promoted to front page
+  $ctrl_pen->comment = 0; // 0 = comments disabled, 1 = read only, 2 = read/write
+
+  $ctrl_pen = node_submit($ctrl_pen); // Prepare node for saving
+  node_save($ctrl_pen);
+
   $node = new stdClass();
   $node->title = $title;
   $node->type = "transaction_agreement";
@@ -157,7 +170,11 @@ function create_agreement_node($title, $type) {
   $node->promote = 0; //(1 or 0): promoted to front page
   $node->comment = 0; // 0 = comments disabled, 1 = read only, 2 = read/write
 
+  // Set agreement type
   $node->field_transaction_agree_type_rea[LANGUAGE_NONE][0]['value'] = $type;
+
+  // Connect control
+  $node->field_transaction_agree_ctrl[LANGUAGE_NONE][0]['target_id'] = $ctrl_pen->nid;
 
   $node = node_submit($node); // Prepare node for saving
   node_save($node);
