@@ -414,3 +414,10 @@ function sedermera_update_update_7020() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Remove the Transaction investor type.
+ */
+function sedermera_update_update_7021() {
+  node_type_delete('transaktion_ap');
+}
