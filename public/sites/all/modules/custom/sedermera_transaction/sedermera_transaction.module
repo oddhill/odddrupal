@@ -664,7 +664,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
               'type' => 'editable',
             ));
       $rows[$row]['data'][] = array(
-        'data' => render($to_ctrl),
+        'data' => render($to_ctrl) . '<span>Kontrollera</span>',
       );
     }
   }
@@ -1264,7 +1264,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
         'label'=>'hidden',
         'type' => 'editable',
       ));
-    $to_sign = render($field);
+    $to_sign = render($field) . '<span>Att teckna</span>';
   }
 
   $rows[] = array(
@@ -1527,12 +1527,18 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
     // Control
     $investor_view_full = node_view($agreement_node);
 
-    // To sign
-    $to_sign = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
-      array(
-        'label'=>'hidden',
-        'type' => 'editable',
-      ));
+    // Create the to sign variable dependent on if already checked
+    if ($agreement_wrap->field_transaction_agree_sign->value()) {
+      $to_sign = '<span class="to-sign-ctrl"></span> Teckning';
+    }
+    else {
+      $field = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
+        array(
+          'label'=>'hidden',
+          'type' => 'editable',
+        ));
+      $to_sign = render($field) . '<span>Teckning</span>';
+    }
 
     $rows[] = array(
       'data' => array(
