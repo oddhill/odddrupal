@@ -111,13 +111,25 @@ function sedermera_transaction_intresent($offer_id) {
       // Generate contactperson head row
       generate_contact_person_head_row_interested($rows, $transaction, $type_investment);
 
+      // Column summation
+      $col_sum = array(
+        'fe_sign' => 0,
+        'fe_warr' => 0,
+        'le_sign' => 0,
+        'le_warr' => 0,
+        'pp_sign' => 0,
+        're_sign' => 0,
+        'bl_sum'  => 0,
+        'bp_sum'  => 0,
+        );
+
       // Generate the investor rows with editable fields
       foreach ($transaction->field_transaction_investor as $investor_transactions) {
-        generate_investor_rows_interested($rows, $investor_transactions, $type_investment, $transaction);
+        generate_investor_rows_interested($rows, $investor_transactions, $type_investment, $transaction, $col_sum);
       }
 
       // Generate the contactperson sum row
-      generate_sum_row_interested($rows, $type_investment, $transaction);
+      generate_sum_row_interested($rows, $type_investment, $transaction, $col_sum);
     }
 
     // Generate rendarable array for the table and return it.
@@ -503,7 +515,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
  * contact person
  * @param  array $type_investment The active investment types used in the offer
  */
-function generate_investor_rows_interested(array &$rows, array $investor_transactions, array $type_investment, $transaction) {
+function generate_investor_rows_interested(array &$rows, array $investor_transactions, array $type_investment, $transaction, array &$col_sum) {
   $transaction_wrap = entity_metadata_wrapper('node', $transaction);
   $person = $transaction_wrap->field_transaction_person->value();
 
@@ -519,10 +531,30 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     $row_class = '';
 
+    $row_sum = 0;
+
     // If last investor add class
     if ($last === $key) {
       $row_class = 'last-investor';
     }
+
+
+    // // Update the transaction node with a reference to the newly created
+    // // Transaktion AP node.
+    // $transaction = entity_metadata_wrapper('node', $transaction_id);
+    // $transaction->field_transaction_investor[] = $transaction_ap;
+    // $transaction->save();
+
+    // // Re-render the table, and return an AJAX command which will replace the old
+    // // table.
+    // $table = sedermera_transaction_intresent($transaction_wrap->field_transaction_offer->nid->value());
+    // return array(
+    //   '#type' => 'ajax',
+    //   '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
+    // );
+    // dprint_r($table);
+    // die;
+
 
     $rows[] = array(
       'data' => array(
@@ -546,6 +578,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Teckningsförbindelse if Företrädesemission column
     if ($type_investment['fe_sign']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
+      $col_sum['fe_sign'] += $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_sign',
             array(
               'label'=>'hidden',
@@ -558,6 +592,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Garantiåtagande if Företrädesemission column
     if ($type_investment['fe_warr']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
+      $col_sum['fe_warr'] += $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_warrant',
             array(
               'label'=>'hidden',
@@ -570,6 +606,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Teckningsförbindelse if Listningsemission column
     if ($type_investment['le_sign']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_le_sign->value();
+      $col_sum['le_sign'] += $transaction_ap_wrap->field_transaction_ap_le_sign->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_sign',
             array(
               'label'=>'hidden',
@@ -582,6 +620,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Garantiåtagande if Listningsemission column
     if ($type_investment['le_warr']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
+      $col_sum['le_warr'] += $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_warrant',
             array(
               'label'=>'hidden',
@@ -594,6 +634,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Teckningsförbindelse if Private placement column
     if ($type_investment['pp_sign']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
+      $col_sum['pp_sign'] += $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_pp_sign',
             array(
               'label'=>'hidden',
@@ -606,6 +648,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Teckningsförbindelse if Riktad emission column
     if ($type_investment['re_sign']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_re_sign->value();
+      $col_sum['re_sign'] += $transaction_ap_wrap->field_transaction_ap_re_sign->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_re_sign',
             array(
               'label'=>'hidden',
@@ -618,6 +662,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Sum if Brygglån column
     if ($type_investment['bl_sum']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_bridging->value();
+      $col_sum['bl_sum'] += $transaction_ap_wrap->field_transaction_ap_bridging->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_bridging',
             array(
               'label'=>'hidden',
@@ -630,6 +676,8 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Sum if Blockpost column
     if ($type_investment['bp_sum']) {
+      $row_sum += $transaction_ap_wrap->field_transaction_ap_block->value();
+      $col_sum['bp_sum'] += $transaction_ap_wrap->field_transaction_ap_block->value();
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_block',
             array(
               'label'=>'hidden',
@@ -642,7 +690,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Summation column
     $rows[$row]['data'][] = array(
-      'data' => "SUM_ROW",
+      'data' => number_format($row_sum, 0, "", "'") . " :-",
     );
 
     // Control column
@@ -670,12 +718,17 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
   }
 }
 
+function test() {
+  dprint_r('hello');
+}
+
+
 /**
  * Generates a summation row for the group
  * @param  array &$rows The array to store the table rows content in
  * @param  array $type_investment The active investment types used in the offer
  */
-function generate_sum_row_interested(array &$rows, array $type_investment, $transaction) {
+function generate_sum_row_interested(array &$rows, array $type_investment, $transaction, $col_sum) {
   $transaction_wrap = entity_metadata_wrapper('node', $transaction);
   $person = $transaction_wrap->field_transaction_person->value();
 
@@ -701,62 +754,62 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['fe_sign'], 0, "", "'") . " :-",
     );
   }
 
   // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['fe_warr'], 0, "", "'") . " :-",
     );
   }
 
   // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['le_sign'], 0, "", "'") . " :-",
     );
   }
 
   // Garantiåtagande if Listnigsemission column
   if ($type_investment['le_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['le_warr'], 0, "", "'") . " :-",
     );
   }
 
   // Teckningsförbindelse if Private Placement column
   if ($type_investment['pp_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['pp_sign'], 0, "", "'") . " :-",
     );
   }
 
   // Teckningsförbindelse if Riktat emission column
   if ($type_investment['re_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['re_sign'], 0, "", "'") . " :-",
     );
   }
 
   // Sum if Brygglån column
   if ($type_investment['bl_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['bl_sum'], 0, "", "'") . " :-",
     );
   }
 
   // Sum if Blockpost column
   if ($type_investment['bp_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => 'SUM_COL',
+      'data' => number_format($col_sum['bp_sum'], 0, "", "'") . " :-",
     );
   }
 
   // Summation column
   $rows[$row]['data'][] = array(
-    'data' => 'SUM_TOT',
+    'data' => number_format(array_sum($col_sum), 0, "", "'") . " :-",
   );
 
   // Control column
