@@ -1429,7 +1429,7 @@ function sedermera_offer_views_pre_render(&$view) {
       'field_transaction_fe_sign' => empty($node->field_offer_type_fe_sign),
       'field_transaction_fe_warant' => empty($node->field_offer_type_fe_warrant),
       'field_transaction_le_sign' => empty($node->field_offer_type_le_sign),
-      'field_transaction_le_warrant' => empty($node->field_offer_type_warrant),
+      'field_transaction_le_warrant' => empty($node->field_offer_type_le_warrant),
       'field_transaction_pp_sign' => empty($node->field_offer_type_pp_sign),
       'field_transaction_re_sign' => empty($node->field_offer_type_re_sign),
       'field_transaction_bridging' => empty($node->field_offer_type_bl_sum),
