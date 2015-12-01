@@ -45,6 +45,14 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
+  $items['transaction/%/intressenter/reload'] = array(
+    'page callback' => 'sedermera_transaction_reload_intressent',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+
   return $items;
 }
 
@@ -537,24 +545,6 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
     if ($last === $key) {
       $row_class = 'last-investor';
     }
-
-
-    // // Update the transaction node with a reference to the newly created
-    // // Transaktion AP node.
-    // $transaction = entity_metadata_wrapper('node', $transaction_id);
-    // $transaction->field_transaction_investor[] = $transaction_ap;
-    // $transaction->save();
-
-    // // Re-render the table, and return an AJAX command which will replace the old
-    // // table.
-    // $table = sedermera_transaction_intresent($transaction_wrap->field_transaction_offer->nid->value());
-    // return array(
-    //   '#type' => 'ajax',
-    //   '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
-    // );
-    // dprint_r($table);
-    // die;
-
 
     $rows[] = array(
       'data' => array(
@@ -1807,6 +1797,39 @@ function sedermera_transaction_add_ap($transaction_id, $ap_id) {
   // Re-render the table, and return an AJAX command which will replace the old
   // table.
   $table = sedermera_transaction_intresent($transaction->field_transaction_offer->nid->value());
+  return array(
+    '#type' => 'ajax',
+    '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
+  );
+}
+
+/**
+ * Implement hook_form_alter
+ */
+function sedermera_transaction_form_alter(&$form, &$form_state, $form_id) {
+  $vars = explode('__', $form_id);
+
+  // Add submit handler if editable fields on intresent list
+  if ($vars[0] === 'editablefields_form' && arg(2) === 'intressenter') {
+    $form_state['editable_nid'] = array('variable' => arg(1));
+    $form['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+  }
+}
+
+/**
+ * Submit handler for editable field on intresent list
+ */
+function sedermera_transaction_submit_callback($form, $form_state) {
+  drupal_goto('transaction/' . $form_state['editable_nid']['variable'] . '/intressenter/reload');
+}
+
+/**
+ * Ajax reloads div content
+ * @param  $offer_id nid of offer to reload intresent list for
+ * @return array ajax reload
+ */
+function sedermera_transaction_reload_intressent($offer_id) {
+  $table = sedermera_transaction_intresent($offer_id);
   return array(
     '#type' => 'ajax',
     '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
