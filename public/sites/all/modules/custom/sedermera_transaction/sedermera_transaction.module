@@ -1197,6 +1197,10 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
   $transaction_node = node_load($transaction_ap);
   $transaction_ap_wrap = entity_metadata_wrapper('node',  $transaction_node);
 
+  $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
+  $investor_wrap = entity_metadata_wrapper('node', $investor);
+  $ctrl_ua = $investor_wrap->field_investor_shared_ctrl_ua->value();
+
   $sum = 0;
 
   //Get the correct sum for the agreement
@@ -1235,12 +1239,20 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       break;
   }
 
+  if ($sum == 0) {
+    return;
+  }
+
   // Create penningtvatt variable
-  $ctrl_pen = field_view_field('node', $agreement_node, 'field_transaction_agree_ctrl',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-    ));
+  $ctrl_pen = '';
+
+  if (!empty($ctrl_ua->field_ctrl_date)) {
+    $ctrl_pen = field_view_field('node', $agreement_node, 'field_transaction_agree_ctrl',
+      array(
+        'label'=>'hidden',
+        'type' => 'sedermera_verification_status',
+      ));
+  }
 
   // Create the to sign variable dependent on if already checked
   if ($agreement_node_wrap->field_transaction_agree_to_sign->value()) {
