@@ -428,16 +428,16 @@ function f_investor_views_default_views() {
     10 => 0,
   );
   /* Filter criterion: Content: Kundansvarig (field_user_owner) (reference filter) */
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['id'] = 'field_user_owner_target_id_entityreference_filter';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['table'] = 'field_data_field_user_owner';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['field'] = 'field_user_owner_target_id_entityreference_filter';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['relationship'] = 'field_shared_cont_pers_target_id';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator_id'] = 'field_user_owner_target_id_entityreference_filter_op';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['label'] = 'Kundansvarig';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator'] = 'field_user_owner_target_id_entityreference_filter_op';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['identifier'] = 'field_user_owner_target_id_entityreference_filter';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['id'] = 'field_user_owner_target_id_entityreference_filter_1';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['table'] = 'field_data_field_user_owner';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['field'] = 'field_user_owner_target_id_entityreference_filter';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['relationship'] = 'field_shared_cont_pers_target_id';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['operator_id'] = 'field_user_owner_target_id_entityreference_filter_1_op';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['label'] = 'Kundansvarig';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['operator'] = 'field_user_owner_target_id_entityreference_filter_1_op';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['identifier'] = 'field_user_owner_target_id_entityreference_filter_1';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
@@ -447,7 +447,7 @@ function f_investor_views_default_views() {
     8 => 0,
     10 => 0,
   );
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['reference_display'] = 'kundansvarig:entityreference_1';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['reference_display'] = 'customer_handler:entityreference_1';
 
   /* Display: Avtalsparter */
   $handler = $view->new_display('page', 'Avtalsparter', 'page');
@@ -658,6 +658,62 @@ function f_investor_views_default_views() {
 
   /* Display: Lista */
   $handler = $view->new_display('page', 'Lista', 'list');
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'person' => 'person',
+  );
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Filtrera på namn';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    9 => 0,
+    8 => 0,
+    10 => 0,
+  );
+  /* Filter criterion: Content: Kundansvarig (field_user_owner) (reference filter) */
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['id'] = 'field_user_owner_target_id_entityreference_filter';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['table'] = 'field_data_field_user_owner';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['field'] = 'field_user_owner_target_id_entityreference_filter';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator_id'] = 'field_user_owner_target_id_entityreference_filter_op';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['label'] = 'Kundansvarig';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator'] = 'field_user_owner_target_id_entityreference_filter_op';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['identifier'] = 'field_user_owner_target_id_entityreference_filter';
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    9 => 0,
+    8 => 0,
+    10 => 0,
+  );
+  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['reference_display'] = 'customer_handler:entityreference_1';
   $handler->display->display_options['path'] = 'kontaktpersoner/lista';
 
   /* Display: Skapa erbjudande */
@@ -872,6 +928,7 @@ function f_investor_views_default_views() {
     t('Telefon'),
     t('Filtrera på namn'),
     t('Lista'),
+    t('Kundansvarig'),
     t('Skapa erbjudande'),
     t('- Choose an operation -'),
   );
