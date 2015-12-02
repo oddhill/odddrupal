@@ -45,6 +45,14 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
+  $items['transaction/%/kontaktlista/reload'] = array(
+    'page callback' => 'sedermera_transaction_reload_contact',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+
   $items['transaction/%/intressenter/reload'] = array(
     'page callback' => 'sedermera_transaction_reload_intressent',
     'page arguments' => array(1),
@@ -53,8 +61,16 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
-  $items['transaction/%/contact/reload'] = array(
-    'page callback' => 'sedermera_transaction_reload_contact',
+  $items['transaction/%/kontrollochavtal/reload'] = array(
+    'page callback' => 'sedermera_transaction_reload_controller',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+
+  $items['transaction/%/teckningslista/reload'] = array(
+    'page callback' => 'sedermera_transaction_reload_agreement',
     'page arguments' => array(1),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
@@ -1805,51 +1821,63 @@ function sedermera_transaction_add_ap($transaction_id, $ap_id) {
   // Re-render the table, and return an AJAX command which will replace the old
   // table.
   $table = sedermera_transaction_intresent($transaction->field_transaction_offer->nid->value());
-  return array(
-    '#type' => 'ajax',
-    '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
-  );
+  return transaction_ajax_callback('.offer-interested-list', render($table));
 }
 
 /**
  * Implement hook_form_alter
  */
 function sedermera_transaction_form_alter(&$form, &$form_state, $form_id) {
-  $vars = explode('__', $form_id);
-
-  // Add submit handler if editable fields on intresent list
-  if ($vars[0] === 'editablefields_form' && arg(2) === 'intressenter') {
-    $form_state['editable_nid'] = array('variable' => arg(1));
-    $form['actions']['submit']['#submit'][] = 'sedermera_transaction_intresent_submit_callback';
-  }
-
+  // Add submit handler to contact list
   if ($form_id === 'views_form_transactions_page') {
     $form_state['editable_nid'] = array('variable' => arg(1));
-    $form['field_transaction_fe_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_fe_warant'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_le_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_le_warrant'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_pp_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_re_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_bridging'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_block'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    $form['field_transaction_interested'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
-    // $form['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form_state['editable_type'] = array('variable' => arg(2));
+    $form['field_transaction_fe_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_fe_warant'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_le_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_le_warrant'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_pp_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_re_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_bridging'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_block'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['field_transaction_interested'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+  }
+
+  $vars = explode('__', $form_id);
+
+  $allowed_pages = array('intressenter', 'kontrollochavtal', 'teckningslista');
+
+  // Add submit handler if editable field on allowed pages
+  if ($vars[0] === 'editablefields_form' && in_array (arg(2) , $allowed_pages)) {
+    $form_state['editable_nid'] = array('variable' => arg(1));
+    $form_state['editable_type'] = array('variable' => arg(2));
+    $form['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
   }
 }
 
 /**
  * Submit handler for editable field on intresent list
  */
-function sedermera_transaction_intresent_submit_callback($form, $form_state) {
-  drupal_goto('transaction/' . $form_state['editable_nid']['variable'] . '/intressenter/reload');
+function sedermera_transaction_submit_callback($form, $form_state) {
+  drupal_goto('transaction/' . $form_state['editable_nid']['variable'] . '/' . $form_state['editable_type']['variable'] . '/reload');
 }
 
 /**
- * Submit handler for editable field on intresent list
+ * Ajax reloads table content
+ * @param  $offer_id nid of offer to reload contact list for
+ * @return array ajax reload
  */
-function sedermera_transaction_contact_submit_callback($form, $form_state) {
-  drupal_goto('transaction/' . $form_state['editable_nid']['variable'] . '/contact/reload');
+function sedermera_transaction_reload_contact($offer_id) {
+  // Get view
+  $view = views_get_view('transactions');
+  // Set display for view
+  $view->set_display('page');
+  // Set current offer nid as argument to view
+  $view->set_arguments(array($offer_id));
+  // Execute view
+  $view->execute();
+
+  return transaction_ajax_callback('.offer-contact-list', $view->render());
 }
 
 /**
@@ -1860,34 +1888,40 @@ function sedermera_transaction_contact_submit_callback($form, $form_state) {
 function sedermera_transaction_reload_intressent($offer_id) {
   // Generate new table
   $table = sedermera_transaction_intresent($offer_id);
-  return array(
-    '#type' => 'ajax',
-    '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
-  );
+  return transaction_ajax_callback('.offer-interested-list', render($table));
 }
 
 /**
  * Ajax reloads div content
- * @param  $offer_id nid of offer to reload contact list for
+ * @param  $offer_id nid of offer to reload control list for
  * @return array ajax reload
  */
-function sedermera_transaction_reload_contact($offer_id) {
+function sedermera_transaction_reload_controller($offer_id) {
+  // Generate new table
+  $table = sedermera_transaction_control($offer_id);
+  return transaction_ajax_callback('.offer-controller-list', render($table));
+}
 
-  // Get view
-  $view = views_get_view('transactions');
-  // Set display for view
-  $view->set_display('page');
-  // Set current offer nid as argument to view
-  $view->set_arguments(array($offer_id));
-  // Execute view
-  $view->execute();
-  // render view
-  // print $view->render();
+/**
+ * Ajax reloads div content
+ * @param  $offer_id nid of offer to reload agreement list for
+ * @return array ajax reload
+ */
+function sedermera_transaction_reload_agreement($offer_id) {
+  // Generate new table
+  $table = sedermera_transaction_sign($offer_id);
+  return transaction_ajax_callback('.offer-agreements-list', render($table));
+}
 
-
-  // $table = sedermera_transaction_intresent($offer_id);
+/**
+ * Create ajax array
+ * @param  String $class class of div to reload
+ * @param  $table rendarable array
+ * @return array ajax command
+ */
+function transaction_ajax_callback($class, $table) {
   return array(
     '#type' => 'ajax',
-    '#commands' => array(ajax_command_replace('.offer-contact-list', $view->render())),
+    '#commands' => array(ajax_command_replace($class, $table)),
   );
 }
