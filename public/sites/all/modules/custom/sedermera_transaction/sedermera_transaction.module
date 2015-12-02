@@ -1155,7 +1155,7 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     ));
 
   // Control KRE
-  $ctrl_kre = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_cred',
+  $ctrl_kre = field_view_field('node', $investor, 'field_investor_shared_ctrl_cred',
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',

@@ -484,19 +484,6 @@ function sedermera_verification_node_presave($node) {
       $eu_ctrl = node_submit($eu_ctrl);
       node_save($eu_ctrl);
 
-      $cred_ctrl = new stdClass();
-      $cred_ctrl->title = $node->title . " credit kontroll";
-      $cred_ctrl->type = "ctrl";
-      node_object_prepare($cred_ctrl);
-      $cred_ctrl->language = LANGUAGE_NONE;
-      $cred_ctrl->uid = $user->uid;
-      $cred_ctrl->status = 1;
-      $cred_ctrl->promote = 0;
-      $cred_ctrl->comment = 0;
-
-      $cred_ctrl = node_submit($cred_ctrl);
-      node_save($cred_ctrl);
-
       $comp_ctrl = new stdClass();
       $comp_ctrl->title = $node->title . " complementing kontroll";
       $comp_ctrl->type = "ctrl";
@@ -511,7 +498,6 @@ function sedermera_verification_node_presave($node) {
       node_save($comp_ctrl);
 
       $node->field_transaction_ap_ctrl_eu[LANGUAGE_NONE][0]['target_id'] = $eu_ctrl->nid;
-      $node->field_transaction_ap_ctrl_cred[LANGUAGE_NONE][0]['target_id'] = $cred_ctrl->nid;
       $node->field_transaction_ap_ctrl_comp[LANGUAGE_NONE][0]['target_id'] = $comp_ctrl->nid;
     }
   }
