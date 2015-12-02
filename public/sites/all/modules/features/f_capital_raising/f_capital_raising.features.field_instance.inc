@@ -3742,7 +3742,7 @@ function f_capital_raising_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 31,
+      'weight' => 3,
     ),
   );
 
@@ -3788,7 +3788,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 54,
+      'weight' => 18,
     ),
   );
 
@@ -3834,7 +3834,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 53,
+      'weight' => 17,
     ),
   );
 
@@ -3880,7 +3880,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 47,
+      'weight' => 11,
     ),
   );
 
@@ -3926,7 +3926,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 48,
+      'weight' => 12,
     ),
   );
 
@@ -3981,7 +3981,7 @@ function f_capital_raising_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 43,
+      'weight' => 7,
     ),
   );
 
@@ -4024,7 +4024,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 57,
+      'weight' => 21,
     ),
   );
 
@@ -4067,7 +4067,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 58,
+      'weight' => 22,
     ),
   );
 
@@ -4110,7 +4110,7 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 45,
+      'weight' => 9,
     ),
   );
 
@@ -4133,7 +4133,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
-        'weight' => 6,
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4165,8 +4165,8 @@ function f_capital_raising_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => 'date_popup',
-      'weight' => 46,
+      'type' => 'date_text',
+      'weight' => 10,
     ),
   );
 
@@ -4213,7 +4213,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 55,
+      'weight' => 19,
     ),
   );
 
@@ -4259,7 +4259,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 49,
+      'weight' => 13,
     ),
   );
 
@@ -4305,7 +4305,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 50,
+      'weight' => 14,
     ),
   );
 
@@ -4375,7 +4375,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 20,
       ),
       'type' => 'text_textfield',
-      'weight' => 44,
+      'weight' => 8,
     ),
   );
 
@@ -4418,7 +4418,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 41,
+      'weight' => 5,
     ),
   );
 
@@ -4461,7 +4461,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 42,
+      'weight' => 6,
     ),
   );
 
@@ -4507,7 +4507,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 51,
+      'weight' => 15,
     ),
   );
 
@@ -4553,7 +4553,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 52,
+      'weight' => 16,
     ),
   );
 
@@ -4603,7 +4603,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 56,
+      'weight' => 20,
     ),
   );
 
@@ -4659,7 +4659,7 @@ function f_capital_raising_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 42,
+      'weight' => 5,
     ),
   );
 
@@ -4708,7 +4708,7 @@ function f_capital_raising_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 43,
+      'weight' => 6,
     ),
   );
 
@@ -4758,13 +4758,13 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 45,
+      'weight' => 9,
     ),
   );
 
   // Exported field_instance:
-  // 'node-transaction_agreement-field_transaction_agree_sign_dat'.
-  $field_instances['node-transaction_agreement-field_transaction_agree_sign_dat'] = array(
+  // 'node-transaction_agreement-field_transaction_agree_sign_day'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_sign_day'] = array(
     'bundle' => 'transaction_agreement',
     'deleted' => 0,
     'description' => '',
@@ -4781,7 +4781,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
-        'weight' => 5,
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'above',
@@ -4789,15 +4789,9 @@ function f_capital_raising_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_agree_sign_dat',
+    'field_name' => 'field_transaction_agree_sign_day',
     'label' => 'Tecknings datum',
     'required' => 0,
     'settings' => array(
@@ -4819,8 +4813,8 @@ function f_capital_raising_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => 'date_popup',
-      'weight' => 46,
+      'type' => 'date_text',
+      'weight' => 10,
     ),
   );
 
@@ -4870,7 +4864,63 @@ function f_capital_raising_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 44,
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_agreement-field_transaction_agree_to_sign_'.
+  $field_instances['node-transaction_agreement-field_transaction_agree_to_sign_'] = array(
+    'bundle' => 'transaction_agreement',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 8,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_agree_to_sign_',
+    'label' => 'Att teckna datum',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_text',
+      'weight' => 8,
     ),
   );
 
@@ -4914,7 +4964,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 11,
+      'weight' => 1,
     ),
   );
 
@@ -5013,7 +5063,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -5277,6 +5327,62 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'node-transaction_ap-field_transaction_ap_ctrl_day'.
+  $field_instances['node-transaction_ap-field_transaction_ap_ctrl_day'] = array(
+    'bundle' => 'transaction_ap',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 17,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_ap_ctrl_day',
+    'label' => 'Kontrollera den',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_text',
+      'weight' => 15,
+    ),
+  );
+
+  // Exported field_instance:
   // 'node-transaction_ap-field_transaction_ap_ctrl_eu'.
   $field_instances['node-transaction_ap-field_transaction_ap_ctrl_eu'] = array(
     'bundle' => 'transaction_ap',
@@ -5328,7 +5434,7 @@ function f_capital_raising_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -5698,7 +5804,7 @@ function f_capital_raising_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -5706,6 +5812,7 @@ function f_capital_raising_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Anteckning');
   t('Att teckna');
+  t('Att teckna datum');
   t('Avtal');
   t('Avtalspart');
   t('Beräknad noteringstidpunkt');
@@ -5733,6 +5840,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Investor');
   t('Kompleterande frågor');
   t('Kontrollera');
+  t('Kontrollera den');
   t('Kundavtal');
   t('Listningsemission');
   t('Lägstagräns');
