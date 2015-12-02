@@ -85,14 +85,73 @@ function sedermera_offer_node_presave($node) {
     }
   }
 
-  if ($node->type === 'transaction_ap') {
+  if ($node->type === 'transaction') {
+    // React if interested has been checked else proceed as normal
+    if ($node->original->field_transaction_interested[und][0]['value'] == 0 && $node->field_transaction_interested[und][0]['value'] == 1) {
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of interested checkbox checked
+      $node->field_transaction_interested_day[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
+    }
+  }
+
+  if ($node->type === 'transaction_agreement') {
     // React if to sign has been checked else proceed as normal
+    if ($node->original->field_transaction_agree_to_sign[und][0]['value'] == 0 && $node->field_transaction_agree_to_sign[und][0]['value'] == 1) {
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of interested checkbox checked
+      $node->field_transaction_agree_to_sign_[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
+    }
+
+    // React if sign has been checked else proceed as normal
+    if ($node->original->field_transaction_agree_sign[und][0]['value'] == 0 && $node->field_transaction_agree_sign[und][0]['value'] == 1) {
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of interested checkbox checked
+      $node->field_transaction_agree_sign_day[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
+    }
+  }
+
+  if ($node->type === 'transaction_ap') {
+    // React if to control has been checked else proceed as normal
     if ($node->original->field_transaction_ap_ctrl[und][0]['value'] == 0 && $node->field_transaction_ap_ctrl[und][0]['value'] == 1) {
 
-      // Load transaction
-      $trans = db_query("SELECT entity_id AS nid FROM {field_data_field_transaction_investor}
-          WHERE field_transaction_investor_target_id = :nid", array(':nid' => $node->nid))->fetchAssoc();
-      $transaction = entity_metadata_wrapper('node', $trans['nid']);
+      // Wrap node
+      $node_wrap = entity_metadata_wrapper('node', $node);
 
       // Load investor
       $invest = db_query("SELECT field_transaction_ap_ap_target_id AS nid FROM {field_data_field_transaction_ap_ap}
@@ -106,28 +165,28 @@ function sedermera_offer_node_presave($node) {
       $nids = array();
 
       // Create agreement node for each type
-      if ($transaction->field_transaction_fe_sign->value()) {
+      if ($node_wrap->field_transaction_ap_fe_sign->value()) {
         $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 'fe_sign');
       }
-      if ($transaction->field_transaction_fe_warant->value()) {
+      if ($node_wrap->field_transaction_ap_fe_warrant->value()) {
         $nids[] = create_agreement_node($title . ' Garantiåtagande', 'fe_warrant');
       }
-      if ($transaction->field_transaction_le_sign->value()) {
+      if ($node_wrap->field_transaction_ap_le_sign->value()) {
         $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 'le_sign');
       }
-      if ($transaction->field_transaction_le_warrant->value()) {
+      if ($node_wrap->field_transaction_ap_le_warrant->value()) {
         $nids[] = create_agreement_node($title . ' Garantiåtagande', 'le_warrant');
       }
-      if ($transaction->field_transaction_pp_sign->value()) {
+      if ($node_wrap->field_transaction_ap_pp_sign->value()) {
         $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 'pp_sign');
       }
-      if ($transaction->field_transaction_re_sign->value()) {
+      if ($node_wrap->field_transaction_ap_re_sign->value()) {
         $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 're_sign');
       }
-      if ($transaction->field_transaction_bridging->value()) {
+      if ($node_wrap->field_transaction_ap_bridging->value()) {
         $nids[] = create_agreement_node($title . ' Brygglån', 'bridging');
       }
-      if ($transaction->field_transaction_block->value()) {
+      if ($node_wrap->field_transaction_ap_block->value()) {
         $nids[] = create_agreement_node($title . ' Blockpost', 'block');
       }
 
@@ -135,6 +194,21 @@ function sedermera_offer_node_presave($node) {
       foreach ($nids as $key => $nid) {
         $node->field_transaction_ap_agree[LANGUAGE_NONE][$key]['target_id'] = $nid;
       }
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of to control checkbox checked
+      $node->field_transaction_ap_ctrl_day[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
     }
   }
 }
