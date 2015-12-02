@@ -53,6 +53,14 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
+  $items['transaction/%/contact/reload'] = array(
+    'page callback' => 'sedermera_transaction_reload_contact',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+
   return $items;
 }
 
@@ -1812,15 +1820,36 @@ function sedermera_transaction_form_alter(&$form, &$form_state, $form_id) {
   // Add submit handler if editable fields on intresent list
   if ($vars[0] === 'editablefields_form' && arg(2) === 'intressenter') {
     $form_state['editable_nid'] = array('variable' => arg(1));
-    $form['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+    $form['actions']['submit']['#submit'][] = 'sedermera_transaction_intresent_submit_callback';
+  }
+
+  if ($form_id === 'views_form_transactions_page') {
+    $form_state['editable_nid'] = array('variable' => arg(1));
+    $form['field_transaction_fe_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_fe_warant'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_le_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_le_warrant'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_pp_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_re_sign'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_bridging'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_block'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    $form['field_transaction_interested'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
+    // $form['actions']['submit']['#submit'][] = 'sedermera_transaction_contact_submit_callback';
   }
 }
 
 /**
  * Submit handler for editable field on intresent list
  */
-function sedermera_transaction_submit_callback($form, $form_state) {
+function sedermera_transaction_intresent_submit_callback($form, $form_state) {
   drupal_goto('transaction/' . $form_state['editable_nid']['variable'] . '/intressenter/reload');
+}
+
+/**
+ * Submit handler for editable field on intresent list
+ */
+function sedermera_transaction_contact_submit_callback($form, $form_state) {
+  drupal_goto('transaction/' . $form_state['editable_nid']['variable'] . '/contact/reload');
 }
 
 /**
@@ -1829,9 +1858,36 @@ function sedermera_transaction_submit_callback($form, $form_state) {
  * @return array ajax reload
  */
 function sedermera_transaction_reload_intressent($offer_id) {
+  // Generate new table
   $table = sedermera_transaction_intresent($offer_id);
   return array(
     '#type' => 'ajax',
     '#commands' => array(ajax_command_replace('.offer-interested-list', render($table))),
+  );
+}
+
+/**
+ * Ajax reloads div content
+ * @param  $offer_id nid of offer to reload contact list for
+ * @return array ajax reload
+ */
+function sedermera_transaction_reload_contact($offer_id) {
+
+  // Get view
+  $view = views_get_view('transactions');
+  // Set display for view
+  $view->set_display('page');
+  // Set current offer nid as argument to view
+  $view->set_arguments(array($offer_id));
+  // Execute view
+  $view->execute();
+  // render view
+  // print $view->render();
+
+
+  // $table = sedermera_transaction_intresent($offer_id);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => array(ajax_command_replace('.offer-contact-list', $view->render())),
   );
 }
