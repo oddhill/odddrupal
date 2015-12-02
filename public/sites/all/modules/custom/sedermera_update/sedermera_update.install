@@ -429,3 +429,12 @@ function sedermera_update_update_7022() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7023() {
+  field_delete_field('field_transaction_agree_sign_dat');
+
+  field_purge_batch(1000);
+}
