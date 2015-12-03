@@ -1908,8 +1908,8 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_amount'.
-  $field_instances['node-transaction_history-field_transaction_amount'] = array(
+  // 'node-transaction_history-field_hist_agreement_id'.
+  $field_instances['node-transaction_history-field_hist_agreement_id'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1922,27 +1922,21 @@ function f_investor_field_default_field_instances() {
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => '',
         ),
         'type' => 'number_integer',
         'weight' => 5,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 8,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_amount',
-    'label' => 'Teckningsförbindelse',
+    'field_name' => 'field_hist_agreement_id',
+    'label' => 'Avtal',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -1956,333 +1950,12 @@ function f_investor_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 10,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'node-transaction_history-field_transaction_amount_guar'.
-  $field_instances['node-transaction_history-field_transaction_amount_guar'] = array(
-    'bundle' => 'transaction_history',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 4,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 7,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_amount_guar',
-    'label' => 'Garantiåtagande',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 9,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'node-transaction_history-field_transaction_company'.
-  $field_instances['node-transaction_history-field_transaction_company'] = array(
-    'bundle' => 'transaction_history',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_company',
-    'label' => 'Företag',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-transaction_history-field_transaction_id'.
-  $field_instances['node-transaction_history-field_transaction_id'] = array(
-    'bundle' => 'transaction_history',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 2,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_id',
-    'label' => 'Transaktions ID',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'node-transaction_history-field_transaction_invest_name'.
-  $field_instances['node-transaction_history-field_transaction_invest_name'] = array(
-    'bundle' => 'transaction_history',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 11,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_invest_name',
-    'label' => 'Investerar namn',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
       'weight' => 8,
     ),
   );
 
-  // Exported field_instance:
-  // 'node-transaction_history-field_transaction_investor_id'.
-  $field_instances['node-transaction_history-field_transaction_investor_id'] = array(
-    'bundle' => 'transaction_history',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 10,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_investor_id',
-    'label' => 'Investerar ID',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 7,
-    ),
-  );
-
-  // Exported field_instance: 'node-transaction_history-field_transaction_loan'.
-  $field_instances['node-transaction_history-field_transaction_loan'] = array(
+  // Exported field_instance: 'node-transaction_history-field_hist_company_id'.
+  $field_instances['node-transaction_history-field_hist_company_id'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2295,27 +1968,21 @@ function f_investor_field_default_field_instances() {
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => '',
         ),
         'type' => 'number_integer',
-        'weight' => 8,
+        'weight' => 4,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 11,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_loan',
-    'label' => 'Brygglån',
+    'field_name' => 'field_hist_company_id',
+    'label' => 'Företag',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -2329,13 +1996,13 @@ function f_investor_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 13,
+      'weight' => 7,
     ),
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_max_invest'.
-  $field_instances['node-transaction_history-field_transaction_max_invest'] = array(
+  // 'node-transaction_history-field_hist_contact_person_id'.
+  $field_instances['node-transaction_history-field_hist_contact_person_id'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2348,27 +2015,161 @@ function f_investor_field_default_field_instances() {
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 2,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_contact_person_id',
+    'label' => 'Kontaktperson',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-transaction_history-field_hist_ctrl_vid_eu'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_eu'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 12,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_ctrl_vid_eu',
+    'label' => 'EU:s sanktionsförordningar',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_ctrl_vid_exr'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_exr'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 11,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_ctrl_vid_exr',
+    'label' => 'Externt register',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_ctrl_vid_id_cont'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_id_cont'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
         ),
         'type' => 'number_integer',
         'weight' => 9,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 6,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_max_invest',
-    'label' => 'Max investering',
+    'field_name' => 'field_hist_ctrl_vid_id_cont',
+    'label' => 'ID-kontroll (Kontaktperson)',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -2387,8 +2188,8 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_transaction_newem'.
-  $field_instances['node-transaction_history-field_transaction_newem'] = array(
+  // 'node-transaction_history-field_hist_ctrl_vid_id_owners'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_id_owners'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2401,27 +2202,21 @@ function f_investor_field_default_field_instances() {
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => '',
         ),
         'type' => 'number_integer',
-        'weight' => 6,
+        'weight' => 10,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 9,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_newem',
-    'label' => 'Riktad nyemission',
+    'field_name' => 'field_hist_ctrl_vid_id_owners',
+    'label' => 'ID-kontroll (Ägare)',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -2435,12 +2230,13 @@ function f_investor_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 11,
+      'weight' => 15,
     ),
   );
 
-  // Exported field_instance: 'node-transaction_history-field_transaction_pp'.
-  $field_instances['node-transaction_history-field_transaction_pp'] = array(
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_ctrl_vid_kom'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_kom'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2453,27 +2249,208 @@ function f_investor_field_default_field_instances() {
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => '',
         ),
         'type' => 'number_integer',
-        'weight' => 7,
+        'weight' => 14,
       ),
       'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_ctrl_vid_kom',
+    'label' => 'Kompleterande frågor',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_ctrl_vid_kre'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_kre'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
           'prefix_suffix' => TRUE,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => '',
         ),
         'type' => 'number_integer',
-        'weight' => 10,
+        'weight' => 13,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_pp',
-    'label' => 'Private Placement',
+    'field_name' => 'field_hist_ctrl_vid_kre',
+    'label' => 'Kreditkontroll',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 18,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_ctrl_vid_pen'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_pen'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 15,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_ctrl_vid_pen',
+    'label' => 'Penningtvätt',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 20,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_ctrl_vid_ptv'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_ptv'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 8,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_ctrl_vid_ptv',
+    'label' => 'PTV-blankett',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 13,
+    ),
+  );
+
+  // Exported field_instance: 'node-transaction_history-field_hist_ctrl_vid_ua'.
+  $field_instances['node-transaction_history-field_hist_ctrl_vid_ua'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 7,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_ctrl_vid_ua',
+    'label' => 'Uppdragsavtal',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -2491,9 +2468,8 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'node-transaction_history-field_transaction_title'.
-  $field_instances['node-transaction_history-field_transaction_title'] = array(
+  // Exported field_instance: 'node-transaction_history-field_hist_investor_id'.
+  $field_instances['node-transaction_history-field_hist_investor_id'] = array(
     'bundle' => 'transaction_history',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2501,65 +2477,226 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 1,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_transaction_title',
-    'label' => 'Transaktions titel',
+    'field_name' => 'field_hist_investor_id',
+    'label' => 'Avtalspart',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-transaction_history-field_hist_offer_id'.
+  $field_instances['node-transaction_history-field_hist_offer_id'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 3,
       ),
-      'type' => 'text_textfield',
-      'weight' => 4,
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_offer_id',
+    'label' => 'Erbjudande',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-transaction_history-field_hist_sum'.
+  $field_instances['node-transaction_history-field_hist_sum'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 6,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_sum',
+    'label' => 'Summa',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_transac_investor_id'.
+  $field_instances['node-transaction_history-field_hist_transac_investor_id'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 16,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_transac_investor_id',
+    'label' => 'Transaktions avtalspart',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-transaction_history-field_hist_transaction_id'.
+  $field_instances['node-transaction_history-field_hist_transaction_id'] = array(
+    'bundle' => 'transaction_history',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 17,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hist_transaction_id',
+    'label' => 'Transaktion',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 10,
     ),
   );
 
@@ -2571,35 +2708,36 @@ function f_investor_field_default_field_instances() {
   t('Ange vilka branscher som den här investeraren är intresserad av, om några.');
   t('Ange vilka intressen som den här investeraren är intresserad av, om några.');
   t('Anteckningar');
+  t('Avtal');
+  t('Avtalspart');
   t('Branscher');
-  t('Brygglån');
   t('E-post');
+  t('EU:s sanktionsförordningar');
   t('En eller flera separera med ,');
+  t('Erbjudande');
   t('Externt register');
   t('Fax');
   t('Företag');
-  t('Garantiåtagande');
   t('ID-kontroll');
+  t('ID-kontroll (Kontaktperson)');
+  t('ID-kontroll (Ägare)');
   t('Intressen');
-  t('Investerar ID');
-  t('Investerar namn');
   t('Klicka i om personen är en lead.');
+  t('Kompleterande frågor');
   t('Kontaktperson');
   t('Kreditkontroll');
   t('Kundansvarig');
   t('Kundnummer');
   t('Lead');
-  t('Max investering');
   t('Mobil');
   t('Organisationsnummer');
   t('PTV-blankett');
+  t('Penningtvätt');
   t('Personnummer');
-  t('Private Placement');
-  t('Riktad nyemission');
-  t('Teckningsförbindelse');
+  t('Summa');
   t('Telefon');
-  t('Transaktions ID');
-  t('Transaktions titel');
+  t('Transaktion');
+  t('Transaktions avtalspart');
   t('Uppdragsavtal');
   t('Ägare');
   t('ÅÅMMDD-XXXX');

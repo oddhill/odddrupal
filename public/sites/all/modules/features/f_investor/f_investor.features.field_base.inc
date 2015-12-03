@@ -10,6 +10,261 @@
 function f_investor_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_hist_agreement_id'.
+  $field_bases['field_hist_agreement_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_agreement_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_company_id'.
+  $field_bases['field_hist_company_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_company_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_contact_person_id'.
+  $field_bases['field_hist_contact_person_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_contact_person_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_eu'.
+  $field_bases['field_hist_ctrl_vid_eu'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_eu',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_exr'.
+  $field_bases['field_hist_ctrl_vid_exr'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_exr',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_id_cont'.
+  $field_bases['field_hist_ctrl_vid_id_cont'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_id_cont',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_id_owners'.
+  $field_bases['field_hist_ctrl_vid_id_owners'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_id_owners',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_kom'.
+  $field_bases['field_hist_ctrl_vid_kom'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_kom',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_kre'.
+  $field_bases['field_hist_ctrl_vid_kre'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_kre',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_pen'.
+  $field_bases['field_hist_ctrl_vid_pen'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_pen',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_ptv'.
+  $field_bases['field_hist_ctrl_vid_ptv'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_ptv',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_ctrl_vid_ua'.
+  $field_bases['field_hist_ctrl_vid_ua'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_ctrl_vid_ua',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_investor_id'.
+  $field_bases['field_hist_investor_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_investor_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_offer_id'.
+  $field_bases['field_hist_offer_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_offer_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_sum'.
+  $field_bases['field_hist_sum'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_sum',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_transac_investor_id'.
+  $field_bases['field_hist_transac_investor_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_transac_investor_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_hist_transaction_id'.
+  $field_bases['field_hist_transaction_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hist_transaction_id',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
   // Exported field_base: 'field_invest_pvt_address'.
   $field_bases['field_invest_pvt_address'] = array(
     'active' => 1,
@@ -353,195 +608,6 @@ function f_investor_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_shared_cust_id',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_transaction_amount'.
-  $field_bases['field_transaction_amount'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_amount',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_transaction_amount_guar'.
-  $field_bases['field_transaction_amount_guar'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_amount_guar',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_transaction_company'.
-  $field_bases['field_transaction_company'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_company',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_transaction_id'.
-  $field_bases['field_transaction_id'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_id',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_transaction_invest_name'.
-  $field_bases['field_transaction_invest_name'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_invest_name',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_transaction_investor_id'.
-  $field_bases['field_transaction_investor_id'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_investor_id',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_transaction_loan'.
-  $field_bases['field_transaction_loan'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_loan',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_transaction_max_invest'.
-  $field_bases['field_transaction_max_invest'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_max_invest',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_transaction_newem'.
-  $field_bases['field_transaction_newem'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_newem',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_transaction_pp'.
-  $field_bases['field_transaction_pp'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_pp',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_transaction_title'.
-  $field_bases['field_transaction_title'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_transaction_title',
     'indexes' => array(
       'format' => array(
         0 => 'format',

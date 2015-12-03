@@ -143,6 +143,172 @@ function sedermera_offer_node_presave($node) {
         'timezone_db' => 'Europe/Stockholm',
         'date_type' => 'datestamp',
       );
+
+      // Get nid for all nodes connected to the agreement
+      $result = db_query("SELECT
+        agree.entity_id AS T_AP,
+        investor.field_transaction_ap_ap_target_id AS AP,
+        trans.entity_id AS TRANS,
+        person.field_transaction_person_target_id AS PERSON,
+        offer.field_transaction_offer_target_id AS OFFER,
+        company.field_offer_company_target_id AS COMP
+        FROM field_data_field_transaction_ap_agree AS agree
+        INNER JOIN field_data_field_transaction_ap_ap AS investor ON (agree.entity_id = investor.entity_id)
+        INNER JOIN field_data_field_transaction_investor AS trans ON (trans.field_transaction_investor_target_id = agree.entity_id)
+        INNER JOIN field_data_field_transaction_person AS person ON (person.entity_id = trans.entity_id)
+        INNER JOIN field_data_field_transaction_offer AS offer ON (offer.entity_id = trans.entity_id)
+        INNER JOIN field_data_field_offer_company AS company ON (company.entity_id = offer.field_transaction_offer_target_id)
+        WHERE agree.field_transaction_ap_agree_target_id = :nid", array(':nid' => $node->nid))->fetchAssoc();
+
+      // Load needed nodes
+      $agree_wrap = entity_metadata_wrapper('node', $node);
+
+      $transaction_ap = node_load($result['T_AP']);
+      $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
+
+      $ap = node_load($result['AP']);
+      $ap_wrap = entity_metadata_wrapper('node', $ap);
+
+      $transaction = node_load($result['TRANS']);
+
+      $person = node_load($result['PERSON']);
+      $person_wrap = entity_metadata_wrapper('node', $person);
+
+      $offer = node_load($result['OFFER']);
+
+      $company = node_load($result['COMP']);
+
+      // Gater the owners
+      $owners = array();
+      if ($ap_wrap->type->value() === 'investor_company') {
+        foreach ($ap_wrap->field_investor_comp_owners->value() as $key => $owner) {
+          $owner_wrap = entity_metadata_wrapper('node', $owner);
+          $owners[] = array('value' => $owner_wrap->field_user_id_ctrl->value()->vid);
+        }
+      }
+      else {
+        $owners[] = array('value' => $person_wrap->field_user_id_ctrl->value()->vid);
+      }
+
+      $sum = 0;
+
+      //Get the correct sum and type for the agreement
+      switch ($agree_wrap->field_transaction_agree_type_rea->value()) {
+        case 'fe_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
+          break;
+        case 'fe_warrant':
+          $sum = $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
+          break;
+        case 'le_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_le_sign->value();
+          break;
+        case 'le_warrant':
+          $sum = $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
+          break;
+        case 'pp_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
+          break;
+        case 're_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_re_sign->value();
+          break;
+        case 'bridging':
+          $sum = $transaction_ap_wrap->field_transaction_ap_bridging->value();
+          break;
+        case 'block':
+          $sum = $transaction_ap_wrap->field_transaction_ap_block->value();
+          break;
+      }
+
+      // Create transaction history
+      $transaction_history = entity_create('node', array(
+        'type' => 'transaction_history',
+        'title' => $offer->title . ' ' . $node->title,
+        'field_hist_investor_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['AP'])),
+          ),
+        ),
+        'field_hist_contact_person_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['PERSON'])),
+          ),
+        ),
+        'field_hist_offer_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['OFFER'])),
+          ),
+        ),
+        'field_hist_company_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['COMP'])),
+          ),
+        ),
+        'field_hist_agreement_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $node->nid),
+          ),
+        ),
+        'field_hist_transac_investor_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $transaction_ap->nid),
+          ),
+        ),
+        'field_hist_transaction_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['TRANS'])),
+          ),
+        ),
+        'field_hist_sum' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $sum),
+          ),
+        ),
+        'field_hist_ctrl_vid_ua' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_ua->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_ptv' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_ptv->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_id_cont' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $person_wrap->field_user_id_ctrl->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_id_owners' => array(
+          LANGUAGE_NONE => $owners,
+        ),
+        'field_hist_ctrl_vid_exr' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_ext->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_eu' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $transaction_ap_wrap->field_transaction_ap_ctrl_eu->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_kre' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_cred->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_kom' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $transaction_ap_wrap->field_transaction_ap_ctrl_comp->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_pen' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $agree_wrap->field_transaction_agree_ctrl->value()->vid),
+          ),
+        ),
+      ));
+      node_save($transaction_history);
     }
   }
 
