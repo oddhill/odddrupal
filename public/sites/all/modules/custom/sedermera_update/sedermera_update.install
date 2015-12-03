@@ -438,3 +438,22 @@ function sedermera_update_update_7023() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7024() {
+  field_delete_field('field_transaction_amount');
+  field_delete_field('field_transaction_amount_guar');
+  field_delete_field('field_transaction_company');
+  field_delete_field('field_transaction_id');
+  field_delete_field('field_transaction_invest_name');
+  field_delete_field('field_transaction_investor_id');
+  field_delete_field('field_transaction_loan');
+  field_delete_field('field_transaction_max_invest');
+  field_delete_field('field_transaction_newem');
+  field_delete_field('field_transaction_pp');
+  field_delete_field('field_transaction_title');
+
+  field_purge_batch(1000);
+}
