@@ -581,6 +581,8 @@ function sedermera_verification_get_status_single($id) {
  * @see sedermera_verification_get_status_single()
  */
 function sedermera_verification_get_status_multiple(array $ids) {
+  $statuses = array();
+
   // Bail out early if no ids exists
   if (empty($ids)) {
     return SEDERMERA_VERIFICATION_NOT_APPROVED;
@@ -596,16 +598,13 @@ function sedermera_verification_get_status_multiple(array $ids) {
       return $status;
     }
 
-    // Bail out early if the status is expiring, since there's no need to
-    // check the other verifications in that case.
-    if ($status === SEDERMERA_VERIFICATION_EXPIRING) {
-      return $status;
-    }
+    // Save the status for comparation.
+    $statuses[] = $status;
   }
 
   // Return the lowest status. It's safe to use min() since the status constants
   // are defined incrementally.
-  return SEDERMERA_VERIFICATION_APPROVED;
+  return min($statuses);
 }
 
 /**
