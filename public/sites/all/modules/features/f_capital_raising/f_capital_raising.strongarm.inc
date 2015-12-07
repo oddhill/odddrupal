@@ -80,7 +80,7 @@ function f_capital_raising_strongarm() {
         'custom_settings' => FALSE,
       ),
       'mail' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'revision' => array(
         'custom_settings' => FALSE,
@@ -114,15 +114,27 @@ function f_capital_raising_strongarm() {
             'weight' => '0',
             'visible' => FALSE,
           ),
+          'mail' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'verification_status_id' => array(
           'default' => array(
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'mail' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'verification_status_sign' => array(
           'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'mail' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),

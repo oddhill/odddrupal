@@ -1872,10 +1872,10 @@ function f_capital_raising_field_default_field_bases() {
       'cache_enabled' => 0,
       'granularity' => array(
         'day' => 'day',
-        'hour' => 'hour',
-        'minute' => 'minute',
+        'hour' => 0,
+        'minute' => 0,
         'month' => 'month',
-        'second' => 'second',
+        'second' => 0,
         'year' => 'year',
       ),
       'timezone_db' => '',
@@ -1883,7 +1883,7 @@ function f_capital_raising_field_default_field_bases() {
       'tz_handling' => 'none',
     ),
     'translatable' => 0,
-    'type' => 'datestamp',
+    'type' => 'date',
   );
 
   // Exported field_base: 'field_transaction_investor'.
