@@ -224,13 +224,13 @@ function f_investor_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'field_user_owner_target_id_entityreference_filter' => array(
+    'field_user_owner_target_id_entityreference_filter_1' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => FALSE,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
-        'any_label' => '',
+        'any_label' => 'Kundansvarig',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -434,7 +434,6 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['relationship'] = 'field_shared_cont_pers_target_id';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['operator_id'] = 'field_user_owner_target_id_entityreference_filter_1_op';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['label'] = 'Kundansvarig';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['operator'] = 'field_user_owner_target_id_entityreference_filter_1_op';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['identifier'] = 'field_user_owner_target_id_entityreference_filter_1';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter_1']['expose']['remember_roles'] = array(
@@ -462,6 +461,7 @@ function f_investor_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Advanced options'),
+    t('Kundansvarig'),
     t('Select any filter and click on Apply to see results'),
     t('Items per page'),
     t('- All -'),
@@ -475,7 +475,6 @@ function f_investor_views_default_views() {
     t('Namn'),
     t('Kundnummer'),
     t('Kontaktperson'),
-    t('Kundansvarig'),
     t('Avtalsparter'),
   );
   $export['investors'] = $view;
@@ -518,6 +517,56 @@ function f_investor_views_default_views() {
       'more_options' => array(
         'is_secondary' => 0,
         'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_user_owner_target_id_entityreference_filter' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => FALSE,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => 'Kundansvarig',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -700,7 +749,6 @@ function f_investor_views_default_views() {
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['field'] = 'field_user_owner_target_id_entityreference_filter';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator_id'] = 'field_user_owner_target_id_entityreference_filter_op';
-  $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['label'] = 'Kundansvarig';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['operator'] = 'field_user_owner_target_id_entityreference_filter_op';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['identifier'] = 'field_user_owner_target_id_entityreference_filter';
   $handler->display->display_options['filters']['field_user_owner_target_id_entityreference_filter']['expose']['remember_roles'] = array(

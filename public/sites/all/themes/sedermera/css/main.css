@@ -2804,12 +2804,16 @@ form.views-send-preview .form-actions {
       text-indent: 42px;
       width: 20px; }
   .table-filter form {
-    overflow: hidden;
     padding: 20px;
     text-align: center; }
+    .table-filter form:after {
+      content: "";
+      display: table;
+      clear: both; }
     .table-filter form .submit-wrapper {
-      display: inline-block;
-      position: relative; }
+      position: relative;
+      float: left;
+      margin-top: -2px; }
       .table-filter form .submit-wrapper .form-submit {
         display: inline-block;
         height: 34px;
@@ -2858,7 +2862,7 @@ form.views-send-preview .form-actions {
           margin: 0 auto;
           float: none; }
     .table-filter form .form-item {
-      display: inline-block;
+      float: left;
       margin: 0 15px 0 0; }
 
 .field-group-htabs-wrapper {

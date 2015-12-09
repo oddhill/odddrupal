@@ -24,13 +24,14 @@
   }
 
   form {
-    overflow: hidden;
     padding: 20px;
     text-align: center;
+    @include clearfix;
 
     .submit-wrapper {
-      display: inline-block;
       position: relative;
+      float: left;
+      margin-top: -2px;
 
       .form-submit {
         @include button($dark-grey);
@@ -61,7 +62,7 @@
     }
 
     .form-item {
-      display: inline-block;
+      float: left;
       margin: 0 15px 0 0;
     }
   }
