@@ -5070,7 +5070,8 @@ div.radio {
 .selectboxit-container .selectboxit {
   border-radius: 2px; }
 .selectboxit-container .selectboxit-text {
-  font-weight: 400; }
+  font-weight: 400;
+  color: #a9a9a9; }
 .selectboxit-container .selectboxit-option-icon-container {
   margin: 0; }
 .selectboxit-container .selectboxit-btn {

@@ -33,6 +33,7 @@ $light-grey: #f3f4f8;
 $steel: #d4d6d9;
 $stone: #d5d7da;
 $wool: #e0e2e6;
+$rested: #a9a9a9;
 
 // Green colors
 $avocado: #b6e0af;
@@ -62,4 +63,3 @@ $heading-font: 'Roboto', sans-serif;
 $big: new-breakpoint(max-width 1600px);
 $medium: new-breakpoint(max-width 1280px);
 $medium-small: new-breakpoint(max-width 1130px);
-

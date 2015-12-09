@@ -252,7 +252,9 @@ Drupal.behaviors.sedermera = {
     }
 
     // Use selectBoxit on our select lists.
-    $('select').selectBoxIt();
+    $('select').selectBoxIt({
+      showFirstOption: false
+    });
 
     selectLookAlike();
     listCollapser();
