@@ -1,0 +1,21 @@
+.offer-agreements-list {
+  padding: 40px;
+}
+
+#agreements-list {
+
+  table {
+
+    .field-transaction-agree-sign {
+      display: inline-block;
+    }
+
+    .ctrl {
+      text-align: center;
+
+      .verification {
+        padding-top: 4px;
+      }
+    }
+  }
+}

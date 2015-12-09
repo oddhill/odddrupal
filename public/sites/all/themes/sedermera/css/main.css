@@ -1759,6 +1759,16 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     float: none;
     margin-bottom: 0.5em; }
 
+.offer-agreements-list {
+  padding: 40px; }
+
+#agreements-list table .field-transaction-agree-sign {
+  display: inline-block; }
+#agreements-list table .ctrl {
+  text-align: center; }
+  #agreements-list table .ctrl .verification {
+    padding-top: 4px; }
+
 .offer-contact-list {
   padding: 40px; }
   .offer-contact-list .add-more {

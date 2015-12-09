@@ -1508,7 +1508,7 @@ function generate_header_row_sign(array &$header) {
 
   // Type column
   $header[] = array(
-    'data' => 'Tranasktionstyp',
+    'data' => 'Transaktionstyp',
     'class' => array('table-head')
   );
 
@@ -1521,7 +1521,7 @@ function generate_header_row_sign(array &$header) {
   // Control column
   $header[] = array(
     'data' => 'Kontroller',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl')
   );
 
   // Agreement column
@@ -1628,6 +1628,7 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
         // Control column
         array(
           'data' => render($investor_view_full['verification_status_sign']),
+          'class' => array('ctrl'),
         ),
         // Agreement column
         array(
