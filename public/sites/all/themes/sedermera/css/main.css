@@ -1817,6 +1817,8 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 .offer-interested-list {
   padding: 40px; }
 
+#interested-table table .field-transaction-ap-ctrl {
+  display: inline-block; }
 #interested-table table .collapsible-head {
   padding: 0;
   width: 40px;
@@ -3857,22 +3859,22 @@ table {
 table .form-actions,
 table .form-wrapper {
   margin: 0; }
+table .field-transaction-agree-to-sign {
+  display: inline-block; }
 table input {
   border: 1px solid #c8cacd; }
 table .form-item {
   margin-bottom: 0; }
   table .form-item .description {
     display: none; }
-  table .form-item.form-type-checkbox {
-    padding-top: 2px; }
-    table .form-item.form-type-checkbox label.option {
-      display: inline-block;
-      line-height: 18px;
-      position: relative; }
-      table .form-item.form-type-checkbox label.option .checker {
-        position: absolute;
-        left: 0;
-        top: 0; }
+  table .form-item.form-type-checkbox label.option {
+    display: inline-block;
+    line-height: 18px;
+    position: relative; }
+    table .form-item.form-type-checkbox label.option .checker {
+      position: absolute;
+      left: 0;
+      top: 0; }
   table .form-item.form-type-textfield .form-text {
     margin: 0;
     padding: 0 2px; }

@@ -1323,7 +1323,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
 
   // Create the to sign variable dependent on if already checked
   if ($agreement_node_wrap->field_transaction_agree_to_sign->value()) {
-    $to_sign = '<span class="to-sign-ctrl"></span> att teckna';
+    $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Att teckna';
   }
   else {
     $field = field_view_field('node', $agreement_node, 'field_transaction_agree_to_sign',
@@ -1483,8 +1483,8 @@ function sedermera_transaction_sign() {
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
-      '#prefix' => '<div class="table-wrapper">',
-      '#suffix' => '</div>',
+      '#prefix' => '<div class="offer-agreements-list"><div id="agreements-list" class="table-wrapper">',
+      '#suffix' => '</div></div>',
     );
   }
 }
@@ -1596,7 +1596,7 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
 
     // Create the to sign variable dependent on if already checked
     if ($agreement_wrap->field_transaction_agree_sign->value()) {
-      $to_sign = '<span class="to-sign-ctrl"></span> Teckning';
+      $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Teckning';
     }
     else {
       $field = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',

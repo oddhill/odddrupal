@@ -125,6 +125,10 @@ table {
     margin: 0;
   }
 
+  .field-transaction-agree-to-sign {
+    display: inline-block;
+  }
+
   input {
     border: 1px solid $light-concrete;
   }
@@ -137,7 +141,6 @@ table {
     }
 
     &.form-type-checkbox {
-      padding-top: 2px;
 
       label.option {
         display: inline-block;
