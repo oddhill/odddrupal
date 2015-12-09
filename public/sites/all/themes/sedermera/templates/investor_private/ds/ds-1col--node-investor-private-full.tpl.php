@@ -21,6 +21,14 @@
     <div class="investor-details node-section">
       <?php print render($content['field_shared_cust_id']); ?>
       <?php print render($content['field_shared_cont_pers']); ?>
+    </div>
+
+    <div class="investor-other node-section">
+      <?php print render($content['field_invest_pvt_address']); ?>
+      <?php print render($content['field_invest_pvt_notes']); ?>
+    </div>
+
+    <div class="investor-verifications node-section">
       <?php print render($content['field_investor_shared_ctrl_ua']); ?>
       <?php print render($content['field_investor_shared_ctrl_ptv']); ?>
       <?php print render($content['field_investor_shared_ctrl_cred']); ?>

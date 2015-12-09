@@ -1481,7 +1481,10 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     background: #c04343; }
 .node-investor-private.view-mode-full .title h2 {
   text-align: left; }
-.node-investor-private.view-mode-full .investor-details .detail {
+.node-investor-private.view-mode-full .investor-details .detail,
+.node-investor-private.view-mode-full .investor-details .investor-control,
+.node-investor-private.view-mode-full .investor-verifications .detail,
+.node-investor-private.view-mode-full .investor-verifications .investor-control {
   float: left;
   display: block;
   margin-right: 2.35765%;
@@ -1491,24 +1494,42 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   margin-bottom: 0.5em;
   margin-top: 0.5em;
   text-align: right; }
-  .node-investor-private.view-mode-full .investor-details .detail:last-child {
+  .node-investor-private.view-mode-full .investor-details .detail:last-child,
+  .node-investor-private.view-mode-full .investor-details .investor-control:last-child,
+  .node-investor-private.view-mode-full .investor-verifications .detail:last-child,
+  .node-investor-private.view-mode-full .investor-verifications .investor-control:last-child {
     margin-right: 0; }
-  .node-investor-private.view-mode-full .investor-details .detail:nth-child(2n) {
+  .node-investor-private.view-mode-full .investor-details .detail:nth-child(2n),
+  .node-investor-private.view-mode-full .investor-details .investor-control:nth-child(2n),
+  .node-investor-private.view-mode-full .investor-verifications .detail:nth-child(2n),
+  .node-investor-private.view-mode-full .investor-verifications .investor-control:nth-child(2n) {
     margin-right: 0; }
-  .node-investor-private.view-mode-full .investor-details .detail:nth-child(2n+1) {
+  .node-investor-private.view-mode-full .investor-details .detail:nth-child(2n+1),
+  .node-investor-private.view-mode-full .investor-details .investor-control:nth-child(2n+1),
+  .node-investor-private.view-mode-full .investor-verifications .detail:nth-child(2n+1),
+  .node-investor-private.view-mode-full .investor-verifications .investor-control:nth-child(2n+1) {
     clear: left; }
-  .node-investor-private.view-mode-full .investor-details .detail span.label {
+  .node-investor-private.view-mode-full .investor-details .detail span.label,
+  .node-investor-private.view-mode-full .investor-details .investor-control span.label,
+  .node-investor-private.view-mode-full .investor-verifications .detail span.label,
+  .node-investor-private.view-mode-full .investor-verifications .investor-control span.label {
     display: block;
     float: left;
     text-align: left;
     margin-right: 1em; }
-  .node-investor-private.view-mode-full .investor-details .detail .verification {
+  .node-investor-private.view-mode-full .investor-details .detail .verification,
+  .node-investor-private.view-mode-full .investor-details .investor-control .verification,
+  .node-investor-private.view-mode-full .investor-verifications .detail .verification,
+  .node-investor-private.view-mode-full .investor-verifications .investor-control .verification {
     display: inline-block;
     overflow: hidden;
     font-size: 0px;
     color: transparent;
     margin: -1px 0; }
-    .node-investor-private.view-mode-full .investor-details .detail .verification:before {
+    .node-investor-private.view-mode-full .investor-details .detail .verification:before,
+    .node-investor-private.view-mode-full .investor-details .investor-control .verification:before,
+    .node-investor-private.view-mode-full .investor-verifications .detail .verification:before,
+    .node-investor-private.view-mode-full .investor-verifications .investor-control .verification:before {
       content: '';
       display: block;
       float: left;
@@ -1516,14 +1537,74 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
       height: 16px;
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.8); }
-    .node-investor-private.view-mode-full .investor-details .detail .verification:before {
+    .node-investor-private.view-mode-full .investor-details .detail .verification:before,
+    .node-investor-private.view-mode-full .investor-details .investor-control .verification:before,
+    .node-investor-private.view-mode-full .investor-verifications .detail .verification:before,
+    .node-investor-private.view-mode-full .investor-verifications .investor-control .verification:before {
       margin-right: 0; }
-    .node-investor-private.view-mode-full .investor-details .detail .verification.approved:before {
+    .node-investor-private.view-mode-full .investor-details .detail .verification.approved:before,
+    .node-investor-private.view-mode-full .investor-details .investor-control .verification.approved:before,
+    .node-investor-private.view-mode-full .investor-verifications .detail .verification.approved:before,
+    .node-investor-private.view-mode-full .investor-verifications .investor-control .verification.approved:before {
       background: #6c9e65; }
-    .node-investor-private.view-mode-full .investor-details .detail .verification.expiring:before {
+    .node-investor-private.view-mode-full .investor-details .detail .verification.expiring:before,
+    .node-investor-private.view-mode-full .investor-details .investor-control .verification.expiring:before,
+    .node-investor-private.view-mode-full .investor-verifications .detail .verification.expiring:before,
+    .node-investor-private.view-mode-full .investor-verifications .investor-control .verification.expiring:before {
       background: #f9a500; }
-    .node-investor-private.view-mode-full .investor-details .detail .verification.not-approved:before {
+    .node-investor-private.view-mode-full .investor-details .detail .verification.not-approved:before,
+    .node-investor-private.view-mode-full .investor-details .investor-control .verification.not-approved:before,
+    .node-investor-private.view-mode-full .investor-verifications .detail .verification.not-approved:before,
+    .node-investor-private.view-mode-full .investor-verifications .investor-control .verification.not-approved:before {
       background: #c04343; }
+.node-investor-private.view-mode-full .investor-other .other {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right;
+  text-align: left; }
+  .node-investor-private.view-mode-full .investor-other .other:last-child {
+    margin-right: 0; }
+  .node-investor-private.view-mode-full .investor-other .other:nth-child(2n) {
+    margin-right: 0; }
+  .node-investor-private.view-mode-full .investor-other .other:nth-child(2n+1) {
+    clear: left; }
+  .node-investor-private.view-mode-full .investor-other .other span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-investor-private.view-mode-full .investor-other .other .verification {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-investor-private.view-mode-full .investor-other .other .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-investor-private.view-mode-full .investor-other .other .verification:before {
+      margin-right: 0; }
+    .node-investor-private.view-mode-full .investor-other .other .verification.approved:before {
+      background: #6c9e65; }
+    .node-investor-private.view-mode-full .investor-other .other .verification.expiring:before {
+      background: #f9a500; }
+    .node-investor-private.view-mode-full .investor-other .other .verification.not-approved:before {
+      background: #c04343; }
+  .node-investor-private.view-mode-full .investor-other .other span.label {
+    display: block;
+    float: none;
+    margin-bottom: 0.5em; }
 
 .node-investor-company.view-mode-full .verification {
   display: inline-block;

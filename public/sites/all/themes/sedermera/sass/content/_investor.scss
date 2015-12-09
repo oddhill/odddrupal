@@ -12,10 +12,26 @@
       text-align: left;
     }
 
-    .investor-details {
+    .investor-details,
+    .investor-verifications {
 
-      .detail {
+      .detail,
+      .investor-control {
         @include node-section-detail;
+      }
+    }
+
+    .investor-other {
+
+      .other {
+        @include node-section-detail;
+        text-align: left;
+
+        span.label {
+          display: block;
+          float: none;
+          margin-bottom: 0.5em;
+        }
       }
     }
   }

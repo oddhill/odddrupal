@@ -12,13 +12,15 @@
  */
 ?>
 <div class="node-barrier">
-  
+
   <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
     <?php print render($content['title']); ?>
 
-    <div class="person-stakeholder node-section">
-      <?php print render($content['investors']); ?>
-    </div>
+    <?php if ($content['investors']): ?>
+      <div class="person-stakeholder node-section">
+        <?php print render($content['investors']); ?>
+      </div>
+    <?php endif; ?>
 
     <div class="person-details node-section">
       <?php print render($content['field_user_ssn']); ?>

@@ -185,7 +185,7 @@ function f_investor_strongarm() {
       'display' => array(
         'verification_status' => array(
           'full' => array(
-            'weight' => '9',
+            'weight' => '10',
             'visible' => TRUE,
           ),
           'default' => array(
@@ -198,10 +198,18 @@ function f_investor_strongarm() {
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'full' => array(
+            'weight' => '16',
+            'visible' => FALSE,
+          ),
         ),
         'verification_status_sign' => array(
           'default' => array(
             'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'full' => array(
+            'weight' => '17',
             'visible' => FALSE,
           ),
         ),
