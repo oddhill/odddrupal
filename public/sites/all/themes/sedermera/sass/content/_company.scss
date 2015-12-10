@@ -1,7 +1,24 @@
 // Company node
 .node-company {
 
-  &.view-mode-teaser {
+  &.view-mode-full {
 
+    .company-details {
+
+      .detail {
+        @include node-section-detail;
+      }
+    }
+
+    .company-logo {
+      width: 100px;
+      margin: 0 0 30px;
+      float: right;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }

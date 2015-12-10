@@ -83,7 +83,7 @@ function f_company_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 12,
     ),
   );
 
@@ -143,7 +143,7 @@ function f_company_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 8,
+      'weight' => 14,
     ),
   );
 

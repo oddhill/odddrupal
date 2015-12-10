@@ -498,6 +498,57 @@ div.button {
   .nav-list > li.active > a {
     font-weight: 500; }
 
+.node-company.view-mode-full .company-details .detail {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right; }
+  .node-company.view-mode-full .company-details .detail:last-child {
+    margin-right: 0; }
+  .node-company.view-mode-full .company-details .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-company.view-mode-full .company-details .detail:nth-child(2n+1) {
+    clear: left; }
+  .node-company.view-mode-full .company-details .detail span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-company.view-mode-full .company-details .detail .verification {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-company.view-mode-full .company-details .detail .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-company.view-mode-full .company-details .detail .verification:before {
+      margin-right: 0; }
+    .node-company.view-mode-full .company-details .detail .verification.approved:before {
+      background: #6c9e65; }
+    .node-company.view-mode-full .company-details .detail .verification.expiring:before {
+      background: #f9a500; }
+    .node-company.view-mode-full .company-details .detail .verification.not-approved:before {
+      background: #c04343; }
+.node-company.view-mode-full .company-logo {
+  width: 100px;
+  margin: 0 0 30px;
+  float: right; }
+  .node-company.view-mode-full .company-logo img {
+    width: 100%;
+    height: auto; }
+
 .node-ctrl.view-mode-full .verification-header {
   padding: 40px;
   overflow: hidden; }

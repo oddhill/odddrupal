@@ -13,7 +13,14 @@
 ?>
 <div class="node-barrier">
 
-  <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> padding">
-    <?php print $ds_content; ?>
+  <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
+
+    <?php print render($content['title']); ?>
+
+    <div class="company-details node-section">
+      <?php print render($content['field_comp_logo']); ?>
+      <?php print render($content['field_comp_legacy_id']); ?>
+    </div>
+
   </div>
 </div>

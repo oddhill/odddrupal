@@ -45,7 +45,7 @@
  */
 ?>
 
-<div class="company-title title">
+<div class="company-legacy-id detail">
   <?php if (!$label_hidden): ?>
     <span class="label" <?php print $title_attributes; ?>><?php print $label ?>:&nbsp;</span>
   <?php endif; ?>
