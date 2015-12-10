@@ -30,7 +30,22 @@ form {
   }
 
   .form-actions {
-    margin-top: 20px;
+
+    .submit-wrapper {
+      display: inline-block;
+
+      .form-submit {
+        margin: 0 10px;
+      }
+    }
+
+    .page-node-add &,
+    .page-node-edit & {
+      width: 50%;
+      min-width: 700px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
   }
 
   .messages {
@@ -167,14 +182,6 @@ fieldset {
     font-style: italic;
     margin-top: 3px;
     color: $grey;
-  }
-}
-
-.submit-wrapper {
-  display: inline-block;
-
-  .form-submit {
-    margin-right: 10px;
   }
 }
 
@@ -406,6 +413,63 @@ div.addressfield-container-inline {
       &:hover {
         border-color: $cloudy;
       }
+    }
+  }
+}
+
+// Ajax progress styling for add related document/appendix
+.field-type-entityreference {
+
+  .submit-wrapper {
+    position: relative;
+    margin-right: 10px;
+
+    .form-submit {
+      margin-right: 0;
+    }
+
+    input {
+      @include button($dark-grey, add-mini, small);
+      background-position: 11px 7px;
+    }
+  }
+
+  // Inline entity form specifics
+  .ief-form {
+
+    // Buttons
+    .submit-wrapper {
+
+      input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
+        @include button($dark-grey, check-mini, small);
+        background-position: 11px 7px;
+      }
+
+      input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
+        @include button($dark-grey, cross-mini, small);
+        background-position: 11px 7px;
+      }
+    }
+  }
+
+  .ajax-progress {
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 24px;
+    background: shade($dark-grey,30%);
+    border-radius: 12px;
+    padding: 2px;
+    color: $snow;
+
+    .message {
+      padding-left: 5px;
+      @include font-size(1.2);
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 }

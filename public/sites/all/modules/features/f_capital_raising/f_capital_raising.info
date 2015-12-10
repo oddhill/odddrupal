@@ -154,6 +154,7 @@ features[field_group][] = group_offer_view_description|node|offer|full
 features[field_group][] = group_offer_view_sidebar|node|offer|full
 features[field_group][] = group_sidebar|node|offer|form
 features[field_group][] = group_title|node|offer|form
+features[field_group][] = group_transaction_agree_wrap|node|transaction_agreement|form
 features[field_group][] = group_types|node|offer|form
 features[field_instance][] = node-offer-field_offer_additional
 features[field_instance][] = node-offer-field_offer_company

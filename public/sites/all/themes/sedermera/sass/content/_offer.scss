@@ -71,3 +71,12 @@
     background: tint($light-grey,60%);
   }
 }
+
+// Offer creation steps
+div[class^="step-offer-"],
+div[class*=" step-offer-"] {
+  padding: 40px 0 0;
+  width: 50%;
+  margin: 0 auto;
+  min-width: 700px;
+}

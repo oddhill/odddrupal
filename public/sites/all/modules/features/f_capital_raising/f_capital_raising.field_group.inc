@@ -568,6 +568,43 @@ function f_capital_raising_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_transaction_agree_wrap|node|transaction_agreement|form';
+  $field_group->group_name = 'group_transaction_agree_wrap';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'transaction_agreement';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Modal form wrapper',
+    'weight' => '5',
+    'children' => array(
+      0 => 'field_transaction_agree_doc',
+      1 => 'field_transaction_agree_sign',
+      2 => 'field_transaction_agree_to_sign',
+      3 => 'field_transaction_agree_sign_day',
+      4 => 'field_transaction_agree_to_sign_',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Modal form wrapper',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'modal-form-wrapper',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_transaction_agree_wrap|node|transaction_agreement|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_types|node|offer|form';
   $field_group->group_name = 'group_types';
   $field_group->entity_type = 'node';

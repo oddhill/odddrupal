@@ -18,14 +18,14 @@
     }
   }
 
-  .field-type-file {
+  .modal-form-wrapper {
     padding: 40px;
     background: tint($light-grey,60%);
     border-top: 1px solid $wool;
     border-bottom: 1px solid $wool;
     margin-bottom: 0;
 
-    .form-wrapper {
+    .form-wrapper:last-child {
       margin-bottom: 0;
     }
   }

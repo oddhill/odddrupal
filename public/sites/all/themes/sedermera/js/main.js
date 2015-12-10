@@ -91,7 +91,7 @@ var initiateModals = function() {
         // for simple HTML file, it will be just String
         // You may modify it to change contents of the popup
         // For example, to show just #some-element:
-        mfpResponse.data = $(mfpResponse.data).find('.node-ctrl');
+        mfpResponse.data = $(mfpResponse.data).find('.node-ctrl, .node-transaction-agreement');
 
         // mfpResponse.data must be a String or a DOM (jQuery) element
 

@@ -40,7 +40,7 @@
     position: absolute;
     left: 34px;
     top: 4px;
-    width: 200px;
+    width: 160px;
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
@@ -50,7 +50,7 @@
   input[type="file"] {
     display: block;
     float: left;
-    width: 240px;
+    width: 280px;
     height: 28px;
     opacity: 0;
   }
@@ -67,7 +67,9 @@
   .submit-wrapper {
     margin: 2px 2px 2px 0;
     height: 24px;
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
 
     .form-submit {
       @include button($dark-grey,upload,small);

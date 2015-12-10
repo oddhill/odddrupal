@@ -5113,7 +5113,7 @@ function f_capital_raising_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form_single',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 

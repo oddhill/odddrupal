@@ -1348,162 +1348,6 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   font-weight: 500;
   border-bottom: 0px none; }
 
-.page-investor-person-edit .form-sidebar,
-.page-investor-company-edit .form-sidebar,
-.page-investor-lead-edit .form-sidebar {
-  background: transparent;
-  padding: 0 20px 0 0; }
-.page-investor-person-edit .form-body,
-.page-investor-company-edit .form-body,
-.page-investor-lead-edit .form-body {
-  background: transparent;
-  overflow: hidden;
-  padding: 0; }
-.page-investor-person-edit .form-actions,
-.page-investor-company-edit .form-actions,
-.page-investor-lead-edit .form-actions {
-  padding-top: 20px; }
-
-.field-type-entityreference .submit-wrapper {
-  position: relative;
-  margin-right: 10px; }
-  .field-type-entityreference .submit-wrapper .form-submit {
-    margin-right: 0; }
-.field-type-entityreference .ajax-progress {
-  left: 0;
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 24px;
-  background: #303030;
-  border-radius: 12px;
-  padding: 2px;
-  color: #fff; }
-  .field-type-entityreference .ajax-progress .message {
-    padding-left: 5px;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 18px;
-    font-weight: 500;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
-
-.field-type-entityreference .submit-wrapper input {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  height: 24px;
-  line-height: 24px;
-  border-radius: 24px;
-  background-position: 10px 6px;
-  padding: 0 10px 0 26px;
-  margin-right: 8px;
-  background-position: 11px 7px; }
-  .field-type-entityreference .submit-wrapper input:hover {
-    background-color: #303030; }
-.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/check_mini_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/check_mini_light.svg") transparent 0 0 no-repeat;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  height: 24px;
-  line-height: 24px;
-  border-radius: 24px;
-  background-position: 10px 6px;
-  padding: 0 10px 0 26px;
-  margin-right: 8px;
-  background-position: 11px 7px; }
-  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save:hover {
-    background-color: #303030; }
-.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
-  background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
-  padding-left: 42px;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  height: 24px;
-  line-height: 24px;
-  border-radius: 24px;
-  background-position: 10px 6px;
-  padding: 0 10px 0 26px;
-  margin-right: 8px;
-  background-position: 11px 7px; }
-  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel:hover {
-    background-color: #303030; }
-
-#edit-field-shared-industries-und .form-item,
-#edit-field-shared-interests-und .form-item {
-  margin-bottom: 0; }
-  #edit-field-shared-industries-und .form-item:last-child,
-  #edit-field-shared-interests-und .form-item:last-child {
-    margin-bottom: 10px; }
-
-.page-node-edit.node-type-capital-raising .form-sidebar {
-  background: transparent;
-  padding: 0 20px 0 0; }
-.page-node-edit.node-type-capital-raising #title-wrapper {
-  background: #e0e2e6;
-  border-radius: 2px;
-  margin-bottom: 20px;
-  padding: 10px; }
-.page-node-edit.node-type-capital-raising .form-body {
-  background: transparent;
-  overflow: hidden;
-  padding: 0; }
-  .page-node-edit.node-type-capital-raising .form-body .field-name-body {
-    background: #e0e2e6;
-    border-radius: 2px;
-    margin-bottom: 20px;
-    padding: 10px; }
-.page-node-edit .form-actions {
-  padding-top: 20px; }
-
 .node-investor-private.view-mode-full .verification {
   display: inline-block;
   overflow: hidden;
@@ -2060,6 +1904,13 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     border-bottom: 1px solid #e0e2e6;
     background: #fafbfc; }
 
+div[class^="step-offer-"],
+div[class*=" step-offer-"] {
+  padding: 40px 0 0;
+  width: 50%;
+  margin: 0 auto;
+  min-width: 700px; }
+
 .node-person.view-mode-full .node-section {
   display: block;
   padding-bottom: 30px;
@@ -2207,13 +2058,13 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
       font-size: 30px;
       font-size: 3rem;
       line-height: 36px; }
-  .node-transaction_agreement-form .field-type-file {
+  .node-transaction_agreement-form .modal-form-wrapper {
     padding: 40px;
     background: #fafbfc;
     border-top: 1px solid #e0e2e6;
     border-bottom: 1px solid #e0e2e6;
     margin-bottom: 0; }
-    .node-transaction_agreement-form .field-type-file .form-wrapper {
+    .node-transaction_agreement-form .modal-form-wrapper .form-wrapper:last-child {
       margin-bottom: 0; }
   .node-transaction_agreement-form .vertical-tabs-panes {
     display: none; }
@@ -4516,7 +4367,7 @@ fieldset {
   position: absolute;
   left: 34px;
   top: 4px;
-  width: 200px;
+  width: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
@@ -4524,7 +4375,7 @@ fieldset {
 .form-type-managed-file input[type="file"] {
   display: block;
   float: left;
-  width: 240px;
+  width: 280px;
   height: 28px;
   opacity: 0; }
 .form-type-managed-file .file {
@@ -4535,7 +4386,9 @@ fieldset {
 .form-type-managed-file .submit-wrapper {
   margin: 2px 2px 2px 0;
   height: 24px;
-  position: relative; }
+  position: absolute;
+  top: 0;
+  right: 0; }
   .form-type-managed-file .submit-wrapper .form-submit {
     display: inline-block;
     height: 34px;
@@ -4805,8 +4658,15 @@ form .form-body {
   overflow: hidden;
   padding: 20px;
   width: 70%; }
-form .form-actions {
-  margin-top: 20px; }
+form .form-actions .submit-wrapper {
+  display: inline-block; }
+  form .form-actions .submit-wrapper .form-submit {
+    margin: 0 10px; }
+.page-node-add form .form-actions, .page-node-edit form .form-actions {
+  width: 50%;
+  min-width: 700px;
+  margin: 0 auto 40px;
+  text-align: center; }
 form .messages {
   padding: 10px;
   color: #fff;
@@ -4928,11 +4788,6 @@ fieldset .container-inline-date {
     font-style: italic;
     margin-top: 3px;
     color: #797979; }
-
-.submit-wrapper {
-  display: inline-block; }
-  .submit-wrapper .form-submit {
-    margin-right: 10px; }
 
 div.street-block,
 div.addressfield-container-inline {
@@ -5109,6 +4964,118 @@ div.addressfield-container-inline {
       display: block; }
     .page-avtalsparter-skapa ul.create-type-list a:hover {
       border-color: #b2b3b6; }
+
+.field-type-entityreference .submit-wrapper {
+  position: relative;
+  margin-right: 10px; }
+  .field-type-entityreference .submit-wrapper .form-submit {
+    margin-right: 0; }
+  .field-type-entityreference .submit-wrapper input {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 24px;
+    background-position: 10px 6px;
+    padding: 0 10px 0 26px;
+    margin-right: 8px;
+    background-position: 11px 7px; }
+    .field-type-entityreference .submit-wrapper input:hover {
+      background-color: #303030; }
+.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/check_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/check_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save:hover {
+    background-color: #303030; }
+.field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel:hover {
+    background-color: #303030; }
+.field-type-entityreference .ajax-progress {
+  left: 0;
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 24px;
+  background: #303030;
+  border-radius: 12px;
+  padding: 2px;
+  color: #fff; }
+  .field-type-entityreference .ajax-progress .message {
+    padding-left: 5px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 18px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
 
 table.field-multiple-table {
   margin-bottom: 20px;
