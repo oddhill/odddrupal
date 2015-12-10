@@ -21,12 +21,6 @@
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
 
       <tr>
-        <td align="center" style="padding-bottom: 0; padding-top: 30px; display: block;">
-          <?php print render($content['field_offer_company']); ?>
-        </td>
-      </tr>
-
-      <tr>
         <td align="center" style="color: #1a1a1a; font-family: Arial, sans-serif; font-weight: bold; font-size: 26px; border-bottom: 2px solid #eee; padding-bottom: 20px; padding-top: 30px;">
           <h1 style="color: #1a1a1a; font-family: Arial, sans-serif; font-weight: bold; font-size: 26px;"><?php print $title; ?></h1>
         </td>
