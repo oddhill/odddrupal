@@ -636,8 +636,7 @@ function sedermera_verification_get_status_node($nid) {
 
     // Load the field info.
     $field = field_info_field($property_name);
-
-    if ($field['type'] != 'entityreference' || !in_array('ctrl', $field['settings']['handler_settings']['target_bundles'])) {
+    if ($field['type'] != 'entityreference' || !$field['settings']['handler_settings']['target_bundles'] || !in_array('ctrl', $field['settings']['handler_settings']['target_bundles'])) {
       // The field isn't a reference field which points to the verification
       // bundle.
       continue;
