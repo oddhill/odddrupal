@@ -106,11 +106,61 @@ function f_core_user_default_permissions() {
     'module' => 'yubikey',
   );
 
+  // Exported permission: 'create ctrl content'.
+  $permissions['create ctrl content'] = array(
+    'name' => 'create ctrl content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create ctrl_pen content'.
+  $permissions['create ctrl_pen content'] = array(
+    'name' => 'create ctrl_pen content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create messages'.
   $permissions['create messages'] = array(
     'name' => 'create messages',
     'roles' => array(),
     'module' => 'message',
+  );
+
+  // Exported permission: 'create transaction content'.
+  $permissions['create transaction content'] = array(
+    'name' => 'create transaction content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create transaction_agreement content'.
+  $permissions['create transaction_agreement content'] = array(
+    'name' => 'create transaction_agreement content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create transaction_ap content'.
+  $permissions['create transaction_ap content'] = array(
+    'name' => 'create transaction_ap content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
   );
 
   // Exported permission: 'display popup message'.
@@ -120,6 +170,106 @@ function f_core_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'popup_message',
+  );
+
+  // Exported permission: 'edit any ctrl content'.
+  $permissions['edit any ctrl content'] = array(
+    'name' => 'edit any ctrl content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any ctrl_pen content'.
+  $permissions['edit any ctrl_pen content'] = array(
+    'name' => 'edit any ctrl_pen content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any transaction content'.
+  $permissions['edit any transaction content'] = array(
+    'name' => 'edit any transaction content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any transaction_agreement content'.
+  $permissions['edit any transaction_agreement content'] = array(
+    'name' => 'edit any transaction_agreement content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any transaction_ap content'.
+  $permissions['edit any transaction_ap content'] = array(
+    'name' => 'edit any transaction_ap content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own ctrl content'.
+  $permissions['edit own ctrl content'] = array(
+    'name' => 'edit own ctrl content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own ctrl_pen content'.
+  $permissions['edit own ctrl_pen content'] = array(
+    'name' => 'edit own ctrl_pen content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own transaction content'.
+  $permissions['edit own transaction content'] = array(
+    'name' => 'edit own transaction content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own transaction_agreement content'.
+  $permissions['edit own transaction_agreement content'] = array(
+    'name' => 'edit own transaction_agreement content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own transaction_ap content'.
+  $permissions['edit own transaction_ap content'] = array(
+    'name' => 'edit own transaction_ap content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
   );
 
   // Exported permission: 'use text format filtered_html'.
@@ -140,6 +290,250 @@ function f_core_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
+  );
+
+  // Exported permission: 'view any ctrl content'.
+  $permissions['view any ctrl content'] = array(
+    'name' => 'view any ctrl content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any ctrl_pen content'.
+  $permissions['view any ctrl_pen content'] = array(
+    'name' => 'view any ctrl_pen content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any transaction content'.
+  $permissions['view any transaction content'] = array(
+    'name' => 'view any transaction content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any transaction_agreement content'.
+  $permissions['view any transaction_agreement content'] = array(
+    'name' => 'view any transaction_agreement content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any transaction_ap content'.
+  $permissions['view any transaction_ap content'] = array(
+    'name' => 'view any transaction_ap content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any transaction_history content'.
+  $permissions['view any transaction_history content'] = array(
+    'name' => 'view any transaction_history content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view any unpublished company content'.
+  $permissions['view any unpublished company content'] = array(
+    'name' => 'view any unpublished company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished ctrl content'.
+  $permissions['view any unpublished ctrl content'] = array(
+    'name' => 'view any unpublished ctrl content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished ctrl_pen content'.
+  $permissions['view any unpublished ctrl_pen content'] = array(
+    'name' => 'view any unpublished ctrl_pen content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished investor_company content'.
+  $permissions['view any unpublished investor_company content'] = array(
+    'name' => 'view any unpublished investor_company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished investor_private content'.
+  $permissions['view any unpublished investor_private content'] = array(
+    'name' => 'view any unpublished investor_private content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished transaction content'.
+  $permissions['view any unpublished transaction content'] = array(
+    'name' => 'view any unpublished transaction content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished transaction_agreement content'.
+  $permissions['view any unpublished transaction_agreement content'] = array(
+    'name' => 'view any unpublished transaction_agreement content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished transaction_ap content'.
+  $permissions['view any unpublished transaction_ap content'] = array(
+    'name' => 'view any unpublished transaction_ap content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished transaction_history content'.
+  $permissions['view any unpublished transaction_history content'] = array(
+    'name' => 'view any unpublished transaction_history content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view own ctrl content'.
+  $permissions['view own ctrl content'] = array(
+    'name' => 'view own ctrl content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own ctrl_pen content'.
+  $permissions['view own ctrl_pen content'] = array(
+    'name' => 'view own ctrl_pen content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own investor_company content'.
+  $permissions['view own investor_company content'] = array(
+    'name' => 'view own investor_company content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own investor_private content'.
+  $permissions['view own investor_private content'] = array(
+    'name' => 'view own investor_private content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own transaction content'.
+  $permissions['view own transaction content'] = array(
+    'name' => 'view own transaction content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own transaction_agreement content'.
+  $permissions['view own transaction_agreement content'] = array(
+    'name' => 'view own transaction_agreement content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own transaction_ap content'.
+  $permissions['view own transaction_ap content'] = array(
+    'name' => 'view own transaction_ap content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own transaction_history content'.
+  $permissions['view own transaction_history content'] = array(
+    'name' => 'view own transaction_history content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
   );
 
   // Exported permission: 'view own unpublished content'.

@@ -15,6 +15,7 @@ function f_investor_user_default_permissions() {
     'name' => 'add terms in industries',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy_access_fix',
   );
@@ -24,6 +25,7 @@ function f_investor_user_default_permissions() {
     'name' => 'add terms in intressen',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy_access_fix',
   );
@@ -161,6 +163,7 @@ function f_investor_user_default_permissions() {
     'name' => 'edit terms in industries',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy',
   );
@@ -170,6 +173,7 @@ function f_investor_user_default_permissions() {
     'name' => 'edit terms in intressen',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy',
   );
@@ -212,7 +216,6 @@ function f_investor_user_default_permissions() {
     'name' => 'view any unpublished person content',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Granskare' => 'Granskare',
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'view_unpublished',

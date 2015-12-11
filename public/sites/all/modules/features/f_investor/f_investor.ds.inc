@@ -166,6 +166,32 @@ function f_investor_ds_custom_fields_info() {
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
+  $ds_field->field = 'avtalsparter';
+  $ds_field->label = 'Avtalsparter';
+  $ds_field->field_type = 5;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'person|full';
+  $ds_field->properties = array(
+    'code' => array(
+      'value' => '<?php
+$results = db_query("SELECT n.title AS name, a.alias AS alias FROM node AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) INNER JOIN url_alias AS a ON (a.source = CONCAT(\'node/\', u.entity_id)) WHERE u.field_shared_cont_pers_target_id = :tid", array(\':tid\' => arg(1)))->fetchAll();
+
+print "<ul>";
+foreach ($results as $key => $res) {
+  print "<li>" . l($res->name, $res->alias) . "</li>";
+}
+print "</ul>";
+?>',
+      'format' => 'ds_code',
+    ),
+    'use_token' => 0,
+  );
+  $export['avtalsparter'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
   $ds_field->field = 'handle_control';
   $ds_field->label = 'Hantera kontroll';
   $ds_field->field_type = 5;
@@ -264,6 +290,77 @@ if ($results) {
  */
 function f_investor_ds_layout_settings_info() {
   $export = array();
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'contact_person|contact_person|default';
+  $ds_layout->entity_type = 'contact_person';
+  $ds_layout->bundle = 'contact_person';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_comp_cont_name',
+        1 => 'field_comp_cont_mail',
+        2 => 'field_comp_cont_cell',
+        3 => 'field_comp_cont_phone',
+        4 => 'field_comp_cont_fax',
+      ),
+    ),
+    'fields' => array(
+      'field_comp_cont_name' => 'ds_content',
+      'field_comp_cont_mail' => 'ds_content',
+      'field_comp_cont_cell' => 'ds_content',
+      'field_comp_cont_phone' => 'ds_content',
+      'field_comp_cont_fax' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['contact_person|contact_person|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'contact_person|contact_person|full';
+  $ds_layout->entity_type = 'contact_person';
+  $ds_layout->bundle = 'contact_person';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_comp_cont_name',
+        1 => 'field_comp_cont_mail',
+        2 => 'field_comp_cont_cell',
+        3 => 'field_comp_cont_phone',
+        4 => 'field_comp_cont_fax',
+      ),
+    ),
+    'fields' => array(
+      'field_comp_cont_name' => 'ds_content',
+      'field_comp_cont_mail' => 'ds_content',
+      'field_comp_cont_cell' => 'ds_content',
+      'field_comp_cont_phone' => 'ds_content',
+      'field_comp_cont_fax' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => TRUE,
+    'layout_link_attribute' => FALSE,
+    'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
+  );
+  $export['contact_person|contact_person|full'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;

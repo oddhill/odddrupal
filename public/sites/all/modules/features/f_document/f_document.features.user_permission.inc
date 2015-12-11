@@ -25,6 +25,7 @@ function f_document_user_default_permissions() {
     'name' => 'add terms in document_type',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy_access_fix',
   );
@@ -178,6 +179,7 @@ function f_document_user_default_permissions() {
     'name' => 'edit terms in document_type',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy',
   );
@@ -276,6 +278,7 @@ function f_document_user_default_permissions() {
     'name' => 'view any manual content',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Användare' => 'Användare',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
       'Granskare' => 'Granskare',
@@ -300,8 +303,10 @@ function f_document_user_default_permissions() {
   $permissions['view any unpublished document content'] = array(
     'name' => 'view any unpublished document content',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'view_unpublished',
   );
@@ -309,21 +314,38 @@ function f_document_user_default_permissions() {
   // Exported permission: 'view any unpublished manual content'.
   $permissions['view any unpublished manual content'] = array(
     'name' => 'view any unpublished manual content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'view_unpublished',
   );
 
   // Exported permission: 'view own document content'.
   $permissions['view own document content'] = array(
     'name' => 'view own document content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Användare' => 'Användare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node_view_permissions',
   );
 
   // Exported permission: 'view own manual content'.
   $permissions['view own manual content'] = array(
     'name' => 'view own manual content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Användare' => 'Användare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node_view_permissions',
   );
 
@@ -363,6 +385,7 @@ function f_document_user_default_permissions() {
     'name' => 'view revisions of own document content',
     'roles' => array(
       'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'revisioning',
   );

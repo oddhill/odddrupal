@@ -528,6 +528,70 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nodeaccess_ctrl_pen';
+  $strongarm->value = array(
+    0 => array(
+      'gid' => 1,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    1 => array(
+      'gid' => 2,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    2 => array(
+      'gid' => 3,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    3 => array(
+      'gid' => 5,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    4 => array(
+      'gid' => 4,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    5 => array(
+      'gid' => 9,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    6 => array(
+      'gid' => 8,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    7 => array(
+      'gid' => 10,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+  );
+  $export['nodeaccess_ctrl_pen'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'nodeaccess_erbjudande';
   $strongarm->value = array(
     0 => array(
@@ -608,6 +672,48 @@ function f_capital_raising_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
+    2 => array(
+      'gid' => 3,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    3 => array(
+      'gid' => 5,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    4 => array(
+      'gid' => 4,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    5 => array(
+      'gid' => 9,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    6 => array(
+      'gid' => 8,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    7 => array(
+      'gid' => 10,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
   );
   $export['nodeaccess_offer'] = $strongarm;
 
@@ -625,6 +731,48 @@ function f_capital_raising_strongarm() {
     ),
     1 => array(
       'gid' => 2,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    2 => array(
+      'gid' => 3,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    3 => array(
+      'gid' => 5,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    4 => array(
+      'gid' => 4,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    5 => array(
+      'gid' => 9,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    6 => array(
+      'gid' => 8,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    7 => array(
+      'gid' => 10,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
@@ -652,8 +800,178 @@ function f_capital_raising_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
+    2 => array(
+      'gid' => 3,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    3 => array(
+      'gid' => 5,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    4 => array(
+      'gid' => 4,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    5 => array(
+      'gid' => 9,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    6 => array(
+      'gid' => 8,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    7 => array(
+      'gid' => 10,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
   );
   $export['nodeaccess_transaction'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeaccess_transaction_agreement';
+  $strongarm->value = array(
+    0 => array(
+      'gid' => 1,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    1 => array(
+      'gid' => 2,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    2 => array(
+      'gid' => 3,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    3 => array(
+      'gid' => 5,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    4 => array(
+      'gid' => 4,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    5 => array(
+      'gid' => 9,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    6 => array(
+      'gid' => 8,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    7 => array(
+      'gid' => 10,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+  );
+  $export['nodeaccess_transaction_agreement'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeaccess_transaction_ap';
+  $strongarm->value = array(
+    0 => array(
+      'gid' => 1,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    1 => array(
+      'gid' => 2,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    2 => array(
+      'gid' => 3,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    3 => array(
+      'gid' => 5,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 1,
+      'grant_delete' => 0,
+    ),
+    4 => array(
+      'gid' => 4,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    5 => array(
+      'gid' => 9,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    6 => array(
+      'gid' => 8,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+    7 => array(
+      'gid' => 10,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
+  );
+  $export['nodeaccess_transaction_ap'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

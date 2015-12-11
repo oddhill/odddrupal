@@ -40,7 +40,10 @@ function f_company_user_default_permissions() {
   // Exported permission: 'edit own company content'.
   $permissions['edit own company content'] = array(
     'name' => 'edit own company content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'node',
   );
 
