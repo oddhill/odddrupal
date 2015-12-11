@@ -759,6 +759,8 @@ admin/*';
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_development_modules';
   $strongarm->value = array(
+    'context_list' => 1,
+    'context_list_active' => 1,
     'context_ui' => 1,
     'dblog' => 1,
     'field_ui' => 1,
@@ -818,6 +820,8 @@ admin/*';
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_production_modules';
   $strongarm->value = array(
+    'context_list' => 0,
+    'context_list_active' => 0,
     'context_ui' => 0,
     'dblog' => 0,
     'field_ui' => 0,
@@ -868,6 +872,8 @@ admin/*';
   $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_staging_modules';
   $strongarm->value = array(
+    'context_list' => 0,
+    'context_list_active' => 0,
     'context_ui' => 1,
     'dblog' => 1,
     'field_ui' => 1,
