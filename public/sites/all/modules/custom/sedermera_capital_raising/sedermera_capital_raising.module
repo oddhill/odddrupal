@@ -5,25 +5,6 @@
  * Main module file for the Sedermera Capital Raising module.
  */
 
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function sedermera_capital_raising_form_capital_raising_node_form_alter(&$form, &$form_state) {
-  // Add a custom validation function to the capital raising node form.
-  $form['#validate'][] = 'sedermera_capital_raising_node_form_validate';
-}
-
-function sedermera_capital_raising_node_form_validate($form, &$form_state) {
-  // Get the submitted values for the guaranteed and commited percentage.
-  $goal_guar = $form_state['values']['field_cap_rais_goal_guar'][LANGUAGE_NONE][0]['value'];
-  $goal_com = $form_state['values']['field_cap_rais_goal_com'][LANGUAGE_NONE][0]['value'];
-  $total = $goal_guar + $goal_com;
-
-  // Trigger an error if the combined percentage doesn't match 0-100.
-  if (($goal_guar || $goal_com) && ($total <= 0 || $total >= 100)) {
-    form_set_error('group_cap_rais_3', 'Mål för garanterat och åtaget belopp måste tillsammans vara mellan 0-100 %.');
-  }
-}
 
 /**
  * Implements hook_pathauto_alias_alter().

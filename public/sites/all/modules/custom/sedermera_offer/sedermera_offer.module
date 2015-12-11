@@ -1103,6 +1103,9 @@ function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bu
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
 function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_id) {
   $fe = ($form['#node']->field_offer_type_fe[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
   $le = ($form['#node']->field_offer_type_le[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
@@ -1110,7 +1113,6 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
   $re = ($form['#node']->field_offer_type_re[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
   $bl = ($form['#node']->field_offer_type_bl[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
   $bp = ($form['#node']->field_offer_type_bp[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
-
 
   if (!$fe) {
     unset($form['#fieldgroups']['group_offer_type_fe']);
@@ -1149,6 +1151,7 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
   if ($form_state['storage']['step'] == 'step_offer_2') {
     unset($form['#step_children']['group_offer_step_1']);
     unset($form['#fieldgroups']['group_offer_step_1']);
+    $form['#validate'][] = 'sedermera_capital_raising_node_form_validate';
   }
 
   // Add the offer display from the person view as a prefix to the form. The
@@ -1229,6 +1232,31 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
 
   // Change the text of the submit button.
   $form['actions']['submit']['#value'] = 'Skapa erbjudande';
+}
+
+/**
+ * Validation callback to check value 0-100%
+ */
+function sedermera_capital_raising_node_form_validate($form, &$form_state) {
+  // Check if fe sign and warrant is between 0-100%
+  if ($form_state['values']['field_offer_type_fe'][LANGUAGE_NONE][0]['value'] == 1) {
+    $guar = $form_state['values']['field_offer_type_fe_sign'][LANGUAGE_NONE][0]['value'];
+    $warr = $form_state['values']['field_offer_type_fe_warrant'][LANGUAGE_NONE][0]['value'];
+    $total = $guar + $warr;
+    if ($total >100 || $total < 0) {
+      form_set_error('group_offer_step_2', 'Mål för garanterat och åtaget belopp måste tillsammans vara mellan 0-100 %.');
+    }
+  }
+
+  // Check if le sign and warrant is between 0-100%
+  if ($form_state['values']['field_offer_type_le'][LANGUAGE_NONE][0]['value'] == 1) {
+    $guar = $form_state['values']['field_offer_type_le_sign'][LANGUAGE_NONE][0]['value'];
+    $warr = $form_state['values']['field_offer_type_le_warrant'][LANGUAGE_NONE][0]['value'];
+    $total = $guar + $warr;
+    if ($total >100 || $total < 0) {
+      form_set_error('group_offer_step_2', 'Mål för garanterat och åtaget belopp måste tillsammans vara mellan 0-100 %.');
+    }
+  }
 }
 
 /**
