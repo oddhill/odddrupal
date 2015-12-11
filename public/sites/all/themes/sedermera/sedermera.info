@@ -12,6 +12,7 @@ scripts[] = assets/magnific-popup/dist/jquery.magnific-popup.min.js
 
 ; Javascripts.
 scripts[] = js/main.js
+scripts[] = js/verifications_modal.js
 
 ; Stylesheets.
 stylesheets[screen][] = css/normalize.css

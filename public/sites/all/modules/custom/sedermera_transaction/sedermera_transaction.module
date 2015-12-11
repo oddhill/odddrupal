@@ -517,6 +517,10 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
         array(
           'label'=>'hidden',
           'type' => 'sedermera_verification_status',
+          'settings' => array(
+            'link' => TRUE,
+            'link_destination' => 'view',
+          ),
         ));
   $rows[$row]['data'][] = array(
     'data' => render($field),
@@ -710,7 +714,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
     // Control column
     $investor_view_full = node_view($investor);
     $rows[$row]['data'][] = array(
-      'data' => render($investor_view_full['verification_status']),
+      'data' => render($investor_view_full['verification_status_investor']),
     );
 
     // To control column
@@ -1040,6 +1044,10 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
     ));
 
   // To sign
@@ -1144,6 +1152,10 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
     ));
 
   // Control PTV
@@ -1151,6 +1163,10 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
     ));
 
   // Control ID
@@ -1161,6 +1177,10 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
     ));
 
   // Control EU
@@ -1168,6 +1188,10 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
     ));
 
   // Control KRE
@@ -1175,6 +1199,10 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
     ));
 
   // Control KOM column
@@ -1182,6 +1210,10 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
     ));
 
   $rows[] = array(
@@ -1318,6 +1350,10 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       array(
         'label'=>'hidden',
         'type' => 'sedermera_verification_status',
+        'settings' => array(
+          'link' => TRUE,
+          'link_destination' => 'edit',
+        ),
       ));
   }
 

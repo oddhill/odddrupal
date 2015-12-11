@@ -283,6 +283,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 9,
@@ -336,6 +338,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 10,
@@ -389,6 +393,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 11,
@@ -442,6 +448,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 8,
@@ -495,6 +503,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 7,
@@ -796,6 +806,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 7,
@@ -849,6 +861,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 8,
@@ -902,6 +916,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 9,
@@ -955,6 +971,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 6,
@@ -1008,6 +1026,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 5,
@@ -1461,6 +1481,8 @@ function f_investor_field_default_field_instances() {
         'module' => 'sedermera_verification',
         'settings' => array(
           'ajax' => FALSE,
+          'link' => FALSE,
+          'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',
         'weight' => 12,
