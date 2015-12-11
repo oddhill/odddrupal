@@ -457,3 +457,49 @@ function sedermera_update_update_7024() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Add field conditional state configuration for persons.
+ */
+function sedermera_update_update_7025() {
+  db_insert('field_conditional_states_group')
+    ->fields(array(
+      'group_id' => 1,
+      'state' => 'optional',
+      'entity_type' => 'node',
+      'bundle' => 'person',
+      'field_name' => 'field_user_ssn',
+      'type' => 'and',
+    ))
+    ->execute();
+  db_insert('field_conditional_states_group')
+    ->fields(array(
+      'group_id' => 2,
+      'state' => 'optional',
+      'entity_type' => 'node',
+      'bundle' => 'person',
+      'field_name' => 'field_user_mail',
+      'type' => 'and',
+    ))
+    ->execute();
+
+  db_insert('field_conditional_state')
+    ->fields(array(
+      'id' => 1,
+      'group_id' => 1,
+      'control_field' => 'field_user_lead',
+      'trigger_state' => 'checked',
+      'trigger_value' => 1,
+    ))
+    ->execute();
+
+  db_insert('field_conditional_state')
+    ->fields(array(
+      'id' => 2,
+      'group_id' => 2,
+      'control_field' => 'field_user_lead',
+      'trigger_state' => 'checked',
+      'trigger_value' => 1,
+    ))
+    ->execute();
+}
