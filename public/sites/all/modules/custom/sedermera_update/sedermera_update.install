@@ -503,3 +503,12 @@ function sedermera_update_update_7025() {
     ))
     ->execute();
 }
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7026() {
+  field_delete_field('field_transaction_interested_day');
+
+  field_purge_batch(1000);
+}
