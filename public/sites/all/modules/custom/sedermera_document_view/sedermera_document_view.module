@@ -20,6 +20,15 @@ function sedermera_document_view_revisionapi($op, $node_revision) {
 }
 
 /**
+ * Implements hook_node_delete().
+ */
+function sedermera_document_view_node_delete($node) {
+  if ($node->type === 'document' || $node->type === 'manual') {
+    db_query("DELETE FROM draggableviews_structure WHERE entity_id = :eid", array(':eid' => $node->nid));
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function sedermera_document_view_menu() {
