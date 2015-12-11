@@ -863,7 +863,6 @@ admin/*';
     'reroute_email_enable_message' => 0,
     'speedy_js_production' => 1,
     'yubikey_enabled' => 1,
-    'autologout_timeout' => '300',
   );
   $export['tadaa_production_variables'] = $strongarm;
 
@@ -915,7 +914,6 @@ admin/*';
     'reroute_email_enable_message' => 0,
     'speedy_js_production' => 1,
     'yubikey_enabled' => 0,
-    'autologout_timeout' => '300',
   );
   $export['tadaa_staging_variables'] = $strongarm;
 
