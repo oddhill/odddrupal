@@ -187,11 +187,10 @@ function f_document_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Sidebar',
-    'weight' => '4',
+    'weight' => '3',
     'children' => array(
       0 => 'field_manual_type',
       1 => 'title',
-      2 => 'group_manual_rel',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -260,15 +259,15 @@ function f_document_field_group_info() {
     'label' => 'Sidfot',
     'weight' => '9',
     'children' => array(
-      0 => 'field_man_foot_address',
-      1 => 'field_man_foot_bg',
+      0 => 'field_man_foot_tel',
+      1 => 'field_man_foot_address',
       2 => 'field_man_foot_fax',
-      3 => 'field_man_foot_free',
-      4 => 'field_man_foot_mail',
-      5 => 'field_man_foot_moms',
-      6 => 'field_man_foot_tel',
-      7 => 'field_man_foot_vat',
-      8 => 'field_man_foot_webb',
+      3 => 'field_man_foot_bg',
+      4 => 'field_man_foot_moms',
+      5 => 'field_man_foot_vat',
+      6 => 'field_man_foot_webb',
+      7 => 'field_man_foot_mail',
+      8 => 'field_man_foot_free',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -296,9 +295,9 @@ function f_document_field_group_info() {
     'label' => 'Sidhuvud',
     'weight' => '6',
     'children' => array(
-      0 => 'field_man_head_free',
-      1 => 'field_man_head_img',
-      2 => 'field_man_head_text',
+      0 => 'field_man_head_img',
+      1 => 'field_man_head_text',
+      2 => 'field_man_head_free',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
