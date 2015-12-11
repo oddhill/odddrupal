@@ -679,27 +679,6 @@ div.button {
 #views-exposed-form-document-log-document-log .description {
   display: none; }
 
-#edit-submit-document-log {
-  display: inline-block;
-  height: 34px;
-  font-size: 12px;
-  font-size: 1.2rem;
-  line-height: 12px;
-  line-height: 34px;
-  border-radius: 34px;
-  color: #fff;
-  padding: 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-bottom: 0 none;
-  background-color: #454545;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out;
-  margin-bottom: 25px; }
-  #edit-submit-document-log:hover {
-    background-color: #303030; }
-
 #edit-field-dokument-relation th,
 #edit-field-manual-relation th,
 #edit-field-document-appendix th,
@@ -4965,40 +4944,37 @@ div.addressfield-container-inline {
     .page-avtalsparter-skapa ul.create-type-list a:hover {
       border-color: #b2b3b6; }
 
-.field-type-entityreference .submit-wrapper {
-  position: relative;
-  margin-right: 10px; }
-  .field-type-entityreference .submit-wrapper .form-submit {
-    margin-right: 0; }
-  .field-type-entityreference .submit-wrapper input {
-    display: inline-block;
-    height: 34px;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 12px;
-    line-height: 34px;
-    border-radius: 34px;
-    color: #fff;
-    padding: 0 20px;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-bottom: 0 none;
-    background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
-    padding-left: 42px;
-    background-color: #454545;
-    -webkit-transition: background-color 0.1s ease-in-out;
-    -moz-transition: background-color 0.1s ease-in-out;
-    transition: background-color 0.1s ease-in-out;
-    height: 24px;
-    line-height: 24px;
-    border-radius: 24px;
-    background-position: 10px 6px;
-    padding: 0 10px 0 26px;
-    margin-right: 8px;
-    background-position: 11px 7px; }
-    .field-type-entityreference .submit-wrapper input:hover {
-      background-color: #303030; }
+.field-type-entityreference .submit-wrapper .form-submit {
+  margin-right: 0; }
+.field-type-entityreference .submit-wrapper input {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 24px;
+  background-position: 10px 6px;
+  padding: 0 10px 0 26px;
+  margin-right: 8px;
+  background-position: 11px 7px; }
+  .field-type-entityreference .submit-wrapper input:hover {
+    background-color: #303030; }
 .field-type-entityreference .ief-form .submit-wrapper input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
   display: inline-block;
   height: 34px;

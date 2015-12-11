@@ -6,12 +6,6 @@
   }
 }
 
-// Document log show button
-#edit-submit-document-log {
-  @include button($dark-grey);
-  margin-bottom: 25px;
-}
-
 // Relation document/appendix input field
 #edit-field-dokument-relation,
 #edit-field-manual-relation,
