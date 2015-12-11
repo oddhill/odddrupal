@@ -112,8 +112,7 @@ function view_page_user() {
     $block = generateTable($header, $rows);
   }
   else {
-    drupal_set_title('Det finns inga dokument');
-    $block = generateTable(array(), NULL);
+    $block = '<div class="view-empty">Det finns inga dokument</div>';
   }
   return $block;
 }
@@ -157,8 +156,7 @@ function admin_doc() {
     $block = generateTable($header, $rows);
   }
   else {
-    drupal_set_title('Det finns inga dokument');
-    $block = generateTable(array(), NULL);
+    $block = '<div class="view-empty">Det finns inga dokument</div>';
   }
   return $block;
 }
@@ -217,8 +215,7 @@ function view_page_per_user() {
     }
   }
   else {
-    drupal_set_title('Det finns inga dokument');
-    $block = generateTable(array(), NULL);
+    $block = '<div class="view-empty">Det finns inga dokument</div>';
   }
   return $block;
 }
@@ -241,8 +238,7 @@ function view_page_per_doc() {
       $block = drupal_get_form('docForm');
     }
     else {
-      drupal_set_title('Det finns inga dokument');
-      $block = generateTable(array(), NULL);
+      $block = '<div class="view-empty">Det finns inga dokument</div>';
     }
   }
   else {

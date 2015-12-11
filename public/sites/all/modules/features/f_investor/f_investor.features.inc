@@ -53,58 +53,6 @@ function f_investor_views_api($module = NULL, $api = NULL) {
 }
 
 /**
- * Implements hook_eck_bundle_info().
- */
-function f_investor_eck_bundle_info() {
-  $items = array(
-    '' => array(
-      'machine_name' => NULL,
-      'entity_type' => NULL,
-      'name' => NULL,
-      'label' => NULL,
-    ),
-    '' => array(
-      'machine_name' => NULL,
-      'entity_type' => NULL,
-      'name' => NULL,
-      'label' => NULL,
-    ),
-    '' => array(
-      'machine_name' => NULL,
-      'entity_type' => NULL,
-      'name' => NULL,
-      'label' => NULL,
-    ),
-    '' => array(
-      'machine_name' => NULL,
-      'entity_type' => NULL,
-      'name' => NULL,
-      'label' => NULL,
-    ),
-  );
-  return $items;
-}
-
-/**
- * Implements hook_eck_entity_type_info().
- */
-function f_investor_eck_entity_type_info() {
-  $items = array(
-    '' => array(
-      'name' => NULL,
-      'label' => NULL,
-      'properties' => NULL,
-    ),
-    '' => array(
-      'name' => NULL,
-      'label' => NULL,
-      'properties' => NULL,
-    ),
-  );
-  return $items;
-}
-
-/**
  * Implements hook_node_info().
  */
 function f_investor_node_info() {

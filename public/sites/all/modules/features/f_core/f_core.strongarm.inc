@@ -451,7 +451,7 @@ function f_core_strongarm() {
     1 => array(
       'gid' => 2,
       'realm' => 'nodeaccess_rid',
-      'grant_view' => 1,
+      'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),

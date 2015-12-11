@@ -1632,7 +1632,7 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
         ),
         // Agreement column
         array(
-          'data' => l('Visa avtal', "node/" . $agreement_node->nid, array('attributes' => array('class' => array('mfp-verification-view')))),
+          'data' => l('Hantera avtal', "node/" . $agreement_node->nid . '/edit/control', array('attributes' => array('class' => array('mfp-verification-edit')))),
         ),
         // Sign column
         array(

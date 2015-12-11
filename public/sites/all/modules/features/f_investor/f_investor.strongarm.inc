@@ -603,14 +603,14 @@ function f_investor_strongarm() {
       'gid' => 3,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 1,
-      'grant_update' => 0,
+      'grant_update' => 1,
       'grant_delete' => 0,
     ),
     3 => array(
       'gid' => 5,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 1,
-      'grant_update' => 0,
+      'grant_update' => 1,
       'grant_delete' => 0,
     ),
     4 => array(

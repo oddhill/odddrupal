@@ -22,7 +22,7 @@ function f_document_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Sök användare för att visa logg';
+  $handler->display->display_options['title'] = 'Dokumentlogg';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -66,6 +66,13 @@ function f_document_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['override'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Du har inte valt någon användare';
+  $handler->display->display_options['empty']['area']['format'] = 'document_html';
   /* Relationship: Message: User uid */
   $handler->display->display_options['relationships']['user']['id'] = 'user';
   $handler->display->display_options['relationships']['user']['table'] = 'message';
@@ -139,7 +146,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['document_log'] = array(
     t('Master'),
-    t('Sök användare för att visa logg'),
+    t('Dokumentlogg'),
     t('more'),
     t('Visa'),
     t('Reset'),
@@ -153,6 +160,7 @@ function f_document_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Du har inte valt någon användare'),
     t('User'),
     t('Tidstämpel'),
     t('Logg meddelande'),
@@ -244,7 +252,7 @@ function f_document_views_default_views() {
   /* Display: Sortera dokument */
   $handler = $view->new_display('page', 'Sortera dokument', 'document');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Dokument sortering';
+  $handler->display->display_options['title'] = 'Sortera dokument';
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -275,6 +283,14 @@ function f_document_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga dokument';
+  $handler->display->display_options['empty']['area']['format'] = 'document_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -394,7 +410,7 @@ function f_document_views_default_views() {
     t('last »'),
     t('Entity Reference'),
     t('Sortera dokument'),
-    t('Dokument sortering'),
+    t('Det finns inga dokument'),
     t('Title'),
     t('Content'),
     t('Sortera manual'),

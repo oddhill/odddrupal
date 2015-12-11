@@ -5260,7 +5260,7 @@ div.radio {
     border: 1px solid #e0e2e6;
     border-radius: 2px;
     background: #fff;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); }
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); }
     .select-container.contracting-parties .dropdown .form-item {
       padding: 10px;
       margin: 0;
