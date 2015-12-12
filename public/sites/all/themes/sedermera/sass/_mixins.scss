@@ -196,6 +196,11 @@
 @mixin verification($text: default) {
   display: inline-block;
   overflow: hidden;
+  border-bottom: 0px none;
+
+  &:hover {
+    border-bottom: 0px none;
+  }
 
   &:before {
     content: '';

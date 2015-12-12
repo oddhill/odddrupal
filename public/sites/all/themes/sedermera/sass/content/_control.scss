@@ -1,5 +1,60 @@
 .node-ctrl {
 
+  &.view-mode-teaser {
+
+    .inner-wrapper {
+      margin-left: 3px;
+      border-top: 3px solid $wool;
+      border-right: 3px solid $wool;
+      border-bottom: 3px solid $wool;
+      padding: 18px 18px 18px 15px;
+    }
+
+    .ver-type {
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      float: left;
+    }
+
+    h2.ver-title {
+      @include font-size(1.4);
+      font-weight: 400;
+      float: right;
+    }
+
+    .verification-info {
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .verification-status {
+      border: 1px solid $wool;
+      background: $snow;
+      padding: 10px;
+
+      .ctrl-verification {
+        font-weight: 700;
+
+        &.not-approved {
+          color: $wine;
+        }
+
+        &.expiring {
+          color: $mustard;
+        }
+
+        &.approved {
+          color: $pear;
+        }
+      }
+
+      .approved-details {
+        float: right;
+      }
+    }
+  }
+
   &.view-mode-full {
 
     // Verification header
@@ -107,6 +162,34 @@
           color: $coffee;
         }
       }
+    }
+  }
+}
+
+.verifications-summary {
+  border-top: 10px solid $neon;
+
+  .summary-header {
+    padding: 40px;
+
+    h2 {
+      @include font-size(3.0,1.2);
+    }
+  }
+
+  .summary-body {
+    padding: 40px;
+    background: tint($light-grey,60%);
+    border-top: 1px solid $wool;
+    border-bottom: 1px solid $wool;
+  }
+
+  .summary-footer {
+    padding: 40px;
+    text-align: center;
+
+    .modal-close {
+      @include button($dark-grey, confirm);
     }
   }
 }

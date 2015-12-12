@@ -31,8 +31,13 @@ function f_verification_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['view_mode'] = 'full';
   $handler->display->display_options['row_options']['links'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = '<h2 class="summary-title">Samlad kontroll</h2>';
+  $handler->display->display_options['header']['area']['format'] = 'document_html';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -86,6 +91,7 @@ function f_verification_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('<h2 class="summary-title">Samlad kontroll</h2>'),
     t('All'),
     t('Modal'),
   );

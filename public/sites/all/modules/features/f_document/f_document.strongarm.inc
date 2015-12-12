@@ -166,7 +166,7 @@ function f_document_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'title' => array(
           'weight' => '-5',

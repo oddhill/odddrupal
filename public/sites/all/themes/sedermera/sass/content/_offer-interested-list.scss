@@ -30,6 +30,15 @@
       @include svg-bg(transaction-collapse);
     }
 
+    .ctrl {
+      width: 50px;
+      text-align: center;
+
+      .verification {
+        padding-top: 4px;
+      }
+    }
+
     .to-check-ctrl {
       cursor: pointer;
     }

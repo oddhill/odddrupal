@@ -184,26 +184,26 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   // Collapsible column
   $header[] = array(
     'class' => array('table-head', 'collapsible-head'),
-    'data' => '<span class="icon"></span>'
+    'data' => '<span class="icon"></span>',
   );
 
   // Name column
   $header[] = array(
     'data' => 'Kontaktperson',
-    'class' => array('table-head')
+    'class' => array('table-head'),
   );
 
   // Dropdown column
   $header[] = array(
     'data' => '',
-    'class' => array('table-head')
+    'class' => array('table-head'),
   );
 
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
@@ -211,7 +211,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   if ($type_investment['fe_warr']) {
     $header[] = array(
       'data' => 'Garantiåtagande',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
@@ -219,7 +219,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   if ($type_investment['le_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
@@ -227,7 +227,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   if ($type_investment['le_warr']) {
     $header[] = array(
       'data' => 'Garantiåtagande',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
@@ -235,7 +235,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   if ($type_investment['pp_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
@@ -243,7 +243,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   if ($type_investment['re_sign']) {
     $header[] = array(
       'data' => 'Teckningsförbindelse',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
@@ -251,7 +251,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   if ($type_investment['bl_sum']) {
     $header[] = array(
       'data' => 'Brygglån',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
@@ -259,26 +259,26 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   if ($type_investment['bp_sum']) {
     $header[] = array(
       'data' => 'Blockpost',
-      'class' => array('table-head')
+      'class' => array('table-head'),
     );
   }
 
   // Summation column
   $header[] = array(
     'data' => 'Summa',
-    'class' => array('table-head')
+    'class' => array('table-head'),
   );
 
   // Control column
   $header[] = array(
     'data' => '',
-    'class' => array('table-head')
+    'class' => array('table-head','ctrl'),
   );
 
   // To control column
   $header[] = array(
     'data' => 'Till kontroll',
-    'class' => array('table-head')
+    'class' => array('table-head'),
   );
 }
 
@@ -524,6 +524,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
         ));
   $rows[$row]['data'][] = array(
     'data' => render($field),
+    'class' => array('ctrl'),
   );
 
   // To control column
@@ -715,6 +716,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
     $investor_view_full = node_view($investor);
     $rows[$row]['data'][] = array(
       'data' => render($investor_view_full['verification_status_investor']),
+      'class' => array('ctrl'),
     );
 
     // To control column

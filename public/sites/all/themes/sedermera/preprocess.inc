@@ -98,14 +98,14 @@ function sedermera_preprocess_field(&$variables) {
 function sedermera_preprocess_node(&$variables) {
 
   // TODO Move logic to module
-  if ($variables['type'] == 'ctrl' && $variables['view_mode'] == 'full') {
+  if ($variables['type'] == 'ctrl') {
 
     $node = entity_metadata_wrapper('node', $variables['nid']);
 
     $variables['incomplete'] = FALSE;
     $variables['empty_date'] = FALSE;
 
-    if ($node->field_ctrl_date->value() == '' || empty($node->field_ctrl_files->value()) || empty($node->field_ctrl_notes->value())) {
+    if ($node->field_ctrl_date->value() == '' || empty($node->field_ctrl_files->value())) {
       $variables['incomplete'] = TRUE;
     }
 

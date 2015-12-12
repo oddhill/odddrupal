@@ -1,3 +1,8 @@
+// Verification marker
+.verification {
+  @include verification(false);
+}
+
 .mfp-container {
   padding: 44px;
 }
@@ -13,11 +18,24 @@
     .node {
       margin: 0;
       padding: 0;
+
+      &.view-mode-teaser {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
     }
 
     .node-ctrl,
     .node-ctrl-form {
       border-top: 10px solid $coffee;
+
+      &.view-mode-teaser {
+        border-top: 0px none;
+        border-left: 3px solid $coffee;
+      }
 
       &.approved {
         border-color: $pear;

@@ -70,11 +70,6 @@ body {
   font-weight: 700;
 }
 
-// Verification marker
-.verification {
-  @include verification(false);
-}
-
 // Import
 @import
 "animations",

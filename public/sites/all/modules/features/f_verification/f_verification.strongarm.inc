@@ -59,7 +59,7 @@ function f_verification_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'control' => array(
         'custom_settings' => FALSE,
@@ -111,15 +111,27 @@ function f_verification_strongarm() {
             'weight' => '1',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'verification_status_id' => array(
           'default' => array(
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'verification_status_sign' => array(
           'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),

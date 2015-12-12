@@ -78,64 +78,6 @@ var tocInitiator = function() {
   });
 };
 
-// View and edit content in modals
-var initiateModals = function() {
-
-  // View control in modal
-  $('.mfp-verification-view').magnificPopup({
-    type: 'ajax',
-
-    callbacks: {
-      parseAjax: function(mfpResponse) {
-        // mfpResponse.data is a "data" object from ajax "success" callback
-        // for simple HTML file, it will be just String
-        // You may modify it to change contents of the popup
-        // For example, to show just #some-element:
-        mfpResponse.data = $(mfpResponse.data).find('.node-ctrl, .node-transaction-agreement');
-
-        // mfpResponse.data must be a String or a DOM (jQuery) element
-
-        console.log('Ajax content loaded:', mfpResponse);
-      },
-      ajaxContentAdded: function() {
-        // Ajax content is loaded and appended to DOM
-        console.log(this.content);
-
-        // Close modal when clicking "OK" button
-        $('.modal-close').on('click', function() {
-          $.magnificPopup.close();
-        });
-      }
-    }
-  });
-
-  // Edit control in modal
-  $('.mfp-verification-edit').magnificPopup({
-    type: 'ajax',
-
-    callbacks: {
-      parseAjax: function(mfpResponse) {
-        // mfpResponse.data is a "data" object from ajax "success" callback
-        // for simple HTML file, it will be just String
-        // You may modify it to change contents of the popup
-        // For example, to show just #some-element:
-        mfpResponse.data = $(mfpResponse.data).find('.node-form');
-
-        // mfpResponse.data must be a String or a DOM (jQuery) element
-
-        console.log('Ajax content loaded:', mfpResponse);
-      },
-      ajaxContentAdded: function() {
-        // Ajax content is loaded and appended to DOM
-        console.log(this.content);
-
-        // Use selectBoxit on our select lists.
-        $('select').selectBoxIt();
-      }
-    }
-  });
-};
-
 // Handle select container states
 var selectLookAlike = function() {
 
@@ -194,9 +136,6 @@ $(document).ready(function() {
 
   // Add a TOC to controls
   tocInitiator();
-
-  // Initiate modals
-  initiateModals();
 
   // Hide/show appendix in Document list (Dina dokument)
   $(".appendix").parent().hide();
