@@ -693,43 +693,62 @@ div.button {
       .verifications-summary .summary-footer .modal-close:hover {
         background-color: #303030; }
 
-.node-ctrl-form .verification-header {
+.node-ctrl-form .verification-header, .node-ctrl_pen-form .verification-header {
   padding: 40px;
   overflow: hidden; }
-.node-ctrl-form .verification-status {
+.node-ctrl-form .verification-status, .node-ctrl_pen-form .verification-status {
   float: right;
   margin-top: 2.4em; }
-  .node-ctrl-form .verification-status .ctrl-verification {
+  .node-ctrl-form .verification-status .ctrl-verification, .node-ctrl_pen-form .verification-status .ctrl-verification {
     font-weight: 700; }
-    .node-ctrl-form .verification-status .ctrl-verification.not-approved {
+    .node-ctrl-form .verification-status .ctrl-verification.not-approved, .node-ctrl_pen-form .verification-status .ctrl-verification.not-approved {
       color: #c04343; }
-    .node-ctrl-form .verification-status .ctrl-verification.expiring {
+    .node-ctrl-form .verification-status .ctrl-verification.expiring, .node-ctrl_pen-form .verification-status .ctrl-verification.expiring {
       color: #f9a500; }
-    .node-ctrl-form .verification-status .ctrl-verification.approved {
+    .node-ctrl-form .verification-status .ctrl-verification.approved, .node-ctrl_pen-form .verification-status .ctrl-verification.approved {
       color: #6c9e65; }
-.node-ctrl-form .verification-info {
+.node-ctrl-form .verification-info, .node-ctrl_pen-form .verification-info {
   overflow: hidden; }
-  .node-ctrl-form .verification-info .ver-type {
+  .node-ctrl-form .verification-info .ver-type, .node-ctrl_pen-form .verification-info .ver-type {
     text-transform: uppercase; }
-  .node-ctrl-form .verification-info h2 {
+  .node-ctrl-form .verification-info h2, .node-ctrl_pen-form .verification-info h2 {
     font-size: 30px;
     font-size: 3rem;
     line-height: 36px; }
-.node-ctrl-form .form-items-wrapper {
+.node-ctrl-form .form-items-wrapper, .node-ctrl_pen-form .form-items-wrapper {
   padding: 40px;
   background: #fafbfc;
   border-top: 1px solid #e0e2e6;
   border-bottom: 1px solid #e0e2e6; }
-.node-ctrl-form .vertical-tabs-panes {
+.node-ctrl-form .vertical-tabs-panes, .node-ctrl_pen-form .vertical-tabs-panes {
   display: none; }
-.node-ctrl-form .field-name-field-ctrl-notes {
+.node-ctrl-form .field-name-field-ctrl-notes, .node-ctrl_pen-form .field-name-field-ctrl-notes {
   margin-bottom: 0; }
-  .node-ctrl-form .field-name-field-ctrl-notes #field-ctrl-notes-add-more-wrapper > .form-item {
+  .node-ctrl-form .field-name-field-ctrl-notes #field-ctrl-notes-add-more-wrapper > .form-item, .node-ctrl_pen-form .field-name-field-ctrl-notes #field-ctrl-notes-add-more-wrapper > .form-item {
     margin-bottom: 0; }
-.node-ctrl-form .form-actions {
+.node-ctrl-form .form-actions, .node-ctrl_pen-form .form-actions {
   padding: 40px;
   text-align: center;
   margin: 0; }
+
+.node-ctrl_pen-form .form-item label {
+  margin: 0 0 1em; }
+.node-ctrl_pen-form .form-item.form-type-textarea {
+  margin-bottom: 0; }
+  .node-ctrl_pen-form .form-item.form-type-textarea .form-textarea {
+    width: 100%; }
+.node-ctrl_pen-form .form-wrapper {
+  margin-bottom: 0; }
+.node-ctrl_pen-form .form-items-wrapper > fieldset.form-wrapper {
+  margin-bottom: 2em; }
+.node-ctrl_pen-form .form-item-field-ctrl-pen-ok-und {
+  margin-bottom: 0px; }
+.node-ctrl_pen-form .field-name-field-ctrl-complex-note label,
+.node-ctrl_pen-form .field-name-field-ctrl-suspect-note label,
+.node-ctrl_pen-form .field-name-field-ctrl-followup-note label,
+.node-ctrl_pen-form .field-name-field-ctrl-low-risk-note label,
+.node-ctrl_pen-form .field-name-field-ctrl-risk-note label {
+  display: none; }
 
 #views-exposed-form-document-log-document-log .description {
   display: none; }
@@ -3354,20 +3373,25 @@ form#user-login,
       .mfp-ajax-holder .mfp-content .node.view-mode-teaser:last-child {
         margin-bottom: 0; }
   .mfp-ajax-holder .mfp-content .node-ctrl,
-  .mfp-ajax-holder .mfp-content .node-ctrl-form {
+  .mfp-ajax-holder .mfp-content .node-ctrl-form,
+  .mfp-ajax-holder .mfp-content .node-ctrl_pen-form {
     border-top: 10px solid #282828; }
     .mfp-ajax-holder .mfp-content .node-ctrl.view-mode-teaser,
-    .mfp-ajax-holder .mfp-content .node-ctrl-form.view-mode-teaser {
+    .mfp-ajax-holder .mfp-content .node-ctrl-form.view-mode-teaser,
+    .mfp-ajax-holder .mfp-content .view-mode-teaser.node-ctrl_pen-form {
       border-top: 0px none;
       border-left: 3px solid #282828; }
     .mfp-ajax-holder .mfp-content .node-ctrl.approved,
-    .mfp-ajax-holder .mfp-content .node-ctrl-form.approved {
+    .mfp-ajax-holder .mfp-content .node-ctrl-form.approved,
+    .mfp-ajax-holder .mfp-content .approved.node-ctrl_pen-form {
       border-color: #6c9e65; }
     .mfp-ajax-holder .mfp-content .node-ctrl.expiring,
-    .mfp-ajax-holder .mfp-content .node-ctrl-form.expiring {
+    .mfp-ajax-holder .mfp-content .node-ctrl-form.expiring,
+    .mfp-ajax-holder .mfp-content .expiring.node-ctrl_pen-form {
       border-color: #f9a500; }
     .mfp-ajax-holder .mfp-content .node-ctrl.not-approved,
-    .mfp-ajax-holder .mfp-content .node-ctrl-form.not-approved {
+    .mfp-ajax-holder .mfp-content .node-ctrl-form.not-approved,
+    .mfp-ajax-holder .mfp-content .not-approved.node-ctrl_pen-form {
       border-color: #c04343; }
 
 .mfp-close-btn-in .mfp-close {
@@ -4445,6 +4469,36 @@ fieldset {
   fieldset.collapsed {
     height: auto !important;
     border-width: 3px !important; }
+  fieldset.collapsible legend {
+    cursor: pointer;
+    position: relative; }
+    fieldset.collapsible legend:after {
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      content: '';
+      display: block;
+      width: 0px;
+      height: 0px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 0px none;
+      border-bottom: 5px solid #454545; }
+  fieldset.collapsed legend {
+    cursor: pointer;
+    position: relative; }
+    fieldset.collapsed legend:after {
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      content: '';
+      display: block;
+      width: 0px;
+      height: 0px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #454545;
+      border-bottom: 0px none; }
 
 .form-type-managed-file.form-item label {
   color: #282828;
@@ -4879,7 +4933,7 @@ fieldset .container-inline-date {
     padding-bottom: 0.5em;
     font-size: 16px;
     font-size: 1.6rem;
-    line-height: 16px;
+    line-height: 20.8px;
     border-bottom: 2px solid #e0e2e6;
     margin: 3rem 0 1em; }
     .form-item label.option {

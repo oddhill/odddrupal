@@ -425,7 +425,7 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
       'weight' => 44,
@@ -497,7 +497,7 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
       'weight' => 5,
@@ -610,7 +610,7 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
       'weight' => 11,
@@ -723,7 +723,7 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
       'weight' => 48,
@@ -769,7 +769,7 @@ function f_verification_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 51,
+      'weight' => 12,
     ),
   );
 
@@ -879,7 +879,7 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
       'weight' => 49,
@@ -950,7 +950,7 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
       'weight' => 6,
@@ -1063,7 +1063,7 @@ function f_verification_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
       'weight' => 46,

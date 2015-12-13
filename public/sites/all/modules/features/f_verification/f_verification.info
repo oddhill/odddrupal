@@ -54,6 +54,7 @@ features[field_group][] = group_ctrl_followup|node|ctrl_pen|form
 features[field_group][] = group_ctrl_items|node|ctrl|form
 features[field_group][] = group_ctrl_low_risk_notes|node|ctrl_pen|form
 features[field_group][] = group_ctrl_low_risk|node|ctrl_pen|form
+features[field_group][] = group_ctrl_pen_items|node|ctrl_pen|form
 features[field_group][] = group_ctrl_risk_notes|node|ctrl_pen|form
 features[field_group][] = group_ctrl_risk|node|ctrl_pen|form
 features[field_group][] = group_ctrl_source|node|ctrl_pen|form

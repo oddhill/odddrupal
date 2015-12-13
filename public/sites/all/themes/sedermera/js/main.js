@@ -97,6 +97,24 @@ var selectLookAlike = function() {
   });
 };
 
+// Fieldset collapsing
+var fieldsetCollapser = function() {
+
+  // Define vars
+  var $fieldset = $('fieldset.collapsible');
+  var $toggler = $fieldset.find('legend');
+
+  $toggler.on('click', function() {
+
+    if ($(this).parent().is('.collapsed')) {
+      $(this).parent().removeClass('collapsed');
+    }
+    else {
+      $(this).parent().addClass('collapsed');
+    }
+  });
+};
+
 // Interested list collapsing
 var listCollapser = function() {
 
@@ -196,6 +214,7 @@ Drupal.behaviors.sedermera = {
     });
 
     selectLookAlike();
+    fieldsetCollapser();
     listCollapser();
 
     // Add the file field value to the substitute text field when

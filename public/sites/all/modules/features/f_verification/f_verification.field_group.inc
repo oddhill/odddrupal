@@ -46,10 +46,10 @@ function f_verification_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl_pen';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_pen_items';
   $field_group->data = array(
     'label' => 'Komplex',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_ctrl_complex',
       1 => 'group_ctrl_complex_notes',
@@ -62,7 +62,7 @@ function f_verification_field_group_info() {
         'classes' => 'group-ctrl-complex field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_ctrl_complex|node|ctrl_complementing|form'] = $field_group;
@@ -75,10 +75,10 @@ function f_verification_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl_pen';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_pen_items';
   $field_group->data = array(
     'label' => 'Passande',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_ctrl_fitting',
     ),
@@ -90,7 +90,7 @@ function f_verification_field_group_info() {
         'classes' => 'group-ctrl-fitting field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_ctrl_fitting|node|ctrl_pen|form'] = $field_group;
@@ -131,10 +131,10 @@ function f_verification_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl_pen';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_pen_items';
   $field_group->data = array(
     'label' => 'Uppföljning',
-    'weight' => '8',
+    'weight' => '9',
     'children' => array(
       0 => 'field_ctrl_followup',
       1 => 'group_ctrl_followup_notes',
@@ -147,7 +147,7 @@ function f_verification_field_group_info() {
         'classes' => 'group-ctrl-followup field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_ctrl_followup|node|ctrl_pen|form'] = $field_group;
@@ -223,10 +223,10 @@ function f_verification_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl_pen';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_pen_items';
   $field_group->data = array(
     'label' => 'Låg risk',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_ctrl_low_risk',
       1 => 'group_ctrl_low_risk_notes',
@@ -239,10 +239,50 @@ function f_verification_field_group_info() {
         'classes' => 'group-ctrl-low-risk field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_ctrl_low_risk|node|ctrl_pen|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_ctrl_pen_items|node|ctrl_pen|form';
+  $field_group->group_name = 'group_ctrl_pen_items';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'ctrl_pen';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Form items',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_ctrl_pen_ok',
+      1 => 'group_ctrl_complex',
+      2 => 'group_ctrl_fitting',
+      3 => 'group_ctrl_followup',
+      4 => 'group_ctrl_low_risk',
+      5 => 'group_ctrl_risk',
+      6 => 'group_ctrl_source',
+      7 => 'group_ctrl_suspected',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Form items',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => 'form-items-wrapper',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_ctrl_pen_items|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -280,10 +320,10 @@ function f_verification_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl_pen';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_pen_items';
   $field_group->data = array(
     'label' => 'Risk',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'field_ctrl_risk',
       1 => 'group_ctrl_risk_notes',
@@ -296,7 +336,7 @@ function f_verification_field_group_info() {
         'classes' => 'group-ctrl-risk field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_ctrl_risk|node|ctrl_pen|form'] = $field_group;
@@ -309,10 +349,10 @@ function f_verification_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl_pen';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_pen_items';
   $field_group->data = array(
     'label' => 'Ursprung',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_ctrl_source',
     ),
@@ -320,11 +360,11 @@ function f_verification_field_group_info() {
     'format_settings' => array(
       'label' => 'Ursprung',
       'instance_settings' => array(
-        'required_fields' => 1,
+        'required_fields' => 0,
         'classes' => 'group-ctrl-source field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_ctrl_source|node|ctrl_pen|form'] = $field_group;
@@ -399,10 +439,10 @@ function f_verification_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'ctrl_pen';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_ctrl_pen_items';
   $field_group->data = array(
     'label' => 'Misstänkt',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'field_ctrl_suspect',
       1 => 'group_ctrl_suspect_notes',
@@ -415,7 +455,7 @@ function f_verification_field_group_info() {
         'classes' => 'group-ctrl-suspected field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_ctrl_suspected|node|ctrl_complementing|form'] = $field_group;

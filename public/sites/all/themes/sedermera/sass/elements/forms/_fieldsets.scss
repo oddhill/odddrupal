@@ -30,4 +30,48 @@ fieldset {
     height: auto !important;
     border-width: 3px !important;
   }
+
+  &.collapsible {
+
+    legend {
+      cursor: pointer;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        top: 5px;
+        right: 0px;
+        content: '';
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 0px none;
+        border-bottom: 5px solid $dark-grey;
+      }
+    }
+  }
+
+  &.collapsed {
+
+    legend {
+      cursor: pointer;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        top: 5px;
+        right: 0px;
+        content: '';
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid $dark-grey;
+        border-bottom: 0px none;
+      }
+    }
+  }
 }

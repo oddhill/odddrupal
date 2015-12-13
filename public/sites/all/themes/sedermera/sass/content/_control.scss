@@ -263,3 +263,48 @@
     margin: 0;
   }
 }
+
+.node-ctrl_pen-form {
+  @extend .node-ctrl-form;
+
+  .form-item {
+
+    label {
+      margin: 0 0 1em;
+    }
+
+    &.form-type-textarea {
+      margin-bottom: 0;
+
+      .form-textarea {
+        width: 100%;
+      }
+    }
+  }
+
+  .form-wrapper {
+    margin-bottom: 0;
+  }
+
+  .form-items-wrapper {
+
+    & > fieldset.form-wrapper {
+      margin-bottom: 2em;
+    }
+  }
+
+  .form-item-field-ctrl-pen-ok-und {
+    margin-bottom: 0px;
+  }
+
+  .field-name-field-ctrl-complex-note,
+  .field-name-field-ctrl-suspect-note,
+  .field-name-field-ctrl-followup-note,
+  .field-name-field-ctrl-low-risk-note,
+  .field-name-field-ctrl-risk-note {
+
+    label {
+      display: none;
+    }
+  }
+}
