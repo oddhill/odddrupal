@@ -1736,6 +1736,13 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 
 #agreements-list table .field-transaction-agree-sign {
   display: inline-block; }
+  #agreements-list table .field-transaction-agree-sign .ajax-progress {
+    padding: 3px 2px;
+    left: -3px;
+    top: -1px;
+    height: auto; }
+    #agreements-list table .field-transaction-agree-sign .ajax-progress .message {
+      display: none; }
 #agreements-list table .ctrl {
   text-align: center; }
   #agreements-list table .ctrl .verification {
@@ -1820,6 +1827,15 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 .offer-controller-list {
   padding: 40px; }
 
+#controller-list table .field-transaction-agree-to-sign {
+  display: inline-block; }
+  #controller-list table .field-transaction-agree-to-sign .ajax-progress {
+    padding: 3px 2px;
+    left: -3px;
+    top: -1px;
+    height: auto; }
+    #controller-list table .field-transaction-agree-to-sign .ajax-progress .message {
+      display: none; }
 #controller-list table .collapsible-head {
   padding: 0;
   width: 40px;
@@ -1870,6 +1886,8 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 #controller-list table tr.agreement-row {
   background: #f3f4f8;
   border-bottom: 1px solid #fafbfc; }
+  #controller-list table tr.agreement-row .ajax-progress {
+    background: #f3f4f8; }
   #controller-list table tr.agreement-row .empty-column {
     background: #fafbfc; }
 #controller-list table tr.empty-row {
@@ -3991,8 +4009,6 @@ table {
 table .form-actions,
 table .form-wrapper {
   margin: 0; }
-table .field-transaction-agree-to-sign {
-  display: inline-block; }
 table input {
   border: 1px solid #c8cacd; }
 table .form-item {

@@ -6,6 +6,21 @@
 
   table {
 
+    .field-transaction-agree-to-sign {
+      display: inline-block;
+
+      .ajax-progress {
+        padding: 3px 2px;
+        left: -3px;
+        top: -1px;
+        height: auto;
+
+        .message {
+          display: none;
+        }
+      }
+    }
+
     .collapsible-head {
       padding: 0;
       width: 40px;
@@ -87,6 +102,10 @@
       &.agreement-row {
         background: $light-grey;
         border-bottom: 1px solid tint($light-grey,60%);
+
+        .ajax-progress {
+          background: $light-grey;
+        }
 
         .empty-column {
           background: tint($light-grey,60%);
