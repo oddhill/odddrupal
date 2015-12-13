@@ -169,6 +169,28 @@
       &:last-child {
         border-bottom: 0px none;
       }
+
+      div.checker {
+        display: block;
+        float: left;
+
+        .ajax-progress {
+          left: -4px;
+          top: -3px;
+          z-index: 100;
+          padding: 3px 2px;
+
+          .message {
+            display: none;
+          }
+        }
+      }
+
+      .option {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 

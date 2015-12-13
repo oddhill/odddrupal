@@ -1863,6 +1863,13 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
 
 #interested-table table .field-transaction-ap-ctrl {
   display: inline-block; }
+  #interested-table table .field-transaction-ap-ctrl .ajax-progress {
+    padding: 3px 2px;
+    left: -3px;
+    top: -1px;
+    height: auto; }
+    #interested-table table .field-transaction-ap-ctrl .ajax-progress .message {
+      display: none; }
 #interested-table table .collapsible-head {
   padding: 0;
   width: 40px;
@@ -1905,6 +1912,8 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   background-position: 0 -20px; }
 #interested-table table tr.investor-row {
   background: #fafbfc; }
+  #interested-table table tr.investor-row .ajax-progress {
+    background: #fafbfc; }
   #interested-table table tr.investor-row span.icon {
     background-position: 0 -60px; }
   #interested-table table tr.investor-row.last-investor {
@@ -5366,6 +5375,20 @@ div.radio {
       border-bottom: 1px solid #e0e2e6; }
       .select-container.contracting-parties .dropdown .form-item:last-child {
         border-bottom: 0px none; }
+      .select-container.contracting-parties .dropdown .form-item div.checker {
+        display: block;
+        float: left; }
+        .select-container.contracting-parties .dropdown .form-item div.checker .ajax-progress {
+          left: -4px;
+          top: -3px;
+          z-index: 100;
+          padding: 3px 2px; }
+          .select-container.contracting-parties .dropdown .form-item div.checker .ajax-progress .message {
+            display: none; }
+      .select-container.contracting-parties .dropdown .form-item .option {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis; }
   .select-container.contracting-parties.active .select:after {
     -webkit-transform: rotate(-180deg);
     -moz-transform: rotate(-180deg);

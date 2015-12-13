@@ -8,6 +8,17 @@
 
     .field-transaction-ap-ctrl {
       display: inline-block;
+
+      .ajax-progress {
+        padding: 3px 2px;
+        left: -3px;
+        top: -1px;
+        height: auto;
+
+        .message {
+          display: none;
+        }
+      }
     }
 
     .collapsible-head {
@@ -82,6 +93,10 @@
 
       &.investor-row {
         background: tint($light-grey,60%);
+
+        .ajax-progress {
+          background: tint($light-grey,60%);
+        }
 
         span.icon {
           background-position: 0 -60px;
