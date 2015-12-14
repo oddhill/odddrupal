@@ -208,4 +208,44 @@
       display: block;
     }
   }
+
+  &.active-contained {
+
+    .select {
+
+      &:after {
+        @include transform(rotate(-270deg));
+        @include animation(rotate 0.2s ease-in);
+      }
+    }
+
+    .dropdown {
+      display: block;
+      left: 103%;
+      top: 0;
+      width: auto;
+
+      .form-item {
+        display: inline-block;
+        padding: 5px 10px 0 5px;
+        border-bottom: 0px none;
+        border-right: 1px solid $wool;
+
+        &:last-child {
+          border-right: 0px none;
+        }
+
+        .checker {
+          display: inline-block;
+          float: none;
+          position: relative;
+          top: -5px;
+        }
+
+        .option {
+          display: inline-block;
+        }
+      }
+    }
+  }
 }

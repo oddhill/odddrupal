@@ -5580,6 +5580,34 @@ div.radio {
     animation: rotate 0.2s ease-in; }
   .select-container.contracting-parties.active .dropdown {
     display: block; }
+  .select-container.contracting-parties.active-contained .select:after {
+    -webkit-transform: rotate(-270deg);
+    -moz-transform: rotate(-270deg);
+    -ms-transform: rotate(-270deg);
+    -o-transform: rotate(-270deg);
+    transform: rotate(-270deg);
+    -webkit-animation: rotate 0.2s ease-in;
+    -moz-animation: rotate 0.2s ease-in;
+    animation: rotate 0.2s ease-in; }
+  .select-container.contracting-parties.active-contained .dropdown {
+    display: block;
+    left: 103%;
+    top: 0;
+    width: auto; }
+    .select-container.contracting-parties.active-contained .dropdown .form-item {
+      display: inline-block;
+      padding: 5px 10px 0 5px;
+      border-bottom: 0px none;
+      border-right: 1px solid #e0e2e6; }
+      .select-container.contracting-parties.active-contained .dropdown .form-item:last-child {
+        border-right: 0px none; }
+      .select-container.contracting-parties.active-contained .dropdown .form-item .checker {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: -5px; }
+      .select-container.contracting-parties.active-contained .dropdown .form-item .option {
+        display: inline-block; }
 
 .tabledrag-changed-warning {
   background: #f9a500;

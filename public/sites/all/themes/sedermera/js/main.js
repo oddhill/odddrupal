@@ -83,13 +83,28 @@ var selectLookAlike = function() {
 
   var $container = $('.select-container');
   var $button = $container.find('.select');
+  var $wrapper = $('.table-wrapper');
+  var wrapperBottom, buttonBottom, listHeight;
 
   $('html').on('click', function() {
-    $container.removeClass('active');
+    $container.removeClass('active active-contained');
   });
 
   $button.once().on('click', function() {
-    $(this).parents('.select-container').toggleClass('active');
+
+    // Calculations
+    wrapperBottom = $wrapper.offset().top + $wrapper.outerHeight();
+    buttonBottom = $(this).offset().top + $(this).outerHeight();
+    listHeight = $(this).siblings('.dropdown').outerHeight();
+
+    // Check if there is enough space for the list
+    // Otherwise, simply add a different class
+    if ((wrapperBottom - buttonBottom) > listHeight) {
+      $(this).parents('.select-container').toggleClass('active');
+    }
+    else {
+      $(this).parents('.select-container').toggleClass('active-contained');
+    }
   });
 
   $container.click(function(event) {
