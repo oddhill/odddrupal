@@ -522,6 +522,23 @@ div.button {
       background: #f9a500; }
     .node-company.view-mode-full .company-details .detail .verification.not-approved:before {
       background: #c04343; }
+    .node-company.view-mode-full .company-details .detail .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-company.view-mode-full .company-details .detail .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
 .node-company.view-mode-full .company-logo {
   width: 100px;
   margin: 0 0 30px;
@@ -1430,6 +1447,23 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     background: #f9a500; }
   .node-investor-private.view-mode-full .verification.not-approved:before {
     background: #c04343; }
+  .node-investor-private.view-mode-full .verification.id {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    line-height: 18px;
+    color: #282828;
+    overflow: visible;
+    display: block;
+    padding: 10px; }
+    .node-investor-private.view-mode-full .verification.id:before {
+      display: inline-block;
+      float: none;
+      position: relative;
+      top: 2px;
+      margin-right: 0.5rem;
+      width: 10px;
+      height: 10px; }
 .node-investor-private.view-mode-full .title h2 {
   text-align: left; }
 .node-investor-private.view-mode-full .investor-details .detail,
@@ -1514,6 +1548,29 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     .node-investor-private.view-mode-full .investor-verifications .detail .verification.not-approved:before,
     .node-investor-private.view-mode-full .investor-verifications .investor-control .verification.not-approved:before {
       background: #c04343; }
+    .node-investor-private.view-mode-full .investor-details .detail .verification.id,
+    .node-investor-private.view-mode-full .investor-details .investor-control .verification.id,
+    .node-investor-private.view-mode-full .investor-verifications .detail .verification.id,
+    .node-investor-private.view-mode-full .investor-verifications .investor-control .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-investor-private.view-mode-full .investor-details .detail .verification.id:before,
+      .node-investor-private.view-mode-full .investor-details .investor-control .verification.id:before,
+      .node-investor-private.view-mode-full .investor-verifications .detail .verification.id:before,
+      .node-investor-private.view-mode-full .investor-verifications .investor-control .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
 .node-investor-private.view-mode-full .investor-other .other {
   float: left;
   display: block;
@@ -1561,6 +1618,23 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
       background: #f9a500; }
     .node-investor-private.view-mode-full .investor-other .other .verification.not-approved:before {
       background: #c04343; }
+    .node-investor-private.view-mode-full .investor-other .other .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-investor-private.view-mode-full .investor-other .other .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
   .node-investor-private.view-mode-full .investor-other .other span.label {
     display: block;
     float: none;
@@ -1595,6 +1669,23 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     background: #f9a500; }
   .node-investor-company.view-mode-full .verification.not-approved:before {
     background: #c04343; }
+  .node-investor-company.view-mode-full .verification.id {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    line-height: 18px;
+    color: #282828;
+    overflow: visible;
+    display: block;
+    padding: 10px; }
+    .node-investor-company.view-mode-full .verification.id:before {
+      display: inline-block;
+      float: none;
+      position: relative;
+      top: 2px;
+      margin-right: 0.5rem;
+      width: 10px;
+      height: 10px; }
 .node-investor-company.view-mode-full .title h2 {
   text-align: left; }
 .node-investor-company.view-mode-full .investor-details .detail,
@@ -1679,6 +1770,29 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
     .node-investor-company.view-mode-full .investor-verifications .detail .verification.not-approved:before,
     .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.not-approved:before {
       background: #c04343; }
+    .node-investor-company.view-mode-full .investor-details .detail .verification.id,
+    .node-investor-company.view-mode-full .investor-details .investor-control .verification.id,
+    .node-investor-company.view-mode-full .investor-verifications .detail .verification.id,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-investor-company.view-mode-full .investor-details .detail .verification.id:before,
+      .node-investor-company.view-mode-full .investor-details .investor-control .verification.id:before,
+      .node-investor-company.view-mode-full .investor-verifications .detail .verification.id:before,
+      .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
 .node-investor-company.view-mode-full .investor-other .other {
   float: left;
   display: block;
@@ -1726,6 +1840,23 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
       background: #f9a500; }
     .node-investor-company.view-mode-full .investor-other .other .verification.not-approved:before {
       background: #c04343; }
+    .node-investor-company.view-mode-full .investor-other .other .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-investor-company.view-mode-full .investor-other .other .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
   .node-investor-company.view-mode-full .investor-other .other span.label {
     display: block;
     float: none;
@@ -1853,9 +1984,62 @@ form#views-form-dokument-page-1 table#draggableviews-table-dokument-page-1 tr.dr
   background: none, url("../graphics/transaction-collapse.svg") transparent 0 0 no-repeat; }
 #controller-list table .ctrl {
   width: 50px;
-  text-align: center; }
+  text-align: center;
+  position: relative; }
   #controller-list table .ctrl .verification {
     padding-top: 4px; }
+    #controller-list table .ctrl .verification.id {
+      padding-top: 10px; }
+  #controller-list table .ctrl span.verification {
+    cursor: pointer;
+    position: relative; }
+    #controller-list table .ctrl span.verification:after {
+      display: block;
+      content: '+';
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 19px;
+      text-align: center;
+      color: #fff;
+      font-weight: 700; }
+  #controller-list table .ctrl .item-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 110;
+    background: #fff;
+    text-align: left;
+    border: 1px solid #e0e2e6;
+    border-radius: 2px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); }
+    #controller-list table .ctrl .item-list.active {
+      display: block; }
+    #controller-list table .ctrl .item-list:before {
+      display: block;
+      position: absolute;
+      left: -7px;
+      top: 50%;
+      margin-top: -6px;
+      content: '';
+      width: 0px;
+      height: 0px;
+      border-right: 6px solid #e0e2e6;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent; }
+    #controller-list table .ctrl .item-list ul {
+      list-style: none; }
+      #controller-list table .ctrl .item-list ul li {
+        display: block;
+        border-bottom: 1px solid #e0e2e6; }
+        #controller-list table .ctrl .item-list ul li.last {
+          border-bottom: 0px none; }
 #controller-list table tr.hidden {
   display: none; }
 #controller-list table tr td.collapsible,
@@ -2108,6 +2292,23 @@ div[class*=" step-offer-"] {
       background: #f9a500; }
     .node-person.view-mode-full .person-details .detail .verification.not-approved:before {
       background: #c04343; }
+    .node-person.view-mode-full .person-details .detail .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-person.view-mode-full .person-details .detail .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
 .node-person.view-mode-full .person-other .other {
   float: left;
   display: block;
@@ -2155,6 +2356,23 @@ div[class*=" step-offer-"] {
       background: #f9a500; }
     .node-person.view-mode-full .person-other .other .verification.not-approved:before {
       background: #c04343; }
+    .node-person.view-mode-full .person-other .other .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-person.view-mode-full .person-other .other .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
   .node-person.view-mode-full .person-other .other span.label {
     display: block;
     float: none;
@@ -2475,131 +2693,6 @@ form.views-send-preview .form-actions {
   font-size: 14px;
   font-size: 1.4rem;
   line-height: 14px; }
-
-.node-kontrolluppgift.view-mode-full,
-.node-kontrolluppgift-privat.view-mode-full {
-  max-width: 1800px; }
-  .node-kontrolluppgift.view-mode-full .control_list,
-  .node-kontrolluppgift-privat.view-mode-full .control_list {
-    overflow: hidden; }
-    .node-kontrolluppgift.view-mode-full .control_list .approved-control,
-    .node-kontrolluppgift.view-mode-full .control_list .not-approved-control,
-    .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control,
-    .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control {
-      margin-bottom: 20px;
-      padding: 20px;
-      border: 2px solid #f3f4f8;
-      overflow: hidden; }
-      .node-kontrolluppgift.view-mode-full .control_list .approved-control h3,
-      .node-kontrolluppgift.view-mode-full .control_list .not-approved-control h3,
-      .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control h3,
-      .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control h3 {
-        margin-bottom: 15px; }
-    .node-kontrolluppgift.view-mode-full .control_list .approved-control,
-    .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control {
-      border-left: 2px solid #b6cfb2; }
-      .node-kontrolluppgift.view-mode-full .control_list .approved-control .app,
-      .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control .app {
-        float: left;
-        clear: left;
-        padding: 10px;
-        background: #b6cfb2; }
-      .node-kontrolluppgift.view-mode-full .control_list .approved-control .app-date,
-      .node-kontrolluppgift-privat.view-mode-full .control_list .approved-control .app-date {
-        float: left;
-        padding: 10px 10px 10px 0;
-        background: #b6cfb2; }
-    .node-kontrolluppgift.view-mode-full .control_list .not-approved-control,
-    .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control {
-      border-left: 2px solid #e0a1a1; }
-      .node-kontrolluppgift.view-mode-full .control_list .not-approved-control .app,
-      .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control .app {
-        float: left;
-        clear: left;
-        padding: 10px;
-        background: #e0a1a1; }
-      .node-kontrolluppgift.view-mode-full .control_list .not-approved-control .app-date,
-      .node-kontrolluppgift-privat.view-mode-full .control_list .not-approved-control .app-date {
-        float: left;
-        padding: 10px 10px 10px 0;
-        background: #e0a1a1; }
-    .node-kontrolluppgift.view-mode-full .control_list .notes,
-    .node-kontrolluppgift-privat.view-mode-full .control_list .notes {
-      float: right;
-      width: 35%;
-      padding-left: 20px; }
-      .node-kontrolluppgift.view-mode-full .control_list .notes .label,
-      .node-kontrolluppgift-privat.view-mode-full .control_list .notes .label {
-        display: block;
-        margin-bottom: 10px; }
-    .node-kontrolluppgift.view-mode-full .control_list .files,
-    .node-kontrolluppgift-privat.view-mode-full .control_list .files {
-      float: left;
-      width: 65%;
-      margin-bottom: 20px; }
-  .node-kontrolluppgift.view-mode-full .handle-control input,
-  .node-kontrolluppgift-privat.view-mode-full .handle-control input {
-    display: inline-block;
-    height: 34px;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 12px;
-    line-height: 34px;
-    border-radius: 34px;
-    color: #fff;
-    padding: 0 20px;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-bottom: 0 none;
-    background: url("../graphics/flow_small_light.png") transparent 0 0 no-repeat;
-    background: none, url("../graphics/flow_small_light.svg") transparent 0 0 no-repeat;
-    background-position: 20px 11px;
-    padding-left: 42px;
-    background-color: #454545;
-    -webkit-transition: background-color 0.1s ease-in-out;
-    -moz-transition: background-color 0.1s ease-in-out;
-    transition: background-color 0.1s ease-in-out; }
-    .node-kontrolluppgift.view-mode-full .handle-control input:hover,
-    .node-kontrolluppgift-privat.view-mode-full .handle-control input:hover {
-      background-color: #303030; }
-
-.node-kontrolluppgift-form .control_list .field-type-file,
-.node-kontrolluppgift-form .control_list .field-type-text-long,
-.node-kontrolluppgift_privat-form .control_list .field-type-file,
-.node-kontrolluppgift_privat-form .control_list .field-type-text-long {
-  width: 50%;
-  float: left; }
-  .node-kontrolluppgift-form .control_list .field-type-file textarea,
-  .node-kontrolluppgift-form .control_list .field-type-text-long textarea,
-  .node-kontrolluppgift_privat-form .control_list .field-type-file textarea,
-  .node-kontrolluppgift_privat-form .control_list .field-type-text-long textarea {
-    margin-top: 9px;
-    padding: 10px;
-    width: 100%;
-    border: 0px none; }
-.node-kontrolluppgift-form .control_list .field-type-file,
-.node-kontrolluppgift_privat-form .control_list .field-type-file {
-  padding-right: 20px; }
-.node-kontrolluppgift-form .control_list .status-fields,
-.node-kontrolluppgift_privat-form .control_list .status-fields {
-  clear: both;
-  overflow: hidden;
-  padding: 10px;
-  background: #ebedf1; }
-  .node-kontrolluppgift-form .control_list .status-fields .field-type-list-boolean,
-  .node-kontrolluppgift-form .control_list .status-fields .field-type-date,
-  .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-list-boolean,
-  .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-date {
-    float: left; }
-    .node-kontrolluppgift-form .control_list .status-fields .field-type-list-boolean .form-item,
-    .node-kontrolluppgift-form .control_list .status-fields .field-type-date .form-item,
-    .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-list-boolean .form-item,
-    .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-date .form-item {
-      margin-bottom: 0; }
-  .node-kontrolluppgift-form .control_list .status-fields .field-type-list-boolean,
-  .node-kontrolluppgift_privat-form .control_list .status-fields .field-type-list-boolean {
-    margin-right: 20px;
-    margin-top: 10px; }
 
 #eck-entity-form-edit-investor-person,
 #eck-entity-form-edit-investor-company {
@@ -3374,6 +3467,23 @@ form#user-login,
     background: #f9a500; }
   .verification.not-approved:before {
     background: #c04343; }
+  .verification.id {
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    line-height: 18px;
+    color: #282828;
+    overflow: visible;
+    display: block;
+    padding: 10px; }
+    .verification.id:before {
+      display: inline-block;
+      float: none;
+      position: relative;
+      top: 2px;
+      margin-right: 0.5rem;
+      width: 10px;
+      height: 10px; }
 
 .mfp-container {
   padding: 44px; }

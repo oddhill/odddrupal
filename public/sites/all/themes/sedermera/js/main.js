@@ -97,6 +97,38 @@ var selectLookAlike = function() {
   });
 };
 
+// Multiple ID dropdown
+var multipleIdDropdown = function() {
+
+  // Define vars
+  var $itemLists = $('td.ctrl .item-list');
+  var $listTogglers = $('td.ctrl span.verification');
+  var locX, locY, listHeight;
+
+  // Position the item lists
+  $itemLists.each(function() {
+    locX = $(this).parent().outerWidth();
+    locY = $(this).parent().outerHeight();
+    listHeight = $(this).outerHeight();
+    $(this).css({"left": locX + "px", "top": (locY / 2) - (listHeight / 2) + "px"});
+  });
+
+  // Handle the toggle behavior
+  $listTogglers.once('toggle').on('click', function() {
+    $(this).siblings('.item-list').toggleClass('active');
+  });
+
+  // Close lists when clicking anyhere on the page...
+  $('html').on('click', function() {
+    $itemLists.removeClass('active');
+  });
+
+  /// ... except when clicking the togglers.
+  $listTogglers.click(function(event) {
+    event.stopPropagation();
+  });
+};
+
 // Fieldset collapsing
 var fieldsetCollapser = function() {
 
@@ -214,6 +246,7 @@ Drupal.behaviors.sedermera = {
     });
 
     selectLookAlike();
+    multipleIdDropdown();
     fieldsetCollapser();
     listCollapser();
 

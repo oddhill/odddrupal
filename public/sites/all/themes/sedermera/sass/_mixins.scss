@@ -251,6 +251,25 @@
       background: $wine;
     }
   }
+
+  &.id {
+    @include font-size(1.4);
+    line-height: 18px;
+    color: $coffee;
+    overflow: visible;
+    display: block;
+    padding: 10px;
+
+    &:before {
+      display: inline-block;
+      float: none;
+      position: relative;
+      top: 2px;
+      margin-right: 0.5rem;
+      width: 10px;
+      height: 10px;
+    }
+  }
 }
 
 @mixin node-section-detail {

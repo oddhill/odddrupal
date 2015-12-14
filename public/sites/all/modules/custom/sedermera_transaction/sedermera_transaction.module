@@ -1243,7 +1243,7 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
       ),
       // Control ID column
       array(
-        'data' => render($investor_view_full['verification_status_id']),
+        'data' => render($investor_view_full['verification_id_investor']),
         'class' => array('ctrl'),
       ),
       // Control EXR column

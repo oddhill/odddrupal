@@ -256,6 +256,27 @@ function sedermera_verification_field_extra_fields() {
     )
   );
 
+  // Add pseudo fields for the ID verification on investors, both for private
+  // and companies.
+  $extra['node']['investor_private'] = array(
+    'display' => array(
+      'verification_id_investor' => array(
+        'label' => t('ID verification'),
+        'description' => t('Edit the verification ID for the investor.'),
+        'weight' => 0,
+      ),
+    )
+  );
+  $extra['node']['investor_company'] = array(
+    'display' => array(
+      'verification_id_investor' => array(
+        'label' => t('ID verification'),
+        'description' => t('Edit the verification ID for the investor.'),
+        'weight' => 0,
+      ),
+    )
+  );
+
   // Add pseudo field for the overall verification status.
   $extra['node']['transaction_agreement'] = array(
     'display' => array(
@@ -330,35 +351,118 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
     );
   }
 
-  // Render the verification status if it should be displayed and the nid has
-  // been set, meaning that the node actually has been created.
-  if (isset($display['verification_status_id']) && $display['verification_status_id']['visible'] && $node->nid) {
+  // Render the ID verification for investors.
+  if (isset($display['verification_id_investor']) && $display['verification_id_investor']['visible'] && $node->nid) {
     $status = sedermera_verification_get_status_owner_node($node->nid);
 
-    // Set a different text and class depending on the status.
-    switch ($status) {
-      case SEDERMERA_VERIFICATION_NOT_APPROVED:
-        $text = 'Ej godkänd';
-        $class = 'not-approved';
-        break;
+    // Fetch the ID verification node IDs.
+    $verifications = sedermera_verification_get_ids_for_investor($node->nid);
 
-      case SEDERMERA_VERIFICATION_EXPIRING:
-        $text = 'Utgående';
-        $class = 'expiring';
-        break;
+    // Link straight to the edit modal if there's only one.
+    if (count($verifications) === 1) {
+      $status = sedermera_verification_get_status_single($verifications[0]);
 
-      case SEDERMERA_VERIFICATION_APPROVED:
-        $text = 'Godkänd';
-        $class = 'approved';
-        break;
+      // Set a different text and class depending on the status.
+      switch ($status) {
+        case SEDERMERA_VERIFICATION_NOT_APPROVED:
+          $text = 'Ej godkänd';
+          $class = 'not-approved';
+          break;
+
+        case SEDERMERA_VERIFICATION_EXPIRING:
+          $text = 'Utgående';
+          $class = 'expiring';
+          break;
+
+        case SEDERMERA_VERIFICATION_APPROVED:
+          $text = 'Godkänd';
+          $class = 'approved';
+          break;
+      }
+
+      // Add the markup.
+      $node->content['verification_id_investor'] = array(
+        '#theme' => 'link',
+        '#text' => $text,
+        '#path' => "node/{$verifications[0]}/edit",
+        '#options' => array(
+          'attributes' => array('class' => array('verification', 'edit', $class)),
+        ),
+      );
     }
+    else {
+      // There's more than one ID verification for this investor, so we should
+      // build a list which allows the user to edit the individual
+      // verifications. Start of with the main indicator.
+      $status = sedermera_verification_get_status_multiple($verifications);
 
-    // Add the markup.
-    $node->content['verification_status_id'] = array(
-      '#prefix' => '<span class="verification ' . $class . '">',
-      '#markup' => $text,
-      '#suffix' => '</span>',
-    );
+      // Set a different text and class depending on the status.
+      switch ($status) {
+        case SEDERMERA_VERIFICATION_NOT_APPROVED:
+          $text = 'Ej godkänd';
+          $class = 'not-approved';
+          break;
+
+        case SEDERMERA_VERIFICATION_EXPIRING:
+          $text = 'Utgående';
+          $class = 'expiring';
+          break;
+
+        case SEDERMERA_VERIFICATION_APPROVED:
+          $text = 'Godkänd';
+          $class = 'approved';
+          break;
+      }
+
+      // Add the markup.
+      $node->content['verification_id_investor'] = array(
+        '#prefix' => '<span class="verification ' . $class . '">',
+        '#markup' => $text,
+        '#suffix' => '</span>',
+      );
+
+      // Fetch the titles of the person nodes where the ID verification resides.
+      // This will be based on a query which fetches the nodes based on the
+      // field_user_id_ctrl field.
+      $query = db_select('node');
+      $query->join('field_data_field_user_id_ctrl', 'person', 'node.nid = person.entity_id');
+      $query->addField('person', 'field_user_id_ctrl_target_id');
+      $query->addField('node', 'title');
+      $query->condition('field_user_id_ctrl_target_id', $verifications);
+      $titles = $query->execute()->fetchAllKeyed();
+
+      // Build the actual list of verifications.
+      $list = array('#theme' => 'item_list');
+      foreach ($verifications as $verification) {
+        $status = sedermera_verification_get_status_single($verification);
+
+        // Set a different class depending on the status.
+        switch ($status) {
+          case SEDERMERA_VERIFICATION_NOT_APPROVED:
+            $class = 'not-approved';
+            break;
+
+          case SEDERMERA_VERIFICATION_EXPIRING:
+            $class = 'expiring';
+            break;
+
+          case SEDERMERA_VERIFICATION_APPROVED:
+            $class = 'approved';
+            break;
+        }
+
+        // Add this link to the item list.
+        $list['#items'][] = l($titles[$verification], "node/$verification/edit", array(
+          'attributes' => array(
+            'class' => array('verification', 'edit', 'id', $class),
+            )
+          )
+        );
+      }
+
+      // Render the item list as a suffix to the main indicator.
+      $node->content['verification_id_investor']['#suffix'] .= render($list);
+    }
   }
 
   // Render the verification status if it should be displayed.
