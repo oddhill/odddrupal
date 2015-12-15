@@ -656,6 +656,25 @@ function sedermera_verification_form_ctrl_pen_node_form_alter(&$form, &$form_sta
 
   $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'];
   $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'] = '';
+
+  $result = db_query("SELECT title FROM node
+    INNER JOIN field_data_field_transaction_ap_ap AS ap ON (node.nid = ap.field_transaction_ap_ap_target_id)
+    INNER JOIN field_data_field_transaction_ap_agree AS agree ON (agree.entity_id = ap.entity_id)
+    INNER JOIN field_data_field_transaction_agree_ctrl AS ctrl ON (agree.field_transaction_ap_agree_target_id = ctrl.entity_id)
+    WHERE ctrl.field_transaction_agree_ctrl_target_id = :nid", array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+  // Add markup for prefix
+  $form['prefix'] = array(
+    '#type' => 'markup',
+    '#markup' => '
+    <div class="verification-header">
+      <div class="verification-info">
+        <div class="ver-type">Penningtvätt</div>
+        <h2 class="ver-title">' . $result['title'] . '</h2>
+      </div>
+    </div>
+    ',
+  );
 }
 
 /**
