@@ -704,6 +704,46 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
 }
 
 /**
+ * Implements hook_node_presave
+ */
+function sedermera_verification_node_presave($node) {
+  if ($node->type === 'transaction_ap') {
+    if ($node->is_new) {
+      global $user;
+
+      $eu_ctrl = new stdClass();
+      $eu_ctrl->title = $node->title . " EU kontroll";
+      $eu_ctrl->type = "ctrl";
+      node_object_prepare($eu_ctrl);
+      $eu_ctrl->language = LANGUAGE_NONE;
+      $eu_ctrl->uid = $user->uid;
+      $eu_ctrl->status = 1;
+      $eu_ctrl->promote = 0;
+      $eu_ctrl->comment = 0;
+
+      $eu_ctrl = node_submit($eu_ctrl);
+      node_save($eu_ctrl);
+
+      $comp_ctrl = new stdClass();
+      $comp_ctrl->title = $node->title . " complementing kontroll";
+      $comp_ctrl->type = "ctrl";
+      node_object_prepare($comp_ctrl);
+      $comp_ctrl->language = LANGUAGE_NONE;
+      $comp_ctrl->uid = $user->uid;
+      $comp_ctrl->status = 1;
+      $comp_ctrl->promote = 0;
+      $comp_ctrl->comment = 0;
+
+      $comp_ctrl = node_submit($comp_ctrl);
+      node_save($comp_ctrl);
+
+      $node->field_transaction_ap_ctrl_eu[LANGUAGE_NONE][0]['target_id'] = $eu_ctrl->nid;
+      $node->field_transaction_ap_ctrl_comp[LANGUAGE_NONE][0]['target_id'] = $comp_ctrl->nid;
+    }
+  }
+}
+
+/**
  * Get the status for a single verification.
  *
  * @param int $id
