@@ -65,8 +65,43 @@ function sedermera_verification_ap_name_and_type($field) {
     $type = 'PTV-blankett';
   }
 
+  if ($type == NULL) {
+    $result = db_query("SELECT *
+      FROM {field_data_field_transaction_ap_ctrl_eu} AS eu
+      INNER JOIN {field_data_field_transaction_ap_ctrl_comp} AS comp ON (eu.entity_id = comp.entity_id)
+      WHERE field_transaction_ap_ctrl_eu_target_id = :nid
+      OR field_transaction_ap_ctrl_comp_target_id = :nid",
+      array(':nid' => $field['entity']->nid))->fetchAssoc();
+
+    // Determine what type of control it is
+    if ($field['entity']->nid === $result['field_transaction_ap_ctrl_eu_target_id']) {
+      $type = 'EU:s sanktionsförordningar';
+    }
+    if ($field['entity']->nid === $result['field_transaction_ap_ctrl_comp_target_id']) {
+      $type = 'Kompleterande frågor';
+    }
+  }
+
+  if ($type == NULL) {
+    $result = db_query("SELECT *
+      FROM {field_data_field_user_id_ctrl} AS eu
+      WHERE field_user_id_ctrl_target_id = :nid",
+      array(':nid' => $field['entity']->nid))->fetchAssoc();
+
+    // Determine what type of control it is
+    if ($field['entity']->nid === $result['field_user_id_ctrl_target_id']) {
+      $type = 'Id kontroll';
+    }
+  }
+
   // Load AP to get AP name
-  $node_ap = node_load($result['entity_id']);
+  if ($result['bundle'] === 'transaction_ap') {
+    $t_ap = node_load($result['entity_id']);
+    $node_ap = node_load($t_ap->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
+  }
+  else {
+    $node_ap = node_load($result['entity_id']);
+  }
 
   // Add markup
   $fields['type'] = array(
@@ -661,8 +696,43 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
       break;
   }
 
+  if ($type == NULL) {
+    $result = db_query("SELECT *
+      FROM {field_data_field_transaction_ap_ctrl_eu} AS eu
+      INNER JOIN {field_data_field_transaction_ap_ctrl_comp} AS comp ON (eu.entity_id = comp.entity_id)
+      WHERE field_transaction_ap_ctrl_eu_target_id = :nid
+      OR field_transaction_ap_ctrl_comp_target_id = :nid",
+      array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+    // Determine what type of control it is
+    if ($form['nid']['#value'] === $result['field_transaction_ap_ctrl_eu_target_id']) {
+      $type = 'EU:s sanktionsförordningar';
+    }
+    if ($form['nid']['#value'] === $result['field_transaction_ap_ctrl_comp_target_id']) {
+      $type = 'Kompleterande frågor';
+    }
+  }
+
+  if ($type == NULL) {
+    $result = db_query("SELECT *
+      FROM {field_data_field_user_id_ctrl} AS eu
+      WHERE field_user_id_ctrl_target_id = :nid",
+      array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+    // Determine what type of control it is
+    if ($form['nid']['#value'] === $result['field_user_id_ctrl_target_id']) {
+      $type = 'Id kontroll';
+    }
+  }
+
   // Load AP to get AP name
-  $node_ap = node_load($result['entity_id']);
+  if ($result['bundle'] === 'transaction_ap') {
+    $t_ap = node_load($result['entity_id']);
+    $node_ap = node_load($t_ap->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
+  }
+  else {
+    $node_ap = node_load($result['entity_id']);
+  }
 
   // Get status for the control
   $status = sedermera_verification_get_status_single($form['nid']['#value']);
