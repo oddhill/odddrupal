@@ -98,26 +98,40 @@ function sedermera_investor_field_widget_form_alter(&$element, &$form_state, $co
  * Implements hook_node_presave
  */
 function sedermera_investor_node_presave($node) {
-  if ($node->type == 'person') {
-    if ($node->is_new) {
-      global $user;
-
-      $new_node = new stdClass();
-      $new_node->title = $node->title . " ID kontroll";
-      $new_node->type = "ctrl";
-      node_object_prepare($new_node);
-      $new_node->language = LANGUAGE_NONE;
-      $new_node->uid = $user->uid;
-      $new_node->status = 1;
-      $new_node->promote = 0;
-      $new_node->comment = 0;
-
-      $new_node = node_submit($new_node);
-      node_save($new_node);
-
-      $node->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'] = $new_node->nid;
-    }
+  if ($node->type === 'person' && $node->is_new == 1) {
+    // Set the node title of the ID control connected to the person node
+    $ctrl = node_load($node->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id']);
+    $ctrl->title = $node->title . " ID kontroll";
+    node_save($ctrl);
   }
+  if (($node->type === 'investor_company' || $node->type === 'investor_private') && $node->is_new == 1) {
+    // Set the node title of the control connected to the investor node
+    $ua_ctrl = node_load($node->field_investor_shared_ctrl_ua[LANGUAGE_NONE][0]['target_id']);
+    $ua_ctrl->title = $node->title . " Uppdragsavtal";
+    node_save($ua_ctrl);
+    $ptv_ctrl = node_load($node->field_investor_shared_ctrl_ptv[LANGUAGE_NONE][0]['target_id']);
+    $ptv_ctrl->title = $node->title . " PTV-blankett";
+    node_save($ptv_ctrl);
+    $cred_ctrl = node_load($node->field_investor_shared_ctrl_cred[LANGUAGE_NONE][0]['target_id']);
+    $cred_ctrl->title = $node->title . " Kreditkontroll";
+    node_save($cred_ctrl);
+    $ext_ctrl = node_load($node->field_investor_shared_ctrl_ext[LANGUAGE_NONE][0]['target_id']);
+    $ext_ctrl->title = $node->title . " Externt register";
+    node_save($ext_ctrl);
+    $oth_ctrl = node_load($node->field_investor_shared_ctrl_oth[LANGUAGE_NONE][0]['target_id']);
+    $oth_ctrl->title = $node->title . " Övriga dokument/tillägg";
+    node_save($oth_ctrl);
+  }
+  // if ($node->type === 'transaction_ap' && $node->is_new == 1) {
+  //   $ap = node_load($node->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
+  //   // Set the node title of the control connected to the investor node
+  //   $eu_ctrl = node_load($node->field_transaction_ap_ctrl_eu[LANGUAGE_NONE][0]['target_id']);
+  //   $eu_ctrl->title = $ap->title . " EU:s sanktionsförordningar";
+  //   node_save($eu_ctrl);
+  //   $comp_ctrl = node_load($node->field_transaction_ap_ctrl_comp[LANGUAGE_NONE][0]['target_id']);
+  //   $comp_ctrl->title = $ap->title . " Kompleterande frågor";
+  //   node_save($comp_ctrl);
+  // }
 }
 
 /**
