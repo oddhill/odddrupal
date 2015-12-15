@@ -35,7 +35,7 @@ function f_verification_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_pattern_node_ctrl_pen';
-  $strongarm->value = '';
+  $strongarm->value = 'Penningtvätt';
   $export['auto_entitylabel_pattern_node_ctrl_pen'] = $strongarm;
 
   $strongarm = new stdClass();
