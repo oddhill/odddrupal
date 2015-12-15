@@ -14,7 +14,7 @@ function f_verification_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_node_ctrl';
-  $strongarm->value = '1';
+  $strongarm->value = '2';
   $export['auto_entitylabel_node_ctrl'] = $strongarm;
 
   $strongarm = new stdClass();
