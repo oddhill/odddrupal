@@ -18,27 +18,23 @@ function f_document_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'document';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_doc';
   $field_group->data = array(
-    'label' => 'Sidebar',
-    'weight' => '4',
+    'label' => 'Detaljer',
+    'weight' => '1',
     'children' => array(
       0 => 'field_document_type',
       1 => 'title',
       2 => 'group_document_rel',
     ),
-    'format_type' => 'div',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Sidebar',
+      'label' => 'Detaljer',
       'instance_settings' => array(
         'required_fields' => 0,
         'id' => '',
-        'classes' => 'form-sidebar column',
+        'classes' => '',
         'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
       ),
       'formatter' => 'open',
     ),
@@ -53,30 +49,26 @@ function f_document_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'document';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_doc';
   $field_group->data = array(
-    'label' => 'Body',
-    'weight' => '10',
+    'label' => 'Innehåll',
+    'weight' => '2',
     'children' => array(
       0 => 'body',
       1 => 'field_document_files',
       2 => 'group_document_footer',
       3 => 'group_document_head',
     ),
-    'format_type' => 'div',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Body',
+      'label' => 'Innehåll',
       'instance_settings' => array(
         'required_fields' => 0,
         'id' => '',
-        'classes' => 'form-body column',
+        'classes' => '',
         'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
       ),
-      'formatter' => 'open',
+      'formatter' => 'closed',
     ),
   );
   $export['group_doc_2|node|document|form'] = $field_group;
@@ -109,10 +101,10 @@ function f_document_field_group_info() {
       'label' => 'Sidfot',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => 'group-document-footer field-group-fieldset',
+        'classes' => 'document-foot',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_document_footer|node|document|form'] = $field_group;
@@ -139,10 +131,10 @@ function f_document_field_group_info() {
       'label' => 'Sidhuvud',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => 'group-document-head field-group-fieldset',
+        'classes' => 'document-head',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_document_head|node|document|form'] = $field_group;
@@ -179,31 +171,54 @@ function f_document_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_doc|node|document|form';
+  $field_group->group_name = 'group_doc';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'document';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Dokument',
+    'weight' => '0',
+    'children' => array(
+      0 => 'group_doc_1',
+      1 => 'group_doc_2',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-doc field-group-htabs',
+      ),
+    ),
+  );
+  $export['group_doc|node|document|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_manual_1|node|manual|form';
   $field_group->group_name = 'group_manual_1';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'manual';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_man';
   $field_group->data = array(
-    'label' => 'Sidebar',
+    'label' => 'Detaljer',
     'weight' => '3',
     'children' => array(
       0 => 'field_manual_type',
-      1 => 'title',
+      1 => 'metatags',
+      2 => 'title',
     ),
-    'format_type' => 'div',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Sidebar',
+      'label' => 'Detaljer',
       'instance_settings' => array(
         'required_fields' => 0,
         'id' => '',
-        'classes' => 'form-sidebar column',
+        'classes' => '',
         'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
       ),
       'formatter' => 'open',
     ),
@@ -218,30 +233,26 @@ function f_document_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'manual';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_man';
   $field_group->data = array(
-    'label' => 'Body',
-    'weight' => '5',
+    'label' => 'Innehåll',
+    'weight' => '4',
     'children' => array(
       0 => 'body',
       1 => 'field_manual_files',
       2 => 'group_manual_footer',
       3 => 'group_manual_head',
     ),
-    'format_type' => 'div',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Body',
+      'label' => 'Innehåll',
       'instance_settings' => array(
         'required_fields' => 0,
         'id' => '',
-        'classes' => 'form-body column',
+        'classes' => '',
         'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
       ),
-      'formatter' => 'open',
+      'formatter' => 'closed',
     ),
   );
   $export['group_manual_2|node|manual|form'] = $field_group;
@@ -274,10 +285,10 @@ function f_document_field_group_info() {
       'label' => 'Sidfot',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => 'group-manual-footer field-group-fieldset',
+        'classes' => 'manual-foot',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_manual_footer|node|manual|form'] = $field_group;
@@ -304,10 +315,10 @@ function f_document_field_group_info() {
       'label' => 'Sidhuvud',
       'instance_settings' => array(
         'required_fields' => 0,
-        'classes' => 'group-manual-head field-group-fieldset',
+        'classes' => 'manual-head',
         'description' => '',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $export['group_manual_head|node|manual|form'] = $field_group;
@@ -340,6 +351,32 @@ function f_document_field_group_info() {
     ),
   );
   $export['group_manual_rel|node|manual|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_man|node|manual|form';
+  $field_group->group_name = 'group_man';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'manual';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Manual',
+    'weight' => '2',
+    'children' => array(
+      0 => 'group_manual_1',
+      1 => 'group_manual_2',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-man field-group-htabs',
+      ),
+    ),
+  );
+  $export['group_man|node|manual|form'] = $field_group;
 
   return $export;
 }

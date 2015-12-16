@@ -33,6 +33,10 @@ table.tabledrag-processed {
       border-bottom: 1px solid $wool;
       background: $snow;
 
+      &:last-child {
+        border-bottom: 0px none;
+      }
+
       .page-node-add-document & {
         border: 0;
       }
@@ -90,7 +94,7 @@ table.tabledrag-processed {
         }
 
         .form-item {
-          margin-bottom: 5px;
+          margin-bottom: 0px;
 
           .form-text {
             padding: 5px;
@@ -144,7 +148,7 @@ table.tabledrag-processed {
     width: 19px;
     height: 19px;
     border: 0px none;
-    margin: 0 10px 0 0;
+    margin: 0;
     cursor: -webkit-grab;
     cursor: -moz-grab;
 

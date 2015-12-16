@@ -40,7 +40,8 @@ form {
     }
 
     .page-node-add &,
-    .page-node-edit & {
+    .page-node-edit &,
+    .page-node-revisions-edit & {
       width: 50%;
       min-width: 700px;
       margin: 0 auto 40px;
@@ -469,5 +470,12 @@ div.addressfield-container-inline {
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+  }
+}
+
+.ajax-progress {
+
+  .message {
+    padding-left: 25px;
   }
 }

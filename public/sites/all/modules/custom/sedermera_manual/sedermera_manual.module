@@ -68,8 +68,7 @@ function view_manual() {
     $block = generateManualsTable($header, $rows);
   }
   else {
-    drupal_set_title('Det finns inga manualer');
-    $block = generateManualsTable(array(), NULL);
+    $block = '<div class="view-empty">Det finns inga manualer</div>';
   }
   return $block;
 }
@@ -99,8 +98,7 @@ function manual_admin() {
     $block = generateManualsTable($header, $rows);
   }
   else {
-    drupal_set_title('Det finns inga manualer');
-    $block = generateManualsTable(array(), NULL);
+    $block = '<div class="view-empty">Det finns inga manualer</div>';
   }
   return $block;
 }

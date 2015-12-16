@@ -29,6 +29,10 @@ table.field-multiple-table {
 
       td {
         border-bottom: 1px solid $wool;
+
+        &.field-multiple-drag {
+          padding: 10px 0 10px 10px;
+        }
       }
 
       &:last-child {

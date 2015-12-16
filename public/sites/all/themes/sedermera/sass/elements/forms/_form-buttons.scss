@@ -8,6 +8,11 @@
   @include button($wine, delete);
 }
 
+// View changes button
+#edit-preview-changes {
+  @include button($dark-grey, flow);
+}
+
 // Cancel button
 #edit-cancel {
   @include button($wine, cancel);

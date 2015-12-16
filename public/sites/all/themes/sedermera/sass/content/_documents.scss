@@ -1,287 +1,192 @@
-// Document node
-.node-type-document,
-.node-type-manual {
+.node-document {
 
-  .content-wrapper {
-    background: $snow;
-  }
-}
+  &.view-mode-full {
+    display: flex;
+    flex-flow: row wrap;
 
-// Document node view mode full
-.node-document.view-mode-full,
-.node-manual.view-mode-full {
-  padding-bottom: 60px;
-}
-
-// Node type document
-.node-type-document,
-.node-type-manual {
-
-  .node-document-form,
-  .node-manual-form {
-    padding: 20px 0 40px 20px;
-
-    .form-body {
-      padding: 0 20px 40px 20px;
+    > * {
+      flex: 3 100%;
     }
-  }
-}
 
-.page-node-revisions-edit {
+    // Document sidebar (contains related documents/appendix/files)
+    .document-sidebar {
+      flex: 1 40%;
+      max-width: 300px;
+      border-left: 2px solid $light-grey;
+      padding-left: 30px;
 
-  .node-document-form,
-  .node-manual-form {
-    padding: 0 0 40px 20px;
-  }
-}
+      h3 {
+        margin-bottom: 10px;
+      }
 
-// Page dokument
-.page-dokument,
-.page-manualer {
+      .document-sign {
+        margin-bottom: 20px;
 
-  .table-wrapper {
-    width: 100%;
-  }
+        .not-signed,
+        .signed {
+          background: tint($light-grey,60%);
+          border: 1px solid $wool;
+          border-radius: 2px;
+          padding: 10px;
+          text-align: center;
+        }
 
-    // Display selcet list properly
-   .main-content {
-    overflow: visible;
-  }
-}
+        // Sign button (bekräfta dokument)
+        a {
+          @include button($dark-grey, publish);
+          margin-bottom: 10px;
+        }
 
-.document-related,
-.document-appendix,
-.document-files,
-.manual-related,
-.manual-appendix,
-.manual-files {
-  background: #EAECF0;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+        // Sign info text
+        .sign-text,
+        .signed-text {
+          @include font-size(1.6);
+          display: block;
+          font-weight: 700;
+          margin-bottom: 15px;
+        }
 
-  .label {
-    display: block;
-    font-size: 12px;
-    font-size: 1.2rem;
-    line-height: 18px;
-    background: #C8CACD;
-    border-bottom: 1px solid #fff;
-    font-weight: 700;
-    margin-bottom: 15px;
-    padding: 10px 0 10px 0;
-    text-align: center;
-    text-transform: uppercase;
-  }
+        // Signed icon
+        .signed-icon {
+          display: inline-block;
+          @include svg-bg(approved_big);
+          background-repeat: no-repeat;
+          height: 30px;
+          width: 30px;
+          margin-bottom: 10px;
+        }
+      }
 
-  .file {
+      .related,
+      .appendix {
+        margin-bottom: 20px;
 
-    img {
-      display: none;
+        &-docs {
+          background: tint($light-grey,60%);
+          border: 1px solid $wool;
+          border-radius: 2px;
+          list-style: none;
+
+          li.item {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px;
+            border-bottom: 1px solid $wool;
+
+            &:last-child {
+              border-bottom: 0px none;
+            }
+
+            img {
+              display: block;
+              float: left;
+              margin-right: 5px;
+            }
+
+            a {
+              display: block;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              border: 0px none;
+            }
+          }
+        }
+      }
+
+      .attachments {
+        margin-bottom: 20px;
+
+        &-list {
+          background: tint($light-grey,60%);
+          border: 1px solid $wool;
+          border-radius: 2px;
+          list-style: none;
+
+          li.item {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px;
+            border-bottom: 1px solid $wool;
+
+            &:last-child {
+              border-bottom: 0px none;
+            }
+
+            img {
+              display: block;
+              float: left;
+              margin-right: 5px;
+            }
+
+            a {
+              display: block;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              border: 0px none;
+            }
+          }
+        }
+      }
     }
-  }
 
-  .file-icon {
-    display: none;
-  }
-
-  li {
-    display: block;
-    list-style: none;
-    margin: 0 0 7px 20px;
-  }
-
-  a {
-    border-bottom: 1px solid #ccc;
-
-    &:hover {
-      border-bottom: 1px solid $coffee;
+    .document-description {
+      flex: 2 60%;
+      padding-right: 30px;
     }
-  }
-}
 
-// All documents list wrapper
-.block-sedermera-document-view-read-all,
-.block-sedermera-document-view-read-per-doc,
-.block-sedermera-document-view-read-per-user,
-.block-sedermera-document-view-admin-doc {
+    .document-head {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
 
-  .table-wrapper {
-    width: 100%;
-  }
-}
+      &-image {
+        max-width: 120px;
+        line-height: 0;
+      }
 
-// Wraps the entire document
-.full-document-wrapper,
-.full-manual-wrapper {
-  background: $snow;
-  display: flex;
-}
+      &-text {
+        @include font-size(1.8);
+        font-weight: 700;
+      }
 
-// Document right column wrapper
-.document-left-column,
-.manual-left-column {
-  padding: 0 5%;
-  width: 74%;
-  // CSS rule to disable text selection highlighting
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
+      &-free {
+        @include font-size(1.5);
+        text-align: right;
+        flex-grow: 2;
+        padding-left: 20px;
+        font-style: italic;
+      }
+    }
 
-// Document head wrapper
-.document-head-wrapper,
-.manual-head-wrapper {
-  margin-top: 50px;
+    .document-footer {
+      margin-top: 30px;
+      border-top: 2px solid $light-grey;
+      padding-top: 30px;
 
-  .page-node-revisions & {
-    margin-top: 0;
-  }
-}
+      &-content {
+        @include row();
+      }
 
-// Wraps document head
-.document-head-content,
-.manual-head-content {
-  margin: 0px 0 40px 40px;
-  text-align: center;
-  float: right;
+      .field {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+        margin-bottom: 10px;
 
-  .page-node-revisions & {
-    margin-top: 0;
-  }
-}
+        .label {
+          width: 30%;
+          display: inline-block;
+        }
+      }
+    }
 
-.field-doc-head-text,
-.field-man-head-text {
-  @include font-size(2.2);
-  font-weight: 700;
-  margin-bottom: 10px;
-  width: 30%;
-}
-
-.field-doc-head-free,
-.field-man-head-free {
-  @include font-size(1.3);
-  clear: both;
-}
-
-// Document header image
-.field-doc-head-img,
-.field-man-head-img {
-  clear: both;
-  margin-bottom: 20px;
-
-  img {
-    height: auto;
-    max-width: 100%;
-  }
-}
-
-// Wraps document title
-.document-title-wrapper,
-.manual-title-wrapper {
-  clear: both;
-
-  h2 {
-    text-align: left;
-  }
-}
-
-// Document content wrapper
-.document-content-wrapper,
-.manual-content-wrapper {
-  @include span-columns(12);
-  @include wysiwyg;
-  float: left;
-}
-
-// Document sidebar (contains related documents/appendix/files)
-.document-sidebar,
-.manual-sidebar {
-  @include font-size(1.3);
-  background: $wool;
-  flex: 1;
-  float: right;
-  padding: 15px;
-  width: 26%;
-}
-
-// Document related document/appendif/file lable
-.document-files,
-.manual-files {
-
-   .label {
-    display: block;
-   }
-}
-
-// Document footer
-.document-footer,
-.manual-footer {
-  clear: both;
-  border-top: 2px solid $light-grey;
-  margin-top: 50px;
-  padding-top: 40px;
-
-  .field {
-    @include font-size(1.3);
-    margin: 10px 0 10px 0;
-  }
-}
-
-// Document footer content
-.document-footer-content,
-.manual-footer-content {
-  @include span-columns(4);
-  @include omega();
-}
-
-// Sign button (bekräfta dokument)
-.sign {
-  display: block;
-  margin-bottom: 10px;
-  text-align: center;
-
-  a {
-    @include button($dark-grey, publish);
-    color: $snow;
-    text-align: center;
-    text-transform: uppercase;
-  }
-}
-
-// Sign info text
-.sign-text,
-.signed-text {
-  @include font-size(1.8);
-  display: block;
-  font-weight: 700;
-  margin-bottom: 5px;
-  padding: 5px 40px 10px 40px;
-  text-align: center;
-}
-
-// Signed text
-.signed-text {
-  padding: 5px 20px 40px 20px;
-}
-
-// Signed icon
-.signed-icon {
-  position: relative;
-
-  &:after {
-    @include svg-bg(approved_big);
-    background-repeat: no-repeat;
-    bottom: 0;
-    content: '';
-    display: inline-block;
-    height: 30px;
-    position: absolute;
-    right: 45%;
-    width: 30px;
+    // Document body
+    .body {
+      @include wysiwyg;
+    }
   }
 }
 
@@ -308,32 +213,34 @@
   }
 }
 
-.appendix {
-  @include font-size(1.3);
-}
+// Document read lists filter form
+#docform,
+#userform {
+  background: tint($light-grey,60%);
+  border-top: 1px solid $wool;
+  border-right: 1px solid $wool;
+  border-left: 1px solid $wool;
+  padding: 20px;
+  @include clearfix;
 
-.block-sedermera-document-view-read-all {
-
-  table tr.odd {
-    border-bottom: 1px solid $light-grey;
+  .form-item {
+    float: left;
+    margin: 0 15px 0 0;
   }
 }
 
-// Document log
-.view-document-log {
-
-  .form-text.required {
-    padding: 10px 12px;
-  }
-}
-
-// Document & manual sorting
-form#views-form-dokument-doc-sort-page,
-form#views-form-dokument-page-1 {
+// Document sorting
+form#views-form-dokument-document {
 
   .draggableviews-changed-notice {
-    float: left;
-    margin-top: -48px;
+    margin: 0;
+    position: absolute;
+    right: 5px;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 2px;
+    top: 5px;
+    padding: 5px 10px;
   }
 
   .tabledrag-toggle-weight-wrapper {
@@ -341,12 +248,31 @@ form#views-form-dokument-page-1 {
     margin-bottom: 10px;
   }
 
-  table#draggableviews-table-dokument-doc-sort-page,
-  table#draggableviews-table-dokument-page-1 {
+  .ajax-progress {
+    top: 10px;
+    left: 10px;
+    background: $aluminium;
+  }
 
-    tr.drag {
+  .form-actions.form-wrapper {
+    margin: 0;
+    height: 0;
+  }
+
+  table#draggableviews-table-dokument-document {
+    border: 0px none;
+    margin: 0;
+
+    tr.draggable {
 
       td.views-field-title {
+
+        .tabledrag-handle {
+          margin-right: 10px;
+        }
+      }
+
+      &.drag {
 
         a {
           font-weight: 500;
@@ -354,5 +280,13 @@ form#views-form-dokument-page-1 {
         }
       }
     }
+  }
+}
+
+// Don't show description text for document log search input field
+#views-exposed-form-document-log-document-log {
+
+  .description {
+    display: none;
   }
 }

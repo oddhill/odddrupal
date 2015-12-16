@@ -203,8 +203,8 @@ $(document).ready(function() {
   tocInitiator();
 
   // Hide/show appendix in Document list (Dina dokument)
-  $(".appendix").parent().hide();
-  $(".show-appendix").click(function () {
+  $(".page-dokument-lista .appendix").parent().hide();
+  $(".page-dokument-lista .show-appendix").click(function () {
     var elem = $(this).parent().parent();
 
     elem.siblings().removeClass("open");
@@ -213,12 +213,6 @@ $(document).ready(function() {
     elem.prevAll('tr:has(.appendix)').hide();
     elem.nextUntil('tr:has(.document)').last().nextAll('tr:has(.appendix)').hide();
   });
-
-  // Move/replace revision tab buttons on page-node-revisions-view
-  $('.secondary').insertBefore('.document-head-wrapper');
-
-  // Don't show document header if no header content
-  if (!$('.document-head-content').children().length)$('.document-head-content').hide();
 });
 
 /**

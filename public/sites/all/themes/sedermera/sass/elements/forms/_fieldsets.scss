@@ -37,6 +37,10 @@ fieldset {
       cursor: pointer;
       position: relative;
 
+      a.fieldset-title {
+        border-bottom: 0px none;
+      }
+
       &:after {
         position: absolute;
         top: 5px;

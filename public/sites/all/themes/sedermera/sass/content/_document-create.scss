@@ -1,9 +1,45 @@
-// Don't show description text for document log search input field
-#views-exposed-form-document-log-document-log {
+// Form specifics
+.group-document-rel.form-wrapper {
+  margin-bottom: 0px;
 
-  .description {
-    display: none;
+  .field-name-field-document-appendix {
+    margin-bottom: 0px;
   }
+}
+
+.field-name-field-manual-type.form-wrapper {
+  margin-bottom: 0;
+
+  .form-type-radios {
+    margin-bottom: 0;
+  }
+}
+
+fieldset.document-head,
+fieldset.manual-head {
+
+  .field-type-text {
+    margin-bottom: 0;
+  }
+}
+
+fieldset.document-foot,
+fieldset.manual-foot {
+
+  .form-wrapper {
+    clear: none;
+    margin-bottom: 0;
+    @include span-columns(6 of 12);
+    @include omega(2n);
+  }
+}
+
+fieldset.manual-foot {
+  margin-bottom: 0;
+}
+
+fieldset.node-form-revision-information {
+  margin-bottom: 0;
 }
 
 // Relation document/appendix input field
@@ -12,18 +48,9 @@
 #edit-field-document-appendix,
 #edit-field-manual-appendix {
 
-  th {
-    height: auto;
-    padding: 0;
-  }
-
-  td {
-    padding: 0;
-  }
-
- .draggable {
+  .draggable {
     background: none;
- }
+  }
 
   .form-item {
 
@@ -33,8 +60,7 @@
   }
 
   .tabledrag-processed {
-    margin-bottom: 5px;
-    border-bottom: 0;
+    margin-bottom: 10px;
 
     tbody tr {
       border: 0;

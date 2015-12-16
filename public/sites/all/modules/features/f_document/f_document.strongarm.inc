@@ -112,16 +112,16 @@ function f_document_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '53',
+          'weight' => '5',
         ),
         'title' => array(
           'weight' => '5',
         ),
         'path' => array(
-          'weight' => '51',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '52',
+          'weight' => '4',
         ),
         'additional_settings' => array(
           'weight' => '8',
@@ -166,7 +166,7 @@ function f_document_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '3',
+          'weight' => '-3',
         ),
         'title' => array(
           'weight' => '-5',

@@ -54,7 +54,7 @@
   .throbber {
     display: inline-block;
     position: absolute;
-    left: -17px;
+    right: 10px;
     top: 11px;
     width: 10px;
     height: 10px;
@@ -63,7 +63,7 @@
 
     &.throbbing {
       position: absolute;
-      left: -20px;
+      right: 7px;
       top: 7px;
       margin: 0;
       width: 16px;

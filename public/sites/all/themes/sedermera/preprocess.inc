@@ -147,7 +147,7 @@ function sedermera_preprocess_node(&$variables) {
 
         // User have not signed the document.
         // Creates link for the user to sign the document.
-        $variables['sign'] = l('Bekräfta', url('node/' . $variables['nid'] . '/sign'));
+        $variables['sign'] = l('Bekräfta', 'node/' . $variables['nid'] . '/sign');
         $variables['sign_status'] = FALSE;
         $variables['signtext'] = 'Ja, jag har läst och förstått detta dokument';
 
@@ -167,15 +167,15 @@ function sedermera_preprocess_node(&$variables) {
       }
     }
 
-    $doc_rel_link = "<ul>";
-    $doc_app_link = "<ul>";
+    $doc_rel_link = '<ul class="related-docs">';
+    $doc_app_link = '<ul class="appendix-docs">';
 
     foreach (getDocuments() as $doc) {
       if (!empty($doc->field_dokument_relation)) {
         // List documents related to this document
         foreach ($doc->field_dokument_relation[LANGUAGE_NONE] as $relation) {
           if ($relation['target_id'] == $variables['nid']) {
-            $doc_rel_link .= "<li>" . l($doc->title, url('node/' . $doc->nid)) . "</li>";
+            $doc_rel_link .= '<li class="item">' . getIcon('blank') . ' ' . l($doc->title, 'node/' . $doc->nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
           }
         }
       }
@@ -183,7 +183,7 @@ function sedermera_preprocess_node(&$variables) {
         // List documents appendix to this document
         foreach ($doc->field_document_appendix[LANGUAGE_NONE] as $relation) {
           if ($relation['target_id'] == $variables['nid']) {
-            $doc_app_link .= "<li>" . l($doc->title, url('node/' . $doc->nid)) . "</li>";
+            $doc_app_link .= '<li class="item">' . getIcon('blank') . ' ' . l($doc->title, 'node/' . $doc->nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
           }
         }
       }
@@ -192,7 +192,7 @@ function sedermera_preprocess_node(&$variables) {
     // List documents related from this document
     if (!empty($variables['field_dokument_relation'])) {
       foreach ($variables['field_dokument_relation'] as $relation) {
-        $doc_rel_link .= "<li>" . l($relation['entity']->title, url('node/' . $relation['entity']->nid)) . "</li>";
+        $doc_rel_link .= '<li class="item">' . getIcon('blank') . ' ' . l($relation['entity']->title, 'node/' . $relation['entity']->nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
       }
     }
 
@@ -200,27 +200,45 @@ function sedermera_preprocess_node(&$variables) {
     $doc_app_link .= "</ul>";
 
     // Create variable for related documents
-    if ($doc_rel_link != "<ul></ul>") {
-      $variables['related'] = "<div class='field field-dokument-relation'><span class='label'>Relaterade dokument&nbsp;</span>" . $doc_rel_link . "</div>";
+    if ($doc_rel_link != '<ul class="related-docs"></ul>') {
+      $variables['related'] = '<div class="related"><h3>Relaterade dokument</h3>' . $doc_rel_link . '</div>';
     }
 
     // Create variable for appendix documents
-    if ($doc_app_link != "<ul></ul>") {
-      $variables['appendix'] = "<div class='field field-dokument-appendix'><span class='label'>Bilaga&nbsp;</span>" . $doc_app_link . "</div>";
+    if ($doc_app_link != '<ul class="appendix-docs"></ul>') {
+      $variables['appendix'] = '<div class="appendix"><h3>Bilaga</h3>' . $doc_app_link . '</div>';
     }
 
     if (!empty($variables['field_document_files'])) {
-      $doc_file = "<ul>";
+      $doc_file = '<ul class="attachments-list">';
 
       foreach ($variables['field_document_files'] as $file) {
-        $doc_file .= "<li>" . getIcon($file) . " " . l($file['filename'], file_create_url($file['uri'])) . "</li>";
+        $doc_file .= '<li class="item">' . getIcon($file) . ' ' . l($file['filename'], file_create_url($file['uri']), array('attributes' => array('class' => array('file-link')))) . '</li>';
       }
 
-      $doc_file .= "</ul>";
+      $doc_file .= '</ul>';
 
       // Create variable for document files
-      if ($doc_file != "<ul></ul>") {
-        $variables['files'] = "<div class='field field-document-files'><span class='label'>Filer&nbsp;</span>" . $doc_file . "</div>";
+      if ($doc_file != '<ul class="attachments-list"></ul>') {
+        $variables['files'] = '<div class="attachments"><h3>Filer</h3>' . $doc_file . '</div>';
+      }
+    }
+  }
+
+  if ($variables['type'] == 'manual' && $variables['view_mode'] == 'full') {
+
+    if (!empty($variables['field_manual_files'])) {
+      $man_file = '<ul class="attachments-list">';
+
+      foreach ($variables['field_manual_files'] as $file) {
+        $man_file .= '<li class="item">' . getIcon($file) . ' ' . l($file['filename'], file_create_url($file['uri']), array('attributes' => array('class' => array('file-link')))) . '</li>';
+      }
+
+      $man_file .= '</ul>';
+
+      // Create variable for document files
+      if ($man_file != '<ul class="attachments-list"></ul>') {
+        $variables['files'] = '<div class="attachments"><h3>Filer</h3>' . $man_file . '</div>';
       }
     }
   }
@@ -270,19 +288,26 @@ function sedermera_preprocess_entity(&$variables) {
 }
 
 function getIcon($file) {
-  $title = $file['filemime'];
-  $src = 'text-plain.png';
 
-  switch ($title) {
-    case 'application/pdf':
-      $src = 'application-pdf.png';
-      break;
-    case 'application/msword':
-      $src = 'x-office-document.png';
-      break;
-    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-      $src = 'x-office-document.png';
-      break;
+  if ($file != 'blank') {
+    $title = $file['filemime'];
+    $src = 'text-plain.png';
+
+    switch ($title) {
+      case 'application/pdf':
+        $src = 'application-pdf.png';
+        break;
+      case 'application/msword':
+        $src = 'x-office-document.png';
+        break;
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        $src = 'x-office-document.png';
+        break;
+    }
+  }
+  else {
+    $title = 'Document';
+    $src = 'text-plain.png';
   }
 
   return "<img class='file-icon' alt='' title='" . $title . "' src='/modules/file/icons/" . $src . "'>";
