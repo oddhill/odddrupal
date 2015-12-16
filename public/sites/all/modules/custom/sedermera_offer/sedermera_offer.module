@@ -517,6 +517,14 @@ function sedermera_offer_send_offer_mail($transaction_nid) {
     // Send the mail.
     drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
 
+    // Mark offer as gotten transparency information
+    $transaction->field_transaction_info_offer = TRUE;
+    $transaction->save();
+
+    // Replace the old view with a new one.
+    $view = views_get_view('transactions');
+    $commands[] = ajax_command_replace('div.offer-contact-list', $view->preview('page', array($offer->nid->value())));
+
     // Print a message.
     drupal_set_message(format_string('Erbjudandet skickades till %email.', array('%email' => $mail)));
   }

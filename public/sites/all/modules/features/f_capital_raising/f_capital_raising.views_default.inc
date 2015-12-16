@@ -319,23 +319,26 @@ else {
 ?>';
   $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
   $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
-  /* Field: Content: Erbjudande */
-  $handler->display->display_options['fields']['field_transaction_info_offer']['id'] = 'field_transaction_info_offer';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['table'] = 'field_data_field_transaction_info_offer';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['field'] = 'field_transaction_info_offer';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['text'] = 'Skicka';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['path'] = 'offer/send-offer/[nid]';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['alter']['link_class'] = 'send-mail';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_transaction_info_offer']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_transaction_info_offer']['settings'] = array(
-    'click_to_edit' => 0,
-    'click_to_edit_style' => 'button',
-    'empty_text' => '',
-    'fallback_format' => 'list_default',
-  );
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php_1']['id'] = 'php_1';
+  $handler->display->display_options['fields']['php_1']['table'] = 'views';
+  $handler->display->display_options['fields']['php_1']['field'] = 'php';
+  $handler->display->display_options['fields']['php_1']['label'] = 'Erbjudande';
+  $handler->display->display_options['fields']['php_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php_1']['php_output'] = '<?php
+$node_tr = node_load($row->nid);
+
+if ($node_tr->field_transaction_info_offer[\'und\'][0][value]) {
+  print \'Skickad\';
+}
+else {
+  print l(\'Skicka\', "offer/send-offer/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
+}
+?>
+';
+  $handler->display->display_options['fields']['php_1']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php_1']['php_click_sortable'] = '';
   /* Field: Content: Intresserad */
   $handler->display->display_options['fields']['field_transaction_interested']['id'] = 'field_transaction_interested';
   $handler->display->display_options['fields']['field_transaction_interested']['table'] = 'field_data_field_transaction_interested';
@@ -396,7 +399,6 @@ else {
     t('Första kontakt'),
     t('Insynsinfo'),
     t('Erbjudande'),
-    t('Skicka'),
     t('Intresserad'),
     t('All'),
     t('%1'),

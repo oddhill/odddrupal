@@ -20,6 +20,13 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_node_transaction_agreement';
+  $strongarm->value = '2';
+  $export['auto_entitylabel_node_transaction_agreement'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_node_transaction_ap';
   $strongarm->value = '1';
   $export['auto_entitylabel_node_transaction_ap'] = $strongarm;
@@ -34,6 +41,13 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_pattern_node_transaction_agreement';
+  $strongarm->value = '';
+  $export['auto_entitylabel_pattern_node_transaction_agreement'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_pattern_node_transaction_ap';
   $strongarm->value = '';
   $export['auto_entitylabel_pattern_node_transaction_ap'] = $strongarm;
@@ -44,6 +58,13 @@ function f_capital_raising_strongarm() {
   $strongarm->name = 'auto_entitylabel_php_node_offer';
   $strongarm->value = '';
   $export['auto_entitylabel_php_node_offer'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'auto_entitylabel_php_node_transaction_agreement';
+  $strongarm->value = 0;
+  $export['auto_entitylabel_php_node_transaction_agreement'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
