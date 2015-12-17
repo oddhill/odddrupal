@@ -1,23 +1,16 @@
 .node-offer {
 
   &.view-mode-full {
+    display: flex;
+    flex-flow: row wrap;
 
-    .offer-time {
-      padding-bottom: 30px;
-      border-bottom: 2px solid $light-grey;
-      margin-bottom: 30px;
-      @include font-size(1.6);
-
-      .date-display-range {
-        display: inline-block;
-      }
+    > * {
+      flex: 3 100%;
     }
 
     .offer-sidebar {
-      float: right;
-      width: 40%;
+      flex: 1 40%;
       max-width: 300px;
-      margin: 0 0 30px 30px;
       border-left: 2px solid $light-grey;
       padding-left: 30px;
 
@@ -29,11 +22,30 @@
           display: block;
           margin-bottom: 3px;
         }
+
+        .file {
+          overflow: hidden;
+          white-space: nowrap;
+
+          .file-icon {
+            display: block;
+            float: left;
+            margin-right: 5px;
+          }
+
+          a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: 0px none;
+          }
+        }
       }
     }
 
     .offer-description {
-      overflow: hidden;
+      flex: 2 60%;
+      padding-right: 30px;
     }
 
     .offer-company {

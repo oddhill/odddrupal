@@ -2183,38 +2183,45 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
     height: 30px;
     padding: 0 10px; }
 
-.node-offer.view-mode-full .offer-time {
-  padding-bottom: 30px;
-  border-bottom: 2px solid #f3f4f8;
-  margin-bottom: 30px;
-  font-size: 16px;
-  font-size: 1.6rem;
-  line-height: 24px; }
-  .node-offer.view-mode-full .offer-time .date-display-range {
-    display: inline-block; }
-.node-offer.view-mode-full .offer-sidebar {
-  float: right;
-  width: 40%;
-  max-width: 300px;
-  margin: 0 0 30px 30px;
-  border-left: 2px solid #f3f4f8;
-  padding-left: 30px; }
-  .node-offer.view-mode-full .offer-sidebar .field {
-    margin-bottom: 1em; }
-    .node-offer.view-mode-full .offer-sidebar .field .label,
-    .node-offer.view-mode-full .offer-sidebar .field .file {
-      display: block;
-      margin-bottom: 3px; }
-.node-offer.view-mode-full .offer-description {
-  overflow: hidden; }
-.node-offer.view-mode-full .offer-company {
-  float: right;
-  width: 140px;
-  margin: 0 0 1em 2em;
-  text-align: center; }
-.node-offer.view-mode-full .offer-additional-information {
-  margin-top: 3em;
-  color: #797979; }
+.node-offer.view-mode-full {
+  display: flex;
+  flex-flow: row wrap; }
+  .node-offer.view-mode-full > * {
+    flex: 3 100%; }
+  .node-offer.view-mode-full .offer-sidebar {
+    flex: 1 40%;
+    max-width: 300px;
+    border-left: 2px solid #f3f4f8;
+    padding-left: 30px; }
+    .node-offer.view-mode-full .offer-sidebar .field {
+      margin-bottom: 1em; }
+      .node-offer.view-mode-full .offer-sidebar .field .label,
+      .node-offer.view-mode-full .offer-sidebar .field .file {
+        display: block;
+        margin-bottom: 3px; }
+      .node-offer.view-mode-full .offer-sidebar .field .file {
+        overflow: hidden;
+        white-space: nowrap; }
+        .node-offer.view-mode-full .offer-sidebar .field .file .file-icon {
+          display: block;
+          float: left;
+          margin-right: 5px; }
+        .node-offer.view-mode-full .offer-sidebar .field .file a {
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          border-bottom: 0px none; }
+  .node-offer.view-mode-full .offer-description {
+    flex: 2 60%;
+    padding-right: 30px; }
+  .node-offer.view-mode-full .offer-company {
+    float: right;
+    width: 140px;
+    margin: 0 0 1em 2em;
+    text-align: center; }
+  .node-offer.view-mode-full .offer-additional-information {
+    margin-top: 3em;
+    color: #797979; }
 
 #preview-wrapper {
   position: relative; }
