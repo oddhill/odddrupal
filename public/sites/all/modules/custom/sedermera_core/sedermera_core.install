@@ -129,3 +129,10 @@ function sedermera_core_update_7007() {
   );
   path_save($path);
 }
+
+/**
+ * Update weight of the module in order to run after VBO.
+ */
+function sedermera_core_update_7008() {
+  db_query("UPDATE {system} SET weight = 10 WHERE name = 'sedermera_core'");
+}

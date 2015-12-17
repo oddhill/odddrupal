@@ -87,3 +87,16 @@ function sedermera_core_menu_local_tasks_alter(&$data, $router_item, $root_path)
 function sedermera_core_user_logout($account) {
   setcookie('popup_message_displayed', '', 1, '/');
 }
+
+/**
+ * Implements hook_views_post_build().
+ */
+function sedermera_core_views_post_build(&$view) {
+  // Display VBO checkboxes even though there are no operations available. This
+  // is required in order for our custom table selectors to work.
+  // See views_bulk_operations_views_post_build().
+  $vbo = _views_bulk_operations_get_field($view);
+  if ($vbo) {
+    $vbo->options['exclude'] = FALSE;
+  }
+}

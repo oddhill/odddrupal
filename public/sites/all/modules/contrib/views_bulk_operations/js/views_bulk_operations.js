@@ -9,6 +9,11 @@
   }
 
   Drupal.vbo = Drupal.vbo || {};
+
+  // Store whether or not we should use the attr() or prop() method to change
+  // the checked property. We'll use prop() if it's available.
+  Drupal.vbo.changeMethod = $.fn.prop ? 'prop' : 'attr';
+
   Drupal.vbo.initTableBehaviors = function(form) {
     // If the table is not grouped, "Select all on this page / all pages"
     // markup gets inserted below the table header.
@@ -32,7 +37,7 @@
     // This is the "select all" checkbox in (each) table header.
     $('.vbo-table-select-all', form).click(function() {
       var table = $(this).closest('table')[0];
-      $('input[id^="edit-views-bulk-operations"]:not(:disabled)', table).attr('checked', this.checked).change();
+      $('input[id^="edit-views-bulk-operations"]:not(:disabled)', table)[Drupal.vbo.changeMethod]('checked', this.checked).change();
 
       // Toggle the visibility of the "select all" row (if any).
       if (this.checked) {
@@ -46,14 +51,23 @@
     });
 
     // Set up the ability to click anywhere on the row to select it.
-    $('.views-table tbody tr', form).click(function(event) {
-      if (event.target.tagName.toLowerCase() != 'input' && event.target.tagName.toLowerCase() != 'a') {
-        $('input[id^="edit-views-bulk-operations"]:not(:disabled)', this).each(function() {
-          this.checked = !this.checked;
-          $(this).change();
-        });
-      }
-    });
+    if (Drupal.settings.vbo.row_clickable) {
+      $('.views-table tbody tr', form).click(function(event) {
+        if (event.target.tagName.toLowerCase() != 'input' && event.target.tagName.toLowerCase() != 'a') {
+          $('input[id^="edit-views-bulk-operations"]:not(:disabled)', this).each(function() {
+            var checked = this.checked;
+            // trigger() toggles the checkmark *after* the event is set,
+            // whereas manually clicking the checkbox toggles it *beforehand*.
+            // that's why we manually set the checkmark first, then trigger the
+            // event (so that listeners get notified), then re-set the checkmark
+            // which the trigger will have toggled. yuck!
+            this.checked = !checked;
+            $(this).trigger('click');
+            this.checked = !checked;
+          });
+        }
+      });
+    }
   }
 
   Drupal.vbo.tableSelectAllPages = function(form) {
@@ -74,35 +88,35 @@
     $('.vbo-select-all-markup', form).show();
 
     $('.vbo-select-this-page', form).click(function() {
-      $('input[id^="edit-views-bulk-operations"]', form).attr('checked', this.checked).change();
-      $('.vbo-select-all-pages', form).attr('checked', false).change();
+      $('input[id^="edit-views-bulk-operations"]', form)[Drupal.vbo.changeMethod]('checked', this.checked).change();
+      $('.vbo-select-all-pages', form)[Drupal.vbo.changeMethod]('checked', false).change();
 
       // Toggle the "select all" checkbox in grouped tables (if any).
-      $('.vbo-table-select-all', form).attr('checked', this.checked).change();
+      $('.vbo-table-select-all', form)[Drupal.vbo.changeMethod]('checked', this.checked).change();
     });
     $('.vbo-select-all-pages', form).click(function() {
-      $('input[id^="edit-views-bulk-operations"]', form).attr('checked', this.checked).change();
-      $('.vbo-select-this-page', form).attr('checked', false).change();
+      $('input[id^="edit-views-bulk-operations"]', form)[Drupal.vbo.changeMethod]('checked', this.checked).change();
+      $('.vbo-select-this-page', form)[Drupal.vbo.changeMethod]('checked', false).change();
 
       // Toggle the "select all" checkbox in grouped tables (if any).
-      $('.vbo-table-select-all', form).attr('checked', this.checked).change();
+      $('.vbo-table-select-all', form)[Drupal.vbo.changeMethod]('checked', this.checked).change();
 
       // Modify the value of the hidden form field.
       $('.select-all-rows', form).val(this.checked);
     });
 
-    $('.vbo-select', form).change(function() {
+    $('.vbo-select', form).click(function() {
       // If a checkbox was deselected, uncheck any "select all" checkboxes.
       if (!this.checked) {
-        $('.vbo-select-this-page', form).attr('checked', false).change();
-        $('.vbo-select-all-pages', form).attr('checked', false).change();
+        $('.vbo-select-this-page', form)[Drupal.vbo.changeMethod]('checked', false).change();
+        $('.vbo-select-all-pages', form)[Drupal.vbo.changeMethod]('checked', false).change();
         // Modify the value of the hidden form field.
-        $('.select-all-rows', form).val('0')
+        $('.select-all-rows', form).val('0');
 
         var table = $(this).closest('table')[0];
         if (table) {
           // Uncheck the "select all" checkbox in the table header.
-          $('.vbo-table-select-all', table).attr('checked', false).change();
+          $('.vbo-table-select-all', table)[Drupal.vbo.changeMethod]('checked', false).change();
 
           // If there's a "select all" row, hide it.
           if ($('.vbo-table-select-this-page', table).length) {
