@@ -270,8 +270,8 @@ function sedermera_verification_field_formatter_view($entity_type, $entity, $fie
  * Implements hook_field_extra_fields().
  */
 function sedermera_verification_field_extra_fields() {
-  // Add pseudo fields for the overall status on investors, both for private and
-  // companies.
+  // Add pseudo fields for the overall status and ID verification status on
+  // investors, both for private and companies.
   $extra['node']['investor_private'] = array(
     'display' => array(
       'verification_status_investor' => array(
@@ -279,22 +279,6 @@ function sedermera_verification_field_extra_fields() {
         'description' => t('Displays the overall verification status for the investor.'),
         'weight' => 0,
       ),
-    )
-  );
-  $extra['node']['investor_company'] = array(
-    'display' => array(
-      'verification_status_investor' => array(
-        'label' => t('Verification status'),
-        'description' => t('Displays the overall verification status for the investor.'),
-        'weight' => 0,
-      ),
-    )
-  );
-
-  // Add pseudo fields for the ID verification on investors, both for private
-  // and companies.
-  $extra['node']['investor_private'] = array(
-    'display' => array(
       'verification_id_investor' => array(
         'label' => t('ID verification'),
         'description' => t('Edit the verification ID for the investor.'),
@@ -304,6 +288,11 @@ function sedermera_verification_field_extra_fields() {
   );
   $extra['node']['investor_company'] = array(
     'display' => array(
+      'verification_status_investor' => array(
+        'label' => t('Verification status'),
+        'description' => t('Displays the overall verification status for the investor.'),
+        'weight' => 0,
+      ),
       'verification_id_investor' => array(
         'label' => t('ID verification'),
         'description' => t('Edit the verification ID for the investor.'),
