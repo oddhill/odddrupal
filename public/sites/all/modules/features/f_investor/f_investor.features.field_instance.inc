@@ -244,7 +244,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_investor_comp_owners',
-    'label' => 'Ägare',
+    'label' => 'Ägare (till mer än 25%)',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2767,7 +2767,7 @@ function f_investor_field_default_field_instances() {
   t('Transaktion');
   t('Transaktions avtalspart');
   t('Uppdragsavtal');
-  t('Ägare');
+  t('Ägare (till mer än 25%)');
   t('ÅÅMMDD-XXXX');
   t('Övriga dokument/tillägg');
 
