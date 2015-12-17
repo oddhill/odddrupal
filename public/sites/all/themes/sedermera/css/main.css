@@ -741,12 +741,33 @@ div.button {
   display: none; }
 .node-ctrl-form .field-name-field-ctrl-notes, .node-ctrl_pen-form .field-name-field-ctrl-notes {
   margin-bottom: 0; }
-  .node-ctrl-form .field-name-field-ctrl-notes #field-ctrl-notes-add-more-wrapper > .form-item, .node-ctrl_pen-form .field-name-field-ctrl-notes #field-ctrl-notes-add-more-wrapper > .form-item {
+  .node-ctrl-form .field-name-field-ctrl-notes .form-item, .node-ctrl_pen-form .field-name-field-ctrl-notes .form-item {
     margin-bottom: 0; }
+  .node-ctrl-form .field-name-field-ctrl-notes td, .node-ctrl_pen-form .field-name-field-ctrl-notes td {
+    padding: 0; }
+  .node-ctrl-form .field-name-field-ctrl-notes .form-type-textarea, .node-ctrl_pen-form .field-name-field-ctrl-notes .form-type-textarea {
+    margin: 0; }
 .node-ctrl-form .form-actions, .node-ctrl_pen-form .form-actions {
   padding: 40px;
   text-align: center;
   margin: 0; }
+  .node-ctrl-form .form-actions .submit-wrapper, .node-ctrl_pen-form .form-actions .submit-wrapper {
+    position: relative; }
+    .node-ctrl-form .form-actions .submit-wrapper .ajax-progress, .node-ctrl_pen-form .form-actions .submit-wrapper .ajax-progress {
+      background: #303030;
+      top: 0;
+      left: 10px;
+      right: 10px;
+      height: 34px;
+      z-index: 100;
+      border-radius: 17px;
+      text-align: center; }
+      .node-ctrl-form .form-actions .submit-wrapper .ajax-progress .throbber, .node-ctrl_pen-form .form-actions .submit-wrapper .ajax-progress .throbber {
+        float: none;
+        margin: 9px auto;
+        cursor: pointer; }
+      .node-ctrl-form .form-actions .submit-wrapper .ajax-progress .message, .node-ctrl_pen-form .form-actions .submit-wrapper .ajax-progress .message {
+        display: none; }
 
 .node-ctrl_pen-form .form-item label {
   margin: 0 0 1em; }
@@ -3517,6 +3538,42 @@ form#user-login,
 .mfp-container {
   padding: 44px; }
 
+.mfp-inline-holder .success {
+  padding: 0 40px;
+  text-align: center;
+  font-size: 18px;
+  font-size: 1.8rem;
+  line-height: 27px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  overflow: hidden; }
+.mfp-inline-holder .verification-footer {
+  text-align: center;
+  padding: 0 40px; }
+  .mfp-inline-holder .verification-footer .modal-close {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+    background-position: 20px 13px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out; }
+    .mfp-inline-holder .verification-footer .modal-close:hover {
+      background-color: #303030; }
+
 .mfp-ajax-holder .mfp-content {
   padding: 0;
   width: 90%;
@@ -3550,6 +3607,10 @@ form#user-login,
     .mfp-ajax-holder .mfp-content .node-ctrl-form.not-approved,
     .mfp-ajax-holder .mfp-content .not-approved.node-ctrl_pen-form {
       border-color: #c04343; }
+    .mfp-ajax-holder .mfp-content .node-ctrl .vertical-tabs,
+    .mfp-ajax-holder .mfp-content .node-ctrl-form .vertical-tabs,
+    .mfp-ajax-holder .mfp-content .node-ctrl_pen-form .vertical-tabs {
+      display: none; }
 
 .mfp-close-btn-in .mfp-close {
   color: #fff;

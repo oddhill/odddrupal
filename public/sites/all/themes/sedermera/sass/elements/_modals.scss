@@ -7,6 +7,27 @@
   padding: 44px;
 }
 
+.mfp-inline-holder {
+
+  .success {
+    padding: 0 40px;
+    text-align: center;
+    @include font-size(1.8);
+    font-weight: 700;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .verification-footer {
+    text-align: center;
+    padding: 0 40px;
+
+    .modal-close {
+      @include button($dark-grey, confirm);
+    }
+  }
+}
+
 .mfp-ajax-holder {
 
   .mfp-content {
@@ -47,6 +68,10 @@
 
       &.not-approved {
         border-color: $wine;
+      }
+
+      .vertical-tabs {
+        display: none;
       }
     }
   }

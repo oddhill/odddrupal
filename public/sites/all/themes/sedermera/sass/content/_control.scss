@@ -249,11 +249,16 @@
   .field-name-field-ctrl-notes {
     margin-bottom: 0;
 
-    #field-ctrl-notes-add-more-wrapper {
+    .form-item {
+      margin-bottom: 0;
+    }
 
-      > .form-item {
-        margin-bottom: 0;
-      }
+    td {
+      padding: 0;
+    }
+
+    .form-type-textarea {
+      margin: 0;
     }
   }
 
@@ -261,6 +266,31 @@
     padding: 40px;
     text-align: center;
     margin: 0;
+
+    .submit-wrapper {
+      position: relative;
+
+      .ajax-progress {
+        background: shade($dark-grey,30%);
+        top: 0;
+        left: 10px;
+        right: 10px;
+        height: 34px;
+        z-index: 100;
+        border-radius: 17px;
+        text-align: center;
+
+        .throbber {
+          float: none;
+          margin: 9px auto;
+          cursor: pointer;
+        }
+
+        .message {
+          display: none;
+        }
+      }
+    }
   }
 }
 
