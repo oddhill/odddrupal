@@ -509,7 +509,7 @@ function generate_contact_person_head_row_interested(array &$rows, stdClass $tra
 
   // Summation column
   $rows[$row]['data'][] = array(
-    'data' => number_format($sum, 0, "", "'") . " :-",
+    'data' => number_format($sum, 0, ",", " ") . " :-",
   );
 
   // Control column
@@ -709,7 +709,7 @@ function generate_investor_rows_interested(array &$rows, array $investor_transac
 
     // Summation column
     $rows[$row]['data'][] = array(
-      'data' => number_format($row_sum, 0, "", "'") . " :-",
+      'data' => number_format($row_sum, 0, ",", " ") . " :-",
     );
 
     // Control column
@@ -774,62 +774,62 @@ function generate_sum_row_interested(array &$rows, array $type_investment, $tran
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['fe_sign'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['fe_sign'], 0, ",", " ") . " :-",
     );
   }
 
   // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['fe_warr'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['fe_warr'], 0, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['le_sign'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['le_sign'], 0, ",", " ") . " :-",
     );
   }
 
   // Garantiåtagande if Listnigsemission column
   if ($type_investment['le_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['le_warr'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['le_warr'], 0, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Private Placement column
   if ($type_investment['pp_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['pp_sign'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['pp_sign'], 0, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Riktat emission column
   if ($type_investment['re_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['re_sign'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['re_sign'], 0, ",", " ") . " :-",
     );
   }
 
   // Sum if Brygglån column
   if ($type_investment['bl_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['bl_sum'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['bl_sum'], 0, ",", " ") . " :-",
     );
   }
 
   // Sum if Blockpost column
   if ($type_investment['bp_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['bp_sum'], 0, "", "'") . " :-",
+      'data' => number_format($col_sum['bp_sum'], 0, ",", " ") . " :-",
     );
   }
 
   // Summation column
   $rows[$row]['data'][] = array(
-    'data' => number_format(array_sum($col_sum), 0, "", "'") . " :-",
+    'data' => number_format(array_sum($col_sum), 0, ",", " ") . " :-",
   );
 
   // Control column
@@ -1084,7 +1084,7 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
       ),
       // Summation column
       array(
-        'data' => number_format($sum, 0, "", "'") . " :-",
+        'data' => number_format($sum, 0, ",", " ") . " :-",
       ),
       // Control UA column
       array(
@@ -1384,7 +1384,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       ),
       // Summation column
       array(
-        'data' => number_format($sum, 0, "", "'") . " :-",
+        'data' => number_format($sum, 0, ",", " ") . " :-",
       ),
       // Control UA column
       array(
@@ -1661,7 +1661,7 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
         ),
         // Summation column
         array(
-          'data' => number_format($sum, 0, "", "'") . " :-",
+          'data' => number_format($sum, 0, ",", " ") . " :-",
         ),
         // Control column
         array(
