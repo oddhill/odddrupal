@@ -6,6 +6,7 @@ Drupal.behaviors.sedermeraVerificationsModal = {
     // View verifications in a modal.
     $('a.verification.view').once('verification-view-modal').magnificPopup({
       type: 'ajax',
+      closeOnBgClick: false,
       callbacks: {
         parseAjax: function(mfpResponse) {
           // Alter the data in order to display the node only.
@@ -25,6 +26,7 @@ Drupal.behaviors.sedermeraVerificationsModal = {
     // Edit verifications in a modal.
     $('a.verification.edit, .mfp-verification-edit').once('verification-edit-modal').magnificPopup({
       type: 'ajax',
+      closeOnBgClick: false,
       callbacks: {
         parseAjax: function(mfpResponse) {
           // Find the scripts which doesn't exist for the page already.
@@ -86,6 +88,11 @@ Drupal.behaviors.sedermeraVerificationsModal = {
                     type: 'inline'
                   }
                 });
+
+                // Close modal when clicking "OK" button
+                $('.modal-close').on('click', function() {
+                  $.magnificPopup.close();
+                });
               }
             });
           });
@@ -96,6 +103,7 @@ Drupal.behaviors.sedermeraVerificationsModal = {
     // View multiple verifications in a modal.
     $('a.verification.view-page').once('verification-view-modal').magnificPopup({
       type: 'ajax',
+      closeOnBgClick: false,
       callbacks: {
         parseAjax: function(mfpResponse) {
           // Alter the data in order to display the node only.
