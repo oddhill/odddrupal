@@ -1097,6 +1097,27 @@ function f_capital_raising_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_transaction';
+  $strongarm->value = 1;
+  $export['node_view_permissions_transaction'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_transaction_agreement';
+  $strongarm->value = 1;
+  $export['node_view_permissions_transaction_agreement'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_view_permissions_transaction_ap';
+  $strongarm->value = 1;
+  $export['node_view_permissions_transaction_ap'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_offer_pattern';
   $strongarm->value = 'erbjudanden/lista/[node:title]';
   $export['pathauto_node_offer_pattern'] = $strongarm;
