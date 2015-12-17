@@ -1764,7 +1764,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_offer_type_fe_terms',
-    'label' => 'Vilkor för teckningsoptioner',
+    'label' => 'Villkor för teckningsoptioner',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -2005,7 +2005,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_offer_type_fe_warrant_type',
-    'label' => 'Garanatiåtagande typ',
+    'label' => 'Garantiåtagande typ',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2840,7 +2840,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_offer_type_le_terms',
-    'label' => 'Vilkor för teckningsoptioner',
+    'label' => 'Villkor för teckningsoptioner',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -3081,7 +3081,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_offer_type_le_warrant_type',
-    'label' => 'Garanatiåtagande typ',
+    'label' => 'Garantiåtagande typ',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -6283,11 +6283,11 @@ function f_capital_raising_field_default_field_instances() {
   t('Första kontakt');
   t('Försäljningsbelopp');
   t('Garanatiåtagande');
-  t('Garanatiåtagande typ');
   t('Garantipremie');
   t('Garantiåtagande');
   t('Garantiåtagande fe');
   t('Garantiåtagande le');
+  t('Garantiåtagande typ');
   t('Inbetalning av likvid');
   t('Insynsinfo');
   t('Intresserad');
@@ -6326,7 +6326,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Tillägsinformation');
   t('Type');
   t('Utloggning av insynsinformation');
-  t('Vilkor för teckningsoptioner');
+  t('Villkor för teckningsoptioner');
 
   return $field_instances;
 }
