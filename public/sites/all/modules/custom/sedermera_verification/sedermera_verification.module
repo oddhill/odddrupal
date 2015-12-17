@@ -779,6 +779,9 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
     </div>
     ',
   );
+
+  // Hide the title field since it's automatically generated.
+  $form['title']['#access'] = FALSE;
 }
 
 /**
