@@ -45,7 +45,7 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
-  $items['transaction/%/kontaktlista/reload'] = array(
+  $items['node/%/kontaktlista/reload'] = array(
     'page callback' => 'sedermera_transaction_reload_contact',
     'page arguments' => array(1),
     'access callback' => TRUE,
@@ -53,7 +53,7 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
-  $items['transaction/%/intressenter/reload'] = array(
+  $items['node/%/intressenter/reload'] = array(
     'page callback' => 'sedermera_transaction_reload_intressent',
     'page arguments' => array(1),
     'access callback' => TRUE,
@@ -61,7 +61,7 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
-  $items['transaction/%/kontrollochavtal/reload'] = array(
+  $items['node/%/kontrollochavtal/reload'] = array(
     'page callback' => 'sedermera_transaction_reload_controller',
     'page arguments' => array(1),
     'access callback' => TRUE,
@@ -69,7 +69,7 @@ function sedermera_transaction_menu() {
     'delivery callback' => 'ajax_deliver',
   );
 
-  $items['transaction/%/teckningslista/reload'] = array(
+  $items['node/%/teckningslista/reload'] = array(
     'page callback' => 'sedermera_transaction_reload_agreement',
     'page arguments' => array(1),
     'access callback' => TRUE,
@@ -1898,7 +1898,7 @@ function sedermera_transaction_form_alter(&$form, &$form_state, $form_id) {
  * Submit handler for editable field on intresent list
  */
 function sedermera_transaction_submit_callback($form, $form_state) {
-  drupal_goto('transaction/' . $form_state['editable_nid']['variable'] . '/' . $form_state['editable_type']['variable'] . '/reload');
+  drupal_goto('node/' . $form_state['editable_nid']['variable'] . '/' . $form_state['editable_type']['variable'] . '/reload');
 }
 
 /**
