@@ -1,7 +1,9 @@
 name = Transaktion
 core = 7.x
 package = Features
+dependencies[] = blockify
 dependencies[] = ccl_local_actions
+dependencies[] = context
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_popup
@@ -31,6 +33,7 @@ dependencies[] = views
 dependencies[] = views_php
 features[ccl][] = Lägg till erbjudande
 features[ccl][] = Lägg till transaktion
+features[context][] = node_add_offer
 features[ctools][] = context:context:3
 features[ctools][] = ds:ds:1
 features[ctools][] = field_group:field_group:1

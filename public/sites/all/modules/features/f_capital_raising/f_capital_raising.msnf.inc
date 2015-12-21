@@ -31,7 +31,7 @@ function f_capital_raising_msnf_step_info() {
         'hide_if_empty' => 0,
         'classes' => '',
         'description' => '',
-        'show_label' => '1',
+        'show_label' => '0',
         'label_element' => 'h2',
         'buttons' => array(
           'previous' => 'Tillbaka',
@@ -64,7 +64,7 @@ function f_capital_raising_msnf_step_info() {
         'hide_if_empty' => 0,
         'classes' => '',
         'description' => '',
-        'show_label' => '1',
+        'show_label' => '0',
         'label_element' => 'h2',
         'buttons' => array(
           'previous' => 'Tillbaka',
@@ -95,7 +95,7 @@ function f_capital_raising_msnf_step_info() {
         'hide_if_empty' => 0,
         'classes' => '',
         'description' => '',
-        'show_label' => '1',
+        'show_label' => '0',
         'label_element' => 'h2',
         'buttons' => array(
           'previous' => 'Tillbaka',
@@ -126,7 +126,7 @@ function f_capital_raising_msnf_step_info() {
         'hide_if_empty' => 0,
         'classes' => '',
         'description' => '',
-        'show_label' => '1',
+        'show_label' => '0',
         'label_element' => 'h2',
         'buttons' => array(
           'previous' => 'Tillbaka',

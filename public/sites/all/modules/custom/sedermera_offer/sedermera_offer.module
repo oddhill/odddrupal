@@ -1247,12 +1247,23 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
     // Add checkboxes for every selected investor, which will be added to the
     // third step. This will be used as the confirmation page, where the user will
     // be able to deselect some of the person before creating the transaction.
-    $form['right']['selected_persons'] = array(
-      '#type' => 'checkboxes',
-      '#options' => $selected_persons,
-      '#default_value' => array_keys($selected_persons),
-      '#prefix' => '<h3>Kontaktlista</h3>',
-    );
+    if (count($selected_persons) > 0) {
+      // If there are selected persons, display them as checkbox items
+      $form['right']['selected_persons'] = array(
+        '#type' => 'checkboxes',
+        '#options' => $selected_persons,
+        '#default_value' => array_keys($selected_persons),
+        '#prefix' => '<h3>Kontaktlista</h3>',
+      );
+    }
+    else {
+      // If not, display empty text
+      $form['right']['selected_persons'] = array(
+        '#type' => 'markup',
+        '#markup' => '<div class="no-contacts">Inga kontaktpersoner är valda</div>',
+        '#prefix' => '<h3>Kontaktlista</h3>',
+      );
+    }
   }
 
   // Add javascript that are used in every step for the form.

@@ -2275,28 +2275,26 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
     color: #797979; }
 
 #preview-wrapper {
-  position: relative; }
+  display: flex;
+  padding: 0 40px;
+  align-items: baseline; }
   #preview-wrapper #preview-transaction {
-    padding: 0 40px 0;
-    margin-right: 300px; }
+    flex-grow: 2; }
   #preview-wrapper #preview-person {
-    width: 300px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    height: 100%;
-    padding: 30px;
-    border-top: 1px solid #e0e2e6;
-    border-left: 1px solid #e0e2e6;
-    border-bottom: 1px solid #e0e2e6;
-    background: #fafbfc; }
+    width: 300px; }
+    #preview-wrapper #preview-person h3 {
+      margin-bottom: 30px; }
+    #preview-wrapper #preview-person .no-contacts {
+      color: #797979;
+      font-style: italic; }
 
-div[class^="step-offer-"],
-div[class*=" step-offer-"] {
-  padding: 40px 0 0;
-  width: 50%;
-  margin: 0 auto;
-  min-width: 700px; }
+div.process-steps {
+  margin-top: 10px; }
+  div.process-steps h2 {
+    color: #797979; }
+
+.page-node-add-offer .add-persons-list {
+  padding: 40px; }
 
 .page-node-kontaktlista-lagg-till .form-actions {
   text-align: center;
@@ -2553,26 +2551,6 @@ div[class*=" step-offer-"] {
 
 .html-mail-fields p {
   display: inline-block; }
-
-.page-node-kontaktlista .process-steps {
-  background: #fff;
-  margin-bottom: 30px;
-  text-align: right;
-  width: 100%; }
-  .page-node-kontaktlista .process-steps ul {
-    list-style-type: none; }
-    .page-node-kontaktlista .process-steps ul li {
-      font-size: 18px;
-      font-size: 1.8rem;
-      line-height: 27px;
-      border: 2px solid #d4d6d9;
-      border-radius: 100px;
-      font-weight: 500;
-      display: inline;
-      margin-right: 15px;
-      padding: 4px 10px 4px 10px; }
-      .page-node-kontaktlista .process-steps ul li.active {
-        border: 2px solid #f9a500; }
 
 #views-form-offers-page {
   clear: both; }
@@ -3263,9 +3241,6 @@ form.views-send-preview .form-actions {
     display: table;
     clear: both; }
 
-.page-title {
-  float: left; }
-
 .node-barrier {
   padding: 0 40px; }
 
@@ -3305,7 +3280,7 @@ form.views-send-preview .form-actions {
 
 .page-actions {
   float: right;
-  margin-top: 16px; }
+  margin-top: 14px; }
   .page-actions ul {
     list-style: none; }
   .page-actions li {
@@ -4402,21 +4377,6 @@ table td {
   padding: 0 0 0 25px; }
   .transaction-information:last-child {
     margin-right: 0; }
-
-.process-steps {
-  float: right; }
-  .process-steps ul {
-    list-style-type: none; }
-    .process-steps ul li {
-      font-size: 48px;
-      font-size: 4.8rem;
-      line-height: 72px;
-      font-weight: 300;
-      display: inline;
-      color: #c8cacd;
-      margin-right: 15px; }
-      .process-steps ul li.active {
-        color: #282828; }
 
 .node-capital_raising-form {
   padding: 50px 40px 40px 40px; }

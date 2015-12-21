@@ -325,3 +325,11 @@ function sedermera_preprocess_views_view_table(&$vars) {
     $vars['disable'] = $view->disable;
   }
 }
+
+/**
+ * Implements template_preprocess_msnf_block_step_info().
+ */
+function sedermera_preprocess_msnf_block_step_info(&$variables) {
+  // Simply render the current step as the block content.
+  $variables['steps_rendered'] = "<h2>{$variables['current_step']->label}</h2>";
+}

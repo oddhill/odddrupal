@@ -6177,7 +6177,6 @@ function f_capital_raising_field_default_field_instances() {
   t('Garantiåtagande');
   t('Garantiåtagande fe');
   t('Garantiåtagande le');
-  t('Garantiåtagande typ');
   t('Inbetalning av likvid');
   t('Insynsinfo');
   t('Intresserad');

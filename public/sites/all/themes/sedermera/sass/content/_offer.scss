@@ -63,34 +63,43 @@
 }
 
 #preview-wrapper {
-  position: relative;
+  display: flex;
+  padding: 0 40px;
+  align-items: baseline;
 
   #preview-transaction {
-    padding: 0 40px 0;
-    margin-right: 300px;
+    flex-grow: 2;
   }
 
   #preview-person {
     width: 300px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    height: 100%;
-    padding: 30px;
-    border-top: 1px solid $wool;
-    border-left: 1px solid $wool;
-    border-bottom: 1px solid $wool;
-    background: tint($light-grey,60%);
+
+    h3 {
+      margin-bottom: 30px;
+    }
+
+    .no-contacts {
+      color: $grey;
+      font-style: italic;
+    }
   }
 }
 
 // Offer creation steps
-div[class^="step-offer-"],
-div[class*=" step-offer-"] {
-  padding: 40px 0 0;
-  width: 50%;
-  margin: 0 auto;
-  min-width: 700px;
+div.process-steps {
+  margin-top: 10px;
+
+  h2 {
+    color: $grey;
+  }
+}
+
+// Offer creation specifics
+.page-node-add-offer {
+
+  .add-persons-list {
+    padding: 40px;
+  }
 }
 
 // Add persons list specifics
