@@ -626,7 +626,7 @@ function f_verification_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Bedömning görs att låg risk för penningtvätt föreligger',
+    'description' => 'Bedömning görs att låg risk för penningtvätt föreligger. Exempelvis ej PEP, högriskland eller tecknat på distans.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -769,7 +769,7 @@ function f_verification_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 12,
+      'weight' => 7,
     ),
   );
 
@@ -1073,7 +1073,7 @@ function f_verification_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Anteckningar');
-  t('Bedömning görs att låg risk för penningtvätt föreligger');
+  t('Bedömning görs att låg risk för penningtvätt föreligger. Exempelvis ej PEP, högriskland eller tecknat på distans.');
   t('Bedömning görs att risk för penningtvätt föreligger');
   t('Complex boolean');
   t('Datum');

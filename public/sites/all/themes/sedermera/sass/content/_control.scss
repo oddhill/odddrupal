@@ -242,7 +242,7 @@
     border-bottom: 1px solid $wool;
   }
 
-  .vertical-tabs-panes {
+  .vertical-tabs {
     display: none;
   }
 
@@ -312,8 +312,26 @@
     }
   }
 
-  .form-wrapper {
-    margin-bottom: 0;
+  .group-ctrl-fitting {
+
+    .form-wrapper {
+      margin: 0;
+    }
+  }
+
+  .questions {
+
+    .form-wrapper {
+      margin-bottom: 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .field-name-field-ctrl-pen-ok.form-wrapper {
+    margin: 0;
   }
 
   .form-items-wrapper {

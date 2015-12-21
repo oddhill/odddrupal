@@ -553,7 +553,7 @@ div.button {
 
 .page-node-add-company .content-wrapper {
   border-top: 1px solid #e0e2e6;
-  padding: 0 40px 40px; }
+  padding: 0; }
 
 .node-ctrl.view-mode-teaser .inner-wrapper {
   margin-left: 3px;
@@ -745,7 +745,7 @@ div.button {
   background: #fafbfc;
   border-top: 1px solid #e0e2e6;
   border-bottom: 1px solid #e0e2e6; }
-.node-ctrl-form .vertical-tabs-panes, .node-ctrl_pen-form .vertical-tabs-panes {
+.node-ctrl-form .vertical-tabs, .node-ctrl_pen-form .vertical-tabs {
   display: none; }
 .node-ctrl-form .field-name-field-ctrl-notes, .node-ctrl_pen-form .field-name-field-ctrl-notes {
   margin-bottom: 0; }
@@ -783,8 +783,14 @@ div.button {
   margin-bottom: 0; }
   .node-ctrl_pen-form .form-item.form-type-textarea .form-textarea {
     width: 100%; }
-.node-ctrl_pen-form .form-wrapper {
-  margin-bottom: 0; }
+.node-ctrl_pen-form .group-ctrl-fitting .form-wrapper {
+  margin: 0; }
+.node-ctrl_pen-form .questions .form-wrapper {
+  margin-bottom: 1em; }
+  .node-ctrl_pen-form .questions .form-wrapper:last-child {
+    margin-bottom: 0; }
+.node-ctrl_pen-form .field-name-field-ctrl-pen-ok.form-wrapper {
+  margin: 0; }
 .node-ctrl_pen-form .form-items-wrapper > fieldset.form-wrapper {
   margin-bottom: 2em; }
 .node-ctrl_pen-form .form-item-field-ctrl-pen-ok-und {
@@ -1827,7 +1833,7 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
 .page-node-add-investor-private .content-wrapper,
 .page-node-add-investor-company .content-wrapper {
   border-top: 1px solid #e0e2e6;
-  padding: 0 40px 40px; }
+  padding: 0; }
 
 .node-manual.view-mode-full {
   display: flex;
@@ -2296,13 +2302,14 @@ div[class*=" step-offer-"] {
   text-align: center;
   margin-top: 40px; }
 
+.page-node-kontaktlista-lagg-till .add-persons-list,
 .offers-list {
   border-top: 1px solid #e0e2e6;
   padding: 40px; }
 
 .page-node-add-offer .content-wrapper {
   border-top: 1px solid #e0e2e6;
-  padding: 0 40px 40px; }
+  padding: 0; }
 
 .node-person.view-mode-full .node-section {
   display: block;
@@ -2484,10 +2491,10 @@ div[class*=" step-offer-"] {
 
 .page-node-add-person .content-wrapper {
   border-top: 1px solid #e0e2e6;
-  padding: 0 40px 40px; }
+  padding: 0; }
 
 .node-transaction_agreement-form {
-  border-top: 10px solid #f9a500; }
+  border-top: 10px solid #5c9cae; }
   .node-transaction_agreement-form .verification-header {
     padding: 40px;
     overflow: hidden; }
@@ -2507,7 +2514,7 @@ div[class*=" step-offer-"] {
     margin-bottom: 0; }
     .node-transaction_agreement-form .modal-form-wrapper .form-wrapper:last-child {
       margin-bottom: 0; }
-  .node-transaction_agreement-form .vertical-tabs-panes {
+  .node-transaction_agreement-form .vertical-tabs {
     display: none; }
   .node-transaction_agreement-form .form-actions {
     padding: 40px;
@@ -3642,7 +3649,7 @@ form#user-login,
   .mfp-ajax-holder .mfp-content .node-ctrl,
   .mfp-ajax-holder .mfp-content .node-ctrl-form,
   .mfp-ajax-holder .mfp-content .node-ctrl_pen-form {
-    border-top: 10px solid #282828; }
+    border-top: 10px solid #5c9cae; }
     .mfp-ajax-holder .mfp-content .node-ctrl.view-mode-teaser,
     .mfp-ajax-holder .mfp-content .node-ctrl-form.view-mode-teaser,
     .mfp-ajax-holder .mfp-content .view-mode-teaser.node-ctrl_pen-form {
