@@ -779,21 +779,28 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
     </div>
     ',
   );
+}
 
-  // Hide the title field since it's automatically generated. This will only
-  // hide the field when it's displayed in a regular form. See
-  // sedermera_verification_field_attach_form() for logics when inside an Inline
-  // Entity form.
-  $form['title']['#access'] = FALSE;
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function sedermera_verification_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // Hide the title field since it's automatically generated for some node
+  // types. This will only hide the field when it's displayed in a regular form.
+  // See sedermera_verification_field_attach_form() for logics when inside an
+  // Inline Entity form.
+  if (in_array($form['#node']->type, array('ctrl', 'ctrl_pen'))) {
+    $form['title']['#access'] = FALSE;
+  }
 }
 
 /**
  * Implements hook_field_attach_form().
  */
 function sedermera_verification_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
-  // Hide the title field for controls. This will be executed when the form is
-  // built inside an Inline Entity form.
-  if ($form['#entity_type'] == 'node' && $form['#bundle'] == 'ctrl') {
+  // Hide the title field for certain node types. This will be executed when the
+  // form is built inside an Inline Entity form.
+  if ($form['#entity_type'] == 'node' && in_array($form['#bundle'], array('ctrl', 'ctrl_pen'))) {
     $form['title']['#access'] = FALSE;
   }
 }
