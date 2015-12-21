@@ -1136,9 +1136,6 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
     $form['field_offer_logout_info']['#access'] = FALSE;
   }
 
-  unset($form['field_offer_type_fe_warrant_type'][LANGUAGE_NONE]['#options']['_none']);
-  unset($form['field_offer_type_le_warrant_type'][LANGUAGE_NONE]['#options']['_none']);
-
   if ($form['#node']->nid) {
     // Don't alter the form when editing an existing node, bail out.
     return;

@@ -512,3 +512,12 @@ function sedermera_update_update_7026() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Removed the "Garanatiåtagande typ" field.
+ */
+function sedermera_update_update_7027() {
+  field_delete_field('field_offer_type_fe_warrant_type');
+
+  field_purge_batch(1000);
+}
