@@ -24,8 +24,7 @@ function sedermera_offer_menu() {
     'title arguments' => array(1),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('sedermera_offer_person_add', 1),
-    'access callback' => 'sedermera_offer_person_admin_access',
-    'access arguments' => array(1, 'eck add offer offer entities'),
+    'access arguments' => array('create transaction content'),
   );
 
   $items['offer/send-info/%'] = array(
