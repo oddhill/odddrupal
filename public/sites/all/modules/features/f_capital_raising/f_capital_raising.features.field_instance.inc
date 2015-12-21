@@ -2985,61 +2985,6 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-offer-field_offer_type_le_warrant_type'.
-  $field_instances['node-offer-field_offer_type_le_warrant_type'] = array(
-    'bundle' => 'offer',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 30,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 28,
-      ),
-      'mail' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 30,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_offer_type_le_warrant_type',
-    'label' => 'Garanatiåtagande typ',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 19,
-    ),
-  );
-
   // Exported field_instance: 'node-offer-field_offer_type_pp'.
   $field_instances['node-offer-field_offer_type_pp'] = array(
     'bundle' => 'offer',
