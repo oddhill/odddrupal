@@ -13,39 +13,6 @@ function f_capital_raising_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_offer_define|node|offer|form';
-  $field_group->group_name = 'group_offer_define';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'offer';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_offer_step_2';
-  $field_group->data = array(
-    'label' => 'Definiera',
-    'weight' => '47',
-    'children' => array(
-      0 => 'group_offer_type_bl',
-      1 => 'group_offer_type_bp',
-      2 => 'group_offer_type_fe',
-      3 => 'group_offer_type_le',
-      4 => 'group_offer_type_pp',
-      5 => 'group_offer_type_re',
-    ),
-    'format_type' => 'htab',
-    'format_settings' => array(
-      'formatter' => 'closed',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-offer-define field-group-htab',
-        'required_fields' => 1,
-        'id' => '',
-      ),
-    ),
-  );
-  $export['group_offer_define|node|offer|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_offer_description|node|offer|form';
   $field_group->group_name = 'group_offer_description';
   $field_group->entity_type = 'node';
@@ -495,76 +462,6 @@ function f_capital_raising_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_sidebar|node|offer|form';
-  $field_group->group_name = 'group_sidebar';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'offer';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'step_offer_1';
-  $field_group->data = array(
-    'label' => 'Sidebar',
-    'weight' => '33',
-    'children' => array(
-      0 => 'field_offer_logout_info',
-      1 => 'group_offer_types',
-      2 => 'group_title',
-    ),
-    'format_type' => 'div',
-    'format_settings' => array(
-      'label' => 'Sidebar',
-      'instance_settings' => array(
-        'required_fields' => 0,
-        'id' => '',
-        'classes' => 'form-sidebar column',
-        'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'none',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_sidebar|node|offer|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_title|node|offer|form';
-  $field_group->group_name = 'group_title';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'offer';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_sidebar';
-  $field_group->data = array(
-    'label' => 'Titel och kund',
-    'weight' => '32',
-    'children' => array(
-      0 => 'field_offer_company',
-      1 => 'field_offer_time',
-      2 => 'title',
-    ),
-    'format_type' => 'div',
-    'format_settings' => array(
-      'label' => 'Titel och kund',
-      'instance_settings' => array(
-        'required_fields' => 0,
-        'id' => 'title-wrapper',
-        'classes' => '',
-        'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'none',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_title|node|offer|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_transaction_agree_wrap|node|transaction_agreement|form';
   $field_group->group_name = 'group_transaction_agree_wrap';
   $field_group->entity_type = 'node';
@@ -598,44 +495,6 @@ function f_capital_raising_field_group_info() {
     ),
   );
   $export['group_transaction_agree_wrap|node|transaction_agreement|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_types|node|offer|form';
-  $field_group->group_name = 'group_types';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'offer';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'step_offer_2';
-  $field_group->data = array(
-    'label' => 'Types',
-    'weight' => '35',
-    'children' => array(
-      0 => 'group_offer_type_fe',
-      1 => 'group_offer_type_le',
-      2 => 'group_offer_type_pp',
-      3 => 'group_offer_type_re',
-      4 => 'group_offer_type_bl',
-      5 => 'group_offer_type_bp',
-    ),
-    'format_type' => 'div',
-    'format_settings' => array(
-      'label' => 'Types',
-      'instance_settings' => array(
-        'required_fields' => 0,
-        'id' => '',
-        'classes' => 'group-types field-group-div',
-        'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'none',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_types|node|offer|form'] = $field_group;
 
   return $export;
 }
