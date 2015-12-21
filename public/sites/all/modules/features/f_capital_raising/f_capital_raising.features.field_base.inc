@@ -581,31 +581,6 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_offer_type_fe_warrant_type'.
-  $field_bases['field_offer_type_fe_warrant_type'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_offer_type_fe_warrant_type',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        0 => 'Nerifrån och upp',
-        1 => 'Uppifrån och ner',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_boolean',
-  );
-
   // Exported field_base: 'field_offer_type_le'.
   $field_bases['field_offer_type_le'] = array(
     'active' => 1,
