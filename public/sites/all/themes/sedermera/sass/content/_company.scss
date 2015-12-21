@@ -22,3 +22,11 @@
     }
   }
 }
+
+.companies-list {
+  @include content-holder;
+}
+
+.page-node-add-company .content-wrapper  {
+  @include content-holder(edit);
+}

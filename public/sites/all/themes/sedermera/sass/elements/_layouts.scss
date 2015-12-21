@@ -14,7 +14,6 @@
 
   .logged-in & {
     margin-left: 280px;
-    padding: 40px;
 
     @include media($big) {
       margin-left: 82px;
@@ -25,7 +24,8 @@
 // Page head
 .page-head {
   @include clearfix;
-  margin-bottom: 70px;
+  background: $light-grey;
+  padding: 40px;
 }
 
 // Page title

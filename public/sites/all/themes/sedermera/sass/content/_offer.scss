@@ -92,3 +92,20 @@ div[class*=" step-offer-"] {
   margin: 0 auto;
   min-width: 700px;
 }
+
+// Add persons list specifics
+.page-node-kontaktlista-lagg-till {
+
+  .form-actions {
+    text-align: center;
+    margin-top: 40px;
+  }
+}
+
+.offers-list {
+  @include content-holder;
+}
+
+.page-node-add-offer .content-wrapper {
+  @include content-holder(edit);
+}

@@ -384,3 +384,15 @@
     padding: 10px;
   }
 }
+
+@mixin content-holder($mode: default) {
+  border-top: 1px solid $wool;
+
+  @if $mode == default {
+    padding: 40px;
+  }
+
+  @if $mode == edit {
+    padding: 0 40px 40px;
+  }
+}

@@ -57,3 +57,11 @@
     }
   }
 }
+
+.persons-list {
+  @include content-holder;
+}
+
+.page-node-add-person .content-wrapper {
+  @include content-holder(edit);
+}

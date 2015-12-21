@@ -75,3 +75,13 @@
     }
   }
 }
+
+.investors-list {
+  @include content-holder;
+}
+
+.page-avtalsparter-skapa .content-wrapper,
+.page-node-add-investor-private .content-wrapper,
+.page-node-add-investor-company .content-wrapper  {
+  @include content-holder(edit);
+}

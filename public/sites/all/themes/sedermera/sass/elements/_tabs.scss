@@ -5,6 +5,7 @@
   border-top: 1px solid $wool;
   height: 42px;
   list-style: none;
+  padding: 0 40px;
 
   li {
     @include font-size(1.4);
@@ -22,9 +23,16 @@
       padding: 0 19px 0 19px;
 
       &:hover {
-        background-color: $stone;
+        background-color: tint($aluminium,40%);
         border-bottom: 0 none;
         height: 40px;
+      }
+    }
+
+    &:first-child {
+
+      a {
+        border-left: 1px solid $wool;
       }
     }
 
@@ -34,7 +42,6 @@
       a {
         background-color: $snow;
         border-bottom: 0 none;
-        border-left: 0 none;
         border-top: 2px solid $mustard;
         font-weight: 700;
         height: 42px;
@@ -59,17 +66,15 @@
       background-position: 20px 13px;
       padding-left: 40px;
       border-left: 0px none;
-      border-right: 0px none;
 
       &:hover {
-        background-color: $stone;
+        background-color: tint($aluminium,40%);
       }
 
       &.active {
         background-color: $snow;
         border-bottom: 0 none;
         border-left: 0 none;
-        border-right: 0 none;
         border-top: 2px solid $mustard;
         font-weight: 700;
         height: 42px;

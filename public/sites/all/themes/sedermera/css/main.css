@@ -111,7 +111,7 @@ body {
   font-size: 14px;
   font-size: 1.4rem;
   line-height: 18.2px;
-  background: #f3f4f8;
+  background: #fff;
   color: #282828;
   font-family: "Roboto", sans-serif;
   height: 100%; }
@@ -546,6 +546,14 @@ div.button {
   .node-company.view-mode-full .company-logo img {
     width: 100%;
     height: auto; }
+
+.companies-list {
+  border-top: 1px solid #e0e2e6;
+  padding: 40px; }
+
+.page-node-add-company .content-wrapper {
+  border-top: 1px solid #e0e2e6;
+  padding: 0 40px 40px; }
 
 .node-ctrl.view-mode-teaser .inner-wrapper {
   margin-left: 3px;
@@ -1805,6 +1813,16 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
     float: none;
     margin-bottom: 0.5em; }
 
+.investors-list {
+  border-top: 1px solid #e0e2e6;
+  padding: 40px; }
+
+.page-avtalsparter-skapa .content-wrapper,
+.page-node-add-investor-private .content-wrapper,
+.page-node-add-investor-company .content-wrapper {
+  border-top: 1px solid #e0e2e6;
+  padding: 0 40px 40px; }
+
 .node-manual.view-mode-full {
   display: flex;
   flex-flow: row wrap; }
@@ -2268,6 +2286,18 @@ div[class*=" step-offer-"] {
   margin: 0 auto;
   min-width: 700px; }
 
+.page-node-kontaktlista-lagg-till .form-actions {
+  text-align: center;
+  margin-top: 40px; }
+
+.offers-list {
+  border-top: 1px solid #e0e2e6;
+  padding: 40px; }
+
+.page-node-add-offer .content-wrapper {
+  border-top: 1px solid #e0e2e6;
+  padding: 0 40px 40px; }
+
 .node-person.view-mode-full .node-section {
   display: block;
   padding-bottom: 30px;
@@ -2441,6 +2471,14 @@ div[class*=" step-offer-"] {
     display: block;
     float: none;
     margin-bottom: 0.5em; }
+
+.persons-list {
+  border-top: 1px solid #e0e2e6;
+  padding: 40px; }
+
+.page-node-add-person .content-wrapper {
+  border-top: 1px solid #e0e2e6;
+  padding: 0 40px 40px; }
 
 .node-transaction_agreement-form {
   border-top: 10px solid #f9a500; }
@@ -3199,14 +3237,14 @@ form.views-send-preview .form-actions {
   font-size: 1.4rem;
   line-height: 18.2px; }
   .logged-in .main-content {
-    margin-left: 280px;
-    padding: 40px; }
+    margin-left: 280px; }
     @media screen and (max-width: 1600px) {
       .logged-in .main-content {
         margin-left: 82px; } }
 
 .page-head {
-  margin-bottom: 70px; }
+  background: #f3f4f8;
+  padding: 40px; }
   .page-head:after {
     content: "";
     display: table;
@@ -3492,6 +3530,15 @@ form#user-login,
     background: #c04343; }
   .messages.help {
     background: #f9a500; }
+
+.dev-query {
+  background: rgba(249, 165, 0, 0.2);
+  padding: 20px; }
+  .logged-in .dev-query {
+    margin: 40px 40px 40px 320px; }
+    @media screen and (max-width: 1600px) {
+      .logged-in .dev-query {
+        margin: 40px 40px 40px 122px; } }
 
 .verification {
   display: inline-block;
@@ -4260,7 +4307,8 @@ table td {
   border-bottom: 1px solid #e0e2e6;
   border-top: 1px solid #e0e2e6;
   height: 42px;
-  list-style: none; }
+  list-style: none;
+  padding: 0 40px; }
   .tabs li {
     font-size: 14px;
     font-size: 1.4rem;
@@ -4277,13 +4325,14 @@ table td {
       line-height: 40px;
       padding: 0 19px 0 19px; }
       .tabs li a:hover {
-        background-color: #d5d7da;
+        background-color: #f3f4f7;
         border-bottom: 0 none;
         height: 40px; }
+    .tabs li:first-child a {
+      border-left: 1px solid #e0e2e6; }
     .tabs li.active a {
       background-color: #fff;
       border-bottom: 0 none;
-      border-left: 0 none;
       border-top: 2px solid #f9a500;
       font-weight: 700;
       height: 42px;
@@ -4301,17 +4350,15 @@ table td {
       background: none, url("../graphics/edit.svg") transparent 0 0 no-repeat;
       background-position: 20px 13px;
       padding-left: 40px;
-      border-left: 0px none;
-      border-right: 0px none; }
+      border-left: 0px none; }
       .tabs .edit a:hover,
       .tabs .redigera a:hover {
-        background-color: #d5d7da; }
+        background-color: #f3f4f7; }
       .tabs .edit a.active,
       .tabs .redigera a.active {
         background-color: #fff;
         border-bottom: 0 none;
         border-left: 0 none;
-        border-right: 0 none;
         border-top: 2px solid #f9a500;
         font-weight: 700;
         height: 42px;

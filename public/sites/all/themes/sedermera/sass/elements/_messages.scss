@@ -33,3 +33,17 @@
   @include media($medium) {
   }
 }
+
+// Dev query message
+.dev-query {
+  background: rgba($mustard,0.2);
+  padding: 20px;
+
+  .logged-in & {
+    margin: 40px 40px 40px 320px;
+
+    @include media($big) {
+      margin: 40px 40px 40px 122px;
+    }
+  }
+}
