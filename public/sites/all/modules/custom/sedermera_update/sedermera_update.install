@@ -530,3 +530,11 @@ function sedermera_update_update_7028() {
 
   field_purge_batch(1000);
 }
+
+/**
+ * Disable and uninstall Auto entity label module.
+ */
+function sedermera_update_update_7029() {
+  module_disable(array('auto_entitylabel'));
+  drupal_uninstall_modules(array('auto_entitylabel'));
+}

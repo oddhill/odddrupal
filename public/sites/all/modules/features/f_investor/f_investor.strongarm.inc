@@ -13,48 +13,6 @@ function f_investor_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_node_investor_company';
-  $strongarm->value = '0';
-  $export['auto_entitylabel_node_investor_company'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_node_investor_private';
-  $strongarm->value = '0';
-  $export['auto_entitylabel_node_investor_private'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_pattern_node_investor_company';
-  $strongarm->value = '';
-  $export['auto_entitylabel_pattern_node_investor_company'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_pattern_node_investor_private';
-  $strongarm->value = '';
-  $export['auto_entitylabel_pattern_node_investor_private'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_php_node_investor_company';
-  $strongarm->value = 0;
-  $export['auto_entitylabel_php_node_investor_company'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_php_node_investor_private';
-  $strongarm->value = 0;
-  $export['auto_entitylabel_php_node_investor_private'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__investor_company';
   $strongarm->value = array(
     'view_modes' => array(

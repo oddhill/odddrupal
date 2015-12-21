@@ -13,27 +13,6 @@ function f_company_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_node_company';
-  $strongarm->value = '';
-  $export['auto_entitylabel_node_company'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_pattern_node_company';
-  $strongarm->value = '';
-  $export['auto_entitylabel_pattern_node_company'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'auto_entitylabel_php_node_company';
-  $strongarm->value = '';
-  $export['auto_entitylabel_php_node_company'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'diff_enable_revisions_page_node_company';
   $strongarm->value = 0;
   $export['diff_enable_revisions_page_node_company'] = $strongarm;
