@@ -1186,7 +1186,13 @@ input[value="Jämför"]#edit-submit {
             border: 0px none; }
   .node-document.view-mode-full .document-description {
     flex: 2 60%;
-    padding-right: 30px; }
+    padding-right: 30px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none; }
   .node-document.view-mode-full .document-head {
     display: flex;
     align-items: center;
