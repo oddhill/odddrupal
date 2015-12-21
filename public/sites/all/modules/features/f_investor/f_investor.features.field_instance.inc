@@ -68,7 +68,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 26,
+      'weight' => 24,
     ),
   );
 
@@ -139,7 +139,7 @@ function f_investor_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 27,
+      'weight' => 26,
     ),
   );
 
@@ -258,7 +258,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 25,
+      'weight' => 23,
     ),
   );
 
@@ -576,7 +576,7 @@ function f_investor_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 23,
+      'weight' => 22,
     ),
   );
 
@@ -651,6 +651,47 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-investor_company-field_shared_inv_cat'.
+  $field_instances['node-investor_company-field_shared_inv_cat'] = array(
+    'bundle' => 'investor_company',
+    'default_value' => array(
+      0 => array(
+        'value' => 'non_professional',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 21,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_shared_inv_cat',
+    'label' => 'Kategori',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 25,
+    ),
+  );
+
   // Exported field_instance: 'node-investor_private-field_invest_pvt_address'.
   $field_instances['node-investor_private-field_invest_pvt_address'] = array(
     'bundle' => 'investor_private',
@@ -710,7 +751,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -781,7 +822,7 @@ function f_investor_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -1174,6 +1215,47 @@ function f_investor_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-investor_private-field_shared_inv_cat'.
+  $field_instances['node-investor_private-field_shared_inv_cat'] = array(
+    'bundle' => 'investor_private',
+    'default_value' => array(
+      0 => array(
+        'value' => 'non_professional',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 14,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_shared_inv_cat',
+    'label' => 'Kategori',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 3,
     ),
   );
 
@@ -2750,6 +2832,7 @@ function f_investor_field_default_field_instances() {
   t('ID-kontroll (Kontaktperson)');
   t('ID-kontroll (Ägare)');
   t('Intressen');
+  t('Kategori');
   t('Klicka i om personen är en lead.');
   t('Kompleterande frågor');
   t('Kontaktperson');
