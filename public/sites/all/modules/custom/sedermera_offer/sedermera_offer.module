@@ -312,47 +312,75 @@ function sedermera_offer_node_presave($node) {
   }
 
   if ($node->type === 'transaction_ap') {
+    // Wrap node
+    $node_wrap = entity_metadata_wrapper('node', $node);
+
+    // Set the title of the node to the same as the investor.
+    $node->title = $node_wrap->field_transaction_ap_ap->title->value();
+
+    // Create corresponding control nodes if this is a new node.
+    if ($node->is_new) {
+      global $user;
+
+      $eu_ctrl = new stdClass();
+      $eu_ctrl->title = $node->title . " EU:s sanktionsförordningar";
+      $eu_ctrl->type = "ctrl";
+      node_object_prepare($eu_ctrl);
+      $eu_ctrl->language = LANGUAGE_NONE;
+      $eu_ctrl->uid = $user->uid;
+      $eu_ctrl->status = 1;
+      $eu_ctrl->promote = 0;
+      $eu_ctrl->comment = 0;
+
+      $eu_ctrl = node_submit($eu_ctrl);
+      node_save($eu_ctrl);
+
+      $comp_ctrl = new stdClass();
+      $comp_ctrl->title = $node->title . " Kompleterande frågor";
+      $comp_ctrl->type = "ctrl";
+      node_object_prepare($comp_ctrl);
+      $comp_ctrl->language = LANGUAGE_NONE;
+      $comp_ctrl->uid = $user->uid;
+      $comp_ctrl->status = 1;
+      $comp_ctrl->promote = 0;
+      $comp_ctrl->comment = 0;
+
+      $comp_ctrl = node_submit($comp_ctrl);
+      node_save($comp_ctrl);
+
+      $node->field_transaction_ap_ctrl_eu[LANGUAGE_NONE][0]['target_id'] = $eu_ctrl->nid;
+      $node->field_transaction_ap_ctrl_comp[LANGUAGE_NONE][0]['target_id'] = $comp_ctrl->nid;
+    }
+
     // React if to control has been checked else proceed as normal
     if ($node->original->field_transaction_ap_ctrl[und][0]['value'] == 0 && $node->field_transaction_ap_ctrl[und][0]['value'] == 1) {
-
-      // Wrap node
-      $node_wrap = entity_metadata_wrapper('node', $node);
-
-      // Load investor
-      $invest = db_query("SELECT field_transaction_ap_ap_target_id AS nid FROM {field_data_field_transaction_ap_ap}
-          WHERE entity_id = :nid", array(':nid' => $node->nid))->fetchAssoc();
-      $investor = entity_metadata_wrapper('node', $invest['nid']);
-
-      // Get investor title
-      $title = $investor->title->value();
-
       // List of agreement nid
       $nids = array();
 
       // Create agreement node for each type
       if ($node_wrap->field_transaction_ap_fe_sign->value()) {
-        $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 'fe_sign');
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 'fe_sign');
       }
       if ($node_wrap->field_transaction_ap_fe_warrant->value()) {
-        $nids[] = create_agreement_node($title . ' Garantiåtagande', 'fe_warrant');
+        $nids[] = create_agreement_node($node->title . ' Garantiåtagande', 'fe_warrant');
       }
       if ($node_wrap->field_transaction_ap_le_sign->value()) {
-        $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 'le_sign');
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 'le_sign');
       }
       if ($node_wrap->field_transaction_ap_le_warrant->value()) {
-        $nids[] = create_agreement_node($title . ' Garantiåtagande', 'le_warrant');
+        $nids[] = create_agreement_node($node->title . ' Garantiåtagande', 'le_warrant');
       }
       if ($node_wrap->field_transaction_ap_pp_sign->value()) {
-        $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 'pp_sign');
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 'pp_sign');
       }
       if ($node_wrap->field_transaction_ap_re_sign->value()) {
-        $nids[] = create_agreement_node($title . ' Teckningsförbindelse', 're_sign');
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 're_sign');
       }
       if ($node_wrap->field_transaction_ap_bridging->value()) {
-        $nids[] = create_agreement_node($title . ' Brygglån', 'bridging');
+        $nids[] = create_agreement_node($node->title . ' Brygglån', 'bridging');
       }
       if ($node_wrap->field_transaction_ap_block->value()) {
-        $nids[] = create_agreement_node($title . ' Blockpost', 'block');
+        $nids[] = create_agreement_node($node->title . ' Blockpost', 'block');
       }
 
       // Link agreement nodes to investor transaction
@@ -387,7 +415,7 @@ function create_agreement_node($title, $type) {
   global $user;
 
   $ctrl_pen = new stdClass();
-  $ctrl_pen->title = $title;
+  $ctrl_pen->title = $title . ' Penningtvätt';
   $ctrl_pen->type = "ctrl_pen";
   node_object_prepare($ctrl_pen); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
   $ctrl_pen->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
