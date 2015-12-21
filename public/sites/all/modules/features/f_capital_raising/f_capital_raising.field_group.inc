@@ -247,7 +247,6 @@ function f_capital_raising_field_group_info() {
       6 => 'field_offer_type_fe_bonus',
       7 => 'field_offer_type_fe_terms',
       8 => 'field_offer_type_fe_payment',
-      9 => 'field_offer_type_fe_warrant_type',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -459,7 +458,6 @@ function f_capital_raising_field_group_info() {
       14 => 'field_offer_type_fe_sum',
       15 => 'field_offer_type_fe_terms',
       16 => 'field_offer_type_fe_warrant',
-      17 => 'field_offer_type_fe_warrant_type',
       18 => 'field_offer_type_le_bonus',
       19 => 'field_offer_type_le_count',
       20 => 'field_offer_type_le_low',

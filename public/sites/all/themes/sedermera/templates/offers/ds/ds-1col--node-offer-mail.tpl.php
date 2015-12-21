@@ -71,8 +71,6 @@
 
                   <?php print render($content['field_offer_type_fe_payment']); ?>
 
-                  <?php print render($content['field_offer_type_le_warrant_type']); ?>
-
                   <?php print render($content['field_offer_type_fe_terms']); ?>
 
               </table>
