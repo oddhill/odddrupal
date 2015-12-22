@@ -296,3 +296,7 @@ form#views-form-dokument-document {
     display: none;
   }
 }
+
+.document-listing-wrapper {
+  @include content-holder;
+}

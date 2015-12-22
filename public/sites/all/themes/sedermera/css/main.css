@@ -1391,6 +1391,10 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
 #views-exposed-form-document-log-document-log .description {
   display: none; }
 
+.document-listing-wrapper {
+  border-top: 1px solid #e0e2e6;
+  padding: 40px; }
+
 .node-investor-private.view-mode-full .verification {
   display: inline-block;
   overflow: hidden;
@@ -3370,7 +3374,7 @@ form.views-send-preview .form-actions {
 
 .page-actions {
   float: right;
-  margin-top: 14px; }
+  margin-top: 7px; }
   .page-actions ul {
     list-style: none; }
   .page-actions li {

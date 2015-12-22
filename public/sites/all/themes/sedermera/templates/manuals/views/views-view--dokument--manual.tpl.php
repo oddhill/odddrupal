@@ -12,7 +12,7 @@
  * You might end up with something like view_name/views-view--view-name.tpl.php.
  */
 ?>
-<div class="manual-sorting">
+<div class="manual-sorting document-listing-wrapper">
   <?php print $header; ?>
 
   <?php if ($exposed): ?>

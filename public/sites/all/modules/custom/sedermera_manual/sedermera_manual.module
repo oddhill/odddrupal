@@ -65,10 +65,17 @@ function view_manual() {
     }
 
     // Create table.
-    $block = generateManualsTable($header, $rows);
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateManualsTable($header, $rows),
+      '#suffix' => '</div>',
+    );
   }
   else {
-    $block = '<div class="view-empty">Det finns inga manualer</div>';
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga manualer</div>',
+      '#suffix' => '</div>',
+    );
   }
   return $block;
 }
@@ -95,10 +102,17 @@ function manual_admin() {
       generateMenualsAdminRows($rows, '', $doc, 'document');
     }
     // Create table.
-    $block = generateManualsTable($header, $rows);
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateManualsTable($header, $rows),
+      '#suffix' => '</div>',
+    );
   }
   else {
-    $block = '<div class="view-empty">Det finns inga manualer</div>';
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga manualer</div>',
+      '#suffix' => '</div>',
+    );
   }
   return $block;
 }

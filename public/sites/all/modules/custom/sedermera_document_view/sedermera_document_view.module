@@ -109,10 +109,17 @@ function view_page_user() {
     }
 
     // Create table.
-    $block = generateTable($header, $rows);
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateTable($header, $rows),
+      '#suffix' => '</div>',
+    );
   }
   else {
-    $block = '<div class="view-empty">Det finns inga dokument</div>';
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+      '#suffix' => '</div>',
+    );
   }
   return $block;
 }
@@ -153,10 +160,17 @@ function admin_doc() {
       generateAdminRows($rows, '', $doc, $appendix, 'document');
     }
     // Create table.
-    $block = generateTable($header, $rows);
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateTable($header, $rows),
+      '#suffix' => '</div>',
+    );
   }
   else {
-    $block = '<div class="view-empty">Det finns inga dokument</div>';
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+      '#suffix' => '</div>',
+    );
   }
   return $block;
 }
@@ -176,7 +190,11 @@ function view_page_per_user() {
 
     if (!isset($get['selected']) || ($get['selected'] == 0)) {
       // Add form to block content.
-      $block = drupal_get_form('userForm');
+      $block = array(
+        '#prefix' => '<div class="document-listing-wrapper">',
+        'form' => drupal_get_form('userForm'),
+        '#suffix' => '<div class="table-wrapper"><div class="view-empty">Du har inte valt någon användare</div></div></div>',
+      );
     }
     else {
       // Create the header for the table. Add rows
@@ -209,13 +227,18 @@ function view_page_per_user() {
 
       // Add table to block content.
       $block = array(
+        '#prefix' => '<div class="document-listing-wrapper">',
         'form' => drupal_get_form('userForm'),
         'table' => generateTable($header, $rows),
+        '#suffix' => '</div>',
       );
     }
   }
   else {
-    $block = '<div class="view-empty">Det finns inga dokument</div>';
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+      '#suffix' => '</div>',
+    );
   }
   return $block;
 }
@@ -235,10 +258,17 @@ function view_page_per_doc() {
     $documents = getDocuments();
     if (!empty($documents)) {
       // Add form to block content.
-      $block = drupal_get_form('docForm');
+      $block = array(
+        '#prefix' => '<div class="document-listing-wrapper">',
+        'form' => drupal_get_form('docForm'),
+        '#suffix' => '<div class="table-wrapper"><div class="view-empty">Du har inte valt något dokument</div></div></div>',
+      );
     }
     else {
-      $block = '<div class="view-empty">Det finns inga dokument</div>';
+      $block = array(
+        '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+        '#suffix' => '</div>',
+      );
     }
   }
   else {
@@ -272,8 +302,10 @@ function view_page_per_doc() {
 
     // Add table to block content.
     $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
       'form' => drupal_get_form('docForm'),
       'table' => generateTable($header, $rows),
+      '#suffix' => '</div>',
     );
   }
   return $block;
