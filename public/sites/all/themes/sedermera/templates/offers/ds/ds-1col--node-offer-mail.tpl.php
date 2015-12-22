@@ -82,16 +82,18 @@
         </td>
       </tr>
 
-      <tr>
-        <td style="border-top: 2px solid #eee; padding-bottom: 20px; padding-top: 20px;">
-        </td>
-      </tr>
+      <?php if ($content['field_offer_files']): ?>
+        <tr>
+          <td style="border-top: 2px solid #eee; padding-bottom: 20px; padding-top: 20px;">
+          </td>
+        </tr>
 
-      <tr>
-       <td>
-        <?php print render($content['field_offer_files']); ?>
-        <td>
-      </tr>
+        <tr>
+         <td>
+          <?php print render($content['field_offer_files']); ?>
+          <td>
+        </tr>
+      <?php endif; ?>
 
       <?php if ($contact_details): ?>
         <tr>
