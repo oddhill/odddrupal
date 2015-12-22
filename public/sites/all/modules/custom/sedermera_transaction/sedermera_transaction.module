@@ -1152,27 +1152,44 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
   // Control ID
   $investor_view_full = node_view($investor);
 
-  // Control UA
-  $ctrl_ua = field_view_field('node', $investor, 'field_investor_shared_ctrl_ua',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
+  // Fetch the dates for UA and PTV in order to determine which one that should
+  // be displayed.
+  $ua_date = $transaction_ap_wrap->field_transaction_ap_ap->field_investor_shared_ctrl_ua->field_ctrl_date->value();
+  $ptv_date = $transaction_ap_wrap->field_transaction_ap_ap->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
 
-  // Control PTV
-  $ctrl_ptv = field_view_field('node', $investor, 'field_investor_shared_ctrl_ptv',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
+  // Control UA. Display if UA has a date set, or if none of UA and PTV has been
+  // set.
+  if ($ua_date || (!$ua_date && !$ptv_date)) {
+    $ctrl_ua = field_view_field('node', $investor, 'field_investor_shared_ctrl_ua',
+      array(
+        'label'=>'hidden',
+        'type' => 'sedermera_verification_status',
+        'settings' => array(
+          'link' => TRUE,
+          'link_destination' => 'edit',
+        ),
+      ));
+  }
+  else {
+    $ctrl_ua = array();
+  }
+
+  // Control PTV. Display if PTV has a date set, or if none of UA and PTV has
+  // been set.
+  if ($ptv_date || (!$ua_date && !$ptv_date)) {
+    $ctrl_ptv = field_view_field('node', $investor, 'field_investor_shared_ctrl_ptv',
+      array(
+        'label'=>'hidden',
+        'type' => 'sedermera_verification_status',
+        'settings' => array(
+          'link' => TRUE,
+          'link_destination' => 'edit',
+        ),
+      ));
+  }
+  else {
+    $ctrl_ptv = array();
+  }
 
   // Control KRE
   $ctrl_kre = field_view_field('node', $investor, 'field_investor_shared_ctrl_cred',
