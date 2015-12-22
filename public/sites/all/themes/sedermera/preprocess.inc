@@ -98,12 +98,19 @@ function sedermera_preprocess_field(&$variables) {
 function sedermera_preprocess_node(&$variables) {
 
   // TODO Move logic to module
-  if ($variables['type'] == 'ctrl') {
+  if (in_array($variables['type'], array('ctrl', 'ctrl_pen'))) {
 
     $node = entity_metadata_wrapper('node', $variables['nid']);
 
     // Set a variable which indicates if the control is complete or not.
-    $variables['incomplete'] = $node->field_ctrl_date->value() == '';
+    if ($variables['type'] == 'ctrl') {
+      // Regular controls are based on the date.
+      $variables['incomplete'] = $node->field_ctrl_date->value() == '';
+    }
+    else {
+      // PEN controls are based on a simple boolean field.
+      $variables['incomplete'] = !$node->field_ctrl_pen_ok->value();
+    }
 
     // Check status of current control
     $status = sedermera_verification_get_status_single($variables['nid']);

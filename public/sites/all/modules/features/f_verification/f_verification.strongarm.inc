@@ -109,7 +109,7 @@ function f_verification_strongarm() {
         'custom_settings' => TRUE,
       ),
       'teaser' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -158,15 +158,27 @@ function f_verification_strongarm() {
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'verification_status_id' => array(
           'default' => array(
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
         'verification_status_sign' => array(
           'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
