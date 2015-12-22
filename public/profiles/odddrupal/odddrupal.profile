@@ -293,7 +293,7 @@ function odddrupal_init() {
         ),
       )),
     );
-    drupal_set_message(t('You are masquerading as !user. <a href="@unswitch-path">Switch back</a>.', $params), 'warning');
+    drupal_set_message(t('You are masquerading as !user. <a href="@unswitch-path">Switch back</a>.', $params), 'warning', FALSE);
   }
 }
 
