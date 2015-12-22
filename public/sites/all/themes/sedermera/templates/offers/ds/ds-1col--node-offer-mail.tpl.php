@@ -60,18 +60,36 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 20px; padding-left: 35px; border-left: 2px solid #eee;">
 
                   <?php print render($content['field_offer_type_fe_sum']); ?>
-
                   <?php print render($content['field_offer_type_fe_rate']); ?>
-
                   <?php print render($content['field_offer_type_fe_pre']); ?>
-
                   <?php print render($content['field_offer_type_fe_sign']); ?>
-
                   <?php print render($content['field_offer_type_fe_warrant']); ?>
-
                   <?php print render($content['field_offer_type_fe_payment']); ?>
-
                   <?php print render($content['field_offer_type_fe_terms']); ?>
+
+                  <?php print render($content['field_offer_type_le_sum']); ?>
+                  <?php print render($content['field_offer_type_le_rate']); ?>
+                  <?php print render($content['field_offer_type_le_pre']); ?>
+                  <?php print render($content['field_offer_type_le_sign']); ?>
+                  <?php print render($content['field_offer_type_le_warrant']); ?>
+                  <?php print render($content['field_offer_type_le_payment']); ?>
+                  <?php print render($content['field_offer_type_le_terms']); ?>
+
+                  <?php print render($content['field_offer_type_pp_sum']); ?>
+                  <?php print render($content['field_offer_type_pp_rate']); ?>
+                  <?php print render($content['field_offer_type_pp_pre']); ?>
+                  <?php print render($content['field_offer_type_pp_sign']); ?>
+                  <?php print render($content['field_offer_type_pp_payment']); ?>
+
+                  <?php print render($content['field_offer_type_re_sum']); ?>
+                  <?php print render($content['field_offer_type_re_rate']); ?>
+                  <?php print render($content['field_offer_type_re_pre']); ?>
+                  <?php print render($content['field_offer_type_re_sign']); ?>
+                  <?php print render($content['field_offer_type_re_payment']); ?>
+
+                  <?php print render($content['field_offer_type_bl_sum']); ?>
+
+                  <?php print render($content['field_offer_type_bp_sum']); ?>
 
               </table>
             </td>
