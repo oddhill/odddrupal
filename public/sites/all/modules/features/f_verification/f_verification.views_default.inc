@@ -83,6 +83,7 @@ function f_verification_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'ctrl' => 'ctrl',
+    'ctrl_pen' => 'ctrl_pen',
   );
 
   /* Display: Modal */
