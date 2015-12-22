@@ -93,6 +93,19 @@
         <td>
       </tr>
 
+      <?php if ($contact_details): ?>
+        <tr>
+          <td style="border-top: 2px solid #eee; padding-bottom: 20px; padding-top: 20px;">
+          </td>
+        </tr>
+
+        <tr>
+         <td>
+          <?php print $contact_details; ?>
+          <td>
+        </tr>
+      <?php endif; ?>
+
     </table>
 
    </td>

@@ -54,11 +54,13 @@
               </td>
             </tr>
 
-            <tr>
-              <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">
-                <?php print $sender; ?>
-              </td>
-            </tr>
+            <?php if ($contact_details): ?>
+              <tr>
+                <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">
+                  <?php print $contact_details; ?>
+                </td>
+              </tr>
+            <?php endif; ?>
 
           </table>
 

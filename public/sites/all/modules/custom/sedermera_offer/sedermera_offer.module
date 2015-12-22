@@ -73,7 +73,6 @@ function sedermera_offer_node_presave($node) {
           // Message.
           $params['message'][] = theme('sedermera_offer_unsigned_mail', array(
             'recipient' => $person->title,
-            'sender' => format_username($GLOBALS['user']),
             'company' => $wrapper->field_offer_company->title->value(),
           ));
 
@@ -478,7 +477,6 @@ function transaction_transparency_info_send_mail($transaction_nid) {
     // Message.
     $params['message'][] = theme('sedermera_offer_signed_mail', array(
       'recipient' => $person->title->value(),
-      'sender' => format_username($GLOBALS['user']),
       'company' => $company->title->value(),
     ));
 
@@ -846,13 +844,13 @@ function sedermera_offer_theme() {
     ),
     'sedermera_offer_signed_mail' => array(
       'template' => 'sedermera-offer-signed-mail',
-      'variables' => array('recipient' => '', 'sender' => '', 'company' => ''),
+      'variables' => array('recipient' => '', 'company' => ''),
       'path' => $path,
       'file' => 'theme.inc',
     ),
     'sedermera_offer_unsigned_mail' => array(
       'template' => 'sedermera-offer-unsigned-mail',
-      'variables' => array('recipient' => '', 'sender' => '', 'company' => ''),
+      'variables' => array('recipient' => '', 'company' => ''),
       'path' => $path,
       'file' => 'theme.inc',
     ),
