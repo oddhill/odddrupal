@@ -2742,7 +2742,6 @@ function f_investor_field_default_field_instances() {
   t('Verkliga huvudmän');
   t('t.ex. ägare av 25% eller mer');
   t('ÅÅMMDD-XXXX');
-  t('Övriga dokument/tillägg');
 
   return $field_instances;
 }
