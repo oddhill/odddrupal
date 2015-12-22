@@ -963,6 +963,12 @@ function generate_header_row_control(array &$header) {
     'class' => array('table-head')
   );
 
+  // Control ID column
+  $header[] = array(
+    'data' => 'ID',
+    'class' => array('table-head','ctrl')
+  );
+
   // Control UA column
   $header[] = array(
     'data' => 'UA',
@@ -975,9 +981,9 @@ function generate_header_row_control(array &$header) {
     'class' => array('table-head','ctrl')
   );
 
-  // Control ID column
+  // Control KRE column
   $header[] = array(
-    'data' => 'ID',
+    'data' => 'KRE',
     'class' => array('table-head','ctrl')
   );
 
@@ -990,12 +996,6 @@ function generate_header_row_control(array &$header) {
   // Control EU column
   $header[] = array(
     'data' => 'EU',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control KRE column
-  $header[] = array(
-    'data' => 'KRE',
     'class' => array('table-head','ctrl')
   );
 
@@ -1086,6 +1086,11 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
       array(
         'data' => number_format($sum, 0, ",", " ") . " :-",
       ),
+      // Control ID column
+      array(
+        'data' => render($ctrl_id),
+        'class' => array('ctrl'),
+      ),
       // Control UA column
       array(
         'class' => array('ctrl'),
@@ -1094,9 +1099,8 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
       array(
         'class' => array('ctrl'),
       ),
-      // Control ID column
+      // Control KRE column
       array(
-        'data' => render($ctrl_id),
         'class' => array('ctrl'),
       ),
       // Control EXR column
@@ -1104,10 +1108,6 @@ function generate_contact_person_head_row_control(array &$rows, stdClass $transa
         'class' => array('ctrl'),
       ),
       // Control EU column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control KRE column
       array(
         'class' => array('ctrl'),
       ),
@@ -1149,6 +1149,9 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
   // Get investor from transaction
   $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
 
+  // Control ID
+  $investor_view_full = node_view($investor);
+
   // Control UA
   $ctrl_ua = field_view_field('node', $investor, 'field_investor_shared_ctrl_ua',
     array(
@@ -1171,8 +1174,16 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
       ),
     ));
 
-  // Control ID
-  $investor_view_full = node_view($investor);
+  // Control KRE
+  $ctrl_kre = field_view_field('node', $investor, 'field_investor_shared_ctrl_cred',
+    array(
+      'label'=>'hidden',
+      'type' => 'sedermera_verification_status',
+      'settings' => array(
+        'link' => TRUE,
+        'link_destination' => 'edit',
+      ),
+    ));
 
   // Control EXR
   $ctrl_exr = field_view_field('node', $investor, 'field_investor_shared_ctrl_ext',
@@ -1187,17 +1198,6 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
 
   // Control EU
   $ctrl_eu = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_eu',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
-
-  // Control KRE
-  $ctrl_kre = field_view_field('node', $investor, 'field_investor_shared_ctrl_cred',
     array(
       'label'=>'hidden',
       'type' => 'sedermera_verification_status',
@@ -1231,6 +1231,11 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
       ),
       // Summation column
       array(),
+      // Control ID column
+      array(
+        'data' => render($investor_view_full['verification_id_investor']),
+        'class' => array('ctrl'),
+      ),
       // Control UA column
       array(
         'data' => render($ctrl_ua),
@@ -1241,9 +1246,9 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
         'data' => render($ctrl_ptv),
         'class' => array('ctrl'),
       ),
-      // Control ID column
+      // Control KRE column
       array(
-        'data' => render($investor_view_full['verification_id_investor']),
+        'data' => render($ctrl_kre),
         'class' => array('ctrl'),
       ),
       // Control EXR column
@@ -1254,11 +1259,6 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
       // Control EU column
       array(
         'data' => render($ctrl_eu),
-        'class' => array('ctrl'),
-      ),
-      // Control KRE column
-      array(
-        'data' => render($ctrl_kre),
         'class' => array('ctrl'),
       ),
       // Control KOM column
@@ -1386,6 +1386,10 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       array(
         'data' => number_format($sum, 0, ",", " ") . " :-",
       ),
+      // Control ID column
+      array(
+        'class' => array('ctrl'),
+      ),
       // Control UA column
       array(
         'class' => array('ctrl'),
@@ -1394,7 +1398,7 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
       array(
         'class' => array('ctrl'),
       ),
-      // Control ID column
+      // Control KRE column
       array(
         'class' => array('ctrl'),
       ),
@@ -1403,10 +1407,6 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
         'class' => array('ctrl'),
       ),
       // Control EU column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control KRE column
       array(
         'class' => array('ctrl'),
       ),
@@ -1454,17 +1454,17 @@ function generate_empty_row_control(array &$rows, $transaction) {
       array(),
       // Summation column
       array(),
+      // Control ID column
+      array(),
       // Control UA column
       array(),
       // Control PTV column
       array(),
-      // Control ID column
+      // Control KRE column
       array(),
       // Control EXR column
       array(),
       // Control EU column
-      array(),
-      // Control KRE column
       array(),
       // Control KOM column
       array(),
