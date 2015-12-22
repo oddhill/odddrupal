@@ -533,7 +533,6 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
     // Add the other regular verifications.
     $verifications[] = $investor->field_investor_shared_ctrl_ext->nid->value();
     $verifications[] = $transaction_ap->field_transaction_ap_ctrl_eu->nid->value();
-    $verifications[] = $transaction_ap->field_transaction_ap_ctrl_comp->nid->value();
 
     // Add Penningtvätt if there's an UA verification.
     if ($investor->field_investor_shared_ctrl_ua->field_ctrl_date->value()) {
