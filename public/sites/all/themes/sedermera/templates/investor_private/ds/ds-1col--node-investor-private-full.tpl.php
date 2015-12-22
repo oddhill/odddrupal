@@ -33,7 +33,6 @@
       <?php print render($content['field_investor_shared_ctrl_ptv']); ?>
       <?php print render($content['field_investor_shared_ctrl_cred']); ?>
       <?php print render($content['field_investor_shared_ctrl_ext']); ?>
-      <?php print render($content['field_investor_shared_ctrl_oth']); ?>
     </div>
   </div>
 </div>

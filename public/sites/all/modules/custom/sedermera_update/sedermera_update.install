@@ -538,3 +538,21 @@ function sedermera_update_update_7029() {
   module_disable(array('auto_entitylabel'));
   drupal_uninstall_modules(array('auto_entitylabel'));
 }
+
+/**
+ * Remove controls referred from the field_investor_shared_ctrl_oth field.
+ */
+function sedermera_update_update_7030() {
+  $nids = db_query("SELECT field_investor_shared_ctrl_oth_target_id FROM field_data_field_investor_shared_ctrl_oth")->fetchCol();
+  node_delete_multiple($nids);
+
+  return format_plural(count($nids), 'Deleted 1 control node.', 'Deleted @count control nodes.');
+}
+
+/**
+ * Remove the field for "Övriga dokument/tillägg" controls.
+ */
+function sedermera_update_update_7031() {
+  field_delete_field('field_investor_shared_ctrl_oth');
+  field_purge_batch(1000);
+}

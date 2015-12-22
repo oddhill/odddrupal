@@ -373,61 +373,6 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-investor_company-field_investor_shared_ctrl_oth'.
-  $field_instances['node-investor_company-field_investor_shared_ctrl_oth'] = array(
-    'bundle' => 'investor_company',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 20,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'sedermera_verification',
-        'settings' => array(
-          'ajax' => FALSE,
-          'link' => FALSE,
-          'link_destination' => 'view',
-        ),
-        'type' => 'sedermera_verification_status',
-        'weight' => 11,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_investor_shared_ctrl_oth',
-    'label' => 'Övriga dokument/tillägg',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'inline_entity_form',
-      'settings' => array(
-        'fields' => array(),
-        'type_settings' => array(
-          'allow_existing' => FALSE,
-          'allow_new' => 1,
-          'delete_references' => 0,
-          'label_plural' => 'nodes',
-          'label_singular' => 'node',
-          'match_operator' => 'CONTAINS',
-          'override_labels' => 0,
-        ),
-      ),
-      'type' => 'inline_entity_form_single',
-      'weight' => 21,
-    ),
-  );
-
-  // Exported field_instance:
   // 'node-investor_company-field_investor_shared_ctrl_ptv'.
   $field_instances['node-investor_company-field_investor_shared_ctrl_ptv'] = array(
     'bundle' => 'investor_company',
@@ -933,61 +878,6 @@ function f_investor_field_default_field_instances() {
       ),
       'type' => 'inline_entity_form_single',
       'weight' => 15,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'node-investor_private-field_investor_shared_ctrl_oth'.
-  $field_instances['node-investor_private-field_investor_shared_ctrl_oth'] = array(
-    'bundle' => 'investor_private',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 13,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'sedermera_verification',
-        'settings' => array(
-          'ajax' => FALSE,
-          'link' => FALSE,
-          'link_destination' => 'view',
-        ),
-        'type' => 'sedermera_verification_status',
-        'weight' => 9,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_investor_shared_ctrl_oth',
-    'label' => 'Övriga dokument/tillägg',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'inline_entity_form',
-      'settings' => array(
-        'fields' => array(),
-        'type_settings' => array(
-          'allow_existing' => FALSE,
-          'allow_new' => 1,
-          'delete_references' => 0,
-          'label_plural' => 'nodes',
-          'label_singular' => 'node',
-          'match_operator' => 'CONTAINS',
-          'override_labels' => 0,
-        ),
-      ),
-      'type' => 'inline_entity_form_single',
-      'weight' => 16,
     ),
   );
 

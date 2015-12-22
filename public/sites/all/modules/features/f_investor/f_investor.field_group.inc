@@ -93,9 +93,8 @@ function f_investor_field_group_info() {
     'children' => array(
       0 => 'field_investor_shared_ctrl_cred',
       1 => 'field_investor_shared_ctrl_ext',
-      2 => 'field_investor_shared_ctrl_oth',
-      3 => 'field_investor_shared_ctrl_ptv',
-      4 => 'field_investor_shared_ctrl_ua',
+      2 => 'field_investor_shared_ctrl_ptv',
+      3 => 'field_investor_shared_ctrl_ua',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -626,9 +625,8 @@ function f_investor_field_group_info() {
     'children' => array(
       0 => 'field_investor_shared_ctrl_cred',
       1 => 'field_investor_shared_ctrl_ext',
-      2 => 'field_investor_shared_ctrl_oth',
-      3 => 'field_investor_shared_ctrl_ptv',
-      4 => 'field_investor_shared_ctrl_ua',
+      2 => 'field_investor_shared_ctrl_ptv',
+      3 => 'field_investor_shared_ctrl_ua',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

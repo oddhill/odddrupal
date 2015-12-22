@@ -118,9 +118,6 @@ function sedermera_investor_node_presave($node) {
     $ext_ctrl = node_load($node->field_investor_shared_ctrl_ext[LANGUAGE_NONE][0]['target_id']);
     $ext_ctrl->title = $node->title . " Externt register";
     node_save($ext_ctrl);
-    $oth_ctrl = node_load($node->field_investor_shared_ctrl_oth[LANGUAGE_NONE][0]['target_id']);
-    $oth_ctrl->title = $node->title . " Övriga dokument/tillägg";
-    node_save($oth_ctrl);
   }
   // if ($node->type === 'transaction_ap' && $node->is_new == 1) {
   //   $ap = node_load($node->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
