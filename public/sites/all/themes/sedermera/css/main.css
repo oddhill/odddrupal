@@ -3748,27 +3748,33 @@ form#user-login,
       .mfp-ajax-holder .mfp-content .node.view-mode-teaser:last-child {
         margin-bottom: 0; }
   .mfp-ajax-holder .mfp-content .node-ctrl,
+  .mfp-ajax-holder .mfp-content .node-ctrl-pen,
   .mfp-ajax-holder .mfp-content .node-ctrl-form,
   .mfp-ajax-holder .mfp-content .node-ctrl_pen-form {
     border-top: 10px solid #5c9cae; }
     .mfp-ajax-holder .mfp-content .node-ctrl.view-mode-teaser,
+    .mfp-ajax-holder .mfp-content .node-ctrl-pen.view-mode-teaser,
     .mfp-ajax-holder .mfp-content .node-ctrl-form.view-mode-teaser,
     .mfp-ajax-holder .mfp-content .view-mode-teaser.node-ctrl_pen-form {
       border-top: 0px none;
       border-left: 3px solid #282828; }
     .mfp-ajax-holder .mfp-content .node-ctrl.approved,
+    .mfp-ajax-holder .mfp-content .node-ctrl-pen.approved,
     .mfp-ajax-holder .mfp-content .node-ctrl-form.approved,
     .mfp-ajax-holder .mfp-content .approved.node-ctrl_pen-form {
       border-color: #6c9e65; }
     .mfp-ajax-holder .mfp-content .node-ctrl.expiring,
+    .mfp-ajax-holder .mfp-content .node-ctrl-pen.expiring,
     .mfp-ajax-holder .mfp-content .node-ctrl-form.expiring,
     .mfp-ajax-holder .mfp-content .expiring.node-ctrl_pen-form {
       border-color: #f9a500; }
     .mfp-ajax-holder .mfp-content .node-ctrl.not-approved,
+    .mfp-ajax-holder .mfp-content .node-ctrl-pen.not-approved,
     .mfp-ajax-holder .mfp-content .node-ctrl-form.not-approved,
     .mfp-ajax-holder .mfp-content .not-approved.node-ctrl_pen-form {
       border-color: #c04343; }
     .mfp-ajax-holder .mfp-content .node-ctrl .vertical-tabs,
+    .mfp-ajax-holder .mfp-content .node-ctrl-pen .vertical-tabs,
     .mfp-ajax-holder .mfp-content .node-ctrl-form .vertical-tabs,
     .mfp-ajax-holder .mfp-content .node-ctrl_pen-form .vertical-tabs {
       display: none; }
