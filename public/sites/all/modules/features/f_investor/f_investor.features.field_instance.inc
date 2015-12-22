@@ -221,7 +221,7 @@ function f_investor_field_default_field_instances() {
     'bundle' => 'investor_company',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'En eller flera separera med ,',
+    'description' => 't.ex. ägare av 25% eller mer',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -244,7 +244,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_investor_comp_owners',
-    'label' => 'Ägare (till mer än 25%)',
+    'label' => 'Verkliga huvudmän',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2713,7 +2713,6 @@ function f_investor_field_default_field_instances() {
   t('Branscher');
   t('E-post');
   t('EU:s sanktionsförordningar');
-  t('En eller flera separera med ,');
   t('Erbjudande');
   t('Externt register');
   t('Fax');
@@ -2740,7 +2739,8 @@ function f_investor_field_default_field_instances() {
   t('Transaktion');
   t('Transaktions avtalspart');
   t('Uppdragsavtal');
-  t('Ägare (till mer än 25%)');
+  t('Verkliga huvudmän');
+  t('t.ex. ägare av 25% eller mer');
   t('ÅÅMMDD-XXXX');
   t('Övriga dokument/tillägg');
 
