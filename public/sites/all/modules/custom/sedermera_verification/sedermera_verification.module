@@ -342,12 +342,20 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
     // verifications.
     $verifications = sedermera_verification_get_ids_for_investor($node->nid);
 
-    if ($wrapper->field_investor_shared_ctrl_ua->field_ctrl_date->value()) {
-      // There is a UA verification, add this verification.
+    // Fetch the dates for UA and PTV in order to determine which one that
+    // should be displayed.
+    $ua_date = $wrapper->field_investor_shared_ctrl_ua->field_ctrl_date->value();
+    $ptv_date = $wrapper->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
+
+    // Add the UA control if it has been set, or if none of UA or PTV has been
+    // set.
+    if ($ua_date || (!$ua_date && !$ptv_date)) {
       $verifications[] = $wrapper->field_investor_shared_ctrl_ua->nid->value();
     }
-    else {
-      // No UA available, check the PTV verification instead.
+
+    // Add the PTV control if it has been set and UA hasn't been set, or if both
+    // UA and PTV hasn't been set.
+    if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
       $verifications[] = $wrapper->field_investor_shared_ctrl_ptv->nid->value();
     }
 
@@ -521,12 +529,20 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
     // verifications.
     $verifications = sedermera_verification_get_ids_for_investor($investor->nid->value());
 
-    // Add the Uppdragsavtal verification if a date has been set.
-    if ($investor->field_investor_shared_ctrl_ua->field_ctrl_date->value()) {
+    // Fetch the dates for UA and PTV in order to determine which one that
+    // should be displayed.
+    $ua_date = $investor->field_investor_shared_ctrl_ua->field_ctrl_date->value();
+    $ptv_date = $investor->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
+
+    // Add the UA control if it has been set, or if none of UA or PTV has been
+    // set.
+    if ($ua_date || (!$ua_date && !$ptv_date)) {
       $verifications[] = $investor->field_investor_shared_ctrl_ua->nid->value();
     }
-    else {
-      // No uppdragsavtal has been set, add the PTV verification instead.
+
+    // Add the PTV control if it has been set and UA hasn't been set, or if both
+    // UA and PTV hasn't been set.
+    if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
       $verifications[] = $investor->field_investor_shared_ctrl_ptv->nid->value();
     }
 

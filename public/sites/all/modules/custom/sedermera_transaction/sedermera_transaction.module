@@ -1174,9 +1174,9 @@ function generate_investor_rows_control(array &$rows, $investor, array $type_inv
     $ctrl_ua = array();
   }
 
-  // Control PTV. Display if PTV has a date set, or if none of UA and PTV has
-  // been set.
-  if ($ptv_date || (!$ua_date && !$ptv_date)) {
+  // Control PTV. Display if PTV has a date set, but not UA, or if both UA and
+  // PTV hasn't been set.
+  if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
     $ctrl_ptv = field_view_field('node', $investor, 'field_investor_shared_ctrl_ptv',
       array(
         'label'=>'hidden',
