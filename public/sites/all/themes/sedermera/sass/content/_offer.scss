@@ -46,6 +46,7 @@
     .offer-description {
       flex: 2 60%;
       padding-right: 30px;
+      @include wysiwyg;
     }
 
     .offer-company {

@@ -336,15 +336,25 @@
     margin: 1em 0;
   }
 
-  li {
-    margin-bottom: 5px;
+  ul,
+  ol {
+    margin: 1.5em 1em;
+    padding-left: 1.5em;
+
+    li {
+      margin-bottom: 0.4em;
+    }
   }
 
   a {
-    color: $orange;
-    font-weight: 500;
-    border-bottom: 1px solid #e0e2e6;
+    @include transition (border-color 0.1s ease-in-out);
+    border-bottom: 1px solid $wool;
+    color: $night;
     text-decoration: none;
+
+    &:hover {
+      border-bottom: 1px solid $night;
+    }
   }
 
   hr {
@@ -356,6 +366,7 @@
   }
 
   table {
+    max-width: 100%;
     margin: 10px 0 30px 0;
     border: 0;
     border-spacing: 0;

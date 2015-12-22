@@ -1280,13 +1280,22 @@ input[value="Jämför"]#edit-submit {
     font-weight: 700; }
   .node-document.view-mode-full .body p {
     margin: 1em 0; }
-  .node-document.view-mode-full .body li {
-    margin-bottom: 5px; }
+  .node-document.view-mode-full .body ul,
+  .node-document.view-mode-full .body ol {
+    margin: 1.5em 1em;
+    padding-left: 1.5em; }
+    .node-document.view-mode-full .body ul li,
+    .node-document.view-mode-full .body ol li {
+      margin-bottom: 0.4em; }
   .node-document.view-mode-full .body a {
-    color: #f99d1c;
-    font-weight: 500;
+    -webkit-transition: border-color 0.1s ease-in-out;
+    -moz-transition: border-color 0.1s ease-in-out;
+    transition: border-color 0.1s ease-in-out;
     border-bottom: 1px solid #e0e2e6;
+    color: #1a1a1a;
     text-decoration: none; }
+    .node-document.view-mode-full .body a:hover {
+      border-bottom: 1px solid #1a1a1a; }
   .node-document.view-mode-full .body hr {
     background-color: #f3f4f8;
     border: 0;
@@ -1294,6 +1303,7 @@ input[value="Jämför"]#edit-submit {
     height: 2px;
     margin: 25px 0; }
   .node-document.view-mode-full .body table {
+    max-width: 100%;
     margin: 10px 0 30px 0;
     border: 0;
     border-spacing: 0; }
@@ -2265,6 +2275,86 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
   .node-offer.view-mode-full .offer-description {
     flex: 2 60%;
     padding-right: 30px; }
+    .node-offer.view-mode-full .offer-description html {
+      font-size: 62.5%; }
+    .node-offer.view-mode-full .offer-description body {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 18.2px;
+      background: #fff;
+      color: #282828;
+      font-family: "Roboto", sans-serif; }
+    .node-offer.view-mode-full .offer-description h1 {
+      font-size: 30px;
+      font-size: 3rem;
+      line-height: 45px;
+      font-weight: 500; }
+    .node-offer.view-mode-full .offer-description h2 {
+      font-size: 24px;
+      font-size: 2.4rem;
+      line-height: 36px;
+      font-weight: 500; }
+    .node-offer.view-mode-full .offer-description h3 {
+      font-size: 20px;
+      font-size: 2rem;
+      line-height: 30px;
+      font-weight: 500; }
+    .node-offer.view-mode-full .offer-description h4 {
+      font-size: 17px;
+      font-size: 1.7rem;
+      line-height: 25.5px;
+      font-weight: 500; }
+    .node-offer.view-mode-full .offer-description h5 {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      font-weight: 700; }
+    .node-offer.view-mode-full .offer-description p {
+      margin: 1em 0; }
+    .node-offer.view-mode-full .offer-description ul,
+    .node-offer.view-mode-full .offer-description ol {
+      margin: 1.5em 1em;
+      padding-left: 1.5em; }
+      .node-offer.view-mode-full .offer-description ul li,
+      .node-offer.view-mode-full .offer-description ol li {
+        margin-bottom: 0.4em; }
+    .node-offer.view-mode-full .offer-description a {
+      -webkit-transition: border-color 0.1s ease-in-out;
+      -moz-transition: border-color 0.1s ease-in-out;
+      transition: border-color 0.1s ease-in-out;
+      border-bottom: 1px solid #e0e2e6;
+      color: #1a1a1a;
+      text-decoration: none; }
+      .node-offer.view-mode-full .offer-description a:hover {
+        border-bottom: 1px solid #1a1a1a; }
+    .node-offer.view-mode-full .offer-description hr {
+      background-color: #f3f4f8;
+      border: 0;
+      color: #f3f4f8;
+      height: 2px;
+      margin: 25px 0; }
+    .node-offer.view-mode-full .offer-description table {
+      max-width: 100%;
+      margin: 10px 0 30px 0;
+      border: 0;
+      border-spacing: 0; }
+      .node-offer.view-mode-full .offer-description table caption {
+        font-size: 15px;
+        font-size: 1.5rem;
+        line-height: 22.5px;
+        font-weight: 500;
+        margin-bottom: 20px; }
+    .node-offer.view-mode-full .offer-description td {
+      border: 1px solid #e0e2e6;
+      padding: 10px 0 10px 10px; }
+    .node-offer.view-mode-full .offer-description thead {
+      background: #f3f4f8;
+      border: 0; }
+    .node-offer.view-mode-full .offer-description th {
+      background: #f3f4f8;
+      border: 1px solid #e0e2e6;
+      font-weight: 500;
+      padding: 10px; }
   .node-offer.view-mode-full .offer-company {
     float: right;
     width: 140px;
