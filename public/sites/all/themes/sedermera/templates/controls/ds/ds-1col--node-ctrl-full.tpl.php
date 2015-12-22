@@ -25,11 +25,9 @@
   <div class="verification-body">
     <?php if ($incomplete): ?>
       <div class="empty">Kontrollen är ej färdig</div>
-    <?php endif; ?>
+    <?php else: ?>
+      <?php print render($content['field_ctrl_files']); ?>
 
-    <?php print render($content['field_ctrl_files']); ?>
-
-    <?php if (!$empty_date): ?>
       <div class="ctrl ctrl-status">
         <div class="ctrl-label">Status</div>
         <?php print render($content['field_ctrl_app']); ?>

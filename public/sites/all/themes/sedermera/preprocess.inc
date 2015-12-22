@@ -102,16 +102,8 @@ function sedermera_preprocess_node(&$variables) {
 
     $node = entity_metadata_wrapper('node', $variables['nid']);
 
-    $variables['incomplete'] = FALSE;
-    $variables['empty_date'] = FALSE;
-
-    if ($node->field_ctrl_date->value() == '' || empty($node->field_ctrl_files->value())) {
-      $variables['incomplete'] = TRUE;
-    }
-
-    if ($node->field_ctrl_date->value() == '') {
-      $variables['empty_date'] = TRUE;
-    }
+    // Set a variable which indicates if the control is complete or not.
+    $variables['incomplete'] = $node->field_ctrl_date->value() == '';
 
     // Check status of current control
     $status = sedermera_verification_get_status_single($variables['nid']);
