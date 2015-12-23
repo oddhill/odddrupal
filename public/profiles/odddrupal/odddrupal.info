@@ -31,6 +31,7 @@ dependencies[] = context_ui
 dependencies[] = ctools
 dependencies[] = devel
 dependencies[] = devel_debug_log
+dependencies[] = devel_form_debug
 dependencies[] = devel_generate
 dependencies[] = diff
 dependencies[] = ds

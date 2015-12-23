@@ -264,6 +264,7 @@ function odddrupal_roles_users() {
   // Permissions for the anonymous role.
   user_role_grant_permissions(1, array(
     'access content',
+    'access devel form debug contextual links',
     'access devel information',
   ));
 
@@ -271,6 +272,7 @@ function odddrupal_roles_users() {
   user_role_grant_permissions(2, array(
     'access content',
     'access contextual links',
+    'access devel form debug contextual links',
     'access devel information',
     'access toolbar',
     'change own username',
@@ -337,6 +339,7 @@ function odddrupal_set_variables() {
     'dblog' => 1,
     'devel' => 1,
     'devel_debug_log' => 1,
+    'devel_form_debug' => 1,
     'devel_generate' => 1,
     'ds_ui' => 1,
     'field_ui' => 1,
@@ -371,6 +374,7 @@ function odddrupal_set_variables() {
     'dblog' => 1,
     'devel' => 0,
     'devel_debug_log' => 0,
+    'devel_form_debug' => 0,
     'devel_generate' => 0,
     'ds_ui' => 1,
     'field_ui' => 1,
@@ -406,6 +410,7 @@ function odddrupal_set_variables() {
     'dblog' => 0,
     'devel' => 0,
     'devel_debug_log' => 0,
+    'devel_form_debug' => 0,
     'devel_generate' => 0,
     'ds_ui' => 0,
     'field_ui' => 0,

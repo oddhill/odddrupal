@@ -1,0 +1,57 @@
+diff --git a/devel_form_debug.module b/devel_form_debug.module
+index f86aac0..cac70fb 100644
+--- a/devel_form_debug.module
++++ b/devel_form_debug.module
+@@ -46,7 +46,7 @@ function devel_form_debug_form_alter(&$form, &$form_state, $form_id) {
+         'href' => 'ajax/devel_form_debug/' . $form_id,
+         'title' => t('Form ID') . ': ' . $form_id,
+         'attributes' => array('class' => array('use-ajax')),
+-        'query' => array('devel_form_debug__current_path' => request_uri())
++        'query' => array('devel_form_debug__current_path' => current_path())
+       )
+     );
+ 
+@@ -71,10 +71,7 @@ function devel_form_debug_form_alter(&$form, &$form_state, $form_id) {
+ 
+     // Dpm form if it's requested.
+     if (isset($_SESSION['devel_form_debug_form_id__' . $form_id])) {
+-      $parsed_request_url = drupal_parse_url(request_uri());
+-      $parsed_request_url['attributes']['class'][] = 'devel_form_debug__button';
+-      $parsed_request_url['html'] = TRUE;
+-      $devel_form_debug_hide_variables_form = drupal_get_form('devel_form_debug_hide_variables_form', $form_id, substr($parsed_request_url['path'], 1));
++      $devel_form_debug_hide_variables_form = drupal_get_form('devel_form_debug_hide_variables_form', $form_id);
+       devel_form_debug_debug(
+         $form,
+         t('Variables for form_id <b>@form_id</b>:', array('@form_id' => $form_id)),
+@@ -94,9 +91,8 @@ function devel_form_debug_callback($form_id = NULL) {
+     return 'No form id was specified. Error.';
+   }
+ 
+-  $parsed_current_url = drupal_parse_url($_GET['devel_form_debug__current_path']);
+   $contents[] = drupal_get_form('devel_form_debug_dialog_form', $form_id);
+-  $contents[] = drupal_get_form('devel_form_debug_print_variables_form', $form_id, substr($parsed_current_url['path'], 1));
++  $contents[] = drupal_get_form('devel_form_debug_print_variables_form', $form_id, $_GET['devel_form_debug__current_path']);
+   $commands[] = devel_form_debug_ajax_command_show_dialog(drupal_render($contents), t('Debug this form'));
+   $page = array(
+     '#type' => 'ajax',
+@@ -219,12 +215,7 @@ function devel_form_debug_print_variables_form_submit($form, &$form_state) {
+ /**
+  * Form that shows "hide form variables" button.
+  */
+-function devel_form_debug_hide_variables_form($form, $form_state, $debug_form_id, $url) {
+-
+-  $form['url'] = array(
+-    '#type' => 'value',
+-    '#value' => $url,
+-  );
++function devel_form_debug_hide_variables_form($form, $form_state, $debug_form_id) {
+ 
+   $form['debug_form_id'] = array(
+     '#type' => 'value',
+@@ -244,5 +235,4 @@ function devel_form_debug_hide_variables_form($form, $form_state, $debug_form_id
+  */
+ function devel_form_debug_hide_variables_form_submit($form, &$form_state) {
+   unset($_SESSION['devel_form_debug_form_id__' . $form_state['values']['debug_form_id']]);
+-  $form_state['redirect'] = $form_state['values']['url'];
+ }
+\ No newline at end of file
