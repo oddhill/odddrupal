@@ -266,6 +266,7 @@ function odddrupal_roles_users() {
     'access content',
     'access devel form debug contextual links',
     'access devel information',
+    'access xhprof data',
   ));
 
   // Permissions for the authenticated role.
@@ -275,6 +276,7 @@ function odddrupal_roles_users() {
     'access devel form debug contextual links',
     'access devel information',
     'access toolbar',
+    'access xhprof data',
     'change own username',
     'use text format filtered_html',
     'view the administration theme',
@@ -355,6 +357,7 @@ function odddrupal_set_variables() {
     'themekey_ui' => 1,
     'update' => 1,
     'views_ui' => 1,
+    'xhprof' => 1,
   ));
   variable_set('tadaa_development_variables', array(
     'block_cache' => 0,
@@ -390,6 +393,7 @@ function odddrupal_set_variables() {
     'themekey_ui' => 1,
     'update' => 0,
     'views_ui' => 1,
+    'xhprof' => 0,
   ));
   variable_set('tadaa_staging_variables', array(
     'block_cache' => 1,
@@ -426,6 +430,7 @@ function odddrupal_set_variables() {
     'themekey_ui' => 0,
     'update' => 0,
     'views_ui' => 0,
+    'xhprof' => 0,
   ));
   variable_set('tadaa_production_variables', array(
     'block_cache' => 1,
@@ -500,4 +505,5 @@ function odddrupal_set_variables() {
   variable_set('dev_timer', 1);
   variable_set('logentries_severity', '7');
   variable_set('features_default_export_path', 'sites/all/modules/features');
+  variable_set('xhprof_enabled', 1);
 }
