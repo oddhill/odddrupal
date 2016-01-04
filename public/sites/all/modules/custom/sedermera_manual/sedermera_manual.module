@@ -11,7 +11,7 @@ function sedermera_manual_menu() {
   $items['manualer/lista'] = array(
     'title' => 'Alla manualer',
     'page callback' => 'view_manual',
-    'access arguments' => array('access content'),
+    'access arguments' => array('view any manual content'),
     'menu_name' => 'main-menu',
     'parent_identifier' => 'main-menu_manualer:manualer',
     'weight' => 0,
