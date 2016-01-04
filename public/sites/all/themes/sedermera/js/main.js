@@ -250,9 +250,7 @@ Drupal.behaviors.sedermera = {
     }
 
     // Use selectBoxit on our select lists.
-    $('select').selectBoxIt({
-      showFirstOption: false
-    });
+    $('select').selectBoxIt();
 
     selectLookAlike();
     multipleIdDropdown();

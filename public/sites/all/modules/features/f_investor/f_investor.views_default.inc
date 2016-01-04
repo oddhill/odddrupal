@@ -230,7 +230,7 @@ function f_investor_views_default_views() {
         'bef_select_all_none' => FALSE,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
-        'any_label' => 'Kundansvarig',
+        'any_label' => '<em> - Kundansvarig - </em>',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -461,7 +461,7 @@ function f_investor_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Advanced options'),
-    t('Kundansvarig'),
+    t('<em> - Kundansvarig - </em>'),
     t('Select any filter and click on Apply to see results'),
     t('Items per page'),
     t('- All -'),
@@ -475,6 +475,7 @@ function f_investor_views_default_views() {
     t('Namn'),
     t('Kundnummer'),
     t('Kontaktperson'),
+    t('Kundansvarig'),
     t('Avtalsparter'),
   );
   $export['investors'] = $view;
@@ -566,7 +567,7 @@ function f_investor_views_default_views() {
         'bef_select_all_none' => FALSE,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
-        'any_label' => 'Kundansvarig',
+        'any_label' => '<em> - Kundansvarig - </em>',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -826,7 +827,7 @@ function f_investor_views_default_views() {
     t('Telefon'),
     t('Filtrera på namn'),
     t('Lista'),
-    t('Kundansvarig'),
+    t('<em> - Kundansvarig - </em>'),
     t('Skapa erbjudande'),
     t('- Choose an operation -'),
   );
