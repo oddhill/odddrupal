@@ -2167,7 +2167,7 @@ function f_document_field_default_field_instances() {
     'settings' => array(
       'description_field' => 0,
       'file_directory' => 'manual',
-      'file_extensions' => 'pdf',
+      'file_extensions' => 'pdf doc docx',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
