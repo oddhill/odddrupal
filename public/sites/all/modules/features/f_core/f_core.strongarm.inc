@@ -794,6 +794,8 @@ admin/*';
     'rules_admin' => 1,
     'themekey_ui' => 1,
     'views_ui' => 1,
+    'devel_form_debug' => 1,
+    'xhprof' => 1,
   );
   $export['tadaa_development_modules'] = $strongarm;
 
@@ -855,6 +857,8 @@ admin/*';
     'rules_admin' => 0,
     'themekey_ui' => 0,
     'views_ui' => 0,
+    'devel_form_debug' => 0,
+    'xhprof' => 0,
   );
   $export['tadaa_production_modules'] = $strongarm;
 
@@ -906,6 +910,8 @@ admin/*';
     'rules_admin' => 1,
     'themekey_ui' => 1,
     'views_ui' => 1,
+    'devel_form_debug' => 0,
+    'xhprof' => 0,
   );
   $export['tadaa_staging_modules'] = $strongarm;
 
