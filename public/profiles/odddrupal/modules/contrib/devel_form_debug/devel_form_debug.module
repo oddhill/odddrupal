@@ -1,0 +1,238 @@
+<?php
+/**
+ * @file devel_form_debug.module
+ *
+ * Core functionality for the Devel Form Debug module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function devel_form_debug_menu() {
+
+  $items['ajax/devel_form_debug/%'] = array(
+    'title' => 'Devel form debug',
+    'page arguments' => array(2),
+    'page callback' => 'devel_form_debug_callback',
+    'access arguments' => array('access devel form debug contextual links'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function devel_form_debug_form_alter(&$form, &$form_state, $form_id) {
+
+  // We show form contextual links on all forms except this module's forms (to not to cause circular recursion)
+  // to all users who have according permissions set.
+  if (
+    substr($form_id, 0, 16) !== 'devel_form_debug'
+    && user_access('access contextual links')
+    && user_access('access devel form debug contextual links')
+  ) {
+
+    // Load modal window code.
+    drupal_add_library('system', 'drupal.ajax');
+    drupal_add_library('system', 'ui.dialog');
+    drupal_add_js(drupal_get_path('module', 'devel_form_debug') . '/devel_form_debug.js');
+    drupal_add_css(drupal_get_path('module', 'devel_form_debug') . '/devel_form_debug.css');
+
+    // Prepare our contextual link.
+    $links = array(
+      array(
+        'href' => 'ajax/devel_form_debug/' . $form_id,
+        'title' => t('Form ID') . ': ' . $form_id,
+        'attributes' => array('class' => array('use-ajax')),
+        'query' => array('devel_form_debug__current_path' => current_path())
+      )
+    );
+
+    // Prepare render array.
+    $build = array(
+      '#type' => 'markup',
+      '#prefix' => '<div class="contextual-links-wrapper">',
+      '#suffix' => '</div>',
+      '#theme' => 'links__contextual',
+      '#links' => $links,
+      '#attributes' => array('class' => array('contextual-links')),
+      '#attached' => array(
+        'library' => array(array('contextual', 'contextual-links')),
+      ),
+    );
+
+    // Mark form as a region for contextual links.
+    $form['#attributes']['class'][] = 'contextual-links-region';
+
+    // Assign render array to contextual links variable.
+    $form['contextual_links'] = $build;
+
+    // Dpm form if it's requested.
+    if (isset($_SESSION['devel_form_debug_form_id__' . $form_id])) {
+      $devel_form_debug_hide_variables_form = drupal_get_form('devel_form_debug_hide_variables_form', $form_id);
+      devel_form_debug_debug(
+        $form,
+        t('Variables for form_id <b>@form_id</b>:', array('@form_id' => $form_id)),
+        drupal_render($devel_form_debug_hide_variables_form)
+      );
+    }
+
+  }
+}
+
+/**
+ * A modal static page callback.
+ */
+function devel_form_debug_callback($form_id = NULL) {
+
+  if ($form_id == NULL) {
+    return 'No form id was specified. Error.';
+  }
+
+  $contents[] = drupal_get_form('devel_form_debug_dialog_form', $form_id);
+  $contents[] = drupal_get_form('devel_form_debug_print_variables_form', $form_id, $_GET['devel_form_debug__current_path']);
+  $commands[] = devel_form_debug_ajax_command_show_dialog(drupal_render($contents), t('Debug this form'));
+  $page = array(
+    '#type' => 'ajax',
+    '#commands' => $commands
+  );
+  ajax_deliver($page);
+  exit();
+}
+
+/**
+ * Implements hook_form().
+ */
+function devel_form_debug_dialog_form($form, $form_state, $debug_form_id) {
+  $form = array();
+
+  $form['id'] = array(
+    '#type' => 'textfield',
+    '#default_value' => $debug_form_id,
+    '#description' => t('Form ID'),
+  );
+
+  $form['hook'] = array(
+    '#type' => 'textarea',
+    '#default_value' =>
+'
+/**
+  * Implements hook_form_FORM_ID_alter().
+  */
+function hook_form_' . $debug_form_id . '_alter(&$form, &$form_state) {}',
+    '#description' => t('Alter function template'),
+  );
+
+  return $form;
+}
+
+
+/**
+ * Implements hook_permission().
+ */
+function devel_form_debug_permission() {
+  return array(
+    'access devel form debug contextual links' => array(
+      'title' => t('Access devel form debug contextual links'),
+      'description' => t('Access devel form debug via contextual link.'),
+    ),
+  );
+
+}
+
+/**
+ * Shows form array as a debug message.
+ */
+function devel_form_debug_debug($input, $prefix = NULL, $suffix = NULL) {
+  if (!user_access('access devel information')) {
+    return;
+  }
+
+  // Get the label that we should prepend to each 'Get path' button.
+  $label = '$form';
+  drupal_add_js(array('searchKrumo' => array('var' => array($label))), 'setting');
+
+  $message = kprint_r($input, TRUE, $prefix);
+  drupal_set_message($message . $suffix, 'status');
+}
+
+/**
+ * Show Content in JqueryUI Dialog
+ *
+ * @param $html
+ *   The data to use with the jQuery append() method.
+ * @param $settings
+ *   An optional array of settings that will be used for this command only.
+ *
+ * @return
+ *   An array suitable for use with the ajax_render() function.
+ *
+ * @see http://docs.jquery.com/Manipulation/append#content
+ */
+function devel_form_debug_ajax_command_show_dialog($html, $title = NULL, $settings = NULL) {
+  $command = array(
+    'command' => 'develFormDebugShowDialog',
+    'title' => $title,
+    'data' => $html,
+    'settings' => $settings,
+  );
+  return $command;
+}
+
+/**
+ * Form that shows "print out this form variables" button.
+ */
+function devel_form_debug_print_variables_form($form, $form_state, $debug_form_id, $url) {
+
+  $form['url'] = array(
+    '#type' => 'value',
+    '#value' => $url,
+  );
+
+  $form['debug_form_id'] = array(
+    '#type' => 'value',
+    '#value' => $debug_form_id,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Print out this form variables')
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for devel_form_debug_print_variables_form form.
+ */
+function devel_form_debug_print_variables_form_submit($form, &$form_state) {
+  $_SESSION['devel_form_debug_form_id__' . $form_state['values']['debug_form_id']] = TRUE;
+  $form_state['redirect'] = $form_state['values']['url'];
+}
+
+/**
+ * Form that shows "hide form variables" button.
+ */
+function devel_form_debug_hide_variables_form($form, $form_state, $debug_form_id) {
+
+  $form['debug_form_id'] = array(
+    '#type' => 'value',
+    '#value' => $debug_form_id,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('(x) hide form variables')
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for devel_form_debug_hide_variables_form form.
+ */
+function devel_form_debug_hide_variables_form_submit($form, &$form_state) {
+  unset($_SESSION['devel_form_debug_form_id__' . $form_state['values']['debug_form_id']]);
+}

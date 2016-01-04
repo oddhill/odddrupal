@@ -994,3 +994,56 @@ function odddrupal_update_7160() {
 function odddrupal_update_7161() {
   variable_set('features_default_export_path', 'sites/all/modules/features');
 }
+
+/**
+ * Enable the Devel Form Debug module for the development environment.
+ */
+function odddrupal_update_7162() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['devel_form_debug'] = 1;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['devel_form_debug'] = 0;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['devel_form_debug'] = 0;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'development') {
+    module_enable(array('devel_form_debug'));
+  }
+
+  // Grant permissions for anonymous and authenticated.
+  user_role_grant_permissions(1, array('access devel form debug contextual links'));
+  user_role_grant_permissions(2, array('access devel form debug contextual links'));
+}
+
+/**
+ * Enable the XHProf module for the development environment.
+ */
+function odddrupal_update_7163() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['xhprof'] = 1;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['xhprof'] = 0;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['xhprof'] = 0;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (variable_get('tadaa_environment') == 'development') {
+    module_enable(array('xhprof'));
+  }
+
+  // Grant permissions for anonymous and authenticated.
+  user_role_grant_permissions(1, array('access xhprof data'));
+  user_role_grant_permissions(2, array('access xhprof data'));
+
+  // Enable profiling.
+  variable_set('xhprof_enabled', 1);
+}

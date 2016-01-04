@@ -264,15 +264,19 @@ function odddrupal_roles_users() {
   // Permissions for the anonymous role.
   user_role_grant_permissions(1, array(
     'access content',
+    'access devel form debug contextual links',
     'access devel information',
+    'access xhprof data',
   ));
 
   // Permissions for the authenticated role.
   user_role_grant_permissions(2, array(
     'access content',
     'access contextual links',
+    'access devel form debug contextual links',
     'access devel information',
     'access toolbar',
+    'access xhprof data',
     'change own username',
     'use text format filtered_html',
     'view the administration theme',
@@ -337,6 +341,7 @@ function odddrupal_set_variables() {
     'dblog' => 1,
     'devel' => 1,
     'devel_debug_log' => 1,
+    'devel_form_debug' => 1,
     'devel_generate' => 1,
     'ds_ui' => 1,
     'field_ui' => 1,
@@ -352,6 +357,7 @@ function odddrupal_set_variables() {
     'themekey_ui' => 1,
     'update' => 1,
     'views_ui' => 1,
+    'xhprof' => 1,
   ));
   variable_set('tadaa_development_variables', array(
     'block_cache' => 0,
@@ -371,6 +377,7 @@ function odddrupal_set_variables() {
     'dblog' => 1,
     'devel' => 0,
     'devel_debug_log' => 0,
+    'devel_form_debug' => 0,
     'devel_generate' => 0,
     'ds_ui' => 1,
     'field_ui' => 1,
@@ -386,6 +393,7 @@ function odddrupal_set_variables() {
     'themekey_ui' => 1,
     'update' => 0,
     'views_ui' => 1,
+    'xhprof' => 0,
   ));
   variable_set('tadaa_staging_variables', array(
     'block_cache' => 1,
@@ -406,6 +414,7 @@ function odddrupal_set_variables() {
     'dblog' => 0,
     'devel' => 0,
     'devel_debug_log' => 0,
+    'devel_form_debug' => 0,
     'devel_generate' => 0,
     'ds_ui' => 0,
     'field_ui' => 0,
@@ -421,6 +430,7 @@ function odddrupal_set_variables() {
     'themekey_ui' => 0,
     'update' => 0,
     'views_ui' => 0,
+    'xhprof' => 0,
   ));
   variable_set('tadaa_production_variables', array(
     'block_cache' => 1,
@@ -495,4 +505,5 @@ function odddrupal_set_variables() {
   variable_set('dev_timer', 1);
   variable_set('logentries_severity', '7');
   variable_set('features_default_export_path', 'sites/all/modules/features');
+  variable_set('xhprof_enabled', 1);
 }

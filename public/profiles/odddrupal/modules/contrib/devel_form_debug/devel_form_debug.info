@@ -1,0 +1,14 @@
+name = Devel Form Debug
+description = Find out form id and print out form contents easily.
+package = Development
+core = 7.x
+files[] = devel_form_debug.module
+dependencies[] = contextual
+dependencies[] = devel
+dependencies[] = search_krumo
+; Information added by Drupal.org packaging script on 2015-04-20
+version = "7.x-1.0"
+core = "7.x"
+project = "devel_form_debug"
+datestamp = "1429520284"
+

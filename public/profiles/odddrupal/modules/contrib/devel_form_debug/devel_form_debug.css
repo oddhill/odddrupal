@@ -1,0 +1,22 @@
+.devel_form_debug__button {
+    display: inline-block;
+    color: #555;
+    padding: 8px;
+    border-radius: 5px;
+    background: #efefef;
+    text-decoration: none;
+    border-bottom: 2px solid #ccc;
+    text-transform: uppercase;
+}
+
+.devel_form_debug__button:hover {
+    text-decoration: none;
+    background: #ccc;
+    color: #fff;
+    border-bottom: 2px solid #efefef;
+}
+
+#devel-form-debug-dialog-form input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+}

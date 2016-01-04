@@ -30,6 +30,7 @@ dependencies[] = context_ui
 dependencies[] = ctools
 dependencies[] = devel
 dependencies[] = devel_debug_log
+dependencies[] = devel_form_debug
 dependencies[] = devel_generate
 dependencies[] = diff
 dependencies[] = ds
@@ -68,6 +69,7 @@ dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_ui
 dependencies[] = wysiwyg
+dependencies[] = xhprof
 
 ; Custom modules
 dependencies[] = seducing_mail
