@@ -520,16 +520,17 @@ function f_capital_raising_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'formatter' => 'open',
+      'label' => 'Företrädesemission',
       'instance_settings' => array(
+        'id' => '',
+        'classes' => 'offer-sidebar-type',
         'description' => '',
-        'show_label' => 1,
+        'show_label' => '1',
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
-        'classes' => 'offer-sidebar-fe',
-        'id' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_offer_view_type_fe|node|offer|full'] = $field_group;
