@@ -2263,7 +2263,7 @@ function f_investor_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_hist_ctrl_vid_kom',
-    'label' => 'Kompleterande frågor',
+    'label' => 'Kompletterande frågor',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -2723,7 +2723,7 @@ function f_investor_field_default_field_instances() {
   t('Intressen');
   t('Kategori');
   t('Klicka i om personen är en lead.');
-  t('Kompleterande frågor');
+  t('Kompletterande frågor');
   t('Kontaktperson');
   t('Kreditkontroll');
   t('Kundansvarig');

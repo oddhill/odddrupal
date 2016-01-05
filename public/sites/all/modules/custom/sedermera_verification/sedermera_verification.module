@@ -86,7 +86,7 @@ function sedermera_verification_ap_name_and_type($field) {
         $type = 'EU:s sanktionsförordningar';
       }
       if ($field['entity']->nid === $result['field_transaction_ap_ctrl_comp_target_id']) {
-        $type = 'Kompleterande frågor';
+        $type = 'Kompletterande frågor';
       }
     }
 
@@ -739,7 +739,7 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
       $type = 'EU:s sanktionsförordningar';
     }
     if ($form['nid']['#value'] === $result['field_transaction_ap_ctrl_comp_target_id']) {
-      $type = 'Kompleterande frågor';
+      $type = 'Kompletterande frågor';
     }
   }
 
