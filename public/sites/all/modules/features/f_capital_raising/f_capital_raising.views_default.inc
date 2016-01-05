@@ -283,7 +283,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_first']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_first']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_first']['settings'] = array(
-    'click_to_edit' => 0,
+    'click_to_edit' => 1,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
     'fallback_format' => 'date_default',
