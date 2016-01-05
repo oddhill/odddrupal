@@ -1987,6 +1987,10 @@ function sedermera_transaction_form_alter(&$form, &$form_state, $form_id) {
       $node = entity_metadata_wrapper('node', $row['#entity_id']);
       $row['actions']['edit']['#value'] = $node->field_transaction_first->value() ? 'Ändra' : 'Ange';
     }
+
+    // Remove access to the Save button since the editable fields are saved via
+    // AJAX.
+    $form['actions']['#access'] = FALSE;
   }
 
   $vars = explode('__', $form_id);
