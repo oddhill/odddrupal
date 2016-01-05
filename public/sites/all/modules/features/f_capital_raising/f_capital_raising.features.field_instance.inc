@@ -3345,7 +3345,7 @@ function f_capital_raising_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_offer_type_pp_sign',
-    'label' => 'Tedkningsförbindelse',
+    'label' => 'Teckningsförbindelse',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -6210,7 +6210,6 @@ function f_capital_raising_field_default_field_instances() {
   t('Teckningsförbindelse re');
   t('Teckningskurs');
   t('Teckningstid');
-  t('Tedkningsförbindelse');
   t('Text');
   t('Tillägsinformation');
   t('Type');
