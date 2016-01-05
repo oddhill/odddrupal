@@ -577,7 +577,7 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
     }
 
     // Add the markup.
-    $node->content['verification_status_sign'] = array(
+    $node->content['verification_status_transaction_agreement'] = array(
       '#theme' => 'link',
       '#text' => $text,
       '#path' => 'verification/view/' . implode(',', $verifications),

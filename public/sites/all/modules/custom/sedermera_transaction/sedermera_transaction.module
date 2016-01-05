@@ -1682,7 +1682,7 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
         ),
         // Control column
         array(
-          'data' => render($investor_view_full['verification_status_sign']),
+          'data' => render($investor_view_full['verification_status_transaction_agreement']),
           'class' => array('ctrl'),
         ),
         // Agreement column
