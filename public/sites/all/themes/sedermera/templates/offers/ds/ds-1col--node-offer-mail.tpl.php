@@ -34,13 +34,13 @@
 
       <tr>
         <td>
-          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 30px 20px 30px 0">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 30px 0 30px 0">
             <tr>
               <td width="65%" valign="top" style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px; line-height: 18px;">
 
                 <?php print render($content['field_offer_text']); ?>
 
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 20px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top: 15px; padding-bottom: 20px; padding-right: 20px;">
                   <tr>
                     <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px; line-height: 18px;">
                       <?php print render($content['field_offer_additional']); ?>
