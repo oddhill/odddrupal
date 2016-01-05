@@ -1691,7 +1691,7 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
 
     // Create the to sign variable dependent on if already checked
     if ($agreement_wrap->field_transaction_agree_sign->value()) {
-      $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Teckning';
+      $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Tecknad';
     }
     else {
       // Fetch the investor from the transaction_ap node.
@@ -1737,7 +1737,7 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
             'label'=>'hidden',
             'type' => 'editable',
           ));
-        $to_sign = render($field) . '<span>Teckning</span>';
+        $to_sign = render($field) . '<span>Teckna</span>';
       }
       else {
         // The verifications aren't approved. Don't display the checkbox.
