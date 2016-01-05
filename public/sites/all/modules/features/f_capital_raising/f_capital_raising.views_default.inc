@@ -125,7 +125,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_fe_sign']['id'] = 'field_transaction_fe_sign';
   $handler->display->display_options['fields']['field_transaction_fe_sign']['table'] = 'field_data_field_transaction_fe_sign';
   $handler->display->display_options['fields']['field_transaction_fe_sign']['field'] = 'field_transaction_fe_sign';
-  $handler->display->display_options['fields']['field_transaction_fe_sign']['label'] = 'Teckningsförbindelse';
+  $handler->display->display_options['fields']['field_transaction_fe_sign']['label'] = 'Teckningsförbindelse (FE)';
   $handler->display->display_options['fields']['field_transaction_fe_sign']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_fe_sign']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_fe_sign']['settings'] = array(
@@ -142,7 +142,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_fe_warant']['id'] = 'field_transaction_fe_warant';
   $handler->display->display_options['fields']['field_transaction_fe_warant']['table'] = 'field_data_field_transaction_fe_warant';
   $handler->display->display_options['fields']['field_transaction_fe_warant']['field'] = 'field_transaction_fe_warant';
-  $handler->display->display_options['fields']['field_transaction_fe_warant']['label'] = 'Garantiåtagande';
+  $handler->display->display_options['fields']['field_transaction_fe_warant']['label'] = 'Garantiåtagande (FE)';
   $handler->display->display_options['fields']['field_transaction_fe_warant']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_fe_warant']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_fe_warant']['settings'] = array(
@@ -159,7 +159,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_le_sign']['id'] = 'field_transaction_le_sign';
   $handler->display->display_options['fields']['field_transaction_le_sign']['table'] = 'field_data_field_transaction_le_sign';
   $handler->display->display_options['fields']['field_transaction_le_sign']['field'] = 'field_transaction_le_sign';
-  $handler->display->display_options['fields']['field_transaction_le_sign']['label'] = 'Teckningsförbindelse';
+  $handler->display->display_options['fields']['field_transaction_le_sign']['label'] = 'Teckningsförbindelse (LE)';
   $handler->display->display_options['fields']['field_transaction_le_sign']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_le_sign']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_le_sign']['settings'] = array(
@@ -176,7 +176,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_le_warrant']['id'] = 'field_transaction_le_warrant';
   $handler->display->display_options['fields']['field_transaction_le_warrant']['table'] = 'field_data_field_transaction_le_warrant';
   $handler->display->display_options['fields']['field_transaction_le_warrant']['field'] = 'field_transaction_le_warrant';
-  $handler->display->display_options['fields']['field_transaction_le_warrant']['label'] = 'Garantiåtagande';
+  $handler->display->display_options['fields']['field_transaction_le_warrant']['label'] = 'Garantiåtagande (LE)';
   $handler->display->display_options['fields']['field_transaction_le_warrant']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_le_warrant']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_le_warrant']['settings'] = array(
@@ -193,7 +193,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_pp_sign']['id'] = 'field_transaction_pp_sign';
   $handler->display->display_options['fields']['field_transaction_pp_sign']['table'] = 'field_data_field_transaction_pp_sign';
   $handler->display->display_options['fields']['field_transaction_pp_sign']['field'] = 'field_transaction_pp_sign';
-  $handler->display->display_options['fields']['field_transaction_pp_sign']['label'] = 'Teckningsförbindelse';
+  $handler->display->display_options['fields']['field_transaction_pp_sign']['label'] = 'Teckningsförbindelse (PP)';
   $handler->display->display_options['fields']['field_transaction_pp_sign']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_pp_sign']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_pp_sign']['settings'] = array(
@@ -210,7 +210,7 @@ function f_capital_raising_views_default_views() {
   $handler->display->display_options['fields']['field_transaction_re_sign']['id'] = 'field_transaction_re_sign';
   $handler->display->display_options['fields']['field_transaction_re_sign']['table'] = 'field_data_field_transaction_re_sign';
   $handler->display->display_options['fields']['field_transaction_re_sign']['field'] = 'field_transaction_re_sign';
-  $handler->display->display_options['fields']['field_transaction_re_sign']['label'] = 'Teckningsförbindelse';
+  $handler->display->display_options['fields']['field_transaction_re_sign']['label'] = 'Teckningsförbindelse (RE)';
   $handler->display->display_options['fields']['field_transaction_re_sign']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_transaction_re_sign']['type'] = 'editable';
   $handler->display->display_options['fields']['field_transaction_re_sign']['settings'] = array(
@@ -390,8 +390,12 @@ else {
     t('Person id'),
     t('Erbjudande id'),
     t('Kontaktperson'),
-    t('Teckningsförbindelse'),
-    t('Garantiåtagande'),
+    t('Teckningsförbindelse (FE)'),
+    t('Garantiåtagande (FE)'),
+    t('Teckningsförbindelse (LE)'),
+    t('Garantiåtagande (LE)'),
+    t('Teckningsförbindelse (PP)'),
+    t('Teckningsförbindelse (RE)'),
     t('Brygglån'),
     t('Blockpost'),
     t('Summa'),

@@ -202,7 +202,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $header[] = array(
-      'data' => 'Teckningsförbindelse',
+      'data' => 'Teckningsförbindelse (FE)',
       'class' => array('table-head'),
     );
   }
@@ -210,7 +210,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
     $header[] = array(
-      'data' => 'Garantiåtagande',
+      'data' => 'Garantiåtagande (FE)',
       'class' => array('table-head'),
     );
   }
@@ -218,7 +218,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
     $header[] = array(
-      'data' => 'Teckningsförbindelse',
+      'data' => 'Teckningsförbindelse (LE)',
       'class' => array('table-head'),
     );
   }
@@ -226,7 +226,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   // Garantiåtagande if Listningsemission column
   if ($type_investment['le_warr']) {
     $header[] = array(
-      'data' => 'Garantiåtagande',
+      'data' => 'Garantiåtagande (LE)',
       'class' => array('table-head'),
     );
   }
@@ -234,7 +234,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   // Teckningsförbindelse if Private placement column
   if ($type_investment['pp_sign']) {
     $header[] = array(
-      'data' => 'Teckningsförbindelse',
+      'data' => 'Teckningsförbindelse (PP)',
       'class' => array('table-head'),
     );
   }
@@ -242,7 +242,7 @@ function generate_header_row_interested(array &$header, array $type_investment) 
   // Teckningsförbindelse if Riktad emission column
   if ($type_investment['re_sign']) {
     $header[] = array(
-      'data' => 'Teckningsförbindelse',
+      'data' => 'Teckningsförbindelse (RE)',
       'class' => array('table-head'),
     );
   }
@@ -1325,27 +1325,27 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
   switch ($agreement_node_wrap->field_transaction_agree_type_rea->value()) {
     case 'fe_sign':
       $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
-      $type = 'Teckningsförbindelse';
+      $type = 'Teckningsförbindelse (FE)';
       break;
     case 'fe_warrant':
       $sum = $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
-      $type = 'Garantiåtagande';
+      $type = 'Garantiåtagande (FE)';
       break;
     case 'le_sign':
       $sum = $transaction_ap_wrap->field_transaction_ap_le_sign->value();
-      $type = 'Teckningsförbindelse';
+      $type = 'Teckningsförbindelse (LE)';
       break;
     case 'le_warrant':
       $sum = $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
-      $type = 'Garantiåtagande';
+      $type = 'Garantiåtagande (LE)';
       break;
     case 'pp_sign':
       $sum = $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
-      $type = 'Teckningsförbindelse';
+      $type = 'Teckningsförbindelse (PP)';
       break;
     case 're_sign':
       $sum = $transaction_ap_wrap->field_transaction_ap_re_sign->value();
-      $type = 'Teckningsförbindelse';
+      $type = 'Teckningsförbindelse (RE)';
       break;
     case 'bridging':
       $sum = $transaction_ap_wrap->field_transaction_ap_bridging->value();
@@ -1614,27 +1614,27 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
     switch ($agreement_wrap->field_transaction_agree_type_rea->value()) {
       case 'fe_sign':
         $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
-        $type = 'Teckningsförbindelse';
+        $type = 'Teckningsförbindelse (FE)';
         break;
       case 'fe_warrant':
         $sum = $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
-        $type = 'Garantiåtagande';
+        $type = 'Garantiåtagande (FE)';
         break;
       case 'le_sign':
         $sum = $transaction_ap_wrap->field_transaction_ap_le_sign->value();
-        $type = 'Teckningsförbindelse';
+        $type = 'Teckningsförbindelse (LE)';
         break;
       case 'le_warrant':
         $sum = $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
-        $type = 'Garantiåtagande';
+        $type = 'Garantiåtagande (LE)';
         break;
       case 'pp_sign':
         $sum = $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
-        $type = 'Teckningsförbindelse';
+        $type = 'Teckningsförbindelse (PP)';
         break;
       case 're_sign':
         $sum = $transaction_ap_wrap->field_transaction_ap_re_sign->value();
-        $type = 'Teckningsförbindelse';
+        $type = 'Teckningsförbindelse (RE)';
         break;
       case 'bridging':
         $sum = $transaction_ap_wrap->field_transaction_ap_bridging->value();
