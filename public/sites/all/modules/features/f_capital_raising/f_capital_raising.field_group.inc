@@ -410,42 +410,12 @@ function f_capital_raising_field_group_info() {
     'children' => array(
       0 => 'field_offer_files',
       1 => 'field_offer_time',
-      2 => 'field_offer_type_bl_interest',
-      3 => 'field_offer_type_bl_planned',
-      4 => 'field_offer_type_bl_sum',
-      5 => 'field_offer_type_bl_time',
-      6 => 'field_offer_type_bp_planned',
-      7 => 'field_offer_type_bp_price',
-      8 => 'field_offer_type_bp_sum',
-      9 => 'field_offer_type_fe_bonus',
-      10 => 'field_offer_type_fe_payment',
-      11 => 'field_offer_type_fe_pre',
-      12 => 'field_offer_type_fe_rate',
-      13 => 'field_offer_type_fe_sign',
-      14 => 'field_offer_type_fe_sum',
-      15 => 'field_offer_type_fe_terms',
-      16 => 'field_offer_type_fe_warrant',
-      18 => 'field_offer_type_le_bonus',
-      19 => 'field_offer_type_le_count',
-      20 => 'field_offer_type_le_low',
-      21 => 'field_offer_type_le_market',
-      22 => 'field_offer_type_le_payment',
-      23 => 'field_offer_type_le_pre',
-      24 => 'field_offer_type_le_rate',
-      25 => 'field_offer_type_le_sign',
-      26 => 'field_offer_type_le_sum',
-      27 => 'field_offer_type_le_terms',
-      28 => 'field_offer_type_le_warrant',
-      29 => 'field_offer_type_pp_payment',
-      30 => 'field_offer_type_pp_pre',
-      31 => 'field_offer_type_pp_rate',
-      32 => 'field_offer_type_pp_sign',
-      33 => 'field_offer_type_pp_sum',
-      34 => 'field_offer_type_re_payment',
-      35 => 'field_offer_type_re_pre',
-      36 => 'field_offer_type_re_rate',
-      37 => 'field_offer_type_re_sign',
-      38 => 'field_offer_type_re_sum',
+      2 => 'group_offer_view_type_bl',
+      3 => 'group_offer_view_type_bp',
+      4 => 'group_offer_view_type_fe',
+      5 => 'group_offer_view_type_le',
+      6 => 'group_offer_view_type_pp',
+      7 => 'group_offer_view_type_re',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -458,6 +428,222 @@ function f_capital_raising_field_group_info() {
     ),
   );
   $export['group_offer_view_sidebar|node|offer|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_offer_view_type_bl|node|offer|full';
+  $field_group->group_name = 'group_offer_view_type_bl';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'offer';
+  $field_group->mode = 'full';
+  $field_group->parent_name = 'group_offer_view_sidebar';
+  $field_group->data = array(
+    'label' => 'Brygglån',
+    'weight' => '6',
+    'children' => array(
+      0 => 'field_offer_type_bl_interest',
+      1 => 'field_offer_type_bl_planned',
+      2 => 'field_offer_type_bl_sum',
+      3 => 'field_offer_type_bl_time',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'open',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'offer-sidebar-type',
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_offer_view_type_bl|node|offer|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_offer_view_type_bp|node|offer|full';
+  $field_group->group_name = 'group_offer_view_type_bp';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'offer';
+  $field_group->mode = 'full';
+  $field_group->parent_name = 'group_offer_view_sidebar';
+  $field_group->data = array(
+    'label' => 'Blockpost',
+    'weight' => '7',
+    'children' => array(
+      0 => 'field_offer_type_bp_planned',
+      1 => 'field_offer_type_bp_price',
+      2 => 'field_offer_type_bp_sum',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'open',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'offer-sidebar-type',
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_offer_view_type_bp|node|offer|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_offer_view_type_fe|node|offer|full';
+  $field_group->group_name = 'group_offer_view_type_fe';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'offer';
+  $field_group->mode = 'full';
+  $field_group->parent_name = 'group_offer_view_sidebar';
+  $field_group->data = array(
+    'label' => 'Företrädesemission',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_offer_type_fe_bonus',
+      1 => 'field_offer_type_fe_payment',
+      2 => 'field_offer_type_fe_pre',
+      3 => 'field_offer_type_fe_rate',
+      4 => 'field_offer_type_fe_sign',
+      5 => 'field_offer_type_fe_sum',
+      6 => 'field_offer_type_fe_terms',
+      7 => 'field_offer_type_fe_warrant',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'open',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'offer-sidebar-fe',
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_offer_view_type_fe|node|offer|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_offer_view_type_le|node|offer|full';
+  $field_group->group_name = 'group_offer_view_type_le';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'offer';
+  $field_group->mode = 'full';
+  $field_group->parent_name = 'group_offer_view_sidebar';
+  $field_group->data = array(
+    'label' => 'Listningsemission',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_offer_type_le_bonus',
+      1 => 'field_offer_type_le_count',
+      2 => 'field_offer_type_le_low',
+      3 => 'field_offer_type_le_market',
+      4 => 'field_offer_type_le_payment',
+      5 => 'field_offer_type_le_pre',
+      6 => 'field_offer_type_le_rate',
+      7 => 'field_offer_type_le_sign',
+      8 => 'field_offer_type_le_sum',
+      9 => 'field_offer_type_le_terms',
+      10 => 'field_offer_type_le_warrant',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'open',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'offer-sidebar-type',
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_offer_view_type_le|node|offer|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_offer_view_type_pp|node|offer|full';
+  $field_group->group_name = 'group_offer_view_type_pp';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'offer';
+  $field_group->mode = 'full';
+  $field_group->parent_name = 'group_offer_view_sidebar';
+  $field_group->data = array(
+    'label' => 'Private placement',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_offer_type_pp_payment',
+      1 => 'field_offer_type_pp_pre',
+      2 => 'field_offer_type_pp_rate',
+      3 => 'field_offer_type_pp_sign',
+      4 => 'field_offer_type_pp_sum',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'open',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'offer-sidebar-type',
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_offer_view_type_pp|node|offer|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_offer_view_type_re|node|offer|full';
+  $field_group->group_name = 'group_offer_view_type_re';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'offer';
+  $field_group->mode = 'full';
+  $field_group->parent_name = 'group_offer_view_sidebar';
+  $field_group->data = array(
+    'label' => 'Riktad emission',
+    'weight' => '5',
+    'children' => array(
+      0 => 'field_offer_type_re_payment',
+      1 => 'field_offer_type_re_pre',
+      2 => 'field_offer_type_re_rate',
+      3 => 'field_offer_type_re_sign',
+      4 => 'field_offer_type_re_sum',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'open',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'offer-sidebar-type',
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_offer_view_type_re|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
