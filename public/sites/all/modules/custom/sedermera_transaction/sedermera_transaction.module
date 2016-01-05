@@ -1980,6 +1980,13 @@ function sedermera_transaction_form_alter(&$form, &$form_state, $form_id) {
     $form['field_transaction_bridging'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
     $form['field_transaction_block'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
     $form['field_transaction_interested'][0]['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
+
+    // Change label for edit button on first contact date depending on whether
+    // or not the field has a value.
+    foreach ($form['field_transaction_first'] as &$row) {
+      $node = entity_metadata_wrapper('node', $row['#entity_id']);
+      $row['actions']['edit']['#value'] = $node->field_transaction_first->value() ? 'Ändra' : 'Ange';
+    }
   }
 
   $vars = explode('__', $form_id);
