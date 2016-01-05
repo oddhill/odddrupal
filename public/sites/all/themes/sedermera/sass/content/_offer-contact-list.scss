@@ -5,6 +5,60 @@
     @include button($dark-grey,add);
     margin-bottom: 40px;
   }
+
+  .views-field-field-transaction-first {
+
+    .editablefield-item {
+      display: flex;
+      align-items: center;
+
+      .date-padding {
+        display: flex;
+
+        .form-item-field-transaction-first-0-field-transaction-first-und-0-value-date .form-text {
+          margin-right: 10px;
+          width: 90px;
+        }
+
+        .form-item-field-transaction-first-0-field-transaction-first-und-0-value-time .form-text {
+          width: 50px;
+        }
+      }
+
+      .field-transaction-first {
+        margin-right: 10px;
+      }
+
+      .submit-wrapper {
+        position: relative;
+
+        .ajax-progress {
+          left: 0;
+          width: 100%;
+          height: 100%;
+          padding-top: 4px;
+          text-align: center;
+          border-radius: 24px;
+          background: shade($dark-grey,30%);
+          cursor: pointer;
+
+          .throbber {
+            float: none;
+          }
+
+          .message {
+            display: none;
+          }
+        }
+      }
+
+      .form-submit {
+        @include button($dark-grey,default,small);
+        padding: 0 10px;
+        margin: 0;
+      }
+    }
+  }
 }
 
 .page-node-kontaktlista-lagg-till {

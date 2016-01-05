@@ -2038,6 +2038,60 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
     margin-bottom: 40px; }
     .offer-contact-list .add-more:hover {
       background-color: #303030; }
+  .offer-contact-list .views-field-field-transaction-first .editablefield-item {
+    display: flex;
+    align-items: center; }
+    .offer-contact-list .views-field-field-transaction-first .editablefield-item .date-padding {
+      display: flex; }
+      .offer-contact-list .views-field-field-transaction-first .editablefield-item .date-padding .form-item-field-transaction-first-0-field-transaction-first-und-0-value-date .form-text {
+        margin-right: 10px;
+        width: 90px; }
+      .offer-contact-list .views-field-field-transaction-first .editablefield-item .date-padding .form-item-field-transaction-first-0-field-transaction-first-und-0-value-time .form-text {
+        width: 50px; }
+    .offer-contact-list .views-field-field-transaction-first .editablefield-item .field-transaction-first {
+      margin-right: 10px; }
+    .offer-contact-list .views-field-field-transaction-first .editablefield-item .submit-wrapper {
+      position: relative; }
+      .offer-contact-list .views-field-field-transaction-first .editablefield-item .submit-wrapper .ajax-progress {
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 4px;
+        text-align: center;
+        border-radius: 24px;
+        background: #303030;
+        cursor: pointer; }
+        .offer-contact-list .views-field-field-transaction-first .editablefield-item .submit-wrapper .ajax-progress .throbber {
+          float: none; }
+        .offer-contact-list .views-field-field-transaction-first .editablefield-item .submit-wrapper .ajax-progress .message {
+          display: none; }
+    .offer-contact-list .views-field-field-transaction-first .editablefield-item .form-submit {
+      display: inline-block;
+      height: 34px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 34px;
+      border-radius: 34px;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-bottom: 0 none;
+      background-color: #454545;
+      -webkit-transition: background-color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 24px;
+      background-position: 10px 6px;
+      padding: 0 10px 0 26px;
+      margin-right: 8px;
+      padding: 0 10px;
+      margin: 0; }
+      .offer-contact-list .views-field-field-transaction-first .editablefield-item .form-submit:hover {
+        background-color: #303030; }
 
 .page-node-kontaktlista-lagg-till .content-wrapper {
   background: transparent; }
