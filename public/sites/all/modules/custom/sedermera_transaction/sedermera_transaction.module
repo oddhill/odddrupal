@@ -1381,12 +1381,52 @@ function generate_agreement_rows_control(array &$rows, $agreement, $transaction_
     $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Att teckna';
   }
   else {
-    $field = field_view_field('node', $agreement_node, 'field_transaction_agree_to_sign',
-      array(
-        'label'=>'hidden',
-        'type' => 'editable',
-      ));
-    $to_sign = render($field) . '<span>Att teckna</span>';
+    // Verify that the verifications has been approved. Start of with the ID
+    // verifications.
+    $verifications = sedermera_verification_get_ids_for_investor($investor->nid);
+
+    // Fetch the dates for UA and PTV in order to determine which one that
+    // should be checked.
+    $ua_date = $investor_wrap->field_investor_shared_ctrl_ua->field_ctrl_date->value();
+    $ptv_date = $investor_wrap->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
+
+    // Add the UA control if it has been set, or if none of UA or PTV has been
+    // set.
+    if ($ua_date || (!$ua_date && !$ptv_date)) {
+      $verifications[] = $investor_wrap->field_investor_shared_ctrl_ua->nid->value();
+    }
+
+    // Add the PTV control if it has been set and UA hasn't been set, or if both
+    // UA and PTV hasn't been set.
+    if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
+      $verifications[] = $investor_wrap->field_investor_shared_ctrl_ptv->nid->value();
+    }
+
+    // Add the other regular verifications.
+    $verifications[] = $investor_wrap->field_investor_shared_ctrl_ext->nid->value();
+    $verifications[] = $transaction_ap_wrap->field_transaction_ap_ctrl_eu->nid->value();
+
+    // Add Penningtvätt if there's an UA verification.
+    if (!empty($ua_date)) {
+      $verifications[] = $agreement_node_wrap->field_transaction_agree_ctrl->nid->value();
+    }
+
+    // Fetch the status.
+    $status = sedermera_verification_get_status_multiple($verifications);
+
+    // Display the checkbox if the verification status is expiring or approved.
+    if ($status != SEDERMERA_VERIFICATION_NOT_APPROVED) {
+      $field = field_view_field('node', $agreement_node, 'field_transaction_agree_to_sign',
+        array(
+          'label'=>'hidden',
+          'type' => 'editable',
+        ));
+      $to_sign = render($field) . '<span>Att teckna</span>';
+    }
+    else {
+      // The verifications aren't approved. Don't display the checkbox.
+      $to_sign = '';
+    }
   }
 
   $rows[] = array(
@@ -1654,12 +1694,55 @@ function generate_agreement_row(array &$rows, $transaction, array $agreements) {
       $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Teckning';
     }
     else {
-      $field = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
-        array(
-          'label'=>'hidden',
-          'type' => 'editable',
-        ));
-      $to_sign = render($field) . '<span>Teckning</span>';
+      // Fetch the investor from the transaction_ap node.
+      $investor = $transaction_ap_wrap->field_transaction_ap_ap;
+
+      // Verify that the verifications has been approved. Start of with the ID
+      // verifications.
+      $verifications = sedermera_verification_get_ids_for_investor($investor->nid->value());
+
+      // Fetch the dates for UA and PTV in order to determine which one that
+      // should be checked.
+      $ua_date = $investor->field_investor_shared_ctrl_ua->field_ctrl_date->value();
+      $ptv_date = $investor->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
+
+      // Add the UA control if it has been set, or if none of UA or PTV has been
+      // set.
+      if ($ua_date || (!$ua_date && !$ptv_date)) {
+        $verifications[] = $investor->field_investor_shared_ctrl_ua->nid->value();
+      }
+
+      // Add the PTV control if it has been set and UA hasn't been set, or if both
+      // UA and PTV hasn't been set.
+      if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
+        $verifications[] = $investor->field_investor_shared_ctrl_ptv->nid->value();
+      }
+
+      // Add the other regular verifications.
+      $verifications[] = $investor->field_investor_shared_ctrl_ext->nid->value();
+      $verifications[] = $transaction_ap_wrap->field_transaction_ap_ctrl_eu->nid->value();
+
+      // Add Penningtvätt if there's an UA verification.
+      if (!empty($ua_date)) {
+        $verifications[] = $agreement_wrap->field_transaction_agree_ctrl->nid->value();
+      }
+
+      // Fetch the status.
+      $status = sedermera_verification_get_status_multiple($verifications);
+
+      // Display the checkbox if the verification status is expiring or approved.
+      if ($status != SEDERMERA_VERIFICATION_NOT_APPROVED) {
+        $field = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
+          array(
+            'label'=>'hidden',
+            'type' => 'editable',
+          ));
+        $to_sign = render($field) . '<span>Teckning</span>';
+      }
+      else {
+        // The verifications aren't approved. Don't display the checkbox.
+        $to_sign = '';
+      }
     }
 
     $rows[] = array(
