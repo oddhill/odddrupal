@@ -2043,11 +2043,9 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
     align-items: center; }
     .offer-contact-list .views-field-field-transaction-first .editablefield-item .date-padding {
       display: flex; }
-      .offer-contact-list .views-field-field-transaction-first .editablefield-item .date-padding .form-item-field-transaction-first-0-field-transaction-first-und-0-value-date .form-text {
+      .offer-contact-list .views-field-field-transaction-first .editablefield-item .date-padding .form-text {
         margin-right: 10px;
         width: 90px; }
-      .offer-contact-list .views-field-field-transaction-first .editablefield-item .date-padding .form-item-field-transaction-first-0-field-transaction-first-und-0-value-time .form-text {
-        width: 50px; }
     .offer-contact-list .views-field-field-transaction-first .editablefield-item .field-transaction-first {
       margin-right: 10px; }
     .offer-contact-list .views-field-field-transaction-first .editablefield-item .submit-wrapper {
