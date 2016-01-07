@@ -27,12 +27,6 @@
       </tr>
 
       <tr>
-        <td align="center" style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 14px; border-bottom: 2px solid #eee; padding-top: 30px; padding-bottom: 30px;">
-          <?php print render($content['field_offer_time']); ?>
-        </td>
-      </tr>
-
-      <tr>
         <td>
           <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 30px 0 30px 0">
             <tr>
@@ -63,6 +57,7 @@
                           </tr>
                           <?php print render($content['field_offer_type_fe_sum']); ?>
                           <?php print render($content['field_offer_type_fe_rate']); ?>
+                          <?php print render($content['field_offer_type_fe_time']); ?>
                           <?php print render($content['field_offer_type_fe_pre']); ?>
                           <?php print render($content['field_offer_type_fe_sign']); ?>
                           <?php print render($content['field_offer_type_fe_warrant']); ?>
@@ -84,6 +79,7 @@
                           </tr>
                           <?php print render($content['field_offer_type_le_sum']); ?>
                           <?php print render($content['field_offer_type_le_rate']); ?>
+                          <?php print render($content['field_offer_type_le_time']); ?>
                           <?php print render($content['field_offer_type_le_pre']); ?>
                           <?php print render($content['field_offer_type_le_sign']); ?>
                           <?php print render($content['field_offer_type_le_warrant']); ?>
@@ -107,6 +103,7 @@
                             </td>
                           </tr>
                           <?php print render($content['field_offer_type_pp_sum']); ?>
+                          <?php print render($content['field_offer_type_pp_time']); ?>
                           <?php print render($content['field_offer_type_pp_pre']); ?>
                           <?php print render($content['field_offer_type_pp_rate']); ?>
                           <?php print render($content['field_offer_type_pp_sign']); ?>
@@ -125,6 +122,7 @@
                             </td>
                           </tr>
                           <?php print render($content['field_offer_type_re_sum']); ?>
+                          <?php print render($content['field_offer_type_re_time']); ?>
                           <?php print render($content['field_offer_type_re_pre']); ?>
                           <?php print render($content['field_offer_type_re_rate']); ?>
                           <?php print render($content['field_offer_type_re_sign']); ?>
@@ -159,6 +157,7 @@
                             </td>
                           </tr>
                           <?php print render($content['field_offer_type_bp_sum']); ?>
+                          <?php print render($content['field_offer_type_bp_time']); ?>
                           <?php print render($content['field_offer_type_bp_price']); ?>
                           <?php print render($content['field_offer_type_bp_planned']); ?>
                         </table>

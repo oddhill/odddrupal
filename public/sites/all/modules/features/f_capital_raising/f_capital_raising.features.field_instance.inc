@@ -357,89 +357,6 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-offer-field_offer_time'.
-  $field_instances['node-offer-field_offer_time'] = array(
-    'bundle' => 'offer',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 1,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'medium',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => 0,
-        ),
-        'type' => 'date_default',
-        'weight' => 1,
-      ),
-      'mail' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_offer_time',
-    'label' => 'Teckningstid',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'blank',
-      'default_value2' => 'blank',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'increment' => 15,
-        'input_format' => 'Y-m-d H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'no_fieldset' => 0,
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
-      ),
-      'type' => 'date_popup',
-      'weight' => 6,
-    ),
-  );
-
   // Exported field_instance: 'node-offer-field_offer_type_bl'.
   $field_instances['node-offer-field_offer_type_bl'] = array(
     'bundle' => 'offer',
@@ -893,7 +810,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 43,
+        'weight' => 44,
       ),
       'mail' => array(
         'label' => 'above',
@@ -977,7 +894,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 42,
+        'weight' => 43,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1115,28 +1032,49 @@ function f_capital_raising_field_default_field_instances() {
   // Exported field_instance: 'node-offer-field_offer_type_bp_time'.
   $field_instances['node-offer-field_offer_type_bp_time'] = array(
     'bundle' => 'offer',
-    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
         'weight' => 54,
       ),
       'full' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 21,
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
+        'weight' => 42,
       ),
       'mail' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
         'weight' => 54,
       ),
       'teaser' => array(
@@ -1151,46 +1089,25 @@ function f_capital_raising_field_default_field_instances() {
     'label' => 'Teckningstid',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'date',
       'settings' => array(
-        'size' => 60,
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 1,
+        'text_parts' => array(),
+        'year_range' => '-0:+3',
       ),
-      'type' => 'text_textfield',
+      'type' => 'date_popup',
       'weight' => 18,
     ),
   );
@@ -1270,7 +1187,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 13,
+        'weight' => 24,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1354,7 +1271,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 15,
+        'weight' => 26,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1438,7 +1355,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 10,
+        'weight' => 21,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1522,7 +1439,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 19,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1616,7 +1533,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 11,
+        'weight' => 22,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1686,7 +1603,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 8,
+        'weight' => 18,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1746,7 +1663,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 14,
+        'weight' => 25,
       ),
       'mail' => array(
         'label' => 'above',
@@ -1814,28 +1731,49 @@ function f_capital_raising_field_default_field_instances() {
   // Exported field_instance: 'node-offer-field_offer_type_fe_time'.
   $field_instances['node-offer-field_offer_type_fe_time'] = array(
     'bundle' => 'offer',
-    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
         'weight' => 16,
       ),
       'full' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 17,
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
+        'weight' => 20,
       ),
       'mail' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
         'weight' => 16,
       ),
       'teaser' => array(
@@ -1850,46 +1788,25 @@ function f_capital_raising_field_default_field_instances() {
     'label' => 'Teckningstid',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'date',
       'settings' => array(
-        'size' => 60,
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 1,
+        'text_parts' => array(),
+        'year_range' => '-0:+3',
       ),
-      'type' => 'text_textfield',
+      'type' => 'date_popup',
       'weight' => 22,
     ),
   );
@@ -1923,7 +1840,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 12,
+        'weight' => 23,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2039,7 +1956,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2123,7 +2040,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 25,
+        'weight' => 26,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2207,7 +2124,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2291,7 +2208,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 24,
+        'weight' => 25,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2375,7 +2292,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 26,
+        'weight' => 27,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2459,7 +2376,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2637,7 +2554,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2767,7 +2684,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'mail' => array(
         'label' => 'above',
@@ -2835,28 +2752,49 @@ function f_capital_raising_field_default_field_instances() {
   // Exported field_instance: 'node-offer-field_offer_type_le_time'.
   $field_instances['node-offer-field_offer_type_le_time'] = array(
     'bundle' => 'offer',
-    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
         'weight' => 26,
       ),
       'full' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
         'weight' => 18,
       ),
       'mail' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
         'weight' => 26,
       ),
       'teaser' => array(
@@ -2871,46 +2809,25 @@ function f_capital_raising_field_default_field_instances() {
     'label' => 'Teckningstid',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'date',
       'settings' => array(
-        'size' => 60,
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 1,
+        'text_parts' => array(),
+        'year_range' => '-0:+3',
       ),
-      'type' => 'text_textfield',
+      'type' => 'date_popup',
       'weight' => 15,
     ),
   );
@@ -2944,7 +2861,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3060,7 +2977,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 30,
+        'weight' => 33,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3144,7 +3061,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 28,
+        'weight' => 31,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3228,7 +3145,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 29,
+        'weight' => 32,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3322,7 +3239,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 31,
+        'weight' => 34,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3392,7 +3309,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 27,
+        'weight' => 29,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3436,28 +3353,49 @@ function f_capital_raising_field_default_field_instances() {
   // Exported field_instance: 'node-offer-field_offer_type_pp_time'.
   $field_instances['node-offer-field_offer_type_pp_time'] = array(
     'bundle' => 'offer',
-    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
         'weight' => 38,
       ),
       'full' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 19,
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
+        'weight' => 30,
       ),
       'mail' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
         'weight' => 38,
       ),
       'teaser' => array(
@@ -3472,46 +3410,25 @@ function f_capital_raising_field_default_field_instances() {
     'label' => 'Teckningstid',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'date',
       'settings' => array(
-        'size' => 60,
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 1,
+        'text_parts' => array(),
+        'year_range' => '-0:+3',
       ),
-      'type' => 'text_textfield',
+      'type' => 'date_popup',
       'weight' => 15,
     ),
   );
@@ -3591,7 +3508,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 36,
+        'weight' => 37,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3675,7 +3592,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 33,
+        'weight' => 34,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3759,7 +3676,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 34,
+        'weight' => 35,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3853,7 +3770,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 35,
+        'weight' => 36,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3967,28 +3884,49 @@ function f_capital_raising_field_default_field_instances() {
   // Exported field_instance: 'node-offer-field_offer_type_re_time'.
   $field_instances['node-offer-field_offer_type_re_time'] = array(
     'bundle' => 'offer',
-    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
         'weight' => 44,
       ),
       'full' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 20,
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
+        'weight' => 33,
       ),
       'mail' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
         'weight' => 44,
       ),
       'teaser' => array(
@@ -4003,46 +3941,25 @@ function f_capital_raising_field_default_field_instances() {
     'label' => 'Teckningstid',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'date',
       'settings' => array(
-        'size' => 60,
+        'increment' => 15,
+        'input_format' => 'Y-m-d H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 1,
+        'text_parts' => array(),
+        'year_range' => '-0:+3',
       ),
-      'type' => 'text_textfield',
+      'type' => 'date_popup',
       'weight' => 16,
     ),
   );

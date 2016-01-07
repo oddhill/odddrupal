@@ -152,35 +152,6 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_offer_time'.
-  $field_bases['field_offer_time'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_offer_time',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'date',
-    'settings' => array(
-      'cache_count' => 4,
-      'cache_enabled' => 0,
-      'granularity' => array(
-        'day' => 'day',
-        'hour' => 0,
-        'minute' => 0,
-        'month' => 'month',
-        'second' => 0,
-        'year' => 'year',
-      ),
-      'timezone_db' => '',
-      'todate' => 'required',
-      'tz_handling' => 'none',
-    ),
-    'translatable' => 0,
-    'type' => 'date',
-  );
-
   // Exported field_base: 'field_offer_type_bl'.
   $field_bases['field_offer_type_bl'] = array(
     'active' => 1,
@@ -373,18 +344,26 @@ function f_capital_raising_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_offer_type_bp_time',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'date',
     'settings' => array(
-      'max_length' => 255,
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => 'required',
+      'tz_handling' => 'none',
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'date',
   );
 
   // Exported field_base: 'field_offer_type_fe'.
@@ -552,18 +531,26 @@ function f_capital_raising_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_offer_type_fe_time',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'date',
     'settings' => array(
-      'max_length' => 255,
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => 'required',
+      'tz_handling' => 'none',
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'date',
   );
 
   // Exported field_base: 'field_offer_type_fe_warrant'.
@@ -809,18 +796,26 @@ function f_capital_raising_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_offer_type_le_time',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'date',
     'settings' => array(
-      'max_length' => 255,
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => 'required',
+      'tz_handling' => 'none',
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'date',
   );
 
   // Exported field_base: 'field_offer_type_le_warrant'.
@@ -963,18 +958,26 @@ function f_capital_raising_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_offer_type_pp_time',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'date',
     'settings' => array(
-      'max_length' => 255,
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => 'required',
+      'tz_handling' => 'none',
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'date',
   );
 
   // Exported field_base: 'field_offer_type_re'.
@@ -1102,18 +1105,26 @@ function f_capital_raising_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_offer_type_re_time',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'date',
     'settings' => array(
-      'max_length' => 255,
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 0,
+        'minute' => 0,
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => '',
+      'todate' => 'required',
+      'tz_handling' => 'none',
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'date',
   );
 
   // Exported field_base: 'field_transaction_agree_ctrl'.
