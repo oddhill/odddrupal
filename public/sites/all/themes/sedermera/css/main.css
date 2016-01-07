@@ -5823,6 +5823,8 @@ div.radio {
   font-size: 14px;
   font-size: 1.4rem;
   line-height: 21px; }
+.selectboxit-container em {
+  font-style: italic; }
 .selectboxit-container .selectboxit {
   border-radius: 2px; }
 .selectboxit-container .selectboxit-text {
