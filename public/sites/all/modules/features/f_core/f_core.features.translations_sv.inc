@@ -334,6 +334,15 @@ function f_core_translations_sv_defaults() {
     'plural' => 0,
   );
   $translatables[] = t('!start-date to !end-date', array(), array('context' => ''));
+  $translations['sv:default']['ac67ede5a84eb5a1add7ff4440e9a485'] = array(
+    'source' => 'required',
+    'context' => '',
+    'location' => 'sites/all/modules/contrib/form_placeholder/form_placeholder.js; sites/all/themes/sedermera/js/main.js',
+    'translation' => 'obligatoriskt',
+    'plid' => 0,
+    'plural' => 0,
+  );
+  $translatables[] = t('required', array(), array('context' => ''));
   $translations['sv:default']['b05d72142020283dc6812fd3a9bc691c'] = array(
     'source' => 'I forgot my password',
     'context' => '',
