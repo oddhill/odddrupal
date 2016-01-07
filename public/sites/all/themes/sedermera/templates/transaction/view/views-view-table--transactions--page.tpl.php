@@ -45,7 +45,7 @@
     </tbody>
     <?php if (!empty($sum_row)) : ?>
       <tfoot>
-        <tr>
+        <tr class="last-row">
           <?php foreach ($sum_row as $field => $content): ?>
             <?php if ($disable[$field]) { continue; } ?>
             <td>

@@ -164,6 +164,11 @@ function sedermera_transaction_intresent($offer_id) {
       generate_sum_row_interested($rows, $type_investment, $transaction, $col_sum);
     }
 
+    // Add a class to the last table row.
+    end($rows);
+    $last_key = key($rows);
+    $rows[$last_key]['class'][] = 'last-row';
+
     // Generate rendarable array for the table and return it.
     return array(
       '#theme' => 'table',
@@ -929,6 +934,11 @@ function sedermera_transaction_control() {
       }
     }
 
+    // Add a class to the last table row.
+    end($rows);
+    $last_key = key($rows);
+    $rows[$last_key]['class'][] = 'last-row';
+
     // Generate rendarable array for the table and return it.
     return array(
       '#theme' => 'table',
@@ -1572,6 +1582,11 @@ function sedermera_transaction_sign() {
     foreach ($agreements as $transaction => $transaction_agreements) {
       generate_agreement_row($rows, $transaction, $transaction_agreements);
     }
+
+    // Add a class to the last table row.
+    end($rows);
+    $last_key = key($rows);
+    $rows[$last_key]['class'][] = 'last-row';
 
     // Generate rendarable array for the table and return it.
     return array(
