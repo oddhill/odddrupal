@@ -23,6 +23,7 @@ dependencies[] = f_investor
 dependencies[] = f_offers
 dependencies[] = f_verification
 dependencies[] = features
+dependencies[] = features_translations
 dependencies[] = filter
 dependencies[] = form_placeholder
 dependencies[] = front_page
