@@ -2977,7 +2977,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 33,
+        'weight' => 34,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3061,7 +3061,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 31,
+        'weight' => 32,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3122,7 +3122,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -3145,7 +3145,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 32,
+        'weight' => 30,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3206,7 +3206,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 15,
     ),
   );
 
@@ -3239,7 +3239,7 @@ function f_capital_raising_field_default_field_instances() {
           'thousand_separator' => ' ',
         ),
         'type' => 'number_integer',
-        'weight' => 34,
+        'weight' => 33,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3382,7 +3382,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 30,
+        'weight' => 31,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3429,7 +3429,7 @@ function f_capital_raising_field_default_field_instances() {
         'year_range' => '-0:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -3592,7 +3592,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 34,
+        'weight' => 35,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3653,7 +3653,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -3676,7 +3676,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 35,
+        'weight' => 33,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3737,7 +3737,7 @@ function f_capital_raising_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 18,
+      'weight' => 16,
     ),
   );
 
@@ -3913,7 +3913,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 33,
+        'weight' => 34,
       ),
       'mail' => array(
         'label' => 'above',
@@ -3960,7 +3960,7 @@ function f_capital_raising_field_default_field_instances() {
         'year_range' => '-0:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 

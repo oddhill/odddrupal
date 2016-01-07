@@ -103,9 +103,9 @@
                             </td>
                           </tr>
                           <?php print render($content['field_offer_type_pp_sum']); ?>
+                          <?php print render($content['field_offer_type_pp_rate']); ?>
                           <?php print render($content['field_offer_type_pp_time']); ?>
                           <?php print render($content['field_offer_type_pp_pre']); ?>
-                          <?php print render($content['field_offer_type_pp_rate']); ?>
                           <?php print render($content['field_offer_type_pp_sign']); ?>
                           <?php print render($content['field_offer_type_pp_payment']); ?>
                         </table>
@@ -122,9 +122,9 @@
                             </td>
                           </tr>
                           <?php print render($content['field_offer_type_re_sum']); ?>
+                          <?php print render($content['field_offer_type_re_rate']); ?>
                           <?php print render($content['field_offer_type_re_time']); ?>
                           <?php print render($content['field_offer_type_re_pre']); ?>
-                          <?php print render($content['field_offer_type_re_rate']); ?>
                           <?php print render($content['field_offer_type_re_sign']); ?>
                           <?php print render($content['field_offer_type_re_payment']); ?>
                         </table>
@@ -141,6 +141,7 @@
                             </td>
                           </tr>
                           <?php print render($content['field_offer_type_bl_sum']); ?>
+                          <?php print render($content['field_offer_type_bl_time']); ?>
                           <?php print render($content['field_offer_type_bl_interest']); ?>
                           <?php print render($content['field_offer_type_bl_planned']); ?>
                         </table>
