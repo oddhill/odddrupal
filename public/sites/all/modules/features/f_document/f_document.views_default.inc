@@ -29,9 +29,11 @@ function f_document_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'document log';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['type'] = 'input_required';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Visa';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
+  $handler->display->display_options['exposed_form']['options']['text_input_required'] = 'Du har inte valt någon användare';
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'document_html';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '30';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -71,7 +73,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Du har inte valt någon användare';
+  $handler->display->display_options['empty']['area']['content'] = 'Hittande ingenting för den valda användaren';
   $handler->display->display_options['empty']['area']['format'] = 'document_html';
   /* Relationship: Message: User uid */
   $handler->display->display_options['relationships']['user']['id'] = 'user';
@@ -153,6 +155,7 @@ function f_document_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Du har inte valt någon användare'),
     t('Items per page'),
     t('- All -'),
     t('Offset'),
@@ -160,7 +163,7 @@ function f_document_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Du har inte valt någon användare'),
+    t('Hittande ingenting för den valda användaren'),
     t('User'),
     t('Tidstämpel'),
     t('Logg meddelande'),
