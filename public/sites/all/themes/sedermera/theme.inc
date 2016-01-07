@@ -289,3 +289,34 @@ function sedermera_file_icon($variables) {
 
   return '<img class="file-icon" alt="' . check_plain($alt) . '" title="' . $mime . '" src="' . $icon_url . '" />';
 }
+
+/**
+ * Overrides theme_date_display_range.
+ */
+function sedermera_date_display_range($variables) {
+  $date1 = $variables['date1'];
+  $date2 = $variables['date2'];
+  $timezone = $variables['timezone'];
+  $attributes_start = $variables['attributes_start'];
+  $attributes_end = $variables['attributes_end'];
+  $show_remaining_days = $variables['show_remaining_days'];
+
+  $start_date = $date1;
+  $end_date = $date2 . $timezone;
+
+  // If microdata attributes for the start date property have been passed in,
+  // add the microdata in meta tags.
+  if (!empty($variables['add_microdata'])) {
+    $start_date .= '<meta' . drupal_attributes($variables['microdata']['value']['#attributes']) . '/>';
+    $end_date .= '<meta' . drupal_attributes($variables['microdata']['value2']['#attributes']) . '/>';
+  }
+
+  // Wrap the result with the attributes.
+  $output = t('!start-date to !end-date', array(
+    '!start-date' => $start_date,
+    '!end-date' => $end_date,
+  ));
+
+  // Add remaining message and return.
+  return $output . $show_remaining_days;
+}
