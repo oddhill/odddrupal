@@ -307,6 +307,15 @@ function f_core_translations_sv_defaults() {
     'plural' => 0,
   );
   $translatables[] = t('View Current', array(), array('context' => ''));
+  $translations['sv:default']['a56e7b2795a5b35f86ff539732b718f7'] = array(
+    'source' => 'Add selected investors',
+    'context' => '',
+    'location' => '/erbjudanden/lista/listningsemission-hett-life-science-bolag/kontaktlista/lagg-till',
+    'translation' => 'Lägg till valda kontaktpersoner',
+    'plid' => 0,
+    'plural' => 0,
+  );
+  $translatables[] = t('Add selected investors', array(), array('context' => ''));
   $translations['sv:default']['a5b529bfaedd48079ce02a680a854e82'] = array(
     'source' => 'That YubiKey is already in use on this site.',
     'context' => '',
