@@ -91,7 +91,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
   $handler->display->display_options['fields']['message_render']['table'] = 'message';
   $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
-  $handler->display->display_options['fields']['message_render']['label'] = 'Logg meddelande';
+  $handler->display->display_options['fields']['message_render']['label'] = 'Loggmeddelande';
   $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['message_render']['partials'] = 0;
   $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
@@ -166,7 +166,7 @@ function f_document_views_default_views() {
     t('Hittande ingenting för den valda användaren'),
     t('User'),
     t('Tidstämpel'),
-    t('Logg meddelande'),
+    t('Loggmeddelande'),
     t('Användare'),
     t('Document log'),
   );
