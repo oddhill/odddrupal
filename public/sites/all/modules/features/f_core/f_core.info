@@ -90,6 +90,7 @@ features[front_page][] = authenticated user
 features[menu_links][] = main-menu_versikt:oversikt
 features[taxonomy][] = industries
 features[themekey_features_rule_chain][] = drupal:path = user/%/yubikey >>> ThemeKeyAdminTheme
+features[translations_sv][] = sv:default
 features[user_permission][] = access content
 features[user_permission][] = access content overview
 features[user_permission][] = access dashboard
