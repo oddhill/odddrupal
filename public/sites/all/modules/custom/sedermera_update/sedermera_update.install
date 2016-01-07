@@ -576,3 +576,16 @@ function sedermera_update_update_7033() {
   field_delete_field('field_offer_type_re_time');
   field_purge_batch(1000);
 }
+
+/**
+ * Remove the old amount fields from part offers.
+ */
+function sedermera_update_update_7034() {
+  field_delete_field('field_offer_type_bl_sum');
+  field_delete_field('field_offer_type_bp_sum');
+  field_delete_field('field_offer_type_fe_sum');
+  field_delete_field('field_offer_type_le_sum');
+  field_delete_field('field_offer_type_pp_sum');
+  field_delete_field('field_offer_type_re_sum');
+  field_purge_batch(1000);
+}
