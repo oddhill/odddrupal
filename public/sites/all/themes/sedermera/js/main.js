@@ -20,16 +20,6 @@ if (Drupal.jsAC) {
   };
 }
 
-// Implement floatlabels
-var floatingLabels = function() {
-  $('.form-text').floatlabel({
-    slideInput: false,
-    labelStartTop: '0px',
-    labelEndTop: '-16px',
-    labelClass: 'floated-label'
-  });
-};
-
 // Function that implements Tocify.
 var tocInitiator = function() {
 
@@ -266,7 +256,6 @@ Drupal.behaviors.sedermera = {
     multipleIdDropdown();
     fieldsetCollapser();
     listCollapser();
-    floatingLabels();
 
     // Add the file field value to the substitute text field when
     // we've chosen a file from the file browser.

@@ -1,8 +1,6 @@
 .form-type-textfield {
   position: relative;
   display: block;
-  margin-top: 2em;
-  margin-bottom: 0;
 
   label {
     display: none;
@@ -97,33 +95,5 @@
 
   &:focus {
     box-shadow: 0 0 2px $light-concrete;
-  }
-}
-
-.floatlabel-wrapper {
-
-  label {
-    margin: 0;
-    border: 0px none;
-    line-height: 1em;
-    text-transform: uppercase;
-    color: $coffee !important;
-    font-weight: 400 !important;
-    left: 0px !important;
-  }
-
-  .form-text {
-    padding-top: 1px !important;
-  }
-
-  .page-user & {
-
-    label {
-      color: $mustard !important;
-    }
-
-    .form-text {
-      padding-top: 10px !important;
-    }
   }
 }
