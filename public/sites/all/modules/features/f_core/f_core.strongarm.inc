@@ -825,8 +825,62 @@ admin/*';
     'development' => 'Development',
     'staging' => 'Staging',
     'production' => 'Production',
+    'pre_production' => 'Pre-production',
   );
   $export['tadaa_environments'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tadaa_pre_production_modules';
+  $strongarm->value = array(
+    'context_list' => 0,
+    'context_list_active' => 0,
+    'context_ui' => 0,
+    'dblog' => 1,
+    'field_ui' => 0,
+    'help' => 0,
+    'update' => 0,
+    'devel' => 0,
+    'devel_debug_log' => 0,
+    'devel_form_debug' => 0,
+    'devel_generate' => 0,
+    'reroute_email' => 0,
+    'search_krumo' => 0,
+    'xhprof' => 0,
+    'ds_ui' => 0,
+    'field_validation_ui' => 0,
+    'autologout' => 1,
+    'backup_migrate' => 0,
+    'letmein' => 0,
+    'logentries' => 0,
+    'speedy' => 1,
+    'stage_file_proxy' => 0,
+    'bad_judgement' => 0,
+    'rules_admin' => 0,
+    'themekey_ui' => 0,
+    'views_ui' => 0,
+  );
+  $export['tadaa_pre_production_modules'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'tadaa_pre_production_variables';
+  $strongarm->value = array(
+    'block_cache' => 1,
+    'cache' => 1,
+    'cron_safe_threshold' => '3600',
+    'dblog_row_limit' => '10000',
+    'error_level' => '0',
+    'preprocess_css' => 1,
+    'preprocess_js' => 1,
+    'reroute_email_enable' => 1,
+    'reroute_email_enable_message' => 0,
+    'speedy_js_production' => 1,
+    'yubikey_enabled' => 1,
+  );
+  $export['tadaa_pre_production_variables'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
