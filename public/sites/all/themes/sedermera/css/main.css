@@ -3691,6 +3691,10 @@ form#user-login,
       #yubikey-lost ul li:last-child {
         margin-right: 0; }
 
+.form-type-password {
+  margin-top: 2.2em;
+  margin-bottom: 1.8em; }
+
 .page-messages {
   margin: -40px -40px 40px; }
   .main-sidebar .page-messages {
@@ -5434,6 +5438,9 @@ fieldset .container-inline-date {
     margin-top: 3px;
     color: #797979; }
 
+#addressfield-wrapper .form-item {
+  margin-bottom: 0; }
+
 div.street-block,
 div.addressfield-container-inline {
   clear: both; }
@@ -6140,7 +6147,9 @@ table.tabledrag-processed {
 
 .form-type-textfield {
   position: relative;
-  display: block; }
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 0; }
   .form-type-textfield label {
     display: none; }
   .form-type-textfield .form-required {
@@ -6210,3 +6219,18 @@ table.tabledrag-processed {
       background-image: none; }
   .form-text:focus {
     box-shadow: 0 0 2px #c8cacd; }
+
+.floatlabel-wrapper label {
+  margin: 0;
+  border: 0px none;
+  line-height: 1em;
+  text-transform: uppercase;
+  color: #282828 !important;
+  font-weight: 400 !important;
+  left: 0px !important; }
+.floatlabel-wrapper .form-text {
+  padding-top: 1px !important; }
+.page-user .floatlabel-wrapper label {
+  color: #f9a500 !important; }
+.page-user .floatlabel-wrapper .form-text {
+  padding-top: 10px !important; }

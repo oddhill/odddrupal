@@ -9,6 +9,7 @@ scripts[] = assets/selectBoxIt/src/javascripts/jquery.selectBoxIt.min.js
 scripts[] = assets/jquery-match-height/jquery.matchHeight-min.js
 scripts[] = assets/tocify/src/javascripts/jquery.tocify.min.js
 scripts[] = assets/magnific-popup/dist/jquery.magnific-popup.min.js
+scripts[] = assets/floatlabels/floatlabels.min.js
 
 ; Javascripts.
 scripts[] = js/main.js
