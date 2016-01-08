@@ -602,3 +602,12 @@ function sedermera_update_update_7035() {
   field_delete_field('field_offer_type_re_sign');
   field_purge_batch(1000);
 }
+
+/**
+ * Disable the default user administration view.
+ */
+function sedermera_update_update_7036() {
+  $status = variable_get('views_defaults', array());
+  $status['administration_users'] = TRUE;
+  variable_set('views_defaults', $status);
+}

@@ -69,6 +69,15 @@ function f_core_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'access users overview'.
+  $permissions['access users overview'] = array(
+    'name' => 'access users overview',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
   // Exported permission: 'administer custom permissions'.
   $permissions['administer custom permissions'] = array(
     'name' => 'administer custom permissions',
@@ -97,6 +106,13 @@ function f_core_user_default_permissions() {
     'name' => 'administer user roles',
     'roles' => array(),
     'module' => 'config_perms',
+  );
+
+  // Exported permission: 'administer users'.
+  $permissions['administer users'] = array(
+    'name' => 'administer users',
+    'roles' => array(),
+    'module' => 'user',
   );
 
   // Exported permission: 'administer yubikeys'.
@@ -161,6 +177,15 @@ function f_core_user_default_permissions() {
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'create users'.
+  $permissions['create users'] = array(
+    'name' => 'create users',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
   );
 
   // Exported permission: 'display popup message'.
@@ -270,6 +295,69 @@ function f_core_user_default_permissions() {
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'edit users with role 10'.
+  $permissions['edit users with role 10'] = array(
+    'name' => 'edit users with role 10',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'edit users with role 2'.
+  $permissions['edit users with role 2'] = array(
+    'name' => 'edit users with role 2',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'edit users with role 3'.
+  $permissions['edit users with role 3'] = array(
+    'name' => 'edit users with role 3',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'edit users with role 4'.
+  $permissions['edit users with role 4'] = array(
+    'name' => 'edit users with role 4',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'edit users with role 5'.
+  $permissions['edit users with role 5'] = array(
+    'name' => 'edit users with role 5',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'edit users with role 8'.
+  $permissions['edit users with role 8'] = array(
+    'name' => 'edit users with role 8',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'edit users with role 9'.
+  $permissions['edit users with role 9'] = array(
+    'name' => 'edit users with role 9',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
   );
 
   // Exported permission: 'use text format filtered_html'.
