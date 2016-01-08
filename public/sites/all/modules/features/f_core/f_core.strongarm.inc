@@ -779,9 +779,11 @@ admin/*';
     'update' => 1,
     'devel' => 1,
     'devel_debug_log' => 1,
+    'devel_form_debug' => 1,
     'devel_generate' => 1,
     'reroute_email' => 1,
     'search_krumo' => 1,
+    'xhprof' => 1,
     'ds_ui' => 1,
     'field_validation_ui' => 1,
     'autologout' => 0,
@@ -794,8 +796,6 @@ admin/*';
     'rules_admin' => 1,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'devel_form_debug' => 1,
-    'xhprof' => 1,
   );
   $export['tadaa_development_modules'] = $strongarm;
 
@@ -896,9 +896,11 @@ admin/*';
     'update' => 0,
     'devel' => 0,
     'devel_debug_log' => 0,
+    'devel_form_debug' => 0,
     'devel_generate' => 0,
     'reroute_email' => 0,
     'search_krumo' => 0,
+    'xhprof' => 0,
     'ds_ui' => 0,
     'field_validation_ui' => 0,
     'autologout' => 1,
@@ -911,8 +913,6 @@ admin/*';
     'rules_admin' => 0,
     'themekey_ui' => 0,
     'views_ui' => 0,
-    'devel_form_debug' => 0,
-    'xhprof' => 0,
   );
   $export['tadaa_production_modules'] = $strongarm;
 
@@ -949,9 +949,11 @@ admin/*';
     'update' => 0,
     'devel' => 0,
     'devel_debug_log' => 0,
+    'devel_form_debug' => 0,
     'devel_generate' => 0,
     'reroute_email' => 1,
     'search_krumo' => 0,
+    'xhprof' => 0,
     'ds_ui' => 1,
     'field_validation_ui' => 1,
     'autologout' => 1,
@@ -964,8 +966,6 @@ admin/*';
     'rules_admin' => 1,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'devel_form_debug' => 0,
-    'xhprof' => 0,
   );
   $export['tadaa_staging_modules'] = $strongarm;
 
