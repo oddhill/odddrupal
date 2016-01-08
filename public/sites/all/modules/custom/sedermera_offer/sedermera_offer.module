@@ -1276,31 +1276,6 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
 }
 
 /**
- * Validation callback to check value 0-100%
- */
-function sedermera_capital_raising_node_form_validate($form, &$form_state) {
-  // Check if fe sign and warrant is between 0-100%
-  if ($form_state['values']['field_offer_type_fe'][LANGUAGE_NONE][0]['value'] == 1) {
-    $guar = $form_state['values']['field_offer_type_fe_sign'][LANGUAGE_NONE][0]['value'];
-    $warr = $form_state['values']['field_offer_type_fe_warrant'][LANGUAGE_NONE][0]['value'];
-    $total = $guar + $warr;
-    if ($total >100 || $total < 0) {
-      form_set_error('group_offer_step_2', 'Mål för garanterat och åtaget belopp måste tillsammans vara mellan 0-100 %.');
-    }
-  }
-
-  // Check if le sign and warrant is between 0-100%
-  if ($form_state['values']['field_offer_type_le'][LANGUAGE_NONE][0]['value'] == 1) {
-    $guar = $form_state['values']['field_offer_type_le_sign'][LANGUAGE_NONE][0]['value'];
-    $warr = $form_state['values']['field_offer_type_le_warrant'][LANGUAGE_NONE][0]['value'];
-    $total = $guar + $warr;
-    if ($total >100 || $total < 0) {
-      form_set_error('group_offer_step_2', 'Mål för garanterat och åtaget belopp måste tillsammans vara mellan 0-100 %.');
-    }
-  }
-}
-
-/**
  * Implements hook_node_insert().
  */
 function sedermera_offer_node_insert($node) {
