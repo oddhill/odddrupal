@@ -845,7 +845,7 @@ admin/*';
     'devel_debug_log' => 0,
     'devel_form_debug' => 0,
     'devel_generate' => 0,
-    'reroute_email' => 0,
+    'reroute_email' => 1,
     'search_krumo' => 0,
     'xhprof' => 0,
     'ds_ui' => 0,
