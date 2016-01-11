@@ -297,15 +297,6 @@ function f_core_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit users with role 10'.
-  $permissions['edit users with role 10'] = array(
-    'name' => 'edit users with role 10',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
-    'module' => 'administerusersbyrole',
-  );
-
   // Exported permission: 'edit users with role 2'.
   $permissions['edit users with role 2'] = array(
     'name' => 'edit users with role 2',
@@ -342,18 +333,27 @@ function f_core_user_default_permissions() {
     'module' => 'administerusersbyrole',
   );
 
-  // Exported permission: 'edit users with role 8'.
-  $permissions['edit users with role 8'] = array(
-    'name' => 'edit users with role 8',
+  // Exported permission: 'edit users with role 6'.
+  $permissions['edit users with role 6'] = array(
+    'name' => 'edit users with role 6',
     'roles' => array(
       'Administratör' => 'Administratör',
     ),
     'module' => 'administerusersbyrole',
   );
 
-  // Exported permission: 'edit users with role 9'.
-  $permissions['edit users with role 9'] = array(
-    'name' => 'edit users with role 9',
+  // Exported permission: 'edit users with role 7'.
+  $permissions['edit users with role 7'] = array(
+    'name' => 'edit users with role 7',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'edit users with role 8'.
+  $permissions['edit users with role 8'] = array(
+    'name' => 'edit users with role 8',
     'roles' => array(
       'Administratör' => 'Administratör',
     ),
