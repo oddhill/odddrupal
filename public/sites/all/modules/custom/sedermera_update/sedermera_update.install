@@ -611,3 +611,12 @@ function sedermera_update_update_7036() {
   $status['administration_users'] = TRUE;
   variable_set('views_defaults', $status);
 }
+
+/**
+ * Change role IDs according to the production environment.
+ */
+function sedermera_update_update_7037() {
+  db_query("UPDATE {role} SET rid = 6 WHERE name = 'Användare'");
+  db_query("UPDATE {role} SET rid = 7 WHERE name = 'Dokumentmoderator'");
+  db_query("UPDATE {role} SET rid = 8 WHERE name = 'Dokumentskapare'");
+}
