@@ -38,14 +38,19 @@
 
             <tr>
              <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px; padding: 0 0 15px 0;">
-              Ni har härmed erhållit insiderinformation i <?php print $company; ?> och därigenom blivit insynsloggad, vilket innebär att Ni inte får utnyttja informationen för egen eller någon annans räkning. Vidare får informationen inte vidarebefordras och inte heller på annat sätt göras tillgänglig för andra. Informationen skall behandlas med strikt sekretess.
+              <p>
+                Med anledning av att Ni erhållit insynsinformation avseende <?php print $company; ?> vill vi göra Dig uppmärksam på följande:
+              </p>
+              <p>
+                Insynsinformationen innebär att Ni blivit införd i loggbok av Sedermera Fondkommission. Informationen får inte nyttjas för egen eller någon annans räkning. Vidare får informationen inte vidarebefordras och inte heller på annat sätt göras tillgänglig för andra. Informationen ska behandlas med strikt sekretess. Brott mot detta kan innebära straffpåföljd.
+              </p>
+              <p>
+                Så snart erhållen information är allmänt känd kommer Ni att bli avförd från loggboken och informerad om detta.
+              </p>
+              <p>
+                Om ni har några frågor vänligen kontakta din kontaktperson på Sedermera Fondkommission.
+              </p>
              </td>
-            </tr>
-
-            <tr>
-              <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px; padding: 0 0 15px 0;">
-                Om Ni har några frågor eller funderingar, vänligen kontakta mig.
-              </td>
             </tr>
 
             <?php if ($contact_details): ?>
