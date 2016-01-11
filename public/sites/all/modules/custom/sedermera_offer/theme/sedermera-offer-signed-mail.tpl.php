@@ -48,12 +48,6 @@
               </td>
             </tr>
 
-            <tr>
-              <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px; padding: 0 0 15px 0;">
-                Med vänlig hälsning
-              </td>
-            </tr>
-
             <?php if ($contact_details): ?>
               <tr>
                 <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">
