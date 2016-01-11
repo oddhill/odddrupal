@@ -952,6 +952,8 @@ function sedermera_transaction_control() {
       '#attached' => array(
         'library' => array(
           array('editablefields', 'editablefields'),
+          array('system', 'jquery.form'),
+          array('system', 'drupal.ajax'),
         ),
       ),
     );
