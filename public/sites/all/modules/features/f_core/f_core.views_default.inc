@@ -229,8 +229,6 @@ function f_core_views_default_views() {
     t('last »'),
     t('- Choose an operation -'),
     t('Inaktivera konto'),
-    t('Cancel account'),
-    t('Change roles'),
     t('Name'),
     t('E-mail'),
     t('Roles'),
