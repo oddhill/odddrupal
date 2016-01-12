@@ -10,6 +10,15 @@
 function f_core_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access YubiKey overview for any user'.
+  $permissions['access YubiKey overview for any user'] = array(
+    'name' => 'access YubiKey overview for any user',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'config_perms',
+  );
+
   // Exported permission: 'access content'.
   $permissions['access content'] = array(
     'name' => 'access content',
@@ -358,6 +367,15 @@ function f_core_user_default_permissions() {
       'Administratör' => 'Administratör',
     ),
     'module' => 'administerusersbyrole',
+  );
+
+  // Exported permission: 'perform YubiKey tasks for any user'.
+  $permissions['perform YubiKey tasks for any user'] = array(
+    'name' => 'perform YubiKey tasks for any user',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'config_perms',
   );
 
   // Exported permission: 'use text format filtered_html'.
