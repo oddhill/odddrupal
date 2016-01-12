@@ -2372,6 +2372,20 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
           overflow: hidden;
           text-overflow: ellipsis;
           border-bottom: 0px none; }
+      .node-offer.view-mode-full .offer-sidebar .field.field-offer-files {
+        padding-top: 1em; }
+        .node-offer.view-mode-full .offer-sidebar .field.field-offer-files span.label {
+          margin-bottom: 1em;
+          font-weight: 400;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          font-size: 13px;
+          font-size: 1.3rem;
+          line-height: 13px;
+          color: #797979; }
+      .node-offer.view-mode-full .offer-sidebar .field.files {
+        padding-bottom: 1em;
+        margin-bottom: 0; }
   .node-offer.view-mode-full .offer-description {
     flex: 2 60%;
     padding-right: 30px; }

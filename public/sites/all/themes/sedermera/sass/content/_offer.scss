@@ -54,6 +54,24 @@
             border-bottom: 0px none;
           }
         }
+
+        &.field-offer-files {
+          padding-top: 1em;
+
+          span.label {
+            margin-bottom: 1em;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            @include font-size(1.3,1);
+            color: $grey;
+          }
+        }
+
+        &.files {
+          padding-bottom: 1em;
+          margin-bottom: 0;
+        }
       }
     }
 
