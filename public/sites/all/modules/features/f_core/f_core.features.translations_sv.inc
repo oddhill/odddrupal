@@ -388,6 +388,15 @@ function f_core_translations_sv_defaults() {
     'plural' => 0,
   );
   $translatables[] = t('Confirm lost YubiKey', array(), array('context' => ''));
+  $translations['sv:default']['e0893a6c66e0961abed21bceaea8bf53'] = array(
+    'source' => 'to:',
+    'context' => '',
+    'location' => '/node/2/edit',
+    'translation' => 'till:',
+    'plid' => 0,
+    'plural' => 0,
+  );
+  $translatables[] = t('to:', array(), array('context' => ''));
   $translations['sv:default']['e602161a9dd08722baeabd50edba3a33'] = array(
     'source' => 'Edit Latest',
     'context' => '',
