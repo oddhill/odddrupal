@@ -1181,7 +1181,6 @@ function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_
   if ($form_state['storage']['step'] == 'step_offer_2') {
     unset($form['#step_children']['group_offer_step_1']);
     unset($form['#fieldgroups']['group_offer_step_1']);
-    $form['#validate'][] = 'sedermera_capital_raising_node_form_validate';
   }
 
   // Add the offer display from the person view as a prefix to the form. The
