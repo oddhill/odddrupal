@@ -15,6 +15,7 @@ function f_document_user_default_permissions() {
     'name' => 'access draggableviews',
     'roles' => array(
       'Administratör' => 'Administratör',
+      'Dokumentmoderator' => 'Dokumentmoderator',
       'Redaktör' => 'Redaktör',
     ),
     'module' => 'draggableviews',
