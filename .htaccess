@@ -3,4 +3,11 @@
 # /public folder.
 RewriteEngine on
 RewriteCond %{REQUEST_URI} !^/public/ [NC]
-RewriteRule ^ http%{ENV:protossl}://%{HTTP_HOST}/public%{REQUEST_URI}
+
+# Handle GET requests.
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^ http%{ENV:protossl}://%{HTTP_HOST}/public%{REQUEST_URI} [NC]
+
+# Handle anything other than GET requests.
+RewriteCond %{REQUEST_METHOD} !=GET
+RewriteRule ^ http%{ENV:protossl}://%{HTTP_HOST}/public%{REQUEST_URI} [NC,P]
