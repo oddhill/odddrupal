@@ -16,6 +16,7 @@ function sedermera_transaction_menu() {
     'access callback' => 'sedermera_transaction_offer_access',
     'type' => MENU_LOCAL_TASK,
     'weight' => 1,
+    'file' => 'sedermera-transaction.pages.intresent.inc',
   );
 
   $items['node/%/kontrollochavtal'] = array(
@@ -25,6 +26,7 @@ function sedermera_transaction_menu() {
     'access callback' => 'sedermera_transaction_offer_access',
     'type' => MENU_LOCAL_TASK,
     'weight' => 1,
+    'file' => 'sedermera-transaction.pages.control.inc',
   );
 
   $items['node/%/teckningslista'] = array(
@@ -34,6 +36,7 @@ function sedermera_transaction_menu() {
     'access callback' => 'sedermera_transaction_offer_access',
     'type' => MENU_LOCAL_TASK,
     'weight' => 1,
+    'file' => 'sedermera-transaction.pages.sign.inc',
   );
 
   $items['transaction/add-ap/%/%'] = array(
@@ -59,6 +62,7 @@ function sedermera_transaction_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'delivery callback' => 'ajax_deliver',
+    'file' => 'sedermera-transaction.pages.intresent.inc',
   );
 
   $items['node/%/kontrollochavtal/reload'] = array(
@@ -67,6 +71,7 @@ function sedermera_transaction_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'delivery callback' => 'ajax_deliver',
+    'file' => 'sedermera-transaction.pages.control.inc',
   );
 
   $items['node/%/teckningslista/reload'] = array(
@@ -75,6 +80,7 @@ function sedermera_transaction_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'delivery callback' => 'ajax_deliver',
+    'file' => 'sedermera-transaction.pages.sign.inc',
   );
 
   return $items;
@@ -82,1739 +88,81 @@ function sedermera_transaction_menu() {
 
 /**
  * Checks if the current node is of type offer
- * @return boolean TRUE if ok else FALSE
+ *
+ * @return boolean
+ *   TRUE if ok else FALSE
  */
 function sedermera_transaction_offer_access() {
   // Load node
   $node = node_load(arg(1));
 
   // Check if node is of type offer
-  if ($node->type === 'offer') {
-    return TRUE;
-  }
-
-  return FALSE;
+  return ($node->type === 'offer') ? TRUE : FALSE;
 }
 
 /**
- * Render intresent table
+ * Page callback for adding an avtalspart to a transaction.
+ *
+ * @param int $transaction_id
+ *   Node ID for the transaction.
+ * @param int $ap_id
+ *   Node ID for the avtalspart node.
  */
-function sedermera_transaction_intresent($offer_id) {
-  // Load all transaction ids corresponding to the current offer
-  $transactions = get_interested_transactions($offer_id);
-
-  // If no transactions exists for the offer present empty table with no content
-  if (empty($transactions)) {
-
-    return array(
-      '#prefix' => '<div class="view-empty">',
-      '#markup' => 'Det finns inga intresserade kontaktpersoner',
-      '#suffix' => '</div>',
-    );
-  }
-  else {
-    // Load the current offer
-    $offer = node_load($offer_id);
-
-    // Array of active investment types used in the offer
-    $type_investment = array(
-      'fe_sign' => !empty($offer->field_offer_type_fe_sign),
-      'fe_warr' => !empty($offer->field_offer_type_fe_warrant),
-      'le_sign' => !empty($offer->field_offer_type_le_sign),
-      'le_warr' => !empty($offer->field_offer_type_le_warrant),
-      'pp_sign' => !empty($offer->field_offer_type_pp_sign),
-      're_sign' => !empty($offer->field_offer_type_re_sign),
-      'bl_sum'  => !empty($offer->field_offer_type_bl_sum),
-      'bp_sum'  => !empty($offer->field_offer_type_bp_sum),
-    );
-
-    // Arrays holding the content used to build the table
-    $header = array();
-    $rows = array();
-
-    // Generate the table header
-    generate_header_row_interested($header, $type_investment);
-
-    // Generate a group for each contact person and its investors
-    foreach ($transactions as $transaction_nid) {
-      // Load the transaction
-      $transaction = node_load($transaction_nid);
-
-      // Generate contactperson head row
-      generate_contact_person_head_row_interested($rows, $transaction, $type_investment);
-
-      // Column summation
-      $col_sum = array(
-        'fe_sign' => 0,
-        'fe_warr' => 0,
-        'le_sign' => 0,
-        'le_warr' => 0,
-        'pp_sign' => 0,
-        're_sign' => 0,
-        'bl_sum'  => 0,
-        'bp_sum'  => 0,
-        );
-
-      // Generate the investor rows with editable fields
-      foreach ($transaction->field_transaction_investor as $investor_transactions) {
-        generate_investor_rows_interested($rows, $investor_transactions, $type_investment, $transaction, $col_sum);
-      }
-
-      // Generate the contactperson sum row
-      generate_sum_row_interested($rows, $type_investment, $transaction, $col_sum);
-    }
-
-    // Add a class to the last table row.
-    end($rows);
-    $last_key = key($rows);
-    $rows[$last_key]['class'][] = 'last-row';
-
-    // Generate rendarable array for the table and return it.
-    return array(
-      '#theme' => 'table',
-      '#header' => $header,
-      '#rows' => $rows,
-      '#prefix' => '<div class="offer-interested-list"><div id="interested-table" class="table-wrapper">',
-      '#suffix' => '</div></div>',
-    );
-  }
-}
-
-/**
- * Creates the header row for the table
- * @param  array &$header The array to store the table header content in
- * @param  array $type_investment The active investment types used in the offer
- */
-function generate_header_row_interested(array &$header, array $type_investment) {
-  // Collapsible column
-  $header[] = array(
-    'class' => array('table-head', 'collapsible-head'),
-    'data' => '<span class="icon"></span>',
-  );
-
-  // Name column
-  $header[] = array(
-    'data' => 'Kontaktperson',
-    'class' => array('table-head'),
-  );
-
-  // Dropdown column
-  $header[] = array(
-    'data' => '',
-    'class' => array('table-head'),
-  );
-
-  // Teckningsförbindelse if Företrädesemission column
-  if ($type_investment['fe_sign']) {
-    $header[] = array(
-      'data' => 'Teckningsförbindelse (FE)',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Garantiåtagande if Företrädesemission column
-  if ($type_investment['fe_warr']) {
-    $header[] = array(
-      'data' => 'Garantiåtagande (FE)',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Teckningsförbindelse if Listningsemission column
-  if ($type_investment['le_sign']) {
-    $header[] = array(
-      'data' => 'Teckningsförbindelse (LE)',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Garantiåtagande if Listningsemission column
-  if ($type_investment['le_warr']) {
-    $header[] = array(
-      'data' => 'Garantiåtagande (LE)',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Teckningsförbindelse if Private placement column
-  if ($type_investment['pp_sign']) {
-    $header[] = array(
-      'data' => 'Teckningsförbindelse (PP)',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Teckningsförbindelse if Riktad emission column
-  if ($type_investment['re_sign']) {
-    $header[] = array(
-      'data' => 'Teckningsförbindelse (RE)',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Sum if Brygglån column
-  if ($type_investment['bl_sum']) {
-    $header[] = array(
-      'data' => 'Brygglån',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Sum if Blockpost column
-  if ($type_investment['bp_sum']) {
-    $header[] = array(
-      'data' => 'Blockpost',
-      'class' => array('table-head'),
-    );
-  }
-
-  // Summation column
-  $header[] = array(
-    'data' => 'Summa',
-    'class' => array('table-head'),
-  );
-
-  // Control column
-  $header[] = array(
-    'data' => '',
-    'class' => array('table-head','ctrl'),
-  );
-
-  // To control column
-  $header[] = array(
-    'data' => 'Till kontroll',
-    'class' => array('table-head'),
-  );
-}
-
-/**
- * Creates the group header row for the contact person
- * @param  array &$rows The array to store the table rows content in
- * @param  stdClass $transaction Node containing the transaction information
- * @param  array $type_investment The active investment types used in the offer
- */
-function generate_contact_person_head_row_interested(array &$rows, stdClass $transaction, array $type_investment) {
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-  $investors = db_query("SELECT n.nid AS nid, n.title AS name FROM {node} AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
-
-  // If no investors for the contact person create simple string
-  if (empty($investors)) {
-    $drop_down = array(
-      '#prefix' => '<em>Inga avtalsparter</em>',
-      );
-  }
-  else {
-    $options = array(
-        '#prefix' => '<div class="dropdown">',
-        '#suffix' => '</div>',
-      );
-
-    // Add checkbox for each investor connected to the contact person
-    // Mark as selected if already selected
-    foreach ($investors as $investor) {
-      $selected = FALSE;
-      $attributes = array(
-        'class' => array('add-transaction-ap'),
-        'data-transaction-id' => $transaction->nid,
-        'data-ap-id' => $investor->nid,
-      );
-
-      foreach ($transaction_wrap->field_transaction_investor->value() as $node) {
-        $res = db_query("SELECT COUNT(*) AS selected FROM {field_data_field_transaction_ap_ap} WHERE entity_id = :eid AND field_transaction_ap_ap_target_id = :tid", array(':eid' => $node->nid, ':tid' => $investor->nid))->fetchAssoc();
-
-        if ($res['selected'] == 1) {
-          $selected = TRUE;
-          $attributes['checked'] = 'checked';
-          $attributes['disabled'] = 'disabled';
-          break;
-        }
-      }
-
-      $options[$investor->nid] = array(
-        '#type' => 'checkbox',
-        '#title' => $investor->name,
-        '#default_value' => $selected,
-        '#attributes' => $attributes,
-      );
-    }
-
-    // Create drop_down menu for contact person
-    $drop_down = array(
-      '#type' => 'checkboxes',
-      '#prefix' => '<div class="select-container contracting-parties">',
-      '#suffix' => '</div>',
-      'select' => array(
-        '#markup' => '<div class="select">Avtalsparter</div>',
-      ),
-      'options' => $options,
-      '#attached' => array(
-        'js' => array(
-          drupal_get_path('module', 'sedermera_transaction') . '/js/sedermera_transaction_add_ap.js',
-        ),
-        'library' => array(
-          array('system', 'drupal.ajax'),
-          array('system', 'jquery.form'),
-          array('editablefields', 'editablefields'),
-        ),
-      ),
-    );
-  }
-
-  $rows[] = array(
-    'data' => array(
-      // Collapsible column
-      array(
-        'class' => 'collapsible',
-        'data' => '<span class="icon"></span>',
-      ),
-      // Name column
-      array(
-        'data' => $person->title,
-      ),
-      // Dropdown column
-      array(
-        'data' => $drop_down,
+function sedermera_transaction_add_ap($transaction_id, $ap_id) {
+  // Create the new Transaktion AP node with a reference to the AP, and save the
+  // node.
+  $transaction_ap = entity_create('node', array(
+    'type' => 'transaction_ap',
+    'field_transaction_ap_ap' => array(
+      LANGUAGE_NONE => array(
+        array('target_id' => $ap_id),
       ),
     ),
-    'class' => array('contact-person-row'),
-    'data-id' => $person->nid,
-  );
+  ));
+  node_save($transaction_ap);
 
-  $row = count($rows) -1;
+  // Update the transaction node with a reference to the newly created
+  // Transaktion AP node.
+  $transaction = entity_metadata_wrapper('node', $transaction_id);
+  $transaction->field_transaction_investor[] = $transaction_ap;
+  $transaction->save();
 
-  $sum = 0;
-
-  // Teckningsförbindelse if Företrädesemission column
-  if ($type_investment['fe_sign']) {
-    $sum += $transaction_wrap->field_transaction_fe_sign->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_fe_sign',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Garantiåtagande if Företrädesemission column
-  if ($type_investment['fe_warr']) {
-    $sum += $transaction_wrap->field_transaction_fe_warant->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_fe_warant',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Teckningsförbindelse if Listningsemission column
-  if ($type_investment['le_sign']) {
-    $sum += $transaction_wrap->field_transaction_le_sign->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_le_sign',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Garantiåtagande if Listningsemission column
-  if ($type_investment['le_warr']) {
-    $sum += $transaction_wrap->field_transaction_le_warrant->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_le_warrant',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Teckningsförbindelse if Private Placement column
-  if ($type_investment['pp_sign']) {
-    $sum += $transaction_wrap->field_transaction_pp_sign->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_pp_sign',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Teckningsförbindelse if Riktad emission column
-  if ($type_investment['re_sign']) {
-    $sum += $transaction_wrap->field_transaction_re_sign->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_re_sign',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Sum if Brygglån column
-  if ($type_investment['bl_sum']) {
-    $sum += $transaction_wrap->field_transaction_bridging->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_bridging',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Sum if Blockpost column
-  if ($type_investment['bp_sum']) {
-    $sum += $transaction_wrap->field_transaction_block->value();
-    $field = field_view_field('node', $transaction, 'field_transaction_block',
-          array(
-            'label'=>'hidden',
-            'settings' => array(
-              'thousand_separator' => ' ',
-            ),
-          ));
-
-    $rows[$row]['data'][] = array(
-      'data' => render($field),
-    );
-  }
-
-  // Summation column
-  $rows[$row]['data'][] = array(
-    'data' => number_format($sum, 0, ",", " ") . " :-",
-  );
-
-  // Control column
-  $field = field_view_field('node', $person, 'field_user_id_ctrl',
-        array(
-          'label'=>'hidden',
-          'type' => 'sedermera_verification_status',
-          'settings' => array(
-            'link' => TRUE,
-            'link_destination' => 'view',
-          ),
-        ));
-  $rows[$row]['data'][] = array(
-    'data' => render($field),
-    'class' => array('ctrl'),
-  );
-
-  // To control column
-  $done = 0;
-  $count = 0;
-
-  foreach ($transaction->field_transaction_investor as $value) {
-    foreach ($value as $val) {
-      $result = db_query("SELECT field_transaction_ap_ctrl_value AS value FROM {field_data_field_transaction_ap_ctrl} WHERE entity_id = :eid", array(':eid' => $val['target_id']))->fetchAll();
-      $done += $result[0]->value;
-      $count++;
-    }
-  }
-
-  $rows[$row]['data'][] = array(
-    'data' => ($done === 0 && $count === 0) ? "0 valda" : $done ."/" . $count . " klara",
-  );
+  // Re-render the table, and return an AJAX command which will replace the old
+  // table.
+  $table = sedermera_transaction_intresent($transaction->field_transaction_offer->nid->value());
+  return transaction_ajax_callback('.offer-interested-list', render($table));
 }
 
 /**
- * Create the investor rows with editable fields for each investor connected to
- * the contactpersons transaction
- * @param  array &$rows The array to store the table rows content in
- * @param  array $investor_transactions List of investor transactions for the
- * contact person
- * @param  array $type_investment The active investment types used in the offer
+ * Get array of active investment types used in the offer
+ * @param  object $offer
+ *   To offer to get the investment types from
+ * @return array
+ *   Where used investment types is TRUE
  */
-function generate_investor_rows_interested(array &$rows, array $investor_transactions, array $type_investment, $transaction, array &$col_sum) {
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-
-  // Get indicator of last investor
-  $last = count($investor_transactions) - 1;
-
-  foreach ($investor_transactions as $key => $investor) {
-    $transaction_ap = node_load($investor['target_id']);
-    $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
-
-    // Get investor from transaction
-    $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
-
-    $row_class = '';
-
-    $row_sum = 0;
-
-    // If last investor add class
-    if ($last === $key) {
-      $row_class = 'last-investor';
-    }
-
-    $rows[] = array(
-      'data' => array(
-        // Collapsible column
-        array(
-          'class' => 'collapsible-row',
-          'data' => '<span class="icon"></span>',
-        ),
-        // Name column
-        array(
-          'data' => $investor->title,
-        ),
-        // Dropdown column
-        array(),
-      ),
-      'class' => array('investor-row', $row_class),
-      'data-id' => $person->nid,
-    );
-
-    $row = count($rows) - 1;
-
-    // Teckningsförbindelse if Företrädesemission column
-    if ($type_investment['fe_sign']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
-      $col_sum['fe_sign'] += $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_sign',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Garantiåtagande if Företrädesemission column
-    if ($type_investment['fe_warr']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
-      $col_sum['fe_warr'] += $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_warrant',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Teckningsförbindelse if Listningsemission column
-    if ($type_investment['le_sign']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_le_sign->value();
-      $col_sum['le_sign'] += $transaction_ap_wrap->field_transaction_ap_le_sign->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_sign',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Garantiåtagande if Listningsemission column
-    if ($type_investment['le_warr']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
-      $col_sum['le_warr'] += $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_warrant',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Teckningsförbindelse if Private placement column
-    if ($type_investment['pp_sign']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
-      $col_sum['pp_sign'] += $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_pp_sign',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Teckningsförbindelse if Riktad emission column
-    if ($type_investment['re_sign']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_re_sign->value();
-      $col_sum['re_sign'] += $transaction_ap_wrap->field_transaction_ap_re_sign->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_re_sign',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Sum if Brygglån column
-    if ($type_investment['bl_sum']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_bridging->value();
-      $col_sum['bl_sum'] += $transaction_ap_wrap->field_transaction_ap_bridging->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_bridging',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Sum if Blockpost column
-    if ($type_investment['bp_sum']) {
-      $row_sum += $transaction_ap_wrap->field_transaction_ap_block->value();
-      $col_sum['bp_sum'] += $transaction_ap_wrap->field_transaction_ap_block->value();
-      $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_block',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($field),
-      );
-    }
-
-    // Summation column
-    $rows[$row]['data'][] = array(
-      'data' => number_format($row_sum, 0, ",", " ") . " :-",
-    );
-
-    // Control column
-    $investor_view_full = node_view($investor);
-    $rows[$row]['data'][] = array(
-      'data' => render($investor_view_full['verification_status_investor']),
-      'class' => array('ctrl'),
-    );
-
-    // To control column
-    if ($transaction_ap_wrap->field_transaction_ap_ctrl->value()) {
-      $rows[$row]['data'][] = array(
-        'data' => '<div class="checker disabled"><span class="to-check-ctrl checked"></span></div> Kontrollera',
-      );
-    }
-    else {
-      $to_ctrl = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
-            array(
-              'label'=>'hidden',
-              'type' => 'editable',
-            ));
-      $rows[$row]['data'][] = array(
-        'data' => render($to_ctrl) . '<span>Kontrollera</span>',
-      );
-    }
-  }
-}
-
-function test() {
-  dprint_r('hello');
-}
-
-
-/**
- * Generates a summation row for the group
- * @param  array &$rows The array to store the table rows content in
- * @param  array $type_investment The active investment types used in the offer
- */
-function generate_sum_row_interested(array &$rows, array $type_investment, $transaction, $col_sum) {
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-
-  $rows[] = array(
-    'data' => array(
-      // Collapsible column
-      array(
-        'class' => array('collapsible-row'),
-      ),
-      // Name column
-      array(),
-      // Dropdown column
-      array(
-        'data' => '<strong>Summa kontaktperson:</strong>',
-      ),
-    ),
-    'class' => array('summation-row'),
-    'data-id' => $person->nid,
+function _type_investment($offer) {
+  return array(
+    'fe_sign' => !empty($offer->field_offer_type_fe_sign),
+    'fe_warr' => !empty($offer->field_offer_type_fe_warrant),
+    'le_sign' => !empty($offer->field_offer_type_le_sign),
+    'le_warr' => !empty($offer->field_offer_type_le_warrant),
+    'pp_sign' => !empty($offer->field_offer_type_pp_sign),
+    're_sign' => !empty($offer->field_offer_type_re_sign),
+    'bl_sum'  => !empty($offer->field_offer_type_bl_sum),
+    'bp_sum'  => !empty($offer->field_offer_type_bp_sum),
   );
-
-  $row = count($rows) - 1;
-
-  // Teckningsförbindelse if Företrädesemission column
-  if ($type_investment['fe_sign']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['fe_sign'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Garantiåtagande if Företrädesemission column
-  if ($type_investment['fe_warr']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['fe_warr'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Teckningsförbindelse if Listningsemission column
-  if ($type_investment['le_sign']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['le_sign'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Garantiåtagande if Listnigsemission column
-  if ($type_investment['le_warr']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['le_warr'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Teckningsförbindelse if Private Placement column
-  if ($type_investment['pp_sign']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['pp_sign'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Teckningsförbindelse if Riktat emission column
-  if ($type_investment['re_sign']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['re_sign'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Sum if Brygglån column
-  if ($type_investment['bl_sum']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['bl_sum'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Sum if Blockpost column
-  if ($type_investment['bp_sum']) {
-    $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['bp_sum'], 0, ",", " ") . " :-",
-    );
-  }
-
-  // Summation column
-  $rows[$row]['data'][] = array(
-    'data' => number_format(array_sum($col_sum), 0, ",", " ") . " :-",
-  );
-
-  // Control column
-  $rows[$row]['data'][] = array();
-
-  // To control column
-  $rows[$row]['data'][] = array();
-}
-
-/**
- * Get transactions corresponding to an offer
- * @param  integer $nid The offer id
- * @return array List of transaction ids
- */
-function get_interested_transactions($nid) {
-  $result = db_query("SELECT o.entity_id AS nid
-      FROM {field_data_field_transaction_offer} AS o
-      INNER JOIN {field_data_field_transaction_interested} AS i
-      ON (o.entity_id = i.entity_id)
-      WHERE field_transaction_offer_target_id = :nid
-      AND field_transaction_interested_value = 1", array(':nid' => $nid))->fetchAllAssoc('nid');
-  return array_keys($result);
-}
-
-/**
- * Render control table
- */
-function sedermera_transaction_control() {
-  // Load all transaction ids corresponding to the current offer
-  $transactions = get_control_transactions(arg(1));
-
-  // If no transactions exists for the offer present empty table with no content
-  if (empty($transactions)) {
-
-    return array(
-      '#prefix' => '<div class="view-empty">',
-      '#markup' => 'Det finns inga transaktioner',
-      '#suffix' => '</div>',
-    );
-  }
-  else {
-    // Load the current offer
-    $offer = node_load(arg(1));
-
-    // Array of active investment types used in the offer
-    $type_investment = array(
-      'fe_sign' => !empty($offer->field_offer_type_fe_sign),
-      'fe_warr' => !empty($offer->field_offer_type_fe_warrant),
-      'le_sign' => !empty($offer->field_offer_type_le_sign),
-      'le_warr' => !empty($offer->ffield_offer_type_le_warrant),
-      'pp_sign' => !empty($offer->field_offer_type_pp_sign),
-      're_sign' => !empty($offer->field_offer_type_re_sign),
-      'bl_sum'  => !empty($offer->field_offer_type_bl_sum),
-      'bp_sum ' => !empty($offer->field_offer_type_bp_sum),
-    );
-
-    // Arrays holding the content used to build the table
-    $header = array();
-    $rows = array();
-
-    // Generate the table header
-    generate_header_row_control($header);
-
-    // Generate a group for each contact person and its investors
-    foreach ($transactions as $transaction_nid) {
-      // Load the transaction
-      $transaction = node_load($transaction_nid);
-
-      // Generate contactperson head row
-      generate_contact_person_head_row_control($rows, $transaction, $type_investment);
-
-      // Generate the investor rows
-      foreach ($transaction->field_transaction_investor as $investor_transactions) {
-
-        // Contains agreements for the transaction
-        $agreements = array();
-
-        // Checks if there are any agreements for the investor
-        foreach ($investor_transactions as $key => $value) {
-          $agreement = get_agreements_for_investor($value['target_id']);
-
-          if (!empty($agreement)) {
-            $agreements[$value['target_id']] = $agreement;
-          }
-        }
-
-        // Generate investor head row for agreements
-        foreach ($agreements as $key => $agreement) {
-          generate_investor_rows_control($rows, $key, $type_investment, $transaction);
-
-          // Generate rows for all agreements for the transaction on this offer.
-          foreach ($agreement as $value) {
-            generate_agreement_rows_control($rows, $value, $key, $transaction);
-          }
-          generate_empty_row_control($rows, $transaction);
-        }
-      }
-    }
-
-    // Add a class to the last table row.
-    end($rows);
-    $last_key = key($rows);
-    $rows[$last_key]['class'][] = 'last-row';
-
-    // Generate rendarable array for the table and return it. We'll need to
-    // attach the editablefields library since the checkbox for "Tecka" might
-    // appear after the table is reloaded, but that callback doesn't add the
-    // required JS to the output.
-    return array(
-      '#theme' => 'table',
-      '#header' => $header,
-      '#rows' => $rows,
-      '#prefix' => '<div class="offer-controller-list"><div id="controller-list" class="table-wrapper">',
-      '#suffix' => '</div></div>',
-      '#attached' => array(
-        'library' => array(
-          array('editablefields', 'editablefields'),
-          array('system', 'jquery.form'),
-          array('system', 'drupal.ajax'),
-        ),
-      ),
-    );
-  }
-}
-
-/**
- * Generates the header row for control
- * @param  array &$header To store the header
- */
-function generate_header_row_control(array &$header) {
-  // Collapsible column
-  $header[] = array(
-    'class' => array('table-head', 'collapsible-head'),
-    'data' => '<span class="icon"></span>',
-  );
-
-  // Name column
-  $header[] = array(
-    'data' => 'Kontaktperson',
-    'class' => array('table-head')
-  );
-
-  // Summation column
-  $header[] = array(
-    'data' => 'Summa',
-    'class' => array('table-head')
-  );
-
-  // Control ID column
-  $header[] = array(
-    'data' => 'ID',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control UA column
-  $header[] = array(
-    'data' => 'UA',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control PTV column
-  $header[] = array(
-    'data' => 'PTV',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control KRE column
-  $header[] = array(
-    'data' => 'KRE',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control EXR column
-  $header[] = array(
-    'data' => 'EXR',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control EU column
-  $header[] = array(
-    'data' => 'EU',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control KOM column
-  $header[] = array(
-    'data' => 'KOM',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control PEN column
-  $header[] = array(
-    'data' => 'PEN',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Control agreement column
-  $header[] = array(
-    'data' => 'Kundavtal',
-    'class' => array('table-head')
-  );
-
-  // To sign column
-  $header[] = array(
-    'data' => 'Att teckna',
-    'class' => array('table-head')
-  );
-
-  // Empty column
-  $header[] = array(
-    'class' => array('table-head')
-  );
-}
-
-/**
- * Generate header for each contact person on the control table
- * @param  array &$rows to store the rows
- * @param  stdClass $transaction Object of the current transaction
- * @param  array $type_investment List of which transaction types used
- */
-function generate_contact_person_head_row_control(array &$rows, stdClass $transaction, array $type_investment) {
-  $sum = get_control_transactions_sum($transaction->nid, $type_investment);
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-  $investors = db_query("SELECT n.nid AS nid, n.title AS name FROM {node} AS n INNER JOIN field_data_field_shared_cont_pers AS u ON (n.nid = u.entity_id) WHERE u.field_shared_cont_pers_target_id = :tid", array(':tid' => $person->nid))->fetchAll();
-
-  // Control ID
-  $ctrl_id = field_view_field('node', $person, 'field_user_id_ctrl',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
-
-  // To sign
-  $done = 0;
-  $count = 0;
-
-  foreach ($transaction_wrap->field_transaction_investor->value() as $object) {
-    if (empty($object->field_transaction_ap_agree)) {
-      continue;
-    }
-
-    foreach ($object->field_transaction_ap_agree[LANGUAGE_NONE] as $tid) {
-      $result = db_query("SELECT field_transaction_agree_to_sign_value AS value
-        FROM {field_data_field_transaction_agree_to_sign}
-        WHERE entity_id = :eid", array(':eid' => $tid['target_id']))->fetchAssoc();
-
-      $done += $result['value'];
-      $count++;
-    }
-  }
-
-  $rows[] = array(
-    'data' => array(
-      // Collapsible column
-      array(
-        'class' => 'collapsible',
-        'data' => '<span class="icon"></span>',
-      ),
-      // Name column
-      array(
-        'data' => $person->title,
-      ),
-      // Summation column
-      array(
-        'data' => number_format($sum, 0, ",", " ") . " :-",
-      ),
-      // Control ID column
-      array(
-        'data' => render($ctrl_id),
-        'class' => array('ctrl'),
-      ),
-      // Control UA column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control PTV column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control KRE column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control EXR column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control EU column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control KOM column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control PEN column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control agreement column
-      array(),
-      // To sign column
-      array(
-        'data' => ($done == 0 && $count == 0) ? "0 valda" : $done ."/" . $count . " klara",
-      ),
-      // Empty column
-      array(),
-    ),
-    'class' => array('contact-person-row'),
-    'data-id' => $person->nid,
-  );
-}
-
-/**
- * Generates investor rows
- * @param  array    &$rows           Array to store the rows
- * @param  integer $investor         nid of the current investor
- * @param  array    $type_investment List of which transaction types used
- */
-function generate_investor_rows_control(array &$rows, $investor, array $type_investment, $transaction) {
-  $transaction_ap = node_load($investor);
-  $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
-
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-
-  // Get investor from transaction
-  $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
-
-  // Control ID
-  $investor_view_full = node_view($investor);
-
-  // Fetch the dates for UA and PTV in order to determine which one that should
-  // be displayed.
-  $ua_date = $transaction_ap_wrap->field_transaction_ap_ap->field_investor_shared_ctrl_ua->field_ctrl_date->value();
-  $ptv_date = $transaction_ap_wrap->field_transaction_ap_ap->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
-
-  // Control UA. Display if UA has a date set, or if none of UA and PTV has been
-  // set.
-  if ($ua_date || (!$ua_date && !$ptv_date)) {
-    $ctrl_ua = field_view_field('node', $investor, 'field_investor_shared_ctrl_ua',
-      array(
-        'label'=>'hidden',
-        'type' => 'sedermera_verification_status',
-        'settings' => array(
-          'link' => TRUE,
-          'link_destination' => 'edit',
-        ),
-      ));
-  }
-  else {
-    $ctrl_ua = array();
-  }
-
-  // Control PTV. Display if PTV has a date set, but not UA, or if both UA and
-  // PTV hasn't been set.
-  if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
-    $ctrl_ptv = field_view_field('node', $investor, 'field_investor_shared_ctrl_ptv',
-      array(
-        'label'=>'hidden',
-        'type' => 'sedermera_verification_status',
-        'settings' => array(
-          'link' => TRUE,
-          'link_destination' => 'edit',
-        ),
-      ));
-  }
-  else {
-    $ctrl_ptv = array();
-  }
-
-  // Control KRE
-  $ctrl_kre = field_view_field('node', $investor, 'field_investor_shared_ctrl_cred',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
-
-  // Control EXR
-  $ctrl_exr = field_view_field('node', $investor, 'field_investor_shared_ctrl_ext',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
-
-  // Control EU
-  $ctrl_eu = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_eu',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
-
-  // Control KOM column
-  $ctrl_kom = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_comp',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
-
-  $rows[] = array(
-    'data' => array(
-      // Collapsible column
-      array(
-        'class' => 'collapsible-row',
-        'data' => '<span class="icon"></span>'
-      ),
-      // Name column
-      array(
-        'data' => $investor->title,
-      ),
-      // Summation column
-      array(),
-      // Control ID column
-      array(
-        'data' => render($investor_view_full['verification_id_investor']),
-        'class' => array('ctrl'),
-      ),
-      // Control UA column
-      array(
-        'data' => render($ctrl_ua),
-        'class' => array('ctrl'),
-      ),
-      // Control PTV column
-      array(
-        'data' => render($ctrl_ptv),
-        'class' => array('ctrl'),
-      ),
-      // Control KRE column
-      array(
-        'data' => render($ctrl_kre),
-        'class' => array('ctrl'),
-      ),
-      // Control EXR column
-      array(
-        'data' => render($ctrl_exr),
-        'class' => array('ctrl'),
-      ),
-      // Control EU column
-      array(
-        'data' => render($ctrl_eu),
-        'class' => array('ctrl'),
-      ),
-      // Control KOM column
-      array(
-        'data' => render($ctrl_kom),
-        'class' => array('ctrl'),
-      ),
-      // Control PEN column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control agreement column
-      array(),
-      // To sign column
-      array(),
-      // Empty column
-      array(),
-    ),
-    'class' => array('investor-row'),
-    'data-id' => $person->nid,
-  );
-}
-
-/**
- * Generate agreement rows
- * @param  array   &$rows          Array to store the rows
- * @param  integer $agreement      nid of current agreement
- * @param  integer $transaction_ap nid of current investor
- */
-function generate_agreement_rows_control(array &$rows, $agreement, $transaction_ap, $transaction) {
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-
-  $agreement_node = node_load($agreement);
-  $agreement_node_wrap = entity_metadata_wrapper('node', $agreement_node);
-
-  $transaction_node = node_load($transaction_ap);
-  $transaction_ap_wrap = entity_metadata_wrapper('node',  $transaction_node);
-
-  $investor = $transaction_ap_wrap->field_transaction_ap_ap->value();
-  $investor_wrap = entity_metadata_wrapper('node', $investor);
-  $ctrl_ua = $investor_wrap->field_investor_shared_ctrl_ua->value();
-
-  $sum = 0;
-
-  //Get the correct sum for the agreement
-  switch ($agreement_node_wrap->field_transaction_agree_type_rea->value()) {
-    case 'fe_sign':
-      $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
-      $type = 'Teckningsförbindelse (FE)';
-      break;
-    case 'fe_warrant':
-      $sum = $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
-      $type = 'Garantiåtagande (FE)';
-      break;
-    case 'le_sign':
-      $sum = $transaction_ap_wrap->field_transaction_ap_le_sign->value();
-      $type = 'Teckningsförbindelse (LE)';
-      break;
-    case 'le_warrant':
-      $sum = $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
-      $type = 'Garantiåtagande (LE)';
-      break;
-    case 'pp_sign':
-      $sum = $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
-      $type = 'Teckningsförbindelse (PP)';
-      break;
-    case 're_sign':
-      $sum = $transaction_ap_wrap->field_transaction_ap_re_sign->value();
-      $type = 'Teckningsförbindelse (RE)';
-      break;
-    case 'bridging':
-      $sum = $transaction_ap_wrap->field_transaction_ap_bridging->value();
-      $type = 'Brygglån';
-      break;
-    case 'block':
-      $sum = $transaction_ap_wrap->field_transaction_ap_block->value();
-      $type = 'Blockpost';
-      break;
-  }
-
-  if ($sum == 0) {
-    return;
-  }
-
-  // Create penningtvatt variable
-  $ctrl_pen = '';
-
-  if (!empty($ctrl_ua->field_ctrl_date)) {
-    $ctrl_pen = field_view_field('node', $agreement_node, 'field_transaction_agree_ctrl',
-      array(
-        'label'=>'hidden',
-        'type' => 'sedermera_verification_status',
-        'settings' => array(
-          'link' => TRUE,
-          'link_destination' => 'edit',
-        ),
-      ));
-  }
-
-  // Create the to sign variable dependent on if already checked
-  if ($agreement_node_wrap->field_transaction_agree_to_sign->value()) {
-    $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Att teckna';
-  }
-  else {
-    // Verify that the verifications has been approved. Start of with the ID
-    // verifications.
-    $verifications = sedermera_verification_get_ids_for_investor($investor->nid);
-
-    // Fetch the dates for UA and PTV in order to determine which one that
-    // should be checked.
-    $ua_date = $investor_wrap->field_investor_shared_ctrl_ua->field_ctrl_date->value();
-    $ptv_date = $investor_wrap->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
-
-    // Add the UA control if it has been set, or if none of UA or PTV has been
-    // set.
-    if ($ua_date || (!$ua_date && !$ptv_date)) {
-      $verifications[] = $investor_wrap->field_investor_shared_ctrl_ua->nid->value();
-    }
-
-    // Add the PTV control if it has been set and UA hasn't been set, or if both
-    // UA and PTV hasn't been set.
-    if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
-      $verifications[] = $investor_wrap->field_investor_shared_ctrl_ptv->nid->value();
-    }
-
-    // Add the other regular verifications.
-    $verifications[] = $investor_wrap->field_investor_shared_ctrl_ext->nid->value();
-    $verifications[] = $transaction_ap_wrap->field_transaction_ap_ctrl_eu->nid->value();
-
-    // Add Penningtvätt if there's an UA verification.
-    if (!empty($ua_date)) {
-      $verifications[] = $agreement_node_wrap->field_transaction_agree_ctrl->nid->value();
-    }
-
-    // Fetch the status.
-    $status = sedermera_verification_get_status_multiple($verifications);
-
-    // Display the checkbox if the verification status is expiring or approved.
-    if ($status != SEDERMERA_VERIFICATION_NOT_APPROVED) {
-      $field = field_view_field('node', $agreement_node, 'field_transaction_agree_to_sign',
-        array(
-          'label'=>'hidden',
-          'type' => 'editable',
-        ));
-      $to_sign = render($field) . '<span>Att teckna</span>';
-    }
-    else {
-      // The verifications aren't approved. Don't display the checkbox.
-      $to_sign = '';
-    }
-  }
-
-  $rows[] = array(
-    'data' => array(
-      // Collapsible column
-      array(
-        'class' => 'empty-column',
-      ),
-      // Name column
-      array(
-        'data' => $type,
-      ),
-      // Summation column
-      array(
-        'data' => number_format($sum, 0, ",", " ") . " :-",
-      ),
-      // Control ID column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control UA column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control PTV column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control KRE column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control EXR column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control EU column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control KOM column
-      array(
-        'class' => array('ctrl'),
-      ),
-      // Control PEN column
-      array(
-        'data' => render($ctrl_pen),
-        'class' => array('ctrl'),
-      ),
-      // Control agreement column
-      array(
-        'data' => l('Hantera avtal', "node/" . $agreement_node->nid . "/edit/control", array('attributes' => array('class' => array('mfp-verification-edit')))),
-      ),
-      // To sign column
-      array(
-        'data' => $to_sign,
-      ),
-      // Empty column
-      array(
-        'class' => 'empty-column',
-      ),
-    ),
-    'class' => array('agreement-row'),
-    'data-id' => $person->nid,
-  );
-}
-
-/**
- * Generate emtpy row
- * @param  array $rows to store the rows
- * @param  $transaction [description]
- */
-function generate_empty_row_control(array &$rows, $transaction) {
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-
-  $rows[] = array(
-    'data' => array(
-      // Collapsible column
-      array(),
-      // Name column
-      array(),
-      // Summation column
-      array(),
-      // Control ID column
-      array(),
-      // Control UA column
-      array(),
-      // Control PTV column
-      array(),
-      // Control KRE column
-      array(),
-      // Control EXR column
-      array(),
-      // Control EU column
-      array(),
-      // Control KOM column
-      array(),
-      // Control PEN column
-      array(),
-      // Control agreement column
-      array(),
-      // To sign column
-      array(),
-      // Empty column
-      array(),
-    ),
-    'class' => array('empty-row'),
-    'data-id' => $person->nid,
-  );
-}
-
-/**
- * Render sign table
- */
-function sedermera_transaction_sign() {
-  // Load all transaction ids corresponding to the current offer
-  $transactions = get_control_transactions(arg(1));
-
-  // Load all agreements ids to be signed from transactions
-  $agreements = get_agreements($transactions);
-
-  // If no transactions exists for the offer present empty table with no content
-  if (empty($agreements)) {
-    return array(
-      '#prefix' => '<div class="view-empty">',
-      '#markup' => 'Det finns inga avtal att teckna',
-      '#suffix' => '</div>',
-    );
-  }
-  else {
-    // Load the current offer
-    $offer = node_load(arg(1));
-
-    // Arrays holding the content used to build the table
-    $header = array();
-    $rows = array();
-
-    // Generate the table header
-    generate_header_row_sign($header);
-
-    // Generate agreement rows
-    foreach ($agreements as $transaction => $transaction_agreements) {
-      generate_agreement_row($rows, $transaction, $transaction_agreements);
-    }
-
-    // Add a class to the last table row.
-    end($rows);
-    $last_key = key($rows);
-    $rows[$last_key]['class'][] = 'last-row';
-
-    // Generate rendarable array for the table and return it.
-    return array(
-      '#theme' => 'table',
-      '#header' => $header,
-      '#rows' => $rows,
-      '#prefix' => '<div class="offer-agreements-list"><div id="agreements-list" class="table-wrapper">',
-      '#suffix' => '</div></div>',
-    );
-  }
-}
-
-/**
- * Generates the header row for sign
- * @param  array &$header To store the header
- */
-function generate_header_row_sign(array &$header) {
-  // Name column
-  $header[] = array(
-    'data' => 'Kontaktperson',
-    'class' => array('table-head')
-  );
-
-  // Investor column
-  $header[] = array(
-    'data' => 'Avtalspart',
-    'class' => array('table-head')
-  );
-
-  // Type column
-  $header[] = array(
-    'data' => 'Transaktionstyp',
-    'class' => array('table-head')
-  );
-
-  // Summation column
-  $header[] = array(
-    'data' => 'Summa',
-    'class' => array('table-head')
-  );
-
-  // Control column
-  $header[] = array(
-    'data' => 'Kontroller',
-    'class' => array('table-head','ctrl')
-  );
-
-  // Agreement column
-  $header[] = array(
-    'data' => 'Kundavtal',
-    'class' => array('table-head')
-  );
-
-  // Sign column
-  $header[] = array(
-    'data' => 'Teckning',
-    'class' => array('table-head')
-  );
-}
-
-/**
- * Generate agreement rows
- * @param  array  &$rows To store the rows
- * @param  $transaction The current transaction
- * @param  array  $agreements  All agreements connected to the transaction
- */
-function generate_agreement_row(array &$rows, $transaction, array $agreements) {
-  $transaction_wrap = entity_metadata_wrapper('node', $transaction);
-  $person = $transaction_wrap->field_transaction_person->value();
-
-  foreach ($agreements as $agreement) {
-    $agreement_node = node_load($agreement);
-    $agreement_wrap = entity_metadata_wrapper('node', $agreement_node);
-    $transaction_ap = node_load(get_investor_nid($transaction_wrap->nid->value(), $agreement_wrap->nid->value()));
-    $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
-
-    $sum = 0;
-
-    //Get the correct sum and type for the agreement
-    switch ($agreement_wrap->field_transaction_agree_type_rea->value()) {
-      case 'fe_sign':
-        $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
-        $type = 'Teckningsförbindelse (FE)';
-        break;
-      case 'fe_warrant':
-        $sum = $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
-        $type = 'Garantiåtagande (FE)';
-        break;
-      case 'le_sign':
-        $sum = $transaction_ap_wrap->field_transaction_ap_le_sign->value();
-        $type = 'Teckningsförbindelse (LE)';
-        break;
-      case 'le_warrant':
-        $sum = $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
-        $type = 'Garantiåtagande (LE)';
-        break;
-      case 'pp_sign':
-        $sum = $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
-        $type = 'Teckningsförbindelse (PP)';
-        break;
-      case 're_sign':
-        $sum = $transaction_ap_wrap->field_transaction_ap_re_sign->value();
-        $type = 'Teckningsförbindelse (RE)';
-        break;
-      case 'bridging':
-        $sum = $transaction_ap_wrap->field_transaction_ap_bridging->value();
-        $type = 'Brygglån';
-        break;
-      case 'block':
-        $sum = $transaction_ap_wrap->field_transaction_ap_block->value();
-        $type = 'Blockpost';
-        break;
-    }
-
-    // Control
-    $investor_view_full = node_view($agreement_node);
-
-    // Create the to sign variable dependent on if already checked
-    if ($agreement_wrap->field_transaction_agree_sign->value()) {
-      $to_sign = '<div class="checker disabled"><span class="to-sign-ctrl checked"></span></div> Tecknad';
-    }
-    else {
-      // Fetch the investor from the transaction_ap node.
-      $investor = $transaction_ap_wrap->field_transaction_ap_ap;
-
-      // Verify that the verifications has been approved. Start of with the ID
-      // verifications.
-      $verifications = sedermera_verification_get_ids_for_investor($investor->nid->value());
-
-      // Fetch the dates for UA and PTV in order to determine which one that
-      // should be checked.
-      $ua_date = $investor->field_investor_shared_ctrl_ua->field_ctrl_date->value();
-      $ptv_date = $investor->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
-
-      // Add the UA control if it has been set, or if none of UA or PTV has been
-      // set.
-      if ($ua_date || (!$ua_date && !$ptv_date)) {
-        $verifications[] = $investor->field_investor_shared_ctrl_ua->nid->value();
-      }
-
-      // Add the PTV control if it has been set and UA hasn't been set, or if both
-      // UA and PTV hasn't been set.
-      if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
-        $verifications[] = $investor->field_investor_shared_ctrl_ptv->nid->value();
-      }
-
-      // Add the other regular verifications.
-      $verifications[] = $investor->field_investor_shared_ctrl_ext->nid->value();
-      $verifications[] = $transaction_ap_wrap->field_transaction_ap_ctrl_eu->nid->value();
-
-      // Add Penningtvätt if there's an UA verification.
-      if (!empty($ua_date)) {
-        $verifications[] = $agreement_wrap->field_transaction_agree_ctrl->nid->value();
-      }
-
-      // Fetch the status.
-      $status = sedermera_verification_get_status_multiple($verifications);
-
-      // Display the checkbox if the verification status is expiring or approved.
-      if ($status != SEDERMERA_VERIFICATION_NOT_APPROVED) {
-        $field = field_view_field('node', $agreement_node, 'field_transaction_agree_sign',
-          array(
-            'label'=>'hidden',
-            'type' => 'editable',
-          ));
-        $to_sign = render($field) . '<span>Teckna</span>';
-      }
-      else {
-        // The verifications aren't approved. Don't display the checkbox.
-        $to_sign = '';
-      }
-    }
-
-    $rows[] = array(
-      'data' => array(
-        // Name column
-        array(
-          'data' => $person->title,
-        ),
-        // Investor column
-        array(
-          'data' => $transaction_ap_wrap->field_transaction_ap_ap->value()->title,
-        ),
-        // Type column
-        array(
-          'data' => $type,
-        ),
-        // Summation column
-        array(
-          'data' => number_format($sum, 0, ",", " ") . " :-",
-        ),
-        // Control column
-        array(
-          'data' => render($investor_view_full['verification_status_transaction_agreement']),
-          'class' => array('ctrl'),
-        ),
-        // Agreement column
-        array(
-          'data' => l('Hantera avtal', "node/" . $agreement_node->nid . '/edit/control', array('attributes' => array('class' => array('mfp-verification-edit')))),
-        ),
-        // Sign column
-        array(
-          'data' => render($to_sign),
-        ),
-      ),
-      'class' => array(),
-      'data-id' => '',
-    );
-  }
 }
 
 /**
  * Get investor nid
- * @param  $transaction_nid Transaction nid
- * @param  $agreement_nid Agreement nid
- * @return Investor nid
+ * @param int $transaction_nid
+ *   Transaction nid
+ * @param int $agreement_nid
+ *   Agreement nid
+ * @return int
+ *   Investor nid
  */
-function get_investor_nid($transaction_nid, $agreement_nid) {
+function _get_investor_nid($transaction_nid, $agreement_nid) {
   $result = db_query("SELECT agree.entity_id AS nid FROM {field_data_field_transaction_ap_agree} AS agree
     INNER JOIN {field_data_field_transaction_investor} AS investor
     ON (agree.entity_id = investor.field_transaction_investor_target_id)
@@ -1825,11 +173,13 @@ function get_investor_nid($transaction_nid, $agreement_nid) {
 }
 
 /**
- * Gett agreements connected to transaction
- * @param  $transactions Transaction to get agreements for
- * @return List of agreements
+ * Get agreements connected to transaction
+ * @param array $transactions
+ *   Transaction to get agreements for
+ * @return array
+ *   List of agreements
  */
-function get_agreements($transactions) {
+function _get_agreements($transactions) {
   $agreements = array();
 
   foreach ($transactions as $nid) {
@@ -1879,24 +229,13 @@ function sedermera_transaction_form_transaction_agreement_node_form_alter(&$form
 }
 
 /**
- * Get all agreements for the investor
- * @param  integer $nid Nid of the investor
- * @return array        List of nid of all agreements for the investor
- */
-function get_agreements_for_investor($nid) {
-  $result = db_query("SELECT field_transaction_ap_agree_target_id AS nid
-    FROM field_data_field_transaction_ap_agree
-    WHERE entity_id = :nid", array(':nid' => $nid))->fetchAllAssoc('nid');
-
-  return array_keys($result);
-}
-
-/**
  * Get all control transactions for the offer
- * @param  integer $nid Nid of the offer
- * @return array        List of nid of all transactions for the offer
+ * @param int $nid
+ *   Nid of the offer
+ * @return array
+ *   List of nid of all transactions for the offer
  */
-function get_control_transactions($nid) {
+function _get_control_transactions($nid) {
   $result = db_query("SELECT o.entity_id AS nid
     FROM field_data_field_transaction_offer AS o
     INNER JOIN field_data_field_transaction_investor AS v
@@ -1910,11 +249,14 @@ function get_control_transactions($nid) {
 
 /**
  * Get total sum for the transaction
- * @param  integer $nid            Nid for the transaction
- * @param  array $type_investment  List of which transaction types used
- * @return integer                 Sum of the transaction
+ * @param integer $nid
+ *   Nid for the transaction
+ * @param array $type_investment
+ *   List of which transaction types used
+ * @return integer
+ *   Sum of the transaction
  */
-function get_control_transactions_sum($nid, array $type_investment) {
+function _get_control_transactions_sum($nid, array $type_investment) {
   $result = db_query("SELECT field_transaction_investor_target_id AS nid
     FROM {field_data_field_transaction_investor} AS inv
     INNER JOIN {field_data_field_transaction_ap_ctrl} AS ap
@@ -1953,39 +295,6 @@ function get_control_transactions_sum($nid, array $type_investment) {
     }
   }
   return $sum;
-}
-
-/**
- * Page callback for adding an avtalspart to a transaction.
- *
- * @param int $transaction_id
- *   Node ID for the transaction.
- * @param int $ap_id
- *   Node ID for the avtalspart node.
- */
-function sedermera_transaction_add_ap($transaction_id, $ap_id) {
-  // Create the new Transaktion AP node with a reference to the AP, and save the
-  // node.
-  $transaction_ap = entity_create('node', array(
-    'type' => 'transaction_ap',
-    'field_transaction_ap_ap' => array(
-      LANGUAGE_NONE => array(
-        array('target_id' => $ap_id),
-      ),
-    ),
-  ));
-  node_save($transaction_ap);
-
-  // Update the transaction node with a reference to the newly created
-  // Transaktion AP node.
-  $transaction = entity_metadata_wrapper('node', $transaction_id);
-  $transaction->field_transaction_investor[] = $transaction_ap;
-  $transaction->save();
-
-  // Re-render the table, and return an AJAX command which will replace the old
-  // table.
-  $table = sedermera_transaction_intresent($transaction->field_transaction_offer->nid->value());
-  return transaction_ajax_callback('.offer-interested-list', render($table));
 }
 
 /**
@@ -2039,7 +348,8 @@ function sedermera_transaction_submit_callback($form, $form_state) {
 
 /**
  * Ajax reloads table content
- * @param  $offer_id nid of offer to reload contact list for
+ * @param int $offer_id
+ *   Nid of offer to reload contact list for
  * @return array ajax reload
  */
 function sedermera_transaction_reload_contact($offer_id) {
@@ -2056,42 +366,11 @@ function sedermera_transaction_reload_contact($offer_id) {
 }
 
 /**
- * Ajax reloads div content
- * @param  $offer_id nid of offer to reload intresent list for
- * @return array ajax reload
- */
-function sedermera_transaction_reload_intressent($offer_id) {
-  // Generate new table
-  $table = sedermera_transaction_intresent($offer_id);
-  return transaction_ajax_callback('.offer-interested-list', render($table));
-}
-
-/**
- * Ajax reloads div content
- * @param  $offer_id nid of offer to reload control list for
- * @return array ajax reload
- */
-function sedermera_transaction_reload_controller($offer_id) {
-  // Generate new table
-  $table = sedermera_transaction_control($offer_id);
-  return transaction_ajax_callback('.offer-controller-list', render($table));
-}
-
-/**
- * Ajax reloads div content
- * @param  $offer_id nid of offer to reload agreement list for
- * @return array ajax reload
- */
-function sedermera_transaction_reload_agreement($offer_id) {
-  // Generate new table
-  $table = sedermera_transaction_sign($offer_id);
-  return transaction_ajax_callback('.offer-agreements-list', render($table));
-}
-
-/**
  * Create ajax array
- * @param  String $class class of div to reload
- * @param  $table rendarable array
+ * @param  String $class
+ *   Class of div to reload
+ * @param array $table
+ *   Rendarable table array
  * @return array ajax command
  */
 function transaction_ajax_callback($class, $table) {
