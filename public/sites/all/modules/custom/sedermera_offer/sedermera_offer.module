@@ -71,10 +71,12 @@ function sedermera_offer_node_presave($node) {
         // Only send if they have recieved information.
         if ($transaction->field_transaction_info[LANGUAGE_NONE][0]['value'] == 1) {
           // Message.
-          $params['message'][] = theme('sedermera_offer_unsigned_mail', array(
-            'recipient' => $person->title,
-            'company' => $wrapper->field_offer_company->title->value(),
-          ));
+          $params['message'] = array(
+            theme('sedermera_offer_unsigned_mail', array(
+              'recipient' => $person->title,
+              'company' => $wrapper->field_offer_company->title->value(),
+            )),
+          );
 
           $mail = $person->field_user_mail[LANGUAGE_NONE][0]['email'];
           drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
@@ -475,10 +477,12 @@ function transaction_transparency_info_send_mail($transaction_nid) {
     $params['subject'] = 'Insynsinformation';
 
     // Message.
-    $params['message'][] = theme('sedermera_offer_signed_mail', array(
-      'recipient' => $person->title->value(),
-      'company' => $company->title->value(),
-    ));
+    $params['message'] = array(
+      theme('sedermera_offer_signed_mail', array(
+        'recipient' => $person->title->value(),
+        'company' => $company->title->value(),
+      )),
+    );
 
     // Send Mail
     drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
@@ -537,7 +541,7 @@ function sedermera_offer_send_offer_mail($transaction_nid) {
 
     // Use the rendered offer node as the message.
     $offer_view = node_view($offer->value(), 'mail');
-    $params['message'][] = render($offer_view);
+    $params['message'] = array(render($offer_view));
 
     // Send the mail.
     drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
