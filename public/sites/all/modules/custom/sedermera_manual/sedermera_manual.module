@@ -154,6 +154,11 @@ function orderManuals($manuals) {
 
   foreach ($result as $value) {
     $orderedManuals[] = $manuals[$value->entity_id];
+    unset($manuals[$value->entity_id]);
+  }
+
+  foreach ($manuals as $value) {
+    $orderedManuals[] = $value;
   }
 
   return $orderedManuals;
