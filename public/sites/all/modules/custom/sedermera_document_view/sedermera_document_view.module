@@ -517,6 +517,11 @@ function orderDocuments($documents) {
 
   foreach ($result as $value) {
     $orderedDocuments[] = $documents[$value->entity_id];
+    unset($documents[$value->entity_id]);
+  }
+
+  foreach ($documents as $value) {
+    $orderedDocuments[] = $value;
   }
 
   return $orderedDocuments;
