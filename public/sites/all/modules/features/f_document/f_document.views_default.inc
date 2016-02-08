@@ -298,7 +298,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga dokument';
+  $handler->display->display_options['empty']['area']['content'] = 'Det finns inga regelverks dokument';
   $handler->display->display_options['empty']['area']['format'] = 'document_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
@@ -432,7 +432,7 @@ function f_document_views_default_views() {
     t('last »'),
     t('Entity Reference'),
     t('Sortera dokument'),
-    t('Det finns inga dokument'),
+    t('Det finns inga regelverks dokument'),
     t('Title'),
     t('Content'),
     t('Sortera manual'),

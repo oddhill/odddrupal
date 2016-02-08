@@ -966,7 +966,7 @@ function sedermera_offer_block_view($delta = '') {
           'subject' => 'Övrigt',
           'content' => array(
             '#theme' => 'sedermera_offer_block_other',
-            '#markup' => '<div class="empty-container"><p>Det finns inga dokument</p></div>',
+            '#markup' => '<div class="empty-container"><p>Det finns inga regelverks dokument</p></div>',
           ),
         );
 
