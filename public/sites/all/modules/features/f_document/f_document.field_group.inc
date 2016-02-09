@@ -378,5 +378,91 @@ function f_document_field_group_info() {
   );
   $export['group_man|node|manual|form'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_template_c|node|mall|form';
+  $field_group->group_name = 'group_template_c';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'mall';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_template';
+  $field_group->data = array(
+    'label' => 'Innehåll',
+    'weight' => '44',
+    'children' => array(
+      0 => 'body',
+      1 => 'field_template_file',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Innehåll',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $export['group_template_c|node|mall|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_template_d|node|mall|form';
+  $field_group->group_name = 'group_template_d';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'mall';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_template';
+  $field_group->data = array(
+    'label' => 'Detaljer',
+    'weight' => '43',
+    'children' => array(
+      0 => 'field_template_type',
+      1 => 'title',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Detaljer',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'id' => '',
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_template_d|node|mall|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_template|node|mall|form';
+  $field_group->group_name = 'group_template';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'mall';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Mall',
+    'weight' => '43',
+    'children' => array(
+      0 => 'group_template_d',
+      1 => 'group_template_c',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-template field-group-htabs',
+      ),
+    ),
+  );
+  $export['group_template|node|mall|form'] = $field_group;
+
   return $export;
 }

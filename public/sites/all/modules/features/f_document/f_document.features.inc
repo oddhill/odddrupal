@@ -105,6 +105,14 @@ function f_document_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'mall' => array(
+      'name' => t('Mall'),
+      'base' => 'node_content',
+      'description' => t('Mall för print'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'manual' => array(
       'name' => t('Manual'),
       'base' => 'node_content',
