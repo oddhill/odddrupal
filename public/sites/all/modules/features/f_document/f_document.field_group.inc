@@ -210,7 +210,7 @@ function f_document_field_group_info() {
       0 => 'field_manual_type',
       1 => 'metatags',
       2 => 'title',
-      3 => 'group_manual_rel',
+      3 => 'group_manual_relation',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -327,6 +327,34 @@ function f_document_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_manual_relation|node|manual|form';
+  $field_group->group_name = 'group_manual_relation';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'manual';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_manual_1';
+  $field_group->data = array(
+    'label' => 'Relation',
+    'weight' => '-2',
+    'children' => array(
+      0 => 'field_manual_relation',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Relation',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'classes' => 'group-manual-relation field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_manual_relation|node|manual|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_manual_rel|node|manual|form';
   $field_group->group_name = 'group_manual_rel';
   $field_group->entity_type = 'node';
@@ -423,7 +451,7 @@ function f_document_field_group_info() {
     'children' => array(
       0 => 'field_template_types',
       1 => 'title',
-      2 => 'group_template_rel',
+      2 => 'group_template_relation',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -438,6 +466,34 @@ function f_document_field_group_info() {
     ),
   );
   $export['group_template_d|node|template|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_template_relation|node|template|form';
+  $field_group->group_name = 'group_template_relation';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'template';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_template_d';
+  $field_group->data = array(
+    'label' => 'Relation',
+    'weight' => '-3',
+    'children' => array(
+      0 => 'field_template_relation',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Relation',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'classes' => 'group-template-relation field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_template_relation|node|template|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
