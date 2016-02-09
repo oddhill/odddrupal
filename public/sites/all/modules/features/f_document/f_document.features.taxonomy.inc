@@ -17,6 +17,14 @@ function f_document_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
+    'mall_typ' => array(
+      'name' => 'Mall typ',
+      'machine_name' => 'mall_typ',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
     'manual_typ' => array(
       'name' => 'Manual typ',
       'machine_name' => 'manual_typ',
