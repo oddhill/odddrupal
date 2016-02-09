@@ -451,7 +451,7 @@ function f_document_field_group_info() {
     'children' => array(
       0 => 'field_template_types',
       1 => 'title',
-      2 => 'group_template_relation',
+      2 => 'group_template_rel',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -512,12 +512,13 @@ function f_document_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Relation',
       'instance_settings' => array(
-        'description' => '',
+        'required_fields' => 0,
         'classes' => 'group-template-rel field-group-fieldset',
-        'required_fields' => 1,
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_template_rel|node|template|form'] = $field_group;
