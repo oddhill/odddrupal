@@ -31,6 +31,16 @@ function f_document_user_default_permissions() {
     'module' => 'taxonomy_access_fix',
   );
 
+  // Exported permission: 'add terms in mall_typ'.
+  $permissions['add terms in mall_typ'] = array(
+    'name' => 'add terms in mall_typ',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: 'add terms in manual_typ'.
   $permissions['add terms in manual_typ'] = array(
     'name' => 'add terms in manual_typ',
@@ -44,6 +54,15 @@ function f_document_user_default_permissions() {
   // Exported permission: 'create document content'.
   $permissions['create document content'] = array(
     'name' => 'create document content',
+    'roles' => array(
+      'Dokumentskapare' => 'Dokumentskapare',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create mall content'.
+  $permissions['create mall content'] = array(
+    'name' => 'create mall content',
     'roles' => array(
       'Dokumentskapare' => 'Dokumentskapare',
     ),
@@ -71,12 +90,20 @@ function f_document_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'delete terms in mall_typ'.
+  $permissions['delete terms in mall_typ'] = array(
+    'name' => 'delete terms in mall_typ',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'delete terms in manual_typ'.
   $permissions['delete terms in manual_typ'] = array(
     'name' => 'delete terms in manual_typ',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy',
   );
@@ -130,6 +157,16 @@ function f_document_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit any mall content'.
+  $permissions['edit any mall content'] = array(
+    'name' => 'edit any mall content',
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any manual content'.
   $permissions['edit any manual content'] = array(
     'name' => 'edit any manual content',
@@ -146,6 +183,16 @@ function f_document_user_default_permissions() {
   $permissions['edit own document content'] = array(
     'name' => 'edit own document content',
     'roles' => array(
+      'Dokumentskapare' => 'Dokumentskapare',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own mall content'.
+  $permissions['edit own mall content'] = array(
+    'name' => 'edit own mall content',
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
@@ -178,6 +225,16 @@ function f_document_user_default_permissions() {
   // Exported permission: 'edit terms in document_type'.
   $permissions['edit terms in document_type'] = array(
     'name' => 'edit terms in document_type',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in mall_typ'.
+  $permissions['edit terms in mall_typ'] = array(
+    'name' => 'edit terms in mall_typ',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Redaktör' => 'Redaktör',
@@ -274,6 +331,20 @@ function f_document_user_default_permissions() {
     'module' => 'node_view_permissions',
   );
 
+  // Exported permission: 'view any mall content'.
+  $permissions['view any mall content'] = array(
+    'name' => 'view any mall content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Användare' => 'Användare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
   // Exported permission: 'view any manual content'.
   $permissions['view any manual content'] = array(
     'name' => 'view any manual content',
@@ -312,6 +383,13 @@ function f_document_user_default_permissions() {
     'module' => 'view_unpublished',
   );
 
+  // Exported permission: 'view any unpublished mall content'.
+  $permissions['view any unpublished mall content'] = array(
+    'name' => 'view any unpublished mall content',
+    'roles' => array(),
+    'module' => 'view_unpublished',
+  );
+
   // Exported permission: 'view any unpublished manual content'.
   $permissions['view any unpublished manual content'] = array(
     'name' => 'view any unpublished manual content',
@@ -325,6 +403,20 @@ function f_document_user_default_permissions() {
   // Exported permission: 'view own document content'.
   $permissions['view own document content'] = array(
     'name' => 'view own document content',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Användare' => 'Användare',
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
+      'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node_view_permissions',
+  );
+
+  // Exported permission: 'view own mall content'.
+  $permissions['view own mall content'] = array(
+    'name' => 'view own mall content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Användare' => 'Användare',
