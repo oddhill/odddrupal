@@ -169,12 +169,31 @@ function sedermera_preprocess_node(&$variables) {
     $doc_rel_link = '<ul class="related-docs">';
     $doc_app_link = '<ul class="appendix-docs">';
 
-    foreach (getDocuments() as $doc) {
+    $result = array_merge(getDocuments(), getManuals(), getTemplates());
+    $rel_docs = array();
+
+    foreach ($result as $doc) {
       if (!empty($doc->field_dokument_relation)) {
         // List documents related to this document
         foreach ($doc->field_dokument_relation[LANGUAGE_NONE] as $relation) {
           if ($relation['target_id'] == $variables['nid']) {
-            $doc_rel_link .= '<li class="item">' . getIcon('blank') . ' ' . l($doc->title, 'node/' . $doc->nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+      if (!empty($doc->field_manual_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_manual_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+      if (!empty($doc->field_template_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_template_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
           }
         }
       }
@@ -191,8 +210,12 @@ function sedermera_preprocess_node(&$variables) {
     // List documents related from this document
     if (!empty($variables['field_dokument_relation'])) {
       foreach ($variables['field_dokument_relation'] as $relation) {
-        $doc_rel_link .= '<li class="item">' . getIcon('blank') . ' ' . l($relation['entity']->title, 'node/' . $relation['entity']->nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
+        $rel_docs[$relation['entity']->nid] = $relation['entity']->title;
       }
+    }
+
+    foreach ($rel_docs as $nid => $title) {
+      $doc_rel_link .= '<li class="item">' . getIcon('blank') . ' ' . l($title, 'node/' . $nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
     }
 
     $doc_rel_link .= "</ul>";
@@ -239,6 +262,109 @@ function sedermera_preprocess_node(&$variables) {
       if ($man_file != '<ul class="attachments-list"></ul>') {
         $variables['files'] = '<div class="attachments"><h3>Filer</h3>' . $man_file . '</div>';
       }
+    }
+
+    $doc_rel_link = '<ul class="related-docs">';
+
+    $result = array_merge(getDocuments(), getManuals(), getTemplates());
+    $rel_docs = array();
+
+    foreach ($result as $doc) {
+      if (!empty($doc->field_dokument_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_dokument_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+      if (!empty($doc->field_manual_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_manual_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+      if (!empty($doc->field_template_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_template_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+    }
+
+    // List documents related from this document
+    if (!empty($variables['field_manual_relation'])) {
+      foreach ($variables['field_manual_relation'] as $relation) {
+        $rel_docs[$relation['entity']->nid] = $relation['entity']->title;
+      }
+    }
+
+    foreach ($rel_docs as $nid => $title) {
+      $doc_rel_link .= '<li class="item">' . getIcon('blank') . ' ' . l($title, 'node/' . $nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
+    }
+
+    $doc_rel_link .= "</ul>";
+
+    // Create variable for related documents
+    if ($doc_rel_link != '<ul class="related-docs"></ul>') {
+      $variables['related'] = '<div class="related"><h3>Relaterade dokument</h3>' . $doc_rel_link . '</div>';
+    }
+  }
+
+  if ($variables['type'] == 'template' && $variables['view_mode'] == 'full') {
+
+    $doc_rel_link = '<ul class="related-docs">';
+
+    $result = array_merge(getDocuments(), getManuals(), getTemplates());
+    $rel_docs = array();
+
+    foreach ($result as $doc) {
+      if (!empty($doc->field_dokument_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_dokument_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+      if (!empty($doc->field_manual_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_manual_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+      if (!empty($doc->field_template_relation)) {
+        // List documents related to this document
+        foreach ($doc->field_template_relation[LANGUAGE_NONE] as $relation) {
+          if ($relation['target_id'] == $variables['nid']) {
+            $rel_docs[$doc->nid] = $doc->title;
+          }
+        }
+      }
+    }
+
+    // List documents related from this document
+    if (!empty($variables['field_manual_relation'])) {
+      foreach ($variables['field_manual_relation'] as $relation) {
+        $rel_docs[$relation['entity']->nid] = $relation['entity']->title;
+      }
+    }
+
+    foreach ($rel_docs as $nid => $title) {
+      $doc_rel_link .= '<li class="item">' . getIcon('blank') . ' ' . l($title, 'node/' . $nid, array('attributes' => array('class' => array('document-link')))) . '</li>';
+    }
+
+    $doc_rel_link .= "</ul>";
+
+    // Create variable for related documents
+    if ($doc_rel_link != '<ul class="related-docs"></ul>') {
+      $variables['related'] = '<div class="related"><h3>Relaterade dokument</h3>' . $doc_rel_link . '</div>';
     }
   }
 
