@@ -15,6 +15,12 @@ function f_document_ccl_features_preset() {
       'link' => 'node/add/document',
       'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:8:"document";s:7:"node_id";s:0:"";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:14:"dokument/lista";s:8:"la_types";a:3:{s:8:"document";i:0;s:7:"company";i:0;s:15:"capital_raising";i:0;}s:8:"la_roles";a:7:{i:1;i:0;i:2;i:0;i:3;i:0;i:5;i:0;i:4;i:0;i:6;i:0;i:7;i:0;}}',
     ),
+    'Lägg till mall' => array(
+      'type' => 'local_action',
+      'title' => 'Lägg till mall',
+      'link' => 'node/add/template',
+      'options' => 'a:10:{s:12:"advanced_css";s:0:"";s:14:"advanced_query";s:0:"";s:15:"advanced_target";s:7:"default";s:12:"node_options";s:4:"node";s:9:"node_type";s:16:"investor_company";s:7:"node_id";s:0:"";s:13:"la_visibility";s:1:"1";s:8:"la_pages";s:12:"mallar/lista";s:8:"la_types";a:15:{s:16:"investor_company";i:0;s:16:"investor_private";i:0;s:8:"document";i:0;s:5:"offer";i:0;s:4:"ctrl";i:0;s:8:"ctrl_pen";i:0;s:7:"company";i:0;s:8:"template";i:0;s:4:"mall";i:0;s:6:"manual";i:0;s:6:"person";i:0;s:14:"transaction_ap";i:0;s:21:"transaction_agreement";i:0;s:11:"transaction";i:0;s:19:"transaction_history";i:0;}s:8:"la_roles";a:8:{i:1;i:0;i:2;i:0;i:3;i:0;i:5;i:0;i:4;i:0;i:8;i:0;i:7;i:0;i:6;i:0;}}',
+    ),
     'Lägg till manual' => array(
       'type' => 'local_action',
       'title' => 'Lägg till manual',
