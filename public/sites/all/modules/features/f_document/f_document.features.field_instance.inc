@@ -2233,6 +2233,13 @@ function f_document_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -2307,11 +2314,12 @@ function f_document_field_default_field_instances() {
         'type' => 'file_default',
         'weight' => 2,
       ),
-      'teaser' => array(
+      'full' => array(
         'label' => 'above',
+        'module' => 'file',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'file_default',
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'node',
@@ -2350,11 +2358,12 @@ function f_document_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 1,
       ),
-      'teaser' => array(
+      'full' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
