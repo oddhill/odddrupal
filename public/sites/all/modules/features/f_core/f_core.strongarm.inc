@@ -269,12 +269,12 @@ function f_core_strongarm() {
   $strongarm->value = array(
     1 => 0,
     2 => 0,
-    9 => 0,
-    10 => 0,
     3 => 1,
     5 => 1,
     4 => 1,
     8 => 1,
+    7 => 0,
+    6 => 0,
   );
   $export['nodeaccess-roles'] = $strongarm;
 
@@ -296,6 +296,7 @@ function f_core_strongarm() {
     'transaction_history' => 0,
     'ctrl' => 0,
     'ctrl_pen' => 0,
+    'mall' => 0,
   );
   $export['nodeaccess-types'] = $strongarm;
 
@@ -369,6 +370,11 @@ function f_core_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
+    'mall' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
   );
   $export['nodeaccess_authors'] = $strongarm;
 
@@ -413,21 +419,21 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     5 => array(
-      'gid' => 9,
-      'realm' => 'nodeaccess_rid',
-      'grant_view' => 0,
-      'grant_update' => 0,
-      'grant_delete' => 0,
-    ),
-    6 => array(
       'gid' => 8,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
+    6 => array(
+      'gid' => 7,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
     7 => array(
-      'gid' => 10,
+      'gid' => 6,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 0,
       'grant_update' => 0,
@@ -477,21 +483,21 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     5 => array(
-      'gid' => 9,
-      'realm' => 'nodeaccess_rid',
-      'grant_view' => 1,
-      'grant_update' => 1,
-      'grant_delete' => 0,
-    ),
-    6 => array(
       'gid' => 8,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 1,
       'grant_update' => 1,
       'grant_delete' => 0,
     ),
+    6 => array(
+      'gid' => 7,
+      'realm' => 'nodeaccess_rid',
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
     7 => array(
-      'gid' => 10,
+      'gid' => 6,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 1,
       'grant_update' => 0,
