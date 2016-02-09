@@ -18,6 +18,7 @@ function sedermera_parent_paths_menu_alter(&$items) {
     'manualer' => 'manualer/lista',
     'avtalsparter' => 'avtalsparter/lista',
     'erbjudanden' => 'erbjudanden/lista',
+    'mallar' => 'mallar/lista',
   );
 
   // Register each path based on its redirect path. We'll change the type in
