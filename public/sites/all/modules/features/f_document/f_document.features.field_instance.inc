@@ -2182,6 +2182,56 @@ function f_document_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-manual-field_manual_relation'.
+  $field_instances['node-manual-field_manual_relation'] = array(
+    'bundle' => 'manual',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 17,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_manual_relation',
+    'label' => 'Manual relaterad till',
+    'required' => 0,
+    'settings' => array(
+      'field_lock_multi_values' => array(
+        'disable_reorder' => 0,
+        'lock_previous' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 22,
+    ),
+  );
+
   // Exported field_instance: 'node-manual-field_manual_type'.
   $field_instances['node-manual-field_manual_type'] = array(
     'bundle' => 'manual',
@@ -2344,6 +2394,52 @@ function f_document_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-template-field_template_relation'.
+  $field_instances['node-template-field_template_relation'] = array(
+    'bundle' => 'template',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_template_relation',
+    'label' => 'Mall relaterat till',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 41,
+    ),
+  );
+
   // Exported field_instance: 'node-template-field_template_types'.
   $field_instances['node-template-field_template_types'] = array(
     'bundle' => 'template',
@@ -2405,6 +2501,8 @@ function f_document_field_default_field_instances() {
   t('Fritextfält som visas i sidfot');
   t('Fritextfält som visas i sidhuvud');
   t('Företags logotyp');
+  t('Mall relaterat till');
+  t('Manual relaterad till');
   t('Moms');
   t('Moms som visas i sidfot');
   t('Reference');
