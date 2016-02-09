@@ -135,32 +135,6 @@ function f_document_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__mall';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'metatags' => array(
-          'weight' => '40',
-        ),
-        'title' => array(
-          'weight' => '-5',
-        ),
-        'path' => array(
-          'weight' => '30',
-        ),
-        'redirect' => array(
-          'weight' => '30',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
-  $export['field_bundle_settings_node__mall'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__manual';
   $strongarm->value = array(
     'view_modes' => array(
@@ -208,6 +182,32 @@ function f_document_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__manual'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__template';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'title' => array(
+          'weight' => '-5',
+        ),
+        'path' => array(
+          'weight' => '30',
+        ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__template'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -380,16 +380,16 @@ function f_document_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_mall';
+  $strongarm->name = 'language_content_type_manual';
   $strongarm->value = '0';
-  $export['language_content_type_mall'] = $strongarm;
+  $export['language_content_type_manual'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_manual';
+  $strongarm->name = 'language_content_type_template';
   $strongarm->value = '0';
-  $export['language_content_type_manual'] = $strongarm;
+  $export['language_content_type_template'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -401,16 +401,16 @@ function f_document_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_mall';
+  $strongarm->name = 'menu_options_manual';
   $strongarm->value = array();
-  $export['menu_options_mall'] = $strongarm;
+  $export['menu_options_manual'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_manual';
+  $strongarm->name = 'menu_options_template';
   $strongarm->value = array();
-  $export['menu_options_manual'] = $strongarm;
+  $export['menu_options_template'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -422,16 +422,16 @@ function f_document_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_mall';
+  $strongarm->name = 'menu_parent_manual';
   $strongarm->value = 'main-menu:0';
-  $export['menu_parent_mall'] = $strongarm;
+  $export['menu_parent_manual'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_manual';
+  $strongarm->name = 'menu_parent_template';
   $strongarm->value = 'main-menu:0';
-  $export['menu_parent_manual'] = $strongarm;
+  $export['menu_parent_template'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -517,20 +517,20 @@ function f_document_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_mall';
-  $strongarm->value = array(
-    0 => 'status',
-  );
-  $export['node_options_mall'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_manual';
   $strongarm->value = array(
     0 => 'status',
   );
   $export['node_options_manual'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_template';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_template'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -542,16 +542,16 @@ function f_document_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_mall';
+  $strongarm->name = 'node_preview_manual';
   $strongarm->value = '0';
-  $export['node_preview_mall'] = $strongarm;
+  $export['node_preview_manual'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_manual';
+  $strongarm->name = 'node_preview_template';
   $strongarm->value = '0';
-  $export['node_preview_manual'] = $strongarm;
+  $export['node_preview_template'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -563,16 +563,16 @@ function f_document_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_mall';
+  $strongarm->name = 'node_submitted_manual';
   $strongarm->value = 0;
-  $export['node_submitted_mall'] = $strongarm;
+  $export['node_submitted_manual'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_manual';
+  $strongarm->name = 'node_submitted_template';
   $strongarm->value = 0;
-  $export['node_submitted_manual'] = $strongarm;
+  $export['node_submitted_template'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

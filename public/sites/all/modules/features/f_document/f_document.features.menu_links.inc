@@ -36,6 +36,32 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_regelverk:dokument',
   );
+  // Exported menu link: main-menu_administrera-mallar:mallar/administrera.
+  $menu_links['main-menu_administrera-mallar:mallar/administrera'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'mallar/administrera',
+    'router_path' => 'mallar/administrera',
+    'link_title' => 'Administrera mallar',
+    'options' => array(
+      'attributes' => array(
+        'id' => 'administer',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_administrera-mallar:mallar/administrera',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_mallar:mallar',
+  );
   // Exported menu link: main-menu_administrera-manualer:manualer/administrera.
   $menu_links['main-menu_administrera-manualer:manualer/administrera'] = array(
     'menu_name' => 'main-menu',
@@ -89,6 +115,34 @@ function f_document_menu_default_menu_links() {
     'weight' => -49,
     'customized' => 1,
     'parent_identifier' => 'main-menu_regelverk:dokument',
+  );
+  // Exported menu link: main-menu_alla-mallar:mallar/lista.
+  $menu_links['main-menu_alla-mallar:mallar/lista'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'mallar/lista',
+    'router_path' => 'mallar/lista',
+    'link_title' => 'Alla mallar',
+    'options' => array(
+      'attributes' => array(
+        'class' => array(
+          0 => 'all',
+        ),
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_alla-mallar:mallar/lista',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_mallar:mallar',
   );
   // Exported menu link: main-menu_alla-manualer:manualer/lista.
   $menu_links['main-menu_alla-manualer:manualer/lista'] = array(
@@ -224,6 +278,31 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_regelverk:dokument',
   );
+  // Exported menu link: main-menu_mallar:mallar.
+  $menu_links['main-menu_mallar:mallar'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'mallar',
+    'router_path' => 'mallar',
+    'link_title' => 'Mallar',
+    'options' => array(
+      'attributes' => array(
+        'id' => 'manuals',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_mallar:mallar',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+  );
   // Exported menu link: main-menu_manualer:manualer.
   $menu_links['main-menu_manualer:manualer'] = array(
     'menu_name' => 'main-menu',
@@ -330,13 +409,16 @@ function f_document_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Administrera dokument');
+  t('Administrera mallar');
   t('Administrera manualer');
   t('Alla dokument');
+  t('Alla mallar');
   t('Alla manualer');
   t('Dokumentlogg');
   t('Lägg till dokument');
   t('Läst per användare');
   t('Läst per dokument');
+  t('Mallar');
   t('Manualer');
   t('Regelverk');
   t('Sortera dokument');

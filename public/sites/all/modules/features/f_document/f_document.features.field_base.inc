@@ -715,13 +715,13 @@ function f_document_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_template_file'.
-  $field_bases['field_template_file'] = array(
+  // Exported field_base: 'field_template_files'.
+  $field_bases['field_template_files'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_template_file',
+    'field_name' => 'field_template_files',
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -738,13 +738,13 @@ function f_document_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_template_type'.
-  $field_bases['field_template_type'] = array(
+  // Exported field_base: 'field_template_types'.
+  $field_bases['field_template_types'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_template_type',
+    'field_name' => 'field_template_types',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',

@@ -60,15 +60,6 @@ function f_document_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create mall content'.
-  $permissions['create mall content'] = array(
-    'name' => 'create mall content',
-    'roles' => array(
-      'Dokumentskapare' => 'Dokumentskapare',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'create manual content'.
   $permissions['create manual content'] = array(
     'name' => 'create manual content',
@@ -77,6 +68,15 @@ function f_document_user_default_permissions() {
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
       'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create template content'.
+  $permissions['create template content'] = array(
+    'name' => 'create template content',
+    'roles' => array(
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );
@@ -157,16 +157,6 @@ function f_document_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit any mall content'.
-  $permissions['edit any mall content'] = array(
-    'name' => 'edit any mall content',
-    'roles' => array(
-      'Dokumentmoderator' => 'Dokumentmoderator',
-      'Dokumentskapare' => 'Dokumentskapare',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'edit any manual content'.
   $permissions['edit any manual content'] = array(
     'name' => 'edit any manual content',
@@ -175,6 +165,16 @@ function f_document_user_default_permissions() {
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
       'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any template content'.
+  $permissions['edit any template content'] = array(
+    'name' => 'edit any template content',
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );
@@ -188,16 +188,6 @@ function f_document_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit own mall content'.
-  $permissions['edit own mall content'] = array(
-    'name' => 'edit own mall content',
-    'roles' => array(
-      'Dokumentmoderator' => 'Dokumentmoderator',
-      'Dokumentskapare' => 'Dokumentskapare',
-    ),
-    'module' => 'node',
-  );
-
   // Exported permission: 'edit own manual content'.
   $permissions['edit own manual content'] = array(
     'name' => 'edit own manual content',
@@ -206,6 +196,16 @@ function f_document_user_default_permissions() {
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
       'Redaktör' => 'Redaktör',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own template content'.
+  $permissions['edit own template content'] = array(
+    'name' => 'edit own template content',
+    'roles' => array(
+      'Dokumentmoderator' => 'Dokumentmoderator',
+      'Dokumentskapare' => 'Dokumentskapare',
     ),
     'module' => 'node',
   );
@@ -331,9 +331,9 @@ function f_document_user_default_permissions() {
     'module' => 'node_view_permissions',
   );
 
-  // Exported permission: 'view any mall content'.
-  $permissions['view any mall content'] = array(
-    'name' => 'view any mall content',
+  // Exported permission: 'view any manual content'.
+  $permissions['view any manual content'] = array(
+    'name' => 'view any manual content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Användare' => 'Användare',
@@ -345,9 +345,9 @@ function f_document_user_default_permissions() {
     'module' => 'node_view_permissions',
   );
 
-  // Exported permission: 'view any manual content'.
-  $permissions['view any manual content'] = array(
-    'name' => 'view any manual content',
+  // Exported permission: 'view any template content'.
+  $permissions['view any template content'] = array(
+    'name' => 'view any template content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Användare' => 'Användare',
@@ -383,13 +383,6 @@ function f_document_user_default_permissions() {
     'module' => 'view_unpublished',
   );
 
-  // Exported permission: 'view any unpublished mall content'.
-  $permissions['view any unpublished mall content'] = array(
-    'name' => 'view any unpublished mall content',
-    'roles' => array(),
-    'module' => 'view_unpublished',
-  );
-
   // Exported permission: 'view any unpublished manual content'.
   $permissions['view any unpublished manual content'] = array(
     'name' => 'view any unpublished manual content',
@@ -397,6 +390,13 @@ function f_document_user_default_permissions() {
       'Administratör' => 'Administratör',
       'Redaktör' => 'Redaktör',
     ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished template content'.
+  $permissions['view any unpublished template content'] = array(
+    'name' => 'view any unpublished template content',
+    'roles' => array(),
     'module' => 'view_unpublished',
   );
 
@@ -414,9 +414,9 @@ function f_document_user_default_permissions() {
     'module' => 'node_view_permissions',
   );
 
-  // Exported permission: 'view own mall content'.
-  $permissions['view own mall content'] = array(
-    'name' => 'view own mall content',
+  // Exported permission: 'view own manual content'.
+  $permissions['view own manual content'] = array(
+    'name' => 'view own manual content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Användare' => 'Användare',
@@ -428,9 +428,9 @@ function f_document_user_default_permissions() {
     'module' => 'node_view_permissions',
   );
 
-  // Exported permission: 'view own manual content'.
-  $permissions['view own manual content'] = array(
-    'name' => 'view own manual content',
+  // Exported permission: 'view own template content'.
+  $permissions['view own template content'] = array(
+    'name' => 'view own template content',
     'roles' => array(
       'Administratör' => 'Administratör',
       'Användare' => 'Användare',
