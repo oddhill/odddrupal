@@ -29,11 +29,14 @@
       <?php print render($content['body']); ?>
     </article>
 
-    <?php if (!empty($files)) : ?>
-      <aside class="manual-sidebar">
+    <aside class="manual-sidebar">
+      <?php if (!empty($files)) : ?>
         <?php print $files; ?>
-      </aside>
-    <?php endif; ?>
+      <?php endif; ?>
+      <?php if (!empty($related)) : ?>
+        <?php print $related; ?>
+      <?php endif;?>
+    </aside>
 
     <footer class="manual-footer">
 
