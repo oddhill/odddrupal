@@ -1,0 +1,4 @@
+name = Sedermera Mall
+description = Views for templates.
+core = 7.x
+package = Sedermera

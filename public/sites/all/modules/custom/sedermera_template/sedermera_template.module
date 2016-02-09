@@ -1,0 +1,208 @@
+<?php
+/**
+ * @file sedermera_manual.module
+ * Main module file for the Sedermera Manual module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_template_menu() {
+  $items['mallar/lista'] = array(
+    'title' => 'Alla mallar',
+    'page callback' => 'view_template',
+    'access arguments' => array('view any mall content'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_mallar:mallar',
+    'weight' => 0,
+  );
+
+  $items['mallar/administrera'] = array(
+    'title' => 'Administrera mallar',
+    'page callback' => 'template_admin',
+    'access arguments' => array('document admin'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_mallar:mallar',
+    'weight' => 0,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for the document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function view_template() {
+  // Get list of templates
+  $templates = getTemplates();
+
+  // Check if there is templates
+  if (!empty($templates)) {
+    $templates = orderTemplates($templates);
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($templates as $template) {
+      generateTemplatesRows($rows, $template);
+    }
+
+    // Create table.
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateTemplateTable($header, $rows),
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga mallar</div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Page callback for the admin document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function template_admin() {
+  // Get list of templates
+  $templates = getTemplates();
+
+  if (!empty($templates)) {
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+      array('data' => 'Datum', 'class' => array('table-head')),
+      array('data' => 'Administrera', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($templates as $doc) {
+      generateTemplateAdminRows($rows, $doc);
+    }
+    // Create table.
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateTemplateTable($header, $rows),
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga mallar</div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Get documents
+ * @return entity loaded documents
+ */
+function getTemplates() {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'template')
+    ->propertyOrderBy('title', 'ASC');
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $template_nids = array_keys($result['node']);
+    return entity_load('node', $template_nids);
+  }
+}
+
+/**
+ * Order documents according to draggableviews order
+ * @return ordered document list.
+ */
+function orderTemplates($templates) {
+  $orderedTemplates = array();
+  $result = db_query("SELECT entity_id
+    FROM draggableviews_structure
+    WHERE view_display = 'template'
+    ORDER BY weight ASC")->fetchAll();
+
+  if (empty($result)) {
+    return $templates;
+  }
+
+  foreach ($result as $value) {
+    $orderedTemplates[] = $templates[$value->entity_id];
+    unset($templates[$value->entity_id]);
+  }
+
+  foreach ($templates as $value) {
+    $orderedTemplates[] = $value;
+  }
+
+  return $orderedTemplates;
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $templates  The document to look at
+ */
+function generateTemplatesRows(&$rows, $templates) {
+  global $user;
+
+  $rows[] = array(
+    array(
+      'data' => l($templates->title, 'node/' . $templates->nid),
+      'class' => 'template',
+    ),
+  );
+
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $prefix Current level of tabbing
+ * @param  $doc    The document to look at
+ */
+function generateTemplateAdminRows(&$rows, $template) {
+  $rows[] = array(
+    array(
+      'data' => $template->title,
+      'class' => 'template',
+    ),
+    array(
+      'data' => format_date($template->revision_timestamp, 'long', '', 'Europe/Stockholm'),
+      'class' => 'template',
+    ),
+    array(
+      'data' => l('Redigera', 'node/' . $template->nid . '/edit/'),
+      'class' => 'template',
+    ),
+  );
+}
+
+/**
+ * Helper function for table generation to reduce code redundency
+ * @param  $header  Table header
+ * @param  $rows    Table rows
+ * @return Renderable table array
+ */
+function generateTemplateTable($header, $rows) {
+  return array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#prefix' => '<div class="table-wrapper">',
+    '#suffix' => '</div>',
+  );
+}
