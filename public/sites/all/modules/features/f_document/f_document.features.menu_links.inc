@@ -58,7 +58,7 @@ function f_document_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'main-menu_mallar:mallar',
   );
@@ -379,6 +379,32 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_regelverk:dokument',
   );
+  // Exported menu link: main-menu_sortera-mallar:mallar/sortera.
+  $menu_links['main-menu_sortera-mallar:mallar/sortera'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'mallar/sortera',
+    'router_path' => 'mallar/sortera',
+    'link_title' => 'Sortera mallar',
+    'options' => array(
+      'attributes' => array(
+        'id' => 'manuals-sort',
+      ),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
+      'identifier' => 'main-menu_sortera-mallar:mallar/sortera',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'main-menu_mallar:mallar',
+  );
   // Exported menu link: main-menu_sortera-manualer:manualer/sortera.
   $menu_links['main-menu_sortera-manualer:manualer/sortera'] = array(
     'menu_name' => 'main-menu',
@@ -422,6 +448,7 @@ function f_document_menu_default_menu_links() {
   t('Manualer');
   t('Regelverk');
   t('Sortera dokument');
+  t('Sortera mallar');
   t('Sortera manualer');
 
   return $menu_links;

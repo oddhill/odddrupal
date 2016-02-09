@@ -159,6 +159,7 @@ features[menu_links][] = main-menu_mallar:mallar
 features[menu_links][] = main-menu_manualer:manualer
 features[menu_links][] = main-menu_regelverk:dokument
 features[menu_links][] = main-menu_sortera-dokument:dokument/sortera
+features[menu_links][] = main-menu_sortera-mallar:mallar/sortera
 features[menu_links][] = main-menu_sortera-manualer:manualer/sortera
 features[message_type][] = document_view
 features[node][] = document
