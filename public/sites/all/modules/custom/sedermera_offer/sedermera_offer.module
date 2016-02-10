@@ -1708,6 +1708,7 @@ function sedermera_offer_views_pre_render(&$view) {
       'field_transaction_sum' => number_format($total_sum, 0, ',', ' ') . " :-",
       'note' => '',
       'contact' => '',
+      'contact_by' => '',
       'info' => '',
       'offer' => '',
       'interest' => '',

@@ -4268,6 +4268,45 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-transaction-field_transaction_contact_by'.
+  $field_instances['node-transaction-field_transaction_contact_by'] = array(
+    'bundle' => 'transaction',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 20,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_contact_by',
+    'label' => 'Kontaktad av',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 23,
+    ),
+  );
+
   // Exported field_instance: 'node-transaction-field_transaction_fe_sign'.
   $field_instances['node-transaction-field_transaction_fe_sign'] = array(
     'bundle' => 'transaction',
@@ -6268,6 +6307,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Intresserad den');
   t('Investor');
   t('Kompleterande frågor');
+  t('Kontaktad av');
   t('Kontrollera');
   t('Kontrollera den');
   t('Kundavtal');

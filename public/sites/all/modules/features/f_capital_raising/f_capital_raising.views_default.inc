@@ -296,6 +296,21 @@ function f_capital_raising_views_default_views() {
       'show_remaining_days' => 0,
     ),
   );
+  /* Field: Content: Kontaktad av */
+  $handler->display->display_options['fields']['field_transaction_contact_by']['id'] = 'field_transaction_contact_by';
+  $handler->display->display_options['fields']['field_transaction_contact_by']['table'] = 'field_data_field_transaction_contact_by';
+  $handler->display->display_options['fields']['field_transaction_contact_by']['field'] = 'field_transaction_contact_by';
+  $handler->display->display_options['fields']['field_transaction_contact_by']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_transaction_contact_by']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_transaction_contact_by']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'entityreference_label',
+    'fallback_settings' => array(
+      'link' => 0,
+    ),
+  );
   /* Field: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
@@ -401,6 +416,7 @@ else {
     t('Summa'),
     t('Anteckning'),
     t('Första kontakt'),
+    t('Kontaktad av'),
     t('Insynsinfo'),
     t('Erbjudande'),
     t('Intresserad'),
