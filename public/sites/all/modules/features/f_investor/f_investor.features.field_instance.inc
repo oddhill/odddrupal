@@ -1452,8 +1452,8 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'module' => 'sedermera_verification',
         'settings' => array(
-          'ajax' => FALSE,
-          'link' => FALSE,
+          'ajax' => 0,
+          'link' => 1,
           'link_destination' => 'view',
         ),
         'type' => 'sedermera_verification_status',

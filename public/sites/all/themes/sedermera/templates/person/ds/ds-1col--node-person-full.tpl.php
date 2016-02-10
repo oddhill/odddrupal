@@ -33,6 +33,10 @@
       <?php print render($content['field_user_interests']); ?>
     </div>
 
+    <div class="investor-verifications node-section">
+      <?php print render($content['field_user_id_ctrl']) ?>
+    </div>
+
     <div class="person-other node-section">
       <?php print render($content['field_user_id_address']); ?>
       <?php print render($content['field_user_notes']); ?>
