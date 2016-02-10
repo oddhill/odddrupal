@@ -86,6 +86,18 @@ function f_investor_strongarm() {
             'visible' => FALSE,
           ),
         ),
+        'verification_status_investor' => array(
+          'full' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+        'verification_id_investor' => array(
+          'full' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
       ),
     ),
   );
@@ -168,6 +180,18 @@ function f_investor_strongarm() {
           ),
           'full' => array(
             'weight' => '17',
+            'visible' => FALSE,
+          ),
+        ),
+        'verification_status_investor' => array(
+          'full' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+        'verification_id_investor' => array(
+          'full' => array(
+            'weight' => '0',
             'visible' => FALSE,
           ),
         ),

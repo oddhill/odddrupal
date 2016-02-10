@@ -630,8 +630,6 @@ function f_investor_ds_layout_settings_info() {
         7 => 'field_investor_shared_ctrl_ptv',
         8 => 'field_investor_shared_ctrl_cred',
         9 => 'field_investor_shared_ctrl_ext',
-        10 => 'verification_status',
-        11 => 'verification_status_id',
       ),
     ),
     'fields' => array(
@@ -645,8 +643,6 @@ function f_investor_ds_layout_settings_info() {
       'field_investor_shared_ctrl_ptv' => 'ds_content',
       'field_investor_shared_ctrl_cred' => 'ds_content',
       'field_investor_shared_ctrl_ext' => 'ds_content',
-      'verification_status' => 'ds_content',
-      'verification_status_id' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -679,7 +675,6 @@ function f_investor_ds_layout_settings_info() {
         6 => 'field_investor_shared_ctrl_ptv',
         7 => 'field_investor_shared_ctrl_cred',
         8 => 'field_investor_shared_ctrl_ext',
-        9 => 'verification_status',
       ),
     ),
     'fields' => array(
@@ -692,7 +687,6 @@ function f_investor_ds_layout_settings_info() {
       'field_investor_shared_ctrl_ptv' => 'ds_content',
       'field_investor_shared_ctrl_cred' => 'ds_content',
       'field_investor_shared_ctrl_ext' => 'ds_content',
-      'verification_status' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
