@@ -868,6 +868,57 @@ if ( $data->field_field_user_lead [0][raw][value]) {
   $handler->display->display_options['fields']['field_user_phone']['table'] = 'field_data_field_user_phone';
   $handler->display->display_options['fields']['field_user_phone']['field'] = 'field_user_phone';
   $handler->display->display_options['fields']['field_user_phone']['element_label_colon'] = FALSE;
+  /* Field: Content: Kundansvarig */
+  $handler->display->display_options['fields']['field_user_owner']['id'] = 'field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['table'] = 'field_data_field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['field'] = 'field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_user_owner']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'person' => 'person',
+  );
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Filtrera på namn';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    5 => 0,
+    4 => 0,
+    9 => 0,
+    8 => 0,
+    10 => 0,
+  );
+  /* Filter criterion: Content: Lead (field_user_lead) */
+  $handler->display->display_options['filters']['field_user_lead_value']['id'] = 'field_user_lead_value';
+  $handler->display->display_options['filters']['field_user_lead_value']['table'] = 'field_data_field_user_lead';
+  $handler->display->display_options['filters']['field_user_lead_value']['field'] = 'field_user_lead_value';
+  $handler->display->display_options['filters']['field_user_lead_value']['value'] = array(
+    0 => '0',
+  );
   $translatables['person'] = array(
     t('Master'),
     t('Kontaktpersoner'),
