@@ -710,6 +710,38 @@ function f_investor_views_default_views() {
 
   /* Display: Lista */
   $handler = $view->new_display('page', 'Lista', 'list');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Namn';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: E-post */
+  $handler->display->display_options['fields']['field_user_mail']['id'] = 'field_user_mail';
+  $handler->display->display_options['fields']['field_user_mail']['table'] = 'field_data_field_user_mail';
+  $handler->display->display_options['fields']['field_user_mail']['field'] = 'field_user_mail';
+  $handler->display->display_options['fields']['field_user_mail']['element_label_colon'] = FALSE;
+  /* Field: Content: Mobil */
+  $handler->display->display_options['fields']['field_user_cell']['id'] = 'field_user_cell';
+  $handler->display->display_options['fields']['field_user_cell']['table'] = 'field_data_field_user_cell';
+  $handler->display->display_options['fields']['field_user_cell']['field'] = 'field_user_cell';
+  $handler->display->display_options['fields']['field_user_cell']['element_label_colon'] = FALSE;
+  /* Field: Content: Telefon */
+  $handler->display->display_options['fields']['field_user_phone']['id'] = 'field_user_phone';
+  $handler->display->display_options['fields']['field_user_phone']['table'] = 'field_data_field_user_phone';
+  $handler->display->display_options['fields']['field_user_phone']['field'] = 'field_user_phone';
+  $handler->display->display_options['fields']['field_user_phone']['element_label_colon'] = FALSE;
+  /* Field: Content: Kundansvarig */
+  $handler->display->display_options['fields']['field_user_owner']['id'] = 'field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['table'] = 'field_data_field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['field'] = 'field_user_owner';
+  $handler->display->display_options['fields']['field_user_owner']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_user_owner']['settings'] = array(
+    'link' => 0,
+  );
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -830,6 +862,7 @@ function f_investor_views_default_views() {
     t('Filtrera på namn'),
     t('Lista'),
     t('<em> - Kundansvarig - </em>'),
+    t('Kundansvarig'),
     t('Skapa erbjudande'),
     t('- Choose an operation -'),
   );
