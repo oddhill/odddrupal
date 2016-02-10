@@ -74,6 +74,7 @@ function f_core_user_default_permissions() {
       'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Granskare' => 'Granskare',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'user',
   );

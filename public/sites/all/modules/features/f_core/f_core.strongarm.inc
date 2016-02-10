@@ -269,12 +269,12 @@ function f_core_strongarm() {
   $strongarm->value = array(
     1 => 0,
     2 => 0,
+    7 => 0,
+    6 => 0,
     3 => 1,
     5 => 1,
     4 => 1,
     8 => 1,
-    7 => 0,
-    6 => 0,
   );
   $export['nodeaccess-roles'] = $strongarm;
 
@@ -289,6 +289,7 @@ function f_core_strongarm() {
     'transaction_ap' => 0,
     'company' => 0,
     'document' => 0,
+    'mall' => 0,
     'manual' => 0,
     'investor_company' => 0,
     'investor_private' => 0,
@@ -296,7 +297,7 @@ function f_core_strongarm() {
     'transaction_history' => 0,
     'ctrl' => 0,
     'ctrl_pen' => 0,
-    'mall' => 0,
+    'template' => 0,
   );
   $export['nodeaccess-types'] = $strongarm;
 
@@ -370,7 +371,7 @@ function f_core_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
-    'mall' => array(
+    'template' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
