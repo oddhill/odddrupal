@@ -179,10 +179,6 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
       }
       $pnbr = $node->field_user_ssn[LANGUAGE_NONE][0]['value'];
 
-      if (preg_match("/^\d{6}-\d{4}/", $pnbr) !== 1) {
-        form_set_error('field_user_ssn', t('Person number not valid.'));
-      }
-
       if (isset($node->nid)) {
         if (!person_nbr_is_same($pnbr, $node->nid) && person_nbr_exists($pnbr)) {
           form_set_error('field_user_ssn', t('Person number already in use.'));
@@ -198,10 +194,6 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
   if ($form_state['values']['type'] == 'investor_company') {
     $org_nbr = $node->field_investor_comp_org_nbr[LANGUAGE_NONE][0]['value'];
     $cust_id = $form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'];
-
-    if (preg_match("/^\d{6}-\d{4}/", $org_nbr) !== 1) {
-      form_set_error('field_investor_comp_org_nbr', t('Organisation number not valid.'));
-    }
 
     if (isset($node->nid)) {
       if (!org_nbr_is_same($org_nbr, $node->nid) && org_nbr_exists($org_nbr)) {
