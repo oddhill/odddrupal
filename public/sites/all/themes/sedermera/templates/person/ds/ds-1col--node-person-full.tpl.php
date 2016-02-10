@@ -23,6 +23,7 @@
     <?php endif; ?>
 
     <div class="person-details node-section">
+      <?php print render($content['field_user_owner']); ?>
       <?php print render($content['field_user_ssn']); ?>
       <?php print render($content['field_user_mail']); ?>
       <?php print render($content['field_user_phone']); ?>
