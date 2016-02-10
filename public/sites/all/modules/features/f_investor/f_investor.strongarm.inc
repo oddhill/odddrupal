@@ -88,13 +88,13 @@ function f_investor_strongarm() {
         ),
         'verification_status_investor' => array(
           'full' => array(
-            'weight' => '0',
+            'weight' => '18',
             'visible' => FALSE,
           ),
         ),
         'verification_id_investor' => array(
           'full' => array(
-            'weight' => '0',
+            'weight' => '19',
             'visible' => FALSE,
           ),
         ),

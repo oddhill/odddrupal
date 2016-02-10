@@ -23,6 +23,7 @@
       <?php print render($content['field_investor_comp_org_nbr']); ?>
       <?php print render($content['field_investor_comp_owners']); ?>
       <?php print render($content['field_investor_comp_real']); ?>
+      <?php print render($content['field_shared_cont_pers']); ?>
     </div>
 
     <div class="investor-other node-section">

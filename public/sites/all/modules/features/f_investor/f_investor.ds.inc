@@ -630,6 +630,7 @@ function f_investor_ds_layout_settings_info() {
         7 => 'field_investor_shared_ctrl_ptv',
         8 => 'field_investor_shared_ctrl_cred',
         9 => 'field_investor_shared_ctrl_ext',
+        10 => 'field_shared_cont_pers',
       ),
     ),
     'fields' => array(
@@ -643,6 +644,7 @@ function f_investor_ds_layout_settings_info() {
       'field_investor_shared_ctrl_ptv' => 'ds_content',
       'field_investor_shared_ctrl_cred' => 'ds_content',
       'field_investor_shared_ctrl_ext' => 'ds_content',
+      'field_shared_cont_pers' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
