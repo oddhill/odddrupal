@@ -719,6 +719,17 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: ID-kontroll */
+  $handler->display->display_options['fields']['field_user_id_ctrl']['id'] = 'field_user_id_ctrl';
+  $handler->display->display_options['fields']['field_user_id_ctrl']['table'] = 'field_data_field_user_id_ctrl';
+  $handler->display->display_options['fields']['field_user_id_ctrl']['field'] = 'field_user_id_ctrl';
+  $handler->display->display_options['fields']['field_user_id_ctrl']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_user_id_ctrl']['type'] = 'sedermera_verification_status';
+  $handler->display->display_options['fields']['field_user_id_ctrl']['settings'] = array(
+    'ajax' => 0,
+    'link' => 1,
+    'link_destination' => 'view',
+  );
   /* Field: Content: E-post */
   $handler->display->display_options['fields']['field_user_mail']['id'] = 'field_user_mail';
   $handler->display->display_options['fields']['field_user_mail']['table'] = 'field_data_field_user_mail';
@@ -862,6 +873,7 @@ function f_investor_views_default_views() {
     t('Filtrera på namn'),
     t('Lista'),
     t('<em> - Kundansvarig - </em>'),
+    t('ID-kontroll'),
     t('Kundansvarig'),
     t('Skapa erbjudande'),
     t('- Choose an operation -'),
