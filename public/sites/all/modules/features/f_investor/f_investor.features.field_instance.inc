@@ -680,9 +680,7 @@ function f_investor_field_default_field_instances() {
       'active' => 1,
       'module' => 'addressfield',
       'settings' => array(
-        'available_countries' => array(
-          'SE' => 'SE',
-        ),
+        'available_countries' => array(),
         'default_country' => 'SE',
         'format_handlers' => array(
           'address' => 'address',
