@@ -1709,6 +1709,7 @@ function sedermera_offer_views_pre_render(&$view) {
       'note' => '',
       'contact' => '',
       'contact_by' => '',
+      'no_interest' => '',
       'info' => '',
       'offer' => '',
       'interest' => '',

@@ -4778,6 +4778,49 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-transaction-field_transaction_no_info'.
+  $field_instances['node-transaction-field_transaction_no_info'] = array(
+    'bundle' => 'transaction',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 21,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_no_info',
+    'label' => 'Avstå info',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 24,
+    ),
+  );
+
   // Exported field_instance: 'node-transaction-field_transaction_note'.
   $field_instances['node-transaction-field_transaction_note'] = array(
     'bundle' => 'transaction',
@@ -6282,6 +6325,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Anteckning');
   t('Att teckna');
   t('Att teckna datum');
+  t('Avstå info');
   t('Avtal');
   t('Avtalspart');
   t('Beräknad noteringstidpunkt');

@@ -311,6 +311,26 @@ function f_capital_raising_views_default_views() {
       'link' => 0,
     ),
   );
+  /* Field: Content: Avstå info */
+  $handler->display->display_options['fields']['field_transaction_no_info']['id'] = 'field_transaction_no_info';
+  $handler->display->display_options['fields']['field_transaction_no_info']['table'] = 'field_data_field_transaction_no_info';
+  $handler->display->display_options['fields']['field_transaction_no_info']['field'] = 'field_transaction_no_info';
+  $handler->display->display_options['fields']['field_transaction_no_info']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_transaction_no_info']['type'] = 'editable';
+  $handler->display->display_options['fields']['field_transaction_no_info']['settings'] = array(
+    'click_to_edit' => 0,
+    'click_to_edit_style' => 'button',
+    'empty_text' => '',
+    'fallback_format' => 'list_default',
+  );
+  /* Field: Content: Avstå info */
+  $handler->display->display_options['fields']['field_transaction_no_info_1']['id'] = 'field_transaction_no_info_1';
+  $handler->display->display_options['fields']['field_transaction_no_info_1']['table'] = 'field_data_field_transaction_no_info';
+  $handler->display->display_options['fields']['field_transaction_no_info_1']['field'] = 'field_transaction_no_info';
+  $handler->display->display_options['fields']['field_transaction_no_info_1']['label'] = '';
+  $handler->display->display_options['fields']['field_transaction_no_info_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_transaction_no_info_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_transaction_no_info_1']['type'] = 'list_key';
   /* Field: Global: PHP */
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
@@ -322,7 +342,10 @@ function f_capital_raising_views_default_views() {
 $node_tr = node_load($row->nid);
 $node_of = node_load($row->nid_2);
 
-if ($node_of->field_offer_logout_info[\'und\'][0][value]) {
+if ($data->field_field_transaction_no_info_1[0][raw][value]) {
+  print \'Ingen info\';
+}
+else if ($node_of->field_offer_logout_info[\'und\'][0][value]) {
  print \'Utloggad\';
 }
 else if ($node_tr->field_transaction_info[\'und\'][0][value]) {
@@ -344,7 +367,10 @@ else {
   $handler->display->display_options['fields']['php_1']['php_output'] = '<?php
 $node_tr = node_load($row->nid);
 
-if ($node_tr->field_transaction_info_offer[\'und\'][0][value]) {
+if ($data->field_field_transaction_no_info_1[0][raw][value]) {
+  print \'Ingen info\';
+}
+else if ($node_tr->field_transaction_info_offer[\'und\'][0][value]) {
   print l(\'Skicka igen\', "offer/send-offer/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
 }
 else {
@@ -417,6 +443,7 @@ else {
     t('Anteckning'),
     t('Första kontakt'),
     t('Kontaktad av'),
+    t('Avstå info'),
     t('Insynsinfo'),
     t('Erbjudande'),
     t('Intresserad'),

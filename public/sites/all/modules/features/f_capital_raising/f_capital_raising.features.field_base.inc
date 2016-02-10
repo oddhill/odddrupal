@@ -2018,6 +2018,31 @@ function f_capital_raising_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
+  // Exported field_base: 'field_transaction_no_info'.
+  $field_bases['field_transaction_no_info'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_transaction_no_info',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_transaction_note'.
   $field_bases['field_transaction_note'] = array(
     'active' => 1,
