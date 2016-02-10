@@ -326,7 +326,7 @@ if ($node_of->field_offer_logout_info[\'und\'][0][value]) {
  print \'Utloggad\';
 }
 else if ($node_tr->field_transaction_info[\'und\'][0][value]) {
-  print \'Skickad\';
+  print l(\'Skicka igen\', "offer/send-info/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
 }
 else {
   print l(\'Skicka\', "offer/send-info/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
@@ -345,7 +345,7 @@ else {
 $node_tr = node_load($row->nid);
 
 if ($node_tr->field_transaction_info_offer[\'und\'][0][value]) {
-  print \'Skickad\';
+  print l(\'Skicka igen\', "offer/send-offer/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
 }
 else {
   print l(\'Skicka\', "offer/send-offer/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
