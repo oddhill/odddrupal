@@ -155,6 +155,12 @@ function _generate_interested_header_row(array &$header, array $type_investment)
     'class' => array('table-head'),
   );
 
+  // No interest column
+  $header[] = array(
+    'data' => 'Ej intresserad',
+    'class' => array('table-head'),
+  );
+
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $header[] = array(
@@ -556,6 +562,18 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
 
     $row = count($rows) - 1;
 
+    $no_interest = field_view_field('node', $transaction_ap, 'field_transaction_ap_no_inter',
+          array(
+            'label'=>'hidden',
+            'type' => 'editable',
+          ));
+    $rows[$row]['data'][] = array(
+      'data' => render($no_interest) . '<span>Ej intresserad</span>',
+    );
+
+    $non_mod = $transaction_ap_wrap->field_transaction_ap_no_inter->value();
+    $type = ($non_mod) ? 'default' : 'editable';
+
     // Teckningsförbindelse if Företrädesemission column
     if ($type_investment['fe_sign']) {
       $row_sum += $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
@@ -563,7 +581,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_sign',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -577,7 +595,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_fe_warrant',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -591,7 +609,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_sign',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -605,7 +623,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_le_warrant',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -619,7 +637,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_pp_sign',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -633,7 +651,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_re_sign',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -647,7 +665,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_bridging',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -661,7 +679,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $field = field_view_field('node', $transaction_ap, 'field_transaction_ap_block',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($field),
@@ -690,7 +708,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
       $to_ctrl = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl',
             array(
               'label'=>'hidden',
-              'type' => 'editable',
+              'type' => $type,
             ));
       $rows[$row]['data'][] = array(
         'data' => render($to_ctrl) . '<span>Kontrollera</span>',
@@ -719,6 +737,8 @@ function _generate_interested_sum_row(array &$rows, array $type_investment, $tra
       // Name column
       array(),
       // Dropdown column
+      array(),
+      // No interest column
       array(
         'data' => '<strong>Summa kontaktperson:</strong>',
       ),
@@ -817,6 +837,8 @@ function _generate_interested_total_sum_row(array &$rows, array $type_investment
       // Name column
       array(),
       // Dropdown column
+      array(),
+      // No interest column
       array(
         'data' => '<strong>Total summa:</strong>',
       ),

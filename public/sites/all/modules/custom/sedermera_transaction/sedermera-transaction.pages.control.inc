@@ -54,27 +54,21 @@ function sedermera_transaction_control() {
       // Generate the investor rows
       foreach ($transaction->field_transaction_investor as $investor_transactions) {
 
-        // Contains agreements for the transaction
-        $agreements = array();
-
         // Checks if there are any agreements for the investor
         foreach ($investor_transactions as $key => $value) {
-          $agreement = _get_agreements_for_investor($value['target_id']);
+          $target = $value['target_id'];
+          $agreement = _get_agreements_for_investor($target);
 
           if (!empty($agreement)) {
-            $agreements[$value['target_id']] = $agreement;
-          }
-        }
+            // Generate investor head row for agreements
+            _generate_control_investor_rows($rows, $target, $type_investment, $transaction);
 
-        // Generate investor head row for agreements
-        foreach ($agreements as $key => $agreement) {
-          _generate_control_investor_rows($rows, $key, $type_investment, $transaction);
-
-          // Generate rows for all agreements for the transaction on this offer.
-          foreach ($agreement as $value) {
-            _generate_control_agreement_rows($rows, $value, $key, $transaction);
+            // Generate rows for all agreements for the transaction on this offer.
+            foreach ($agreement as $ag_value) {
+              _generate_control_agreement_rows($rows, $ag_value, $target, $transaction);
+            }
+            _generate_control_empty_row($rows, $transaction);
           }
-          _generate_control_empty_row($rows, $transaction);
         }
       }
     }
@@ -311,8 +305,11 @@ function _generate_control_contact_person_head_row(array &$rows, stdClass $trans
  */
 function _get_agreements_for_investor($nid) {
   $result = db_query("SELECT field_transaction_ap_agree_target_id AS nid
-    FROM field_data_field_transaction_ap_agree
-    WHERE entity_id = :nid", array(':nid' => $nid))->fetchAllAssoc('nid');
+    FROM field_data_field_transaction_ap_agree AS ag
+    INNER JOIN field_data_field_transaction_ap_no_inter AS no
+    ON (ag.entity_id = no.entity_id)
+    WHERE ag.entity_id = :nid
+    AND no.field_transaction_ap_no_inter_value = 0", array(':nid' => $nid))->fetchAllAssoc('nid');
 
   return array_keys($result);
 }
