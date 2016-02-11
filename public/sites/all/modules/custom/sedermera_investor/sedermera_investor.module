@@ -177,17 +177,17 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
       if ($form_state['values']['field_user_ssn'][LANGUAGE_NONE][0]['value'] == '') {
         form_set_error('field_user_ssn', t('Personnummer måste fyllas i.'));
       }
-      $pnbr = $node->field_user_ssn[LANGUAGE_NONE][0]['value'];
+    }
+    $pnbr = $node->field_user_ssn[LANGUAGE_NONE][0]['value'];
 
-      if (isset($node->nid)) {
-        if (!person_nbr_is_same($pnbr, $node->nid) && person_nbr_exists($pnbr)) {
-          form_set_error('field_user_ssn', t('Person number already in use.'));
-        }
+    if (isset($node->nid)) {
+      if (!person_nbr_is_same($pnbr, $node->nid) && person_nbr_exists($pnbr)) {
+        form_set_error('field_user_ssn', t('Person number already in use.'));
       }
-      else {
-        if (person_nbr_exists($pnbr)) {
-          form_set_error('field_user_ssn', t('Person number already in use.'));
-        }
+    }
+    else {
+      if (person_nbr_exists($pnbr)) {
+        form_set_error('field_user_ssn', t('Person number already in use.'));
       }
     }
   }
