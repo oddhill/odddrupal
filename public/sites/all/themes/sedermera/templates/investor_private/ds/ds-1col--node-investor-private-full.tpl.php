@@ -29,6 +29,7 @@
     </div>
 
     <div class="investor-verifications node-section">
+      <?php print render($private_cont_id); ?>
       <?php print render($content['field_investor_shared_ctrl_ua']); ?>
       <?php print render($content['field_investor_shared_ctrl_ptv']); ?>
       <?php print render($content['field_investor_shared_ctrl_cred']); ?>

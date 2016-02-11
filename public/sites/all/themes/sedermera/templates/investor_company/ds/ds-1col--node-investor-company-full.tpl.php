@@ -32,6 +32,9 @@
     </div>
 
     <div class="investor-verifications node-section">
+      <?php foreach ($company_cont_id as $id => $row): ?>
+        <?php print render($row); ?>
+      <?php endforeach; ?>
       <?php print render($content['field_investor_shared_ctrl_ua']) ?>
       <?php print render($content['field_investor_shared_ctrl_ptv']); ?>
       <?php print render($content['field_investor_shared_ctrl_cred']); ?>
