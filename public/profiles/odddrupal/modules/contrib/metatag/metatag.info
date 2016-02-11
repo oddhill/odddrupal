@@ -10,9 +10,9 @@ dependencies[] = system (>= 7.28)
 ; CTools is required.
 dependencies[] = ctools
 
-; Must have this release of Token to avoid a bug with tokens that contain the
-; colon symbol, as used in OG meta tags.
-dependencies[] = token (>= 1.6)
+; Requires Token; v7.x-1.6 is highly recommended due to bugs with certain tags
+; when using older versions.
+dependencies[] = token
 
 configure = admin/config/search/metatags
 
@@ -58,9 +58,9 @@ test_dependencies[] = context
 test_dependencies[] = panels
 test_dependencies[] = views
 
-; Information added by Drupal.org packaging script on 2016-01-26
-version = "7.x-1.11"
+; Information added by Drupal.org packaging script on 2016-02-04
+version = "7.x-1.13"
 core = "7.x"
 project = "metatag"
-datestamp = "1453835341"
+datestamp = "1454628866"
 
