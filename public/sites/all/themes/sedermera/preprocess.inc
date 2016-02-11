@@ -95,6 +95,9 @@ function sedermera_preprocess_field(&$variables) {
     $variables['field_name_css'] = "investor-control detail";
     $variables['label'] .= " " . $variables['element']['#object']->title;
   }
+  if ($variables['element']['#title'] === "Kundansvarig" && $variables['element']['#bundle'] === "person") {
+    $variables['field_name_css'] = "investor-control detail";
+  }
 }
 
 /**
