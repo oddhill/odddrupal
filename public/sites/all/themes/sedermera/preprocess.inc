@@ -91,11 +91,11 @@ function sedermera_preprocess_field(&$variables) {
   }
   $variables['theme_hook_suggestions'] = $suggestions;
 
-  if ($variables['element']['#title'] === "ID-kontroll" && $variables['element']['#bundle'] === "person") {
+  if ($variables['element']['#field_name'] === "field_user_id_ctrl" && $variables['element']['#bundle'] === "person") {
     $variables['field_name_css'] = "investor-control detail";
     $variables['label'] .= " " . $variables['element']['#object']->title;
   }
-  if ($variables['element']['#title'] === "Kundansvarig" && $variables['element']['#bundle'] === "person") {
+  if ($variables['element']['#field_name'] === 'field_user_owner' && $variables['element']['#bundle'] === "person") {
     $variables['field_name_css'] = "investor-control detail";
   }
 }
