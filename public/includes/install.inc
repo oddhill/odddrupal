@@ -676,28 +676,15 @@ function drupal_rewrite_settings($settings = array(), $prefix = '') {
  *   The list of modules to install.
  */
 function drupal_verify_profile($install_state) {
-  $selected_profile = $install_state['parameters']['profile'];
+  $profile = $install_state['parameters']['profile'];
   $locale = $install_state['parameters']['locale'];
 
   include_once DRUPAL_ROOT . '/includes/file.inc';
   include_once DRUPAL_ROOT . '/includes/common.inc';
 
-  $profiles = drupal_get_profiles();
+  $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
 
-  if (!empty($profiles)) {
-    $profile_dependencies = array();
-
-    foreach ($profiles as $profile) {
-      $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
-
-      if (!file_exists($profile_file)) {
-        throw new Exception(install_no_profile_error());
-      }
-      $info = install_profile_info($profile);
-      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-    }
-  }
-  else {
+  if (!isset($profile) || !file_exists($profile_file)) {
     throw new Exception(install_no_profile_error());
   }
   $info = $install_state['profile_info'];
@@ -710,10 +697,10 @@ function drupal_verify_profile($install_state) {
 
   // The installation profile is also a module, which needs to be installed
   // after all the other dependencies have been installed.
-  $present_modules = array_merge($present_modules, $profiles);
+  $present_modules[] = drupal_get_profile();
 
   // Verify that all of the profile's required modules are present.
-  $missing_modules = array_diff($profile_dependencies, $present_modules);
+  $missing_modules = array_diff($info['dependencies'], $present_modules);
 
   $requirements = array();
 
@@ -763,7 +750,7 @@ function drupal_install_system() {
 /**
  * Uninstalls a given list of disabled modules.
  *
- * @param array $module_list
+ * @param string[] $module_list
  *   The modules to uninstall. It is the caller's responsibility to ensure that
  *   all modules in this list have already been disabled before this function
  *   is called.
@@ -782,6 +769,7 @@ function drupal_install_system() {
  *   included in $module_list).
  *
  * @see module_disable()
+ * @see module_enable()
  */
 function drupal_uninstall_modules($module_list = array(), $uninstall_dependents = TRUE) {
   if ($uninstall_dependents) {
@@ -790,7 +778,7 @@ function drupal_uninstall_modules($module_list = array(), $uninstall_dependents 
     // Create an associative array with weights as values.
     $module_list = array_flip(array_values($module_list));
 
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     while (list($module) = each($module_list)) {
       if (!isset($module_data[$module]) || drupal_get_installed_schema_version($module) == SCHEMA_UNINSTALLED) {
         // This module doesn't exist or is already uninstalled. Skip it.
@@ -804,7 +792,7 @@ function drupal_uninstall_modules($module_list = array(), $uninstall_dependents 
       // them automatically because uninstalling a module is a destructive
       // operation.
       foreach (array_keys($module_data[$module]->required_by) as $dependent) {
-        if (!isset($module_list[$dependent]) && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED && !in_array($dependent, $profiles)) {
+        if (!isset($module_list[$dependent]) && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED && $dependent != $profile) {
           return FALSE;
         }
       }
@@ -1143,12 +1131,7 @@ function st($string, array $args = array(), array $options = array()) {
       // with its name ending in {$install_state['parameters']['locale']}.po
       // This might or might not be the entire filename. It is also possible
       // that multiple files end with the same extension, even if unlikely.
-      $po_files = array();
-
-      foreach (drupal_get_profiles() as $profile) {
-        $locales = file_scan_directory('./profiles/' . $profile . '/translations', '/'. $install_state['parameters']['locale'] .'\.po$/', array('recurse' => FALSE));
-        $po_files = array_merge($po_files, $locales);
-      }
+      $po_files = file_scan_directory('./profiles/' . $install_state['parameters']['profile'] . '/translations', '/'. $install_state['parameters']['locale'] .'\.po$/', array('recurse' => FALSE));
       if (count($po_files)) {
         require_once DRUPAL_ROOT . '/includes/locale.inc';
         foreach ($po_files as $po_file) {
@@ -1188,36 +1171,24 @@ function st($string, array $args = array(), array $options = array()) {
  */
 function drupal_check_profile($profile) {
   include_once DRUPAL_ROOT . '/includes/file.inc';
-  $requirements = array();
 
-  if (isset($profile)) {
-    $profile_dependencies = array();
+  $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
 
-    // Loop through all active install profiles to collect dependencies.
-    foreach (drupal_get_profiles() as $profile) {
-      $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
-
-      if (!file_exists($profile_file)) {
-        throw new Exception(install_no_profile_error());
-      }
-
-      $info = install_profile_info($profile);
-      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-    }
-
-    // Collect requirement testing results.
-    foreach ($profile_dependencies as $module) {
-      module_load_install($module);
-      $function = $module . '_requirements';
-      if (function_exists($function)) {
-        $requirements = array_merge($requirements, $function('install'));
-      }
-    }
-  }
-  else {
+  if (!isset($profile) || !file_exists($profile_file)) {
     throw new Exception(install_no_profile_error());
   }
 
+  $info = install_profile_info($profile);
+
+  // Collect requirement testing results.
+  $requirements = array();
+  foreach ($info['dependencies'] as $module) {
+    module_load_install($module);
+    $function = $module . '_requirements';
+    if (function_exists($function)) {
+      $requirements = array_merge($requirements, $function('install'));
+    }
+  }
   return $requirements;
 }
 
@@ -1341,23 +1312,6 @@ function install_profile_info($profile, $locale = 'en') {
     $cache[$profile] = $info;
   }
   return $cache[$profile];
-}
-
-/**
- * Get a list of base install profiles from a specified install profile.
- */
-function install_get_base_profiles() {
-  $profile = drupal_get_profile();
-  $info = drupal_parse_info_file("profiles/$profile/$profile.info");
-
-  $profiles = array($profile);
-  while (!empty($info) && isset($info['base'])) {
-    $profiles[] = $info['base'];
-    $profile = $info['base'];
-    $info = drupal_parse_info_file("profiles/$profile/$profile.info");
-  }
-  $profiles = array_reverse($profiles);
-  return $profiles;
 }
 
 /**

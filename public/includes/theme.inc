@@ -1325,20 +1325,8 @@ function drupal_find_theme_templates($cache, $extension, $path) {
 
   // Escape the periods in the extension.
   $regex = '/' . str_replace('.', '\.', $extension) . '$/';
-
-  /* By default, do not check for files in common special-purpose directories.
-   * The folders here are front-end related and they have been added to avoid
-   * issues with Drupal recursive scanning. In this case, we added node_modules
-   * and bower_components. This also improves performance on frontend builds.
-   */
-  $ignore_directories = array(
-    'node_modules',
-    'bower_components',
-  );
-  $no_mask = '/^(\..*)|' . implode('|', $ignore_directories) .  '$/';
-
   // Get a listing of all template files in the path to search.
-  $files = file_scan_directory($path, $regex, array('key' => 'name', 'nomask' => $no_mask));
+  $files = drupal_system_listing($regex, $path, 'name', 0);
 
   // Find templates that implement registered theme hooks and include that in
   // what is returned so that the registry knows that the theme has this
@@ -1821,7 +1809,8 @@ function theme_links($variables) {
     foreach ($links as $key => $link) {
       $class = array($key);
 
-      // Add first, last and active classes to the list of links to help out themers.
+      // Add first, last and active classes to the list of links to help out
+      // themers.
       if ($i == 1) {
         $class[] = 'first';
       }
@@ -1839,7 +1828,8 @@ function theme_links($variables) {
         $output .= l($link['title'], $link['href'], $link);
       }
       elseif (!empty($link['title'])) {
-        // Some links are actually not links, but we wrap these in <span> for adding title and class attributes.
+        // Some links are actually not links, but we wrap these in <span> for
+        // adding title and class attributes.
         if (empty($link['html'])) {
           $link['title'] = check_plain($link['title']);
         }
