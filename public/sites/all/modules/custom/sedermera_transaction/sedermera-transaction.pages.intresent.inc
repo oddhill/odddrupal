@@ -119,8 +119,13 @@ function _get_interested_transactions($nid) {
       FROM {field_data_field_transaction_offer} AS o
       INNER JOIN {field_data_field_transaction_interested} AS i
       ON (o.entity_id = i.entity_id)
+      INNER JOIN {field_data_field_transaction_person} AS p
+      ON (o.entity_id = p.entity_id)
+      INNER JOIN {node} AS n
+      ON (n.nid = p.field_transaction_person_target_id)
       WHERE field_transaction_offer_target_id = :nid
-      AND field_transaction_interested_value = 1", array(':nid' => $nid))->fetchAllAssoc('nid');
+      AND field_transaction_interested_value = 1
+      ORDER BY n.title ASC", array(':nid' => $nid))->fetchAllAssoc('nid');
   return array_keys($result);
 }
 
@@ -509,18 +514,6 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
  *   The active investment types used in the offer
  */
 function _generate_interested_investor_rows(array &$rows, array $investor_transactions, array $type_investment, $transaction, array &$col_sum) {
-  // $sum = array(
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  //   'fe_te' => 0,
-  // );
-
   $transaction_wrap = entity_metadata_wrapper('node', $transaction);
   $person = $transaction_wrap->field_transaction_person->value();
 

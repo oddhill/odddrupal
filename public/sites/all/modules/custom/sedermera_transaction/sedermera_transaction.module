@@ -242,8 +242,13 @@ function _get_control_transactions($nid) {
     ON (o.entity_id = v.entity_id)
     INNER JOIN field_data_field_transaction_ap_ctrl AS i
     ON (v.field_transaction_investor_target_id = i.entity_id)
+    INNER JOIN {field_data_field_transaction_person} AS p
+    ON (o.entity_id = p.entity_id)
+    INNER JOIN {node} AS n
+    ON (n.nid = p.field_transaction_person_target_id)
     WHERE o.field_transaction_offer_target_id = :nid
-    AND i.field_transaction_ap_ctrl_value = 1", array(':nid' => $nid))->fetchAllAssoc('nid');
+    AND i.field_transaction_ap_ctrl_value = 1
+    ORDER BY n.title ASC", array(':nid' => $nid))->fetchAllAssoc('nid');
   return array_keys($result);
 }
 
