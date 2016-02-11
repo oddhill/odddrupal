@@ -45,6 +45,9 @@ function sedermera_transaction_intresent($offer_id) {
     // Generate the table header
     _generate_interested_header_row($header, $type_investment);
 
+    // Holds the arrays of values for the total sum calculation
+    $col_sum_total = array();
+
     // Generate a group for each contact person and its investors
     foreach ($transactions as $transaction_nid) {
       // Load the transaction
@@ -72,7 +75,21 @@ function sedermera_transaction_intresent($offer_id) {
 
       // Generate the contactperson sum row
       _generate_interested_sum_row($rows, $type_investment, $transaction, $col_sum);
+      $col_sum_total[] = $col_sum;
     }
+
+    // Array to calulate total sum per column
+    $sumArray = array();
+
+    // Calculate total col values
+    foreach ($col_sum_total as $subArray) {
+      foreach ($subArray as $id => $value) {
+        $sumArray[$id]+=$value;
+      }
+    }
+
+    // Generate the total sum row
+    _generate_interested_total_sum_row($rows, $type_investment, $sumArray);
 
     // Add a class to the last table row.
     end($rows);
@@ -492,6 +509,18 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
  *   The active investment types used in the offer
  */
 function _generate_interested_investor_rows(array &$rows, array $investor_transactions, array $type_investment, $transaction, array &$col_sum) {
+  // $sum = array(
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  //   'fe_te' => 0,
+  // );
+
   $transaction_wrap = entity_metadata_wrapper('node', $transaction);
   $person = $transaction_wrap->field_transaction_person->value();
 
@@ -766,6 +795,103 @@ function _generate_interested_sum_row(array &$rows, array $type_investment, $tra
   // Summation column
   $rows[$row]['data'][] = array(
     'data' => number_format(array_sum($col_sum), 0, ",", " ") . " :-",
+  );
+
+  // Control column
+  $rows[$row]['data'][] = array();
+
+  // To control column
+  $rows[$row]['data'][] = array();
+}
+
+/**
+ * Generates a total summation row
+ * @param  array &$rows
+ *   The array to store the table rows content in
+ * @param  array $type_investment
+ *   The active investment types used in the offer
+ * @param  array $sumArray
+ *   The array containing the calculated values
+ */
+function _generate_interested_total_sum_row(array &$rows, array $type_investment, array $sumArray) {
+
+  $rows[] = array(
+    'data' => array(
+      // Collapsible column
+      array(
+        'class' => array('collapsible-row'),
+      ),
+      // Name column
+      array(),
+      // Dropdown column
+      array(
+        'data' => '<strong>Total summa:</strong>',
+      ),
+    ),
+    'class' => array('summation-row'),
+  );
+
+  $row = count($rows) - 1;
+
+  // Teckningsförbindelse if Företrädesemission column
+  if ($type_investment['fe_sign']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['fe_sign'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Garantiåtagande if Företrädesemission column
+  if ($type_investment['fe_warr']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['fe_warr'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Teckningsförbindelse if Listningsemission column
+  if ($type_investment['le_sign']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['le_sign'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Garantiåtagande if Listnigsemission column
+  if ($type_investment['le_warr']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['le_warr'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Teckningsförbindelse if Private Placement column
+  if ($type_investment['pp_sign']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['pp_sign'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Teckningsförbindelse if Riktat emission column
+  if ($type_investment['re_sign']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['re_sign'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Sum if Brygglån column
+  if ($type_investment['bl_sum']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['bl_sum'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Sum if Blockpost column
+  if ($type_investment['bp_sum']) {
+    $rows[$row]['data'][] = array(
+      'data' => number_format($sumArray['bp_sum'], 0, ",", " ") . " :-",
+    );
+  }
+
+  // Summation column
+  $rows[$row]['data'][] = array(
+    'data' => number_format(array_sum($sumArray), 0, ",", " ") . " :-",
   );
 
   // Control column
