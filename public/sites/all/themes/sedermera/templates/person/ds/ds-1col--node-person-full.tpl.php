@@ -31,9 +31,6 @@
       <?php print render($content['field_user_fax']); ?>
       <?php print render($content['field_user_branches']); ?>
       <?php print render($content['field_user_interests']); ?>
-    </div>
-
-    <div class="investor-verifications node-section">
       <?php print render($content['field_user_id_ctrl']) ?>
     </div>
 
