@@ -336,6 +336,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
       array(
         'data' => $drop_down,
       ),
+      // No interest column
+      array(),
     ),
     'class' => array('contact-person-row'),
     'data-id' => $person->nid,
