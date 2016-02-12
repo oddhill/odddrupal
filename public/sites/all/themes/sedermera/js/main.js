@@ -20,6 +20,26 @@ if (Drupal.jsAC) {
   };
 }
 
+// Function that handles the selectBoxIt plugin
+// and constrains it if it's located in a .table-wrapper
+var selectBoxes = function() {
+
+  var $target = $('select'); // Select all select lists on the page
+  var $viewport = $('.table-wrapper'); // This is the wrapper in which we want to constrain the list element
+
+  // Loop through lists
+  $target.each(function() {
+    if ($(this).parents('.table-wrapper').length) { // Check if the list is located inside of a table
+      $(this).selectBoxIt({
+        viewport: $viewport // If so, constrain the list
+      });
+    }
+    else {
+      $(this).selectBoxIt(); // If not, just use regular list
+    }
+  });
+};
+
 // Function that implements Tocify.
 var tocInitiator = function() {
 
@@ -249,9 +269,7 @@ Drupal.behaviors.sedermera = {
       });
     }
 
-    // Use selectBoxit on our select lists.
-    $('select').selectBoxIt();
-
+    selectBoxes();
     selectLookAlike();
     multipleIdDropdown();
     fieldsetCollapser();
