@@ -37,7 +37,7 @@ function sedermera_document_view_menu() {
     'page callback' => 'view_page_user',
     'access arguments' => array('view any document content'),
     'menu_name' => 'main-menu',
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_dokument:dokument',
     'weight' => 0,
   );
 
@@ -46,7 +46,7 @@ function sedermera_document_view_menu() {
     'page callback' => 'admin_doc',
     'access arguments' => array('document admin'),
     'menu_name' => 'main-menu',
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_dokument:dokument',
     'weight' => 0,
   );
 
@@ -55,7 +55,7 @@ function sedermera_document_view_menu() {
     'page callback' => 'view_page_per_user',
     'access arguments' => array('document read per user'),
     'menu_name' => 'main-menu',
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_dokument:dokument',
     'weight' => 49,
   );
 
@@ -64,7 +64,7 @@ function sedermera_document_view_menu() {
     'page callback' => 'view_page_per_doc',
     'access arguments' => array('document read per document'),
     'menu_name' => 'main-menu',
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_dokument:dokument',
     'weight' => 50,
   );
 
@@ -117,7 +117,7 @@ function view_page_user() {
   }
   else {
     $block = array(
-      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga regelverks dokument</div>',
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
       '#suffix' => '</div>',
     );
   }
@@ -168,7 +168,7 @@ function admin_doc() {
   }
   else {
     $block = array(
-      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga regelverks dokument</div>',
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
       '#suffix' => '</div>',
     );
   }
@@ -236,7 +236,7 @@ function view_page_per_user() {
   }
   else {
     $block = array(
-      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga regelverks dokument</div>',
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
       '#suffix' => '</div>',
     );
   }
@@ -261,12 +261,12 @@ function view_page_per_doc() {
       $block = array(
         '#prefix' => '<div class="document-listing-wrapper">',
         'form' => drupal_get_form('docForm'),
-        '#suffix' => '<div class="table-wrapper"><div class="view-empty">Du har inte valt något regelverks dokument</div></div></div>',
+        '#suffix' => '<div class="table-wrapper"><div class="view-empty">Du har inte valt något dokument</div></div></div>',
       );
     }
     else {
       $block = array(
-        '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga regelverks dokument</div>',
+        '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
         '#suffix' => '</div>',
       );
     }
