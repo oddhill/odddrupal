@@ -2298,6 +2298,8 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
     padding-top: 4px; }
 #interested-table table .to-check-ctrl {
   cursor: pointer; }
+#interested-table table .field-transaction-ap-no-inter {
+  display: inline-block; }
 #interested-table table tr.hidden {
   display: none; }
 #interested-table table tr td.collapsible,
