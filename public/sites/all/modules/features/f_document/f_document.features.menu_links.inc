@@ -10,14 +10,13 @@
 function f_document_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_administrera-dokument:dokument/administrera.
-  $menu_links['main-menu_administrera-dokument:dokument/administrera'] = array(
+  // Exported menu link: main-menu_administrera-dokument:regelverk/administrera.
+  $menu_links['main-menu_administrera-dokument:regelverk/administrera'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/administrera',
-    'router_path' => 'dokument/administrera',
+    'link_path' => 'regelverk/administrera',
+    'router_path' => 'regelverk/administrera',
     'link_title' => 'Administrera dokument',
     'options' => array(
-      'identifier' => 'main-menu_administrera-dokument:dokument/administrera',
       'attributes' => array(
         'id' => 'administer',
       ),
@@ -26,6 +25,7 @@ function f_document_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
+      'identifier' => 'main-menu_administrera-dokument:regelverk/administrera',
     ),
     'module' => 'system',
     'hidden' => 0,
@@ -34,7 +34,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -47,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
   );
   // Exported menu link: main-menu_administrera-mallar:mallar/administrera.
   $menu_links['main-menu_administrera-mallar:mallar/administrera'] = array(
@@ -88,14 +88,13 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_manualer:manualer',
   );
-  // Exported menu link: main-menu_alla-dokument:dokument/lista.
-  $menu_links['main-menu_alla-dokument:dokument/lista'] = array(
+  // Exported menu link: main-menu_alla-dokument:regelverk/lista.
+  $menu_links['main-menu_alla-dokument:regelverk/lista'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/lista',
-    'router_path' => 'dokument/lista',
+    'link_path' => 'regelverk/lista',
+    'router_path' => 'regelverk/lista',
     'link_title' => 'Alla dokument',
     'options' => array(
-      'identifier' => 'main-menu_alla-dokument:dokument/lista',
       'attributes' => array(
         'class' => array(
           0 => 'all',
@@ -106,6 +105,7 @@ function f_document_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
+      'identifier' => 'main-menu_alla-dokument:regelverk/lista',
     ),
     'module' => 'system',
     'hidden' => 0,
@@ -114,7 +114,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -49,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
   );
   // Exported menu link: main-menu_alla-mallar:mallar/lista.
   $menu_links['main-menu_alla-mallar:mallar/lista'] = array(
@@ -172,14 +172,13 @@ function f_document_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'main-menu_manualer:manualer',
   );
-  // Exported menu link: main-menu_dokumentlogg:dokument/logg.
-  $menu_links['main-menu_dokumentlogg:dokument/logg'] = array(
+  // Exported menu link: main-menu_dokumentlogg:regelverk/logg.
+  $menu_links['main-menu_dokumentlogg:regelverk/logg'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/logg',
-    'router_path' => 'dokument/logg',
+    'link_path' => 'regelverk/logg',
+    'router_path' => 'regelverk/logg',
     'link_title' => 'Dokumentlogg',
     'options' => array(
-      'identifier' => 'main-menu_dokumentlogg:dokument/logg',
       'attributes' => array(
         'id' => 'document-log',
       ),
@@ -188,6 +187,7 @@ function f_document_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
+      'identifier' => 'main-menu_dokumentlogg:regelverk/logg',
     ),
     'module' => 'system',
     'hidden' => 0,
@@ -196,7 +196,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -44,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
   );
   // Exported menu link: main-menu_lgg-till-dokument:node/add/document.
   $menu_links['main-menu_lgg-till-dokument:node/add/document'] = array(
@@ -224,16 +224,15 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
   );
-  // Exported menu link: main-menu_lst-per-anvndare:dokument/last-per-anvandare.
-  $menu_links['main-menu_lst-per-anvndare:dokument/last-per-anvandare'] = array(
+  // Exported menu link: main-menu_lst-per-anvndare:regelverk/last-per-anvandare.
+  $menu_links['main-menu_lst-per-anvndare:regelverk/last-per-anvandare'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/last-per-anvandare',
-    'router_path' => 'dokument/last-per-anvandare',
+    'link_path' => 'regelverk/last-per-anvandare',
+    'router_path' => 'regelverk/last-per-anvandare',
     'link_title' => 'Läst per användare',
     'options' => array(
-      'identifier' => 'main-menu_lst-per-anvndare:dokument/last-per-anvandare',
       'attributes' => array(
         'id' => 'read-per-user',
       ),
@@ -242,6 +241,7 @@ function f_document_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
+      'identifier' => 'main-menu_lst-per-anvndare:regelverk/last-per-anvandare',
     ),
     'module' => 'system',
     'hidden' => 0,
@@ -250,16 +250,15 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -45,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
   );
-  // Exported menu link: main-menu_lst-per-dokument:dokument/last-per-dokument.
-  $menu_links['main-menu_lst-per-dokument:dokument/last-per-dokument'] = array(
+  // Exported menu link: main-menu_lst-per-dokument:regelverk/last-per-dokument.
+  $menu_links['main-menu_lst-per-dokument:regelverk/last-per-dokument'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/last-per-dokument',
-    'router_path' => 'dokument/last-per-dokument',
+    'link_path' => 'regelverk/last-per-dokument',
+    'router_path' => 'regelverk/last-per-dokument',
     'link_title' => 'Läst per dokument',
     'options' => array(
-      'identifier' => 'main-menu_lst-per-dokument:dokument/last-per-dokument',
       'attributes' => array(
         'id' => 'read-per-doc',
       ),
@@ -268,6 +267,7 @@ function f_document_menu_default_menu_links() {
         'class' => '',
         'style' => '',
       ),
+      'identifier' => 'main-menu_lst-per-dokument:regelverk/last-per-dokument',
     ),
     'module' => 'system',
     'hidden' => 0,
@@ -276,7 +276,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -46,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
   );
   // Exported menu link: main-menu_mallar:mallar.
   $menu_links['main-menu_mallar:mallar'] = array(
@@ -328,14 +328,14 @@ function f_document_menu_default_menu_links() {
     'weight' => -38,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_regelverk:dokument.
-  $menu_links['main-menu_regelverk:dokument'] = array(
+  // Exported menu link: main-menu_regelverk:regelverk.
+  $menu_links['main-menu_regelverk:regelverk'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument',
-    'router_path' => 'dokument',
+    'link_path' => 'regelverk',
+    'router_path' => 'regelverk',
     'link_title' => 'Regelverk',
     'options' => array(
-      'identifier' => 'main-menu_regelverk:dokument',
+      'identifier' => 'main-menu_regelverk:regelverk',
       'attributes' => array(
         'id' => 'documents',
       ),
@@ -353,14 +353,14 @@ function f_document_menu_default_menu_links() {
     'weight' => -39,
     'customized' => 1,
   );
-  // Exported menu link: main-menu_sortera-dokument:dokument/sortera.
-  $menu_links['main-menu_sortera-dokument:dokument/sortera'] = array(
+  // Exported menu link: main-menu_sortera-dokument:regelverk/sortera.
+  $menu_links['main-menu_sortera-dokument:regelverk/sortera'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'dokument/sortera',
-    'router_path' => 'dokument/sortera',
+    'link_path' => 'regelverk/sortera',
+    'router_path' => 'regelverk/sortera',
     'link_title' => 'Sortera dokument',
     'options' => array(
-      'identifier' => 'main-menu_sortera-dokument:dokument/sortera',
+      'identifier' => 'main-menu_sortera-dokument:regelverk/sortera',
       'attributes' => array(
         'id' => 'documents-sort',
       ),
@@ -377,7 +377,7 @@ function f_document_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -48,
     'customized' => 1,
-    'parent_identifier' => 'main-menu_regelverk:dokument',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
   );
   // Exported menu link: main-menu_sortera-mallar:mallar/sortera.
   $menu_links['main-menu_sortera-mallar:mallar/sortera'] = array(

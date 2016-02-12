@@ -139,7 +139,7 @@ function f_document_views_default_views() {
 
   /* Display: Document log */
   $handler = $view->new_display('page', 'Document log', 'document_log');
-  $handler->display->display_options['path'] = 'dokument/logg';
+  $handler->display->display_options['path'] = 'regelverk/logg';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Dokumentlogg';
   $handler->display->display_options['menu']['weight'] = '0';
@@ -334,7 +334,12 @@ function f_document_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
-  $handler->display->display_options['path'] = 'dokument/sortera';
+  $handler->display->display_options['path'] = 'regelverk/sortera';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Sortera dokument';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Sortera manual */
   $handler = $view->new_display('page', 'Sortera manual', 'manual');

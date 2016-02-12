@@ -14,7 +14,7 @@ function sedermera_parent_paths_menu_alter(&$items) {
     'kontaktpersoner' => 'kontaktpersoner/lista',
     'kundbolag' => 'kundbolag/lista',
     'transaktioner' => 'transaktioner/lista',
-    'dokument' => 'dokument/lista',
+    'regelverk' => 'regelverk/lista',
     'manualer' => 'manualer/lista',
     'avtalsparter' => 'avtalsparter/lista',
     'erbjudanden' => 'erbjudanden/lista',
