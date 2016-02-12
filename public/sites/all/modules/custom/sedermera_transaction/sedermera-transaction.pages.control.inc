@@ -48,6 +48,11 @@ function sedermera_transaction_control() {
       // Load the transaction
       $transaction = node_load($transaction_nid);
 
+      // Skip investor if no interested investor AP exists
+      if (_contact_person_no_interested_investors($transaction)) {
+        continue;
+      }
+
       // Generate contactperson head row
       _generate_control_contact_person_head_row($rows, $transaction, $type_investment);
 
@@ -97,6 +102,30 @@ function sedermera_transaction_control() {
       ),
     );
   }
+}
+
+/**
+ * Checks if there is no interested investor APs
+ * @param  $transaction
+ *   Current transaction to check
+ * @return boolean
+ *   TRUE if no interested, FALSE if any interested
+ */
+function _contact_person_no_interested_investors($transaction) {
+  foreach ($transaction->field_transaction_investor as $investor_transactions) {
+
+    // Checks if there are any agreements for the investor
+    foreach ($investor_transactions as $key => $value) {
+      $agreement = _get_agreements_for_investor($value['target_id']);
+
+      // If there exist an agreement break and return FALSE
+      if (!empty($agreement)) {
+        return FALSE;
+      }
+    }
+  }
+
+  return TRUE;
 }
 
 /**
