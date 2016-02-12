@@ -6163,6 +6163,50 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'node-transaction_ap-field_transaction_ap_no_inter'.
+  $field_instances['node-transaction_ap-field_transaction_ap_no_inter'] = array(
+    'bundle' => 'transaction_ap',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 18,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_transaction_ap_no_inter',
+    'label' => 'Ej intresserad',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 20,
+    ),
+  );
+
+  // Exported field_instance:
   // 'node-transaction_ap-field_transaction_ap_pp_sign'.
   $field_instances['node-transaction_ap-field_transaction_ap_pp_sign'] = array(
     'bundle' => 'transaction_ap',
@@ -6333,6 +6377,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Body');
   t('Brygglån');
   t('EU:s sanktionsförordningar');
+  t('Ej intresserad');
   t('Emissionsbelopp');
   t('Erbjudande');
   t('Filer');
