@@ -11,7 +11,7 @@ function sedermera_template_menu() {
   $items['mallar/lista'] = array(
     'title' => 'Alla mallar',
     'page callback' => 'view_template',
-    'access arguments' => array('view any mall content'),
+    'access arguments' => array('view any template content'),
     'menu_name' => 'main-menu',
     'parent_identifier' => 'main-menu_mallar:mallar',
     'weight' => 0,
