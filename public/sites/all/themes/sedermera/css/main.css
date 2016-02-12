@@ -2331,6 +2331,8 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
   #interested-table table tr.summation-row td {
     height: 30px;
     padding: 0 10px; }
+#interested-table table tr.summation-row.last-row {
+  border-bottom: 0px none; }
 
 .node-offer.view-mode-full {
   display: flex;
@@ -4385,6 +4387,8 @@ form#user-login,
 
 table {
   width: 100%; }
+  table tr.last-row {
+    border-bottom: 0px none; }
   table.sticky-header {
     z-index: 10;
     border-left: 1px solid #e0e2e6;

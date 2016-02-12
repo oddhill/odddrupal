@@ -11,6 +11,10 @@
 table {
   width: 100%;
 
+  tr.last-row {
+    border-bottom: 0px none;
+  }
+
   &.sticky-header {
     z-index: 10;
     border-left: 1px solid $wool;
