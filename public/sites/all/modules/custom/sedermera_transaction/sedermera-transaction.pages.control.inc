@@ -309,9 +309,17 @@ function _get_agreements_for_investor($nid) {
     INNER JOIN field_data_field_transaction_ap_no_inter AS no
     ON (ag.entity_id = no.entity_id)
     WHERE ag.entity_id = :nid
-    AND no.field_transaction_ap_no_inter_value = 0", array(':nid' => $nid))->fetchAllAssoc('nid');
+    AND no.field_transaction_ap_no_inter_value = 0", array(':nid' => $nid))->fetchAllKeyed();
 
-  return array_keys($result);
+  $n_result = db_query("SELECT field_transaction_ap_agree_target_id AS nid
+    FROM field_data_field_transaction_ap_agree AS ag
+    WHERE ag.entity_id = :nid
+    AND NOT EXISTS (SELECT *
+                FROM field_data_field_transaction_ap_no_inter AS no
+                WHERE ag.entity_id = no.entity_id)
+    ", array(':nid' => $nid))->fetchAllKeyed();
+
+  return array_keys($result + $n_result);
 }
 
 /**
