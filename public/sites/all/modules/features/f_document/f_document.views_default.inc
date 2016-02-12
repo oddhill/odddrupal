@@ -351,6 +351,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     3 => '3',
+    7 => '7',
     5 => '5',
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -432,6 +433,7 @@ function f_document_views_default_views() {
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     3 => '3',
+    7 => '7',
     5 => '5',
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
