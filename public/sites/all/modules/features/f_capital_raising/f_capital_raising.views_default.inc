@@ -322,63 +322,23 @@ function f_capital_raising_views_default_views() {
     'empty_text' => '',
     'fallback_format' => 'list_default',
   );
-  /* Field: Content: Avstå info */
-  $handler->display->display_options['fields']['field_transaction_no_info_1']['id'] = 'field_transaction_no_info_1';
-  $handler->display->display_options['fields']['field_transaction_no_info_1']['table'] = 'field_data_field_transaction_no_info';
-  $handler->display->display_options['fields']['field_transaction_no_info_1']['field'] = 'field_transaction_no_info';
-  $handler->display->display_options['fields']['field_transaction_no_info_1']['label'] = '';
-  $handler->display->display_options['fields']['field_transaction_no_info_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_transaction_no_info_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_transaction_no_info_1']['type'] = 'list_key';
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = 'Insynsinfo';
-  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php
-$node_tr = node_load($row->nid);
-$node_of = node_load($row->nid_2);
-
-if ($data->field_field_transaction_no_info_1[0][raw][value]) {
-  print \'Ingen info\';
-}
-else if ($node_of->field_offer_logout_info[\'und\'][0][value]) {
- print \'Utloggad\';
-}
-else if ($node_tr->field_transaction_info[\'und\'][0][value]) {
-  print l(\'Skicka igen\', "offer/send-info/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
-}
-else {
-  print l(\'Skicka\', "offer/send-info/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
-}
-?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php_1']['id'] = 'php_1';
-  $handler->display->display_options['fields']['php_1']['table'] = 'views';
-  $handler->display->display_options['fields']['php_1']['field'] = 'php';
-  $handler->display->display_options['fields']['php_1']['label'] = 'Erbjudande';
-  $handler->display->display_options['fields']['php_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php_1']['php_output'] = '<?php
-$node_tr = node_load($row->nid);
-
-if ($data->field_field_transaction_no_info_1[0][raw][value]) {
-  print \'Ingen info\';
-}
-else if ($node_tr->field_transaction_info_offer[\'und\'][0][value]) {
-  print l(\'Skicka igen\', "offer/send-offer/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
-}
-else {
-  print l(\'Skicka\', "offer/send-offer/$row->nid", array(\'attributes\' => array(\'class\' => array(\'send-mail\'))));
-}
-?>
-';
-  $handler->display->display_options['fields']['php_1']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php_1']['php_click_sortable'] = '';
+  /* Field: Content: Insynsinfo */
+  $handler->display->display_options['fields']['field_transaction_info']['id'] = 'field_transaction_info';
+  $handler->display->display_options['fields']['field_transaction_info']['table'] = 'field_data_field_transaction_info';
+  $handler->display->display_options['fields']['field_transaction_info']['field'] = 'field_transaction_info';
+  $handler->display->display_options['fields']['field_transaction_info']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_transaction_info']['type'] = 'sedermera_inside_info';
+  $handler->display->display_options['fields']['field_transaction_info']['settings'] = array(
+    'send_mail' => 'info',
+  );
+  /* Field: Content: Erbjudande */
+  $handler->display->display_options['fields']['field_transaction_info_offer']['id'] = 'field_transaction_info_offer';
+  $handler->display->display_options['fields']['field_transaction_info_offer']['table'] = 'field_data_field_transaction_info_offer';
+  $handler->display->display_options['fields']['field_transaction_info_offer']['field'] = 'field_transaction_info_offer';
+  $handler->display->display_options['fields']['field_transaction_info_offer']['type'] = 'sedermera_inside_info';
+  $handler->display->display_options['fields']['field_transaction_info_offer']['settings'] = array(
+    'send_mail' => 'offer',
+  );
   /* Field: Content: Intresserad */
   $handler->display->display_options['fields']['field_transaction_interested']['id'] = 'field_transaction_interested';
   $handler->display->display_options['fields']['field_transaction_interested']['table'] = 'field_data_field_transaction_interested';
