@@ -172,7 +172,7 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
   if ($form_state['values']['type'] == 'person') {
     if ($form_state['values']['field_user_lead'][LANGUAGE_NONE][0]['value'] == 0) {
       if ($form_state['values']['field_user_mail'][LANGUAGE_NONE][0]['email'] == '') {
-        form_set_error('field_user_mail', t('Mejl address måste fyllas i.'));
+        form_set_error('field_user_mail', t('E-postaddress måste fyllas i.'));
       }
       if ($form_state['values']['field_user_ssn'][LANGUAGE_NONE][0]['value'] == '') {
         form_set_error('field_user_ssn', t('Personnummer måste fyllas i.'));
