@@ -24,6 +24,7 @@ dependencies[] = node_view_permissions
 dependencies[] = number
 dependencies[] = options
 dependencies[] = sedermera_capital_raising
+dependencies[] = sedermera_info_and_offer
 dependencies[] = sedermera_offer
 dependencies[] = strongarm
 dependencies[] = text
