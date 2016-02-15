@@ -17,7 +17,6 @@
 
     <article class="template-description">
       <?php print render($content['body']); ?>
-      <?php print render($content['field_template_files']); ?>
     </article>
 
     <aside class="template-sidebar">

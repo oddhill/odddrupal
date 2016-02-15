@@ -1,0 +1,147 @@
+.node-template {
+
+  &.view-mode-full {
+    display: flex;
+    flex-flow: row wrap;
+
+    > * {
+      flex: 3 100%;
+    }
+
+    .template-description {
+      flex: 2 60%;
+      padding-right: 30px;
+    }
+
+    // Manual sidebar (contains files)
+    .template-sidebar {
+      flex: 1 40%;
+      max-width: 300px;
+      border-left: 2px solid $light-grey;
+      padding-left: 30px;
+
+      h3 {
+        margin-bottom: 10px;
+      }
+
+      .related {
+        margin-bottom: 20px;
+
+        &-docs {
+          background: tint($light-grey,60%);
+          border: 1px solid $wool;
+          border-radius: 2px;
+          list-style: none;
+
+          li.item {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px;
+            border-bottom: 1px solid $wool;
+
+            &:last-child {
+              border-bottom: 0px none;
+            }
+
+            img {
+              display: block;
+              float: left;
+              margin-right: 5px;
+            }
+
+            a {
+              display: block;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              border: 0px none;
+            }
+          }
+        }
+      }
+
+      .attachments {
+        margin-bottom: 20px;
+
+        &-list {
+          background: tint($light-grey,60%);
+          border: 1px solid $wool;
+          border-radius: 2px;
+          list-style: none;
+
+          li.item {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px;
+            border-bottom: 1px solid $wool;
+
+            &:last-child {
+              border-bottom: 0px none;
+            }
+
+            img {
+              display: block;
+              float: left;
+              margin-right: 5px;
+            }
+
+            a {
+              display: block;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              border: 0px none;
+            }
+          }
+        }
+      }
+    }
+
+    .manual-head {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+
+      &-image {
+        max-width: 120px;
+        line-height: 0;
+      }
+
+      &-text {
+        @include font-size(1.8);
+        font-weight: 700;
+      }
+
+      &-free {
+        @include font-size(1.5);
+        text-align: right;
+        flex-grow: 2;
+        padding-left: 20px;
+        font-style: italic;
+      }
+    }
+
+    .manual-footer {
+      margin-top: 30px;
+      border-top: 2px solid $light-grey;
+      padding-top: 30px;
+
+      &-content {
+        @include row();
+      }
+
+      .field {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+        margin-bottom: 10px;
+
+        .label {
+          width: 30%;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

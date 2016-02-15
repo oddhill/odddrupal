@@ -361,6 +361,21 @@ function sedermera_preprocess_node(&$variables) {
 
   if ($variables['type'] == 'template' && $variables['view_mode'] == 'full') {
 
+    if (!empty($variables['field_template_files'])) {
+      $tem_file = '<ul class="attachments-list">';
+
+      foreach ($variables['field_template_files'] as $file) {
+        $tem_file .= '<li class="item">' . getIcon($file) . ' ' . l($file['filename'], file_create_url($file['uri']), array('attributes' => array('class' => array('file-link')))) . '</li>';
+      }
+
+      $tem_file .= '</ul>';
+
+      // Create variable for document files
+      if ($tem_file != '<ul class="attachments-list"></ul>') {
+        $variables['files'] = '<div class="attachments"><h3>Filer</h3>' . $tem_file . '</div>';
+      }
+    }
+
     $doc_rel_link = '<ul class="related-docs">';
 
     $result = array_merge(getDocuments(), getManuals(), getTemplates());
@@ -394,8 +409,8 @@ function sedermera_preprocess_node(&$variables) {
     }
 
     // List documents related from this document
-    if (!empty($variables['field_manual_relation'])) {
-      foreach ($variables['field_manual_relation'] as $relation) {
+    if (!empty($variables['field_template_relation'])) {
+      foreach ($variables['field_template_relation'] as $relation) {
         $rel_docs[$relation['entity']->nid] = $relation['entity']->title;
       }
     }

@@ -97,6 +97,10 @@
           &#manuals {
             @include svg-bg(manuals_white);
           }
+
+          &#templates {
+            @include svg-bg(templates_white);
+          }
         }
 
         &#overview {
@@ -137,6 +141,10 @@
 
         &#manuals {
           @include svg-bg(manuals_grey);
+        }
+
+        &#templates {
+          @include svg-bg(templates_grey);
         }
 
         &#administer {

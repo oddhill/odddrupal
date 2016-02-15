@@ -285,15 +285,15 @@ function f_document_menu_default_menu_links() {
     'router_path' => 'mallar',
     'link_title' => 'Mallar',
     'options' => array(
+      'identifier' => 'main-menu_mallar:mallar',
       'attributes' => array(
-        'id' => 'manuals',
+        'id' => 'templates',
       ),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'main-menu_mallar:mallar',
     ),
     'module' => 'menu',
     'hidden' => 0,

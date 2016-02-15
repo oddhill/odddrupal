@@ -2701,6 +2701,117 @@ div.process-steps {
   border-top: 1px solid #e0e2e6;
   padding: 0; }
 
+.node-template.view-mode-full {
+  display: flex;
+  flex-flow: row wrap; }
+  .node-template.view-mode-full > * {
+    flex: 3 100%; }
+  .node-template.view-mode-full .template-description {
+    flex: 2 60%;
+    padding-right: 30px; }
+  .node-template.view-mode-full .template-sidebar {
+    flex: 1 40%;
+    max-width: 300px;
+    border-left: 2px solid #f3f4f8;
+    padding-left: 30px; }
+    .node-template.view-mode-full .template-sidebar h3 {
+      margin-bottom: 10px; }
+    .node-template.view-mode-full .template-sidebar .related {
+      margin-bottom: 20px; }
+      .node-template.view-mode-full .template-sidebar .related-docs {
+        background: #fafbfc;
+        border: 1px solid #e0e2e6;
+        border-radius: 2px;
+        list-style: none; }
+        .node-template.view-mode-full .template-sidebar .related-docs li.item {
+          display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          padding: 10px;
+          border-bottom: 1px solid #e0e2e6; }
+          .node-template.view-mode-full .template-sidebar .related-docs li.item:last-child {
+            border-bottom: 0px none; }
+          .node-template.view-mode-full .template-sidebar .related-docs li.item img {
+            display: block;
+            float: left;
+            margin-right: 5px; }
+          .node-template.view-mode-full .template-sidebar .related-docs li.item a {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            border: 0px none; }
+    .node-template.view-mode-full .template-sidebar .attachments {
+      margin-bottom: 20px; }
+      .node-template.view-mode-full .template-sidebar .attachments-list {
+        background: #fafbfc;
+        border: 1px solid #e0e2e6;
+        border-radius: 2px;
+        list-style: none; }
+        .node-template.view-mode-full .template-sidebar .attachments-list li.item {
+          display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          padding: 10px;
+          border-bottom: 1px solid #e0e2e6; }
+          .node-template.view-mode-full .template-sidebar .attachments-list li.item:last-child {
+            border-bottom: 0px none; }
+          .node-template.view-mode-full .template-sidebar .attachments-list li.item img {
+            display: block;
+            float: left;
+            margin-right: 5px; }
+          .node-template.view-mode-full .template-sidebar .attachments-list li.item a {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            border: 0px none; }
+  .node-template.view-mode-full .manual-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; }
+    .node-template.view-mode-full .manual-head-image {
+      max-width: 120px;
+      line-height: 0; }
+    .node-template.view-mode-full .manual-head-text {
+      font-size: 18px;
+      font-size: 1.8rem;
+      line-height: 27px;
+      font-weight: 700; }
+    .node-template.view-mode-full .manual-head-free {
+      font-size: 15px;
+      font-size: 1.5rem;
+      line-height: 22.5px;
+      text-align: right;
+      flex-grow: 2;
+      padding-left: 20px;
+      font-style: italic; }
+  .node-template.view-mode-full .manual-footer {
+    margin-top: 30px;
+    border-top: 2px solid #f3f4f8;
+    padding-top: 30px; }
+    .node-template.view-mode-full .manual-footer-content {
+      display: block; }
+      .node-template.view-mode-full .manual-footer-content:after {
+        content: "";
+        display: table;
+        clear: both; }
+    .node-template.view-mode-full .manual-footer .field {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 31.76157%;
+      margin-bottom: 10px; }
+      .node-template.view-mode-full .manual-footer .field:last-child {
+        margin-right: 0; }
+      .node-template.view-mode-full .manual-footer .field:nth-child(3n) {
+        margin-right: 0; }
+      .node-template.view-mode-full .manual-footer .field:nth-child(3n+1) {
+        clear: left; }
+      .node-template.view-mode-full .manual-footer .field .label {
+        width: 30%;
+        display: inline-block; }
+
 .node-transaction_agreement-form {
   border-top: 10px solid #5c9cae; }
   .node-transaction_agreement-form .verification-header {
@@ -4178,6 +4289,9 @@ form#user-login,
         .main-navigation .menu li a.active-trail#manuals {
           background: url("../graphics/manuals_white.png") transparent 0 0 no-repeat;
           background: none, url("../graphics/manuals_white.svg") transparent 0 0 no-repeat; }
+        .main-navigation .menu li a.active-trail#templates {
+          background: url("../graphics/templates_white.png") transparent 0 0 no-repeat;
+          background: none, url("../graphics/templates_white.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a#overview {
         background: url("../graphics/overview_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/overview_grey.svg") transparent 0 0 no-repeat; }
@@ -4208,6 +4322,9 @@ form#user-login,
       .main-navigation .menu li a#manuals {
         background: url("../graphics/manuals_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/manuals_grey.svg") transparent 0 0 no-repeat; }
+      .main-navigation .menu li a#templates {
+        background: url("../graphics/templates_grey.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/templates_grey.svg") transparent 0 0 no-repeat; }
       .main-navigation .menu li a#administer {
         background: url("../graphics/administer_grey.png") transparent 0 0 no-repeat;
         background: none, url("../graphics/administer_grey.svg") transparent 0 0 no-repeat; }
@@ -6056,7 +6173,6 @@ table.tabledrag-processed {
         margin-bottom: 0px; }
         table.tabledrag-processed tbody tr td .form-item .form-text {
           padding: 5px;
-          margin-top: 15px;
           width: 100%; }
           .page-node-add-document table.tabledrag-processed tbody tr td .form-item .form-text {
             margin-top: 0; }
