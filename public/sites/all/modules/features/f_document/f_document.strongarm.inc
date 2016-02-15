@@ -516,7 +516,7 @@ function f_document_strongarm() {
       'gid' => 7,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 1,
-      'grant_update' => 0,
+      'grant_update' => 1,
       'grant_delete' => 0,
     ),
     7 => array(

@@ -289,15 +289,14 @@ function f_core_strongarm() {
     'transaction_ap' => 0,
     'company' => 0,
     'document' => 0,
-    'mall' => 0,
     'manual' => 0,
+    'template' => 0,
     'investor_company' => 0,
     'investor_private' => 0,
     'person' => 0,
     'transaction_history' => 0,
     'ctrl' => 0,
     'ctrl_pen' => 0,
-    'template' => 0,
   );
   $export['nodeaccess-types'] = $strongarm;
 
@@ -341,6 +340,11 @@ function f_core_strongarm() {
       'grant_update' => 0,
       'grant_delete' => 0,
     ),
+    'template' => array(
+      'grant_view' => 0,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+    ),
     'investor_company' => array(
       'grant_view' => 0,
       'grant_update' => 0,
@@ -367,11 +371,6 @@ function f_core_strongarm() {
       'grant_delete' => 0,
     ),
     'ctrl_pen' => array(
-      'grant_view' => 0,
-      'grant_update' => 0,
-      'grant_delete' => 0,
-    ),
-    'template' => array(
       'grant_view' => 0,
       'grant_update' => 0,
       'grant_delete' => 0,
@@ -494,7 +493,7 @@ function f_core_strongarm() {
       'gid' => 7,
       'realm' => 'nodeaccess_rid',
       'grant_view' => 1,
-      'grant_update' => 0,
+      'grant_update' => 1,
       'grant_delete' => 0,
     ),
     7 => array(

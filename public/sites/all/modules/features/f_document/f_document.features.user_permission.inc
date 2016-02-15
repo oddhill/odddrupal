@@ -76,7 +76,9 @@ function f_document_user_default_permissions() {
   $permissions['create template content'] = array(
     'name' => 'create template content',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentskapare' => 'Dokumentskapare',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'node',
   );
@@ -173,8 +175,10 @@ function f_document_user_default_permissions() {
   $permissions['edit any template content'] = array(
     'name' => 'edit any template content',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'node',
   );
@@ -204,8 +208,10 @@ function f_document_user_default_permissions() {
   $permissions['edit own template content'] = array(
     'name' => 'edit own template content',
     'roles' => array(
+      'Administratör' => 'Administratör',
       'Dokumentmoderator' => 'Dokumentmoderator',
       'Dokumentskapare' => 'Dokumentskapare',
+      'Redaktör' => 'Redaktör',
     ),
     'module' => 'node',
   );
@@ -396,7 +402,10 @@ function f_document_user_default_permissions() {
   // Exported permission: 'view any unpublished template content'.
   $permissions['view any unpublished template content'] = array(
     'name' => 'view any unpublished template content',
-    'roles' => array(),
+    'roles' => array(
+      'Administratör' => 'Administratör',
+      'Redaktör' => 'Redaktör',
+    ),
     'module' => 'view_unpublished',
   );
 
