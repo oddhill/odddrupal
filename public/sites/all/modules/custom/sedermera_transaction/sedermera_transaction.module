@@ -129,6 +129,7 @@ function sedermera_transaction_add_ap($transaction_id, $ap_id) {
 
   // Re-render the table, and return an AJAX command which will replace the old
   // table.
+  module_load_include('inc', 'sedermera_transaction', 'sedermera-transaction.pages.intresent');
   $table = sedermera_transaction_intresent($transaction->field_transaction_offer->nid->value());
   return transaction_ajax_callback('.offer-interested-list', render($table));
 }
