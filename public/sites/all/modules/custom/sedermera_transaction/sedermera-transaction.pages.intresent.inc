@@ -845,7 +845,7 @@ function _generate_interested_total_sum_row(array &$rows, array $type_investment
         'data' => '<strong>Total summa:</strong>',
       ),
     ),
-    'class' => array('summation-row'),
+    'class' => array('summation-row','total-row'),
   );
 
   $row = count($rows) - 1;

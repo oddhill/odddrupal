@@ -125,6 +125,10 @@
       &.summation-row.last-row {
         border-bottom: 0px none;
       }
+
+      &.total-row {
+        background: tint($aluminium,30%);
+      }
     }
   }
 }

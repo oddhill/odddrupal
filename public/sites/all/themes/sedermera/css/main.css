@@ -2335,6 +2335,8 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
     padding: 0 10px; }
 #interested-table table tr.summation-row.last-row {
   border-bottom: 0px none; }
+#interested-table table tr.total-row {
+  background: #f1f2f5; }
 
 .node-offer.view-mode-full {
   display: flex;
