@@ -757,23 +757,12 @@ function f_investor_views_default_views() {
   $handler->display->display_options['fields']['field_user_lead']['id'] = 'field_user_lead';
   $handler->display->display_options['fields']['field_user_lead']['table'] = 'field_data_field_user_lead';
   $handler->display->display_options['fields']['field_user_lead']['field'] = 'field_user_lead';
-  $handler->display->display_options['fields']['field_user_lead']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_user_lead']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_user_lead']['alter']['text'] = 'Lead';
   $handler->display->display_options['fields']['field_user_lead']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_user_lead']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_user_lead']['empty_zero'] = TRUE;
   $handler->display->display_options['fields']['field_user_lead']['type'] = 'list_key';
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = 'Lead';
-  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php
-if ( $data->field_field_user_lead [0][raw][value]) {
-  print "Lead";
-}
-?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
