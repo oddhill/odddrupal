@@ -18,7 +18,7 @@ function sedermera_verification_ds_fields_info($entity_type) {
 
   if ($entity_type == 'node') {
     $fields['ctrl_name'] = array(
-      'title'       => t('Avtalspart kontroll typ och namn'),
+      'title'       => 'Avtalspart kontroll typ och namn',
       'field_type'  => DS_FIELD_TYPE_FUNCTION,
       'function'    => 'sedermera_verification_ap_name_and_type',
       'ui_limit'    => array('ctrl|*', 'ctrl_pen|*'),

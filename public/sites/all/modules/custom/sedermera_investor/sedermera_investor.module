@@ -172,22 +172,22 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
   if ($form_state['values']['type'] == 'person') {
     if ($form_state['values']['field_user_lead'][LANGUAGE_NONE][0]['value'] == 0) {
       if ($form_state['values']['field_user_mail'][LANGUAGE_NONE][0]['email'] == '') {
-        form_set_error('field_user_mail', t('E-postaddress måste fyllas i.'));
+        form_set_error('field_user_mail', 'E-postaddress måste fyllas i.');
       }
       if ($form_state['values']['field_user_ssn'][LANGUAGE_NONE][0]['value'] == '') {
-        form_set_error('field_user_ssn', t('Personnummer måste fyllas i.'));
+        form_set_error('field_user_ssn', 'Personnummer måste fyllas i.');
       }
     }
     $pnbr = $node->field_user_ssn[LANGUAGE_NONE][0]['value'];
 
     if (isset($node->nid)) {
       if (!person_nbr_is_same($pnbr, $node->nid) && person_nbr_exists($pnbr)) {
-        form_set_error('field_user_ssn', t('Person number already in use.'));
+        form_set_error('field_user_ssn', 'Personnummer används redan.');
       }
     }
     else {
       if (person_nbr_exists($pnbr)) {
-        form_set_error('field_user_ssn', t('Person number already in use.'));
+        form_set_error('field_user_ssn', 'Personnummer används redan.');
       }
     }
   }
@@ -197,18 +197,18 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
 
     if (isset($node->nid)) {
       if (!org_nbr_is_same($org_nbr, $node->nid) && org_nbr_exists($org_nbr)) {
-        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+        form_set_error('field_investor_comp_org_nbr', 'Organisationsnummer används redan.');
       }
       if (!cust_id_is_same($cust_id, $node->nid) && cust_id_exists($cust_id)) {
-        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+        form_set_error('field_investor_comp_org_nbr', 'Organisationsnummer används redan.');
       }
     }
     else {
       if (org_nbr_exists($org_nbr)) {
-        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+        form_set_error('field_investor_comp_org_nbr', 'Organisationsnummer används redan.');
       }
       if (cust_id_exists($cust_id)) {
-        form_set_error('field_shared_cust_id', t('Customer id already exists, please resave use id: ' . get_next_cust_id()));
+        form_set_error('field_shared_cust_id', 'Användarid används redan, använd id: ' . get_next_cust_id());
       }
     }
   }
@@ -216,12 +216,12 @@ function sedermera_investor_node_validate($node, $form, &$form_state) {
     $cust_id = $form_state['values']['field_shared_cust_id'][LANGUAGE_NONE][0]['value'];
     if (isset($node->nid)) {
       if (!cust_id_is_same($cust_id, $node->nid) && cust_id_exists($cust_id)) {
-        form_set_error('field_investor_comp_org_nbr', t('Organisation number already in use.'));
+        form_set_error('field_investor_comp_org_nbr', 'Organisationsnummer används redan.');
       }
     }
     else {
       if (cust_id_exists($cust_id)) {
-        form_set_error('field_shared_cust_id', t('Customer id already exists, please resave use id: ' . get_next_cust_id()));
+        form_set_error('field_shared_cust_id', 'Användarid används redan, använd id: ' . get_next_cust_id());
       }
     }
   }

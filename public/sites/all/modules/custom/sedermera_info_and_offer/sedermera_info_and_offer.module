@@ -11,7 +11,7 @@
 function sedermera_info_and_offer_field_formatter_info() {
   return array(
     'sedermera_inside_info' => array(
-      'label' => t('Skicka mejl'),
+      'label' => 'Skicka mejl',
       'field types' => array('list_boolean'),
       'settings' => array(
         'tooltip' => 'Functionality for sending info mail',
@@ -28,8 +28,8 @@ function sedermera_info_and_offer_field_formatter_settings_form($field, $instanc
 
   $element['send_mail'] = array(
     '#type'           => 'select',                // Use a select box widget
-    '#title'          => t('Typ'),                // Widget label
-    '#description'    => t('Välj utskickstyp'),   // Helper text
+    '#title'          => 'Typ',                   // Widget label
+    '#description'    => 'Välj utskickstyp',      // Helper text
     '#default_value'  => $settings['send_mail'],  // Get the value if it's already been set
     '#options'        => array(
       'info'  => 'Insynsinfo',
@@ -44,7 +44,7 @@ function sedermera_info_and_offer_field_formatter_settings_form($field, $instanc
  * Implements hook_field_formatter_settings_summary().
  */
 function sedermera_info_and_offer_field_formatter_settings_summary($field, $instance, $view_mode) {
-  $summary = t('Test text');
+  $summary = 'Test';
   return $summary;
 }
 

@@ -771,10 +771,10 @@ function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Add selected investors'),
+    '#value' => 'Lägg till valda investerare',
   );
   $form['actions']['cancel'] = array(
-    '#markup' => l(t('Cancel'), implode('/' , array_slice(arg(), 0, 3)),  array('attributes' => array('class' => array('cancel-button')))),
+    '#markup' => l('Avbryt', implode('/' , array_slice(arg(), 0, 3)),  array('attributes' => array('class' => array('cancel-button')))),
     '#weight' => '1000',
   );
 
