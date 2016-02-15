@@ -31,7 +31,6 @@ dependencies[] = text
 dependencies[] = token_formatters
 dependencies[] = view_unpublished
 dependencies[] = views
-dependencies[] = views_php
 features[ccl][] = Lägg till erbjudande
 features[ccl][] = Lägg till transaktion
 features[context][] = node_add_offer
