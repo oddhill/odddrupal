@@ -6,6 +6,16 @@
  */
 
 /**
+ * Implements hook_html_head_alter().
+ */
+function sedermera_core_html_head_alter(&$head_elements) {
+  // Remove Generator META tag.
+  if (isset($head_elements['metatag_generator_0'])) {
+    unset($head_elements['metatag_generator_0']);
+  }
+}
+
+/**
  * Implements hook_menu_alter().
  */
 function sedermera_core_menu_alter(&$items) {
