@@ -196,3 +196,13 @@ function sedermera_core_update_7009() {
     pathauto_node_update_alias($node, 'bulkupdate');
   }
 }
+
+/**
+ * Disable and uninstall Views_PHP
+ */
+function sedermera_core_update_7010() {
+  if (module_exists('views_php')) {
+    module_disable(array('views_php'));
+    drupal_uninstall_modules(array('views_php'));
+  }
+}
