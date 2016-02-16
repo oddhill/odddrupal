@@ -66,13 +66,8 @@ function f_capital_raising_views_default_views() {
   /* Display: Kontaktlista */
   $handler = $view->new_display('page', 'Kontaktlista', 'page');
   $handler->display->display_options['defaults']['access'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'role';
-  $handler->display->display_options['access']['role'] = array(
-    3 => '3',
-    6 => '6',
-    4 => '4',
-    5 => '5',
-  );
+  $handler->display->display_options['access']['type'] = 'views_access_callback';
+  $handler->display->display_options['access']['views_access_callback'] = 'sedermera_core_user_has_access';
   $handler->display->display_options['defaults']['header'] = FALSE;
   /* Header: Global: Link */
   $handler->display->display_options['header']['link']['id'] = 'link';

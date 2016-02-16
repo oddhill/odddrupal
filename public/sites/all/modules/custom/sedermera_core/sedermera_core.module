@@ -6,6 +6,23 @@
  */
 
 /**
+* Implementation of hook_views_access_callbacks().
+*/
+function sedermera_core_views_access_callbacks() {
+  return array(
+    'sedermera_core_user_has_access' => t('Offer contact list access'),
+  );
+}
+
+function sedermera_core_user_has_access($account = NULL) {
+  $node = node_load(arg(1));
+  if ($node->type === 'offer') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
  * Implements hook_html_head_alter().
  */
 function sedermera_core_html_head_alter(&$head_elements) {
