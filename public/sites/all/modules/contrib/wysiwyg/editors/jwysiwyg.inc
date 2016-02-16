@@ -11,12 +11,16 @@
 function wysiwyg_jwysiwyg_editor() {
   $editor['jwysiwyg'] = array(
     'title' => 'jWYSIWYG',
-    'vendor url' => 'http://github.com/akzhan/jwysiwyg',
-    'download url' => 'http://github.com/akzhan/jwysiwyg/tags',
+    'vendor url' => 'http://code.google.com/p/jwysiwyg/',
+    'download url' => 'http://code.google.com/p/jwysiwyg/downloads/list',
     'libraries' => array(
       '' => array(
         'title' => 'Source',
         'files' => array('jquery.wysiwyg.js'),
+      ),
+      'pack' => array(
+        'title' => 'Packed',
+        'files' => array('jquery.wysiwyg.pack.js'),
       ),
     ),
     'version callback' => 'wysiwyg_jwysiwyg_version',
@@ -24,7 +28,7 @@ function wysiwyg_jwysiwyg_editor() {
     // @todo Wrong property; add separate properties for editor requisites.
     'css path' => wysiwyg_get_path('jwysiwyg'),
     'versions' => array(
-      '0.97' => array(
+      '0.5' => array(
         'js files' => array('jwysiwyg.js'),
         'css files' => array('jquery.wysiwyg.css'),
       ),

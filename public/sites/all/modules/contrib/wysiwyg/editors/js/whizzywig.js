@@ -63,8 +63,9 @@ Drupal.wysiwyg.editor.attach.whizzywig = function(context, params, settings) {
   wysiwygWhizzywig.currentField = params.field;
   wysiwygWhizzywig.fields[wysiwygWhizzywig.currentField] = '';
   // Whizzywig needs to have the width set 'inline'.
-  var $field = $('#' + params.field);
-  this.originalStyle = $field.attr('style');
+  $field = $('#' + params.field);
+  var originalValues = Drupal.wysiwyg.instances[params.field];
+  originalValues.originalStyle = $field.attr('style');
   $field.css('width', $field.width() + 'px');
 
   // Attach editor.
@@ -77,9 +78,8 @@ Drupal.wysiwyg.editor.attach.whizzywig = function(context, params, settings) {
  * Detach a single or all editors.
  */
 Drupal.wysiwyg.editor.detach.whizzywig = function (context, params, trigger) {
-  var instance = this;
   var detach = function (index) {
-    var id = whizzies[index], $field = $('#' + id);
+    var id = whizzies[index], $field = $('#' + id), instance = Drupal.wysiwyg.instances[id];
 
     // Save contents of editor back into textarea.
     $field.val(instance.getContent());
@@ -92,9 +92,7 @@ Drupal.wysiwyg.editor.detach.whizzywig = function (context, params, trigger) {
     whizzies.splice(index, 1);
 
     // Restore original textarea styling.
-    if ('originalStyle' in instance) {
-      $field.removeAttr('style').attr('style', instance.originalStyle);
-    }
+    $field.removeAttr('style').attr('style', instance.originalStyle);
   };
 
   if (typeof params != 'undefined') {
