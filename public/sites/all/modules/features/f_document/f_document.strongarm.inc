@@ -617,7 +617,7 @@ function f_document_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_document_pattern';
-  $strongarm->value = 'dokument/lista/[node:title]';
+  $strongarm->value = 'regelverk/lista/[node:title]';
   $export['pathauto_node_document_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -626,6 +626,20 @@ function f_document_strongarm() {
   $strongarm->name = 'pathauto_node_pattern';
   $strongarm->value = '';
   $export['pathauto_node_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_template_pattern';
+  $strongarm->value = 'mallar/lista/[node:title]';
+  $export['pathauto_node_template_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_mall_typ_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_mall_typ_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
