@@ -136,3 +136,63 @@ function sedermera_core_update_7007() {
 function sedermera_core_update_7008() {
   db_query("UPDATE {system} SET weight = 10 WHERE name = 'sedermera_core'");
 }
+
+/**
+ * Update url alias
+ */
+function sedermera_core_update_7009() {
+  db_query("TRUNCATE TABLE {url_alias}");
+
+  $path = array(
+    'source' => 'node/add/person',
+    'alias' => 'kontaktpersoner/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-private',
+    'alias' => 'avtalsparter/skapa/privatperson',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-company',
+    'alias' => 'avtalsparter/skapa/bolag',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/company',
+    'alias' => 'kundbolag/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/offer',
+    'alias' => 'erbjudanden/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/document',
+    'alias' => 'regelverk/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/manual',
+    'alias' => 'manualer/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/template',
+    'alias' => 'mallar/skapa',
+  );
+  path_save($path);
+
+  $nids = entity_load('node');
+  foreach ($nids as $key => $node) {
+    pathauto_node_update_alias($node, 'bulkupdate');
+  }
+}
