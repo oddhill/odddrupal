@@ -27,11 +27,10 @@
       }
       exclude += '.form-placeholder-exclude-children *';
       exclude += ', .form-placeholder-exclude';
-      exclude += ', .form-placeholder-processed';
 
       var required_indicator = settings.form_placeholder.required_indicator;
 
-      $(include).not(exclude).each(function() {
+      $(include, context).not(exclude).each(function() {
         var $textfield = $(this);
 
         // Check if element is a textfield.
@@ -62,7 +61,6 @@
           if (!Drupal.form_placeholder.placeholderIsSupported() && settings.form_placeholder.fallback_support) {
             $textfield.placeholder();
           }
-          $textfield.addClass('form-placeholder-processed');
         }
       });
     }
