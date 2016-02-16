@@ -24,6 +24,43 @@
         margin-bottom: 10px;
       }
 
+      .related {
+        margin-bottom: 20px;
+
+        &-docs {
+          background: tint($light-grey,60%);
+          border: 1px solid $wool;
+          border-radius: 2px;
+          list-style: none;
+
+          li.item {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px;
+            border-bottom: 1px solid $wool;
+
+            &:last-child {
+              border-bottom: 0px none;
+            }
+
+            img {
+              display: block;
+              float: left;
+              margin-right: 5px;
+            }
+
+            a {
+              display: block;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              border: 0px none;
+            }
+          }
+        }
+      }
+
       .attachments {
         margin-bottom: 20px;
 

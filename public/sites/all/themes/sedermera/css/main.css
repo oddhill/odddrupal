@@ -1896,6 +1896,31 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
     padding-left: 30px; }
     .node-manual.view-mode-full .manual-sidebar h3 {
       margin-bottom: 10px; }
+    .node-manual.view-mode-full .manual-sidebar .related {
+      margin-bottom: 20px; }
+      .node-manual.view-mode-full .manual-sidebar .related-docs {
+        background: #fafbfc;
+        border: 1px solid #e0e2e6;
+        border-radius: 2px;
+        list-style: none; }
+        .node-manual.view-mode-full .manual-sidebar .related-docs li.item {
+          display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          padding: 10px;
+          border-bottom: 1px solid #e0e2e6; }
+          .node-manual.view-mode-full .manual-sidebar .related-docs li.item:last-child {
+            border-bottom: 0px none; }
+          .node-manual.view-mode-full .manual-sidebar .related-docs li.item img {
+            display: block;
+            float: left;
+            margin-right: 5px; }
+          .node-manual.view-mode-full .manual-sidebar .related-docs li.item a {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            border: 0px none; }
     .node-manual.view-mode-full .manual-sidebar .attachments {
       margin-bottom: 20px; }
       .node-manual.view-mode-full .manual-sidebar .attachments-list {
