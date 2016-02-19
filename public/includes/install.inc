@@ -763,7 +763,7 @@ function drupal_install_system() {
 /**
  * Uninstalls a given list of disabled modules.
  *
- * @param array $module_list
+ * @param string[] $module_list
  *   The modules to uninstall. It is the caller's responsibility to ensure that
  *   all modules in this list have already been disabled before this function
  *   is called.
@@ -782,6 +782,7 @@ function drupal_install_system() {
  *   included in $module_list).
  *
  * @see module_disable()
+ * @see module_enable()
  */
 function drupal_uninstall_modules($module_list = array(), $uninstall_dependents = TRUE) {
   if ($uninstall_dependents) {
