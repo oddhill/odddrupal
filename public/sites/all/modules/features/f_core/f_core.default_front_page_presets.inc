@@ -27,7 +27,7 @@ function f_core_default_front_page_presets() {
   $front_page_preset->id = '3';
   $front_page_preset->role = 'Användare';
   $front_page_preset->mode = 'redirect';
-  $front_page_preset->data = 'dokument/lista';
+  $front_page_preset->data = 'regelverk/lista';
   $front_page_preset->filter_format = '';
   $front_page_preset->weight = 0;
   $export['Användare'] = $front_page_preset;

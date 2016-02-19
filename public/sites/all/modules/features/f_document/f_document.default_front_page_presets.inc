@@ -16,7 +16,7 @@ function f_document_default_front_page_presets() {
   $front_page_preset->id = '9';
   $front_page_preset->role = 'Dokumentmoderator';
   $front_page_preset->mode = 'redirect';
-  $front_page_preset->data = 'dokument/lista';
+  $front_page_preset->data = 'regelverk/lista';
   $front_page_preset->filter_format = '';
   $front_page_preset->weight = 0;
   $export['Dokumentmoderator'] = $front_page_preset;
@@ -27,7 +27,7 @@ function f_document_default_front_page_presets() {
   $front_page_preset->id = '10';
   $front_page_preset->role = 'Dokumentskapare';
   $front_page_preset->mode = 'redirect';
-  $front_page_preset->data = 'dokument/lista';
+  $front_page_preset->data = 'regelverk/lista';
   $front_page_preset->filter_format = '';
   $front_page_preset->weight = 0;
   $export['Dokumentskapare'] = $front_page_preset;
