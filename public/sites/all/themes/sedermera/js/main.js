@@ -223,8 +223,8 @@ $(document).ready(function() {
   tocInitiator();
 
   // Hide/show appendix in Document list (Dina dokument)
-  $(".page-dokument-lista .appendix").parent().hide();
-  $(".page-dokument-lista .show-appendix").click(function () {
+  $(".page-regelverk-lista .appendix").parent().hide();
+  $(".page-regelverk-lista .show-appendix").click(function () {
     var elem = $(this).parent().parent();
 
     elem.siblings().removeClass("open");
