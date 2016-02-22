@@ -335,7 +335,7 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
   $display = field_extra_fields_get_display('node', $node->type, $view_mode);
 
   // Render the verification status for private investors.
-  if (isset($display['verification_status_investor']) && $display['verification_status_investor']['visible'] && $node->nid) {
+  if (isset($display['verification_status_investor']) && $node->nid) {
     $wrapper = entity_metadata_wrapper('node', $node);
 
     // Collect the different verification IDs. Start of with the ID
