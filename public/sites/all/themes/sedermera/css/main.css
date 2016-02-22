@@ -2511,12 +2511,12 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
 
 #preview-wrapper {
   display: flex;
-  padding: 0 40px;
-  align-items: baseline; }
+  padding: 0 40px; }
   #preview-wrapper #preview-transaction {
     flex-grow: 2; }
   #preview-wrapper #preview-person {
-    width: 300px; }
+    width: 300px;
+    padding-top: 40px; }
     #preview-wrapper #preview-person h3 {
       margin-bottom: 30px; }
     #preview-wrapper #preview-person .no-contacts {
