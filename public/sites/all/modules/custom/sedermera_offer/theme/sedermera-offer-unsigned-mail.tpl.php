@@ -44,18 +44,26 @@
 
             <tr>
               <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px; padding: 0 0 15px 0;">
-                Om Ni har några frågor eller funderingar, vänligen kontakta mig.
+                Om Ni har några frågor vänligen kontakta din kontaktperson på Sedermera Fondkommission.
               </td>
             </tr>
 
-            <?php if ($contact_details): ?>
-              <tr>
-                <td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">
-                  <?php print $contact_details; ?>
-                </td>
-              </tr>
-            <?php endif; ?>
-
+            <tr><td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">Med vänlig  hälsning</td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;"><b>Sedermera Fondkommission</b></td></tr>
+            <tr><td style="color: #aaaaaa; font-family: Arial, sans-serif; font-size: 13px;"><b>Besöksadress:</b> Importgatan 4, 262 73 Ängelholm, Sverige</td></tr>
+            <tr><td style="color: #aaaaaa; font-family: Arial, sans-serif; font-size: 13px;"><b>Postadress:</b> Importgatan 4, 262 73 Ängelholm, Sverige</td></tr>
+            <tr><td style="color: #aaaaaa; font-family: Arial, sans-serif; font-size: 13px;"><b>Växel:</b> +46431-47 17 00</td></tr>
+            <tr><td style="color: #aaaaaa; font-family: Arial, sans-serif; font-size: 13px;"><b>Fax:</b> +46431-47 17 21</td></tr>
+            <tr><td style="color: #aaaaaa; font-family: Arial, sans-serif; font-size: 13px;">backoffice@sedermera.se</td></tr>
+            <tr><td style="color: #aaaaaa; font-family: Arial, sans-serif; font-size: 13px;">www.sedermera.se</td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;"><b>Följ oss på sociala medier:</b></td></tr>
+            <tr><td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">www.facebook.com/sedermera</td></tr>
+            <tr><td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">www.twitter.com/sedermerafk</td></tr>
+            <tr><td height="10"></td></tr>
+            <tr><td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 13px;">==============================================================================</td></tr>
+            <tr><td style="color: #1a1a1a; font-family: Arial, sans-serif; font-size: 11px;">"PLEASE NOTE: The information contained in this message is privileged and confidential, and is intended only for the use of the individual named above and others whohave been specifically authorized to receive it. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of thiscommunication is strictly prohibited. If you have received this communication in error, please contact the above sender. Thank you."</td></tr>
           </table>
 
         </td>

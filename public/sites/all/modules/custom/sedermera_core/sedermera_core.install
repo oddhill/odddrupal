@@ -206,3 +206,12 @@ function sedermera_core_update_7010() {
     drupal_uninstall_modules(array('views_php'));
   }
 }
+
+/**
+ * Delete the contact details field.
+ */
+function sedermera_core_update_7011() {
+  field_delete_field('field_user_details');
+
+  field_purge_batch(100);
+}

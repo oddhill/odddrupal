@@ -426,13 +426,6 @@ function sedermera_preprocess_node(&$variables) {
       $variables['related'] = '<div class="related"><h3>Relaterade dokument</h3>' . $doc_rel_link . '</div>';
     }
   }
-
-  // Add contact details for current user as a variable to offers sent via mail.
-  if ($variables['type'] == 'offer' && $variables['view_mode'] == 'mail') {
-    $user = entity_metadata_wrapper('user', $GLOBALS['user']->uid);
-    $contact_details = $user->field_user_details->value();
-    $variables['contact_details'] = isset($contact_details['value']) ? $contact_details['value'] : '';
-  }
 }
 
 function sedermera_preprocess_entity(&$variables) {
