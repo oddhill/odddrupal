@@ -2115,6 +2115,36 @@ form#views-form-dokument-manual table#draggableviews-table-dokument-manual {
       margin: 0; }
       .offer-contact-list .views-field-field-transaction-first .editablefield-item .form-submit:hover {
         background-color: #303030; }
+  .offer-contact-list .views-field-field-transaction-info,
+  .offer-contact-list .views-field-field-transaction-info-offer,
+  .offer-contact-list .views-field-field-transaction-no-info {
+    position: relative; }
+    .offer-contact-list .views-field-field-transaction-info .ajax-progress,
+    .offer-contact-list .views-field-field-transaction-info-offer .ajax-progress,
+    .offer-contact-list .views-field-field-transaction-no-info .ajax-progress {
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      padding: 13px 8px;
+      background: #fff; }
+      .offer-contact-list .views-field-field-transaction-info .ajax-progress .throbber,
+      .offer-contact-list .views-field-field-transaction-info-offer .ajax-progress .throbber,
+      .offer-contact-list .views-field-field-transaction-no-info .ajax-progress .throbber {
+        float: none; }
+      .offer-contact-list .views-field-field-transaction-info .ajax-progress .message,
+      .offer-contact-list .views-field-field-transaction-info-offer .ajax-progress .message,
+      .offer-contact-list .views-field-field-transaction-no-info .ajax-progress .message {
+        display: none; }
+  .offer-contact-list .views-field-field-transaction-no-info .ajax-progress {
+    padding: 2px 0 0 0;
+    padding-top: 2px !important; }
+    .offer-contact-list .views-field-field-transaction-no-info .ajax-progress .throbber {
+      margin: 0; }
+  .offer-contact-list tr.even .views-field-field-transaction-info .ajax-progress,
+  .offer-contact-list tr.even .views-field-field-transaction-info-offer .ajax-progress,
+  .offer-contact-list tr.even .views-field-field-transaction-no-info .ajax-progress {
+    background: #fafbfc; }
 
 .page-node-kontaktlista-lagg-till .content-wrapper {
   background: transparent; }
