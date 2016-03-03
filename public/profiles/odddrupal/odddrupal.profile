@@ -150,9 +150,8 @@ function odddrupal_menu() {
 
   // Version callback.
   $items['odddrupal/version'] = array(
-    'access callback' => TRUE,
+    'access callback' => 'odddrupal_version_callback_access',
     'page callback' => 'odddrupal_version_callback',
-    'delivery callback' => 'drupal_json_output',
   );
 
   return $items;
@@ -187,12 +186,30 @@ function odddrupal_configuration_form($form, &$form_state) {
 }
 
 /**
+ * Access callback for the version callback.
+ *
+ * This will verify that the supplied access key matches the one configured for
+ * the site.
+ *
+ * @return bool
+ *   TRUE or FALSE depending on whether the user should have access or not.
+ */
+function odddrupal_version_callback_access() {
+  if (!isset($_GET['key'])) {
+    return FALSE;
+  }
+
+  // Return TRUE if the supplied key matches the configured key.
+  return $_GET['key'] == variable_get('odddrupal_version_callback_key', variable_get('cron_key', ''));
+}
+
+/**
  * Page callback which returns the current version.
  *
  * TODO: Longer description.
  *
- * @return array
- *   An array which is delivered by drupal_json_output().
+ * @return json
+ *   JSON formatted data with the information.
  */
 function odddrupal_version_callback() {
   // Setup the initial response.
@@ -235,7 +252,7 @@ function odddrupal_version_callback() {
     'profile' => $profile,
     'versions' => $versions,
   );
-  return $response;
+  return drupal_json_output($response);
 }
 
 /**
