@@ -139,6 +139,16 @@ function odddrupal_form_install_configure_form_alter(&$form, $form_state) {
  * Implements hook_menu().
  */
 function odddrupal_menu() {
+  // Configuration form.
+  $items['admin/config/system/odddrupal'] = array(
+    'title' => 'Odd Drupal',
+    'description' => 'Configure Odd Drupal settings.',
+    'access arguments' => array('administer site configuration'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('odddrupal_configuration_form'),
+  );
+
+  // Version callback.
   $items['odddrupal/version'] = array(
     'access callback' => TRUE,
     'page callback' => 'odddrupal_version_callback',
@@ -146,6 +156,34 @@ function odddrupal_menu() {
   );
 
   return $items;
+}
+
+/**
+ * Configuration form for Odd Drupal.
+ *
+ * This is built using drupal_get_form() and is accessible via
+ * admin/config/system/odddrupal.
+ */
+function odddrupal_configuration_form($form, &$form_state) {
+  // Fetch the current access key and create the URL.
+  $access_key = variable_get('odddrupal_version_callback_key', variable_get('cron_key', ''));
+  $version_callback_url = url('odddrupal/version', array('absolute' => TRUE, 'query' => array('key' => $access_key)));
+
+  // Create a fieldset for the version callback configuration.
+  $form['odddrupal_version_callback'] = array(
+    '#title' => t('Version callback'),
+    '#description' => t('The version callback displays which profiles that are being used and their versions. The callback is accessible via <a href="@url">@url</a>.', array('@url' => $version_callback_url)),
+    '#type' => 'fieldset',
+  );
+  $form['odddrupal_version_callback']['odddrupal_version_callback_key'] = array(
+    '#title' => t('Access key'),
+    '#description' => t('The access key to use in order to access the callback. The key should be supplied using the %key query parameter.', array('%key' => 'key')),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#default_value' => $access_key,
+  );
+
+  return system_settings_form($form);
 }
 
 /**
