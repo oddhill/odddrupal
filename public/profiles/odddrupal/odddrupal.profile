@@ -206,7 +206,9 @@ function odddrupal_version_callback_access() {
 /**
  * Page callback which returns the current version.
  *
- * TODO: Longer description.
+ * This will fetch the information based on the main profile and every profile
+ * that is being used. The version for each profile must be contained within the
+ * info file.
  *
  * @return json
  *   JSON formatted data with the information.
