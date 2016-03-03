@@ -136,6 +136,63 @@ function odddrupal_form_install_configure_form_alter(&$form, $form_state) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function odddrupal_menu() {
+  $items['odddrupal/version'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'odddrupal_version_callback',
+    'delivery callback' => 'drupal_json_output',
+  );
+
+  return $items;
+}
+
+function odddrupal_version_callback() {
+  // Setup the initial response.
+  $response = array(
+    'success' => FALSE,
+    'data' => t('An unknown error occured.'),
+  );
+
+  // Get the install profile and every profile which it depends on.
+  $profile = variable_get('install_profile');
+  $profiles = variable_get('install_profiles');
+
+  // Bail out if we're missing profile information.
+  if (!$profile || !$profiles) {
+    $response['data'] = t('Failed to determine profile.');
+    drupal_add_http_header('Status', '500 Internal Server Error');
+    return $response;
+  }
+
+  // Fetch the versions of each profile that is being used.
+  $versions = array();
+  foreach ($profiles as $profile) {
+    // Get profile information.
+    $info = system_get_info('module', $profile);
+
+    // Bail out if there's no version.
+    if (!isset($info['version']) || !$info['version']) {
+      $response['data'] = t('Failed to determine version for @profile.', array('@profile' => $profile));
+      drupal_add_http_header('Status', '500 Internal Server Error');
+      return $response;
+    }
+
+    // Add the version to the versions.
+    $versions[$profile] = $info['version'];
+  }
+
+  // Add the profile and versions to the response, and exit.
+  $response['success'] = TRUE;
+  $response['data'] = array(
+    'profile' => $profile,
+    'versions' => $versions,
+  );
+  return $response;
+}
+
+/**
  * Implements hook_views_api().
  */
 function odddrupal_views_api() {
