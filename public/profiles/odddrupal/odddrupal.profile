@@ -148,6 +148,14 @@ function odddrupal_menu() {
   return $items;
 }
 
+/**
+ * Page callback which returns the current version.
+ *
+ * TODO: Longer description.
+ *
+ * @return array
+ *   An array which is delivered by drupal_json_output().
+ */
 function odddrupal_version_callback() {
   // Setup the initial response.
   $response = array(
