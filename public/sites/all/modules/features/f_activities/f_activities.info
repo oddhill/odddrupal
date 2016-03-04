@@ -127,5 +127,4 @@ features[variable][] = message_delete_on_entity_delete
 features[variable][] = message_purge_days
 features[variable][] = message_purge_enable
 features[variable][] = message_purge_quota
-features[views_view][] = aktiviteter
 project path = sites/all/modules/features
