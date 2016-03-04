@@ -1,6 +1,7 @@
 name = Odd Vault
 description = Installation profile that should be used when creating an intranet.
 core = 7.x
+version = 7.x-2.0
 base = odddrupal
 
 ; Contrib modules
