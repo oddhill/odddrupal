@@ -15,9 +15,11 @@
 <div class="companies-list">
   <?php print $header; ?>
 
-  <div class="view-filters table-filter">
-    <?php print $exposed; ?>
-  </div>
+  <?php if ($exposed): ?>
+    <div class="view-filters table-filter">
+      <?php print $exposed; ?>
+    </div>
+  <?php endif; ?>
 
   <?php print $attachment_before; ?>
 
