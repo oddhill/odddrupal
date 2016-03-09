@@ -351,6 +351,7 @@ function odddrupal_set_variables() {
     'reroute_email' => 1,
     'rules_admin' => 1,
     'search_krumo' => 1,
+    'security_review' => 0,
     'speedy' => 0,
     'stage_file_proxy' => 1,
     'googleanalytics' => 0,
@@ -387,6 +388,7 @@ function odddrupal_set_variables() {
     'reroute_email' => 1,
     'rules_admin' => 1,
     'search_krumo' => 0,
+    'security_review' => 1,
     'speedy' => 1,
     'stage_file_proxy' => 1,
     'googleanalytics' => 0,
@@ -424,6 +426,7 @@ function odddrupal_set_variables() {
     'reroute_email' => 0,
     'rules_admin' => 0,
     'search_krumo' => 0,
+    'security_review' => 1,
     'speedy' => 1,
     'stage_file_proxy' => 0,
     'googleanalytics' => 1,
@@ -506,4 +509,5 @@ function odddrupal_set_variables() {
   variable_set('logentries_severity', '7');
   variable_set('features_default_export_path', 'sites/all/modules/features');
   variable_set('xhprof_enabled', 1);
+  variable_set('security_review_base_url_method', 'include');
 }

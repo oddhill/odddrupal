@@ -1047,3 +1047,25 @@ function odddrupal_update_7163() {
     variable_set('xhprof_enabled', 1);
   }
 }
+
+/**
+ * Enable the Security Review module for staging and production.
+ */
+function odddrupal_update_7164() {
+  $modules = variable_get('tadaa_development_modules', array());
+  $modules['security_review'] = 0;
+  variable_set('tadaa_development_modules', $modules);
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  $modules['security_review'] = 1;
+  variable_set('tadaa_staging_modules', $modules);
+
+  $modules = variable_get('tadaa_production_modules', array());
+  $modules['security_review'] = 1;
+  variable_set('tadaa_production_modules', $modules);
+
+  if (in_array(variable_get('tadaa_environment'), array('staging', 'production'))) {
+    module_enable(array('security_review'));
+    variable_set('security_review_base_url_method', 'include');
+  }
+}
