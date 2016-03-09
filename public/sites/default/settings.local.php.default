@@ -14,3 +14,6 @@ $databases['default']['default'] = array(
   'password' => '',
   'host' => '127.0.0.1',
 );
+
+// The base URL for where the site is accessible.
+$base_url = 'http://www.example.com';
