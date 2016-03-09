@@ -4,9 +4,7 @@
  * This file contains local configuration for this server.
  */
 
-/**
- * Database settings.
- */
+// Database settings.
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'database' => 'database',
