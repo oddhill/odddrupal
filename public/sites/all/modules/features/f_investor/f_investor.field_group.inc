@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function f_investor_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -43,7 +43,7 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_ap|node|investor_company|form'] = $field_group;
+  $field_groups['group_ap|node|investor_company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -76,7 +76,7 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_ap|node|investor_private|form'] = $field_group;
+  $field_groups['group_ap|node|investor_private|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -108,7 +108,7 @@ function f_investor_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_comp_ctrl|node|investor_company|form'] = $field_group;
+  $field_groups['group_comp_ctrl|node|investor_company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -134,7 +134,7 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_head|node|investor_company|form'] = $field_group;
+  $field_groups['group_head|node|investor_company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -160,7 +160,7 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_head|node|investor_private|form'] = $field_group;
+  $field_groups['group_head|node|investor_private|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -186,7 +186,7 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_head|node|person|form'] = $field_group;
+  $field_groups['group_head|node|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -214,7 +214,7 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_id_ctrl|node|person|form'] = $field_group;
+  $field_groups['group_id_ctrl|node|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -249,7 +249,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_comp_1|investor|company|form'] = $field_group;
+  $field_groups['group_invest_comp_1|investor|company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -280,7 +280,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_comp_2|investor|company|form'] = $field_group;
+  $field_groups['group_invest_comp_2|investor|company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -315,7 +315,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_comp_body|investor|company|form'] = $field_group;
+  $field_groups['group_invest_comp_body|investor|company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -348,7 +348,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_comp_sidebar|investor|company|form'] = $field_group;
+  $field_groups['group_invest_comp_sidebar|investor|company|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -377,7 +377,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_lead_1|investor|lead|form'] = $field_group;
+  $field_groups['group_invest_lead_1|investor|lead|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -407,7 +407,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_lead_2|investor|lead|form'] = $field_group;
+  $field_groups['group_invest_lead_2|investor|lead|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -441,7 +441,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_lead_body|investor|lead|form'] = $field_group;
+  $field_groups['group_invest_lead_body|investor|lead|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -474,7 +474,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_lead_sidebar|investor|lead|form'] = $field_group;
+  $field_groups['group_invest_lead_sidebar|investor|lead|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -509,7 +509,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_pers_1|investor|person|form'] = $field_group;
+  $field_groups['group_invest_pers_1|investor|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -540,7 +540,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_pers_2|investor|person|form'] = $field_group;
+  $field_groups['group_invest_pers_2|investor|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -575,7 +575,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_pers_body|investor|person|form'] = $field_group;
+  $field_groups['group_invest_pers_body|investor|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -608,7 +608,7 @@ function f_investor_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_invest_pers_sidebar|investor|person|form'] = $field_group;
+  $field_groups['group_invest_pers_sidebar|investor|person|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -640,7 +640,7 @@ function f_investor_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_prv_ctrl|node|investor_private|form'] = $field_group;
+  $field_groups['group_prv_ctrl|node|investor_private|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -680,7 +680,18 @@ function f_investor_field_group_info() {
       ),
     ),
   );
-  $export['group_user|node|person|form'] = $field_group;
+  $field_groups['group_user|node|person|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Allmänt');
+  t('Body');
+  t('Grundläggande');
+  t('Head');
+  t('ID-kontroll');
+  t('Kontaktuppgifter');
+  t('Kontroll');
+  t('Sidebar');
+
+  return $field_groups;
 }

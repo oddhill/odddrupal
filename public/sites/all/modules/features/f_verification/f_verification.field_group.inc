@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function f_verification_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -36,7 +36,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_complex_notes|node|ctrl_complementing|form'] = $field_group;
+  $field_groups['group_ctrl_complex_notes|node|ctrl_complementing|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -65,7 +65,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_complex|node|ctrl_complementing|form'] = $field_group;
+  $field_groups['group_ctrl_complex|node|ctrl_complementing|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -93,7 +93,7 @@ function f_verification_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_ctrl_fitting|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_fitting|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -121,7 +121,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_followup_notes|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_followup_notes|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -150,7 +150,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_followup|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_followup|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -185,7 +185,7 @@ function f_verification_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_ctrl_items|node|ctrl|form'] = $field_group;
+  $field_groups['group_ctrl_items|node|ctrl|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -213,7 +213,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_low_risk_notes|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_low_risk_notes|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -242,7 +242,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_low_risk|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_low_risk|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -277,7 +277,7 @@ function f_verification_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_ctrl_pen_items|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_pen_items|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -310,7 +310,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_pen_questions|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_pen_questions|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -338,7 +338,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_risk_notes|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_risk_notes|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -367,7 +367,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_risk|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_risk|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -395,7 +395,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_source|node|ctrl_pen|form'] = $field_group;
+  $field_groups['group_ctrl_source|node|ctrl_pen|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -429,7 +429,7 @@ function f_verification_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_ctrl_status|node|ctrl|form'] = $field_group;
+  $field_groups['group_ctrl_status|node|ctrl|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -457,7 +457,7 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_suspect_notes|node|ctrl_complementing|form'] = $field_group;
+  $field_groups['group_ctrl_suspect_notes|node|ctrl_complementing|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -486,7 +486,21 @@ function f_verification_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_ctrl_suspected|node|ctrl_complementing|form'] = $field_group;
+  $field_groups['group_ctrl_suspected|node|ctrl_complementing|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Form items');
+  t('Komplex');
+  t('Kontrollstatus');
+  t('Låg risk');
+  t('Misstänkt');
+  t('Passandebedömning');
+  t('Penningtvättsfrågor');
+  t('Risk');
+  t('Uppföljning');
+  t('Ursprung');
+  t('Övrig kommentar');
+
+  return $field_groups;
 }

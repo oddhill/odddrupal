@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function f_capital_raising_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -39,7 +39,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_offer_description|node|offer|form'] = $field_group;
+  $field_groups['group_offer_description|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -70,7 +70,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_details|node|offer|form'] = $field_group;
+  $field_groups['group_offer_details|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -96,7 +96,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_step_1|node|offer|form'] = $field_group;
+  $field_groups['group_offer_step_1|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -127,7 +127,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => '',
     ),
   );
-  $export['group_offer_step_2|node|offer|form'] = $field_group;
+  $field_groups['group_offer_step_2|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -158,7 +158,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_bl|node|offer|form'] = $field_group;
+  $field_groups['group_offer_type_bl|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -189,7 +189,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_bp|node|offer|form'] = $field_group;
+  $field_groups['group_offer_type_bp|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -225,7 +225,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'collapsible',
     ),
   );
-  $export['group_offer_type_fe|node|offer|form'] = $field_group;
+  $field_groups['group_offer_type_fe|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -264,7 +264,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_le|node|offer|form'] = $field_group;
+  $field_groups['group_offer_type_le|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -297,7 +297,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_pp|node|offer|form'] = $field_group;
+  $field_groups['group_offer_type_pp|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -330,7 +330,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_type_re|node|offer|form'] = $field_group;
+  $field_groups['group_offer_type_re|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -363,7 +363,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_types|node|offer|form'] = $field_group;
+  $field_groups['group_offer_types|node|offer|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -392,7 +392,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_view_description|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_description|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -425,7 +425,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_view_sidebar|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_sidebar|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -459,7 +459,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_view_type_bl|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_type_bl|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -493,7 +493,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_view_type_bp|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_type_bp|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -533,7 +533,7 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_offer_view_type_fe|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_type_fe|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -575,7 +575,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_view_type_le|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_type_le|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -611,7 +611,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_view_type_pp|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_type_pp|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -647,7 +647,7 @@ function f_capital_raising_field_group_info() {
       ),
     ),
   );
-  $export['group_offer_view_type_re|node|offer|full'] = $field_group;
+  $field_groups['group_offer_view_type_re|node|offer|full'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -684,7 +684,25 @@ function f_capital_raising_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_transaction_agree_wrap|node|transaction_agreement|form'] = $field_group;
+  $field_groups['group_transaction_agree_wrap|node|transaction_agreement|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Beskrivning');
+  t('Blockpost');
+  t('Brygglån');
+  t('Description');
+  t('Detaljer');
+  t('Företrädesemission');
+  t('Listningsemission');
+  t('Modal form wrapper');
+  t('Private Placement');
+  t('Private placement');
+  t('Riktad emission');
+  t('Sidebar');
+  t('Step 1');
+  t('Step 2');
+  t('Transaktionstyp');
+
+  return $field_groups;
 }

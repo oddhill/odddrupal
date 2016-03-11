@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function f_document_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -39,7 +39,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_doc_1|node|document|form'] = $field_group;
+  $field_groups['group_doc_1|node|document|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -71,7 +71,7 @@ function f_document_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_doc_2|node|document|form'] = $field_group;
+  $field_groups['group_doc_2|node|document|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -107,7 +107,7 @@ function f_document_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_document_footer|node|document|form'] = $field_group;
+  $field_groups['group_document_footer|node|document|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -137,7 +137,7 @@ function f_document_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_document_head|node|document|form'] = $field_group;
+  $field_groups['group_document_head|node|document|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -166,7 +166,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_document_rel|node|document|form'] = $field_group;
+  $field_groups['group_document_rel|node|document|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -192,7 +192,7 @@ function f_document_field_group_info() {
       ),
     ),
   );
-  $export['group_doc|node|document|form'] = $field_group;
+  $field_groups['group_doc|node|document|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -224,7 +224,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_manual_1|node|manual|form'] = $field_group;
+  $field_groups['group_manual_1|node|manual|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -256,7 +256,7 @@ function f_document_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_manual_2|node|manual|form'] = $field_group;
+  $field_groups['group_manual_2|node|manual|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -292,7 +292,7 @@ function f_document_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_manual_footer|node|manual|form'] = $field_group;
+  $field_groups['group_manual_footer|node|manual|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -322,7 +322,7 @@ function f_document_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_manual_head|node|manual|form'] = $field_group;
+  $field_groups['group_manual_head|node|manual|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -350,7 +350,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_manual_relation|node|manual|form'] = $field_group;
+  $field_groups['group_manual_relation|node|manual|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -378,7 +378,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_manual_rel|node|manual|form'] = $field_group;
+  $field_groups['group_manual_rel|node|manual|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -404,7 +404,7 @@ function f_document_field_group_info() {
       ),
     ),
   );
-  $export['group_man|node|manual|form'] = $field_group;
+  $field_groups['group_man|node|manual|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -434,7 +434,7 @@ function f_document_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_template_c|node|template|form'] = $field_group;
+  $field_groups['group_template_c|node|template|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -465,7 +465,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_template_d|node|template|form'] = $field_group;
+  $field_groups['group_template_d|node|template|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -493,7 +493,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_template_relation|node|template|form'] = $field_group;
+  $field_groups['group_template_relation|node|template|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -521,7 +521,7 @@ function f_document_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_template_rel|node|template|form'] = $field_group;
+  $field_groups['group_template_rel|node|template|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -547,7 +547,18 @@ function f_document_field_group_info() {
       ),
     ),
   );
-  $export['group_template|node|template|form'] = $field_group;
+  $field_groups['group_template|node|template|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Detaljer');
+  t('Dokument');
+  t('Innehåll');
+  t('Mall');
+  t('Manual');
+  t('Relation');
+  t('Sidfot');
+  t('Sidhuvud');
+
+  return $field_groups;
 }
