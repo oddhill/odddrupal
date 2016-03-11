@@ -4,9 +4,7 @@
  * This file contains local configuration for this server.
  */
 
-/**
- * Database settings.
- */
+// Database settings.
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'database' => 'database',
@@ -14,3 +12,6 @@ $databases['default']['default'] = array(
   'password' => '',
   'host' => '127.0.0.1',
 );
+
+// The base URL for where the site is accessible.
+$base_url = 'http://www.example.com';

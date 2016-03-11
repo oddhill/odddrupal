@@ -136,6 +136,128 @@ function odddrupal_form_install_configure_form_alter(&$form, $form_state) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function odddrupal_menu() {
+  // Configuration form.
+  $items['admin/config/system/odddrupal'] = array(
+    'title' => 'Odd Drupal',
+    'description' => 'Configure Odd Drupal settings.',
+    'access arguments' => array('administer site configuration'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('odddrupal_configuration_form'),
+  );
+
+  // Version callback.
+  $items['odddrupal/version'] = array(
+    'access callback' => 'odddrupal_version_callback_access',
+    'page callback' => 'odddrupal_version_callback',
+  );
+
+  return $items;
+}
+
+/**
+ * Configuration form for Odd Drupal.
+ *
+ * This is built using drupal_get_form() and is accessible via
+ * admin/config/system/odddrupal.
+ */
+function odddrupal_configuration_form($form, &$form_state) {
+  // Fetch the current access key and create the URL.
+  $access_key = variable_get('odddrupal_version_callback_key', variable_get('cron_key', ''));
+  $version_callback_url = url('odddrupal/version', array('absolute' => TRUE, 'query' => array('key' => $access_key)));
+
+  // Create a fieldset for the version callback configuration.
+  $form['odddrupal_version_callback'] = array(
+    '#title' => t('Version callback'),
+    '#description' => t('The version callback displays which profiles that are being used and their versions. The callback is accessible via <a href="@url">@url</a>.', array('@url' => $version_callback_url)),
+    '#type' => 'fieldset',
+  );
+  $form['odddrupal_version_callback']['odddrupal_version_callback_key'] = array(
+    '#title' => t('Access key'),
+    '#description' => t('The access key to use in order to access the callback. The key should be supplied using the %key query parameter.', array('%key' => 'key')),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#default_value' => $access_key,
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Access callback for the version callback.
+ *
+ * This will verify that the supplied access key matches the one configured for
+ * the site.
+ *
+ * @return bool
+ *   TRUE or FALSE depending on whether the user should have access or not.
+ */
+function odddrupal_version_callback_access() {
+  if (!isset($_GET['key'])) {
+    return FALSE;
+  }
+
+  // Return TRUE if the supplied key matches the configured key.
+  return $_GET['key'] == variable_get('odddrupal_version_callback_key', variable_get('cron_key', ''));
+}
+
+/**
+ * Page callback which returns the current version.
+ *
+ * This will fetch the information based on the main profile and every profile
+ * that is being used. The version for each profile must be contained within the
+ * info file.
+ *
+ * @return json
+ *   JSON formatted data with the information.
+ */
+function odddrupal_version_callback() {
+  // Setup the initial response.
+  $response = array(
+    'success' => FALSE,
+    'data' => t('An unknown error occured.'),
+  );
+
+  // Get the install profile and every profile which it depends on.
+  $profile = variable_get('install_profile');
+  $profiles = variable_get('install_profiles');
+
+  // Bail out if we're missing profile information.
+  if (!$profile || !$profiles) {
+    $response['data'] = t('Failed to determine profile.');
+    drupal_add_http_header('Status', '500 Internal Server Error');
+    return $response;
+  }
+
+  // Fetch the versions of each profile that is being used.
+  $versions = array();
+  foreach ($profiles as $profile) {
+    // Get profile information.
+    $info = system_get_info('module', $profile);
+
+    // Bail out if there's no version.
+    if (!isset($info['version']) || !$info['version']) {
+      $response['data'] = t('Failed to determine version for @profile.', array('@profile' => $profile));
+      drupal_add_http_header('Status', '500 Internal Server Error');
+      return $response;
+    }
+
+    // Add the version to the versions.
+    $versions[$profile] = $info['version'];
+  }
+
+  // Add the profile and versions to the response, and exit.
+  $response['success'] = TRUE;
+  $response['data'] = array(
+    'profile' => $profile,
+    'versions' => $versions,
+  );
+  return drupal_json_output($response);
+}
+
+/**
  * Implements hook_views_api().
  */
 function odddrupal_views_api() {
