@@ -71,11 +71,11 @@ function sedermera_info_and_offer_field_formatter_view($entity_type, $entity, $f
     }
     // Information has been sent, enable to be sent again
     else if ($wrapper_tr->field_transaction_info->value()) {
-      $element[0]['#markup'] = l('Skicka igen', "offer/send-info/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+      $element[0]['#markup'] = l('Skicka igen', "node/{$wrapper_of->nid->value()}/send-info/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
     }
     // Send information
     else {
-      $element[0]['#markup'] = l('Skicka', "offer/send-info/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+      $element[0]['#markup'] = l('Skicka', "node/{$wrapper_of->nid->value()}/send-info/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
     }
   }
   // If Erbjudande
@@ -86,11 +86,11 @@ function sedermera_info_and_offer_field_formatter_view($entity_type, $entity, $f
     }
     // Offer has been sent, enable to be sent again
     else if ($wrapper_tr->field_transaction_info_offer->value()) {
-      $element[0]['#markup'] = l('Skicka igen', "offer/send-offer/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+      $element[0]['#markup'] = l('Skicka igen', "node/{$wrapper_of->nid->value()}/send-offer/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
     }
     // Send offer
     else {
-      $element[0]['#markup'] = l('Skicka', "offer/send-offer/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+      $element[0]['#markup'] = l('Skicka', "node/{$wrapper_of->nid->value()}/send-offer/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
     }
   }
 

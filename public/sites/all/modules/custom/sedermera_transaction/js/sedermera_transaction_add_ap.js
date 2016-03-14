@@ -11,7 +11,8 @@ Drupal.behaviors.sedermeraTransactionAddAp = {
         return;
       }
 
-      // Get the transaction and avtalspart IDs.
+      // Get the offer, transaction and avtalspart IDs.
+      var offer_id = $this.data('offer-id');
       var transaction_id = $this.data('transaction-id');
       var ap_id = $this.data('ap-id');
 
@@ -22,7 +23,7 @@ Drupal.behaviors.sedermeraTransactionAddAp = {
 
       // Perform a GET request to the callback which creates the Transaktion AP
       // node.
-      $.get(settings.basePath + 'transaction/add-ap/' + transaction_id + '/' + ap_id, function(data, success) {
+      $.get(settings.basePath + 'node/' + offer_id + '/add-ap/' + transaction_id + '/' + ap_id, function(data, success) {
         var ajax = Drupal.ajax.prototype;
 
         // Set the AJAX effect.

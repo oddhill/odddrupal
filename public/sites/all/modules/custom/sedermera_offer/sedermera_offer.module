@@ -27,17 +27,17 @@ function sedermera_offer_menu() {
     'access arguments' => array('create transaction content'),
   );
 
-  $items['offer/send-info/%'] = array(
+  $items['node/%/send-info/%'] = array(
     'page callback' => 'transaction_transparency_info_send_mail',
-    'page arguments' => array(2),
+    'page arguments' => array(3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'delivery callback' => 'ajax_deliver',
   );
 
-  $items['offer/send-offer/%'] = array(
+  $items['node/%/send-offer/%'] = array(
     'page callback' => 'sedermera_offer_send_offer_mail',
-    'page arguments' => array(2),
+    'page arguments' => array(3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'delivery callback' => 'ajax_deliver',

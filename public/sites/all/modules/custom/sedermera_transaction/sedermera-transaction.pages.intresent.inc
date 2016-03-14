@@ -276,6 +276,7 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
       $selected = FALSE;
       $attributes = array(
         'class' => array('add-transaction-ap'),
+        'data-offer-id' => $transaction_wrap->field_transaction_offer->nid->value(),
         'data-transaction-id' => $transaction->nid,
         'data-ap-id' => $investor->nid,
       );
