@@ -824,13 +824,13 @@ admin/*';
     'backup_migrate' => 0,
     'letmein' => 1,
     'logentries' => 0,
+    'security_review' => 0,
     'speedy' => 0,
     'stage_file_proxy' => 1,
     'bad_judgement' => 1,
     'rules_admin' => 1,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'security_review' => 0,
   );
   $export['tadaa_development_modules'] = $strongarm;
 
@@ -889,6 +889,7 @@ admin/*';
     'backup_migrate' => 0,
     'letmein' => 0,
     'logentries' => 0,
+    'security_review' => 1,
     'speedy' => 1,
     'stage_file_proxy' => 0,
     'bad_judgement' => 0,
@@ -942,13 +943,13 @@ admin/*';
     'backup_migrate' => 1,
     'letmein' => 0,
     'logentries' => 1,
+    'security_review' => 1,
     'speedy' => 1,
     'stage_file_proxy' => 0,
     'bad_judgement' => 0,
     'rules_admin' => 0,
     'themekey_ui' => 0,
     'views_ui' => 0,
-    'security_review' => 1,
   );
   $export['tadaa_production_modules'] = $strongarm;
 
@@ -996,13 +997,13 @@ admin/*';
     'backup_migrate' => 0,
     'letmein' => 1,
     'logentries' => 0,
+    'security_review' => 1,
     'speedy' => 1,
     'stage_file_proxy' => 1,
     'bad_judgement' => 1,
     'rules_admin' => 1,
     'themekey_ui' => 1,
     'views_ui' => 1,
-    'security_review' => 1,
   );
   $export['tadaa_staging_modules'] = $strongarm;
 
