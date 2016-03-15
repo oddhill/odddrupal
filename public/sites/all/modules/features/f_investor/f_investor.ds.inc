@@ -631,6 +631,8 @@ function f_investor_ds_layout_settings_info() {
         8 => 'field_investor_shared_ctrl_cred',
         9 => 'field_investor_shared_ctrl_ext',
         10 => 'field_shared_cont_pers',
+        11 => 'verification_status_investor',
+        12 => 'verification_id_investor',
       ),
     ),
     'fields' => array(
@@ -645,6 +647,8 @@ function f_investor_ds_layout_settings_info() {
       'field_investor_shared_ctrl_cred' => 'ds_content',
       'field_investor_shared_ctrl_ext' => 'ds_content',
       'field_shared_cont_pers' => 'ds_content',
+      'verification_status_investor' => 'ds_content',
+      'verification_id_investor' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -655,6 +659,7 @@ function f_investor_ds_layout_settings_info() {
     'layout_attributes_merge' => 1,
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
   );
   $export['node|investor_company|full'] = $ds_layout;
 
@@ -669,18 +674,22 @@ function f_investor_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
-        1 => 'field_shared_cust_id',
-        2 => 'field_shared_cont_pers',
-        3 => 'field_invest_pvt_notes',
-        4 => 'field_invest_pvt_address',
-        5 => 'field_investor_shared_ctrl_ua',
-        6 => 'field_investor_shared_ctrl_ptv',
-        7 => 'field_investor_shared_ctrl_cred',
-        8 => 'field_investor_shared_ctrl_ext',
+        1 => 'verification_id_investor',
+        2 => 'verification_status_investor',
+        3 => 'field_shared_cust_id',
+        4 => 'field_shared_cont_pers',
+        5 => 'field_invest_pvt_notes',
+        6 => 'field_invest_pvt_address',
+        7 => 'field_investor_shared_ctrl_ua',
+        8 => 'field_investor_shared_ctrl_ptv',
+        9 => 'field_investor_shared_ctrl_cred',
+        10 => 'field_investor_shared_ctrl_ext',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
+      'verification_id_investor' => 'ds_content',
+      'verification_status_investor' => 'ds_content',
       'field_shared_cust_id' => 'ds_content',
       'field_shared_cont_pers' => 'ds_content',
       'field_invest_pvt_notes' => 'ds_content',
@@ -699,6 +708,7 @@ function f_investor_ds_layout_settings_info() {
     'layout_attributes_merge' => 1,
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
   );
   $export['node|investor_private|full'] = $ds_layout;
 
