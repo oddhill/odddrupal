@@ -309,15 +309,19 @@ function _get_control_transactions_sum($nid, array $type_investment) {
 function sedermera_transaction_form_alter(&$form, &$form_state, $form_id) {
   // Alter the Kontaktlista page.
   if ($form_id === 'views_form_transactions_page') {
-    // Add the reload URL.
-    $form_state['reload_url'] = url('node/' . arg(1) . '/kontaktlista/reload');
-
     // Add submit callback to every field which is connected to the transaction
     // node, which reloads the page.
     foreach (element_children($form) as $parent) {
       foreach (element_children($form[$parent]) as $child) {
         $element = &$form[$parent][$child];
         if (isset($element['#bundle']) && $element['#bundle'] == 'transaction') {
+          // Add the reload URL if it hasn't been set yet.
+          if (!isset($form_state['reload_url'])) {
+            $offer_nid = entity_metadata_wrapper('node', $element['#entity_id'])->field_transaction_offer->nid->value();
+            $form_state['reload_url'] = url("node/$offer_nid/kontaktlista/reload");
+          }
+
+          // Add submit callback.
           $element['actions']['submit']['#submit'][] = 'sedermera_transaction_submit_callback';
         }
       }
