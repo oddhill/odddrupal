@@ -161,7 +161,7 @@ function logentries_init_log() {
         $severity = variable_get('logentries_severity', WATCHDOG_DEBUG);
 
         if (logentries_count_getlogger_params() > 4) {
-          $_logentries_log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', 10000, '', '', FALSE);
+          $_logentries_log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', logentries_get_port_number(), '', '', FALSE, FALSE);
         }
         else {
           $_logentries_log = LeLogger::getLogger($token, $persistent, $ssl, $severity);
@@ -227,6 +227,22 @@ function logentries_form_system_logging_settings_alter(&$form, &$form_state, $fo
       '#title' => t('SSL'),
       '#type' => 'checkbox',
     );
+    $form['logentries']['logentries_port'] = array(
+      '#default_value' => variable_get('logentries_port', 80),
+      '#description' => t('Select the port number to use when sending log messages via TCP or UDP.'),
+      '#title' => t('Port'),
+      '#type' => 'radios',
+      '#options' => array(
+        80 => 80,
+        514 => 514,
+        10000 => 10000,
+      ),
+      '#states' => array(
+        'visible' => array(
+          array('[name=logentries_ssl]' => array('checked' => FALSE)),
+        ),
+      ),
+    );
     $form['logentries']['logentries_strip_html'] = array(
       '#default_value' => variable_get('logentries_strip_html', TRUE),
       '#description' => t('Strip HTML tags from log messages.'),
@@ -288,9 +304,10 @@ function logentries_form_system_logging_settings_alter_test_submit($form, &$form
   $persistent = TRUE;
   $ssl = $form_state['values']['logentries_ssl'];
   $severity = $form_state['values']['logentries_severity'];
+  $port = $ssl ? 20000 : $form_state['values']['logentries_port'];
 
   if (logentries_count_getlogger_params() > 4) {
-    $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', 10000, '', '', FALSE);
+    $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', $port, '', '', FALSE, FALSE);
   }
   else {
     $log = LeLogger::getLogger($token, $persistent, $ssl, $severity);
@@ -312,6 +329,24 @@ function logentries_form_system_logging_settings_alter_test_submit($form, &$form
   catch (Exception $e) {
     drupal_set_message($failure_message, 'error');
   }
+}
+
+/**
+ * Get the port number to use.
+ *
+ * This will return the configured port number if SSL has been turned of. If SSL
+ * is enabled, we'll force the port to 20000 since that's the only one supported
+ * by Logentries.
+ *
+ * @return int
+ *   The port number.
+ */
+function logentries_get_port_number() {
+  if (variable_get('logentries_ssl', FALSE)) {
+    return 20000;
+  }
+
+  return variable_get('logentries_port', 80);
 }
 
 /**

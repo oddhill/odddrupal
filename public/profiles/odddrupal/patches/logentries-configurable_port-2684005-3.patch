@@ -1,27 +1,28 @@
 diff --git a/logentries.install b/logentries.install
-index 5bd2dc8..de965ea 100644
+index a9d993c..70cd2cf 100644
 --- a/logentries.install
 +++ b/logentries.install
-@@ -69,4 +69,5 @@ function logentries_uninstall() {
-   variable_del('logentries_token');
+@@ -70,5 +70,6 @@ function logentries_uninstall() {
    variable_del('logentries_ssl');
    variable_del('logentries_severity');
+   variable_del('logentries_strip_html');
 +  variable_del('logentries_port');
  }
+
 diff --git a/logentries.module b/logentries.module
-index ae7e263..8eeb3fa 100644
+index b3adffe..5246a1c 100644
 --- a/logentries.module
 +++ b/logentries.module
-@@ -157,7 +157,7 @@ function logentries_init_log() {
+@@ -161,7 +161,7 @@ function logentries_init_log() {
          $severity = variable_get('logentries_severity', WATCHDOG_DEBUG);
- 
+
          if (logentries_count_getlogger_params() > 4) {
 -          $_logentries_log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', 10000, '', '', FALSE);
 +          $_logentries_log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', logentries_get_port_number(), '', '', FALSE, FALSE);
          }
          else {
            $_logentries_log = LeLogger::getLogger($token, $persistent, $ssl, $severity);
-@@ -223,6 +223,22 @@ function logentries_form_system_logging_settings_alter(&$form, &$form_state, $fo
+@@ -227,6 +227,22 @@ function logentries_form_system_logging_settings_alter(&$form, &$form_state, $fo
        '#title' => t('SSL'),
        '#type' => 'checkbox',
      );
@@ -41,21 +42,24 @@ index ae7e263..8eeb3fa 100644
 +        ),
 +      ),
 +    );
-     $form['logentries']['logentries_severity'] = array(
-       '#default_value' => variable_get('logentries_severity', LOG_DEBUG),
-       '#description' => t('Choose the minimum severity level of messages to send to Logentries.'),
-@@ -271,7 +287,7 @@ function logentries_form_system_logging_settings_alter_test_submit($form, &$form
-       $severity = $form_state['values']['logentries_severity'];
- 
-       if (logentries_count_getlogger_params() > 4) {
--        $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', 10000, '', '', FALSE);
-+        $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', logentries_get_port_number(), '', '', FALSE, FALSE);
-       }
-       else {
-         $log = LeLogger::getLogger($token, $persistent, $ssl, $severity);
-@@ -295,6 +311,24 @@ function logentries_form_system_logging_settings_alter_test_submit($form, &$form
+     $form['logentries']['logentries_strip_html'] = array(
+       '#default_value' => variable_get('logentries_strip_html', TRUE),
+       '#description' => t('Strip HTML tags from log messages.'),
+@@ -288,9 +304,10 @@ function logentries_form_system_logging_settings_alter_test_submit($form, &$form
+   $persistent = TRUE;
+   $ssl = $form_state['values']['logentries_ssl'];
+   $severity = $form_state['values']['logentries_severity'];
++  $port = $ssl ? 20000 : $form_state['values']['logentries_port'];
+
+   if (logentries_count_getlogger_params() > 4) {
+-    $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', 10000, '', '', FALSE);
++    $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', $port, '', '', FALSE, FALSE);
+   }
+   else {
+     $log = LeLogger::getLogger($token, $persistent, $ssl, $severity);
+@@ -315,6 +332,24 @@ function logentries_form_system_logging_settings_alter_test_submit($form, &$form
  }
- 
+
  /**
 + * Get the port number to use.
 + *
