@@ -802,6 +802,11 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
     </div>
     ',
   );
+
+  // Set the default control date to today if a date hasn't been set.
+  if (empty($form['field_ctrl_date'][LANGUAGE_NONE][0]['#default_value'])) {
+    $form['field_ctrl_date'][LANGUAGE_NONE][0]['#default_value']['value'] = date('c');
+  }
 }
 
 /**

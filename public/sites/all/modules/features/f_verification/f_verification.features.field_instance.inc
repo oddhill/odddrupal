@@ -15,7 +15,7 @@ function f_verification_field_default_field_instances() {
     'bundle' => 'ctrl',
     'default_value' => array(
       0 => array(
-        'value' => 'approved_to',
+        'value' => 'approved_until_further_notice',
       ),
     ),
     'deleted' => 0,
