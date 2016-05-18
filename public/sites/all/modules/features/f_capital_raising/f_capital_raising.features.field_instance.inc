@@ -5783,62 +5783,6 @@ function f_capital_raising_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_ap-field_transaction_ap_ctrl_comp'.
-  $field_instances['node-transaction_ap-field_transaction_ap_ctrl_comp'] = array(
-    'bundle' => 'transaction_ap',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 16,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_transaction_ap_ctrl_comp',
-    'label' => 'Kompleterande frågor',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'inline_entity_form',
-      'settings' => array(
-        'fields' => array(),
-        'type_settings' => array(
-          'allow_existing' => FALSE,
-          'allow_new' => 1,
-          'delete_references' => 0,
-          'label_plural' => 'nodes',
-          'label_singular' => 'node',
-          'match_operator' => 'CONTAINS',
-          'override_labels' => 0,
-        ),
-      ),
-      'type' => 'inline_entity_form_single',
-      'weight' => 19,
-    ),
-  );
-
-  // Exported field_instance:
   // 'node-transaction_ap-field_transaction_ap_ctrl_day'.
   $field_instances['node-transaction_ap-field_transaction_ap_ctrl_day'] = array(
     'bundle' => 'transaction_ap',
@@ -6395,7 +6339,6 @@ function f_capital_raising_field_default_field_instances() {
   t('Intresserad');
   t('Intresserad den');
   t('Investor');
-  t('Kompleterande frågor');
   t('Kontaktad av');
   t('Kontrollera');
   t('Kontrollera den');

@@ -297,11 +297,6 @@ function sedermera_offer_node_presave($node) {
             array('value' => $ap_wrap->field_investor_shared_ctrl_cred->value()->vid),
           ),
         ),
-        'field_hist_ctrl_vid_kom' => array(
-          LANGUAGE_NONE => array(
-            array('value' => $transaction_ap_wrap->field_transaction_ap_ctrl_comp->value()->vid),
-          ),
-        ),
         'field_hist_ctrl_vid_pen' => array(
           LANGUAGE_NONE => array(
             array('value' => $agree_wrap->field_transaction_agree_ctrl->value()->vid),
@@ -336,21 +331,7 @@ function sedermera_offer_node_presave($node) {
       $eu_ctrl = node_submit($eu_ctrl);
       node_save($eu_ctrl);
 
-      $comp_ctrl = new stdClass();
-      $comp_ctrl->title = $node->title . " Kompleterande frågor";
-      $comp_ctrl->type = "ctrl";
-      node_object_prepare($comp_ctrl);
-      $comp_ctrl->language = LANGUAGE_NONE;
-      $comp_ctrl->uid = $user->uid;
-      $comp_ctrl->status = 1;
-      $comp_ctrl->promote = 0;
-      $comp_ctrl->comment = 0;
-
-      $comp_ctrl = node_submit($comp_ctrl);
-      node_save($comp_ctrl);
-
       $node->field_transaction_ap_ctrl_eu[LANGUAGE_NONE][0]['target_id'] = $eu_ctrl->nid;
-      $node->field_transaction_ap_ctrl_comp[LANGUAGE_NONE][0]['target_id'] = $comp_ctrl->nid;
     }
 
     // React if to control has been checked else proceed as normal

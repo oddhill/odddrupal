@@ -2236,53 +2236,6 @@ function f_investor_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-transaction_history-field_hist_ctrl_vid_kom'.
-  $field_instances['node-transaction_history-field_hist_ctrl_vid_kom'] = array(
-    'bundle' => 'transaction_history',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => '',
-        ),
-        'type' => 'number_integer',
-        'weight' => 14,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_hist_ctrl_vid_kom',
-    'label' => 'Kompletterande frågor',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 19,
-    ),
-  );
-
-  // Exported field_instance:
   // 'node-transaction_history-field_hist_ctrl_vid_kre'.
   $field_instances['node-transaction_history-field_hist_ctrl_vid_kre'] = array(
     'bundle' => 'transaction_history',
@@ -2724,7 +2677,6 @@ function f_investor_field_default_field_instances() {
   t('Intressen');
   t('Kategori');
   t('Klicka i om personen är en lead.');
-  t('Kompletterande frågor');
   t('Kontaktperson');
   t('Kreditkontroll');
   t('Kundansvarig');

@@ -76,17 +76,12 @@ function sedermera_verification_ap_name_and_type($field) {
     if ($type == NULL) {
       $result = db_query("SELECT *
         FROM {field_data_field_transaction_ap_ctrl_eu} AS eu
-        INNER JOIN {field_data_field_transaction_ap_ctrl_comp} AS comp ON (eu.entity_id = comp.entity_id)
-        WHERE field_transaction_ap_ctrl_eu_target_id = :nid
-        OR field_transaction_ap_ctrl_comp_target_id = :nid",
+        WHERE field_transaction_ap_ctrl_eu_target_id = :nid",
         array(':nid' => $field['entity']->nid))->fetchAssoc();
 
       // Determine what type of control it is
       if ($field['entity']->nid === $result['field_transaction_ap_ctrl_eu_target_id']) {
         $type = 'EU:s sanktionsförordningar';
-      }
-      if ($field['entity']->nid === $result['field_transaction_ap_ctrl_comp_target_id']) {
-        $type = 'Kompletterande frågor';
       }
     }
 
@@ -730,17 +725,12 @@ function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, 
   if ($type == NULL) {
     $result = db_query("SELECT *
       FROM {field_data_field_transaction_ap_ctrl_eu} AS eu
-      INNER JOIN {field_data_field_transaction_ap_ctrl_comp} AS comp ON (eu.entity_id = comp.entity_id)
-      WHERE field_transaction_ap_ctrl_eu_target_id = :nid
-      OR field_transaction_ap_ctrl_comp_target_id = :nid",
+      WHERE field_transaction_ap_ctrl_eu_target_id = :nid",
       array(':nid' => $form['nid']['#value']))->fetchAssoc();
 
     // Determine what type of control it is
     if ($form['nid']['#value'] === $result['field_transaction_ap_ctrl_eu_target_id']) {
       $type = 'EU:s sanktionsförordningar';
-    }
-    if ($form['nid']['#value'] === $result['field_transaction_ap_ctrl_comp_target_id']) {
-      $type = 'Kompletterande frågor';
     }
   }
 

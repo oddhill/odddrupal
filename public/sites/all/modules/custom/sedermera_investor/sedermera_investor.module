@@ -125,9 +125,6 @@ function sedermera_investor_node_presave($node) {
   //   $eu_ctrl = node_load($node->field_transaction_ap_ctrl_eu[LANGUAGE_NONE][0]['target_id']);
   //   $eu_ctrl->title = $ap->title . " EU:s sanktionsförordningar";
   //   node_save($eu_ctrl);
-  //   $comp_ctrl = node_load($node->field_transaction_ap_ctrl_comp[LANGUAGE_NONE][0]['target_id']);
-  //   $comp_ctrl->title = $ap->title . " Kompleterande frågor";
-  //   node_save($comp_ctrl);
   // }
 }
 

@@ -215,3 +215,15 @@ function sedermera_core_update_7011() {
 
   field_purge_batch(100);
 }
+
+/**
+ * Delete the complementing control nodes and the field.
+ */
+function sedermera_core_update_7012() {
+  $nids = db_query('SELECT field_transaction_ap_ctrl_comp_target_id FROM {field_data_field_transaction_ap_ctrl_comp}')->fetchCol();
+  node_delete_multiple($nids);
+
+  field_delete_field('field_transaction_ap_ctrl_comp');
+  field_delete_field('field_hist_ctrl_vid_kom');
+  field_purge_batch(100);
+}

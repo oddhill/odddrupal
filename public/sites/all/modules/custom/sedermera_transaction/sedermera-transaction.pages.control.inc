@@ -218,12 +218,6 @@ function _generate_control_header_row(array &$header) {
     'class' => array('table-head','ctrl')
   );
 
-  // Control KOM column
-  $header[] = array(
-    'data' => 'KOM',
-    'class' => array('table-head','ctrl')
-  );
-
   // Control PEN column
   $header[] = array(
     'data' => 'PEN',
@@ -475,17 +469,6 @@ function _generate_control_investor_rows(array &$rows, $investor, array $type_in
       ),
     ));
 
-  // Control KOM column
-  $ctrl_kom = field_view_field('node', $transaction_ap, 'field_transaction_ap_ctrl_comp',
-    array(
-      'label'=>'hidden',
-      'type' => 'sedermera_verification_status',
-      'settings' => array(
-        'link' => TRUE,
-        'link_destination' => 'edit',
-      ),
-    ));
-
   $rows[] = array(
     'data' => array(
       // Collapsible column
@@ -527,11 +510,6 @@ function _generate_control_investor_rows(array &$rows, $investor, array $type_in
       // Control EU column
       array(
         'data' => render($ctrl_eu),
-        'class' => array('ctrl'),
-      ),
-      // Control KOM column
-      array(
-        'data' => render($ctrl_kom),
         'class' => array('ctrl'),
       ),
       // Control PEN column

@@ -115,21 +115,6 @@ function f_investor_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_hist_ctrl_vid_kom'.
-  $field_bases['field_hist_ctrl_vid_kom'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_hist_ctrl_vid_kom',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
   // Exported field_base: 'field_hist_ctrl_vid_kre'.
   $field_bases['field_hist_ctrl_vid_kre'] = array(
     'active' => 1,
