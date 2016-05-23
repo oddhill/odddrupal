@@ -69,5 +69,7 @@ function logentries_uninstall() {
   variable_del('logentries_token');
   variable_del('logentries_ssl');
   variable_del('logentries_severity');
+  variable_del('logentries_strip_html');
   variable_del('logentries_port');
 }
+

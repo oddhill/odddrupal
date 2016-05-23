@@ -10,9 +10,6 @@
 !/public/sites/*/files/README.txt
 
 # Exlude various other files
-icon.png
-icon.gif
-icon.jpg
 .DS_Store
 .sass-cache
 /public/cache

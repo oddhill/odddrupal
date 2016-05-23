@@ -110,6 +110,7 @@ function logentries_watchdog($log_entry) {
 
   // Prepare the entry to be sent to logentries.
   $prepped_log = array(
+    'severity' => $log_entry['severity'],
     'type' => $log_entry['type'],
     'uid' => isset($log_entry['uid']) ? $log_entry['uid'] : 0,
     'request_uri' => $log_entry['request_uri'],
@@ -126,7 +127,10 @@ function logentries_watchdog($log_entry) {
 
   // Get LeLogger method based on severity.
   $method = logentries_map_level_to_method($log_entry['severity']);
-  $_logentries_log->{$method}($string_log);
+  if (variable_get('logentries_strip_html', TRUE)) {
+    $string_log = filter_xss($string_log, array());
+  }
+  $_logentries_log->{$method}($string_log, array());
 }
 
 /**
@@ -239,6 +243,12 @@ function logentries_form_system_logging_settings_alter(&$form, &$form_state, $fo
         ),
       ),
     );
+    $form['logentries']['logentries_strip_html'] = array(
+      '#default_value' => variable_get('logentries_strip_html', TRUE),
+      '#description' => t('Strip HTML tags from log messages.'),
+      '#title' => t('Strip HTML'),
+      '#type' => 'checkbox',
+    );
     $form['logentries']['logentries_severity'] = array(
       '#default_value' => variable_get('logentries_severity', LOG_DEBUG),
       '#description' => t('Choose the minimum severity level of messages to send to Logentries.'),
@@ -274,39 +284,50 @@ function logentries_form_system_logging_settings_alter(&$form, &$form_state, $fo
 function logentries_form_system_logging_settings_alter_test_submit($form, &$form_state) {
   // Get the token required to send messages to logentries.
   $token = $form_state['values']['logentries_token'];
+  $failure_message = t('Failed to send test message, check your configuration settings.');
 
-  if ($token) {
-    // Load the logentries library.
-    $library = libraries_load('logentries');
+  if (empty($token)) {
+    drupal_set_message($failure_message, 'error');
+    return;
+  }
 
-    // Check the library has been loaded.
-    if ($library && !empty($library['loaded'])) {
-      // Initialise class with configurable options.
-      $persistent = TRUE;
-      $ssl = $form_state['values']['logentries_ssl'];
-      $severity = $form_state['values']['logentries_severity'];
+  // Load the logentries library.
+  $library = libraries_load('logentries');
 
-      if (logentries_count_getlogger_params() > 4) {
-        $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', logentries_get_port_number(), '', '', FALSE, FALSE);
-      }
-      else {
-        $log = LeLogger::getLogger($token, $persistent, $ssl, $severity);
-      }
+  // Check the library has been loaded.
+  if (empty($library['loaded'])) {
+    drupal_set_message($failure_message, 'error');
+    return;
+  }
 
-      // Get LeLogger method based on severity.
-      $method = logentries_map_level_to_method($severity);
+  // Initialise class with configurable options.
+  $persistent = TRUE;
+  $ssl = $form_state['values']['logentries_ssl'];
+  $severity = $form_state['values']['logentries_severity'];
+  $port = $ssl ? 20000 : $form_state['values']['logentries_port'];
 
-      try {
-        // Send test message.
-        $message = t('Test message from @site.', array('@site' => variable_get('site_name', 'unknown (no site name defined)')));
-        $log->{$method}($message);
+  if (logentries_count_getlogger_params() > 4) {
+    $log = LeLogger::getLogger($token, $persistent, $ssl, $severity, FALSE, '', $port, '', '', FALSE, FALSE);
+  }
+  else {
+    $log = LeLogger::getLogger($token, $persistent, $ssl, $severity);
+  }
 
-        drupal_set_message(t('Test message sent'));
-      }
-      catch (Exception $e) {
-        drupal_set_message(t('Failed to send test message, check your configuration settings.'), 'error');
-      }
+  // Get LeLogger method based on severity.
+  $method = logentries_map_level_to_method($severity);
+
+  try {
+    // Send test message.
+    $message = t('Test message from @site.', array('@site' => variable_get('site_name', 'unknown (no site name defined)')));
+    if (variable_get('logentries_strip_html', TRUE)) {
+      $message = filter_xss($message, array());
     }
+    $log->{$method}($message);
+
+    drupal_set_message(t('The test message was sent. Check your <a href="https://logentries.com/app/">logentries account</a>.'));
+  }
+  catch (Exception $e) {
+    drupal_set_message($failure_message, 'error');
   }
 }
 
