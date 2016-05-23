@@ -237,3 +237,14 @@ function sedermera_core_update_7013() {
   field_purge_batch(500);
 }
 
+/**
+ * Enable syslog instead of Logentries.
+ */
+function sedermera_core_update_7014() {
+  if (module_exists('logentries')) {
+    module_disable(array('logentries'));
+    drupal_uninstall_modules(array('logentries'));
+
+    module_enable(array('syslog'));
+  }
+}
