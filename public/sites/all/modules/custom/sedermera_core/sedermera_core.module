@@ -11,12 +11,21 @@
 function sedermera_core_views_access_callbacks() {
   return array(
     'sedermera_core_user_has_access' => t('Offer contact list access'),
+    'sedermera_core_customer_company' => t('Node is customer company'),
   );
 }
 
 function sedermera_core_user_has_access($account = NULL) {
   $node = node_load(arg(1));
   if ($node->type === 'offer') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function sedermera_core_customer_company($account = NULL) {
+  $node = node_load(arg(1));
+  if ($node->type === 'company') {
     return TRUE;
   }
   return FALSE;

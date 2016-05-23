@@ -476,6 +476,40 @@ div.button {
   .nav-list > li.active > a {
     font-weight: 500; }
 
+.company-proposals {
+  padding: 40px; }
+  .company-proposals .add-proposal {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+    background-position: 20px 11px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    margin-bottom: 40px; }
+    .company-proposals .add-proposal:hover {
+      background-color: #303030; }
+
+.node-company.view-mode-full .company-logo {
+  width: 120px;
+  margin: 0 0 30px;
+  float: right; }
+  .node-company.view-mode-full .company-logo img {
+    width: 100%;
+    height: auto; }
 .node-company.view-mode-full .company-details .detail {
   float: left;
   display: block;
@@ -485,7 +519,8 @@ div.button {
   border: 2px solid #f3f4f8;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
-  text-align: right; }
+  text-align: right;
+  margin-right: 0; }
   .node-company.view-mode-full .company-details .detail:last-child {
     margin-right: 0; }
   .node-company.view-mode-full .company-details .detail:nth-child(2n) {
@@ -539,13 +574,213 @@ div.button {
         margin-right: 0.5rem;
         width: 10px;
         height: 10px; }
-.node-company.view-mode-full .company-logo {
-  width: 100px;
-  margin: 0 0 30px;
-  float: right; }
-  .node-company.view-mode-full .company-logo img {
-    width: 100%;
-    height: auto; }
+.node-company.view-mode-full.no-logo .company-details .detail {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right; }
+  .node-company.view-mode-full.no-logo .company-details .detail:last-child {
+    margin-right: 0; }
+  .node-company.view-mode-full.no-logo .company-details .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-company.view-mode-full.no-logo .company-details .detail:nth-child(2n+1) {
+    clear: left; }
+  .node-company.view-mode-full.no-logo .company-details .detail span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-company.view-mode-full.no-logo .company-details .detail .verification {
+    display: inline-block;
+    overflow: hidden;
+    border-bottom: 0px none;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-company.view-mode-full.no-logo .company-details .detail .verification:hover {
+      border-bottom: 0px none; }
+    .node-company.view-mode-full.no-logo .company-details .detail .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-company.view-mode-full.no-logo .company-details .detail .verification:before {
+      margin-right: 0; }
+    .node-company.view-mode-full.no-logo .company-details .detail .verification.approved:before {
+      background: #6c9e65; }
+    .node-company.view-mode-full.no-logo .company-details .detail .verification.expiring:before {
+      background: #f9a500; }
+    .node-company.view-mode-full.no-logo .company-details .detail .verification.not-approved:before {
+      background: #c04343; }
+    .node-company.view-mode-full.no-logo .company-details .detail .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-company.view-mode-full.no-logo .company-details .detail .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
+  .node-company.view-mode-full.no-logo .company-details .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-company.view-mode-full.no-logo .company-details .detail:nth-child(2n+1) {
+    clear: left; }
+.node-company.view-mode-full .company-contacts .detail {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right; }
+  .node-company.view-mode-full .company-contacts .detail:last-child {
+    margin-right: 0; }
+  .node-company.view-mode-full .company-contacts .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-company.view-mode-full .company-contacts .detail:nth-child(2n+1) {
+    clear: left; }
+  .node-company.view-mode-full .company-contacts .detail span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-company.view-mode-full .company-contacts .detail .verification {
+    display: inline-block;
+    overflow: hidden;
+    border-bottom: 0px none;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-company.view-mode-full .company-contacts .detail .verification:hover {
+      border-bottom: 0px none; }
+    .node-company.view-mode-full .company-contacts .detail .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-company.view-mode-full .company-contacts .detail .verification:before {
+      margin-right: 0; }
+    .node-company.view-mode-full .company-contacts .detail .verification.approved:before {
+      background: #6c9e65; }
+    .node-company.view-mode-full .company-contacts .detail .verification.expiring:before {
+      background: #f9a500; }
+    .node-company.view-mode-full .company-contacts .detail .verification.not-approved:before {
+      background: #c04343; }
+    .node-company.view-mode-full .company-contacts .detail .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-company.view-mode-full .company-contacts .detail .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
+  .node-company.view-mode-full .company-contacts .detail a {
+    margin-right: 2px; }
+    .node-company.view-mode-full .company-contacts .detail a:after {
+      content: ','; }
+    .node-company.view-mode-full .company-contacts .detail a:last-child:after {
+      content: ''; }
+.node-company.view-mode-full .company-other .other {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right;
+  text-align: left; }
+  .node-company.view-mode-full .company-other .other:last-child {
+    margin-right: 0; }
+  .node-company.view-mode-full .company-other .other:nth-child(2n) {
+    margin-right: 0; }
+  .node-company.view-mode-full .company-other .other:nth-child(2n+1) {
+    clear: left; }
+  .node-company.view-mode-full .company-other .other span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-company.view-mode-full .company-other .other .verification {
+    display: inline-block;
+    overflow: hidden;
+    border-bottom: 0px none;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-company.view-mode-full .company-other .other .verification:hover {
+      border-bottom: 0px none; }
+    .node-company.view-mode-full .company-other .other .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-company.view-mode-full .company-other .other .verification:before {
+      margin-right: 0; }
+    .node-company.view-mode-full .company-other .other .verification.approved:before {
+      background: #6c9e65; }
+    .node-company.view-mode-full .company-other .other .verification.expiring:before {
+      background: #f9a500; }
+    .node-company.view-mode-full .company-other .other .verification.not-approved:before {
+      background: #c04343; }
+    .node-company.view-mode-full .company-other .other .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-company.view-mode-full .company-other .other .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
+  .node-company.view-mode-full .company-other .other span.label {
+    display: block;
+    float: none;
+    margin-bottom: 0.5em; }
+
+.group-proposal-details .form-type-managed-file {
+  overflow: hidden; }
 
 .companies-list {
   border-top: 1px solid #e0e2e6;
@@ -833,6 +1068,542 @@ div.button {
 .node-ctrl_pen-form .field-name-field-ctrl-low-risk-note label,
 .node-ctrl_pen-form .field-name-field-ctrl-risk-note label {
   display: none; }
+
+.node-credit_risk-form,
+.node-conflict-form,
+.node-suitability_assessment-form,
+.node-customer_history-form,
+.node-money_launder-form,
+.node-final_approval-form {
+  border-top: 10px solid #5c9cae; }
+  .node-credit_risk-form.approved,
+  .node-conflict-form.approved,
+  .node-suitability_assessment-form.approved,
+  .node-customer_history-form.approved,
+  .node-money_launder-form.approved,
+  .node-final_approval-form.approved {
+    border-color: #6c9e65; }
+  .node-credit_risk-form.expiring,
+  .node-conflict-form.expiring,
+  .node-suitability_assessment-form.expiring,
+  .node-customer_history-form.expiring,
+  .node-money_launder-form.expiring,
+  .node-final_approval-form.expiring {
+    border-color: #f9a500; }
+  .node-credit_risk-form.not-approved,
+  .node-conflict-form.not-approved,
+  .node-suitability_assessment-form.not-approved,
+  .node-customer_history-form.not-approved,
+  .node-money_launder-form.not-approved,
+  .node-final_approval-form.not-approved {
+    border-color: #c04343; }
+  .node-credit_risk-form .proposal-verification-header,
+  .node-conflict-form .proposal-verification-header,
+  .node-suitability_assessment-form .proposal-verification-header,
+  .node-customer_history-form .proposal-verification-header,
+  .node-money_launder-form .proposal-verification-header,
+  .node-final_approval-form .proposal-verification-header {
+    padding: 40px;
+    overflow: hidden; }
+  .node-credit_risk-form .proposal-verification-status,
+  .node-conflict-form .proposal-verification-status,
+  .node-suitability_assessment-form .proposal-verification-status,
+  .node-customer_history-form .proposal-verification-status,
+  .node-money_launder-form .proposal-verification-status,
+  .node-final_approval-form .proposal-verification-status {
+    float: right;
+    margin-top: 2.4em; }
+    .node-credit_risk-form .proposal-verification-status .ctrl-proposal,
+    .node-conflict-form .proposal-verification-status .ctrl-proposal,
+    .node-suitability_assessment-form .proposal-verification-status .ctrl-proposal,
+    .node-customer_history-form .proposal-verification-status .ctrl-proposal,
+    .node-money_launder-form .proposal-verification-status .ctrl-proposal,
+    .node-final_approval-form .proposal-verification-status .ctrl-proposal {
+      font-weight: 700; }
+      .node-credit_risk-form .proposal-verification-status .ctrl-proposal.not-approved,
+      .node-conflict-form .proposal-verification-status .ctrl-proposal.not-approved,
+      .node-suitability_assessment-form .proposal-verification-status .ctrl-proposal.not-approved,
+      .node-customer_history-form .proposal-verification-status .ctrl-proposal.not-approved,
+      .node-money_launder-form .proposal-verification-status .ctrl-proposal.not-approved,
+      .node-final_approval-form .proposal-verification-status .ctrl-proposal.not-approved {
+        color: #c04343; }
+      .node-credit_risk-form .proposal-verification-status .ctrl-proposal.expiring,
+      .node-conflict-form .proposal-verification-status .ctrl-proposal.expiring,
+      .node-suitability_assessment-form .proposal-verification-status .ctrl-proposal.expiring,
+      .node-customer_history-form .proposal-verification-status .ctrl-proposal.expiring,
+      .node-money_launder-form .proposal-verification-status .ctrl-proposal.expiring,
+      .node-final_approval-form .proposal-verification-status .ctrl-proposal.expiring {
+        color: #f9a500; }
+      .node-credit_risk-form .proposal-verification-status .ctrl-proposal.approved,
+      .node-conflict-form .proposal-verification-status .ctrl-proposal.approved,
+      .node-suitability_assessment-form .proposal-verification-status .ctrl-proposal.approved,
+      .node-customer_history-form .proposal-verification-status .ctrl-proposal.approved,
+      .node-money_launder-form .proposal-verification-status .ctrl-proposal.approved,
+      .node-final_approval-form .proposal-verification-status .ctrl-proposal.approved {
+        color: #6c9e65; }
+  .node-credit_risk-form .proposal-verification-info,
+  .node-conflict-form .proposal-verification-info,
+  .node-suitability_assessment-form .proposal-verification-info,
+  .node-customer_history-form .proposal-verification-info,
+  .node-money_launder-form .proposal-verification-info,
+  .node-final_approval-form .proposal-verification-info {
+    overflow: hidden; }
+    .node-credit_risk-form .proposal-verification-info .proposal-title,
+    .node-conflict-form .proposal-verification-info .proposal-title,
+    .node-suitability_assessment-form .proposal-verification-info .proposal-title,
+    .node-customer_history-form .proposal-verification-info .proposal-title,
+    .node-money_launder-form .proposal-verification-info .proposal-title,
+    .node-final_approval-form .proposal-verification-info .proposal-title {
+      text-transform: uppercase; }
+    .node-credit_risk-form .proposal-verification-info h2,
+    .node-conflict-form .proposal-verification-info h2,
+    .node-suitability_assessment-form .proposal-verification-info h2,
+    .node-customer_history-form .proposal-verification-info h2,
+    .node-money_launder-form .proposal-verification-info h2,
+    .node-final_approval-form .proposal-verification-info h2 {
+      font-size: 30px;
+      font-size: 3rem;
+      line-height: 36px; }
+  .node-credit_risk-form .form-items-wrapper,
+  .node-conflict-form .form-items-wrapper,
+  .node-suitability_assessment-form .form-items-wrapper,
+  .node-customer_history-form .form-items-wrapper,
+  .node-money_launder-form .form-items-wrapper,
+  .node-final_approval-form .form-items-wrapper {
+    padding: 40px;
+    background: #fafbfc;
+    border-top: 1px solid #e0e2e6;
+    border-bottom: 1px solid #e0e2e6; }
+  .node-credit_risk-form table td,
+  .node-conflict-form table td,
+  .node-suitability_assessment-form table td,
+  .node-customer_history-form table td,
+  .node-money_launder-form table td,
+  .node-final_approval-form table td {
+    padding: 10px 20px; }
+  .node-credit_risk-form .form-wrapper,
+  .node-conflict-form .form-wrapper,
+  .node-suitability_assessment-form .form-wrapper,
+  .node-customer_history-form .form-wrapper,
+  .node-money_launder-form .form-wrapper,
+  .node-final_approval-form .form-wrapper {
+    margin: 0; }
+  .node-credit_risk-form .field-widget-field-collection-embed,
+  .node-conflict-form .field-widget-field-collection-embed,
+  .node-suitability_assessment-form .field-widget-field-collection-embed,
+  .node-customer_history-form .field-widget-field-collection-embed,
+  .node-money_launder-form .field-widget-field-collection-embed,
+  .node-final_approval-form .field-widget-field-collection-embed {
+    margin-bottom: 2.5em; }
+  .node-credit_risk-form .field-widget-options-onoff,
+  .node-credit_risk-form .field-widget-file-generic,
+  .node-credit_risk-form .field-widget-text-textfield,
+  .node-credit_risk-form .field-widget-text-textarea,
+  .node-credit_risk-form .field-widget-options-buttons,
+  .node-conflict-form .field-widget-options-onoff,
+  .node-conflict-form .field-widget-file-generic,
+  .node-conflict-form .field-widget-text-textfield,
+  .node-conflict-form .field-widget-text-textarea,
+  .node-conflict-form .field-widget-options-buttons,
+  .node-suitability_assessment-form .field-widget-options-onoff,
+  .node-suitability_assessment-form .field-widget-file-generic,
+  .node-suitability_assessment-form .field-widget-text-textfield,
+  .node-suitability_assessment-form .field-widget-text-textarea,
+  .node-suitability_assessment-form .field-widget-options-buttons,
+  .node-customer_history-form .field-widget-options-onoff,
+  .node-customer_history-form .field-widget-file-generic,
+  .node-customer_history-form .field-widget-text-textfield,
+  .node-customer_history-form .field-widget-text-textarea,
+  .node-customer_history-form .field-widget-options-buttons,
+  .node-money_launder-form .field-widget-options-onoff,
+  .node-money_launder-form .field-widget-file-generic,
+  .node-money_launder-form .field-widget-text-textfield,
+  .node-money_launder-form .field-widget-text-textarea,
+  .node-money_launder-form .field-widget-options-buttons,
+  .node-final_approval-form .field-widget-options-onoff,
+  .node-final_approval-form .field-widget-file-generic,
+  .node-final_approval-form .field-widget-text-textfield,
+  .node-final_approval-form .field-widget-text-textarea,
+  .node-final_approval-form .field-widget-options-buttons {
+    margin: 1.5em 0; }
+  .node-credit_risk-form .field-widget-file-generic input,
+  .node-conflict-form .field-widget-file-generic input,
+  .node-suitability_assessment-form .field-widget-file-generic input,
+  .node-customer_history-form .field-widget-file-generic input,
+  .node-money_launder-form .field-widget-file-generic input,
+  .node-final_approval-form .field-widget-file-generic input {
+    border: 0px none; }
+  .node-credit_risk-form .field-widget-text-textfield .form-text,
+  .node-credit_risk-form table .form-item.form-type-textfield .form-text,
+  .node-conflict-form .field-widget-text-textfield .form-text,
+  .node-conflict-form table .form-item.form-type-textfield .form-text,
+  .node-suitability_assessment-form .field-widget-text-textfield .form-text,
+  .node-suitability_assessment-form table .form-item.form-type-textfield .form-text,
+  .node-customer_history-form .field-widget-text-textfield .form-text,
+  .node-customer_history-form table .form-item.form-type-textfield .form-text,
+  .node-money_launder-form .field-widget-text-textfield .form-text,
+  .node-money_launder-form table .form-item.form-type-textfield .form-text,
+  .node-final_approval-form .field-widget-text-textfield .form-text,
+  .node-final_approval-form table .form-item.form-type-textfield .form-text {
+    padding: 1px 5px; }
+  .node-credit_risk-form .field-widget-text-textarea label,
+  .node-conflict-form .field-widget-text-textarea label,
+  .node-suitability_assessment-form .field-widget-text-textarea label,
+  .node-customer_history-form .field-widget-text-textarea label,
+  .node-money_launder-form .field-widget-text-textarea label,
+  .node-final_approval-form .field-widget-text-textarea label {
+    color: #282828;
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 21px;
+    margin: 0 0 0.5em;
+    padding: 0;
+    border-bottom: 0px none; }
+  .node-credit_risk-form .field-widget-text-textarea textarea,
+  .node-conflict-form .field-widget-text-textarea textarea,
+  .node-suitability_assessment-form .field-widget-text-textarea textarea,
+  .node-customer_history-form .field-widget-text-textarea textarea,
+  .node-money_launder-form .field-widget-text-textarea textarea,
+  .node-final_approval-form .field-widget-text-textarea textarea {
+    width: 100%; }
+  .node-credit_risk-form .field-widget-options-buttons,
+  .node-conflict-form .field-widget-options-buttons,
+  .node-suitability_assessment-form .field-widget-options-buttons,
+  .node-customer_history-form .field-widget-options-buttons,
+  .node-money_launder-form .field-widget-options-buttons,
+  .node-final_approval-form .field-widget-options-buttons {
+    border-bottom: 1px solid #e0e2e6; }
+    .node-credit_risk-form .field-widget-options-buttons .form-type-radios,
+    .node-conflict-form .field-widget-options-buttons .form-type-radios,
+    .node-suitability_assessment-form .field-widget-options-buttons .form-type-radios,
+    .node-customer_history-form .field-widget-options-buttons .form-type-radios,
+    .node-money_launder-form .field-widget-options-buttons .form-type-radios,
+    .node-final_approval-form .field-widget-options-buttons .form-type-radios {
+      margin: 0;
+      display: flex;
+      align-items: center; }
+      .node-credit_risk-form .field-widget-options-buttons .form-type-radios:after,
+      .node-conflict-form .field-widget-options-buttons .form-type-radios:after,
+      .node-suitability_assessment-form .field-widget-options-buttons .form-type-radios:after,
+      .node-customer_history-form .field-widget-options-buttons .form-type-radios:after,
+      .node-money_launder-form .field-widget-options-buttons .form-type-radios:after,
+      .node-final_approval-form .field-widget-options-buttons .form-type-radios:after {
+        content: "";
+        display: table;
+        clear: both; }
+      .node-credit_risk-form .field-widget-options-buttons .form-type-radios > label,
+      .node-conflict-form .field-widget-options-buttons .form-type-radios > label,
+      .node-suitability_assessment-form .field-widget-options-buttons .form-type-radios > label,
+      .node-customer_history-form .field-widget-options-buttons .form-type-radios > label,
+      .node-money_launder-form .field-widget-options-buttons .form-type-radios > label,
+      .node-final_approval-form .field-widget-options-buttons .form-type-radios > label {
+        width: 75%;
+        margin: 1em 0;
+        border-bottom: 0px none;
+        padding: 0;
+        float: left;
+        font-size: 14px;
+        font-size: 1.4rem;
+        line-height: 21px;
+        color: #282828; }
+      .node-credit_risk-form .field-widget-options-buttons .form-type-radios .form-radios,
+      .node-conflict-form .field-widget-options-buttons .form-type-radios .form-radios,
+      .node-suitability_assessment-form .field-widget-options-buttons .form-type-radios .form-radios,
+      .node-customer_history-form .field-widget-options-buttons .form-type-radios .form-radios,
+      .node-money_launder-form .field-widget-options-buttons .form-type-radios .form-radios,
+      .node-final_approval-form .field-widget-options-buttons .form-type-radios .form-radios {
+        width: 25%;
+        margin: 0;
+        text-align: right; }
+        .node-credit_risk-form .field-widget-options-buttons .form-type-radios .form-radios .form-item,
+        .node-conflict-form .field-widget-options-buttons .form-type-radios .form-radios .form-item,
+        .node-suitability_assessment-form .field-widget-options-buttons .form-type-radios .form-radios .form-item,
+        .node-customer_history-form .field-widget-options-buttons .form-type-radios .form-radios .form-item,
+        .node-money_launder-form .field-widget-options-buttons .form-type-radios .form-radios .form-item,
+        .node-final_approval-form .field-widget-options-buttons .form-type-radios .form-radios .form-item {
+          display: inline-block;
+          margin: 1em 1em 1em 0; }
+  .node-credit_risk-form .form-item,
+  .node-credit_risk-form table.field-multiple-table,
+  .node-conflict-form .form-item,
+  .node-conflict-form table.field-multiple-table,
+  .node-suitability_assessment-form .form-item,
+  .node-suitability_assessment-form table.field-multiple-table,
+  .node-customer_history-form .form-item,
+  .node-customer_history-form table.field-multiple-table,
+  .node-money_launder-form .form-item,
+  .node-money_launder-form table.field-multiple-table,
+  .node-final_approval-form .form-item,
+  .node-final_approval-form table.field-multiple-table {
+    margin: 0; }
+  .node-credit_risk-form .field-add-more-submit,
+  .node-conflict-form .field-add-more-submit,
+  .node-suitability_assessment-form .field-add-more-submit,
+  .node-customer_history-form .field-add-more-submit,
+  .node-money_launder-form .field-add-more-submit,
+  .node-final_approval-form .field-add-more-submit {
+    margin-top: 1em; }
+  .node-credit_risk-form .form-actions,
+  .node-conflict-form .form-actions,
+  .node-suitability_assessment-form .form-actions,
+  .node-customer_history-form .form-actions,
+  .node-money_launder-form .form-actions,
+  .node-final_approval-form .form-actions {
+    padding: 40px 0;
+    margin: 0;
+    text-align: center; }
+    .node-credit_risk-form .form-actions .submit-wrapper,
+    .node-conflict-form .form-actions .submit-wrapper,
+    .node-suitability_assessment-form .form-actions .submit-wrapper,
+    .node-customer_history-form .form-actions .submit-wrapper,
+    .node-money_launder-form .form-actions .submit-wrapper,
+    .node-final_approval-form .form-actions .submit-wrapper {
+      position: relative; }
+      .node-credit_risk-form .form-actions .submit-wrapper .ajax-progress-throbber,
+      .node-conflict-form .form-actions .submit-wrapper .ajax-progress-throbber,
+      .node-suitability_assessment-form .form-actions .submit-wrapper .ajax-progress-throbber,
+      .node-customer_history-form .form-actions .submit-wrapper .ajax-progress-throbber,
+      .node-money_launder-form .form-actions .submit-wrapper .ajax-progress-throbber,
+      .node-final_approval-form .form-actions .submit-wrapper .ajax-progress-throbber {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+        background-color: #303030;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        bottom: 0;
+        right: 10px;
+        text-align: center; }
+        .node-credit_risk-form .form-actions .submit-wrapper .ajax-progress-throbber:hover,
+        .node-conflict-form .form-actions .submit-wrapper .ajax-progress-throbber:hover,
+        .node-suitability_assessment-form .form-actions .submit-wrapper .ajax-progress-throbber:hover,
+        .node-customer_history-form .form-actions .submit-wrapper .ajax-progress-throbber:hover,
+        .node-money_launder-form .form-actions .submit-wrapper .ajax-progress-throbber:hover,
+        .node-final_approval-form .form-actions .submit-wrapper .ajax-progress-throbber:hover {
+          background-color: #303030; }
+        .node-credit_risk-form .form-actions .submit-wrapper .ajax-progress-throbber .throbber,
+        .node-conflict-form .form-actions .submit-wrapper .ajax-progress-throbber .throbber,
+        .node-suitability_assessment-form .form-actions .submit-wrapper .ajax-progress-throbber .throbber,
+        .node-customer_history-form .form-actions .submit-wrapper .ajax-progress-throbber .throbber,
+        .node-money_launder-form .form-actions .submit-wrapper .ajax-progress-throbber .throbber,
+        .node-final_approval-form .form-actions .submit-wrapper .ajax-progress-throbber .throbber {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin-left: -8px;
+          margin-top: -8px; }
+        .node-credit_risk-form .form-actions .submit-wrapper .ajax-progress-throbber .message,
+        .node-conflict-form .form-actions .submit-wrapper .ajax-progress-throbber .message,
+        .node-suitability_assessment-form .form-actions .submit-wrapper .ajax-progress-throbber .message,
+        .node-customer_history-form .form-actions .submit-wrapper .ajax-progress-throbber .message,
+        .node-money_launder-form .form-actions .submit-wrapper .ajax-progress-throbber .message,
+        .node-final_approval-form .form-actions .submit-wrapper .ajax-progress-throbber .message {
+          display: none; }
+
+.node-credit_risk-form .field-name-field-credit-risk-pot-inc,
+.node-credit_risk-form .field-name-field-cred-remarks {
+  margin-top: 0; }
+.node-credit_risk-form .emission label {
+  margin-top: 1em; }
+.node-credit_risk-form .emission .field-widget-options-buttons {
+  margin: 0;
+  border: 0px none; }
+  .node-credit_risk-form .emission .field-widget-options-buttons .form-type-radios {
+    display: block; }
+    .node-credit_risk-form .emission .field-widget-options-buttons .form-type-radios > label {
+      float: none;
+      margin: 0;
+      width: 100%;
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid #e0e2e6; }
+    .node-credit_risk-form .emission .field-widget-options-buttons .form-type-radios .form-radios {
+      clear: left;
+      float: left;
+      width: 50%; }
+  .node-credit_risk-form .emission .field-widget-options-buttons .form-type-radios .form-item {
+    float: left;
+    margin-right: 1em; }
+.node-credit_risk-form .emission .field-widget-text-textfield {
+  margin-bottom: 0;
+  margin-top: -36px;
+  width: 50%;
+  float: right; }
+.node-credit_risk-form .credit-risk-cred-prefix p {
+  margin-top: 0.5em; }
+.node-credit_risk-form .field-name-field-cred-name,
+.node-credit_risk-form .field-name-field-annual-name {
+  margin-top: 1em; }
+.node-credit_risk-form .field-name-field-cred-worthiness,
+.node-credit_risk-form .field-name-field-annual-capital {
+  margin-bottom: 1em; }
+.node-credit_risk-form .field-name-field-cred-mortage {
+  border-top: 1px solid #e0e2e6;
+  margin-bottom: 0; }
+.node-credit_risk-form .field-name-field-cred-enforce {
+  margin-top: 0;
+  margin-bottom: 0; }
+.node-credit_risk-form .field-name-field-credit-risk-annual {
+  margin-bottom: 0; }
+
+.node-conflict-form .description {
+  margin-bottom: 1em;
+  font-weight: bold; }
+.node-conflict-form .field-widget-options-onoff {
+  margin: 0;
+  border-bottom: 1px solid #e0e2e6; }
+  .node-conflict-form .field-widget-options-onoff.field-name-field-conflict-1 {
+    margin-top: 0;
+    border-top: 1px solid #e0e2e6; }
+  .node-conflict-form .field-widget-options-onoff .form-type-checkbox {
+    overflow: hidden;
+    padding: 1em 0;
+    margin: 0; }
+    .node-conflict-form .field-widget-options-onoff .form-type-checkbox label {
+      line-height: 24px; }
+    .node-conflict-form .field-widget-options-onoff .form-type-checkbox .toggle-info {
+      display: inline-block;
+      height: 34px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 34px;
+      border-radius: 34px;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-bottom: 0 none;
+      background: url("../graphics/add_mini_light.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/add_mini_light.svg") transparent 0 0 no-repeat;
+      padding-left: 42px;
+      background-color: #454545;
+      -webkit-transition: background-color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 24px;
+      background-position: 10px 6px;
+      padding: 0 10px 0 26px;
+      margin-right: 8px;
+      line-height: 22px;
+      background-position-y: 7px;
+      float: right; }
+      .node-conflict-form .field-widget-options-onoff .form-type-checkbox .toggle-info:hover {
+        background-color: #303030; }
+    .node-conflict-form .field-widget-options-onoff .form-type-checkbox .description {
+      display: none;
+      margin-top: 1.5em; }
+    .node-conflict-form .field-widget-options-onoff .form-type-checkbox.active .description {
+      display: block; }
+    .node-conflict-form .field-widget-options-onoff .form-type-checkbox.active .toggle-info {
+      display: inline-block;
+      height: 34px;
+      font-size: 12px;
+      font-size: 1.2rem;
+      line-height: 12px;
+      line-height: 34px;
+      border-radius: 34px;
+      color: #fff;
+      padding: 0 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-bottom: 0 none;
+      background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
+      background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
+      padding-left: 42px;
+      background-color: #454545;
+      -webkit-transition: background-color 0.1s ease-in-out;
+      -moz-transition: background-color 0.1s ease-in-out;
+      transition: background-color 0.1s ease-in-out;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 24px;
+      background-position: 10px 6px;
+      padding: 0 10px 0 26px;
+      margin-right: 8px;
+      line-height: 22px;
+      background-position-y: 7px; }
+      .node-conflict-form .field-widget-options-onoff .form-type-checkbox.active .toggle-info:hover {
+        background-color: #303030; }
+.node-conflict-form .field-name-field-conflict-handling {
+  margin-bottom: 0; }
+
+.node-suitability_assessment-form .field-widget-options-buttons {
+  margin: 0; }
+.node-suitability_assessment-form .field-name-field-suitability-quest-1 {
+  border-top: 1px solid #e0e2e6; }
+
+.node-customer_history-form .field-name-field-customer-history-off-ctrl {
+  margin-bottom: 0.5em; }
+.node-customer_history-form .field-name-field-customer-history-executive,
+.node-customer_history-form .field-name-field-exec-bankruptcy,
+.node-customer_history-form .field-name-field-exec-exp,
+.node-customer_history-form .field-name-field-exec-board-mission {
+  margin-bottom: 0; }
+.node-customer_history-form .field-name-field-exec-bankruptcy,
+.node-customer_history-form .field-name-field-exec-board-mission {
+  margin-top: 0; }
+.node-customer_history-form .field-name-field-exec-name {
+  margin-top: 1em; }
+.node-customer_history-form table.field-multiple-table .form-type-textarea {
+  margin: 0; }
+  .node-customer_history-form table.field-multiple-table .form-type-textarea .form-textarea {
+    border: 1px solid #d4d6d9;
+    padding: 5px; }
+.node-customer_history-form .field-name-field-exec-exp {
+  border-top: 1px solid #e0e2e6; }
+.node-customer_history-form .field-name-field-exec-liquidations {
+  margin-bottom: 1em; }
+.node-customer_history-form .field-name-field-exec-liquidations {
+  margin: 0;
+  border-bottom: 0px none; }
+
+.node-money_launder-form .field-name-field-company-name,
+.node-money_launder-form .field-name-field-regime-name,
+.node-money_launder-form .field-name-field-launder-person {
+  margin-top: 1em; }
+.node-money_launder-form .field-name-field-company-check,
+.node-money_launder-form .field-name-field-launder-eu,
+.node-money_launder-form .field-name-field-regime-eu {
+  margin-bottom: 1em; }
+.node-money_launder-form .field-name-field-launder-person .verification {
+  display: block;
+  float: left;
+  margin: 5px 5px 0 0; }
+.node-money_launder-form .field-name-field-launder-person .form-type-textfield {
+  overflow: hidden; }
+  .node-money_launder-form .field-name-field-launder-person .form-type-textfield .form-text {
+    border: 0px none;
+    font-weight: 600;
+    padding: 0; }
+  .node-money_launder-form .field-name-field-launder-person .form-type-textfield .throbber {
+    display: none; }
+.node-money_launder-form .field-name-field-launder-exposed,
+.node-money_launder-form .field-name-field-regime-exposed {
+  border-top: 1px solid #e0e2e6; }
+.node-money_launder-form .field-name-field-money-launder-regime {
+  margin-bottom: 0; }
+
+.node-final_approval-form .field-name-field-final-assessment {
+  margin-top: 0; }
+.node-final_approval-form .field-name-field-final-competence {
+  border-top: 1px solid #e0e2e6;
+  margin-bottom: 0; }
 
 .group-document-rel.form-wrapper {
   margin-bottom: 0px; }
@@ -1700,7 +2471,9 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
 .node-investor-company.view-mode-full .investor-details .detail,
 .node-investor-company.view-mode-full .investor-details .investor-control,
 .node-investor-company.view-mode-full .investor-verifications .detail,
-.node-investor-company.view-mode-full .investor-verifications .investor-control {
+.node-investor-company.view-mode-full .investor-verifications .investor-control,
+.node-investor-company.view-mode-full .investor-owners .detail,
+.node-investor-company.view-mode-full .investor-owners .investor-control {
   float: left;
   display: block;
   margin-right: 2.35765%;
@@ -1713,22 +2486,30 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
   .node-investor-company.view-mode-full .investor-details .detail:last-child,
   .node-investor-company.view-mode-full .investor-details .investor-control:last-child,
   .node-investor-company.view-mode-full .investor-verifications .detail:last-child,
-  .node-investor-company.view-mode-full .investor-verifications .investor-control:last-child {
+  .node-investor-company.view-mode-full .investor-verifications .investor-control:last-child,
+  .node-investor-company.view-mode-full .investor-owners .detail:last-child,
+  .node-investor-company.view-mode-full .investor-owners .investor-control:last-child {
     margin-right: 0; }
   .node-investor-company.view-mode-full .investor-details .detail:nth-child(2n),
   .node-investor-company.view-mode-full .investor-details .investor-control:nth-child(2n),
   .node-investor-company.view-mode-full .investor-verifications .detail:nth-child(2n),
-  .node-investor-company.view-mode-full .investor-verifications .investor-control:nth-child(2n) {
+  .node-investor-company.view-mode-full .investor-verifications .investor-control:nth-child(2n),
+  .node-investor-company.view-mode-full .investor-owners .detail:nth-child(2n),
+  .node-investor-company.view-mode-full .investor-owners .investor-control:nth-child(2n) {
     margin-right: 0; }
   .node-investor-company.view-mode-full .investor-details .detail:nth-child(2n+1),
   .node-investor-company.view-mode-full .investor-details .investor-control:nth-child(2n+1),
   .node-investor-company.view-mode-full .investor-verifications .detail:nth-child(2n+1),
-  .node-investor-company.view-mode-full .investor-verifications .investor-control:nth-child(2n+1) {
+  .node-investor-company.view-mode-full .investor-verifications .investor-control:nth-child(2n+1),
+  .node-investor-company.view-mode-full .investor-owners .detail:nth-child(2n+1),
+  .node-investor-company.view-mode-full .investor-owners .investor-control:nth-child(2n+1) {
     clear: left; }
   .node-investor-company.view-mode-full .investor-details .detail span.label,
   .node-investor-company.view-mode-full .investor-details .investor-control span.label,
   .node-investor-company.view-mode-full .investor-verifications .detail span.label,
-  .node-investor-company.view-mode-full .investor-verifications .investor-control span.label {
+  .node-investor-company.view-mode-full .investor-verifications .investor-control span.label,
+  .node-investor-company.view-mode-full .investor-owners .detail span.label,
+  .node-investor-company.view-mode-full .investor-owners .investor-control span.label {
     display: block;
     float: left;
     text-align: left;
@@ -1736,7 +2517,9 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
   .node-investor-company.view-mode-full .investor-details .detail .verification,
   .node-investor-company.view-mode-full .investor-details .investor-control .verification,
   .node-investor-company.view-mode-full .investor-verifications .detail .verification,
-  .node-investor-company.view-mode-full .investor-verifications .investor-control .verification {
+  .node-investor-company.view-mode-full .investor-verifications .investor-control .verification,
+  .node-investor-company.view-mode-full .investor-owners .detail .verification,
+  .node-investor-company.view-mode-full .investor-owners .investor-control .verification {
     display: inline-block;
     overflow: hidden;
     border-bottom: 0px none;
@@ -1746,12 +2529,16 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
     .node-investor-company.view-mode-full .investor-details .detail .verification:hover,
     .node-investor-company.view-mode-full .investor-details .investor-control .verification:hover,
     .node-investor-company.view-mode-full .investor-verifications .detail .verification:hover,
-    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:hover {
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:hover,
+    .node-investor-company.view-mode-full .investor-owners .detail .verification:hover,
+    .node-investor-company.view-mode-full .investor-owners .investor-control .verification:hover {
       border-bottom: 0px none; }
     .node-investor-company.view-mode-full .investor-details .detail .verification:before,
     .node-investor-company.view-mode-full .investor-details .investor-control .verification:before,
     .node-investor-company.view-mode-full .investor-verifications .detail .verification:before,
-    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:before {
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:before,
+    .node-investor-company.view-mode-full .investor-owners .detail .verification:before,
+    .node-investor-company.view-mode-full .investor-owners .investor-control .verification:before {
       content: '';
       display: block;
       float: left;
@@ -1762,27 +2549,37 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
     .node-investor-company.view-mode-full .investor-details .detail .verification:before,
     .node-investor-company.view-mode-full .investor-details .investor-control .verification:before,
     .node-investor-company.view-mode-full .investor-verifications .detail .verification:before,
-    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:before {
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification:before,
+    .node-investor-company.view-mode-full .investor-owners .detail .verification:before,
+    .node-investor-company.view-mode-full .investor-owners .investor-control .verification:before {
       margin-right: 0; }
     .node-investor-company.view-mode-full .investor-details .detail .verification.approved:before,
     .node-investor-company.view-mode-full .investor-details .investor-control .verification.approved:before,
     .node-investor-company.view-mode-full .investor-verifications .detail .verification.approved:before,
-    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.approved:before {
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.approved:before,
+    .node-investor-company.view-mode-full .investor-owners .detail .verification.approved:before,
+    .node-investor-company.view-mode-full .investor-owners .investor-control .verification.approved:before {
       background: #6c9e65; }
     .node-investor-company.view-mode-full .investor-details .detail .verification.expiring:before,
     .node-investor-company.view-mode-full .investor-details .investor-control .verification.expiring:before,
     .node-investor-company.view-mode-full .investor-verifications .detail .verification.expiring:before,
-    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.expiring:before {
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.expiring:before,
+    .node-investor-company.view-mode-full .investor-owners .detail .verification.expiring:before,
+    .node-investor-company.view-mode-full .investor-owners .investor-control .verification.expiring:before {
       background: #f9a500; }
     .node-investor-company.view-mode-full .investor-details .detail .verification.not-approved:before,
     .node-investor-company.view-mode-full .investor-details .investor-control .verification.not-approved:before,
     .node-investor-company.view-mode-full .investor-verifications .detail .verification.not-approved:before,
-    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.not-approved:before {
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.not-approved:before,
+    .node-investor-company.view-mode-full .investor-owners .detail .verification.not-approved:before,
+    .node-investor-company.view-mode-full .investor-owners .investor-control .verification.not-approved:before {
       background: #c04343; }
     .node-investor-company.view-mode-full .investor-details .detail .verification.id,
     .node-investor-company.view-mode-full .investor-details .investor-control .verification.id,
     .node-investor-company.view-mode-full .investor-verifications .detail .verification.id,
-    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.id {
+    .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.id,
+    .node-investor-company.view-mode-full .investor-owners .detail .verification.id,
+    .node-investor-company.view-mode-full .investor-owners .investor-control .verification.id {
       font-size: 14px;
       font-size: 1.4rem;
       line-height: 21px;
@@ -1794,7 +2591,9 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
       .node-investor-company.view-mode-full .investor-details .detail .verification.id:before,
       .node-investor-company.view-mode-full .investor-details .investor-control .verification.id:before,
       .node-investor-company.view-mode-full .investor-verifications .detail .verification.id:before,
-      .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.id:before {
+      .node-investor-company.view-mode-full .investor-verifications .investor-control .verification.id:before,
+      .node-investor-company.view-mode-full .investor-owners .detail .verification.id:before,
+      .node-investor-company.view-mode-full .investor-owners .investor-control .verification.id:before {
         display: inline-block;
         float: none;
         position: relative;
@@ -1802,6 +2601,27 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
         margin-right: 0.5rem;
         width: 10px;
         height: 10px; }
+  .node-investor-company.view-mode-full .investor-details .detail a,
+  .node-investor-company.view-mode-full .investor-details .investor-control a,
+  .node-investor-company.view-mode-full .investor-verifications .detail a,
+  .node-investor-company.view-mode-full .investor-verifications .investor-control a,
+  .node-investor-company.view-mode-full .investor-owners .detail a,
+  .node-investor-company.view-mode-full .investor-owners .investor-control a {
+    margin-right: 2px; }
+    .node-investor-company.view-mode-full .investor-details .detail a:after,
+    .node-investor-company.view-mode-full .investor-details .investor-control a:after,
+    .node-investor-company.view-mode-full .investor-verifications .detail a:after,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control a:after,
+    .node-investor-company.view-mode-full .investor-owners .detail a:after,
+    .node-investor-company.view-mode-full .investor-owners .investor-control a:after {
+      content: ','; }
+    .node-investor-company.view-mode-full .investor-details .detail a:last-child:after,
+    .node-investor-company.view-mode-full .investor-details .investor-control a:last-child:after,
+    .node-investor-company.view-mode-full .investor-verifications .detail a:last-child:after,
+    .node-investor-company.view-mode-full .investor-verifications .investor-control a:last-child:after,
+    .node-investor-company.view-mode-full .investor-owners .detail a:last-child:after,
+    .node-investor-company.view-mode-full .investor-owners .investor-control a:last-child:after {
+      content: ''; }
 .node-investor-company.view-mode-full .investor-other .other {
   float: left;
   display: block;
@@ -2753,6 +3573,245 @@ div.process-steps {
   padding: 40px; }
 
 .page-node-add-person .content-wrapper {
+  border-top: 1px solid #e0e2e6;
+  padding: 0; }
+
+.node-proposal.view-mode-full .proposal-details .detail {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right; }
+  .node-proposal.view-mode-full .proposal-details .detail:last-child {
+    margin-right: 0; }
+  .node-proposal.view-mode-full .proposal-details .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-proposal.view-mode-full .proposal-details .detail:nth-child(2n+1) {
+    clear: left; }
+  .node-proposal.view-mode-full .proposal-details .detail span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-proposal.view-mode-full .proposal-details .detail .verification {
+    display: inline-block;
+    overflow: hidden;
+    border-bottom: 0px none;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-proposal.view-mode-full .proposal-details .detail .verification:hover {
+      border-bottom: 0px none; }
+    .node-proposal.view-mode-full .proposal-details .detail .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-proposal.view-mode-full .proposal-details .detail .verification:before {
+      margin-right: 0; }
+    .node-proposal.view-mode-full .proposal-details .detail .verification.approved:before {
+      background: #6c9e65; }
+    .node-proposal.view-mode-full .proposal-details .detail .verification.expiring:before {
+      background: #f9a500; }
+    .node-proposal.view-mode-full .proposal-details .detail .verification.not-approved:before {
+      background: #c04343; }
+    .node-proposal.view-mode-full .proposal-details .detail .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-proposal.view-mode-full .proposal-details .detail .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
+.node-proposal.view-mode-full a.customer-approval {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/add_small_light.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/add_small_light.svg") transparent 0 0 no-repeat;
+  background-position: 20px 11px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  .node-proposal.view-mode-full a.customer-approval:hover {
+    background-color: #303030; }
+.node-proposal.view-mode-full .client-approval h2 {
+  display: block;
+  margin-bottom: 1em; }
+.node-proposal.view-mode-full .client-approval .client-approval-controls .detail {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  padding: 10px;
+  border: 2px solid #f3f4f8;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right;
+  height: 42px; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .detail:last-child {
+    margin-right: 0; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .detail:nth-child(2n) {
+    margin-right: 0; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .detail:nth-child(2n+1) {
+    clear: left; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .detail span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification {
+    display: inline-block;
+    overflow: hidden;
+    border-bottom: 0px none;
+    font-size: 0px;
+    color: transparent;
+    margin: -1px 0; }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification:hover {
+      border-bottom: 0px none; }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification:before {
+      content: '';
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8); }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification:before {
+      margin-right: 0; }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification.approved:before {
+      background: #6c9e65; }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification.expiring:before {
+      background: #f9a500; }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification.not-approved:before {
+      background: #c04343; }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification.id {
+      font-size: 14px;
+      font-size: 1.4rem;
+      line-height: 21px;
+      line-height: 18px;
+      color: #282828;
+      overflow: visible;
+      display: block;
+      padding: 10px; }
+      .node-proposal.view-mode-full .client-approval .client-approval-controls .detail .verification.id:before {
+        display: inline-block;
+        float: none;
+        position: relative;
+        top: 2px;
+        margin-right: 0.5rem;
+        width: 10px;
+        height: 10px; }
+.node-proposal.view-mode-full .client-approval .client-approval-controls .conflict-count {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background: #797979;
+  border: 2px solid #bcbcbc;
+  color: #fff;
+  text-align: center;
+  line-height: 14px;
+  font-weight: 700;
+  vertical-align: top;
+  font-size: 9px; }
+.node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed,
+.node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed-final {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  margin: 1em 0 0;
+  background: #f3f4f8;
+  padding: 12px;
+  font-weight: 600;
+  text-align: center; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed:last-child,
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed-final:last-child {
+    margin-right: 0; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed:after,
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed-final:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed a.customer-approval,
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed-final a.customer-approval {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+    background-position: 20px 13px;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out; }
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed a.customer-approval:hover,
+    .node-proposal.view-mode-full .client-approval .client-approval-controls .client-approval-signed-final a.customer-approval:hover {
+      background-color: #303030; }
+.node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready,
+.node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready-final {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
+  margin: 1em 0 0;
+  background: #6c9e65;
+  color: #fff;
+  padding: 12px;
+  font-weight: 600;
+  text-align: center; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready:last-child,
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready-final:last-child {
+    margin-right: 0; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready:after,
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready-final:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready .time,
+  .node-proposal.view-mode-full .client-approval .client-approval-controls .signed-and-ready-final .time {
+    font-weight: 400; }
+
+.page-node-add-proposal .content-wrapper {
   border-top: 1px solid #e0e2e6;
   padding: 0; }
 
@@ -5141,34 +6200,100 @@ fieldset {
   font-size: 14px;
   font-size: 1.4rem;
   line-height: 14px; }
-.form-type-managed-file .image-widget,
-.form-type-managed-file .file-widget {
-  float: left; }
-  .form-type-managed-file .image-widget.populated,
-  .form-type-managed-file .file-widget.populated {
-    float: none;
-    border: 1px solid #e0e2e6;
-    background: #fff;
-    padding: 10px; }
-    .form-type-managed-file .image-widget.populated .image-preview,
-    .form-type-managed-file .file-widget.populated .image-preview {
-      padding: 0 10px 0 0; }
-    .form-type-managed-file .image-widget.populated .image-widget-data,
-    .form-type-managed-file .file-widget.populated .image-widget-data {
-      float: none;
-      overflow: hidden;
-      border: 0px none; }
-      .form-type-managed-file .image-widget.populated .image-widget-data .file,
-      .form-type-managed-file .file-widget.populated .image-widget-data .file {
-        padding: 5px; }
-.form-type-managed-file .image-widget-data,
-.form-type-managed-file .file-widget-data {
+.form-type-managed-file .file-widget .file-widget-data {
   border: 1px solid #d4d6d9;
   background: #fff;
   border-radius: 2px;
   margin-bottom: 5px;
   position: relative;
+  height: 32px; }
+  .form-type-managed-file .file-widget .file-widget-data .file {
+    display: inline-block;
+    padding: 5px; }
+  .form-type-managed-file .file-widget .file-widget-data input[type="submit"][value="Ta bort"] {
+    display: inline-block;
+    height: 34px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 12px;
+    line-height: 34px;
+    border-radius: 34px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 0 none;
+    background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
+    background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
+    padding-left: 42px;
+    background-color: #454545;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 24px;
+    background-position: 10px 6px;
+    padding: 0 10px 0 26px;
+    margin-right: 8px;
+    background-position-y: 7px;
+    margin: 0; }
+    .form-type-managed-file .file-widget .file-widget-data input[type="submit"][value="Ta bort"]:hover {
+      background-color: #303030; }
+.form-type-managed-file .image-widget {
   float: left; }
+  .form-type-managed-file .image-widget .image-widget-data {
+    border: 1px solid #d4d6d9;
+    background: #fff;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    position: relative;
+    float: left; }
+  .form-type-managed-file .image-widget.populated {
+    float: none;
+    border: 1px solid #e0e2e6;
+    background: #fff;
+    padding: 10px; }
+    .form-type-managed-file .image-widget.populated .image-preview {
+      padding: 0 10px 0 0; }
+    .form-type-managed-file .image-widget.populated .image-widget-data {
+      float: none;
+      overflow: visible;
+      border: 0px none;
+      background: transparent; }
+      .form-type-managed-file .image-widget.populated .image-widget-data .file {
+        padding: 5px;
+        display: inline-block; }
+      .form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+        background: url("../graphics/cross_mini_light.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/cross_mini_light.svg") transparent 0 0 no-repeat;
+        padding-left: 42px;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 24px;
+        background-position: 10px 6px;
+        padding: 0 10px 0 26px;
+        margin-right: 8px;
+        margin: 0;
+        background-position-y: 7px; }
+        .form-type-managed-file .image-widget.populated .image-widget-data .submit-wrapper .form-submit:hover {
+          background-color: #303030; }
 .form-type-managed-file .icon {
   display: block;
   position: absolute;
@@ -5191,15 +6316,13 @@ fieldset {
   display: block;
   float: left;
   width: 280px;
-  height: 28px;
+  height: 30px;
+  line-height: 30px;
   opacity: 0; }
-.form-type-managed-file .file {
-  display: inline-block;
-  padding: 0 5px 10px 5px; }
 .form-type-managed-file .file-size {
   padding-right: 5px; }
 .form-type-managed-file .submit-wrapper {
-  margin: 2px 2px 2px 0;
+  margin: 3px 3px 3px 0;
   height: 24px;
   position: absolute;
   top: 0;
@@ -5330,6 +6453,30 @@ fieldset {
   -moz-transition: background-color 0.1s ease-in-out;
   transition: background-color 0.1s ease-in-out; }
   #edit-submit:hover {
+    background-color: #303030; }
+
+#edit-sign-submit {
+  display: inline-block;
+  height: 34px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 12px;
+  line-height: 34px;
+  border-radius: 34px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+  background: url("../graphics/confirm.png") transparent 0 0 no-repeat;
+  background: none, url("../graphics/confirm.svg") transparent 0 0 no-repeat;
+  background-position: 20px 13px;
+  padding-left: 42px;
+  background-color: #454545;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out; }
+  #edit-sign-submit:hover {
     background-color: #303030; }
 
 #edit-delete {
@@ -5646,11 +6793,80 @@ div.addressfield-container-inline {
   display: table;
   clear: both; }
 
-#investor-company-node-form #edit-field-investor-comp-address {
-  padding-top: 2em; }
-#investor-company-node-form #edit-field-investor-comp-notes {
+.node-investor_company-form #edit-field-investor-comp-owner {
+  padding-top: 2em;
+  margin-bottom: 3em; }
+  .node-investor_company-form #edit-field-investor-comp-owner table td {
+    display: flex;
+    align-items: center;
+    height: 60px; }
+    .node-investor_company-form #edit-field-investor-comp-owner table td > div {
+      padding: 0 10px 0 0; }
+    .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper {
+      position: relative;
+      padding-right: 0; }
+      .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper .form-submit {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+        background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 24px;
+        background-position: 10px 6px;
+        padding: 0 10px 0 26px;
+        margin-right: 8px;
+        margin: 0; }
+        .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper .form-submit:hover {
+          background-color: #303030; }
+      .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper .ajax-progress {
+        display: block;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px;
+        cursor: pointer;
+        background: #303030;
+        height: 100%;
+        text-align: center;
+        padding-top: 4px; }
+        .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper .ajax-progress .throbber {
+          display: inline-block;
+          background: transparent;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #f9a500;
+          border-radius: 50%;
+          border-top-color: transparent;
+          -webkit-animation: load 0.9s linear infinite;
+          -moz-animation: load 0.9s linear infinite;
+          animation: load 0.9s linear infinite;
+          margin: 0 auto;
+          float: none; }
+        .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper .ajax-progress .message {
+          display: none; }
+.node-investor_company-form #edit-field-investor-comp-notes {
   margin-bottom: 0; }
-  #investor-company-node-form #edit-field-investor-comp-notes .form-item {
+  .node-investor_company-form #edit-field-investor-comp-notes .form-item {
     margin-bottom: 0; }
 
 #investor-private-node-form #edit-field-invest-pvt-address {
@@ -5665,11 +6881,11 @@ div.addressfield-container-inline {
 #person-node-form .field-name-field-user-fax {
   margin: 0; }
 
-#investor-company-node-form .field-name-field-shared-cust-id,
-#investor-company-node-form .field-name-field-investor-comp-org-nbr,
-#investor-company-node-form .field-name-field-shared-cont-pers,
-#investor-company-node-form .field-name-field-investor-comp-real,
-#investor-company-node-form .field-name-field-investor-comp-owners {
+.node-investor_company-form .field-name-field-shared-cust-id,
+.node-investor_company-form .field-name-field-investor-comp-org-nbr,
+.node-investor_company-form .field-name-field-shared-cont-pers,
+.node-investor_company-form .field-name-field-investor-comp-real,
+.node-investor_company-form .field-name-field-investor-comp-owners {
   margin: 0; }
 
 #investor-private-node-form .field-name-field-shared-cust-id,
@@ -5728,37 +6944,37 @@ div.addressfield-container-inline {
   #person-node-form .field-name-field-user-fax:nth-child(2n+1) {
     clear: left; }
 
-#investor-company-node-form .field-name-field-shared-cust-id,
-#investor-company-node-form .form-item-title,
-#investor-company-node-form .field-name-field-investor-comp-org-nbr,
-#investor-company-node-form .field-name-field-shared-cont-pers,
-#investor-company-node-form .field-name-field-investor-comp-real,
-#investor-company-node-form .field-name-field-investor-comp-owners {
+.node-investor_company-form .field-name-field-shared-cust-id,
+.node-investor_company-form .form-item-title,
+.node-investor_company-form .field-name-field-investor-comp-org-nbr,
+.node-investor_company-form .field-name-field-shared-cont-pers,
+.node-investor_company-form .field-name-field-investor-comp-real,
+.node-investor_company-form .field-name-field-investor-comp-owners {
   float: left;
   display: block;
   margin-right: 2.35765%;
   width: 48.82117%;
   clear: none; }
-  #investor-company-node-form .field-name-field-shared-cust-id:last-child,
-  #investor-company-node-form .form-item-title:last-child,
-  #investor-company-node-form .field-name-field-investor-comp-org-nbr:last-child,
-  #investor-company-node-form .field-name-field-shared-cont-pers:last-child,
-  #investor-company-node-form .field-name-field-investor-comp-real:last-child,
-  #investor-company-node-form .field-name-field-investor-comp-owners:last-child {
+  .node-investor_company-form .field-name-field-shared-cust-id:last-child,
+  .node-investor_company-form .form-item-title:last-child,
+  .node-investor_company-form .field-name-field-investor-comp-org-nbr:last-child,
+  .node-investor_company-form .field-name-field-shared-cont-pers:last-child,
+  .node-investor_company-form .field-name-field-investor-comp-real:last-child,
+  .node-investor_company-form .field-name-field-investor-comp-owners:last-child {
     margin-right: 0; }
-  #investor-company-node-form .field-name-field-shared-cust-id:nth-child(2n),
-  #investor-company-node-form .form-item-title:nth-child(2n),
-  #investor-company-node-form .field-name-field-investor-comp-org-nbr:nth-child(2n),
-  #investor-company-node-form .field-name-field-shared-cont-pers:nth-child(2n),
-  #investor-company-node-form .field-name-field-investor-comp-real:nth-child(2n),
-  #investor-company-node-form .field-name-field-investor-comp-owners:nth-child(2n) {
+  .node-investor_company-form .field-name-field-shared-cust-id:nth-child(2n),
+  .node-investor_company-form .form-item-title:nth-child(2n),
+  .node-investor_company-form .field-name-field-investor-comp-org-nbr:nth-child(2n),
+  .node-investor_company-form .field-name-field-shared-cont-pers:nth-child(2n),
+  .node-investor_company-form .field-name-field-investor-comp-real:nth-child(2n),
+  .node-investor_company-form .field-name-field-investor-comp-owners:nth-child(2n) {
     margin-right: 0; }
-  #investor-company-node-form .field-name-field-shared-cust-id:nth-child(2n+1),
-  #investor-company-node-form .form-item-title:nth-child(2n+1),
-  #investor-company-node-form .field-name-field-investor-comp-org-nbr:nth-child(2n+1),
-  #investor-company-node-form .field-name-field-shared-cont-pers:nth-child(2n+1),
-  #investor-company-node-form .field-name-field-investor-comp-real:nth-child(2n+1),
-  #investor-company-node-form .field-name-field-investor-comp-owners:nth-child(2n+1) {
+  .node-investor_company-form .field-name-field-shared-cust-id:nth-child(2n+1),
+  .node-investor_company-form .form-item-title:nth-child(2n+1),
+  .node-investor_company-form .field-name-field-investor-comp-org-nbr:nth-child(2n+1),
+  .node-investor_company-form .field-name-field-shared-cont-pers:nth-child(2n+1),
+  .node-investor_company-form .field-name-field-investor-comp-real:nth-child(2n+1),
+  .node-investor_company-form .field-name-field-investor-comp-owners:nth-child(2n+1) {
     clear: left; }
 
 #investor-private-node-form .field-name-field-shared-cust-id,

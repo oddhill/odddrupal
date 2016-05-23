@@ -39,12 +39,18 @@ function f_offers_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Det finns inga erbjudanden att visa';
   $handler->display->display_options['empty']['area']['format'] = 'document_html';
-  /* Field: Content: Företag */
-  $handler->display->display_options['fields']['field_offer_company']['id'] = 'field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['table'] = 'field_data_field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['field'] = 'field_offer_company';
-  $handler->display->display_options['fields']['field_offer_company']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_offer_company']['settings'] = array(
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_offer_proposal_target_id']['id'] = 'field_offer_proposal_target_id';
+  $handler->display->display_options['relationships']['field_offer_proposal_target_id']['table'] = 'field_data_field_offer_proposal';
+  $handler->display->display_options['relationships']['field_offer_proposal_target_id']['field'] = 'field_offer_proposal_target_id';
+  /* Field: Content: Kundbolag */
+  $handler->display->display_options['fields']['field_proposal_company']['id'] = 'field_proposal_company';
+  $handler->display->display_options['fields']['field_proposal_company']['table'] = 'field_data_field_proposal_company';
+  $handler->display->display_options['fields']['field_proposal_company']['field'] = 'field_proposal_company';
+  $handler->display->display_options['fields']['field_proposal_company']['relationship'] = 'field_offer_proposal_target_id';
+  $handler->display->display_options['fields']['field_proposal_company']['label'] = 'Företag';
+  $handler->display->display_options['fields']['field_proposal_company']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_proposal_company']['settings'] = array(
     'link' => 0,
   );
   /* Field: Content: Title */
@@ -86,6 +92,7 @@ function f_offers_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Det finns inga erbjudanden att visa'),
+    t('Content entity referenced from field_offer_proposal'),
     t('Företag'),
     t('Title'),
     t('Alla'),

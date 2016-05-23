@@ -3,6 +3,11 @@
   @include button($dark-grey, save);
 }
 
+// Save & Approve button
+#edit-sign-submit {
+  @include button($dark-grey, confirm);
+}
+
 // Delete button
 #edit-delete {
   @include button($wine, delete);

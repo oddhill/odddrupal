@@ -52,11 +52,27 @@
     }
 
     .investor-details,
-    .investor-verifications {
+    .investor-verifications,
+    .investor-owners {
 
       .detail,
       .investor-control {
         @include node-section-detail;
+
+        a {
+          margin-right: 2px;
+
+          &:after {
+            content: ',';
+          }
+
+          &:last-child {
+
+            &:after {
+              content: '';
+            }
+          }
+        }
       }
     }
 

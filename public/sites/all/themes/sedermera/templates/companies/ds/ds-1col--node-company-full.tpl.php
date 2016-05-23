@@ -13,13 +13,25 @@
 ?>
 <div class="node-barrier">
 
-  <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
+  <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?> <?php if (empty($content['field_comp_logo'])) { print 'no-logo'; } ?>">
 
-    <?php print render($content['title']); ?>
+    <?php print render($content['field_comp_logo']); ?>
 
     <div class="company-details node-section">
-      <?php print render($content['field_comp_logo']); ?>
-      <?php print render($content['field_comp_legacy_id']); ?>
+      <?php print render($content['field_comp_id']); ?>
+      <?php print render($content['field_comp_org_nbr']); ?>
+      <?php print render($content['field_comp_cust_resp']); ?>
+    </div>
+    <div class="company-contacts node-section">
+      <?php print render($content['field_comp_cont_person']); ?>
+      <?php print render($content['field_comp_principal_person']); ?>
+      <?php foreach ($company_cont_id as $id => $row): ?>
+        <?php print render($row); ?>
+      <?php endforeach; ?>
+    </div>
+    <div class="company-other node-section">
+      <?php print render($content['field_comp_address']); ?>
+      <?php print render($content['field_comp_notes']); ?>
     </div>
 
   </div>

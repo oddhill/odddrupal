@@ -3,15 +3,8 @@
 
   &.view-mode-full {
 
-    .company-details {
-
-      .detail {
-        @include node-section-detail;
-      }
-    }
-
     .company-logo {
-      width: 100px;
+      width: 120px;
       margin: 0 0 30px;
       float: right;
 
@@ -20,6 +13,69 @@
         height: auto;
       }
     }
+
+    .company-details {
+
+      .detail {
+        @include node-section-detail;
+        @include omega();
+      }
+    }
+
+    &.no-logo {
+
+      .company-details {
+
+        .detail {
+          @include node-section-detail;
+          @include omega(2n);
+        }
+      }
+    }
+
+    .company-contacts {
+
+      .detail {
+        @include node-section-detail;
+
+        a {
+          margin-right: 2px;
+
+          &:after {
+            content: ',';
+          }
+
+          &:last-child {
+
+            &:after {
+              content: '';
+            }
+          }
+        }
+      }
+    }
+
+    .company-other {
+
+      .other {
+        @include node-section-detail;
+        text-align: left;
+
+        span.label {
+          display: block;
+          float: none;
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+  }
+}
+
+// Form fields styling
+.group-proposal-details {
+
+  .form-type-managed-file {
+    overflow: hidden;
   }
 }
 

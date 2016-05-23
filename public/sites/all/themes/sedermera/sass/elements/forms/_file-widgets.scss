@@ -11,9 +11,43 @@
     }
   }
 
-  .image-widget,
   .file-widget {
+
+    .file-widget-data {
+      border: 1px solid $steel;
+      background: $snow;
+      border-radius: 2px;
+      margin-bottom: 5px;
+      position: relative;
+      height: 32px;
+
+      .file {
+        display: inline-block;
+        padding: 5px;
+      }
+
+      input[type="submit"] {
+
+        &[value="Ta bort"] {
+          @include button($dark-grey,cross-mini,small);
+          background-position-y: 7px;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .image-widget {
     float: left;
+
+    .image-widget-data {
+      border: 1px solid $steel;
+      background: $snow;
+      border-radius: 2px;
+      margin-bottom: 5px;
+      position: relative;
+      float: left;
+    }
 
     &.populated {
       float: none;
@@ -27,24 +61,25 @@
 
       .image-widget-data {
         float: none;
-        overflow: hidden;
+        overflow: visible;
         border: 0px none;
+        background: transparent;
 
         .file {
           padding: 5px;
+          display: inline-block;
+        }
+
+        .submit-wrapper {
+
+          .form-submit {
+            @include button($dark-grey,cross-mini,small);
+            margin: 0;
+            background-position-y: 7px;
+          }
         }
       }
     }
-  }
-
-  .image-widget-data,
-  .file-widget-data {
-    border: 1px solid $steel;
-    background: $snow;
-    border-radius: 2px;
-    margin-bottom: 5px;
-    position: relative;
-    float: left;
   }
 
   .icon {
@@ -72,13 +107,9 @@
     display: block;
     float: left;
     width: 280px;
-    height: 28px;
+    height: 30px;
+    line-height: 30px;
     opacity: 0;
-  }
-
-  .file {
-    display: inline-block;
-    padding: 0 5px 10px 5px;
   }
 
   .file-size {
@@ -86,7 +117,7 @@
   }
 
   .submit-wrapper {
-    margin: 2px 2px 2px 0;
+    margin: 3px 3px 3px 0;
     height: 24px;
     position: absolute;
     top: 0;

@@ -151,13 +151,14 @@ function sedermera_offer_node_presave($node) {
         trans.entity_id AS TRANS,
         person.field_transaction_person_target_id AS PERSON,
         offer.field_transaction_offer_target_id AS OFFER,
-        company.field_offer_company_target_id AS COMP
+        company.field_proposal_company_target_id AS COMP
         FROM field_data_field_transaction_ap_agree AS agree
         INNER JOIN field_data_field_transaction_ap_ap AS investor ON (agree.entity_id = investor.entity_id)
         INNER JOIN field_data_field_transaction_investor AS trans ON (trans.field_transaction_investor_target_id = agree.entity_id)
         INNER JOIN field_data_field_transaction_person AS person ON (person.entity_id = trans.entity_id)
         INNER JOIN field_data_field_transaction_offer AS offer ON (offer.entity_id = trans.entity_id)
-        INNER JOIN field_data_field_offer_company AS company ON (company.entity_id = offer.field_transaction_offer_target_id)
+        INNER JOIN field_data_field_offer_proposal AS pro ON (offer.field_transaction_offer_target_id = pro.entity_id)
+        INNER JOIN field_data_field_proposal_company AS company ON (pro.field_offer_proposal_target_id = company.entity_id)
         WHERE agree.field_transaction_ap_agree_target_id = :nid", array(':nid' => $node->nid))->fetchAssoc();
 
       // Load needed nodes
@@ -447,7 +448,8 @@ function transaction_transparency_info_send_mail($transaction_nid) {
   $transaction = entity_metadata_wrapper('node', $transaction_nid);
   $person = $transaction->field_transaction_person;
   $offer = $transaction->field_transaction_offer;
-  $company = $transaction->field_transaction_offer->field_offer_company;
+  $proposal = $transaction->field_transaction_offer->field_offer_proposal;
+  $company = $proposal->field_proposal_company;
 
   // Remove any existing messages.
   $commands[] = ajax_command_remove('div.page-messages');
@@ -470,6 +472,7 @@ function transaction_transparency_info_send_mail($transaction_nid) {
 
     // Mark offer as gotten transparency information
     $transaction->field_transaction_info = TRUE;
+    $transaction->revision->set(1);
     $transaction->save();
 
     // Replace the old view with a new one.
@@ -529,6 +532,7 @@ function sedermera_offer_send_offer_mail($transaction_nid) {
 
     // Mark offer as gotten transparency information
     $transaction->field_transaction_info_offer = TRUE;
+    $transaction->revision->set(1);
     $transaction->save();
 
     // Replace the old view with a new one.
@@ -552,6 +556,48 @@ function sedermera_offer_send_offer_mail($transaction_nid) {
     '#type' => 'ajax',
     '#commands' => $commands,
   );
+}
+
+/**
+ * Helper function to deside if a proposal is usable
+ */
+function check_proposal($nid) {
+  // Check if no approval needed
+  $result = db_query("SELECT field_proposal_approval_value AS value
+    FROM {field_data_field_proposal_approval}
+    WHERE entity_id = :nid",
+    array(':nid' => $nid))->fetchAssoc();
+
+  // No need for approval return TRUE
+  if (!$result['value']) {
+    return TRUE;
+  }
+
+  // Check if approval has been signed
+  $result = db_query("SELECT signed.field_cust_app_signed_admin_value AS value
+    FROM {field_data_field_cust_app_signed_admin} AS signed
+    INNER JOIN {field_data_field_proposal_cust_approval} AS app ON app.field_proposal_cust_approval_target_id = signed.entity_id
+    WHERE app.entity_id = :nid",
+    array(':nid' => $nid))->fetchAssoc();
+
+  // Approval has not benn signed return FALSE
+  if (!$result['value']) {
+    return FALSE;
+  }
+
+  // Check if approval is already in use
+  $result = db_query("SELECT entity_id AS value
+    FROM {field_data_field_offer_proposal}
+    WHERE field_offer_proposal_target_id = :nid",
+    array(':nid' => $nid))->fetchAssoc();
+
+  // Approval is already used return FALSE
+  if ($result['value']) {
+    return FALSE;
+  }
+
+  // If all checks are ok return TRUE
+  return TRUE;
 }
 
 /**
@@ -1125,6 +1171,16 @@ function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bu
  * Implements hook_form_FORM_ID_alter()
  */
 function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_id) {
+  $old_nid = (!empty($form['field_offer_proposal'][LANGUAGE_NONE]['#default_value'])) ? $form['field_offer_proposal'][LANGUAGE_NONE]['#default_value'][0] : -1;
+
+  foreach ($form['field_offer_proposal'][LANGUAGE_NONE]['#options'] as $nid => $value) {
+    if (!check_proposal($nid) && $old_nid != $nid) {
+      unset($form['field_offer_proposal'][LANGUAGE_NONE]['#options'][$nid]);
+    }
+  }
+
+  $form['field_offer_proposal'][LANGUAGE_NONE]['#options']['_none'] = '- Välj offert -';
+
   $fe = ($form['#node']->field_offer_type_fe[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
   $le = ($form['#node']->field_offer_type_le[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
   $pp = ($form['#node']->field_offer_type_pp[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;

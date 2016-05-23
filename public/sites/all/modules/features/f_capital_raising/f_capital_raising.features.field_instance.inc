@@ -34,7 +34,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'mail' => array(
         'label' => 'above',
@@ -96,68 +96,6 @@ function f_capital_raising_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 43,
-    ),
-  );
-
-  // Exported field_instance: 'node-offer-field_offer_company'.
-  $field_instances['node-offer-field_offer_company'] = array(
-    'bundle' => 'offer',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 0,
-      ),
-      'full' => array(
-        'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'links' => 0,
-          'view_mode' => 'teaser',
-        ),
-        'type' => 'entityreference_entity_view',
-        'weight' => 0,
-      ),
-      'mail' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_offer_company',
-    'label' => 'Företag',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 5,
     ),
   );
 
@@ -273,6 +211,65 @@ function f_capital_raising_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-offer-field_offer_proposal'.
+  $field_instances['node-offer-field_offer_proposal'] = array(
+    'bundle' => 'offer',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Endast godkända och ej tidigare använda offerter listas.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 57,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'teaser',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 0,
+      ),
+      'mail' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'mail',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_offer_proposal',
+    'label' => 'Offert',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'node-offer-field_offer_text'.
   $field_instances['node-offer-field_offer_text'] = array(
     'bundle' => 'offer',
@@ -292,7 +289,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'mail' => array(
         'label' => 'above',
@@ -386,7 +383,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 12,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -439,7 +436,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 51,
+        'weight' => 47,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -523,7 +520,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 52,
+        'weight' => 48,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -607,7 +604,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 49,
+        'weight' => 45,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -691,7 +688,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 50,
+        'weight' => 46,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -778,7 +775,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 13,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -831,7 +828,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 56,
+        'weight' => 52,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -915,7 +912,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 55,
+        'weight' => 51,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -999,7 +996,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 53,
+        'weight' => 49,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1103,7 +1100,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 54,
+        'weight' => 50,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1169,7 +1166,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 9,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1222,7 +1219,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 21,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1306,7 +1303,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 23,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1390,7 +1387,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 17,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1474,7 +1471,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 15,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1558,7 +1555,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 18,
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1642,7 +1639,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 14,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1726,7 +1723,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 22,
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1830,7 +1827,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 16,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1893,7 +1890,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 19,
+        'weight' => 17,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1980,7 +1977,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 10,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2033,7 +2030,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 33,
+        'weight' => 29,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2117,7 +2114,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 35,
+        'weight' => 31,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2201,7 +2198,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 31,
+        'weight' => 27,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2285,7 +2282,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 34,
+        'weight' => 30,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2369,7 +2366,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 36,
+        'weight' => 32,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2453,7 +2450,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 27,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2537,7 +2534,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 25,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2621,7 +2618,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 28,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2705,7 +2702,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 24,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2789,7 +2786,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 32,
+        'weight' => 28,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2893,7 +2890,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 26,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2956,7 +2953,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 29,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3043,7 +3040,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 8,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3096,7 +3093,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 42,
+        'weight' => 38,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3180,7 +3177,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 39,
+        'weight' => 35,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3264,7 +3261,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 40,
+        'weight' => 36,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3348,7 +3345,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 41,
+        'weight' => 37,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3432,7 +3429,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 37,
+        'weight' => 33,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3536,7 +3533,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 38,
+        'weight' => 34,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3602,7 +3599,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 11,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3655,7 +3652,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 48,
+        'weight' => 44,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3739,7 +3736,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 45,
+        'weight' => 41,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3823,7 +3820,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 46,
+        'weight' => 42,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3907,7 +3904,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 47,
+        'weight' => 43,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -3991,7 +3988,7 @@ function f_capital_raising_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 43,
+        'weight' => 39,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4095,7 +4092,7 @@ function f_capital_raising_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 44,
+        'weight' => 40,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -6323,9 +6320,9 @@ function f_capital_raising_field_default_field_instances() {
   t('EU:s sanktionsförordningar');
   t('Ej intresserad');
   t('Emissionsbelopp');
+  t('Endast godkända och ej tidigare använda offerter listas.');
   t('Erbjudande');
   t('Filer');
-  t('Företag');
   t('Företrädesemission');
   t('Första kontakt');
   t('Försäljningsbelopp');
@@ -6349,6 +6346,7 @@ function f_capital_raising_field_default_field_instances() {
   t('Löptid');
   t('Marknadsplats');
   t('Offer');
+  t('Offert');
   t('Penningtvätt');
   t('Person');
   t('Planerad inbetalning');

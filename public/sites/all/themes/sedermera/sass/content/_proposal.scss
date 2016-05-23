@@ -1,0 +1,84 @@
+// Proposal node
+.node-proposal {
+
+  &.view-mode-full {
+
+    .proposal-details {
+
+      .detail {
+        @include node-section-detail;
+      }
+    }
+
+    a.customer-approval {
+      @include button($dark-grey,add);
+    }
+
+    .client-approval {
+
+      h2 {
+        display: block;
+        margin-bottom: 1em;
+      }
+
+      .client-approval-controls {
+
+        .detail {
+          @include node-section-detail;
+          height: 42px;
+        }
+
+        .conflict-count {
+          display: inline-block;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          margin: 0 5px;
+          background: $grey;
+          border: 2px solid tint($grey, 50%);
+          color: $snow;
+          text-align: center;
+          line-height: 14px;
+          font-weight: 700;
+          vertical-align: top;
+          font-size: 9px;
+        }
+
+        .client-approval-signed,
+        .client-approval-signed-final {
+          @include span-columns(12 of 12);
+          @include clearfix;
+          margin: 1em 0 0;
+          background: $light-grey;
+          @include pad(12px);
+          font-weight: 600;
+          text-align: center;
+
+          a.customer-approval {
+            @include button($dark-grey,confirm);
+          }
+        }
+
+        .signed-and-ready,
+        .signed-and-ready-final {
+          @include span-columns(12 of 12);
+          @include clearfix;
+          margin: 1em 0 0;
+          background: $pear;
+          color: $snow;
+          @include pad(12px);
+          font-weight: 600;
+          text-align: center;
+
+          .time {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-node-add-proposal .content-wrapper  {
+  @include content-holder(edit);
+}
