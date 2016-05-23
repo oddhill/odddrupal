@@ -14,7 +14,6 @@
 <div class="node-barrier">
 
   <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
-    <?php print render($content['title']); ?>
 
     <?php if ($content['investors']): ?>
       <div class="person-stakeholder node-section">

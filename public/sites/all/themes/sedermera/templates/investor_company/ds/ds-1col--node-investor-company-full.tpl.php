@@ -16,7 +16,6 @@
   <div class="<?php print $classes; ?> <?php print $ds_content_classes; ?>">
 
     <?php print render($content['verification_status']); ?>
-    <?php print render($content['title']); ?>
 
     <div class="investor-details node-section">
       <?php print render($content['field_shared_cust_id']) ?>
