@@ -227,3 +227,13 @@ function sedermera_core_update_7012() {
   field_delete_field('field_hist_ctrl_vid_kom');
   field_purge_batch(100);
 }
+
+/**
+ * Delete old field no longer needed
+ */
+function sedermera_core_update_7013() {
+  field_delete_field('field_offer_company');
+
+  field_purge_batch(500);
+}
+
