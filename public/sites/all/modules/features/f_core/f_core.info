@@ -244,6 +244,7 @@ features[variable][] = stage_file_proxy_origin
 features[variable][] = stage_file_proxy_origin_dir
 features[variable][] = stage_file_proxy_sslversion
 features[variable][] = stage_file_proxy_use_imagecache_root
+features[variable][] = syslog_format
 features[variable][] = tadaa_development_modules
 features[variable][] = tadaa_development_variables
 features[variable][] = tadaa_environments

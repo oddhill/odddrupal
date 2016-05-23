@@ -850,6 +850,13 @@ admin/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'syslog_format';
+  $strongarm->value = '!message | Type: !type | URL: !request_uri | Referer: !referer | User: !uid | IP: !ip';
+  $export['syslog_format'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'tadaa_development_modules';
   $strongarm->value = array(
     'context_list' => 1,
