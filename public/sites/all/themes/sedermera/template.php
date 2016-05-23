@@ -73,6 +73,11 @@ function sedermera_js_alter(&$js) {
   foreach ($exclude as $file) {
     unset($js[$file]);
   }
+
+  // Remove sticky headers since we don't want that on any table.
+  if (isset($js['misc/tableheader.js'])) {
+    unset($js['misc/tableheader.js']);
+  }
 }
 
 // Include the preprocess and theme files. These includes preprocess
