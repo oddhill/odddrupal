@@ -1,0 +1,9 @@
+test:
+  override:
+    - build/tests.sh
+
+deployment:
+  oddserver:
+    branch: master
+    commands:
+      - build/deploy_staging.sh
