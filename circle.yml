@@ -1,0 +1,9 @@
+test:
+  override:
+    - build/tests.sh
+
+deployment:
+  testing:
+    branch: develop
+    commands:
+      - build/deploy_testing.sh
