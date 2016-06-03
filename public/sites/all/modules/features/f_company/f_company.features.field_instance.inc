@@ -1726,7 +1726,7 @@ function f_company_field_default_field_instances() {
     'widget' => array(
       'module' => 'serial',
       'settings' => array(),
-      'type' => 'serial',
+      'type' => 'serial_widget_default',
       'weight' => 13,
     ),
   );
