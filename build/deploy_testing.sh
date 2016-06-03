@@ -8,8 +8,8 @@ BUILD_NAME=build.tar.gz
 
 # Move configuration to the appropriate location.
 echo "Bundling .htaccess and settings.local.php"
-mv config/settings.staging.php public/sites/default/settings.local.php
-mv config/.htaccess.staging public/.htaccess
+mv config/settings.testing.php public/sites/default/settings.local.php
+mv config/.htaccess.testing public/.htaccess
 
 # Remove any Drush alias file and the default settings file.
 echo "Removing Drush aliases sites/default"

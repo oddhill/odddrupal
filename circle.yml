@@ -3,7 +3,7 @@ test:
     - build/tests.sh
 
 deployment:
-  oddserver:
-    branch: master
+  testing:
+    branch: develop
     commands:
-      - build/deploy_staging.sh
+      - build/deploy_testing.sh
