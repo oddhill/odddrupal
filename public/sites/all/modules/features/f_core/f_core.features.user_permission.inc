@@ -118,6 +118,20 @@ function f_core_user_default_permissions() {
     'module' => 'password_policy',
   );
 
+  // Exported permission: 'administer session limits by role'.
+  $permissions['administer session limits by role'] = array(
+    'name' => 'administer session limits by role',
+    'roles' => array(),
+    'module' => 'session_limit',
+  );
+
+  // Exported permission: 'administer session limits per user'.
+  $permissions['administer session limits per user'] = array(
+    'name' => 'administer session limits per user',
+    'roles' => array(),
+    'module' => 'session_limit',
+  );
+
   // Exported permission: 'administer user roles'.
   $permissions['administer user roles'] = array(
     'name' => 'administer user roles',
