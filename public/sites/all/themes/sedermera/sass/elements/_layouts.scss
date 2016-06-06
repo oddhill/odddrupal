@@ -12,6 +12,14 @@
 .main-content {
   @include font-size($standard,1.3);
 
+  // Disable select
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
+
   .logged-in & {
     margin-left: 280px;
 
