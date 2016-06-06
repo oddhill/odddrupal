@@ -22,9 +22,11 @@
       <?php print render($content['field_shared_cont_pers']); ?>
     </div>
 
-    <div class="investor-owners node-section">
-      <?php print render($content['field_investor_comp_owner']); ?>
-    </div>
+    <?php if ($content['field_investor_comp_owner']): ?>
+      <div class="investor-owners node-section">
+        <?php print render($content['field_investor_comp_owner']); ?>
+      </div>
+    <?php endif; ?>
 
     <div class="investor-other node-section">
       <?php print render($content['field_investor_comp_address']); ?>
