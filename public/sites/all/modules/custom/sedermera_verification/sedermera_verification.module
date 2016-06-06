@@ -428,7 +428,7 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
         ),
       );
     }
-    else {
+    elseif (!empty($verifications)) {
       // There's more than one ID verification for this investor, so we should
       // build a list which allows the user to edit the individual
       // verifications. Start of with the main indicator.
