@@ -324,7 +324,7 @@ function f_investor_field_default_field_instances() {
         'weight' => 22,
       ),
       'full' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'field_collection',
         'settings' => array(
           'view_mode' => 'full',
