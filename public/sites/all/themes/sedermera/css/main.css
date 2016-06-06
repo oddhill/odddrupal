@@ -4661,7 +4661,18 @@ form.views-send-preview .form-actions {
 .main-content {
   font-size: 14px;
   font-size: 1.4rem;
-  line-height: 18.2px; }
+  line-height: 18.2px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none; }
   .logged-in .main-content {
     margin-left: 280px; }
     @media screen and (max-width: 1600px) {
