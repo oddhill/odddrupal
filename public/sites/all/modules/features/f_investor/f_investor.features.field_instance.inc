@@ -37,7 +37,7 @@ function f_investor_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'max' => 100,
-      'min' => 0,
+      'min' => 25,
       'prefix' => '',
       'suffix' => ' %',
       'user_register_form' => FALSE,
