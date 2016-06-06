@@ -8,14 +8,10 @@
  * the other site. E.g. drush @staging features.
  */
 
-/**
- * An alias for the staging site.
- *
- * This should point to the site on Odd Server, for any normal circumstances.
- */
-$aliases['staging'] = array(
-  'uri' => 'http://intranat-sedermera.oddserver.se',
-  'root' => '/mnt/persist/www/intranat-sedermera',
+// Testing environment (Odd Server).
+$aliases['testing'] = array(
+  'uri' => 'http://portal-sedermera.oddserver.se',
+  'root' => '/mnt/persist/www/portal-sedermera',
   'remote-host' => 'oddserver.se',
   'remote-user' => 'root',
   'command-specific' => array (
