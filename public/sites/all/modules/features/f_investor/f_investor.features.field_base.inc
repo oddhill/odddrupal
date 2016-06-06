@@ -508,18 +508,14 @@ function f_investor_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_owner_amount',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'number',
     'settings' => array(
-      'max_length' => 255,
+      'decimal_separator' => ',',
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'number_float',
   );
 
   // Exported field_base: 'field_owner_head'.

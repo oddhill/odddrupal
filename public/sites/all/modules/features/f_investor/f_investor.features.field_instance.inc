@@ -20,65 +20,34 @@ function f_investor_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-      'full' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => ',',
+          'prefix_suffix' => 1,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_owner_amount',
-    'label' => 'Ägarandel i %',
+    'label' => 'Ägarandel',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'document_html' => 'document_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'document_html' => array(
-              'weight' => 0,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
+      'max' => 100,
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => ' %',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 2,
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 3,
     ),
   );
 
@@ -2817,7 +2786,7 @@ function f_investor_field_default_field_instances() {
   t('Uppdragsavtal');
   t('Verkliga huvudmän');
   t('t.ex. ägare av 25% eller mer');
-  t('Ägarandel i %');
+  t('Ägarandel');
   t('ÅÅMMDD-XXXX');
 
   return $field_instances;
