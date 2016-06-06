@@ -26,7 +26,6 @@ function f_document_user_default_permissions() {
     'name' => 'add terms in document_type',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy_access_fix',
   );
@@ -36,7 +35,6 @@ function f_document_user_default_permissions() {
     'name' => 'add terms in mall_typ',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy_access_fix',
   );
@@ -46,7 +44,6 @@ function f_document_user_default_permissions() {
     'name' => 'add terms in manual_typ',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy_access_fix',
   );
@@ -233,7 +230,6 @@ function f_document_user_default_permissions() {
     'name' => 'edit terms in document_type',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy',
   );
@@ -243,7 +239,6 @@ function f_document_user_default_permissions() {
     'name' => 'edit terms in mall_typ',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy',
   );
@@ -253,7 +248,6 @@ function f_document_user_default_permissions() {
     'name' => 'edit terms in manual_typ',
     'roles' => array(
       'Administratör' => 'Administratör',
-      'Redaktör' => 'Redaktör',
     ),
     'module' => 'taxonomy',
   );
