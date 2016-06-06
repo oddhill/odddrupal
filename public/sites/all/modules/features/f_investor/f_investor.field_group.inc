@@ -30,7 +30,8 @@ function f_investor_field_group_info() {
       4 => 'field_shared_cont_pers',
       5 => 'field_shared_cust_id',
       6 => 'field_shared_inv_cat',
-      7 => 'title',
+      7 => 'field_investor_comp_owner',
+      8 => 'title',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

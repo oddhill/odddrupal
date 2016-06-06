@@ -121,8 +121,41 @@ function sedermera_preprocess_node(&$variables) {
   if ($variables['type'] == 'investor_company' && $variables['view_mode'] == 'full') {
     $persons[$variables['node']->field_shared_cont_pers[LANGUAGE_NONE][0]['target_id']] = $variables['node']->field_shared_cont_pers[LANGUAGE_NONE][0]['target_id'];
 
-    if (!empty($variables['node']->field_investor_comp_owners[LANGUAGE_NONE])) {
-      foreach ($variables['node']->field_investor_comp_owners[LANGUAGE_NONE] as $key => $value) {
+    if (!empty($variables['node']->field_investor_comp_owner[LANGUAGE_NONE])) {
+      foreach ($variables['node']->field_investor_comp_owner[LANGUAGE_NONE] as $key => $value) {
+        $nid = db_query("SELECT field_owner_head_target_id
+          FROM field_data_field_owner_head
+          WHERE entity_id = :nid",
+          array(':nid' => $value['value']))->fetchField();
+
+        $persons[$nid] = $nid;
+      }
+    }
+
+    foreach ($persons as $key => $value) {
+      $person = node_load($value);
+      $variables['company_cont_id'][] = field_view_field('node', $person, 'field_user_id_ctrl',
+      array(
+        'label'=>'above',
+        'type' => 'sedermera_verification_status',
+        'settings' => array(
+          'link' => TRUE,
+          'link_destination' => 'view',
+        ),
+      ));
+    }
+  }
+
+  if ($variables['type'] == 'company' && $variables['view_mode'] == 'full') {
+    $persons = array();
+    if (!empty($variables['node']->field_comp_cont_person)) {
+      foreach ($variables['node']->field_comp_cont_person[LANGUAGE_NONE] as $key => $value) {
+        $persons[$value['target_id']] = $value['target_id'];
+      }
+    }
+
+    if (!empty($variables['node']->field_comp_principal_person[LANGUAGE_NONE])) {
+      foreach ($variables['node']->field_comp_principal_person[LANGUAGE_NONE] as $key => $value) {
         $persons[$value['target_id']] = $value['target_id'];
       }
     }

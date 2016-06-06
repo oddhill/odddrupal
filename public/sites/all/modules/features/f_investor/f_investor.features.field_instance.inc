@@ -11,6 +11,125 @@ function f_investor_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
+  // 'field_collection_item-field_investor_comp_owner-field_owner_amount'.
+  $field_instances['field_collection_item-field_investor_comp_owner-field_owner_amount'] = array(
+    'bundle' => 'field_investor_comp_owner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_owner_amount',
+    'label' => 'Ägarandel i %',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'document_html' => 'document_html',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'document_html' => array(
+              'weight' => 0,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_investor_comp_owner-field_owner_head'.
+  $field_instances['field_collection_item-field_investor_comp_owner-field_owner_head'] = array(
+    'bundle' => 'field_investor_comp_owner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 't.ex. ägare av 25% eller mer',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_owner_head',
+    'label' => 'Huvudman',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
   // 'node-investor_company-field_investor_comp_address'.
   $field_instances['node-investor_company-field_investor_comp_address'] = array(
     'bundle' => 'investor_company',
@@ -68,7 +187,7 @@ function f_investor_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 24,
+      'weight' => 25,
     ),
   );
 
@@ -139,7 +258,7 @@ function f_investor_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 26,
+      'weight' => 27,
     ),
   );
 
@@ -215,50 +334,53 @@ function f_investor_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'node-investor_company-field_investor_comp_owners'.
-  $field_instances['node-investor_company-field_investor_comp_owners'] = array(
+  // Exported field_instance: 'node-investor_company-field_investor_comp_owner'.
+  $field_instances['node-investor_company-field_investor_comp_owner'] = array(
     'bundle' => 'investor_company',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 't.ex. ägare av 25% eller mer',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'field_collection',
         'settings' => array(
-          'link' => FALSE,
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'view_mode' => 'full',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 5,
+        'type' => 'field_collection_view',
+        'weight' => 22,
       ),
       'full' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
+        'label' => 'hidden',
+        'module' => 'field_collection',
         'settings' => array(
-          'link' => 1,
+          'view_mode' => 'full',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 3,
+        'type' => 'field_collection_fields',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_investor_comp_owners',
+    'field_name' => 'field_investor_comp_owner',
     'label' => 'Verkliga huvudmän',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
+      'field_lock_multi_values' => array(
+        'disable_reorder' => 1,
+        'lock_previous' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete_tags',
-      'weight' => 23,
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 24,
     ),
   );
 
@@ -636,7 +758,7 @@ function f_investor_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 25,
+      'weight' => 26,
     ),
   );
 
@@ -2671,6 +2793,7 @@ function f_investor_field_default_field_instances() {
   t('Externt register');
   t('Fax');
   t('Företag');
+  t('Huvudman');
   t('ID-kontroll');
   t('ID-kontroll (Kontaktperson)');
   t('ID-kontroll (Ägare)');
@@ -2694,6 +2817,7 @@ function f_investor_field_default_field_instances() {
   t('Uppdragsavtal');
   t('Verkliga huvudmän');
   t('t.ex. ägare av 25% eller mer');
+  t('Ägarandel i %');
   t('ÅÅMMDD-XXXX');
 
   return $field_instances;
