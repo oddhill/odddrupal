@@ -131,10 +131,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Garantiåtagande fe */
@@ -148,10 +150,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Teckningsförbindelse le */
@@ -165,10 +169,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Garantiåtagande le */
@@ -182,10 +188,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Teckningsförbindelse pp */
@@ -199,10 +207,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Teckningsförbindelse re */
@@ -216,10 +226,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Brygglån */
@@ -232,10 +244,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Blockpost */
@@ -248,10 +262,12 @@ function f_capital_raising_views_default_views() {
     'click_to_edit' => 0,
     'click_to_edit_style' => 'button',
     'empty_text' => '',
-    'fallback_format' => 'number_integer',
+    'fallback_format' => 'number_decimal',
     'fallback_settings' => array(
-      'thousand_separator' => ' ',
+      'decimal_separator' => ',',
       'prefix_suffix' => 1,
+      'scale' => 2,
+      'thousand_separator' => ' ',
     ),
   );
   /* Field: Content: Summa */
