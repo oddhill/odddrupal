@@ -355,6 +355,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -370,6 +372,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -386,6 +390,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -402,6 +408,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -418,6 +426,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -434,6 +444,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -450,6 +462,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -466,6 +480,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
