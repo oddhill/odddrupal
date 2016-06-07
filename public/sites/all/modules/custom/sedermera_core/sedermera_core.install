@@ -248,3 +248,96 @@ function sedermera_core_update_7014() {
     module_enable(array('syslog'));
   }
 }
+
+/**
+ * Change field type of various amount fields to float instead of int.
+ */
+function sedermera_core_update_7015() {
+  // The content type and fields that are going to be changed.
+  $fields = array(
+    'transaction_history' => array(
+      'field_hist_sum',
+    ),
+    'transaction_ap' => array(
+      'field_transaction_ap_fe_sign',
+      'field_transaction_ap_fe_warrant',
+      'field_transaction_ap_le_sign',
+      'field_transaction_ap_le_warrant',
+      'field_transaction_ap_pp_sign',
+      'field_transaction_ap_re_sign',
+      'field_transaction_ap_bridging',
+      'field_transaction_ap_block',
+      'field_transaction_ap_sum',
+    ),
+    'transaction' => array(
+      'field_transaction_fe_sign',
+      'field_transaction_fe_warant',
+      'field_transaction_le_sign',
+      'field_transaction_le_warrant',
+      'field_transaction_pp_sign',
+      'field_transaction_re_sign',
+      'field_transaction_bridging',
+      'field_transaction_block',
+      'field_transaction_sum',
+    )
+  );
+
+  // Update each field. The following code has been taken from
+  // http://drupal.stackexchange.com/questions/79378/changing-a-field-type-from-integer-to-decimal.
+  foreach ($fields as $content_type => $fields) {
+    foreach ($fields as $field) {
+      // Update the storage tables
+      $tables = array('field_data', 'field_revision');
+      foreach ($tables as $table) {
+        $tablename = $table . '_' . $field;
+        $fieldname = $field . '_value';
+        db_change_field($tablename, $fieldname, $fieldname, array(
+          'type' => 'float',
+          'not null' => FALSE,
+        ));
+      }
+
+      // Fetch the current field configuration
+      $field_config = db_query("SELECT data FROM {field_config} WHERE field_name = :field_name", array(
+        ':field_name' => $field,
+      ))->fetchObject();
+      $data = unserialize($field_config->data);
+
+      // Update the settings entry
+      $data['settings'] = array(
+        'decimal_separator' => ',',
+      );
+
+      // Store the new field config, update the field type at the same time
+      db_update('field_config')
+        ->fields(array(
+          'data' => serialize($data),
+          'type' => 'number_float',
+        ))
+        ->condition('field_name', $field)
+        ->execute();
+
+      // Fetch the field instance data
+      $field_config_instance = db_query("SELECT data FROM {field_config_instance}
+        WHERE field_name = :field_name
+        AND entity_type = 'node'
+        AND bundle = :bundle", array(
+          ':field_name' => $field,
+          ':bundle' => $content_type,
+        ))
+        ->fetchObject();
+      $data = unserialize($field_config_instance->data);
+
+      // Update it with the new display type
+      $data['display']['default']['type'] = 'number_float';
+
+      // Store it back to the database
+      db_update('field_config_instance')
+        ->fields(array('data' => serialize($data)))
+        ->condition('field_name', $field)
+        ->condition('entity_type', 'node')
+        ->condition('bundle', $content_type)
+        ->execute();
+    }
+  }
+}
