@@ -9,6 +9,12 @@
  * Implements hook_init().
  */
 function sedermera_log_init() {
+  // Exit early if the request was made from a CLI, e.g. Drush.
+  if (drupal_is_cli()) {
+    return;
+  }
+
+  // Get the requested path.
   $path = request_path();
 
   // Log the requested path and indicate if it was requested via AJAX or not.
