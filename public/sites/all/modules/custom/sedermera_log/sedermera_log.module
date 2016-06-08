@@ -34,9 +34,10 @@ function sedermera_log_entity_insert($entity, $type) {
   list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
 
   // Log the event.
-  sedermera_log_watchdog('Created new @type @bundle: "@label".', array(
+  sedermera_log_watchdog('Created new @type with bundle @bundle, ID @id: "@label".', array(
     '@type' => $type,
     '@bundle' => $bundle,
+    '@id' => $id,
     '@label' => entity_label($type, $entity),
   ));
 }
@@ -49,9 +50,10 @@ function sedermera_log_entity_update($entity, $type) {
   list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
 
   // Log the event.
-  sedermera_log_watchdog('Updated @type @bundle: "@label".', array(
+  sedermera_log_watchdog('Updated @type with bundle @bundle, ID @id: "@label".', array(
     '@type' => $type,
     '@bundle' => $bundle,
+    '@id' => $id,
     '@label' => entity_label($type, $entity),
   ));
 }
@@ -64,9 +66,10 @@ function sedermera_log_entity_delete($entity, $type) {
   list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
 
   // Log the event.
-  sedermera_log_watchdog('Deleted @type @bundle: "@label".', array(
+  sedermera_log_watchdog('Deleted @type with bundle @bundle, ID @id: "@label".', array(
     '@type' => $type,
     '@bundle' => $bundle,
+    '@id' => $id,
     '@label' => entity_label($type, $entity),
   ));
 }
