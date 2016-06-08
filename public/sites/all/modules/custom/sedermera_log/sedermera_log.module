@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file sedermera_log.module
+ * Main module file for the Sedermera Log module.
+ */
+
+/**
+ * The function used for logging.
+ *
+ * This is a wrapper around watchdog() which adds information about the current
+ * user to the message. The function could be used by any other module, were
+ * suitable.
+ *
+ * @see watchdog()
+ *
+ * @param string @message
+ *   The message.
+ * @param array $variables
+ *   Variables to replace in the message.
+ * @param int $severity
+ *   Severity of the log message. See watchdog() for more information.
+ */
+function sedermera_log_watchdog($message, $variables = array(), $severity = WATCHDOG_NOTICE) {
+  global $user;
+
+  // Add information to the message.
+  $message .= ' Current user: @user with session @session.';
+  $variables['@user'] = $user->mail;
+  $variables['@session'] = $user->sid;
+
+  // Send to watchdog.
+  watchdog('sedermera', $message, $variables, $severity);
+}
