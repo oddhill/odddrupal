@@ -6,6 +6,21 @@
  */
 
 /**
+ * Implements hook_init().
+ */
+function sedermera_log_init() {
+  $path = request_path();
+
+  // Log the requested path and indicate if it was requested via AJAX or not.
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    sedermera_log_watchdog('Path "@path" loaded via AJAX.', array('@path' => $path));
+  }
+  else {
+    sedermera_log_watchdog('Path "@path" loaded.', array('@path' => $path));
+  }
+}
+
+/**
  * The function used for logging.
  *
  * This is a wrapper around watchdog() which adds information about the current
