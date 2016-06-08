@@ -27,6 +27,51 @@ function sedermera_log_init() {
 }
 
 /**
+ * Implements hook_entity_insert()
+ */
+function sedermera_log_entity_insert($entity, $type) {
+  // Fetch information about the entity.
+  list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
+
+  // Log the event.
+  sedermera_log_watchdog('Created new @type @bundle: "@label".', array(
+    '@type' => $type,
+    '@bundle' => $bundle,
+    '@label' => entity_label($type, $entity),
+  ));
+}
+
+/**
+ * Implements hook_entity_update()
+ */
+function sedermera_log_entity_update($entity, $type) {
+  // Fetch information about the entity.
+  list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
+
+  // Log the event.
+  sedermera_log_watchdog('Updated @type @bundle: "@label".', array(
+    '@type' => $type,
+    '@bundle' => $bundle,
+    '@label' => entity_label($type, $entity),
+  ));
+}
+
+/**
+ * Implements hook_entity_delete()
+ */
+function sedermera_log_entity_delete($entity, $type) {
+  // Fetch information about the entity.
+  list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
+
+  // Log the event.
+  sedermera_log_watchdog('Deleted @type @bundle: "@label".', array(
+    '@type' => $type,
+    '@bundle' => $bundle,
+    '@label' => entity_label($type, $entity),
+  ));
+}
+
+/**
  * The function used for logging.
  *
  * This is a wrapper around watchdog() which adds information about the current
