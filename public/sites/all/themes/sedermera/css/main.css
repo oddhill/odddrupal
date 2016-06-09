@@ -2468,6 +2468,14 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
       height: 10px; }
 .node-investor-company.view-mode-full .title h2 {
   text-align: left; }
+.node-investor-company.view-mode-full .field-investor-comp-owner > span.label {
+  font-size: 17px;
+  font-size: 1.7rem;
+  line-height: 25.5px;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+  color: #797979; }
 .node-investor-company.view-mode-full .investor-details .detail,
 .node-investor-company.view-mode-full .investor-details .investor-control,
 .node-investor-company.view-mode-full .investor-verifications .detail,
