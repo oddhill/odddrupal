@@ -180,35 +180,6 @@ function sedermera_preprocess_node(&$variables) {
     }
   }
 
-  if ($variables['type'] == 'company' && $variables['view_mode'] == 'full') {
-    $persons = array();
-    if (!empty($variables['node']->field_comp_cont_person)) {
-      foreach ($variables['node']->field_comp_cont_person[LANGUAGE_NONE] as $key => $value) {
-        $persons[$value['target_id']] = $value['target_id'];
-      }
-    }
-
-    if (!empty($variables['node']->field_comp_principal_person[LANGUAGE_NONE])) {
-      foreach ($variables['node']->field_comp_principal_person[LANGUAGE_NONE] as $key => $value) {
-        $persons[$value['target_id']] = $value['target_id'];
-      }
-    }
-
-    $variables['company_cont_id'] = array();
-    foreach ($persons as $key => $value) {
-      $person = node_load($value);
-      $variables['company_cont_id'][] = field_view_field('node', $person, 'field_user_id_ctrl',
-      array(
-        'label'=>'above',
-        'type' => 'sedermera_verification_status',
-        'settings' => array(
-          'link' => TRUE,
-          'link_destination' => 'view',
-        ),
-      ));
-    }
-  }
-
   // TODO Move logic to module
   if (in_array($variables['type'], array('ctrl', 'ctrl_pen'))) {
 
