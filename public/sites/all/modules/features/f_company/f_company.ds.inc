@@ -54,6 +54,7 @@ function f_company_ds_layout_settings_info() {
         7 => 'field_comp_principal_person',
         8 => 'field_comp_address',
         9 => 'field_comp_notes',
+        10 => 'field_comp_principal_persons',
       ),
     ),
     'fields' => array(
@@ -67,6 +68,7 @@ function f_company_ds_layout_settings_info() {
       'field_comp_principal_person' => 'ds_content',
       'field_comp_address' => 'ds_content',
       'field_comp_notes' => 'ds_content',
+      'field_comp_principal_persons' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

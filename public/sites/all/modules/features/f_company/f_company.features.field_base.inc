@@ -376,6 +376,28 @@ function f_company_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_comp_principal_persons'.
+  $field_bases['field_comp_principal_persons'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_comp_principal_persons',
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'hide_blank_items' => 1,
+      'path' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'field_collection',
+  );
+
   // Exported field_base: 'field_company_check'.
   $field_bases['field_company_check'] = array(
     'active' => 1,
