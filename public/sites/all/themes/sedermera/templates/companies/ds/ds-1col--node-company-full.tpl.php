@@ -21,16 +21,14 @@
       <?php print render($content['field_comp_id']); ?>
       <?php print render($content['field_comp_org_nbr']); ?>
       <?php print render($content['field_comp_cust_resp']); ?>
-    </div>
-    <div class="company-contacts node-section">
       <?php print render($content['field_comp_cont_person']); ?>
-
-      <?php if ($content['field_comp_principal_persons']): ?>
-        <div class="company-owners node-section">
-          <?php print render($content['field_comp_principal_persons']); ?>
-        </div>
-      <?php endif; ?>
-
+    </div>
+    <?php if ($content['field_comp_principal_persons']): ?>
+      <div class="company-owners node-section">
+        <?php print render($content['field_comp_principal_persons']); ?>
+      </div>
+    <?php endif; ?>
+    <div class="company-contacts node-section">
       <?php foreach ($company_cont_id as $id => $row): ?>
         <?php print render($row); ?>
       <?php endforeach; ?>
