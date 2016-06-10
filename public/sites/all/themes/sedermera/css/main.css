@@ -6821,6 +6821,16 @@ div.addressfield-container-inline {
     height: 60px; }
     .node-investor_company-form #edit-field-investor-comp-owner table td > div {
       padding: 0 10px 0 0; }
+    .node-investor_company-form #edit-field-investor-comp-owner table td .ajax-new-content {
+      display: flex !important;
+      align-items: center;
+      height: 60px;
+      padding: 0; }
+      .node-investor_company-form #edit-field-investor-comp-owner table td .ajax-new-content > div {
+        padding: 0 10px 0 0; }
+      .node-investor_company-form #edit-field-investor-comp-owner table td .ajax-new-content .submit-wrapper {
+        position: relative;
+        padding-right: 0; }
     .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper {
       position: relative;
       padding-right: 0; }
@@ -6883,6 +6893,41 @@ div.addressfield-container-inline {
           float: none; }
         .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper .ajax-progress .message {
           display: none; }
+  .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper {
+    display: inline-block;
+    position: relative;
+    padding-right: 0; }
+    .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .form-submit {
+      margin: 0; }
+    .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .ajax-progress {
+      display: block;
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0;
+      width: 100%;
+      margin: 0;
+      border-radius: 24px;
+      cursor: pointer;
+      background: #303030;
+      height: 100%;
+      text-align: center;
+      padding-top: 4px; }
+      .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .ajax-progress .throbber {
+        display: inline-block;
+        background: transparent;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f9a500;
+        border-radius: 50%;
+        border-top-color: transparent;
+        -webkit-animation: load 0.9s linear infinite;
+        -moz-animation: load 0.9s linear infinite;
+        animation: load 0.9s linear infinite;
+        margin: 0 auto;
+        float: none; }
+      .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .ajax-progress .message {
+        display: none; }
 .node-investor_company-form #edit-field-investor-comp-notes {
   margin-bottom: 0; }
   .node-investor_company-form #edit-field-investor-comp-notes .form-item {

@@ -238,6 +238,22 @@ div.addressfield-container-inline {
         padding: 0 10px 0 0;
       }
 
+      .ajax-new-content {
+        display: flex !important;
+        align-items: center;
+        height: 60px;
+        padding: 0;
+
+        > div {
+          padding: 0 10px 0 0;
+        }
+
+        .submit-wrapper {
+          position: relative;
+          padding-right: 0;
+        }
+      }
+
       .submit-wrapper {
         position: relative;
         padding-right: 0;
@@ -271,6 +287,42 @@ div.addressfield-container-inline {
           .message {
             display: none;
           }
+        }
+      }
+    }
+
+    .submit-wrapper {
+      display: inline-block;
+      position: relative;
+      padding-right: 0;
+
+      .form-submit {
+        margin: 0;
+      }
+
+      .ajax-progress {
+        display: block;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px;
+        cursor: pointer;
+        background: shade($dark-grey,30%);
+        height: 100%;
+        text-align: center;
+        padding-top: 4px;
+
+        .throbber {
+          @include throbber;
+          margin: 0 auto;
+          float: none;
+        }
+
+        .message {
+          display: none;
         }
       }
     }
