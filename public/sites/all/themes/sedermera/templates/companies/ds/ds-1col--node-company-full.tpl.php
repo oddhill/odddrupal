@@ -24,7 +24,13 @@
     </div>
     <div class="company-contacts node-section">
       <?php print render($content['field_comp_cont_person']); ?>
-      <?php print render($content['field_comp_principal_person']); ?>
+
+      <?php if ($content['field_comp_principal_persons']): ?>
+        <div class="company-owners node-section">
+          <?php print render($content['field_comp_principal_persons']); ?>
+        </div>
+      <?php endif; ?>
+
       <?php foreach ($company_cont_id as $id => $row): ?>
         <?php print render($row); ?>
       <?php endforeach; ?>
