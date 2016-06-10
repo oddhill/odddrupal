@@ -621,9 +621,9 @@ function f_investor_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
-        1 => 'field_investor_comp_owner',
-        2 => 'field_shared_cust_id',
-        3 => 'field_investor_comp_org_nbr',
+        1 => 'field_shared_cust_id',
+        2 => 'field_investor_comp_org_nbr',
+        3 => 'field_investor_comp_owner',
         4 => 'field_investor_comp_address',
         5 => 'field_investor_comp_notes',
         6 => 'field_investor_shared_ctrl_ua',
@@ -637,9 +637,9 @@ function f_investor_ds_layout_settings_info() {
     ),
     'fields' => array(
       'title' => 'ds_content',
-      'field_investor_comp_owner' => 'ds_content',
       'field_shared_cust_id' => 'ds_content',
       'field_investor_comp_org_nbr' => 'ds_content',
+      'field_investor_comp_owner' => 'ds_content',
       'field_investor_comp_address' => 'ds_content',
       'field_investor_comp_notes' => 'ds_content',
       'field_investor_shared_ctrl_ua' => 'ds_content',

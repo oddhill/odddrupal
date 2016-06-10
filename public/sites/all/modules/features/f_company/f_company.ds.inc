@@ -51,9 +51,9 @@ function f_company_ds_layout_settings_info() {
         4 => 'field_comp_cont_person',
         5 => 'field_comp_cust_resp',
         6 => 'field_comp_id',
-        7 => 'field_comp_address',
-        8 => 'field_comp_notes',
-        9 => 'field_comp_principal_persons',
+        7 => 'field_comp_principal_persons',
+        8 => 'field_comp_address',
+        9 => 'field_comp_notes',
       ),
     ),
     'fields' => array(
@@ -64,9 +64,9 @@ function f_company_ds_layout_settings_info() {
       'field_comp_cont_person' => 'ds_content',
       'field_comp_cust_resp' => 'ds_content',
       'field_comp_id' => 'ds_content',
+      'field_comp_principal_persons' => 'ds_content',
       'field_comp_address' => 'ds_content',
       'field_comp_notes' => 'ds_content',
-      'field_comp_principal_persons' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

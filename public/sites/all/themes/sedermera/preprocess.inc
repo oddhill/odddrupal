@@ -132,6 +132,7 @@ function sedermera_preprocess_node(&$variables) {
       }
     }
 
+    $variables['company_cont_id'] = array();
     foreach ($persons as $key => $value) {
       $person = node_load($value);
       $variables['company_cont_id'][] = field_view_field('node', $person, 'field_user_id_ctrl',
