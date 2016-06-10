@@ -154,9 +154,14 @@ function sedermera_preprocess_node(&$variables) {
       }
     }
 
-    if (!empty($variables['node']->field_comp_principal_person[LANGUAGE_NONE])) {
-      foreach ($variables['node']->field_comp_principal_person[LANGUAGE_NONE] as $key => $value) {
-        $persons[$value['target_id']] = $value['target_id'];
+    if (!empty($variables['node']->field_comp_principal_persons[LANGUAGE_NONE])) {
+      foreach ($variables['node']->field_comp_principal_persons[LANGUAGE_NONE] as $key => $value) {
+        $nid = db_query("SELECT field_owner_head_target_id
+          FROM field_data_field_owner_head
+          WHERE entity_id = :nid",
+          array(':nid' => $value['value']))->fetchField();
+
+        $persons[$nid] = $nid;
       }
     }
 
