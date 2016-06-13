@@ -27,15 +27,13 @@ CURRENT_SETTINGS_FILE=$CURRENT_DOCROOT/$SETTINGS_FILE
 NEW_SETTINGS_FILE=$NEW_DOCROOT/$SETTINGS_FILE
 
 # Move configuration to the appropriate location.
-echo "Bundling .htaccess"
 mv -v config/.htaccess.testing public/.htaccess
 
 # Remove any Drush alias files.
-echo "Removing Drush aliases from sites/default"
 rm -v public/sites/default/aliases.*
 
 # Create a tarball and save it as an artifact.
-echo "Creating tarball"
+echo "Creating tarball..."
 tar czf $BUILD_NAME -C public/ .
 mv -v $BUILD_NAME $CIRCLE_ARTIFACTS
 
@@ -46,17 +44,16 @@ scp $CIRCLE_ARTIFACTS/$BUILD_NAME $SSH_URL:$BASE_PATH
 # Log in to the server and prepare the site.
 ssh $SSH_URL /bin/bash << EOF
   # Create the new docroot and extract the build to that folder.
-  echo "Extracting tarball to $NEW_DOCROOT"
   mkdir -v $NEW_DOCROOT
+  echo "Extracting tarball to $NEW_DOCROOT..."
   tar xzof $BASE_PATH/$BUILD_NAME -C $NEW_DOCROOT
 
   # Copy files and settings from the current docroot to the new one, if the
   # current directory exists, which won't be the case if this is a fresh deploy.
   if [ -d "$CURRENT_DOCROOT" ]; then
     echo "Copying files from $CURRENT_FILE_DIR to $NEW_FILE_DIR"
-    cp -rv $CURRENT_FILE_DIR/* $NEW_FILE_DIR/
-
-    echo "Copying $CURRENT_SETTINGS_FILE to $NEW_SETTINGS_FILE"
+    cp -r $CURRENT_FILE_DIR/* $NEW_FILE_DIR/
+q
     cp -v $CURRENT_SETTINGS_FILE $NEW_SETTINGS_FILE
   else
     echo "$CURRENT_DOCROOT doesn't exist. You will need to setup $CURRENT_SETTINGS_FILE manually."
@@ -82,14 +79,11 @@ ssh $SSH_URL /bin/bash << EOF
   # Replace the current docroot with the new one, if the current directory
   # exists.
   if [ -d "$CURRENT_FILE_DIR" ]; then
-    echo "Replacing $CURRENT_DOCROOT with $NEW_DOCROOT"
     rm -r $CURRENT_DOCROOT && mv -v $NEW_DOCROOT $CURRENT_DOCROOT
   else
-    echo "Renaming $NEW_DOCROOT to $CURRENT_DOCROOT"
     mv -v $NEW_DOCROOT $CURRENT_DOCROOT
   fi
 
   # Remove the build.
-  echo "Removing tarball"
   rm -v $BASE_PATH/$BUILD_NAME
 EOF
