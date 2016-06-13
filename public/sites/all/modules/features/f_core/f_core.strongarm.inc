@@ -269,14 +269,14 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_host_hard_banned';
-  $strongarm->value = 'The IP address @ip is banned at @site, and will not be able to access any of its content from now on. Please contact the site administrator.';
+  $strongarm->value = 'IP-adressen @ip är blockerad på @site, och kommer inte att kunna komma åt något av dess innehåll från och med nu. Kontakta webbplatsens administratör.';
   $export['login_security_host_hard_banned'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_host_soft_banned';
-  $strongarm->value = 'This host is not allowed to log in to @site. Please contact your site administrator.';
+  $strongarm->value = 'Denna dator är inte tillåten att logga in på @site. Kontakta webbplatsens administratör.';
   $export['login_security_host_soft_banned'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -311,14 +311,14 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_login_activity_email_body';
-  $strongarm->value = 'The configured threshold of @activity_threshold logins has been reached with a total of @tracking_current_count invalid login attempts. You should review your log information about login attempts at @site.';
+  $strongarm->value = 'Den konfigurerade tröskeln @activity_threshold inloggningar har nåtts med totalt @tracking_current_count ogiltiga inloggningsförsök . Du bör granska din logginformation om inloggningsförsök på @site.';
   $export['login_security_login_activity_email_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_login_activity_email_subject';
-  $strongarm->value = 'Security information: Unexpected login activity has been detected at @site.';
+  $strongarm->value = 'Säkerhetsinformation: Oväntad inloggningsaktivitet har upptäckts på @site.';
   $export['login_security_login_activity_email_subject'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -339,7 +339,7 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_notice_attempts_message';
-  $strongarm->value = 'You have used @user_current_count out of @user_block_attempts login attempts. After all @user_block_attempts have been used, you will be unable to login.';
+  $strongarm->value = 'Du har använt @user_current_count av @user_block_attempts inloggningsförsök . Efter alla @user_block_attempts har använts, kommer du inte att kunna logga in.';
   $export['login_security_notice_attempts_message'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -353,21 +353,21 @@ function f_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_user_blocked';
-  $strongarm->value = 'The user @username has been blocked due to failed login attempts.';
+  $strongarm->value = 'Användaren @username har blockerats på grund av för många misslyckade inloggningsförsök .';
   $export['login_security_user_blocked'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_user_blocked_email_body';
-  $strongarm->value = 'The user @username (@edit_uri) has been blocked at @site due to the amount of failed login attempts. Please check the logs for more information.';
+  $strongarm->value = 'Användaren @username (@edit_uri) har blockerats på @site på grund av mängden av misslyckade inloggningsförsök . Kontrollera loggarna för mer information.';
   $export['login_security_user_blocked_email_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'login_security_user_blocked_email_subject';
-  $strongarm->value = 'Security action: The user @username has been blocked.';
+  $strongarm->value = 'Säkerhets åtgärd: Användaren @username har blockerats.';
   $export['login_security_user_blocked_email_subject'] = $strongarm;
 
   $strongarm = new stdClass();
