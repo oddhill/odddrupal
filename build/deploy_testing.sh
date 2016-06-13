@@ -31,7 +31,7 @@ echo "Bundling .htaccess"
 mv config/.htaccess.testing public/.htaccess
 
 # Remove any Drush alias files.
-echo "Removing Drush aliases sites/default"
+echo "Removing Drush aliases from sites/default"
 rm public/sites/default/aliases.*
 
 # Create a tarball and save it as an artifact.
