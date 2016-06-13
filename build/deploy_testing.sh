@@ -32,13 +32,6 @@ ssh root@oddserver.se /bin/bash << EOF
   mkdir $NEW_DOCROOT
   tar xzof $BASE_PATH/$BUILD_NAME -C $NEW_DOCROOT
 
-  # Make sure that the entire directory isn't writable by anyone except the
-  # owner. Directories will get 750 since these should be executable, and files
-  # will get 640.
-  echo "Making $NEW_DOCROOT writable for the owner only"
-  find $NEW_DOCROOT -type d -print0 | xargs -0 chmod 750
-  find $NEW_DOCROOT -type f -print0 | xargs -0 chmod 640
-
   # Copy files and settings from the current docroot to the new one, if the
   # current directory exists, which won't be the case if this is a fresh deploy.
   if [ -d "$CURRENT_FILE_DIR" ]; then
@@ -51,6 +44,13 @@ ssh root@oddserver.se /bin/bash << EOF
     echo "Not copying any files to $NEW_FILE_DIR since $CURRENT_FILE_DIR doesn't exist"
     echo "Not copying $CURRENT_SETTINGS_FILE to $NEW_SETTINGS_FILE since $CURRENT_FILE_DIR doesn't exist"
   fi
+
+  # Make sure that the entire directory isn't writable by anyone except the
+  # owner. Directories will get 750 since these should be executable, and files
+  # will get 640.
+  echo "Making $NEW_DOCROOT writable for the owner only"
+  find $NEW_DOCROOT -type d -print0 | xargs -0 chmod 750
+  find $NEW_DOCROOT -type f -print0 | xargs -0 chmod 640
 
   # Make sure that the files directory is writable.
   echo "Making $NEW_FILE_DIR writable by the owner and group"
