@@ -31,7 +31,6 @@ dependencies[] = front_page
 dependencies[] = imce_wysiwyg
 dependencies[] = jquery_update
 dependencies[] = list
-dependencies[] = login_security
 dependencies[] = mail_logger
 dependencies[] = menu
 dependencies[] = menu_attributes
