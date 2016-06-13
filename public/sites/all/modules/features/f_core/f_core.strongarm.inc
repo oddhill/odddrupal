@@ -770,16 +770,16 @@ function f_core_strongarm() {
   $strongarm->name = 'password_policy_warning_body';
   $strongarm->value = '[user:name],
 
-Your password at [site:name] will expire in less than [password-policy:days-left] day(s).
+Ditt lösenord på [site:name] upphör att gälla på mindre än [password-policy:days-left] dag (ar).
 
-Please go to [password-policy:password-edit-url] to change your password.';
+Gå till [password-policy:password-edit-url] för att ändra ditt lösenord.';
   $export['password_policy_warning_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'password_policy_warning_subject';
-  $strongarm->value = 'Password expiration warning for [user:name] at [site:name]';
+  $strongarm->value = 'Ditt lösenord upphör att gälla för [user:name] på [site:name]';
   $export['password_policy_warning_subject'] = $strongarm;
 
   $strongarm = new stdClass();
