@@ -53,7 +53,7 @@ ssh $SSH_URL /bin/bash << EOF
   if [ -d "$CURRENT_DOCROOT" ]; then
     echo "Copying files from $CURRENT_FILE_DIR to $NEW_FILE_DIR"
     cp -r $CURRENT_FILE_DIR/* $NEW_FILE_DIR/
-q
+
     cp -v $CURRENT_SETTINGS_FILE $NEW_SETTINGS_FILE
   else
     echo "$CURRENT_DOCROOT doesn't exist. You will need to setup $CURRENT_SETTINGS_FILE manually."
