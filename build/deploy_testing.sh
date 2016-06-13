@@ -3,7 +3,7 @@ SSH_URL=root@oddserver.se
 
 # The base path for where the docroot exists and the directory name of the
 # docroot.
-BASE_PATH=/mnt/persist/www
+BASE_PATH=/mnt/persist/www/testar
 DOCROOT=portal-sedermera
 
 # Path to the files directory and settings file.
