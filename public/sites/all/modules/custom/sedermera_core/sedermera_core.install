@@ -248,3 +248,17 @@ function sedermera_core_update_7014() {
     module_enable(array('syslog'));
   }
 }
+
+/**
+ * Enable login_security if production environment
+ */
+function sedermera_core_update_7015() {
+  $environment = variable_get('tadaa_environment');
+
+  if($environment == 'production') {
+    module_enable(array('login_security'));
+  }
+  else {
+    module_disable(array('login_security'));
+  }
+}
