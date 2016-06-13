@@ -13,7 +13,7 @@ BUILD_NAME=build.tar.gz
 echo "Bundling .htaccess"
 mv config/.htaccess.testing public/.htaccess
 
-# Remove any Drush alias file and the default settings file.
+# Remove any Drush alias files.
 echo "Removing Drush aliases sites/default"
 rm public/sites/default/aliases.*
 
