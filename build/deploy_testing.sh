@@ -59,8 +59,7 @@ ssh $SSH_URL /bin/bash << EOF
     echo "Copying $CURRENT_SETTINGS_FILE to $NEW_SETTINGS_FILE"
     cp $CURRENT_SETTINGS_FILE $NEW_SETTINGS_FILE
   else
-    echo "Not copying any files to $NEW_FILE_DIR since $CURRENT_FILE_DIR doesn't exist"
-    echo "Not copying $CURRENT_SETTINGS_FILE to $NEW_SETTINGS_FILE since $CURRENT_FILE_DIR doesn't exist"
+    echo "$CURRENT_FILE_DIR doesn't exist. You will need to setup $CURRENT_SETTINGS_FILE manually."
   fi
 
   # Make sure that the entire directory isn't writable by anyone except the
