@@ -341,7 +341,7 @@ function password_policy_admin_view($policy) {
     $rows[] = array(t('Warning'), check_plain($policy['warning']));
   }
 
-  foreach ($policy['policy'] as $key => $val) {
+  foreach ($policy['constraints'] as $key => $val) {
     $desc = _password_policy_constraint_description($key);
     $rows[] = array($desc['name'], $val);
   }
@@ -411,7 +411,8 @@ function password_policy_admin_form($form, &$form_state, $policy = NULL) {
     '#title' => t('Password Expiration Warning'),
     '#default_value' => isset($policy['warning']) ? $policy['warning'] : '',
     '#size' => 10,
-    '#description' => t("<p>The comma separated list of days. The warning about expiration of the password will be sent out on those days before the expiration. Leaving this field empty won't send out or display any warnings.</p><p><strong>Important:</strong> Drupal cron must be run once per day. Otherwise, warning e-mails might not be sent. The default Drupal cron configuration relies on site visitors to invoke cron. If your site might not receive visitors on a day, you should run cron from outside the site daily. See <a href='https://www.drupal.org/cron'>Setting Up Cron</a>.</p>"),
+    '#field_suffix' => t("days before password expiration"),
+    '#description' => t("<p>When to send a password expiration warning e-mail.  To send warning e-mails on multiple days, enter numbers separated by commas.  For example, '30,7' will cause an expiration warning e-mail to be sent both 30 and 7 days before expiration. Leave blank to not send or display any warnings.</p><p><strong>Important:</strong> Drupal cron must be run once per day. Otherwise, warning e-mails might not be sent. The default Drupal cron configuration relies on site visitors to invoke cron. If your site might not receive visitors on a day, you should run cron from outside the site daily. See <a href='https://www.drupal.org/cron'>Setting Up Cron</a>.</p>"),
   );
 
   $form['constraints'] = array(
@@ -426,7 +427,7 @@ function password_policy_admin_form($form, &$form_state, $policy = NULL) {
     $form['constraints']['constraint_' . $constraint] = array(
       '#type' => 'textfield',
       '#size' => 5,
-      '#default_value' => isset($policy['policy'][$constraint]) ? $policy['policy'][$constraint] : NULL,
+      '#default_value' => isset($policy['constraints'][$constraint]) ? $policy['constraints'][$constraint] : NULL,
       '#maxlength' => 3,
       '#title' => filter_xss($desc['name']),
       '#description' => filter_xss($desc['description']),
@@ -477,26 +478,26 @@ function password_policy_admin_form_submit($form, &$form_state) {
     drupal_goto('admin/config/people/password_policy/delete/' . $form_state['values']['pid']);
   }
 
-  $policy = array();
+  $constraints = array();
   foreach ($form_state['values'] as $key => $value) {
     // If we have no form value, then we have no constraint to set.
     if (!is_array($value)) {
       // Dodge issues with roles array.
       $value = trim($value);
       if ($value != "" && preg_match("/^constraint_/", $key)) {
-        $policy[substr($key, 11)] = $value;
+        $constraints[substr($key, 11)] = $value;
       }
     }
   }
 
   $expiration = intval($form_state['values']['expiration']);
-  // If we have an pid, update, else save.
+  // If we have a pid, update, else save.
   if (isset($form_state['values']['pid']) && $form_state['values']['pid']) {
     db_update('password_policy')
       ->fields(array(
         'name' => $form_state['values']['name'],
         'description' => $form_state['values']['description'],
-        'policy' => serialize($policy),
+        'constraints' => serialize($constraints),
         'expiration' => !empty($expiration) ? $expiration : 0,
         'warning' => str_replace(' ', '', $form_state['values']['warning']),
       ))
@@ -515,7 +516,7 @@ function password_policy_admin_form_submit($form, &$form_state) {
         'name' => $form_state['values']['name'],
         'description' => $form_state['values']['description'],
         'enabled' => 0,
-        'policy' => serialize($policy),
+        'constraints' => serialize($constraints),
         'expiration' => !empty($expiration) ? $expiration : 0,
         'warning' => str_replace(' ', '', $form_state['values']['warning']),
       ))
@@ -626,12 +627,17 @@ function password_policy_password_change_settings_submit($form, &$form_state) {
       }
     }
     if (!empty($uids)) {
-      db_update('password_policy_force_change')
-        ->fields(array(
-          'force_change' => 1,
-        ))
-        ->condition('uid', $uids, 'IN')
-        ->execute();
+      // If there are a large number of users to process, PHP memory limit may
+      // be reached, so process the users in batches.
+      $chunks = array_chunk($uids, 50000);
+      foreach ($chunks as $chunk) {
+        db_update('password_policy_force_change')
+          ->fields(array(
+            'force_change' => 1,
+          ))
+          ->condition('uid', $chunk, 'IN')
+          ->execute();
+      }
     }
     $selected_roles[] = $role;
   }
