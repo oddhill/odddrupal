@@ -52,14 +52,14 @@ ssh $SSH_URL /bin/bash << EOF
 
   # Copy files and settings from the current docroot to the new one, if the
   # current directory exists, which won't be the case if this is a fresh deploy.
-  if [ -d "$CURRENT_FILE_DIR" ]; then
+  if [ -d "$CURRENT_DOCROOT" ]; then
     echo "Copying files from $CURRENT_FILE_DIR to $NEW_FILE_DIR"
     cp -r $CURRENT_FILE_DIR/* $NEW_FILE_DIR/
 
     echo "Copying $CURRENT_SETTINGS_FILE to $NEW_SETTINGS_FILE"
     cp $CURRENT_SETTINGS_FILE $NEW_SETTINGS_FILE
   else
-    echo "$CURRENT_FILE_DIR doesn't exist. You will need to setup $CURRENT_SETTINGS_FILE manually."
+    echo "$CURRENT_DOCROOT doesn't exist. You will need to setup $CURRENT_SETTINGS_FILE manually."
   fi
 
   # Make sure that the entire directory isn't writable by anyone except the
