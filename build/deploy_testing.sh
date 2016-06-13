@@ -1,3 +1,4 @@
+SSH_URL=root@oddserver.se
 BASE_PATH=/mnt/persist/www
 CURRENT_DOCROOT=$BASE_PATH/portal-sedermera
 NEW_DOCROOT=$BASE_PATH/portal-sedermera-new
@@ -23,10 +24,10 @@ mv $BUILD_NAME $CIRCLE_ARTIFACTS
 
 # Copy the tarball to the remote server.
 echo "Uploading tarball to $BASE_PATH"
-scp $CIRCLE_ARTIFACTS/$BUILD_NAME root@oddserver.se:$BASE_PATH
+scp $CIRCLE_ARTIFACTS/$BUILD_NAME $SSH_URL:$BASE_PATH
 
 # Log in to the server and prepare the site.
-ssh root@oddserver.se /bin/bash << EOF
+ssh $SSH_URL /bin/bash << EOF
   # Create the new docroot and extract the build to that folder.
   echo "Extracting tarball to $NEW_DOCROOT"
   mkdir $NEW_DOCROOT
