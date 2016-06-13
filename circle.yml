@@ -4,6 +4,6 @@ test:
 
 deployment:
   testing:
-    branch: feature/circleci-overhaul
+    branch: develop
     commands:
       - build/deploy_testing.sh
