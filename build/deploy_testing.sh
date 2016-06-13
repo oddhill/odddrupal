@@ -1,13 +1,30 @@
+# URL in order to connect to the server via SSH.
 SSH_URL=root@oddserver.se
+
+# The base path for where the docroot exists and the directory name of the
+# docroot.
 BASE_PATH=/mnt/persist/www
-CURRENT_DOCROOT=$BASE_PATH/portal-sedermera
-NEW_DOCROOT=$BASE_PATH/portal-sedermera-new
-CURRENT_FILE_DIR=$CURRENT_DOCROOT/sites/all/files
-NEW_FILE_DIR=$NEW_DOCROOT/sites/all/files
-CURRENT_SETTINGS_FILE=$CURRENT_DOCROOT/sites/default/settings.local.php
-NEW_SETTINGS_FILE=$NEW_DOCROOT/sites/default/settings.local.php
+DOCROOT=portal-sedermera
+
+# Path to the files directory and settings file.
+FILES_PATH=sites/all/files
+SETTINGS_FILE=sites/default/settings.local.php
+
+# Name of the user that is running the web server. Only change this if you know
+# that the user is different from www-data.
 WWW_USER=www-data
+
+# File name of the build that is created. You don't need to change this if you
+# don't want to.
 BUILD_NAME=build.tar.gz
+
+# Expand some variables into full paths.
+CURRENT_DOCROOT=$BASE_PATH/$DOCROOT
+NEW_DOCROOT=$BASE_PATH/$DOCROOT-temp-deployment
+CURRENT_FILE_DIR=$CURRENT_DOCROOT/$FILES_PATH
+NEW_FILE_DIR=$NEW_DOCROOT/$FILES_PATH
+CURRENT_SETTINGS_FILE=$CURRENT_DOCROOT/$SETTINGS_FILE
+NEW_SETTINGS_FILE=$NEW_DOCROOT/$SETTINGS_FILE
 
 # Move configuration to the appropriate location.
 echo "Bundling .htaccess"
