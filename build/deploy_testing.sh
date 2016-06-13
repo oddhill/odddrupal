@@ -77,7 +77,7 @@ ssh $SSH_URL /bin/bash << EOF
 
   # Change group ownership to the user that is running the web server.
   echo "Changing group ownership of $NEW_DOCROOT to $WWW_USER"
-  chgrp -Rv $WWW_USER $NEW_DOCROOT
+  chgrp -R $WWW_USER $NEW_DOCROOT
 
   # Replace the current docroot with the new one, if the current directory
   # exists.
