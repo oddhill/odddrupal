@@ -478,6 +478,76 @@ function password_policy_admin_form_submit($form, &$form_state) {
     drupal_goto('admin/config/people/password_policy/delete/' . $form_state['values']['pid']);
   }
 
+  _password_policy_admin_form_save_policy($form_state);
+
+  $form_state['redirect'] = 'admin/config/people/password_policy/list';
+}
+
+/**
+ * Saves policy from submitted policy form.
+ */
+function _password_policy_admin_form_save_policy($form_state) {
+  $policy = _password_policy_admin_form_get_policy($form_state);
+  password_policy_save_policy($policy);
+  _password_policy_admin_form_set_saved_message($policy);
+}
+
+/**
+ * Gets policy from submitted policy form.
+ *
+ * @param array $form_state
+ *   Form state.
+ *
+ * @return array
+ *   Policy array.
+ */
+function _password_policy_admin_form_get_policy($form_state) {
+  $form_values = $form_state['values'];
+  $policy = array(
+    'name' => $form_values['name'],
+    'description' => $form_values['description'],
+    'constraints' => _password_policy_admin_form_get_constraints($form_state),
+    'expiration' => $form_values['expiration'],
+    'warning' => $form_values['warning'],
+    'roles' => $form_values['roles'],
+  );
+  if (isset($form_values['pid'])) {
+    // Editing an existing policy. Get pid and enabled state.
+    $policy['pid'] = $form_values['pid'];
+    $policy['enabled'] = $form_values['enabled'];
+  }
+  else {
+    // Adding a new policy. Disable by default.
+    $policy['enabled'] = 0;
+  }
+  return $policy;
+}
+
+/**
+ * Sets message indicating policy has been saved.
+ *
+ * @param array $policy
+ *   Policy array.
+ */
+function _password_policy_admin_form_set_saved_message(array $policy) {
+  if (isset($policy['pid'])) {
+    drupal_set_message(t('Policy %name has been updated.', array('%name' => $policy['name'])));
+  }
+  else {
+    drupal_set_message(t('Policy %name has been created.', array('%name' => $policy['name'])));
+  }
+}
+
+/**
+ * Gets constraints from submitted policy form.
+
+ * @param array $form_state
+ *   Form state.
+ *
+ * @return array
+ *   Constraints array.
+ */
+function _password_policy_admin_form_get_constraints($form_state) {
   $constraints = array();
   foreach ($form_state['values'] as $key => $value) {
     // If we have no form value, then we have no constraint to set.
@@ -489,52 +559,7 @@ function password_policy_admin_form_submit($form, &$form_state) {
       }
     }
   }
-
-  $expiration = intval($form_state['values']['expiration']);
-  // If we have a pid, update, else save.
-  if (isset($form_state['values']['pid']) && $form_state['values']['pid']) {
-    db_update('password_policy')
-      ->fields(array(
-        'name' => $form_state['values']['name'],
-        'description' => $form_state['values']['description'],
-        'constraints' => serialize($constraints),
-        'expiration' => !empty($expiration) ? $expiration : 0,
-        'warning' => str_replace(' ', '', $form_state['values']['warning']),
-      ))
-      ->condition('pid', $form_state['values']['pid'])
-      ->execute();
-    drupal_set_message(t('Policy %name has been updated.', array('%name' => $form_state['values']['name'])));
-    watchdog('password_policy', 'Policy %name updated.', array('%name' => $form_state['values']['name']), WATCHDOG_NOTICE, l(t('edit'), 'admin/config/people/password_policy/' . $form_state['values']['pid'] . '/edit'));
-    $pid = $form_state['values']['pid'];
-    db_delete('password_policy_role')
-      ->condition('pid', $pid)
-      ->execute();
-  }
-  else {
-    $pid = db_insert('password_policy')
-      ->fields(array(
-        'name' => $form_state['values']['name'],
-        'description' => $form_state['values']['description'],
-        'enabled' => 0,
-        'constraints' => serialize($constraints),
-        'expiration' => !empty($expiration) ? $expiration : 0,
-        'warning' => str_replace(' ', '', $form_state['values']['warning']),
-      ))
-      ->execute();
-    drupal_set_message(t('Policy %name has been created.', array('%name' => $form_state['values']['name'])));
-    watchdog('password_policy', 'New policy %name created.', array('%name' => $form_state['values']['name']), WATCHDOG_NOTICE, l(t('edit'), 'admin/config/people/password_policy/' . $pid . '/edit'));
-  }
-
-  foreach (array_filter($form_state['values']['roles']) as $rid => $enabled) {
-    db_insert('password_policy_role')
-      ->fields(array(
-        'pid' => $pid,
-        'rid' => $rid,
-      ))
-      ->execute();
-  }
-
-  $form_state['redirect'] = 'admin/config/people/password_policy/list';
+  return $constraints;
 }
 
 /**
