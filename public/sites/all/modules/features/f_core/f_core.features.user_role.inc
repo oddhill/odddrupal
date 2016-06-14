@@ -34,11 +34,5 @@ function f_core_user_default_roles() {
     'weight' => 3,
   );
 
-  // Exported role: authenticated user.
-  $roles['authenticated user'] = array(
-    'name' => 'authenticated user',
-    'weight' => 1,
-  );
-
   return $roles;
 }

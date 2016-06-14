@@ -33,34 +33,6 @@ function f_core_views_api($module = NULL, $api = NULL) {
 }
 
 /**
- * Implements hook_password_policy_features_default_policies().
- */
-function f_core_password_policy_features_default_policies() {
-  return array(
-    'Password_complexity' => array(
-      'name' => 'Password_complexity',
-      'description' => 'The password complexity policy',
-      'enabled' => 1,
-      'policy' => 'a:6:{s:15:"character_types";s:1:"3";s:5:"digit";s:1:"2";s:7:"history";s:1:"3";s:6:"length";s:2:"10";s:9:"lowercase";s:1:"2";s:9:"uppercase";s:1:"2";}',
-      'created' => 1464960443,
-      'expiration' => 365,
-      'warning' => '3,10,30',
-      'weight' => 0,
-      'constraints' => FALSE,
-      'roles' => array(
-        0 => 'authenticated user',
-        1 => 'Administratör',
-        2 => 'Granskare',
-        3 => 'Redaktör',
-        4 => 'Användare',
-        5 => 'Dokumentmoderator',
-        6 => 'Dokumentskapare',
-      ),
-    ),
-  );
-}
-
-/**
  * Implements hook_themekey_features_rule_chain().
  */
 function f_core_themekey_features_rule_chain() {
