@@ -64,6 +64,7 @@ dependencies[] = view_unpublished
 dependencies[] = views
 dependencies[] = wysiwyg
 dependencies[] = yubikey
+features[config_perms][] = access_admin_structure
 features[config_perms][] = access_dashboard
 features[config_perms][] = access_user_display_settings
 features[config_perms][] = access_yubikey_overview_for_any_user
@@ -95,6 +96,7 @@ features[taxonomy][] = industries
 features[themekey_features_rule_chain][] = drupal:path = user/%/yubikey >>> ThemeKeyAdminTheme
 features[translations_sv][] = sv:default
 features[user_permission][] = access YubiKey overview for any user
+features[user_permission][] = access admin/structure
 features[user_permission][] = access content
 features[user_permission][] = access content overview
 features[user_permission][] = access dashboard
