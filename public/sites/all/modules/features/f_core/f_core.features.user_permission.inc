@@ -120,6 +120,27 @@ function f_core_user_default_permissions() {
     'module' => 'yubikey',
   );
 
+  // Exported permission: 'administer password policies'.
+  $permissions['administer password policies'] = array(
+    'name' => 'administer password policies',
+    'roles' => array(),
+    'module' => 'password_policy',
+  );
+
+  // Exported permission: 'administer session limits by role'.
+  $permissions['administer session limits by role'] = array(
+    'name' => 'administer session limits by role',
+    'roles' => array(),
+    'module' => 'session_limit',
+  );
+
+  // Exported permission: 'administer session limits per user'.
+  $permissions['administer session limits per user'] = array(
+    'name' => 'administer session limits per user',
+    'roles' => array(),
+    'module' => 'session_limit',
+  );
+
   // Exported permission: 'administer user roles'.
   $permissions['administer user roles'] = array(
     'name' => 'administer user roles',
@@ -379,6 +400,15 @@ function f_core_user_default_permissions() {
     'module' => 'administerusersbyrole',
   );
 
+  // Exported permission: 'force password change'.
+  $permissions['force password change'] = array(
+    'name' => 'force password change',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'password_policy',
+  );
+
   // Exported permission: 'perform YubiKey tasks for any user'.
   $permissions['perform YubiKey tasks for any user'] = array(
     'name' => 'perform YubiKey tasks for any user',
@@ -386,6 +416,13 @@ function f_core_user_default_permissions() {
       'Administratör' => 'Administratör',
     ),
     'module' => 'config_perms',
+  );
+
+  // Exported permission: 'unblock expired accounts'.
+  $permissions['unblock expired accounts'] = array(
+    'name' => 'unblock expired accounts',
+    'roles' => array(),
+    'module' => 'password_policy',
   );
 
   // Exported permission: 'use text format filtered_html'.

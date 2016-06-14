@@ -250,9 +250,23 @@ function sedermera_core_update_7014() {
 }
 
 /**
- * Update all investor company to follow the new owner scheme
+ * Enable login_security if production environment
  */
 function sedermera_core_update_7015() {
+  $environment = variable_get('tadaa_environment');
+
+  if($environment == 'production') {
+    module_enable(array('login_security'));
+  }
+  else {
+    module_disable(array('login_security'));
+  }
+}
+
+/**
+ * Update all investor company to follow the new owner scheme
+ */
+function sedermera_core_update_7016() {
   $results = db_query("SELECT nid
     FROM node
     WHERE type = 'investor_company'")->fetchAllKeyed();
@@ -274,7 +288,7 @@ function sedermera_core_update_7015() {
 /**
  * Delete old field no longer needed
  */
-function sedermera_core_update_7016() {
+function sedermera_core_update_7017() {
   field_delete_field('field_investor_comp_owners');
 
   field_purge_batch(500);
@@ -283,7 +297,7 @@ function sedermera_core_update_7016() {
 /**
  * Update all customer companies to follow the new owner scheme
  */
-function sedermera_core_update_7017() {
+function sedermera_core_update_7018() {
   $results = db_query("SELECT nid
     FROM node
     WHERE type = 'company'")->fetchAllKeyed();
@@ -305,7 +319,7 @@ function sedermera_core_update_7017() {
 /**
  * Delete old field no longer needed
  */
-function sedermera_core_update_7018() {
+function sedermera_core_update_7019() {
   field_delete_field('field_comp_principal_person');
 
   field_purge_batch(500);
