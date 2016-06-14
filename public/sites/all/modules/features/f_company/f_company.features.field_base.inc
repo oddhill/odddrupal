@@ -341,39 +341,26 @@ function f_company_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_comp_principal_person'.
-  $field_bases['field_comp_principal_person'] = array(
+  // Exported field_base: 'field_comp_principal_persons'.
+  $field_bases['field_comp_principal_persons'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_comp_principal_person',
+    'field_name' => 'field_comp_principal_persons',
     'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
+      'revision_id' => array(
+        0 => 'revision_id',
       ),
     ),
     'locked' => 0,
-    'module' => 'entityreference',
+    'module' => 'field_collection',
     'settings' => array(
-      'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'views-select-list' => array(
-            'status' => 0,
-          ),
-        ),
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(
-          'person' => 'person',
-        ),
-      ),
-      'target_type' => 'node',
+      'hide_blank_items' => 1,
+      'path' => '',
     ),
     'translatable' => 0,
-    'type' => 'entityreference',
+    'type' => 'field_collection',
   );
 
   // Exported field_base: 'field_company_check'.

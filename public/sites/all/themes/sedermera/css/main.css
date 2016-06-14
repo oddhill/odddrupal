@@ -641,7 +641,17 @@ div.button {
     margin-right: 0; }
   .node-company.view-mode-full.no-logo .company-details .detail:nth-child(2n+1) {
     clear: left; }
-.node-company.view-mode-full .company-contacts .detail {
+.node-company.view-mode-full .company-contacts .field-comp-principal-persons > span.label,
+.node-company.view-mode-full .company-owners .field-comp-principal-persons > span.label {
+  font-size: 17px;
+  font-size: 1.7rem;
+  line-height: 25.5px;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+  color: #797979; }
+.node-company.view-mode-full .company-contacts .detail,
+.node-company.view-mode-full .company-owners .detail {
   float: left;
   display: block;
   margin-right: 2.35765%;
@@ -651,27 +661,34 @@ div.button {
   margin-bottom: 0.5em;
   margin-top: 0.5em;
   text-align: right; }
-  .node-company.view-mode-full .company-contacts .detail:last-child {
+  .node-company.view-mode-full .company-contacts .detail:last-child,
+  .node-company.view-mode-full .company-owners .detail:last-child {
     margin-right: 0; }
-  .node-company.view-mode-full .company-contacts .detail:nth-child(2n) {
+  .node-company.view-mode-full .company-contacts .detail:nth-child(2n),
+  .node-company.view-mode-full .company-owners .detail:nth-child(2n) {
     margin-right: 0; }
-  .node-company.view-mode-full .company-contacts .detail:nth-child(2n+1) {
+  .node-company.view-mode-full .company-contacts .detail:nth-child(2n+1),
+  .node-company.view-mode-full .company-owners .detail:nth-child(2n+1) {
     clear: left; }
-  .node-company.view-mode-full .company-contacts .detail span.label {
+  .node-company.view-mode-full .company-contacts .detail span.label,
+  .node-company.view-mode-full .company-owners .detail span.label {
     display: block;
     float: left;
     text-align: left;
     margin-right: 1em; }
-  .node-company.view-mode-full .company-contacts .detail .verification {
+  .node-company.view-mode-full .company-contacts .detail .verification,
+  .node-company.view-mode-full .company-owners .detail .verification {
     display: inline-block;
     overflow: hidden;
     border-bottom: 0px none;
     font-size: 0px;
     color: transparent;
     margin: -1px 0; }
-    .node-company.view-mode-full .company-contacts .detail .verification:hover {
+    .node-company.view-mode-full .company-contacts .detail .verification:hover,
+    .node-company.view-mode-full .company-owners .detail .verification:hover {
       border-bottom: 0px none; }
-    .node-company.view-mode-full .company-contacts .detail .verification:before {
+    .node-company.view-mode-full .company-contacts .detail .verification:before,
+    .node-company.view-mode-full .company-owners .detail .verification:before {
       content: '';
       display: block;
       float: left;
@@ -679,15 +696,20 @@ div.button {
       height: 16px;
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.8); }
-    .node-company.view-mode-full .company-contacts .detail .verification:before {
+    .node-company.view-mode-full .company-contacts .detail .verification:before,
+    .node-company.view-mode-full .company-owners .detail .verification:before {
       margin-right: 0; }
-    .node-company.view-mode-full .company-contacts .detail .verification.approved:before {
+    .node-company.view-mode-full .company-contacts .detail .verification.approved:before,
+    .node-company.view-mode-full .company-owners .detail .verification.approved:before {
       background: #6c9e65; }
-    .node-company.view-mode-full .company-contacts .detail .verification.expiring:before {
+    .node-company.view-mode-full .company-contacts .detail .verification.expiring:before,
+    .node-company.view-mode-full .company-owners .detail .verification.expiring:before {
       background: #f9a500; }
-    .node-company.view-mode-full .company-contacts .detail .verification.not-approved:before {
+    .node-company.view-mode-full .company-contacts .detail .verification.not-approved:before,
+    .node-company.view-mode-full .company-owners .detail .verification.not-approved:before {
       background: #c04343; }
-    .node-company.view-mode-full .company-contacts .detail .verification.id {
+    .node-company.view-mode-full .company-contacts .detail .verification.id,
+    .node-company.view-mode-full .company-owners .detail .verification.id {
       font-size: 14px;
       font-size: 1.4rem;
       line-height: 21px;
@@ -696,7 +718,8 @@ div.button {
       overflow: visible;
       display: block;
       padding: 10px; }
-      .node-company.view-mode-full .company-contacts .detail .verification.id:before {
+      .node-company.view-mode-full .company-contacts .detail .verification.id:before,
+      .node-company.view-mode-full .company-owners .detail .verification.id:before {
         display: inline-block;
         float: none;
         position: relative;
@@ -704,11 +727,14 @@ div.button {
         margin-right: 0.5rem;
         width: 10px;
         height: 10px; }
-  .node-company.view-mode-full .company-contacts .detail a {
+  .node-company.view-mode-full .company-contacts .detail a,
+  .node-company.view-mode-full .company-owners .detail a {
     margin-right: 2px; }
-    .node-company.view-mode-full .company-contacts .detail a:after {
+    .node-company.view-mode-full .company-contacts .detail a:after,
+    .node-company.view-mode-full .company-owners .detail a:after {
       content: ','; }
-    .node-company.view-mode-full .company-contacts .detail a:last-child:after {
+    .node-company.view-mode-full .company-contacts .detail a:last-child:after,
+    .node-company.view-mode-full .company-owners .detail a:last-child:after {
       content: ''; }
 .node-company.view-mode-full .company-other .other {
   float: left;
@@ -2468,6 +2494,14 @@ form#views-form-dokument-document table#draggableviews-table-dokument-document {
       height: 10px; }
 .node-investor-company.view-mode-full .title h2 {
   text-align: left; }
+.node-investor-company.view-mode-full .field-investor-comp-owner > span.label {
+  font-size: 17px;
+  font-size: 1.7rem;
+  line-height: 25.5px;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+  color: #797979; }
 .node-investor-company.view-mode-full .investor-details .detail,
 .node-investor-company.view-mode-full .investor-details .investor-control,
 .node-investor-company.view-mode-full .investor-verifications .detail,
@@ -6804,6 +6838,123 @@ div.addressfield-container-inline {
   display: table;
   clear: both; }
 
+.node-company-form #edit-field-comp-principal-persons {
+  padding-top: 2em;
+  margin-bottom: 3em; }
+  .node-company-form #edit-field-comp-principal-persons table td {
+    display: flex;
+    align-items: center;
+    height: 60px; }
+    .node-company-form #edit-field-comp-principal-persons table td > div {
+      padding: 0 10px 0 0; }
+    .node-company-form #edit-field-comp-principal-persons table td .ajax-new-content {
+      display: flex !important;
+      align-items: center;
+      height: 60px;
+      padding: 0; }
+      .node-company-form #edit-field-comp-principal-persons table td .ajax-new-content > div {
+        padding: 0 10px 0 0; }
+      .node-company-form #edit-field-comp-principal-persons table td .ajax-new-content .submit-wrapper {
+        position: relative;
+        padding-right: 0; }
+    .node-company-form #edit-field-comp-principal-persons table td .submit-wrapper {
+      position: relative;
+      padding-right: 0; }
+      .node-company-form #edit-field-comp-principal-persons table td .submit-wrapper .form-submit {
+        display: inline-block;
+        height: 34px;
+        font-size: 12px;
+        font-size: 1.2rem;
+        line-height: 12px;
+        line-height: 34px;
+        border-radius: 34px;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+        background: url("../graphics/delete_small_light.png") transparent 0 0 no-repeat;
+        background: none, url("../graphics/delete_small_light.svg") transparent 0 0 no-repeat;
+        background-position: 20px 11px;
+        padding-left: 42px;
+        background-color: #454545;
+        -webkit-transition: background-color 0.1s ease-in-out;
+        -moz-transition: background-color 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 24px;
+        background-position: 10px 6px;
+        padding: 0 10px 0 26px;
+        margin-right: 8px;
+        margin: 0; }
+        .node-company-form #edit-field-comp-principal-persons table td .submit-wrapper .form-submit:hover {
+          background-color: #303030; }
+      .node-company-form #edit-field-comp-principal-persons table td .submit-wrapper .ajax-progress {
+        display: block;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px;
+        cursor: pointer;
+        background: #303030;
+        height: 100%;
+        text-align: center;
+        padding-top: 4px; }
+        .node-company-form #edit-field-comp-principal-persons table td .submit-wrapper .ajax-progress .throbber {
+          display: inline-block;
+          background: transparent;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #f9a500;
+          border-radius: 50%;
+          border-top-color: transparent;
+          -webkit-animation: load 0.9s linear infinite;
+          -moz-animation: load 0.9s linear infinite;
+          animation: load 0.9s linear infinite;
+          margin: 0 auto;
+          float: none; }
+        .node-company-form #edit-field-comp-principal-persons table td .submit-wrapper .ajax-progress .message {
+          display: none; }
+  .node-company-form #edit-field-comp-principal-persons .submit-wrapper {
+    display: inline-block;
+    position: relative;
+    padding-right: 0; }
+    .node-company-form #edit-field-comp-principal-persons .submit-wrapper .form-submit {
+      margin: 0; }
+    .node-company-form #edit-field-comp-principal-persons .submit-wrapper .ajax-progress {
+      display: block;
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0;
+      width: 100%;
+      margin: 0;
+      border-radius: 24px;
+      cursor: pointer;
+      background: #303030;
+      height: 100%;
+      text-align: center;
+      padding-top: 4px; }
+      .node-company-form #edit-field-comp-principal-persons .submit-wrapper .ajax-progress .throbber {
+        display: inline-block;
+        background: transparent;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f9a500;
+        border-radius: 50%;
+        border-top-color: transparent;
+        -webkit-animation: load 0.9s linear infinite;
+        -moz-animation: load 0.9s linear infinite;
+        animation: load 0.9s linear infinite;
+        margin: 0 auto;
+        float: none; }
+      .node-company-form #edit-field-comp-principal-persons .submit-wrapper .ajax-progress .message {
+        display: none; }
+
 .node-investor_company-form #edit-field-investor-comp-owner {
   padding-top: 2em;
   margin-bottom: 3em; }
@@ -6813,6 +6964,16 @@ div.addressfield-container-inline {
     height: 60px; }
     .node-investor_company-form #edit-field-investor-comp-owner table td > div {
       padding: 0 10px 0 0; }
+    .node-investor_company-form #edit-field-investor-comp-owner table td .ajax-new-content {
+      display: flex !important;
+      align-items: center;
+      height: 60px;
+      padding: 0; }
+      .node-investor_company-form #edit-field-investor-comp-owner table td .ajax-new-content > div {
+        padding: 0 10px 0 0; }
+      .node-investor_company-form #edit-field-investor-comp-owner table td .ajax-new-content .submit-wrapper {
+        position: relative;
+        padding-right: 0; }
     .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper {
       position: relative;
       padding-right: 0; }
@@ -6875,6 +7036,41 @@ div.addressfield-container-inline {
           float: none; }
         .node-investor_company-form #edit-field-investor-comp-owner table td .submit-wrapper .ajax-progress .message {
           display: none; }
+  .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper {
+    display: inline-block;
+    position: relative;
+    padding-right: 0; }
+    .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .form-submit {
+      margin: 0; }
+    .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .ajax-progress {
+      display: block;
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0;
+      width: 100%;
+      margin: 0;
+      border-radius: 24px;
+      cursor: pointer;
+      background: #303030;
+      height: 100%;
+      text-align: center;
+      padding-top: 4px; }
+      .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .ajax-progress .throbber {
+        display: inline-block;
+        background: transparent;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #f9a500;
+        border-radius: 50%;
+        border-top-color: transparent;
+        -webkit-animation: load 0.9s linear infinite;
+        -moz-animation: load 0.9s linear infinite;
+        animation: load 0.9s linear infinite;
+        margin: 0 auto;
+        float: none; }
+      .node-investor_company-form #edit-field-investor-comp-owner .submit-wrapper .ajax-progress .message {
+        display: none; }
 .node-investor_company-form #edit-field-investor-comp-notes {
   margin-bottom: 0; }
   .node-investor_company-form #edit-field-investor-comp-notes .form-item {

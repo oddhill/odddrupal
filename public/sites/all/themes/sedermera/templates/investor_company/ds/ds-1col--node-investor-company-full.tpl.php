@@ -18,10 +18,15 @@
     <div class="investor-details node-section">
       <?php print render($content['field_shared_cust_id']) ?>
       <?php print render($content['field_investor_comp_org_nbr']); ?>
-      <?php print render($content['field_investor_comp_owners']); ?>
       <?php print render($content['field_investor_comp_real']); ?>
       <?php print render($content['field_shared_cont_pers']); ?>
     </div>
+
+    <?php if ($content['field_investor_comp_owner']): ?>
+      <div class="investor-owners node-section">
+        <?php print render($content['field_investor_comp_owner']); ?>
+      </div>
+    <?php endif; ?>
 
     <div class="investor-other node-section">
       <?php print render($content['field_investor_comp_address']); ?>

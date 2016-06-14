@@ -33,7 +33,19 @@
       }
     }
 
-    .company-contacts {
+    .company-contacts,
+    .company-owners {
+
+      .field-comp-principal-persons {
+
+        > span.label {
+          @include font-size(1.7);
+          display: block;
+          font-weight: 500;
+          margin-bottom: 0.5em;
+          color: $grey;
+        }
+      }
 
       .detail {
         @include node-section-detail;
