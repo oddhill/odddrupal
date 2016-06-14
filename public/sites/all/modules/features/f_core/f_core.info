@@ -41,6 +41,7 @@ dependencies[] = rh_taxonomy
 dependencies[] = rh_user
 dependencies[] = sedermera_core
 dependencies[] = sedermera_dashboard
+dependencies[] = sedermera_log
 dependencies[] = sedermera_parent_paths
 dependencies[] = sedermera_transaction
 dependencies[] = sedermera_update
