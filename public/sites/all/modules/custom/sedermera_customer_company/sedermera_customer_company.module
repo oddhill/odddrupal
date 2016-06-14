@@ -685,10 +685,11 @@ function _sedermera_customer_company_post_insert_principal($nid) {
   $proposal_nid = arg(2);
 
   // Get principal connected to the company.
-  $result = db_query("SELECT pr.field_comp_principal_person_target_id AS tid
-    FROM field_data_field_comp_principal_person AS pr
-    INNER JOIN field_data_field_proposal_company AS comp ON pr.entity_id = field_proposal_company_target_id
-    WHERE comp.entity_id = :nid",
+  $result = db_query("SELECT field_owner_head_target_id AS tid
+    FROM {field_data_field_owner_head} owner
+    INNER JOIN {field_data_field_comp_principal_persons} company ON owner.entity_id = company.field_comp_principal_persons_value
+    INNER JOIN {field_data_field_proposal_company{} proposal ON company.entity_id = proposal.field_proposal_company_target_id
+    WHERE proposal.entity_id = :nid",
     array(':nid' => $proposal_nid))->fetchAll();
 
   // For each principal generate a field collection.

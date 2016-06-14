@@ -19,6 +19,15 @@ function f_core_user_default_permissions() {
     'module' => 'config_perms',
   );
 
+  // Exported permission: 'access admin/structure'.
+  $permissions['access admin/structure'] = array(
+    'name' => 'access admin/structure',
+    'roles' => array(
+      'Administratör' => 'Administratör',
+    ),
+    'module' => 'config_perms',
+  );
+
   // Exported permission: 'access content'.
   $permissions['access content'] = array(
     'name' => 'access content',

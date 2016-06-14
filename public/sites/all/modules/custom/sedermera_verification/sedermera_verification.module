@@ -428,7 +428,7 @@ function sedermera_verification_node_view($node, $view_mode, $langcode) {
         ),
       );
     }
-    else {
+    elseif (!empty($verifications)) {
       // There's more than one ID verification for this investor, so we should
       // build a list which allows the user to edit the individual
       // verifications. Start of with the main indicator.
@@ -605,8 +605,8 @@ function sedermera_verification_get_ids_for_investor($investor_nid) {
   if ($investor->type->value() === 'investor_company') {
     // Iterate through every owner and save the verification ID.
     $verifications = array();
-    foreach ($investor->field_investor_comp_owners as $owner) {
-      $verifications[] = $owner->field_user_id_ctrl->nid->value();
+    foreach ($investor->field_investor_comp_owner as $owner) {
+      $verifications[] = $owner->field_owner_head->value()->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'];
     }
 
     // Return the verification IDs.
@@ -1021,14 +1021,13 @@ function sedermera_verification_get_status_owner_node($nid) {
 
     // Iterate through every property in order to find entityreference fields
     // which points to verification nodes.
-    foreach ($node->field_investor_comp_owners->value() as $owner) {
-      $owner_wrap = entity_metadata_wrapper('node', $owner);
+    foreach ($node->field_investor_comp_owner as $owner) {
 
-      // Load control of the owner
-      $ctrl = $owner_wrap->field_user_id_ctrl->value();
+      // Get control nid of the owner
+      $ctrl_nid = $owner->field_owner_head->value()->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'];
 
       // Add control nid to array
-      $verifications[] = $ctrl->nid;
+      $verifications[] = $ctrl_nid;
     }
 
     // Return the verification status based on our findings.
