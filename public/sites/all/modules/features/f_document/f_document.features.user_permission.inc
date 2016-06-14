@@ -24,9 +24,7 @@ function f_document_user_default_permissions() {
   // Exported permission: 'add terms in document_type'.
   $permissions['add terms in document_type'] = array(
     'name' => 'add terms in document_type',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -83,9 +81,7 @@ function f_document_user_default_permissions() {
   // Exported permission: 'delete terms in document_type'.
   $permissions['delete terms in document_type'] = array(
     'name' => 'delete terms in document_type',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 
@@ -228,9 +224,7 @@ function f_document_user_default_permissions() {
   // Exported permission: 'edit terms in document_type'.
   $permissions['edit terms in document_type'] = array(
     'name' => 'edit terms in document_type',
-    'roles' => array(
-      'Administratör' => 'Administratör',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 
