@@ -770,7 +770,7 @@ function f_core_strongarm() {
   $strongarm->name = 'password_policy_warning_body';
   $strongarm->value = '[user:name],
 
-Ditt lösenord på [site:name] upphör att gälla på mindre än [password-policy:days-left] dag (ar).
+Ditt lösenord på [site:name] upphör att gälla om mindre än [password-policy:days-left] dag (ar).
 
 Gå till [password-policy:password-edit-url] för att ändra ditt lösenord.';
   $export['password_policy_warning_body'] = $strongarm;
