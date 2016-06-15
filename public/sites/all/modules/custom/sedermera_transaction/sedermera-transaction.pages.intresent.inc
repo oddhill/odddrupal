@@ -355,6 +355,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -370,6 +372,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -386,6 +390,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -402,6 +408,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -418,6 +426,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -434,6 +444,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -450,6 +462,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -466,6 +480,8 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
           array(
             'label'=>'hidden',
             'settings' => array(
+              'decimal_separator' => ',',
+              'scale' => 2,
               'thousand_separator' => ' ',
             ),
           ));
@@ -477,7 +493,7 @@ function _generate_interested_contact_person_head_row(array &$rows, stdClass $tr
 
   // Summation column
   $rows[$row]['data'][] = array(
-    'data' => number_format($sum, 0, ",", " ") . " :-",
+    'data' => number_format($sum, 2, ",", " ") . " :-",
   );
 
   // Control column
@@ -691,7 +707,7 @@ function _generate_interested_investor_rows(array &$rows, array $investor_transa
 
     // Summation column
     $rows[$row]['data'][] = array(
-      'data' => number_format($row_sum, 0, ",", " ") . " :-",
+      'data' => number_format($row_sum, 2, ",", " ") . " :-",
     );
 
     // Control column
@@ -755,62 +771,62 @@ function _generate_interested_sum_row(array &$rows, array $type_investment, $tra
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['fe_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['fe_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['fe_warr'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['fe_warr'], 2, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['le_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['le_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Garantiåtagande if Listnigsemission column
   if ($type_investment['le_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['le_warr'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['le_warr'], 2, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Private Placement column
   if ($type_investment['pp_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['pp_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['pp_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Riktat emission column
   if ($type_investment['re_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['re_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['re_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Sum if Brygglån column
   if ($type_investment['bl_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['bl_sum'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['bl_sum'], 2, ",", " ") . " :-",
     );
   }
 
   // Sum if Blockpost column
   if ($type_investment['bp_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($col_sum['bp_sum'], 0, ",", " ") . " :-",
+      'data' => number_format($col_sum['bp_sum'], 2, ",", " ") . " :-",
     );
   }
 
   // Summation column
   $rows[$row]['data'][] = array(
-    'data' => number_format(array_sum($col_sum), 0, ",", " ") . " :-",
+    'data' => number_format(array_sum($col_sum), 2, ",", " ") . " :-",
   );
 
   // Control column
@@ -854,62 +870,62 @@ function _generate_interested_total_sum_row(array &$rows, array $type_investment
   // Teckningsförbindelse if Företrädesemission column
   if ($type_investment['fe_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['fe_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['fe_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Garantiåtagande if Företrädesemission column
   if ($type_investment['fe_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['fe_warr'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['fe_warr'], 2, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Listningsemission column
   if ($type_investment['le_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['le_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['le_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Garantiåtagande if Listnigsemission column
   if ($type_investment['le_warr']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['le_warr'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['le_warr'], 2, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Private Placement column
   if ($type_investment['pp_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['pp_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['pp_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Teckningsförbindelse if Riktat emission column
   if ($type_investment['re_sign']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['re_sign'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['re_sign'], 2, ",", " ") . " :-",
     );
   }
 
   // Sum if Brygglån column
   if ($type_investment['bl_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['bl_sum'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['bl_sum'], 2, ",", " ") . " :-",
     );
   }
 
   // Sum if Blockpost column
   if ($type_investment['bp_sum']) {
     $rows[$row]['data'][] = array(
-      'data' => number_format($sumArray['bp_sum'], 0, ",", " ") . " :-",
+      'data' => number_format($sumArray['bp_sum'], 2, ",", " ") . " :-",
     );
   }
 
   // Summation column
   $rows[$row]['data'][] = array(
-    'data' => number_format(array_sum($sumArray), 0, ",", " ") . " :-",
+    'data' => number_format(array_sum($sumArray), 2, ",", " ") . " :-",
   );
 
   // Control column

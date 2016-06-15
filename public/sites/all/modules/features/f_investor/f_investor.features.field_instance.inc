@@ -2616,12 +2616,12 @@ function f_investor_field_default_field_instances() {
         'label' => 'above',
         'module' => 'number',
         'settings' => array(
-          'decimal_separator' => '.',
+          'decimal_separator' => ',',
           'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => '',
+          'scale' => 2,
+          'thousand_separator' => ' ',
         ),
-        'type' => 'number_integer',
+        'type' => 'number_decimal',
         'weight' => 6,
       ),
       'full' => array(

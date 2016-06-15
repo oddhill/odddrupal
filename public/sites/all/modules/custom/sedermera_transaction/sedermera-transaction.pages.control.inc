@@ -300,7 +300,7 @@ function _generate_control_contact_person_head_row(array &$rows, stdClass $trans
       ),
       // Summation column
       array(
-        'data' => number_format($sum, 0, ",", " ") . " :-",
+        'data' => number_format($sum, 2, ",", " ") . " :-",
       ),
       // Control ID column
       array(
@@ -673,7 +673,7 @@ function _generate_control_agreement_rows(array &$rows, $agreement, $transaction
       ),
       // Summation column
       array(
-        'data' => number_format($sum, 0, ",", " ") . " :-",
+        'data' => number_format($sum, 2, ",", " ") . " :-",
       ),
       // Control ID column
       array(

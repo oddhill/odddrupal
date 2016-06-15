@@ -243,7 +243,7 @@ function _generate_sign_agreement_row(array &$rows, $transaction, array $agreeme
         ),
         // Summation column
         array(
-          'data' => number_format($sum, 0, ",", " ") . " :-",
+          'data' => number_format($sum, 2, ",", " ") . " :-",
         ),
         // Control column
         array(

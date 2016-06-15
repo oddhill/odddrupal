@@ -1729,20 +1729,20 @@ function sedermera_offer_views_pre_render(&$view) {
 
       $row = $fe_sign_row + $fe_warrant_row + $le_sign_row + $le_warrant_row + $pp_sign_row + $re_sign_row + $bl_sum_row + $bp_sum_row;
       $total_sum += $row;
-      $value->field_field_transaction_sum['0']['rendered']['#markup'] = number_format($row, 0, ',', ' ')  . " :-";
+      $value->field_field_transaction_sum['0']['rendered']['#markup'] = number_format($row, 2, ',', ' ')  . " :-";
     }
 
     $view->res = array(
       'title' => 'Totalt',
-      'field_transaction_fe_sign' => number_format($transaction_fe_sign, 0, ',', ' ') . " :-",
-      'field_transaction_fe_warant' => number_format($transaction_fe_warrant, 0, ',', ' ') . " :-",
-      'field_transaction_le_sign' => number_format($transaction_le_sign, 0, ',', ' ') . " :-",
-      'field_transaction_le_warrant' => number_format($transaction_le_warrant, 0, ',', ' ') . " :-",
-      'field_transaction_pp_sign' => number_format($transaction_pp_sign, 0, ',', ' ') . " :-",
-      'field_transaction_re_sign' => number_format($transaction_re_sign, 0, ',', ' ') . " :-",
-      'field_transaction_bridging' => number_format($transaction_bl_sum, 0, ',', ' ') . " :-",
-      'field_transaction_block' => number_format($transaction_bp_sum, 0, ',', ' ') . " :-",
-      'field_transaction_sum' => number_format($total_sum, 0, ',', ' ') . " :-",
+      'field_transaction_fe_sign' => number_format($transaction_fe_sign, 2, ',', ' ') . " :-",
+      'field_transaction_fe_warant' => number_format($transaction_fe_warrant, 2, ',', ' ') . " :-",
+      'field_transaction_le_sign' => number_format($transaction_le_sign, 2, ',', ' ') . " :-",
+      'field_transaction_le_warrant' => number_format($transaction_le_warrant, 2, ',', ' ') . " :-",
+      'field_transaction_pp_sign' => number_format($transaction_pp_sign, 2, ',', ' ') . " :-",
+      'field_transaction_re_sign' => number_format($transaction_re_sign, 2, ',', ' ') . " :-",
+      'field_transaction_bridging' => number_format($transaction_bl_sum, 2, ',', ' ') . " :-",
+      'field_transaction_block' => number_format($transaction_bp_sum, 2, ',', ' ') . " :-",
+      'field_transaction_sum' => number_format($total_sum, 2, ',', ' ') . " :-",
       'note' => '',
       'contact' => '',
       'contact_by' => '',
