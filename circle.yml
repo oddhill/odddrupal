@@ -4,6 +4,17 @@ test:
 
 deployment:
   testing:
+    # Deploy when pushing to develop.
     branch: develop
     commands:
       - build/deploy_testing.sh
+  staging:
+    # Deploy when pusing to master.
+    branch: master
+    commands:
+      - build/deploy_staging.sh
+  production:
+    # Deploy when pushing version tag, e.g. 1.0.0
+    tag: /^\d+\.\d+\.\d+$/
+    commands:
+      - build/deploy_production.sh
