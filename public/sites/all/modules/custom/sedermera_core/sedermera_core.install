@@ -326,7 +326,7 @@ function sedermera_core_update_7019() {
 }
 
 /**
- * Change field type of various amount fields to float instead of int.
+ * Change field type of various amount fields to decimal instead of int.
  */
 function sedermera_core_update_7020() {
   // The content type and fields that are going to be changed.
@@ -368,7 +368,9 @@ function sedermera_core_update_7020() {
         $tablename = $table . '_' . $field;
         $fieldname = $field . '_value';
         db_change_field($tablename, $fieldname, $fieldname, array(
-          'type' => 'float',
+          'type' => 'numeric',
+          'precision' => 13,
+          'scale' => 2,
           'not null' => FALSE,
         ));
       }
@@ -381,6 +383,8 @@ function sedermera_core_update_7020() {
 
       // Update the settings entry
       $data['settings'] = array(
+        'precision' => 13,
+        'scale' => 2,
         'decimal_separator' => ',',
       );
 
@@ -388,7 +392,7 @@ function sedermera_core_update_7020() {
       db_update('field_config')
         ->fields(array(
           'data' => serialize($data),
-          'type' => 'number_float',
+          'type' => 'number_decimal',
         ))
         ->condition('field_name', $field)
         ->execute();
@@ -405,7 +409,7 @@ function sedermera_core_update_7020() {
       $data = unserialize($field_config_instance->data);
 
       // Update it with the new display type
-      $data['display']['default']['type'] = 'number_float';
+      $data['display']['default']['type'] = 'number_decimal';
 
       // Store it back to the database
       db_update('field_config_instance')

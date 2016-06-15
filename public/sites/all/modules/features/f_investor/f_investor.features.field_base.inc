@@ -217,9 +217,11 @@ function f_investor_field_default_field_bases() {
     'module' => 'number',
     'settings' => array(
       'decimal_separator' => ',',
+      'precision' => 13,
+      'scale' => 2,
     ),
     'translatable' => 0,
-    'type' => 'number_float',
+    'type' => 'number_decimal',
   );
 
   // Exported field_base: 'field_hist_transac_investor_id'.
