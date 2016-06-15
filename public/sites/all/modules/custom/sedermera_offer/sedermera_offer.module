@@ -182,8 +182,8 @@ function sedermera_offer_node_presave($node) {
       // Gater the owners
       $owners = array();
       if ($ap_wrap->type->value() === 'investor_company') {
-        foreach ($ap_wrap->field_investor_comp_owners->value() as $key => $owner) {
-          $owner_wrap = entity_metadata_wrapper('node', $owner);
+        foreach ($ap_wrap->field_investor_comp_owner as $key => $owner) {
+          $owner_wrap = entity_metadata_wrapper('node', $owner->field_owner_head->value());
           $owners[] = array('value' => $owner_wrap->field_user_id_ctrl->value()->vid);
         }
       }

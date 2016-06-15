@@ -254,6 +254,139 @@ function f_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_activity_threshold';
+  $strongarm->value = '5';
+  $export['login_security_activity_threshold'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_disable_core_login_error';
+  $strongarm->value = 0;
+  $export['login_security_disable_core_login_error'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_host_hard_banned';
+  $strongarm->value = 'IP-adressen @ip är blockerad på @site, och kommer inte att kunna komma åt något av dess innehåll från och med nu. Kontakta webbplatsens administratör.';
+  $export['login_security_host_hard_banned'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_host_soft_banned';
+  $strongarm->value = 'Denna dator är inte tillåten att logga in på @site. Kontakta webbplatsens administratör.';
+  $export['login_security_host_soft_banned'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_host_wrong_count';
+  $strongarm->value = '5';
+  $export['login_security_host_wrong_count'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_host_wrong_count_hard';
+  $strongarm->value = '10';
+  $export['login_security_host_wrong_count_hard'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_last_access_timestamp';
+  $strongarm->value = 0;
+  $export['login_security_last_access_timestamp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_last_login_timestamp';
+  $strongarm->value = 0;
+  $export['login_security_last_login_timestamp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_login_activity_email_body';
+  $strongarm->value = 'Den konfigurerade tröskeln @activity_threshold inloggningar har nåtts med totalt @tracking_current_count ogiltiga inloggningsförsök . Du bör granska din logginformation om inloggningsförsök på @site.';
+  $export['login_security_login_activity_email_body'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_login_activity_email_subject';
+  $strongarm->value = 'Säkerhetsinformation: Oväntad inloggningsaktivitet har upptäckts på @site.';
+  $export['login_security_login_activity_email_subject'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_login_activity_email_user';
+  $strongarm->value = '';
+  $export['login_security_login_activity_email_user'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_notice_attempts_available';
+  $strongarm->value = 1;
+  $export['login_security_notice_attempts_available'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_notice_attempts_message';
+  $strongarm->value = 'Du har använt @user_current_count av @user_block_attempts inloggningsförsök . Efter alla @user_block_attempts har använts, kommer du inte att kunna logga in.';
+  $export['login_security_notice_attempts_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_track_time';
+  $strongarm->value = '2';
+  $export['login_security_track_time'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_user_blocked';
+  $strongarm->value = 'Användaren @username har blockerats på grund av för många misslyckade inloggningsförsök .';
+  $export['login_security_user_blocked'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_user_blocked_email_body';
+  $strongarm->value = 'Användaren @username (@edit_uri) har blockerats på @site på grund av mängden av misslyckade inloggningsförsök . Kontrollera loggarna för mer information.';
+  $export['login_security_user_blocked_email_body'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_user_blocked_email_subject';
+  $strongarm->value = 'Säkerhets åtgärd: Användaren @username har blockerats.';
+  $export['login_security_user_blocked_email_subject'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_user_blocked_email_user';
+  $strongarm->value = '';
+  $export['login_security_user_blocked_email_user'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'login_security_user_wrong_count';
+  $strongarm->value = '5';
+  $export['login_security_user_wrong_count'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'mail_logger_log_maximum_age';
   $strongarm->value = '0';
   $export['mail_logger_log_maximum_age'] = $strongarm;
@@ -592,6 +725,66 @@ function f_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_admin';
+  $strongarm->value = 0;
+  $export['password_policy_admin'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_begin';
+  $strongarm->value = '0';
+  $export['password_policy_begin'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_block';
+  $strongarm->value = '1';
+  $export['password_policy_block'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_force_change_extra_allowed_paths';
+  $strongarm->value = 'system/ajax';
+  $export['password_policy_force_change_extra_allowed_paths'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_force_change_reset';
+  $strongarm->value = 0;
+  $export['password_policy_force_change_reset'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_show_restrictions';
+  $strongarm->value = 0;
+  $export['password_policy_show_restrictions'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_warning_body';
+  $strongarm->value = '[user:name],
+
+Ditt lösenord på [site:name] upphör att gälla om mindre än [password-policy:days-left] dag (ar).
+
+Gå till [password-policy:password-edit-url] för att ändra ditt lösenord.';
+  $export['password_policy_warning_body'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'password_policy_warning_subject';
+  $strongarm->value = 'Ditt lösenord upphör att gälla för [user:name] på [site:name]';
+  $export['password_policy_warning_subject'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_blog_pattern';
   $strongarm->value = 'blogs/[user:name]';
   $export['pathauto_blog_pattern'] = $strongarm;
@@ -794,6 +987,41 @@ admin/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'session_limit_behaviour';
+  $strongarm->value = '1';
+  $export['session_limit_behaviour'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'session_limit_logged_out_message';
+  $strongarm->value = 'Du har automatiskt loggas ut. Någon annan har loggat in med ditt användarnamn och lösenord och det maximala antalet @number samtidiga sessioner överskreds. Detta kan tyda på att ditt konto har komprometterats eller att kontodelning inte är tillåtet på denna webbplats. Kontakta administratören om du misstänker att ditt konto har äventyrats.';
+  $export['session_limit_logged_out_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'session_limit_logged_out_message_severity';
+  $strongarm->value = 'error';
+  $export['session_limit_logged_out_message_severity'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'session_limit_masquerade_ignore';
+  $strongarm->value = 0;
+  $export['session_limit_masquerade_ignore'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'session_limit_max';
+  $strongarm->value = '1';
+  $export['session_limit_max'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'site_frontpage';
   $strongarm->value = 'oversikt';
   $export['site_frontpage'] = $strongarm;
@@ -880,6 +1108,7 @@ admin/*';
     'autologout' => 0,
     'backup_migrate' => 0,
     'letmein' => 1,
+    'login_security' => 0,
     'masquerade' => 1,
     'security_review' => 0,
     'speedy' => 0,
@@ -947,6 +1176,7 @@ admin/*';
     'autologout' => 1,
     'backup_migrate' => 0,
     'letmein' => 0,
+    'login_security' => 1,
     'masquerade' => 1,
     'security_review' => 1,
     'speedy' => 1,
@@ -1003,6 +1233,7 @@ admin/*';
     'autologout' => 1,
     'backup_migrate' => 1,
     'letmein' => 0,
+    'login_security' => 1,
     'masquerade' => 0,
     'security_review' => 1,
     'speedy' => 1,
@@ -1059,6 +1290,7 @@ admin/*';
     'autologout' => 1,
     'backup_migrate' => 0,
     'letmein' => 1,
+    'login_security' => 0,
     'masquerade' => 1,
     'security_review' => 1,
     'speedy' => 1,

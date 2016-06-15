@@ -54,7 +54,7 @@ function f_company_field_group_info() {
       2 => 'field_comp_org_nbr',
       3 => 'field_comp_cust_resp',
       4 => 'field_comp_cont_person',
-      5 => 'field_comp_principal_person',
+      5 => 'field_comp_principal_persons',
       6 => 'field_comp_address',
       7 => 'field_comp_notes',
       8 => 'field_comp_id',

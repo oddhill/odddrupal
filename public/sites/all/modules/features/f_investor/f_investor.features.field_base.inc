@@ -341,41 +341,26 @@ function f_investor_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_investor_comp_owners'.
-  $field_bases['field_investor_comp_owners'] = array(
+  // Exported field_base: 'field_investor_comp_owner'.
+  $field_bases['field_investor_comp_owner'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_investor_comp_owners',
+    'field_name' => 'field_investor_comp_owner',
     'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
+      'revision_id' => array(
+        0 => 'revision_id',
       ),
     ),
     'locked' => 0,
-    'module' => 'entityreference',
+    'module' => 'field_collection',
     'settings' => array(
-      'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'views-select-list' => array(
-            'status' => 0,
-          ),
-        ),
-        'sort' => array(
-          'direction' => 'ASC',
-          'property' => 'title',
-          'type' => 'property',
-        ),
-        'target_bundles' => array(
-          'person' => 'person',
-        ),
-      ),
-      'target_type' => 'node',
+      'hide_blank_items' => 1,
+      'path' => '',
     ),
     'translatable' => 0,
-    'type' => 'entityreference',
+    'type' => 'field_collection',
   );
 
   // Exported field_base: 'field_investor_shared_ctrl_cred'.
@@ -510,6 +495,58 @@ function f_investor_field_default_field_bases() {
         ),
         'target_bundles' => array(
           'ctrl' => 'ctrl',
+        ),
+      ),
+      'target_type' => 'node',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_owner_amount'.
+  $field_bases['field_owner_amount'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_owner_amount',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(
+      'decimal_separator' => ',',
+    ),
+    'translatable' => 0,
+    'type' => 'number_float',
+  );
+
+  // Exported field_base: 'field_owner_head'.
+  $field_bases['field_owner_head'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_owner_head',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'person' => 'person',
         ),
       ),
       'target_type' => 'node',

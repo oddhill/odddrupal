@@ -56,7 +56,7 @@ function _views_send_mailsystem_set($key) {
  * @return
  *  The field object if found. Otherwise, FALSE.
  */
-function _views_send_get_field($view) {
+function _views_send_get_field_selector($view) {
   foreach ($view->field as $field_name => $field) {
     if ($field instanceof views_send_handler_field_selector) {
       // Add in the view object for convenience.
@@ -68,33 +68,30 @@ function _views_send_get_field($view) {
 }
 
 /**
- * Gets the raw field value from a result row in a view.
+ * Gets the field value from a result row in a view - rendered value (default),
+ * plain text or array with mail addresses.
  * 
  * @return
- *  An array with raw values from the field.
+ *  See description.
  */
-function _views_send_get_raw_field_from_views_row($view, $row_id, $field_id) {
-  $result = array();
+function _views_send_get_field_value_from_views_row($view, $row_id, $field_id, $type='') {
   if (strpos($field_id, 'custom_text') === 0) {
     // Handle the special case for custom text fields.
-    $real_field_id = str_replace('custom_text', 'nothing', $field_id);
-    $raw_value = $view->field[$real_field_id]->original_value;
+    $field_id = str_replace('custom_text', 'nothing', $field_id);
+  }
+  $rendered_field = $view->style_plugin->get_field($row_id, $field_id);
+
+  if ($type == 'plain_text') {
+    // Removing HTML tags. Used for names in headers, not body.
+    $result = strip_tags($rendered_field);
+  }
+  elseif ($type == 'mail') {
+    // Removing HTML tags and entities. Used for e-mail addresses in headers, not body.
+    $result = explode(',', decode_entities(strip_tags($rendered_field)));
+    $result = array_map('trim', $result);
   }
   else {
-    $raw_value = $view->style_plugin->get_field_value($row_id, $field_id);
-  }
-  if (!is_array($raw_value)) {
-      $result[] = trim($raw_value);
-  } 
-  else { 
-    foreach ($raw_value as $arr) {
-      if (isset($arr['value'])) {
-        $value = $arr['value'];
-      } else {
-        list($value) = array_values($arr);
-      }
-      $result[] = trim($value);
-    }
+    $result = $rendered_field;
   }
   return $result;
 }
@@ -149,7 +146,7 @@ function theme_views_send_select_all($variables) {
  */
 function views_send_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'views_form_') === 0) {
-    $field = _views_send_get_field($form_state['build_info']['args'][0]);
+    $field = _views_send_get_field_selector($form_state['build_info']['args'][0]);
   }
   // This form isn't used by Views Send.
   if (empty($field)) {
@@ -440,7 +437,7 @@ function views_send_config_form_validate($form, &$form_state) {
 
     $to_mail_field = $values['views_send_tokens'][$values['views_send_to_mail']];
     foreach ($form_state['selection'] as $row_id) {
-      $mail_addresses = _views_send_get_raw_field_from_views_row($view, $row_id, $to_mail_field);
+      $mail_addresses = _views_send_get_field_value_from_views_row($view, $row_id, $to_mail_field, 'mail');
       foreach ($mail_addresses as $mail_address) {
         if (!valid_email_address($mail_address)) {
           $wrong_addresses[$row_id] = $mail_address;
@@ -516,9 +513,9 @@ function views_send_confirm_form($form, &$form_state, $view, $output) {
   $to_mail_field = $configuration['views_send_tokens'][$configuration['views_send_to_mail']];
   foreach ($form_state['selection'] as $row_id) {
     if ($to_name_field) {
-      list($to_name) = _views_send_get_raw_field_from_views_row($view, $row_id, $to_name_field);
+      $to_name = _views_send_get_field_value_from_views_row($view, $row_id, $to_name_field, 'plain_text');
     }
-    $mail_addresses = _views_send_get_raw_field_from_views_row($view, $row_id, $to_mail_field);
+    $mail_addresses = _views_send_get_field_value_from_views_row($view, $row_id, $to_mail_field, 'mail');
     foreach ($mail_addresses as $mail_address) {
       $recipients[] = check_plain(empty($to_name) ? $mail_address : trim($to_name) . ' <' .  $mail_address . '>');
     }
@@ -586,7 +583,7 @@ function views_send_confirm_form($form, &$form_state, $view, $output) {
  * Submit handler for all steps of the Views Send multistep form.
  */
 function views_send_form_submit($form, &$form_state) {
-  $field = _views_send_get_field($form_state['build_info']['args'][0]);
+  $field = _views_send_get_field_selector($form_state['build_info']['args'][0]);
 
   switch ($form_state['step']) {
     case 'views_form_views_form':
@@ -618,7 +615,15 @@ function views_send_form_submit($form, &$form_state) {
         // attempt to save the uploaded file
         $dir = file_default_scheme() . '://views_send_attachments';
         file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
-        $file = file_save_upload('views_send_attachments', array(), $dir);
+        $file_extensions = variable_get('views_send_attachment_valid_extensions', FALSE);
+        if ($file_extensions) {
+          $file_validators['file_validate_extensions'] = array();
+          $file_validators['file_validate_extensions'][0] = $file_extensions;
+        }
+        else {
+          $file_validators = array();
+        }
+        $file = file_save_upload('views_send_attachments', $file_validators, $dir);
         // set error if file was not uploaded
         if (!$file) {
           //form_set_error('views_send_attachment', 'Error uploading file.');
@@ -696,9 +701,9 @@ function views_send_queue_mail($params, $selected_rows, $view) {
   }
   foreach ($selected_rows as $selected_rows_key => $row_id) {
     // To: parts.
-    $to_mail = implode(',', _views_send_get_raw_field_from_views_row($view, $row_id, $to_mail_key));
+    $to_mail = implode(',', _views_send_get_field_value_from_views_row($view, $row_id, $to_mail_key, 'mail'));
     if ($to_name_key) {
-      list($to_name) = _views_send_get_raw_field_from_views_row($view, $row_id, $to_name_key);
+      $to_name = _views_send_get_field_value_from_views_row($view, $row_id, $to_name_key, 'plain_text');
     }
 
     $subject = $params['views_send_subject'];
@@ -717,11 +722,7 @@ function views_send_queue_mail($params, $selected_rows, $view) {
     $token_keys = $token_values = array();
     foreach ($params['views_send_tokens'] as $field_key => $field_name) {
       $token_keys[] = VIEWS_SEND_TOKEN_PREFIX .  sprintf(VIEWS_SEND_TOKEN_PATTERN, $field_name) . VIEWS_SEND_TOKEN_POSTFIX;
-      if (strpos($field_name, 'custom_text') === 0) {
-        // Handle the special case for custom text fields.
-        $field_name = str_replace('custom_text', 'nothing', $field_name);
-      }
-      $token_values[] = $view->style_plugin->get_field($row_id, $field_name);
+      $token_values[] = _views_send_get_field_value_from_views_row($view, $row_id, $field_name);
     }
 
     // Views Send specific token replacements
@@ -1126,6 +1127,8 @@ function views_send_deliver($message) {
 
   $mail = array(
     'id' => 'views_send_' . $key,
+    'module' => 'views_send',
+    'key' => $key,
     'to' => $message->to_mail,
     'from' => $message->from_mail,
     'subject' => $message->subject,

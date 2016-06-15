@@ -26,7 +26,7 @@ function f_investor_field_group_info() {
       0 => 'field_investor_comp_address',
       1 => 'field_investor_comp_notes',
       2 => 'field_investor_comp_org_nbr',
-      3 => 'field_investor_comp_owners',
+      3 => 'field_investor_comp_owner',
       4 => 'field_shared_cont_pers',
       5 => 'field_shared_cust_id',
       6 => 'field_shared_inv_cat',

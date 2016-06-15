@@ -11,6 +11,85 @@ function f_company_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
+  // 'field_collection_item-field_comp_principal_persons-field_owner_amount'.
+  $field_instances['field_collection_item-field_comp_principal_persons-field_owner_amount'] = array(
+    'bundle' => 'field_comp_principal_persons',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => ',',
+          'prefix_suffix' => 1,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_owner_amount',
+    'label' => 'Ägarandel',
+    'required' => 0,
+    'settings' => array(
+      'max' => 100,
+      'min' => 25,
+      'prefix' => '',
+      'suffix' => ' %',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_comp_principal_persons-field_owner_head'.
+  $field_instances['field_collection_item-field_comp_principal_persons-field_owner_head'] = array(
+    'bundle' => 'field_comp_principal_persons',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_owner_head',
+    'label' => 'Huvudman',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_credit_risk_annual-field_annual_accounting'.
   $field_instances['field_collection_item-field_credit_risk_annual-field_annual_accounting'] = array(
     'bundle' => 'field_credit_risk_annual',
@@ -1726,7 +1805,7 @@ function f_company_field_default_field_instances() {
     'widget' => array(
       'module' => 'serial',
       'settings' => array(),
-      'type' => 'serial',
+      'type' => 'serial_widget_default',
       'weight' => 13,
     ),
   );
@@ -1941,7 +2020,7 @@ function f_company_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -2022,8 +2101,8 @@ function f_company_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-company-field_comp_principal_person'.
-  $field_instances['node-company-field_comp_principal_person'] = array(
+  // Exported field_instance: 'node-company-field_comp_principal_persons'.
+  $field_instances['node-company-field_comp_principal_persons'] = array(
     'bundle' => 'company',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2031,21 +2110,25 @@ function f_company_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'field_collection',
         'settings' => array(
-          'link' => FALSE,
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'view_mode' => 'full',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 5,
+        'type' => 'field_collection_view',
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'entityreference',
+        'module' => 'field_collection',
         'settings' => array(
-          'link' => 1,
+          'view_mode' => 'full',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 7,
+        'type' => 'field_collection_fields',
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2055,22 +2138,22 @@ function f_company_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_comp_principal_person',
-    'label' => 'Huvudmän',
+    'field_name' => 'field_comp_principal_persons',
+    'label' => 'Verkliga huvudmän',
     'required' => 0,
     'settings' => array(
+      'field_lock_multi_values' => array(
+        'disable_reorder' => 1,
+        'lock_previous' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 20,
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 21,
     ),
   );
 
@@ -6190,7 +6273,7 @@ function f_company_field_default_field_instances() {
   t('Godkänd');
   t('Godkänd & signerad');
   t('Har Sedermera Fondkommision fullgod kompetens och erfoderliga resurser för att genomföra aktuellt uppdrag?');
-  t('Huvudmän');
+  t('Huvudman');
   t('Inblandad i konkurser');
   t('Inblandad i likvidationer');
   t('Intressekonflikter');
@@ -6247,7 +6330,9 @@ function f_company_field_default_field_instances() {
   t('Totalt belopp');
   t('VD/Styrelse');
   t('Verklig huvudman');
+  t('Verkliga huvudmän');
   t('Värdering');
+  t('Ägarandel');
   t('Ärendenummer');
   t('Årets resultat');
 

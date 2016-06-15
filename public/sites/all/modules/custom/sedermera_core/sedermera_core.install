@@ -250,9 +250,85 @@ function sedermera_core_update_7014() {
 }
 
 /**
- * Change field type of various amount fields to float instead of int.
+ * Enable login_security if production environment
  */
 function sedermera_core_update_7015() {
+  $environment = variable_get('tadaa_environment');
+
+  if($environment == 'production') {
+    module_enable(array('login_security'));
+  }
+  else {
+    module_disable(array('login_security'));
+  }
+}
+
+/**
+ * Update all investor company to follow the new owner scheme
+ */
+function sedermera_core_update_7016() {
+  $results = db_query("SELECT nid
+    FROM node
+    WHERE type = 'investor_company'")->fetchAllKeyed();
+
+  foreach ($results as $key => $value) {
+    $node = node_load($key);
+
+    if (!empty($node->field_investor_comp_owners[LANGUAGE_NONE])) {
+      foreach ($node->field_investor_comp_owners[LANGUAGE_NONE] as $key => $value) {
+        $collection = entity_create('field_collection_item', array('field_name' => 'field_investor_comp_owner'));
+        $collection->setHostEntity('node', $node);
+        $collection->field_owner_head[LANGUAGE_NONE][0]['target_id'] = $value['target_id'];
+        $collection->save();
+      }
+    }
+  }
+}
+
+/**
+ * Delete old field no longer needed
+ */
+function sedermera_core_update_7017() {
+  field_delete_field('field_investor_comp_owners');
+
+  field_purge_batch(500);
+}
+
+/**
+ * Update all customer companies to follow the new owner scheme
+ */
+function sedermera_core_update_7018() {
+  $results = db_query("SELECT nid
+    FROM node
+    WHERE type = 'company'")->fetchAllKeyed();
+
+  foreach ($results as $key => $value) {
+    $node = node_load($key);
+
+    if (!empty($node->field_comp_principal_person[LANGUAGE_NONE])) {
+      foreach ($node->field_comp_principal_person[LANGUAGE_NONE] as $key => $value) {
+        $collection = entity_create('field_collection_item', array('field_name' => 'field_comp_principal_persons'));
+        $collection->setHostEntity('node', $node);
+        $collection->field_owner_head[LANGUAGE_NONE][0]['target_id'] = $value['target_id'];
+        $collection->save();
+      }
+    }
+  }
+}
+
+/**
+ * Delete old field no longer needed
+ */
+function sedermera_core_update_7019() {
+  field_delete_field('field_comp_principal_person');
+
+  field_purge_batch(500);
+}
+
+/**
+ * Change field type of various amount fields to float instead of int.
+ */
+function sedermera_core_update_7020() {
   // The content type and fields that are going to be changed.
   $fields = array(
     'transaction_history' => array(

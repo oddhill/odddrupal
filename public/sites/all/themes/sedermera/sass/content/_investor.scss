@@ -51,6 +51,17 @@
       text-align: left;
     }
 
+    .field-investor-comp-owner {
+
+      > span.label {
+        @include font-size(1.7);
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.5em;
+        color: $grey;
+      }
+    }
+
     .investor-details,
     .investor-verifications,
     .investor-owners {
