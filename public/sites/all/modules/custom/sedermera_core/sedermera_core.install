@@ -436,7 +436,7 @@ function sedermera_core_update_7021() {
     $fieldname = $field . '_value';
     db_change_field($tablename, $fieldname, $fieldname, array(
       'type' => 'numeric',
-      'precision' => 13,
+      'precision' => 5,
       'scale' => 2,
       'not null' => FALSE,
     ));
