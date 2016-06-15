@@ -517,7 +517,7 @@ function f_investor_field_default_field_bases() {
     'module' => 'number',
     'settings' => array(
       'decimal_separator' => ',',
-      'precision' => 5,
+      'precision' => 10,
       'scale' => 2,
     ),
     'translatable' => 0,
