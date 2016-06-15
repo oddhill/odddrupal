@@ -421,3 +421,70 @@ function sedermera_core_update_7020() {
     }
   }
 }
+
+/**
+ * Change owner amount field from float to decimal.
+ */
+function sedermera_core_update_7021() {
+  $field = 'field_owner_amount';
+  $bundles = array('field_investor_comp_owner', 'field_comp_principal_persons');
+
+  // Update the storage tables
+  $tables = array('field_data', 'field_revision');
+  foreach ($tables as $table) {
+    $tablename = $table . '_' . $field;
+    $fieldname = $field . '_value';
+    db_change_field($tablename, $fieldname, $fieldname, array(
+      'type' => 'numeric',
+      'precision' => 13,
+      'scale' => 2,
+      'not null' => FALSE,
+    ));
+  }
+
+  // Fetch the current field configuration
+  $field_config = db_query("SELECT data FROM {field_config} WHERE field_name = :field_name", array(
+    ':field_name' => $field,
+  ))->fetchObject();
+  $data = unserialize($field_config->data);
+
+  // Update the settings entry
+  $data['settings'] = array(
+    'precision' => 5,
+    'scale' => 2,
+    'decimal_separator' => ',',
+  );
+
+  // Store the new field config, update the field type at the same time
+  db_update('field_config')
+    ->fields(array(
+      'data' => serialize($data),
+      'type' => 'number_decimal',
+    ))
+    ->condition('field_name', $field)
+    ->execute();
+
+  foreach ($bundles as $bundle) {
+    // Fetch the field instance data
+    $field_config_instance = db_query("SELECT data FROM {field_config_instance}
+      WHERE field_name = :field_name
+      AND entity_type = 'field_collection'
+      AND bundle = :bundle", array(
+        ':field_name' => $field,
+        ':bundle' => $bundle,
+      ))
+      ->fetchObject();
+    $data = unserialize($field_config_instance->data);
+
+    // Update it with the new display type
+    $data['display']['default']['type'] = 'number_decimal';
+
+    // Store it back to the database
+    db_update('field_config_instance')
+      ->fields(array('data' => serialize($data)))
+      ->condition('field_name', $field)
+      ->condition('entity_type', 'field_collection')
+      ->condition('bundle', $bundle)
+      ->execute();
+  }
+}
