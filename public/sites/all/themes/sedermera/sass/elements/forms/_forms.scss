@@ -1,0 +1,686 @@
+form {
+
+  .form-required {
+    color: $wine;
+    font-weight: 700;
+  }
+
+  .form-sidebar {
+    background: $wool;
+    padding: 20px;
+    width: 30%;
+
+    .form-text {
+      width: 100%;
+    }
+
+    .group-cap-rais-details {
+
+      .form-text {
+        width: 65%;
+      }
+    }
+  }
+
+  .form-body {
+    background: $snow;
+    overflow: hidden;
+    padding: 20px;
+    width: 70%;
+  }
+
+  .form-actions {
+
+    .submit-wrapper {
+      display: inline-block;
+
+      .form-submit {
+        margin: 0 10px;
+      }
+    }
+
+    .page-node-add &,
+    .page-node-edit &,
+    .page-node-revisions-edit & {
+      width: 50%;
+      min-width: 700px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+  }
+
+  .messages {
+    padding: 10px;
+    color: $snow;
+    font-weight: 500;
+    margin: 10px 0;
+
+    &.status {
+      background: $cactus;
+    }
+
+    &.warning {
+      background: $mustard;
+    }
+
+    &.error {
+      background: $wine;
+    }
+  }
+
+  .field-suffix {
+    font-weight: 500;
+    margin-left: 5px;
+  }
+
+  .field-add-more-submit {
+    @include button($dark-grey, add-mini, small);
+    background-position: 11px 7px;
+  }
+}
+
+fieldset {
+
+  .container-inline-date {
+    position: relative;
+    width: 100%;
+    margin: 0;
+
+    .form-item {
+      margin: 0;
+      width: 100%;
+
+      .description {
+        display: none;
+      }
+
+      label {
+        margin: 10px 0;
+        text-align: left;
+        font-weight: 700;
+        @include font-size(1.2,1.5);
+        height: 18px;
+
+        .form-required {
+          display: block;
+          float: left;
+          width: 18px;
+          height: 18px;
+          @include svg-bg(required, transparent, 0 center);
+          color: transparent;
+          font-size: 0;
+          overflow: hidden;
+          text-indent: 100px;
+          line-height: 0px;
+        }
+      }
+
+      .date-padding {
+        width: 100%;
+        padding: 0;
+      }
+
+      .form-text {
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.filter-item {
+
+  .form-item {
+
+    &.form-type-select {
+
+      label {
+        display: block;
+      }
+    }
+  }
+}
+
+.field-type-text-with-summary,
+.field-type-text-long {
+
+  .filter-wrapper {
+    display: none;
+  }
+}
+
+.form-wrapper {
+  margin-bottom: 4rem;
+  clear: both;
+}
+
+.form-item {
+  margin-bottom: 1em;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: $grey;
+    padding-bottom: 0.5em;
+    @include font-size(1.6,1.3);
+    border-bottom: 2px solid $wool;
+    margin: 3rem 0 1em;
+
+    &.option {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-weight: 400;
+      color: $coffee;
+      @include font-size(1.4,1);
+      border-bottom: 0px none;
+    }
+  }
+
+  .description {
+    @include font-size(1.2,1.3);
+    font-style: italic;
+    margin-top: 3px;
+    color: $grey;
+  }
+}
+
+// Overrides
+// Make address fields look prettier :)
+div.street-block,
+div.addressfield-container-inline {
+  clear: both;
+
+  > div.form-item {
+    float: left;
+    margin-right: 1em;
+  }
+}
+
+// Layout adjustments
+#person-node-form {
+
+  #edit-field-user-branches {
+
+    &:before {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+#investor-private-node-form {
+
+  #edit-field-invest-pvt-notes {
+
+    &:before {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+.node-company-form {
+
+  #edit-field-comp-principal-persons {
+    padding-top: 2em;
+    margin-bottom: 3em;
+
+    table td {
+      display: flex;
+      align-items: center;
+      height: 60px;
+
+      > div {
+        padding: 0 10px 0 0;
+      }
+
+      .ajax-new-content {
+        display: flex !important;
+        align-items: center;
+        height: 60px;
+        padding: 0;
+
+        > div {
+          padding: 0 10px 0 0;
+        }
+
+        .submit-wrapper {
+          position: relative;
+          padding-right: 0;
+        }
+      }
+
+      .submit-wrapper {
+        position: relative;
+        padding-right: 0;
+
+        .form-submit {
+          @include button($dark-grey, delete, small);
+          margin: 0;
+        }
+
+        .ajax-progress {
+          display: block;
+          position: absolute;
+          left: 0px;
+          right: 0px;
+          top: 0;
+          width: 100%;
+          margin: 0;
+          border-radius: 24px;
+          cursor: pointer;
+          background: shade($dark-grey,30%);
+          height: 100%;
+          text-align: center;
+          padding-top: 4px;
+
+          .throbber {
+            @include throbber;
+            margin: 0 auto;
+            float: none;
+          }
+
+          .message {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .submit-wrapper {
+      display: inline-block;
+      position: relative;
+      padding-right: 0;
+
+      .form-submit {
+        margin: 0;
+      }
+
+      .ajax-progress {
+        display: block;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px;
+        cursor: pointer;
+        background: shade($dark-grey,30%);
+        height: 100%;
+        text-align: center;
+        padding-top: 4px;
+
+        .throbber {
+          @include throbber;
+          margin: 0 auto;
+          float: none;
+        }
+
+        .message {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.node-investor_company-form {
+
+  #edit-field-investor-comp-owner {
+    padding-top: 2em;
+    margin-bottom: 3em;
+
+    table td {
+      display: flex;
+      align-items: center;
+      height: 60px;
+
+      > div {
+        padding: 0 10px 0 0;
+      }
+
+      .ajax-new-content {
+        display: flex !important;
+        align-items: center;
+        height: 60px;
+        padding: 0;
+
+        > div {
+          padding: 0 10px 0 0;
+        }
+
+        .submit-wrapper {
+          position: relative;
+          padding-right: 0;
+        }
+      }
+
+      .submit-wrapper {
+        position: relative;
+        padding-right: 0;
+
+        .form-submit {
+          @include button($dark-grey, delete, small);
+          margin: 0;
+        }
+
+        .ajax-progress {
+          display: block;
+          position: absolute;
+          left: 0px;
+          right: 0px;
+          top: 0;
+          width: 100%;
+          margin: 0;
+          border-radius: 24px;
+          cursor: pointer;
+          background: shade($dark-grey,30%);
+          height: 100%;
+          text-align: center;
+          padding-top: 4px;
+
+          .throbber {
+            @include throbber;
+            margin: 0 auto;
+            float: none;
+          }
+
+          .message {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .submit-wrapper {
+      display: inline-block;
+      position: relative;
+      padding-right: 0;
+
+      .form-submit {
+        margin: 0;
+      }
+
+      .ajax-progress {
+        display: block;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px;
+        cursor: pointer;
+        background: shade($dark-grey,30%);
+        height: 100%;
+        text-align: center;
+        padding-top: 4px;
+
+        .throbber {
+          @include throbber;
+          margin: 0 auto;
+          float: none;
+        }
+
+        .message {
+          display: none;
+        }
+      }
+    }
+  }
+
+  #edit-field-investor-comp-notes {
+    margin-bottom: 0;
+
+    .form-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#investor-private-node-form {
+
+  #edit-field-invest-pvt-address {
+    margin-bottom: 0;
+
+    .form-wrapper {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Remove unwanted form-wrapper margins
+#person-node-form {
+
+  .field-name-field-user-ssn,
+  .field-name-field-user-mail,
+  .field-name-field-user-phone,
+  .field-name-field-user-cell,
+  .field-name-field-user-fax {
+    margin: 0;
+  }
+}
+
+.node-investor_company-form {
+
+  .field-name-field-shared-cust-id,
+  .field-name-field-investor-comp-org-nbr,
+  .field-name-field-shared-cont-pers,
+  .field-name-field-investor-comp-real,
+  .field-name-field-investor-comp-owners {
+    margin: 0;
+  }
+}
+
+#investor-private-node-form {
+
+  .field-name-field-shared-cust-id,
+  .field-name-field-shared-cont-pers {
+    margin: 0;
+  }
+}
+
+#offer-node-form {
+
+  .group-offer-types {
+    margin: 0; // Improve layout
+
+    .form-wrapper {
+      margin: 0;
+    }
+  }
+
+  .group-offer-define {
+
+    .group-offer-type-fe,
+    .group-offer-type-le,
+    .group-offer-type-pp,
+    .group-offer-type-re,
+    .group-offer-type-bl,
+    .group-offer-type-bp {
+
+      .form-wrapper {
+
+      }
+    }
+
+    .group-offer-type-fe {
+
+      .field-name-field-offer-type-fe-warrant-type,
+      .field-name-field-offer-type-fe-terms {
+        margin-bottom: 4rem;
+      }
+    }
+
+    .group-offer-type-le {
+
+      .field-name-field-offer-type-le-warrant-type,
+      .field-name-field-offer-type-le-terms {
+        margin-bottom: 4rem;
+      }
+    }
+  }
+
+  .field-name-field-offer-text {
+    margin-top: 0;
+
+    label {
+      margin-top: 0;
+    }
+  }
+
+  .field-name-field-offer-files {
+    margin-bottom: 0;
+
+    .form-wrapper {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Details two-column layouts
+#person-node-form {
+
+  .form-item-title,
+  .field-name-field-user-ssn,
+  .field-name-field-user-mail,
+  .field-name-field-user-phone,
+  .field-name-field-user-cell,
+  .field-name-field-user-fax {
+    @include span-columns(6 of 12);
+    @include omega(2n);
+    clear: none;
+  }
+}
+
+.node-investor_company-form {
+
+  .field-name-field-shared-cust-id,
+  .form-item-title,
+  .field-name-field-investor-comp-org-nbr,
+  .field-name-field-shared-cont-pers,
+  .field-name-field-investor-comp-real,
+  .field-name-field-investor-comp-owners {
+    @include span-columns(6 of 12);
+    @include omega(2n);
+    clear: none;
+  }
+}
+
+#investor-private-node-form {
+
+  .field-name-field-shared-cust-id,
+  .field-name-field-shared-cont-pers {
+    @include span-columns(6 of 12);
+    @include omega(3n);
+    clear: none;
+  }
+}
+
+// Investor type selector (Add investor)
+.page-avtalsparter-skapa {
+
+  ul.create-type-list {
+    display: block;
+    width: 50%;
+    margin: 40px auto;
+    min-width: 700px;
+    list-style: none;
+    border: 1px solid $wool;
+    background: tint($light-grey,60%);
+    padding: 2em 0;
+
+    li {
+      display: block;
+      background: $snow;
+      margin-bottom: 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      display: block;
+      border: 1px solid $wool;
+      padding: 1em;
+      margin: 0 -1px;
+
+      .title {
+        font-weight: 700;
+        display: block;
+      }
+
+      &:hover {
+        border-color: $cloudy;
+      }
+    }
+  }
+}
+
+// Ajax progress styling for add related document/appendix
+.field-type-entityreference {
+
+  .submit-wrapper {
+
+    .form-submit {
+      margin-right: 0;
+    }
+
+    input {
+      @include button($dark-grey, add-mini, small);
+      background-position: 11px 7px;
+    }
+  }
+
+  // Inline entity form specifics
+  .ief-form {
+
+    // Buttons
+    .submit-wrapper {
+
+      input#edit-field-invest-cont-person-und-form-actions-ief-add-save {
+        @include button($dark-grey, check-mini, small);
+        background-position: 11px 7px;
+      }
+
+      input#edit-field-invest-cont-person-und-form-actions-ief-add-cancel {
+        @include button($dark-grey, cross-mini, small);
+        background-position: 11px 7px;
+      }
+    }
+  }
+
+  .ajax-progress {
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 24px;
+    background: shade($dark-grey,30%);
+    border-radius: 12px;
+    padding: 2px;
+    color: $snow;
+
+    .message {
+      padding-left: 5px;
+      @include font-size(1.2);
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.ajax-progress {
+
+  .message {
+    padding-left: 25px;
+  }
+}

@@ -1,0 +1,144 @@
+// Dashboard
+.page-oversikt {
+
+  .main-content {
+
+    .content-column {
+      background-color: transparent;
+      margin-right: 30px;
+      width: 70%;
+    }
+  }
+
+  .content-sidebar {
+    background: transparent;
+    margin-top: 8px;
+    width: 20%;
+
+    .sidebar-second-icon {
+      display: none;
+    }
+  }
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  .table-wrapper {
+    overflow: visible;
+    width: 100%;
+  }
+
+  // Activity (Aktivitet)
+  .activities-wrapper {
+
+    h2 {
+      @include font-size(2.0);
+      background: transparent;
+      border-bottom: 1px solid $wool;
+      padding: 0 0 15px 0;
+      text-align: left;
+      position: relative;
+      padding-left: 30px;
+      line-height: 18px;
+
+      // Activity icon
+      &:before {
+        @include svg-bg(activity);
+        content: '';
+        height: 20px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 20px;
+      }
+    }
+
+    // Activity message
+    .entity-message {
+      margin-top: 1px;
+
+      &:nth-child(odd) {
+        background: $snow;
+      }
+
+      &:nth-child(even) {
+        background: #fafbfc;
+      }
+
+      p {
+        @include font-size(1.4);
+      }
+
+      // Activity date
+      .activity-date {
+
+        p {
+         @include font-size(1.2);
+        }
+      }
+    }
+  }
+}
+
+// Expiring offers wrapper (Utgående erbjudande)
+.offers-db-wrapper {
+  margin-bottom: 70px;
+}
+
+// Expiring offers
+.offers-db-header {
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 10px;
+
+  // Expiring transaction icon (Utgående transaktion)
+  &:before {
+    @include svg-bg(offers_dark_grey);
+    content: '';
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 6px;
+    width: 20px;
+  }
+}
+
+// Time remaning date (Löptid)
+.views-field-field-cap-rais-date {
+  width: 20%;
+
+  a {
+    @include status-button($honey);
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+// Expiring controls (Utgående kontroller)
+.block-sedermera-dashboard-verifications {
+
+  h2 {
+    @include font-size(2.0);
+    padding: 0 0 15px 0;
+    text-align: left;
+    position: relative;
+    padding-left: 30px;
+    line-height: 18px;
+
+    // Activity icon
+    &:before {
+      @include svg-bg(clock);
+      content: '';
+      height: 20px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 20px;
+    }
+  }
+
+  th {
+    padding: 10px 0px 10px 10px;
+  }
+}

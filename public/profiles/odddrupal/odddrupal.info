@@ -6,7 +6,6 @@ version = 7.x-2.10
 ; Core modules
 dependencies[] = block
 dependencies[] = contextual
-dependencies[] = dblog
 dependencies[] = field_ui
 dependencies[] = help
 dependencies[] = image

@@ -1,0 +1,100 @@
+// Company node
+.node-company {
+
+  &.view-mode-full {
+
+    .company-logo {
+      width: 120px;
+      margin: 0 0 30px;
+      float: right;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .company-details {
+
+      .detail {
+        @include node-section-detail;
+        @include omega();
+      }
+    }
+
+    &.no-logo {
+
+      .company-details {
+
+        .detail {
+          @include node-section-detail;
+          @include omega(2n);
+        }
+      }
+    }
+
+    .company-contacts,
+    .company-owners {
+
+      .field-comp-principal-persons {
+
+        > span.label {
+          @include font-size(1.7);
+          display: block;
+          font-weight: 500;
+          margin-bottom: 0.5em;
+          color: $grey;
+        }
+      }
+
+      .detail {
+        @include node-section-detail;
+
+        a {
+          margin-right: 2px;
+
+          &:after {
+            content: ',';
+          }
+
+          &:last-child {
+
+            &:after {
+              content: '';
+            }
+          }
+        }
+      }
+    }
+
+    .company-other {
+
+      .other {
+        @include node-section-detail;
+        text-align: left;
+
+        span.label {
+          display: block;
+          float: none;
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+  }
+}
+
+// Form fields styling
+.group-proposal-details {
+
+  .form-type-managed-file {
+    overflow: hidden;
+  }
+}
+
+.companies-list {
+  @include content-holder;
+}
+
+.page-node-add-company .content-wrapper  {
+  @include content-holder(edit);
+}

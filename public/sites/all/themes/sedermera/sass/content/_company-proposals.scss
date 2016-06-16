@@ -1,0 +1,8 @@
+.company-proposals {
+  padding: 40px;
+
+  .add-proposal {
+    @include button($dark-grey,add);
+    margin-bottom: 40px;
+  }
+}

@@ -1,0 +1,622 @@
+<?php
+/**
+ * @file
+ * A update module that brings sedermera intranät up to date
+ */
+
+/**
+ * Runs all update functions on install.
+ */
+function sedermera_update_install() {
+  sedermera_update_update_7001();
+  sedermera_update_update_7002();
+  sedermera_update_update_7003();
+  sedermera_update_update_7004();
+  sedermera_update_update_7005();
+  sedermera_update_update_7006();
+  sedermera_update_update_7007();
+  sedermera_update_update_7008();
+  sedermera_update_update_7009();
+}
+
+/**
+ * Menu items, removes no longer used.
+ * @return string message of success.
+ */
+function sedermera_update_update_7001() {
+  $result = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = :menu_name", array(':menu_name' => 'main-menu'));
+  $done = FALSE;
+
+  foreach ($result as $record) {
+    if ($link = menu_link_load($record->mlid)) {
+      if (strcmp($link['link_title'], 'Administrera dokument') == 0 && strcmp($link['link_path'], 'dokument/admin') == 0) {
+        if (!$done) {
+          menu_link_delete($record->mlid);
+          $done = TRUE;
+        }
+      }
+      elseif (strcmp($link['link_title'], 'Dokument logg') == 0 && strcmp($link['link_path'], 'dokument/log') == 0) {
+        menu_link_delete($record->mlid);
+      }
+    }
+  }
+
+  return t('Menu links removed successfully');
+}
+
+/**
+ * User roles, removes no longer used.
+ * @return string message of success.
+ */
+function sedermera_update_update_7002() {
+  user_role_delete('Dokument moderator');
+  user_role_delete('Dokument skapare');
+
+  return t('User roles removed successfully');
+}
+
+/**
+ * Menu items, removes no longer used.
+ * @return string message of success.
+ */
+function sedermera_update_update_7003() {
+  $result = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = :menu_name", array(':menu_name' => 'main-menu'));
+  $done = FALSE;
+
+  foreach ($result as $record) {
+    if ($link = menu_link_load($record->mlid)) {
+      if ($link['hidden']) {
+        menu_link_delete($record->mlid);
+      }
+    }
+  }
+
+  return t('Menu links removed successfully');
+}
+
+/**
+ * Delete unused fields
+ * @return null
+ */
+function sedermera_update_update_7004() {
+  field_delete_field('field_control_approved');
+  field_delete_field('field_control_date');
+  field_delete_field('field_control_files');
+  field_delete_field('field_shared_ctrl_comp');
+  field_delete_field('field_shared_ctrl_credit');
+  field_delete_field('field_shared_ctrl_eu');
+  field_delete_field('field_shared_ctrl_ext');
+  field_delete_field('field_shared_ctrl_id');
+  field_delete_field('field_shared_ctrl_id_real');
+  field_delete_field('field_shared_ctrl_ovr');
+  field_delete_field('field_shared_ctrl_ptv');
+  field_delete_field('field_shared_ctrl_reg');
+  field_delete_field('field_shared_ctrl_upp');
+
+  field_purge_batch(100);
+}
+
+/**
+ * Delete wrong fields
+ * @return null
+ */
+function sedermera_update_update_7005() {
+  field_delete_field('field_offer_newem');
+  field_delete_field('field_offer_signcommit');
+  field_delete_field('field_offer_pp');
+  field_delete_field('field_offer_warrant');
+  field_delete_field('field_offer_loan');
+
+  field_purge_batch(100);
+}
+
+/**
+ * Rerun update 7004 and 7005
+ * @return [type] [description]
+ */
+function sedermera_update_update_7006() {
+  sedermera_update_update_7004();
+  sedermera_update_update_7005();
+}
+
+/**
+ * Removes unused field
+ * @return null
+ */
+function sedermera_update_update_7007() {
+  field_delete_field('field_shared_ctrl_nid');
+
+  field_purge_batch(100);
+}
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7008() {
+  field_delete_field('field_shared_fax');
+  field_delete_field('field_shared_cell');
+  field_delete_field('field_shared_email');
+  field_delete_field('field_shared_phone');
+
+  field_purge_batch(100);
+}
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7009() {
+  field_delete_field('field_manual_appendix');
+  field_delete_field('field_manual_relation');
+  field_delete_field('field_manual_type');
+
+  field_purge_batch(100);
+}
+
+/**
+ * Removes unused fields and content types
+ * @return null
+ */
+function sedermera_update_update_7010() {
+  field_delete_field('field_ctrl_app_comp');
+  field_delete_field('field_ctrl_app_credit');
+  field_delete_field('field_ctrl_app_eu');
+  field_delete_field('field_ctrl_app_ext');
+  field_delete_field('field_ctrl_app_id');
+  field_delete_field('field_ctrl_app_oth');
+  field_delete_field('field_ctrl_app_ptv');
+  field_delete_field('field_ctrl_app_upp');
+  field_delete_field('field_ctrl_date_comp');
+  field_delete_field('field_ctrl_date_credit');
+  field_delete_field('field_ctrl_date_eu');
+  field_delete_field('field_ctrl_date_ext');
+  field_delete_field('field_ctrl_date_id');
+  field_delete_field('field_ctrl_date_oth');
+  field_delete_field('field_ctrl_date_ptv');
+  field_delete_field('field_ctrl_date_upp');
+  field_delete_field('field_ctrl_files_comp');
+  field_delete_field('field_ctrl_files_credit');
+  field_delete_field('field_ctrl_files_eu');
+  field_delete_field('field_ctrl_files_ext');
+  field_delete_field('field_ctrl_files_id');
+  field_delete_field('field_ctrl_files_oth');
+  field_delete_field('field_ctrl_files_ptv');
+  field_delete_field('field_ctrl_files_upp');
+  field_delete_field('field_ctrl_note_comp');
+  field_delete_field('field_ctrl_note_credit');
+  field_delete_field('field_ctrl_note_eu');
+  field_delete_field('field_ctrl_note_ext');
+  field_delete_field('field_ctrl_note_id');
+  field_delete_field('field_ctrl_note_oth');
+  field_delete_field('field_ctrl_note_ptv');
+  field_delete_field('field_ctrl_note_upp');
+  field_delete_field('field_ctrl_ok');
+  field_delete_field('field_ctrl_app_id_real');
+  field_delete_field('field_ctrl_app_reg');
+  field_delete_field('field_ctrl_date_id_real');
+  field_delete_field('field_ctrl_date_reg');
+  field_delete_field('field_ctrl_files_id_real');
+  field_delete_field('field_ctrl_files_reg');
+  field_delete_field('field_ctrl_note_id_real');
+  field_delete_field('field_ctrl_note_reg');
+  field_delete_field('field_ctrl_id_app');
+  field_delete_field('field_ctrl_id_date');
+  field_delete_field('field_ctrl_id_files');
+  field_delete_field('field_ctrl_id_notes');
+  field_delete_field('field_invest_pvt_ctrl');
+  field_delete_field('field_ctrl_private_ua');
+  field_delete_field('field_ctrl_private_ptv');
+  field_delete_field('field_ctrl_private_cred');
+  field_delete_field('field_ctrl_private_er');
+  field_delete_field('field_ctrl_private_oth');
+  field_delete_field('field_investor_comp_ctrl');
+
+  node_type_delete('kontrolluppgift_id');
+  node_type_delete('kontrolluppgift_privat');
+  node_type_delete('kontrolluppgift');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7011() {
+  field_delete_field('field_invest_pvt_id');
+  field_delete_field('field_investor_comp_id');
+  field_delete_field('field_investor_comp_reg_nbr');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7012() {
+  field_delete_field('field_user_location');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Delete unused views
+ * @return null
+ */
+function sedermera_update_update_7013() {
+  ctools_include('export');
+  $view = ctools_export_crud_load('views_view', 'erbjudande');
+  if ($view) {
+    $view->delete();
+  }
+
+  $view = ctools_export_crud_load('views_view', 'avtalsparter');
+  if ($view) {
+    $view->delete();
+  }
+
+  $view = ctools_export_crud_load('views_view', 'offers');
+  if ($view) {
+    $view->delete();
+  }
+
+  $view = ctools_export_crud_load('views_view', 'transaktions_historia');
+  if ($view) {
+    $view->delete();
+  }
+
+  $view = ctools_export_crud_load('views_view', 'kundansvarig');
+  if ($view) {
+    $view->delete();
+  }
+}
+
+/**
+ * Removes unused fields and entity types
+ * @return null
+ */
+function sedermera_update_update_7014() {
+  field_delete_field('field_comp_cont_cell');
+  field_delete_field('field_comp_cont_fax');
+  field_delete_field('field_comp_cont_mail');
+  field_delete_field('field_comp_cont_name');
+  field_delete_field('field_comp_cont_phone');
+  field_delete_field('field_invest_comp_id');
+  field_delete_field('field_invest_comp_name');
+  field_delete_field('field_invest_comp_own');
+  field_delete_field('field_invest_cont_person');
+  field_delete_field('field_invest_cont_person_prvt');
+  field_delete_field('field_invest_lead_cont');
+  field_delete_field('field_invest_pers_first_name');
+  field_delete_field('field_invest_pers_id');
+  field_delete_field('field_invest_pers_last_name');
+  field_delete_field('field_lead_first_name');
+  field_delete_field('field_lead_last_name');
+  field_delete_field('field_shared_address');
+  field_delete_field('field_shared_ctrl');
+  field_delete_field('field_shared_ctrl_pvt');
+  field_delete_field('field_shared_custresp');
+  field_delete_field('field_shared_industries');
+  field_delete_field('field_shared_interests');
+  field_delete_field('field_shared_inv_id');
+  field_delete_field('field_shared_lead');
+  field_delete_field('field_shared_notes');
+  field_delete_field('field_shared_temp');
+  field_delete_field('field_shared_veri_appr');
+  field_delete_field('field_shared_veri_expire');
+
+  $entity_types = EntityType::loadAll();
+
+  foreach ($entity_types as $entity_type) {
+    $entity_type->delete();
+  }
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removes unused fields and content types
+ * @return null
+ */
+function sedermera_update_update_7015() {
+  field_delete_field('field_cap_rais_comp');
+  field_delete_field('field_cap_rais_date');
+  field_delete_field('field_cap_rais_estim');
+  field_delete_field('field_cap_rais_file');
+  field_delete_field('field_cap_rais_goal_com');
+  field_delete_field('field_cap_rais_goal_guar');
+  field_delete_field('field_cap_rais_goal_loan');
+  field_delete_field('field_cap_rais_goal_newem');
+  field_delete_field('field_cap_rais_goal_oth');
+  field_delete_field('field_cap_rais_goal_pp');
+  field_delete_field('field_cap_rais_goal_signcommit');
+  field_delete_field('field_cap_rais_goal_tot');
+  field_delete_field('field_cap_rais_goal_warrant');
+  field_delete_field('field_cap_rais_info_mail');
+  field_delete_field('field_cap_rais_post');
+  field_delete_field('field_cap_rais_post_units');
+  field_delete_field('field_cap_rais_rate');
+  field_delete_field('field_cap_rais_stock_no');
+  field_delete_field('field_cap_rais_text_def');
+  field_delete_field('field_cap_rais_type');
+  field_delete_field('field_cap_rais_units_no');
+  field_delete_field('field_cap_rais_vol');
+  field_delete_field('field_cap_rais_vol_units');
+
+  node_type_delete('capital_raising');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removes unused fields
+ * @return null
+ */
+function sedermera_update_update_7016() {
+  field_delete_field('field_invest_pvt_ctrl_cred');
+  field_delete_field('field_invest_pvt_ctrl_ext');
+  field_delete_field('field_invest_pvt_ctrl_oth');
+  field_delete_field('field_invest_pvt_ctrl_ptv');
+  field_delete_field('field_invest_pvt_ctrl_ua');
+  field_delete_field('field_investor_comp_ctrl_cred');
+  field_delete_field('field_investor_comp_ctrl_oth');
+  field_delete_field('field_investor_comp_ctrl_ptv');
+  field_delete_field('field_investor_comp_ctrl_reg');
+  field_delete_field('field_investor_comp_ctrl_ua');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Clear database of all old nodes except manual and documents to clear errors
+ * @return String count deleted nodes
+ */
+function sedermera_update_update_7017() {
+  $result = db_query("SELECT nid FROM {node} WHERE type <> 'manual' AND type <> 'document'")->fetchAll();
+
+  foreach ($results as $result) {
+    $nids[] = $result->nid;
+  }
+
+  if (!empty($nids)) {
+    node_delete_multiple($nids);
+    return t('Deleted %count nodes.', array('%count' => count($nids)));
+  }
+}
+
+/**
+ * Remove the erbjudande node type.
+ */
+function sedermera_update_update_7018() {
+  node_type_delete('erbjudande');
+}
+
+/**
+ * Remove the Investor bolag and privat node types.
+ */
+function sedermera_update_update_7019() {
+  node_type_delete('investor_bolag');
+  node_type_delete('investor_privat');
+}
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7020() {
+  field_delete_field('field_transaction_ap_aggrement');
+  field_delete_field('field_transaction_ap_to_sign');
+  field_delete_field('field_transaction_ap_signed');
+  field_delete_field('field_transaction_ap_signed_date');
+  field_delete_field('field_investor_comp_real');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Remove the Transaction investor type.
+ */
+function sedermera_update_update_7021() {
+  node_type_delete('transaktion_ap');
+}
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7022() {
+  field_delete_field('field_transaction_ap_ctrl_cred');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7023() {
+  field_delete_field('field_transaction_agree_sign_dat');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7024() {
+  field_delete_field('field_transaction_amount');
+  field_delete_field('field_transaction_amount_guar');
+  field_delete_field('field_transaction_company');
+  field_delete_field('field_transaction_id');
+  field_delete_field('field_transaction_invest_name');
+  field_delete_field('field_transaction_investor_id');
+  field_delete_field('field_transaction_loan');
+  field_delete_field('field_transaction_max_invest');
+  field_delete_field('field_transaction_newem');
+  field_delete_field('field_transaction_pp');
+  field_delete_field('field_transaction_title');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Add field conditional state configuration for persons.
+ */
+function sedermera_update_update_7025() {
+  db_insert('field_conditional_states_group')
+    ->fields(array(
+      'group_id' => 1,
+      'state' => 'optional',
+      'entity_type' => 'node',
+      'bundle' => 'person',
+      'field_name' => 'field_user_ssn',
+      'type' => 'and',
+    ))
+    ->execute();
+  db_insert('field_conditional_states_group')
+    ->fields(array(
+      'group_id' => 2,
+      'state' => 'optional',
+      'entity_type' => 'node',
+      'bundle' => 'person',
+      'field_name' => 'field_user_mail',
+      'type' => 'and',
+    ))
+    ->execute();
+
+  db_insert('field_conditional_state')
+    ->fields(array(
+      'id' => 1,
+      'group_id' => 1,
+      'control_field' => 'field_user_lead',
+      'trigger_state' => 'checked',
+      'trigger_value' => 1,
+    ))
+    ->execute();
+
+  db_insert('field_conditional_state')
+    ->fields(array(
+      'id' => 2,
+      'group_id' => 2,
+      'control_field' => 'field_user_lead',
+      'trigger_state' => 'checked',
+      'trigger_value' => 1,
+    ))
+    ->execute();
+}
+
+/**
+ * Removes unused fields
+ */
+function sedermera_update_update_7026() {
+  field_delete_field('field_transaction_interested_day');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removed the "Garanatiåtagande typ" field.
+ */
+function sedermera_update_update_7027() {
+  field_delete_field('field_offer_type_fe_warrant_type');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Removed the remaining "Garanatiåtagande typ" field.
+ */
+function sedermera_update_update_7028() {
+  field_delete_field('field_offer_type_le_warrant_type');
+
+  field_purge_batch(1000);
+}
+
+/**
+ * Disable and uninstall Auto entity label module.
+ */
+function sedermera_update_update_7029() {
+  module_disable(array('auto_entitylabel'));
+  drupal_uninstall_modules(array('auto_entitylabel'));
+}
+
+/**
+ * Remove controls referred from the field_investor_shared_ctrl_oth field.
+ */
+function sedermera_update_update_7030() {
+  $nids = db_query("SELECT field_investor_shared_ctrl_oth_target_id FROM field_data_field_investor_shared_ctrl_oth")->fetchCol();
+  node_delete_multiple($nids);
+
+  return format_plural(count($nids), 'Deleted 1 control node.', 'Deleted @count control nodes.');
+}
+
+/**
+ * Remove the field for "Övriga dokument/tillägg" controls.
+ */
+function sedermera_update_update_7031() {
+  field_delete_field('field_investor_shared_ctrl_oth');
+  field_purge_batch(1000);
+}
+
+/**
+ * Remove the field for "Teckningstid" on offers.
+ */
+function sedermera_update_update_7032() {
+  field_delete_field('field_offer_time');
+  field_purge_batch(1000);
+}
+
+/**
+ * Remove the old "Teckningstid" field for part offers.
+ */
+function sedermera_update_update_7033() {
+  field_delete_field('field_offer_type_bp_time');
+  field_delete_field('field_offer_type_fe_time');
+  field_delete_field('field_offer_type_le_time');
+  field_delete_field('field_offer_type_pp_time');
+  field_delete_field('field_offer_type_re_time');
+  field_purge_batch(1000);
+}
+
+/**
+ * Remove the old amount fields from part offers.
+ */
+function sedermera_update_update_7034() {
+  field_delete_field('field_offer_type_bl_sum');
+  field_delete_field('field_offer_type_bp_sum');
+  field_delete_field('field_offer_type_fe_sum');
+  field_delete_field('field_offer_type_le_sum');
+  field_delete_field('field_offer_type_pp_sum');
+  field_delete_field('field_offer_type_re_sum');
+  field_purge_batch(1000);
+}
+
+/**
+ * Remove the old percentage fields from part offers.
+ */
+function sedermera_update_update_7035() {
+  field_delete_field('field_offer_type_fe_sign');
+  field_delete_field('field_offer_type_fe_warrant');
+  field_delete_field('field_offer_type_le_sign');
+  field_delete_field('field_offer_type_le_warrant');
+  field_delete_field('field_offer_type_pp_sign');
+  field_delete_field('field_offer_type_re_sign');
+  field_purge_batch(1000);
+}
+
+/**
+ * Disable the default user administration view.
+ */
+function sedermera_update_update_7036() {
+  $status = variable_get('views_defaults', array());
+  $status['administration_users'] = TRUE;
+  variable_set('views_defaults', $status);
+}
+
+/**
+ * Change role IDs according to the production environment.
+ */
+function sedermera_update_update_7037() {
+  db_query("UPDATE {role} SET rid = 6 WHERE name = 'Användare'");
+  db_query("UPDATE {role} SET rid = 7 WHERE name = 'Dokumentmoderator'");
+  db_query("UPDATE {role} SET rid = 8 WHERE name = 'Dokumentskapare'");
+}

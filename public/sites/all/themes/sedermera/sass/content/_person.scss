@@ -1,0 +1,67 @@
+.node-person {
+
+  &.view-mode-full {
+
+    .node-section {
+      @include row();
+      padding-bottom: 30px;
+      border-bottom: 2px solid $light-grey;
+      margin-bottom: 30px;
+    }
+
+    .person-stakeholder {
+      overflow: hidden;
+
+      h3 {
+        display: block;
+        float: left;
+        margin-right: 1em;
+        line-height: 34px;
+      }
+
+      ul {
+        display: block;
+        list-style: none;
+
+        li {
+          display: block;
+          float: left;
+          margin-right: 0.5em;
+
+          a {
+            @include button;
+          }
+        }
+      }
+    }
+
+    .person-details {
+
+      .detail {
+        @include node-section-detail;
+      }
+    }
+
+    .person-other {
+
+      .other {
+        @include node-section-detail;
+        text-align: left;
+
+        span.label {
+          display: block;
+          float: none;
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+  }
+}
+
+.persons-list {
+  @include content-holder;
+}
+
+.page-node-add-person .content-wrapper {
+  @include content-holder(edit);
+}

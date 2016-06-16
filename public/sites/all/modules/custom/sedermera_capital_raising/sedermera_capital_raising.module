@@ -1,0 +1,345 @@
+<?php
+
+/**
+ * @file sedermera_capital_raising.module
+ * Main module file for the Sedermera Capital Raising module.
+ */
+
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+function sedermera_capital_raising_pathauto_alias_alter(&$alias, array &$context) {
+  // Change the alias for capital raisings when updating or generating aliases.
+  if (in_array($context['op'], array('update', 'bulkupdate')) && $context['type'] == 'capital_raising') {
+    if ($context['data']['node']->status) {
+      // The node is published, change archive to list.
+      $alias = str_replace('/arkiverade/', '/lista/', $alias);
+    }
+    else {
+      // The node is unpublished, change list to archive.
+      $alias = str_replace('/lista/', '/arkiverade/', $alias);
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function sedermera_capital_raising_field_formatter_info() {
+  return array(
+    'sedermera_capital_raising_remaining' => array(
+      'label' => t('Remaining (Capital raising)'),
+      'field types' => array('date', 'text_long', 'text_with_summary'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function sedermera_capital_raising_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $settings = $display['settings'];
+
+  switch ($display['type']) {
+    case 'sedermera_capital_raising_remaining':
+      // Create a DateTime object based on the current time, in order to display
+      // the diff.
+      $now = new DateTime(date(DATE_ISO8601, REQUEST_TIME));
+
+      foreach ($items as $delta => $item) {
+        // Link this item.
+        $uri = entity_uri($entity_type, $entity);
+        $element[$delta] = array(
+          '#theme' => 'link',
+          '#path' => $uri['path'],
+          '#options' => array('attributes' => array()),
+        );
+
+        if (strtotime($item['value2']) <= REQUEST_TIME) {
+          // The end time has passed, add a static text and continue to the next
+          // item.
+          $element[$delta]['#text'] = 'Har utgått';
+          continue;
+        }
+
+        // Create a DateTime object based on the end date, and get the date
+        // difference.
+        $end = new DateTime($item['value2']);
+        $diff = $end->diff($now)->d;
+
+        // Create the markup.
+        $element[$delta]['#text'] = format_plural($diff, '@count dag kvar', '@count dagar kvar');
+      }
+      break;
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function sedermera_capital_raising_block_info() {
+  $blocks['time_remaining'] = array(
+    'info' => 'Tid för transaktion',
+    'cache' => DRUPAL_NO_CACHE
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sedermera_capital_raising_block_view($delta = '') {
+  // Load the node based on the second argument.
+  $node = node_load(arg(1));
+
+  // Bail out if this isn't a capital raising node.
+  if (!$node || $node->type != 'capital_raising') {
+    return;
+  }
+
+  // Create the initial block structure.
+  $block = array(
+    'subject' => 'Löptid utgår',
+    'content' => array(
+      array(
+        '#prefix' => '<div class="date">',
+        '#markup' => '?',
+        '#suffix' => '</div>',
+      ),
+    ),
+  );
+
+  // Get the end timestamp for the node.
+  $end = sedermera_capital_raising_get_time_end($node);
+
+  // Bail out if there isn't an end date set.
+  if (!$end) {
+    return $block;
+  }
+
+  // Change the content of the block to the actual end date.
+  $block['content'] = array(
+    array(
+      '#prefix' => '<div class="date">',
+      '#markup' => format_date($end, 'custom', 'j F'),
+      '#suffix' => '</div>',
+    ),
+  );
+
+  // Add the remaining time for this capital raising if there is one.
+  if ($remaining = sedermera_capital_raising_get_time_remaining($node)) {
+    // Get the format that we should use for the string.
+    $format = sedermera_capital_raising_get_time_remaining_format($remaining);
+
+    // Add the formated string to the output.
+    $block['content'][] = array(
+      '#prefix' => '<div class="remaining">',
+      '#markup' => $remaining->format($format),
+      '#suffix' => '</div>',
+    );
+  }
+  elseif ($node->status && user_access('edit any capital_raising content')) {
+    // There is no remaining time, add the form that lets the user archive this
+    // capital raising if it isn't archived already.
+    $block['content'][] = drupal_get_form('sedermera_capital_raising_archive_form', $node);
+  }
+
+  // Return the block.
+  return $block;
+}
+
+/**
+ * Get the end time for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ *
+ * @return int
+ *   The UNIX timestamp for the end time.
+ */
+function sedermera_capital_raising_get_time_end($node) {
+  // Wrap the node.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Return FALSE if the date hasn't been set.
+  if (!$wrapper->field_cap_rais_date->value()) {
+    return FALSE;
+  }
+
+  // Return the end timestamp.
+  return $wrapper->field_cap_rais_date->value2->value();
+}
+
+/**
+ * Get the remaining time for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ *
+ * @return mixed
+ *   The DateInterval object that represents the remaining time, or FALSE if the
+ *   time has passed.
+ */
+function sedermera_capital_raising_get_time_remaining($node) {
+  // Wrap the node.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Get the relevant timestamps.
+  $now = REQUEST_TIME;
+  $end = $wrapper->field_cap_rais_date->value2->value();
+
+  // Bail out if there is no remaining time.
+  if ($now >= $end) {
+    return FALSE;
+  }
+
+  // Get the current date.
+  $now = new DateTime(date(DATE_ISO8601, $now));
+
+  // Get the end date.
+  $end = new DateTime(date(DATE_ISO8601, $end));
+
+  // Return the remaining the based on the two date objects.
+  return $end->diff($now);
+}
+
+/**
+ * Formats the remaining time to a swedish string, handling plurals and empty
+ * parts.
+ *
+ * @param obj $remaining
+ *   The DateInterval object that represents the time.
+ *
+ * @return string
+ *   A format string that is usable by the DateInterval object.
+ */
+function sedermera_capital_raising_get_time_remaining_format($remaining) {
+  // Create the initial array that will hold our parts.
+  $parts = array();
+
+  // Start of by adding the most basic parts: Year, months and day.
+  if ($remaining->y) {
+    $parts[] = '%y år';
+  }
+  if ($remaining->m) {
+    $parts[] = format_plural($remaining->m, '%m månad', '%m månader');
+  }
+  if ($remaining->d) {
+    $parts[] = format_plural($remaining->d, '%d dag', '%d dagar');
+  }
+
+  // If we haven't got any parts yet, we'll add the remaining hours and minutes.
+  if (empty($parts)) {
+    if ($remaining->h) {
+      $parts[] = format_plural($remaining->h, '%h timme', '%h timmar');
+    }
+    if ($remaining->i) {
+      $parts[] = format_plural($remaining->i, '%i minut', '%i minuter');
+    }
+  }
+
+  // If there still aren't anything added, we'll add the seconds.
+  if (empty($parts)) {
+    if ($remaining->s) {
+      $parts[] = format_plural($remaining->s, '%s sekund', '%s sekunder');
+    }
+  }
+
+  // Get the last part of the array, since we'd like to separeate this with an
+  // "och".
+  $last = array_pop($parts);
+
+  // Return all the the other parts seperated by a comma with the last part
+  // appended, or simply the last part if this was the only one.
+  return (empty($parts) ? $last : implode(', ', $parts) . " och $last") . ' kvar';
+}
+
+/**
+ * Form that archives a single capital raising node.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ */
+function sedermera_capital_raising_archive_form($form, &$form_state, $node) {
+  // Add a simple submit button.
+  $form['archive'] = array(
+    '#type' => 'submit',
+    '#value' => 'Arkivera',
+  );
+
+  // Add the node id for the node to the internal values.
+  $form['node'] = array(
+    '#type' => 'value',
+    '#value' => $node,
+  );
+
+  return $form;
+}
+
+/**
+ * Form submit handler for the archive form.
+ */
+function sedermera_capital_raising_archive_form_submit($form, &$form_state) {
+  // Retrieve the node from the form values.
+  $node = $form_state['values']['node'];
+
+  // Unpublish the node, and save it.
+  $node->status = 0;
+  node_save($node);
+
+  // Display a message to the user.
+  drupal_set_message(format_string('Transaktionen "%title" arkiverades.', array('%title' => $node->title)));
+}
+
+/**
+ * Delete values which shouldn't exist based on the type of capital raising.
+ *
+ * This will delete the values for the stock fields if this is a units type, or
+ * the units values if this is a stock type.
+ *
+ * @param string $type
+ *   The type of capital raising, either "stocks" or "units".
+ * @param obj $node
+ *   The capital raising node.
+ */
+function sedermera_capital_raising_delete_values($node, $type) {
+  $stock_fields = array('field_cap_rais_post', 'field_cap_rais_vol', 'field_cap_rais_stock_no');
+  $unit_fields = array('field_cap_rais_post_units', 'field_cap_rais_vol_units', 'field_cap_rais_units_no');
+
+  switch ($type) {
+    case 'stocks':
+      foreach ($unit_fields as $field) {
+        $node->$field = array();
+      }
+      break;
+
+    case 'units':
+      foreach ($stock_fields as $field) {
+        $node->$field = array();
+      }
+      break;
+  }
+}
+
+/**
+ * Adjusts the end date of a capital raising so that the time of the day will
+ * point to 23.59.59.
+ *
+ * @param obj $node
+ *   The capital raising node.
+ */
+function sedermera_capital_raising_adjust_end_date($node) {
+  // Create a DateTime object based of the end date, and change the time to
+  // the end of the day.
+  $date = new DateTime($node->field_cap_rais_date[LANGUAGE_NONE][0]['value2']);
+  $date->setTime(23, 59, 59);
+
+  // Change the stored value for the end date to the new value, based on the ISO
+  // format.
+  $node->field_cap_rais_date[LANGUAGE_NONE][0]['value2'] = $date->format(DATE_FORMAT_ISO);
+}

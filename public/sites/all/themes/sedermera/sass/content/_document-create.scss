@@ -1,0 +1,114 @@
+// Form specifics
+.group-document-rel.form-wrapper {
+  margin-bottom: 0px;
+
+  .field-name-field-document-appendix {
+    margin-bottom: 0px;
+  }
+}
+
+.field-name-field-manual-type.form-wrapper {
+  margin-bottom: 0;
+
+  .form-type-radios {
+    margin-bottom: 0;
+  }
+}
+
+fieldset.document-head,
+fieldset.manual-head {
+
+  .field-type-text {
+    margin-bottom: 0;
+  }
+}
+
+fieldset.document-foot,
+fieldset.manual-foot {
+
+  .form-wrapper {
+    clear: none;
+    margin-bottom: 0;
+    @include span-columns(6 of 12);
+    @include omega(2n);
+  }
+}
+
+fieldset.manual-foot {
+  margin-bottom: 0;
+}
+
+fieldset.node-form-revision-information {
+  margin-bottom: 0;
+}
+
+// Relation document/appendix input field
+#edit-field-dokument-relation,
+#edit-field-manual-relation,
+#edit-field-document-appendix,
+#edit-field-manual-appendix {
+
+  .draggable {
+    background: none;
+  }
+
+  .form-item {
+
+    .form-text {
+      margin-top: 0;
+    }
+  }
+
+  .tabledrag-processed {
+    margin-bottom: 10px;
+
+    tbody tr {
+      border: 0;
+    }
+  }
+}
+
+// Revision information (New revision)
+.node-form-revision-information {
+
+  // Textarea
+  .form-type-textarea {
+    margin-top: 0;
+  }
+}
+
+// Label: Revision creation and moderation options
+.form-item  {
+
+  label[for=edit-revision-operation] {
+    font-weight: 700;
+    padding: 0px 0 15px 0;
+  }
+}
+
+// WYSIWYG editor
+.cke {
+  border: 0 !important;
+}
+
+// Page footer
+.group-document-footer,
+.group-manual-footer {
+
+  .fieldset-wrapper {
+    @include outer-container;
+
+    .field-type-text {
+      @include span-columns(6 of 12);
+      @include omega(2n);
+
+      input[type=text] {
+        width: 100%;
+      }
+
+      .form-item {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

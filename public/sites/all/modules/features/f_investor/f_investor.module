@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Investerare feature.
+ */
+
+include_once 'f_investor.features.inc';

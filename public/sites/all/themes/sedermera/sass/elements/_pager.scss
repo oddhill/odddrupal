@@ -1,0 +1,88 @@
+// General pager styling
+.pager {
+  display: inline-block;
+  float: right;
+  list-style: none;
+  margin: 20px 20px 20px 0;
+  position: relative;
+
+  li {
+    @include font-size(1.1);
+    display: inline-block;
+    line-height: 21px;
+    margin-right: 1px;
+
+    // Current page number
+    &.pager-current {
+      background: $dark-grey;
+      border-radius: 3px;
+      color: $wool;
+      font-weight: 700;
+      padding: 0px 7px;
+    }
+  }
+
+  a {
+    background: $stone;
+    border-bottom: 0px none;
+    border-radius: 3px;
+    color: $coffee;
+    display: block;
+    font-weight: 700;
+    line-height: 21px;
+    padding: 0 7px;
+
+    &:hover {
+      background: $cloudy;
+      color: $snow;
+    }
+  }
+}
+
+// Ajax progress
+.ajax-progress {
+  position: absolute;
+  left: -27px;
+  top: 0px;
+
+  // Throbber
+  .throbber {
+    @include throbber;
+  }
+}
+
+// Dashboard pager (Utgående transaktion, Utgående kontroller)
+.capital-rasing-db-wrapper,
+.block-sedermera-dashboard-verifications {
+
+  .pager {
+    margin-right: 0px;
+
+    li {
+      // Don't show next, last, first and previous links - must be disabled for the ajax throbber to show correctly
+      &.pager-next,
+      &.pager-last,
+      &.pager-previous,
+      &.pager-first {
+        display: none;
+      }
+    }
+  }
+}
+
+// Activity pager (Aktivitet)
+.activities-wrapper {
+
+  ul {
+    float: none;
+    margin: 20px auto 0 auto;
+  }
+
+  .pager {
+    margin-right: 0px;
+
+    a {
+      background: $light-concrete;
+    }
+  }
+}

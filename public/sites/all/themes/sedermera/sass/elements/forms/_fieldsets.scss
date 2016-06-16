@@ -1,0 +1,81 @@
+fieldset {
+  border: 3px solid $wool;
+  padding: 15px 18px;
+
+  &.group-hidden {
+    display: none;
+  }
+
+  legend {
+    float: left;
+    width: 100%;
+    text-transform: uppercase;
+    @include font-size(1.4,1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .fieldset-wrapper {
+    clear: both;
+    padding-top: 15px;
+  }
+
+  .fieldset-description {
+    @include font-size(1.2,1.4);
+    font-style: italic;
+    margin-bottom: 1.5em;
+  }
+
+  &.collapsed {
+    height: auto !important;
+    border-width: 3px !important;
+  }
+
+  &.collapsible {
+
+    legend {
+      cursor: pointer;
+      position: relative;
+
+      a.fieldset-title {
+        border-bottom: 0px none;
+      }
+
+      &:after {
+        position: absolute;
+        top: 5px;
+        right: 0px;
+        content: '';
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 0px none;
+        border-bottom: 5px solid $dark-grey;
+      }
+    }
+  }
+
+  &.collapsed {
+
+    legend {
+      cursor: pointer;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        top: 5px;
+        right: 0px;
+        content: '';
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid $dark-grey;
+        border-bottom: 0px none;
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+<?php
+
+/**
+ * @file sedermera_dashboard.module
+ * Main module file for the Sedermera Dashboard module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_dashboard_menu() {
+  $items['oversikt'] = array(
+    'title' => 'Översikt',
+    'page callback' => 'sedermera_dashboard_page',
+    'access arguments' => array('access dashboard'),
+    'menu_name' => 'main-menu',
+    'weight' => -500,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for the dashboard.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function sedermera_dashboard_page() {
+  // Set the page title. We can't set this using hook_menu() since that will
+  // alter the menu link title as well.
+  $name = format_username($GLOBALS['user']);
+  drupal_set_title("Välkommen, $name");
+
+  // Return an empty page. The actual content will be set using context.
+  return array();
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function sedermera_dashboard_block_info() {
+  $blocks['verifications'] = array(
+    'info' => 'Utgående kontroller'
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sedermera_dashboard_block_view($delta = '') {
+  $block = array(
+    'subject' => 'Ej färdiga kontroller',
+    'content' => array('#markup' => '<div class="empty-container"><p>Det finns inga Ej färdiga kontroller.</p></div>'),
+  );
+
+  // Get the query which will return every expiring verification.
+  $query = sedermera_verification_get_expiring_query();
+
+  // Extend the query in order to enable pagination.
+  $query = $query->extend('PagerDefault')
+    ->limit(5);
+
+  // Execute the query.
+  $result = $query->execute();
+
+  // Return the block if there aren't anything to display.
+  if (!$result->rowCount()) {
+    return $block;
+  }
+
+  // Create the header for the table, and add each row.
+  $header = array(
+    array('data' => 'Namn', 'class' => array('investor-name')),
+    array('data' => 'Utgår', 'class' => array('verification-expire')),
+    array('data' => 'Kontroll', 'class' => array('verification-status')),
+  );
+  $rows = array();
+  foreach ($result as $row) {
+    $rows[] = array(
+      array(
+        'data' => l($row->name, "investor/{$row->type}/{$row->id}"),
+        'class' => array('investor-name'),
+      ),
+      array(
+        'data' => $row->approved ? format_date(strtotime($row->verification), 'custom', 'Y-m-d') : '',
+        'class' => array('verification-expire'),
+      ),
+       array(
+        'data' => l('Visa', "investor/{$row->type}/{$row->id}/kontroll", array('attributes' => array('class' => array('sedermera-verification-status-check')))),
+        'class' => array('verification-status'),
+      ),
+    );
+  }
+
+  // Create the table. Attach the javascript in order to fetch the status for
+  // each verification.
+  $table = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_verification') . '/sedmera_verification_status_field.js',
+      ),
+    ),
+    '#prefix' => '<div class="table-wrapper">',
+    '#suffix' => '</div>',
+  );
+
+  // Create the pager. We'll set empty tags in order to not display the first,
+  // previous, next and last links.
+  $pager = array(
+    '#theme' => 'pager',
+    '#tags' => array('', '', '', '', ''),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_dashboard') . '/sedermera_dashboard.js',
+        array(
+          'data' => array('sedermeraVerification' => array(
+            'notApproved' => SEDERMERA_VERIFICATION_NOT_APPROVED,
+            'expired' => SEDERMERA_VERIFICATION_EXPIRED,
+            'expiring' => SEDERMERA_VERIFICATION_EXPIRING,
+            'approved' => SEDERMERA_VERIFICATION_APPROVED,
+          )),
+          'type' => 'setting',
+        ),
+      ),
+    ),
+  );
+
+  // Add the table and pager to the block content.
+  $block['content'] = array(
+    'table' => $table,
+    'pager' => $pager,
+  );
+
+  // Return the block.
+  return $block;
+}

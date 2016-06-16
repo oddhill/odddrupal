@@ -1,0 +1,229 @@
+<?php
+
+/**
+ * @file sedermera_activities.module
+ * Main module file for the Sedermera Activities module.
+ */
+
+/**
+ * Implements hook_entity_insert().
+ */
+function sedermera_activities_entity_insert($entity, $type) {
+  switch ($type) {
+    case 'offer':
+      // Create a message for the new offer.
+      sedermera_activities_create_message($entity, 'offer_created');
+      break;
+
+    case 'message':
+      // Flag the message as unread for every user except the one that created
+      // the message.
+      foreach (sedermera_activities_get_users() as $user) {
+        if ($user->uid != $entity->uid) {
+          flag('flag', 'unread', $entity->mid, $user);
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function sedermera_activities_entity_update($entity, $type) {
+  switch ($type) {
+    case 'offer':
+      // Create messages if the interested value has been changed.
+      if (sedermera_activities_offer_field_has_changed($entity, 'field_offer_interested')) {
+        if (entity_metadata_wrapper('offer', $entity)->field_offer_interested->value()) {
+          // The offer has been marked as interested.
+          sedermera_activities_create_message($entity, 'offer_interested');
+        }
+        else {
+          // The offer has been marked as uninterested.
+          sedermera_activities_create_message($entity, 'offer_uninterested');
+        }
+      }
+
+      // Create a message if the offer has been contacted.
+      if (sedermera_activities_offer_field_has_value($entity, 'field_offer_first_contact') && sedermera_activities_offer_field_has_changed($entity, 'field_offer_first_contact')) {
+        sedermera_activities_create_message($entity, 'offer_first_contact');
+      }
+
+      // Create a message if the guaranteed amount has been changed.
+      if (sedermera_activities_offer_field_has_changed($entity, 'field_offer_amount_guar')) {
+        sedermera_activities_create_message($entity, 'offer_guar_changed');
+      }
+
+      // Create a message if the committed amount has been changed.
+      if (sedermera_activities_offer_field_has_changed($entity, 'field_offer_amount')) {
+        sedermera_activities_create_message($entity, 'offer_comm_changed');
+      }
+
+      // Create a message if the offer has been signed.
+      if (sedermera_activities_offer_field_has_value($entity, 'field_offer_signed') && sedermera_activities_offer_field_has_changed($entity, 'field_offer_signed')) {
+        sedermera_activities_create_message($entity, 'offer_signed');
+      }
+
+      // Create a message if the status has been changed.
+      if (sedermera_activities_offer_field_has_value($entity, 'field_offer_status') && sedermera_activities_offer_field_has_changed($entity, 'field_offer_status')) {
+        sedermera_activities_create_message($entity, 'offer_status');
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_views_send_mail_queued().
+ */
+function sedermera_activities_views_send_mail_queued($message, $view, $row_id) {
+  // Create messages when mail has been sent from the "Kontaktlista" view.
+  if ($view->name == 'offers' && $view->current_display == 'page') {
+    // Load the offer entity.
+    $offer = entity_load_single('offer', $view->result[$row_id]->id);
+
+    // Create the message.
+    sedermera_activities_create_message($offer, 'offer_mail');
+  }
+}
+
+/**
+ * Implements template_preprocess_message().
+ */
+function sedermera_activities_preprocess_message(&$variables) {
+  // Get the flags for this message and user.
+  $unread = flag_get_user_flags('message', $variables['message']->mid);
+
+  // Exit early if there are none.
+  if (empty($unread)) {
+    return;
+  }
+
+  // Add the unread class.
+  $variables['classes_array'][] = 'unread';
+
+  // Unflag the message.
+  flag('unflag', 'unread', $variables['message']->mid);
+}
+
+/**
+ * Get the users for the site, excluding anonymous users and user 1.
+ *
+ * @return array
+ *   An array with users, keyed by their id.
+ */
+function sedermera_activities_get_users() {
+  $users = array();
+
+  // Create and execute a query which fetches the user with a uid bigger than 1.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'user')
+    ->propertyCondition('uid', 1, '>');
+  $result = $query->execute();
+
+  // Load each user and add them to the return value.
+  foreach ($result['user'] as $row) {
+    $users[$row->uid] = user_load($row->uid);
+  }
+
+  // Return the users.
+  return $users;
+}
+
+/**
+ * Creates a message for an offer.
+ *
+ * @param obj $offer
+ *   The offer entity that has been created.
+ * @param string $type
+ *   The message type.
+ * @param array $arguments
+ *   An array with values that will be replaced when the message is displayed.
+ *
+ * @see message_create()
+ */
+function sedermera_activities_create_message($offer, $type) {
+  // Wrap the offer in order to access its values.
+  $offer_wrapper = entity_metadata_wrapper('offer', $offer);
+
+  // Create the message.
+  $message = message_create($type);
+  $message_wrapper = entity_metadata_wrapper('message', $message);
+
+  // Set the message values.
+  $message_wrapper->field_shared_offer->set($offer);
+  $message_wrapper->field_shared_cap_rais->set($offer_wrapper->field_offer_cap_rais->value());
+  $message_wrapper->field_shared_investor->set($offer_wrapper->field_offer_investor->value());
+
+  // Save the message.
+  $message_wrapper->save();
+}
+
+/**
+ * Checks whether or not the specified field has a value.
+ *
+ * @param obj $offer
+ *   The offer entity.
+ * @param string $field
+ *   The name of the field.
+ *
+ * @return bool
+ *   TRUE if the field has a value, FALSE otherwise.
+ */
+function sedermera_activities_offer_field_has_value($offer, $field) {
+  $value = entity_metadata_wrapper('offer', $offer)->{$field}->value();
+  return !empty($value);
+}
+
+/**
+ * Checks whether or not the specified field has been changed.
+ *
+ * @param obj $offer
+ *   The offer entity.
+ * @param string $field
+ *   The name of the field.
+ *
+ * @return bool
+ *   TRUE if the field has been changed, FALSE otherwise.
+ */
+function sedermera_activities_offer_field_has_changed($offer, $field) {
+  if (!isset($offer->original)) {
+    // There is no original entity attached to this offer, assume unchanged.
+    return FALSE;
+  }
+
+  // Wrap both the offer and the unchanged offer.
+  $wrapper = entity_metadata_wrapper('offer', $offer);
+  $wrapper_original = entity_metadata_wrapper('offer', $offer->original);
+
+  // Return TRUE if the value has been changed.
+  return $wrapper->{$field}->value() != $wrapper_original->{$field}->value();
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function sedermera_activities_node_view($node, $view_mode) {
+  if ($node->type == "document" && $view_mode == 'full') {
+    sedermera_activities_create_message_document($node, 'document_view');
+  }
+}
+
+/**
+ * Creates a message that a user have opened a document.
+ * @param  $node The node to reference in message
+ * @param  $type The message type to be sent
+ */
+function sedermera_activities_create_message_document($node, $type) {
+  // Create the message.
+  $message = message_create($type);
+
+  // Wrap to access fields
+  $wrapper = entity_metadata_wrapper('message', $message);
+
+  // Add node as reference in message
+  $wrapper->field_message_reference->set($node);
+
+  // Save message
+  $wrapper->save();
+}

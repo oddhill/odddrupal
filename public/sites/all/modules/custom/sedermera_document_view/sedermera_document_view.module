@@ -1,0 +1,640 @@
+<?php
+
+/**
+ * @file sedermera_document_view.module
+ * Main module file for the Sedermera Document View module.
+ */
+
+/**
+ * Implements hook_revisionapi().
+ */
+function sedermera_document_view_revisionapi($op, $node_revision) {
+  if ($node_revision->type == 'document' && ($op == 'post publish' || $op == 'post unpublish' || $op == 'post revert')){
+    // Get original author for this revision
+    $nid = $node_revision->nid;
+    $vid = $node_revision->vid;
+    $rid = $node_revision->revision_uid;
+    // Restore original author
+    db_query("UPDATE node_revision SET uid=$rid WHERE nid=$nid AND vid=$vid");
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function sedermera_document_view_node_delete($node) {
+  if ($node->type === 'document' || $node->type === 'manual') {
+    db_query("DELETE FROM draggableviews_structure WHERE entity_id = :eid", array(':eid' => $node->nid));
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_document_view_menu() {
+  $items['regelverk/lista'] = array(
+    'title' => 'Alla dokument',
+    'page callback' => 'view_page_user',
+    'access arguments' => array('view any document content'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
+    'weight' => 0,
+  );
+
+  $items['regelverk/administrera'] = array(
+    'title' => 'Administrera dokument',
+    'page callback' => 'admin_doc',
+    'access arguments' => array('document admin'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
+    'weight' => 0,
+  );
+
+  $items['regelverk/last-per-anvandare'] = array(
+    'title' => 'Läst per användare',
+    'page callback' => 'view_page_per_user',
+    'access arguments' => array('document read per user'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
+    'weight' => 49,
+  );
+
+  $items['regelverk/last-per-dokument'] = array(
+    'title' => 'Läst per dokument',
+    'page callback' => 'view_page_per_doc',
+    'access arguments' => array('document read per document'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_regelverk:regelverk',
+    'weight' => 50,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for the document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function view_page_user() {
+  // Get list of documents
+  $documents = getDocuments();
+
+  // Check if there is documents
+  if (!empty($documents)) {
+    $appendix = array();
+
+    // Appendix list (documents that are appendix to other documents)
+    foreach ($documents as $doc) {
+      if (!empty($doc->field_document_appendix)) {
+        $appendix[] = $doc;
+      }
+    }
+
+    $documents = orderDocuments(getDocuments());
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+      array('data' => 'Bilaga', 'class' => array('table-head')),
+      array('data' => 'Revision', 'class' => array('table-head')),
+      array('data' => 'Läst', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($documents as $doc) {
+      if (empty($doc->field_document_appendix)) {
+        generateRows($rows, '', $doc, $appendix, 'document');
+      }
+    }
+
+    // Create table.
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateTable($header, $rows),
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Page callback for the admin document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function admin_doc() {
+  // Get list of documents
+  $documents = getAdminDocuments();
+
+  if (!empty($documents)) {
+    $appendix = array();
+
+    // Appendix list (documents that are appendix to other documents)
+    foreach ($documents as $doc) {
+      if (!empty($doc->field_document_appendix)) {
+        $appendix[] = $doc;
+      }
+    }
+
+    $documents = getAdminDocuments();
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+      array('data' => 'Publicerad', 'class' => array('table-head')),
+      array('data' => 'Datum', 'class' => array('table-head')),
+      array('data' => 'Version', 'class' => array('table-head')),
+      array('data' => 'Senaste', 'class' => array('table-head')),
+      array('data' => 'Administrera', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($documents as $doc) {
+      generateAdminRows($rows, '', $doc, $appendix, 'document');
+    }
+    // Create table.
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateTable($header, $rows),
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Page callback for the document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function view_page_per_user() {
+  // Check if there is any documents
+  $documents = getDocuments();
+
+  if (!empty($documents)) {
+    $get = drupal_get_query_parameters();
+
+    if (!isset($get['selected']) || ($get['selected'] == 0)) {
+      // Add form to block content.
+      $block = array(
+        '#prefix' => '<div class="document-listing-wrapper">',
+        'form' => drupal_get_form('userForm'),
+        '#suffix' => '<div class="table-wrapper"><div class="view-empty">Du har inte valt någon användare</div></div></div>',
+      );
+    }
+    else {
+      // Create the header for the table. Add rows
+      $header = array(
+        array('data' => 'Titel', 'class' => array('table-head')),
+        array('data' => 'Revision', 'class' => array('table-head')),
+        array('data' => 'Läst', 'class' => array('table-head')),
+      );
+      $rows = array();
+      foreach ($documents as $doc) {
+        $class = 'no';
+        $read = 'Nej';
+        if (userHasRead($doc->field_document_user_read, $get['selected'])) {
+          $class = 'yes';
+          $read = 'Ja';
+        }
+        $rows[] = array(
+          array(
+            'data' => $doc->title,
+          ),
+          array(
+            'data' => currentRevision($doc),
+          ),
+          array(
+            'data' => $read,
+            'class' => $class,
+          ),
+        );
+      }
+
+      // Add table to block content.
+      $block = array(
+        '#prefix' => '<div class="document-listing-wrapper">',
+        'form' => drupal_get_form('userForm'),
+        'table' => generateTable($header, $rows),
+        '#suffix' => '</div>',
+      );
+    }
+  }
+  else {
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Page callback for the document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function view_page_per_doc() {
+  $get = drupal_get_query_parameters();
+
+  if (!isset($get['selected']) || ($get['selected'] == 0)) {
+
+    // Get list of documents
+    $documents = getDocuments();
+    if (!empty($documents)) {
+      // Add form to block content.
+      $block = array(
+        '#prefix' => '<div class="document-listing-wrapper">',
+        'form' => drupal_get_form('docForm'),
+        '#suffix' => '<div class="table-wrapper"><div class="view-empty">Du har inte valt något dokument</div></div></div>',
+      );
+    }
+    else {
+      $block = array(
+        '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga dokument</div>',
+        '#suffix' => '</div>',
+      );
+    }
+  }
+  else {
+    // Get list of users
+    $users = getUsers();
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Användare', 'class' => array('table-head')),
+      array('data' => 'Läst', 'class' => array('table-head')),
+    );
+    $rows = array();
+    $node = node_load(NULL, $get['selected']);
+    foreach ($users as $uid => $user) {
+      $class = 'no';
+      $read = 'Nej';
+     if (userHasRead($node->field_document_user_read, $uid)) {
+        $class = 'yes';
+        $read = 'Ja';
+      }
+      $rows[] = array(
+        array(
+          'data' => $user,
+        ),
+        array(
+          'data' => $read,
+          'class' => $class,
+        ),
+      );
+    }
+
+    // Add table to block content.
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'form' => drupal_get_form('docForm'),
+      'table' => generateTable($header, $rows),
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $prefix Current level of tabbing
+ * @param  $doc    The document to look at
+ * @param  $appendix List of the document appendix
+ */
+function generateRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
+  global $user;
+  $class = 'no';
+  $read = 'Nej';
+  if (userHasRead($doc->field_document_user_read, $user->uid)) {
+    $class = 'yes';
+    $read = 'Ja';
+  }
+
+  $app = getDocAppendix($doc, $appendix);
+  $pre = (!empty($app) && $prefix == '') ? '<span class="show-appendix"></span> ' : '';
+
+  $rows[] = array(
+    array(
+      'data' => $prefix . l($doc->title, 'node/' . $doc->nid),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $pre,
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => currentRevision($doc),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $read,
+      'class' => $rowClass . ' ' . $class,
+    ),
+  );
+
+  $docAppendix = getDocAppendix($doc, $appendix);
+  foreach ($docAppendix as $app) {
+    generateRows($rows, $prefix . '- ', $app, $appendix, 'appendix');
+  }
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $prefix Current level of tabbing
+ * @param  $doc    The document to look at
+ * @param  $appendix List of the document appendix
+ */
+function generateAdminRows(&$rows, $prefix, $doc, $appendix, $rowClass) {
+  $class = 'no';
+  $latest = 'Nej';
+  $ok = FALSE;
+  if (latestRevsion($doc)) {
+    $class = 'yes';
+    $latest = 'Ja';
+    $ok = TRUE;
+  }
+  $row = array(
+    array(
+      'data' => $prefix . $doc->title,
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => ($doc->status) ? 'Ja' : 'Nej',
+      'class' => $rowClass . (($doc->status) ? ' yes' : ' no'),
+    ),
+    array(
+      'data' => format_date($doc->revision_timestamp, 'long', '', 'Europe/Stockholm'),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => currentRevision($doc),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $latest,
+      'class' => $rowClass . ' ' . $class,
+    ),
+    array(
+      'data' => l('Redigera', 'node/' . $doc->nid . '/revisions/'),
+      'class' => $rowClass,
+    ),
+  );
+
+  // IF not newest revision add first. else last.
+  if ($ok) {
+    $rows[] = $row;
+  }
+  else {
+    array_unshift($rows, $row);
+  }
+}
+
+function currentRevision($doc) {
+  $result = db_query("SELECT vid FROM node_revision WHERE nid = :nid ORDER BY vid ASC", array(':nid' => $doc->nid));
+  $revision = 1;
+
+  foreach ($result->fetchAll() as $rev) {
+    if ($rev->vid == $doc->vid) {
+      return $revision;
+    }
+    $revision++;
+  }
+}
+
+function latestRevsion($doc) {
+  $result = db_query("SELECT vid FROM node_revision WHERE nid = $doc->nid ORDER BY vid DESC");
+  $res = $result->fetch();
+
+  return ($res->vid == $doc->vid && $doc->status == 1) ? TRUE : FALSE;
+}
+
+/**
+ * Helper function for recursive function
+ * @param  $doc      Document to check if got appendix
+ * @param  $appendix List of appendix
+ * @return Array of appednix if any else empty array
+ */
+function getDocAppendix($doc, $appendix) {
+  $ret = array();
+  foreach ($appendix as $app) {
+    if (!empty($app->field_document_appendix)) {
+      foreach ($app->field_document_appendix['und'] as $x) {
+        if ($x['target_id'] == $doc->nid) {
+          $ret[] = $app;
+        }
+      }
+    }
+  }
+  return $ret;
+}
+
+/**
+ * Helper function for table generation to reduce code redundency
+ * @param  $header  Table header
+ * @param  $rows    Table rows
+ * @return Renderable table array
+ */
+function generateTable($header, $rows) {
+  return array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#prefix' => '<div class="table-wrapper">',
+    '#suffix' => '</div>',
+  );
+}
+
+/**
+ * Check if user has read current document
+ * @return TRUE if has read else FALSE
+ */
+function userHasRead($userList, $user) {
+  if (!empty($userList)) {
+    foreach ($userList[LANGUAGE_NONE] as $uid) {
+      if ($uid['target_id'] == $user) {
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Get documents
+ * @return entity loaded documents
+ */
+function getDocuments() {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'document')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->propertyOrderBy('title', 'ASC');
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $document_nids = array_keys($result['node']);
+    return entity_load('node', $document_nids);
+  }
+
+  // Return empty array if nothing was found.
+  return array();
+}
+
+/**
+ * Order documents according to draggableviews order
+ * @return ordered document list.
+ */
+function orderDocuments($documents) {
+  $orderedDocuments = array();
+  $result = db_query("SELECT entity_id
+    FROM draggableviews_structure
+    WHERE view_display = 'document'
+    ORDER BY weight ASC")->fetchAll();
+
+  if (empty($result)) {
+    return $documents;
+  }
+
+  foreach ($result as $value) {
+    $orderedDocuments[] = $documents[$value->entity_id];
+    unset($documents[$value->entity_id]);
+  }
+
+  foreach ($documents as $value) {
+    $orderedDocuments[] = $value;
+  }
+
+  return $orderedDocuments;
+}
+
+/**
+ * Get documents
+ * @return entity loaded documents
+ */
+function getAdminDocuments() {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'document')
+    ->propertyOrderBy('title', 'ASC');
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $document_nids = array_keys($result['node']);
+    return entity_load('node', $document_nids);
+  }
+}
+/**
+ * Form user filter
+ */
+function userForm($form, &$form_state) {
+  $get = drupal_get_query_parameters();
+  $form['selected'] = array(
+    '#type' => 'select',
+    '#title' => t('Selected'),
+    '#options' => getUsersOptions(),
+    '#default_value' => $get['selected'],
+    '#descritption' => 'Description',
+    '#attributes' => array(
+      'onchange' => "form.submit('selected')",
+    ),
+  );
+
+  $form['#method'] = 'get';
+
+  return $form;
+}
+
+/**
+ * Form doc filter
+ */
+function docForm($form, &$form_state) {
+  $get = drupal_get_query_parameters();
+  $form['selected'] = array(
+    '#type' => 'select',
+    '#title' => t('Selected'),
+    '#options' => getDocOptions(),
+    '#default_value' => $get['selected'],
+    '#descritption' => 'Description',
+    '#attributes' => array(
+      'onchange' => "form.submit('selected')",
+    ),
+  );
+
+  $form['#method'] = 'get';
+
+  return $form;
+}
+
+/**
+ * Get users
+ * @return Array of users in key value. uid => username
+ */
+function getUsers($array = array()) {
+  $result = db_query('SELECT u.uid AS uid, n.field_user_name_value AS name FROM users AS u INNER JOIN field_data_field_user_name AS n ON (u.uid = n.entity_id) WHERE u.uid > 1');
+
+  $users = $result->fetchAll();
+
+  foreach ($users as $user) {
+    $array[$user->uid] = $user->name;
+  }
+
+  return $array;
+}
+
+/**
+ * Get users options
+ * @return Array of users in key value. uid => username
+ */
+function getUsersOptions() {
+  return getUsers(array('<em> - Välj användare - </em>'));
+}
+
+/**
+ * Get doc options
+ * @return Array of documents in key value. vid => title
+ */
+function getDocOptions() {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'document')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->propertyOrderBy('title', 'ASC');
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $document_nids = array_keys($result['node']);
+    $entities = entity_load('node', $document_nids);
+
+    $return = array();
+    $return[0] = '<em> - Välj dokument - </em>';
+    foreach ($entities as $entity) {
+      $return[$entity->vid] = $entity->title;
+    }
+
+    return $return;
+  }
+}

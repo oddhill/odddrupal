@@ -1,0 +1,199 @@
+// Second sidebar top icon wrapper
+.sidebar-second-icon {
+  background: $dark-grey;
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 11px 0 11px 0;
+  text-indent: 9999;
+  width: 100%;
+
+  // Second sidebar top icon
+  .icon {
+    @include svg-bg(progress_chart);
+    color: $dark-grey;
+    display: block;
+    font-size: 0;
+    height: 20px;
+    margin: 0px auto;
+    overflow: hidden;
+    width: 26px;
+  }
+}
+
+// Sidebar block wrapper
+.sidebar-block {
+  background: $steel;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+
+  h3 {
+    @include font-size(1.2);
+    background: $light-concrete;
+    border-bottom: 1px solid $wool;
+    font-weight: 700;
+    padding: 10px 0 10px 0;
+    text-transform: uppercase;
+  }
+
+  // Guaranteed, Undertaken & Total heading (Garanterat, Åtaget & Totalt)
+  h4 {
+    @include font-size(1.6);
+    font-family: 'Inconsolata';
+    font-weight: 700;
+  }
+
+  // Time remaning date (Datum för löptid utgår)
+  .date {
+    @include font-size(3.4);
+    color: $dark-grey;
+    font-weight: 700;
+    margin-top: 20px;
+    text-transform: uppercase;
+  }
+
+  @include media($big) {
+
+    .date {
+      @include font-size(2.4);
+      margin-top: 15px;
+    }
+  }
+}
+
+// Time remaning & total text
+.remaining,
+.total {
+  @include font-size(1.4);
+  font-family: 'Inconsolata';
+}
+
+// Vertical bars wrapper
+.vertical-bars {
+  border-bottom: 1px solid $dark-grey;
+  height: 200px;
+  margin: 10px 20px 40px;
+}
+
+// Single vertical bar wrapper
+.bar {
+  float: left;
+  height: 199px;
+  margin-bottom: 1px;
+  position: relative;
+  width: 50%;
+
+  .progress.vertical {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0 10%;
+    width: 80%;
+
+    .progressbar-back-text {
+      display: none;
+    }
+
+    .progress-bar {
+      box-shadow: none;
+      overflow: visible;
+
+      // Guaranteed and undertaken text ( % )
+      .progressbar-front-text {
+        @include font-size(2.0,1);
+        color: $dark-grey;
+        font-weight: 500;
+        height: 20px !important;
+        line-height: 20px !important;
+        margin-top: -30px;
+        position: static;
+      }
+    }
+  }
+
+  // Guaranteed and undertaken text under the bars
+  .text {
+    @include font-size(1.4);
+    bottom: -24px;
+    font-family: 'Inconsolata';
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    width: 90%;
+    left: 5%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include media($big) {
+      @include font-size(1.1);
+    }
+  }
+
+  &.guaranteed-wrapper {
+
+    .progress-bar {
+      background-color: shade($mustard,15%);
+    }
+  }
+
+  &.committed-wrapper {
+
+    .progress-bar {
+      background-color: shade($mustard,25%);
+    }
+  }
+}
+
+// Guaranteed and undertaken wrapper (Garanterat och Åtaget)
+.vertical-bars-text-wrapper {
+  margin: 20px 20px 10px 20px;
+}
+
+// The sum of Guaranteed and Undertaken (Summan av garanterat och åtaget i SEK)
+.total {
+  margin-bottom: 15px;
+
+  @include media($big) {
+    margin-bottom: 10px;
+  }
+}
+
+// Total wrapper (Totalt)
+.total-wrapper {
+  clear: both;
+
+  // Total bar
+  .progress {
+    background: $dark-grey;
+    border: 2px solid $dark-grey;
+    border-radius: 16px;
+    height: 32px;
+    margin: 20px 10px 10px 10px;
+
+    // The grand total in % (Totalsumman i %)
+    .progress-bar {
+      @include font-size(1.6);
+      background-color: $snow;
+      box-shadow: none;
+      color: $coffee;
+      font-family: 'Inconsolata';
+      font-weight: 700;
+      line-height: 28px;
+      -webkit-box-shadow: none;
+    }
+  }
+}
+
+// Archiving button (Arkivera)
+#edit-archive {
+  @include button($dark-grey, archive);
+  margin: 10px 0 0 0;
+  text-transform: uppercase;
+}
+
+// Other block (Övrigt text)
+// .other {
+//   font-size: 13px;
+//   padding: 15px 15px 5px 15px;
+//   text-align: left;
+// }

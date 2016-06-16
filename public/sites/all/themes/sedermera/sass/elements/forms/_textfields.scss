@@ -1,0 +1,99 @@
+.form-type-textfield {
+  position: relative;
+  display: block;
+
+  label {
+    display: none;
+  }
+
+  .form-required {
+    display: inline-block;
+    width: 25px;
+    height: 30px;
+    @include svg-bg(required, $light-grey, 4px center);
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: transparent;
+    font-size: 0px;
+    overflow: hidden;
+    text-indent: 100px;
+    line-height: 0px;
+    border: 1px solid $steel;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .field-suffix {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    color: $cloudy;
+  }
+
+  #autocomplete {
+    border: 0 none;
+    margin: 3px 0 0;
+    box-shadow: 0 0 3px tint($dark-grey,50%);
+
+    ul {
+
+      li {
+        height: 32px;
+        line-height: 32px;
+        border-bottom: 1px solid $wool;
+        cursor: pointer;
+        padding: 0 10px;
+
+        &:hover {
+          background: $light-grey;
+        }
+      }
+    }
+  }
+
+  .throbber {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 11px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid $wool;
+    border-radius: 50%;
+
+    &.throbbing {
+      position: absolute;
+      right: 7px;
+      top: 7px;
+      margin: 0;
+      width: 16px;
+      height: 16px;
+      border-color: $mustard;
+      border-top-color: transparent;
+      @include animation(load 0.9s linear infinite);
+    }
+  }
+}
+
+.form-text {
+  height: 30px;
+  border-radius: 2px;
+  width: 100%;
+  border: 1px solid $steel;
+  padding: 1px 40px 1px 5px;
+
+  &.form-autocomplete {
+
+    .js & {
+      background-image: none;
+
+      &.throbbing {
+        background-image: none;
+      }
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 2px $light-concrete;
+  }
+}

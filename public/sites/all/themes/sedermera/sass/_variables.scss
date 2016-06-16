@@ -1,0 +1,68 @@
+// Import neat helpers - this gives us visual grid which can be useful, also
+// gives us media mixin which is useful when making responsive layouts.
+@import "../assets/neat/app/assets/stylesheets/neat-helpers";
+
+// Our grid variables
+$grid-columns: 12;
+$column: golden-ratio(20px, 3);
+$gutter: golden-ratio(20px, 1);
+$max-width: 1800px;
+
+// Base font-size and line-height
+$base-font-size: 1.6;
+$base-line-height: 1.5;
+
+// Visual grid that can be used if neat helpers is activated
+// $visual-grid : true;
+// $visual-grid-color: #e0eef7;
+
+// Base colors
+$snow: #fff;
+
+// Grey colors
+$aluminium: #ebedf1;
+$cloudy: #b2b3b6;
+$coffee: #282828;
+$grey: #797979;
+$dark-concrete: #363636;
+$dark-grey: #454545;
+$medium-grey: #202020;
+$night: #1a1a1a;
+$light-concrete: #c8cacd;
+$light-grey: #f3f4f8;
+$steel: #d4d6d9;
+$stone: #d5d7da;
+$wool: #e0e2e6;
+$rested: #a9a9a9;
+
+// Green colors
+$avocado: #b6e0af;
+$cactus: #76c043;
+$pear: #6c9e65;
+
+// Red colors
+$bubblegum: #e0afaf;
+$dark-rose: #9e6565;
+$wine: #c04343;
+
+// Yellow colors
+$mustard: #f9a500;
+$honey: #fbc966;
+$orange: #f99d1c;
+
+// Blue colors
+$neon: #5c9cae;
+
+// Font size
+$standard: 1.4;
+
+// Body font
+$body-font: 'Roboto', sans-serif;
+
+// Header fonts
+$heading-font: 'Roboto', sans-serif;
+
+// Breakpoints
+$big: new-breakpoint(max-width 1600px);
+$medium: new-breakpoint(max-width 1280px);
+$medium-small: new-breakpoint(max-width 1130px);

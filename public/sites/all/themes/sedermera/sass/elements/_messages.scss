@@ -1,0 +1,49 @@
+// Page messages wrapper
+.page-messages {
+  margin: -40px -40px 40px;
+
+  // Don't display block system help message in main sidebar (Revion operations - View Current)
+  .main-sidebar & {
+    display: none;
+  }
+}
+
+.messages {
+  color: $snow;
+  font-weight: 500;
+  padding: 21px 40px;
+
+  &.status {
+    background: $cactus;
+  }
+
+  &.warning {
+    background: $mustard;
+  }
+
+  &.error {
+    background: $wine;
+  }
+
+  // Block system help message
+  &.help {
+    background: $mustard;
+  }
+
+  @include media($medium) {
+  }
+}
+
+// Dev query message
+.dev-query {
+  background: rgba($mustard,0.2);
+  padding: 20px;
+
+  .logged-in & {
+    margin: 40px 40px 40px 320px;
+
+    @include media($big) {
+      margin: 40px 40px 40px 122px;
+    }
+  }
+}

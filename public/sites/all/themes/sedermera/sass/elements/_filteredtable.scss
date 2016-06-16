@@ -1,0 +1,68 @@
+.table-filter {
+  background: tint($light-grey,60%);
+  border-top: 1px solid $wool;
+  border-right: 1px solid $wool;
+  border-left: 1px solid $wool;
+
+  h2.filter-icon {
+    background: $dark-grey;
+    padding: 11px;
+    margin: -1px 0 0 -1px;
+    float: left;
+
+    .icon {
+      @include svg-bg(filter_icon);
+      color: $dark-grey;
+      display: block;
+      font-size: 0;
+      height: 20px;
+      margin: 0px auto;
+      overflow: hidden;
+      text-indent: 42px;
+      width: 20px;
+    }
+  }
+
+  form {
+    padding: 20px;
+    @include clearfix;
+
+    .submit-wrapper {
+      position: relative;
+      float: left;
+      margin-top: -2px;
+
+      .form-submit {
+        @include button($dark-grey);
+        text-align: center;
+        margin: 0;
+      }
+
+      .ajax-progress {
+        background: shade($dark-grey,30%);
+        border-radius: 34px;
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        left: 0;
+        margin: 0;
+        padding-top: 9px;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        .throbber {
+          @include throbber;
+          margin: 0 auto;
+          float: none;
+        }
+      }
+    }
+
+    .form-item {
+      float: left;
+      margin: 0 15px 0 0;
+    }
+  }
+}

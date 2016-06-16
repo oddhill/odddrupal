@@ -1,0 +1,138 @@
+<?php
+
+/**
+ * @file sedermera_core.module
+ * Main module file for the Sedermera Core module.
+ */
+
+/**
+* Implementation of hook_views_access_callbacks().
+*/
+function sedermera_core_views_access_callbacks() {
+  return array(
+    'sedermera_core_user_has_access' => t('Offer contact list access'),
+    'sedermera_core_customer_company' => t('Node is customer company'),
+  );
+}
+
+function sedermera_core_user_has_access($account = NULL) {
+  $node = node_load(arg(1));
+  if ($node->type === 'offer') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function sedermera_core_customer_company($account = NULL) {
+  $node = node_load(arg(1));
+  if ($node->type === 'company') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_html_head_alter().
+ */
+function sedermera_core_html_head_alter(&$head_elements) {
+  // Remove Generator META tag.
+  if (isset($head_elements['metatag_generator_0'])) {
+    unset($head_elements['metatag_generator_0']);
+  }
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function sedermera_core_menu_alter(&$items) {
+  $items['node/%node/view']['title'] = 'Översikt';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_core_form_user_login_alter(&$form, &$form_state) {
+  // Add links to the user login form which lets the user reset the password
+  // and report a lost YubiKey.
+  $form['reset-links'] = array(
+    '#theme' => 'links',
+    '#links' => array(
+      'password-reset' => array(
+        'title' => 'Återställ bortglömt lösenord',
+        'href' => 'user/password',
+      ),
+      'yubikey-lost' => array(
+        'title' => 'Anmäl borttappad YubiKey',
+        'href' => 'user/yubikey/lost',
+      ),
+    ),
+    '#weight' => 501,
+  );
+
+  // Set the weight for the action buttons in order to guarantee the appropriate
+  // order.
+  $form['actions']['#weight'] = 500;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_core_form_yubikey_lost_alter(&$form, &$form_state) {
+  // Don't enable the password field when reporting a lost YubiKey. There are
+  // two reasons for this:
+  // 1. The validation doesn't work since the YubiKey module queries the
+  // database using the password in plain text.
+  // 2. The user still needs to confirm this via a confirmation email.
+  $form['yubikey_forgot_pass']['#type'] = 'value';
+  $form['yubikey_forgot_pass']['#value'] = TRUE;
+  $form['pass']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_core_form_user_register_form_alter(&$form, &$form_state) {
+  // Disable access to the administration language and language settings.
+  $form['admin_language']['#access'] = FALSE;
+  $form['locale']['#access'] = FALSE;
+
+  // Set the default language to sv.
+  $form['locale']['language']['#value'] = 'sv';
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function sedermera_core_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  foreach ($data['actions']['output'] as &$link) {
+    // Check if action link refers to the page 'admin/people/create' and
+    // if link is on the page 'admin/people'.
+    if (strcmp($link['#link']['path'], 'admin/people/create') == 0 &&
+      strcmp(current_path(), 'admin/people') == 0 ){
+
+      // Modify the return location for 'admin/people/create' to 'admin/people'
+      // for better workflow when adding users.
+      $link['#link']['localized_options']['query'] = drupal_get_destination();
+    }
+  }
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function sedermera_core_user_logout($account) {
+  setcookie('popup_message_displayed', '', 1, '/');
+}
+
+/**
+ * Implements hook_views_post_build().
+ */
+function sedermera_core_views_post_build(&$view) {
+  // Display VBO checkboxes even though there are no operations available. This
+  // is required in order for our custom table selectors to work.
+  // See views_bulk_operations_views_post_build().
+  $vbo = _views_bulk_operations_get_field($view);
+  if ($vbo) {
+    $vbo->options['exclude'] = FALSE;
+  }
+}

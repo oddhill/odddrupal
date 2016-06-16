@@ -1,0 +1,107 @@
+diff --git a/context.core.inc b/context.core.inc
+index c174eba..a4f7321 100644
+--- a/context.core.inc
++++ b/context.core.inc
+@@ -103,6 +103,16 @@ function context_entity_prepare_view($prepare, $entity_type) {
+       $plugin->execute($term, 'view');
+     }
+   }
++  $plugin = context_get_plugin('condition', 'entity');
++  $plugin->execute($entity_type, 'view');
++}
++
++/**
++ * Implementation of hook_field_attach_form().
++ */
++function context_field_attach_form($entity_type, $entity){
++  $plugin = context_get_plugin('condition', 'entity');
++  $plugin->execute($entity_type, 'form');
+ }
+ 
+ /**
+diff --git a/context.plugins.inc b/context.plugins.inc
+index 6f86559..3dd0127 100644
+--- a/context.plugins.inc
++++ b/context.plugins.inc
+@@ -11,6 +11,11 @@ function _context_context_registry() {
+       'description' => t('Set this context on the basis of other active contexts. Put each context on a separate line. You can use the <code>*</code> character (asterisk) as a wildcard and the <code>~</code> character (tilde) to prevent this context from activating if the listed context is active. Other contexts which use context conditions can not be used to exclude this context from activating.'),
+       'plugin' => 'context_condition_context',
+     ),
++    'entity' => array(
++      'title' => t('Entity type'),
++      'description' => t('Set this context when viewing an entity or using the add/edit form on an entity of the specified type.'),
++      'plugin' => 'context_condition_entity',
++    ),
+     'node' => array(
+       'title' => t('Node type'),
+       'description' => t('Set this context when viewing a node page or using the add/edit form of one of these content types.'),
+@@ -155,6 +160,14 @@ function _context_context_plugins() {
+       'parent' => 'context_condition_path',
+     ),
+   );
++  $plugins['context_condition_entity'] = array(
++    'handler' => array(
++      'path' => drupal_get_path('module', 'context') . '/plugins',
++      'file' => 'context_condition_entity.inc',
++      'class' => 'context_condition_entity',
++      'parent' => 'context_condition',
++    ),
++  );
+   $plugins['context_condition_node'] = array(
+     'handler' => array(
+       'path' => drupal_get_path('module', 'context') . '/plugins',
+diff --git a/plugins/context_condition_entity.inc b/plugins/context_condition_entity.inc
+new file mode 100644
+index 0000000..f09d3ec
+--- /dev/null
++++ b/plugins/context_condition_entity.inc
+@@ -0,0 +1,49 @@
++<?php
++
++define('CONTEXT_ENTITY_VIEW', 0);
++define('CONTEXT_ENTITY_FORM', 1);
++define('CONTEXT_ENTITY_FORM_ONLY', 2);
++
++/**
++ * Expose node views/node forms of specific node types as a context condition.
++ */
++class context_condition_entity extends context_condition {
++  function condition_values() {
++    $values = array();
++    foreach (entity_get_info() as $name => $type) {
++      $values[$name] = check_plain($type['label'].' ('.$name.')');
++    }
++    return $values;
++  }
++
++  function options_form($context) {
++    $defaults = $this->fetch_from_context($context, 'options');
++    return array(
++      'entity_form' => array(
++        '#title' => t('Set on entity form'),
++        '#type' => 'select',
++        '#options' => array(
++           CONTEXT_ENTITY_VIEW => t('No'),
++           CONTEXT_ENTITY_FORM => t('Yes'),
++           CONTEXT_ENTITY_FORM_ONLY => t('Only on form')
++        ),
++        '#description' => t('Set this context on entity forms'),
++        '#default_value' => isset($defaults['entity_form']) ? $defaults['entity_form'] : TRUE,
++      ),
++    );
++  }
++
++  function execute($entity_type, $op) {
++    foreach ($this->get_contexts($entity_type) as $context) {
++      if ($op === 'form') {
++        $options = $this->fetch_from_context($context, 'options');
++        if (!empty($options['entity_form']) && in_array($options['entity_form'], array(CONTEXT_ENTITY_FORM, CONTEXT_ENTITY_FORM_ONLY))) {
++          $this->condition_met($context, $entity_type);
++        }
++      }
++      elseif (empty($options['entity_form']) || $options['entity_form'] != CONTEXT_ENTITY_FORM_ONLY) {
++        $this->condition_met($context, $entity_type);
++      }
++    }
++  }
++}

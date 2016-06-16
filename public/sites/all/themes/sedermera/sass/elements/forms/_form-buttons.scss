@@ -1,0 +1,43 @@
+// Save button
+#edit-submit {
+  @include button($dark-grey, save);
+}
+
+// Save & Approve button
+#edit-sign-submit {
+  @include button($dark-grey, confirm);
+}
+
+// Delete button
+#edit-delete {
+  @include button($wine, delete);
+}
+
+// View changes button
+#edit-preview-changes {
+  @include button($dark-grey, flow);
+}
+
+// Cancel button
+#edit-cancel {
+  @include button($wine, cancel);
+}
+
+// Next button
+#edit-next {
+  @include button($dark-grey, next);
+}
+
+// Previous button
+#edit-previous {
+  @include button($dark-grey, previous);
+}
+
+// Login button (User log in page)
+form#user-login {
+
+  #edit-submit {
+    @include button($mustard, login);
+    margin: 10px 0 0;
+  }
+}

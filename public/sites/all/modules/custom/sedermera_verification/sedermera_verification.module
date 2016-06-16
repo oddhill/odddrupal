@@ -1,0 +1,1036 @@
+<?php
+
+/**
+ * @file sedermera_verification.module
+ * Main module file for the Sedermera Verification module.
+ */
+
+// Constants for the different verification statuses.
+define('SEDERMERA_VERIFICATION_NOT_APPROVED', 0);
+define('SEDERMERA_VERIFICATION_EXPIRING', 1);
+define('SEDERMERA_VERIFICATION_APPROVED', 2);
+
+/**
+ * Implements hook_ds_fields_info().
+ */
+function sedermera_verification_ds_fields_info($entity_type) {
+  $fields = array();
+
+  if ($entity_type == 'node') {
+    $fields['ctrl_name'] = array(
+      'title'       => 'Avtalspart kontroll typ och namn',
+      'field_type'  => DS_FIELD_TYPE_FUNCTION,
+      'function'    => 'sedermera_verification_ap_name_and_type',
+      'ui_limit'    => array('ctrl|*', 'ctrl_pen|*'),
+    );
+
+    return array($entity_type => $fields);
+  }
+
+  return;
+}
+
+/**
+ * Gets and prints kontrol owner and type
+ */
+function sedermera_verification_ap_name_and_type($field) {
+  if ($field['bundle'] == 'ctrl_pen') {
+    // Simple logics for PEN controls. Find the name of the AP by executing a
+    // query which fetches tht title of the transaction_ap node.
+    $title = db_query("SELECT title FROM {field_data_field_transaction_agree_ctrl} agreement
+      INNER JOIN {field_data_field_transaction_ap_agree} ap ON agreement.entity_id = field_transaction_ap_agree_target_id
+      INNER JOIN {node} ON ap.entity_id = {node}.nid
+      WHERE field_transaction_agree_ctrl_target_id = :nid", array(':nid' => $field['entity']->nid))->fetchField();
+
+    // Set a static type.
+    $type = 'Penningtvätt';
+  }
+  else {
+    // Logics for regular controls.
+    // Retrieve info from database
+    $result = db_query("SELECT *
+      FROM {field_data_field_investor_shared_ctrl_ua} AS ua
+      INNER JOIN {field_data_field_investor_shared_ctrl_cred} AS cred ON (ua.entity_id = cred.entity_id)
+      INNER JOIN {field_data_field_investor_shared_ctrl_ext} AS ext ON (ua.entity_id = ext.entity_id)
+      INNER JOIN {field_data_field_investor_shared_ctrl_ptv} AS ptv ON (ua.entity_id = ptv.entity_id)
+      WHERE field_investor_shared_ctrl_ua_target_id = :nid
+      OR field_investor_shared_ctrl_cred_target_id = :nid
+      OR field_investor_shared_ctrl_ext_target_id = :nid
+      OR field_investor_shared_ctrl_ptv_target_id = :nid",
+      array(':nid' => $field['entity']->nid))->fetchAssoc();
+
+    // Determine what type of control it is
+    if ($field['entity']->nid === $result['field_investor_shared_ctrl_ua_target_id']) {
+      $type = 'Uppdragsavtal';
+    }
+    if ($field['entity']->nid === $result['field_investor_shared_ctrl_cred_target_id']) {
+      $type = 'Kreditkontroll';
+    }
+    if ($field['entity']->nid === $result['field_investor_shared_ctrl_ext_target_id']) {
+      $type = 'Externt register';
+    }
+    if ($field['entity']->nid === $result['field_investor_shared_ctrl_ptv_target_id']) {
+      $type = 'PTV-blankett';
+    }
+
+    if ($type == NULL) {
+      $result = db_query("SELECT *
+        FROM {field_data_field_transaction_ap_ctrl_eu} AS eu
+        WHERE field_transaction_ap_ctrl_eu_target_id = :nid",
+        array(':nid' => $field['entity']->nid))->fetchAssoc();
+
+      // Determine what type of control it is
+      if ($field['entity']->nid === $result['field_transaction_ap_ctrl_eu_target_id']) {
+        $type = 'EU:s sanktionsförordningar';
+      }
+    }
+
+    if ($type == NULL) {
+      $result = db_query("SELECT *
+        FROM {field_data_field_user_id_ctrl} AS eu
+        WHERE field_user_id_ctrl_target_id = :nid",
+        array(':nid' => $field['entity']->nid))->fetchAssoc();
+
+      // Determine what type of control it is
+      if ($field['entity']->nid === $result['field_user_id_ctrl_target_id']) {
+        $type = 'Id kontroll';
+      }
+    }
+
+    // Load AP to get AP name
+    if ($result['bundle'] === 'transaction_ap') {
+      $t_ap = node_load($result['entity_id']);
+      $node_ap = node_load($t_ap->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
+    }
+    else {
+      $node_ap = node_load($result['entity_id']);
+    }
+
+    // Set the title.
+    $title = $node_ap->title;
+  }
+
+  // Add markup
+  $fields['type'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<div class="ver-type">',
+    '#markup' => $type,
+    '#suffix' => '</div>',
+  );
+  $fields['name'] = array(
+    '#type' => 'markup',
+    '#prefix' => '<h2 class="ver-title">',
+    '#markup' => $title,
+    '#suffix' => '</h2>',
+  );
+
+  // Return rendarable array
+  return drupal_render($fields);
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function sedermera_verification_field_formatter_info() {
+  return array(
+    'sedermera_verification_status' => array(
+      'label' => t('Verification status'),
+      'description' => t('Prints the status of the referred verification node.'),
+      'field types' => array('entityreference'),
+      'settings' => array('ajax' => FALSE, 'link' => FALSE, 'link_destination' => 'view'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function sedermera_verification_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  // Build the summary based on the settings.
+  $summary = array();
+  $summary[] = $settings['ajax'] ? t('Load via AJAX') : t("Don't load via AJAX");
+  if ($settings['link'] && $settings['link_destination'] == 'view') {
+    $summary[] = t('link to view');
+  }
+  elseif ($settings['link'] && $settings['link_destination'] == 'edit') {
+    $summary[] = t('link to edit form');
+  }
+  else {
+    $summary[] = t("don't link");
+  }
+
+  // Return the summary.
+  return implode(', ', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function sedermera_verification_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  // Add checkbox for AJAX loading.
+  // TODO: Implement support for this.
+  $element['ajax'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Load via AJAX'),
+    '#description' => t('Loads the status via AJAX in order to improve the response time for the page request.'),
+    '#default_value' => $settings['ajax'],
+  );
+
+  $element['link'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Link to the verification'),
+    '#description' => t('Links the status to either the view or edit form for the verification node.'),
+    '#default_value' => $settings['link'],
+    '#attributes' => array('class' => array('verification-link-option')),
+  );
+  $element['link_destination'] = array(
+    '#type' => 'radios',
+    '#title' => t('Destination'),
+    '#options' => array(
+      'view' => t('View'),
+      'edit' => t('Edit'),
+    ),
+    '#default_value' => $settings['link_destination'],
+    '#states' => array(
+      'visible' => array(
+        'input.verification-link-option' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function sedermera_verification_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $settings = $display['settings'];
+  $elements = array();
+
+  // Process the status for each field item.
+  foreach ($items as $delta => $item) {
+    // Get the status for this verification.
+    $status = sedermera_verification_get_status_single($item['target_id']);
+
+    // Set a different text and class depending on the status.
+    switch ($status) {
+      case SEDERMERA_VERIFICATION_NOT_APPROVED:
+        $text = 'Ej godkänd';
+        $class = 'not-approved';
+        break;
+
+      case SEDERMERA_VERIFICATION_EXPIRING:
+        $text = 'Utgående';
+        $class = 'expiring';
+        break;
+
+      case SEDERMERA_VERIFICATION_APPROVED:
+        $text = 'Godkänd';
+        $class = 'approved';
+        break;
+    }
+
+    if ($settings['link']) {
+      // Set the path based on the configured destination.
+      switch ($settings['link_destination']) {
+        case 'view':
+          $path = "node/{$item['target_id']}";
+          break;
+
+        case 'edit':
+          $path = "node/{$item['target_id']}/edit";
+          break;
+      }
+
+      // Build the link.
+      $elements[$delta] = array(
+        '#theme' => 'link',
+        '#text' => $text,
+        '#path' => $path,
+        '#options' => array(
+          'attributes' => array('class' => array('verification', $settings['link_destination'], $class)),
+        ),
+      );
+    }
+    else {
+      // No link. Simply wrap the text within a span.
+      $elements[$delta] = array(
+        '#prefix' => '<span class="verification ' . $class . '">',
+        '#markup' => $text,
+        '#suffix' => '</span>',
+      );
+    }
+  }
+
+  // Return the markup.
+  return $elements;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function sedermera_verification_field_extra_fields() {
+  // Add pseudo fields for the overall status and ID verification status on
+  // investors, both for private and companies.
+  $extra['node']['investor_private'] = array(
+    'display' => array(
+      'verification_status_investor' => array(
+        'label' => t('Verification status'),
+        'description' => t('Displays the overall verification status for the investor.'),
+        'weight' => 0,
+      ),
+      'verification_id_investor' => array(
+        'label' => t('ID verification'),
+        'description' => t('Edit the verification ID for the investor.'),
+        'weight' => 0,
+      ),
+    )
+  );
+  $extra['node']['investor_company'] = array(
+    'display' => array(
+      'verification_status_investor' => array(
+        'label' => t('Verification status'),
+        'description' => t('Displays the overall verification status for the investor.'),
+        'weight' => 0,
+      ),
+      'verification_id_investor' => array(
+        'label' => t('ID verification'),
+        'description' => t('Edit the verification ID for the investor.'),
+        'weight' => 0,
+      ),
+    )
+  );
+
+  // Add pseudo field for the overall verification status.
+  $extra['node']['transaction_agreement'] = array(
+    'display' => array(
+      'verification_status_transaction_agreement' => array(
+        'label' => t('Verification status'),
+        'description' => t('Displays the overall verification status for the entire transaction.'),
+        'weight' => 0,
+      ),
+    )
+  );
+
+  return $extra;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function sedermera_verification_node_view($node, $view_mode, $langcode) {
+  // Get the display settings for the pseudo fields.
+  $display = field_extra_fields_get_display('node', $node->type, $view_mode);
+
+  // Render the verification status for private investors.
+  if (isset($display['verification_status_investor']) && $display['verification_status_investor']['visible'] && $node->nid) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+
+    // Collect the different verification IDs. Start of with the ID
+    // verifications.
+    $verifications = sedermera_verification_get_ids_for_investor($node->nid);
+
+    // Fetch the dates for UA and PTV in order to determine which one that
+    // should be displayed.
+    $ua_date = $wrapper->field_investor_shared_ctrl_ua->field_ctrl_date->value();
+    $ptv_date = $wrapper->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
+
+    // Add the UA control if it has been set, or if none of UA or PTV has been
+    // set.
+    if ($ua_date || (!$ua_date && !$ptv_date)) {
+      $verifications[] = $wrapper->field_investor_shared_ctrl_ua->nid->value();
+    }
+
+    // Add the PTV control if it has been set and UA hasn't been set, or if both
+    // UA and PTV hasn't been set.
+    if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
+      $verifications[] = $wrapper->field_investor_shared_ctrl_ptv->nid->value();
+    }
+
+    // Add the rest of the verifications.
+    $verifications[] = $wrapper->field_investor_shared_ctrl_ext->nid->value();
+
+    // Fetch the status.
+    $status = sedermera_verification_get_status_multiple($verifications);
+
+    // Set a different text and class depending on the status.
+    switch ($status) {
+      case SEDERMERA_VERIFICATION_NOT_APPROVED:
+        $text = 'Ej godkänd';
+        $class = 'not-approved';
+        break;
+
+      case SEDERMERA_VERIFICATION_EXPIRING:
+        $text = 'Utgående';
+        $class = 'expiring';
+        break;
+
+      case SEDERMERA_VERIFICATION_APPROVED:
+        $text = 'Godkänd';
+        $class = 'approved';
+        break;
+    }
+
+    // Add the markup.
+    $node->content['verification_status_investor'] = array(
+      '#theme' => 'link',
+      '#text' => $text,
+      '#path' => 'verification/view/' . implode(',', $verifications),
+      '#options' => array(
+        'attributes' => array('class' => array('verification', 'view-page', $class)),
+      ),
+    );
+  }
+
+  // Render the ID verification for investors.
+  if (isset($display['verification_id_investor']) && $display['verification_id_investor']['visible'] && $node->nid) {
+    $status = sedermera_verification_get_status_owner_node($node->nid);
+
+    // Fetch the ID verification node IDs.
+    $verifications = sedermera_verification_get_ids_for_investor($node->nid);
+
+    // Link straight to the edit modal if there's only one.
+    if (count($verifications) === 1) {
+      $status = sedermera_verification_get_status_single($verifications[0]);
+
+      // Set a different text and class depending on the status.
+      switch ($status) {
+        case SEDERMERA_VERIFICATION_NOT_APPROVED:
+          $text = 'Ej godkänd';
+          $class = 'not-approved';
+          break;
+
+        case SEDERMERA_VERIFICATION_EXPIRING:
+          $text = 'Utgående';
+          $class = 'expiring';
+          break;
+
+        case SEDERMERA_VERIFICATION_APPROVED:
+          $text = 'Godkänd';
+          $class = 'approved';
+          break;
+      }
+
+      // Add the markup.
+      $node->content['verification_id_investor'] = array(
+        '#theme' => 'link',
+        '#text' => $text,
+        '#path' => "node/{$verifications[0]}/edit",
+        '#options' => array(
+          'attributes' => array('class' => array('verification', 'edit', $class)),
+        ),
+      );
+    }
+    elseif (!empty($verifications)) {
+      // There's more than one ID verification for this investor, so we should
+      // build a list which allows the user to edit the individual
+      // verifications. Start of with the main indicator.
+      $status = sedermera_verification_get_status_multiple($verifications);
+
+      // Set a different text and class depending on the status.
+      switch ($status) {
+        case SEDERMERA_VERIFICATION_NOT_APPROVED:
+          $text = 'Ej godkänd';
+          $class = 'not-approved';
+          break;
+
+        case SEDERMERA_VERIFICATION_EXPIRING:
+          $text = 'Utgående';
+          $class = 'expiring';
+          break;
+
+        case SEDERMERA_VERIFICATION_APPROVED:
+          $text = 'Godkänd';
+          $class = 'approved';
+          break;
+      }
+
+      // Add the markup.
+      $node->content['verification_id_investor'] = array(
+        '#prefix' => '<span class="verification ' . $class . '">',
+        '#markup' => $text,
+        '#suffix' => '</span>',
+      );
+
+      // Fetch the titles of the person nodes where the ID verification resides.
+      // This will be based on a query which fetches the nodes based on the
+      // field_user_id_ctrl field.
+      $query = db_select('node');
+      $query->join('field_data_field_user_id_ctrl', 'person', 'node.nid = person.entity_id');
+      $query->addField('person', 'field_user_id_ctrl_target_id');
+      $query->addField('node', 'title');
+      $query->condition('field_user_id_ctrl_target_id', $verifications);
+      $titles = $query->execute()->fetchAllKeyed();
+
+      // Build the actual list of verifications.
+      $list = array('#theme' => 'item_list');
+      foreach ($verifications as $verification) {
+        $status = sedermera_verification_get_status_single($verification);
+
+        // Set a different class depending on the status.
+        switch ($status) {
+          case SEDERMERA_VERIFICATION_NOT_APPROVED:
+            $class = 'not-approved';
+            break;
+
+          case SEDERMERA_VERIFICATION_EXPIRING:
+            $class = 'expiring';
+            break;
+
+          case SEDERMERA_VERIFICATION_APPROVED:
+            $class = 'approved';
+            break;
+        }
+
+        // Add this link to the item list.
+        $list['#items'][] = l($titles[$verification], "node/$verification/edit", array(
+          'attributes' => array(
+            'class' => array('verification', 'edit', 'id', $class),
+            )
+          )
+        );
+      }
+
+      // Render the item list as a suffix to the main indicator.
+      $node->content['verification_id_investor']['#suffix'] .= render($list);
+    }
+  }
+
+  // Render the verification status if it should be displayed.
+  if (isset($display['verification_status_transaction_agreement']) && $display['verification_status_transaction_agreement']['visible']) {
+
+    if ($node->type !== 'transaction_agreement') {
+      return;
+    }
+
+    $agreement = entity_metadata_wrapper('node', $node);
+
+    // Fetch the transaction_ap node.
+    $result = db_query("SELECT entity_id AS nid FROM {field_data_field_transaction_ap_agree}
+      WHERE field_transaction_ap_agree_target_id = :nid", array(':nid' => $node->nid))->fetchAssoc();
+    $transaction_ap = entity_metadata_wrapper('node', $result['nid']);
+
+    // Fetch the investor from the transaction_ap node.
+    $investor = $transaction_ap->field_transaction_ap_ap;
+
+    // Collect the different verification IDs. Start of with the ID
+    // verifications.
+    $verifications = sedermera_verification_get_ids_for_investor($investor->nid->value());
+
+    // Fetch the dates for UA and PTV in order to determine which one that
+    // should be displayed.
+    $ua_date = $investor->field_investor_shared_ctrl_ua->field_ctrl_date->value();
+    $ptv_date = $investor->field_investor_shared_ctrl_ptv->field_ctrl_date->value();
+
+    // Add the UA control if it has been set, or if none of UA or PTV has been
+    // set.
+    if ($ua_date || (!$ua_date && !$ptv_date)) {
+      $verifications[] = $investor->field_investor_shared_ctrl_ua->nid->value();
+    }
+
+    // Add the PTV control if it has been set and UA hasn't been set, or if both
+    // UA and PTV hasn't been set.
+    if (($ptv_date && !$ua_date) || (!$ua_date && !$ptv_date)) {
+      $verifications[] = $investor->field_investor_shared_ctrl_ptv->nid->value();
+    }
+
+    // Add the other regular verifications.
+    $verifications[] = $investor->field_investor_shared_ctrl_cred->nid->value();
+    $verifications[] = $investor->field_investor_shared_ctrl_ext->nid->value();
+    $verifications[] = $transaction_ap->field_transaction_ap_ctrl_eu->nid->value();
+
+    // Add Penningtvätt if there's an UA verification.
+    if ($investor->field_investor_shared_ctrl_ua->field_ctrl_date->value()) {
+      $verifications[] = $agreement->field_transaction_agree_ctrl->nid->value();
+    }
+
+    // Fetch the status.
+    $status = sedermera_verification_get_status_multiple($verifications);
+
+    // Set a different text and class depending on the status.
+    switch ($status) {
+      case SEDERMERA_VERIFICATION_NOT_APPROVED:
+        $text = 'Ej godkänd';
+        $class = 'not-approved';
+        break;
+
+      case SEDERMERA_VERIFICATION_EXPIRING:
+        $text = 'Utgående';
+        $class = 'expiring';
+        break;
+
+      case SEDERMERA_VERIFICATION_APPROVED:
+        $text = 'Godkänd';
+        $class = 'approved';
+        break;
+    }
+
+    // Add the markup.
+    $node->content['verification_status_transaction_agreement'] = array(
+      '#theme' => 'link',
+      '#text' => $text,
+      '#path' => 'verification/view/' . implode(',', $verifications),
+      '#options' => array(
+        'attributes' => array('class' => array('verification', 'view-page', $class)),
+      ),
+    );
+  }
+}
+
+/**
+ * Get the ID verification node IDs based on an investor.
+ *
+ * @param int $investor_nid
+ *   Node ID for the investor.
+ *
+ * @return array
+ *   Array with node IDs for the verification nodes.
+ */
+function sedermera_verification_get_ids_for_investor($investor_nid) {
+  $investor = entity_metadata_wrapper('node', $investor_nid);
+
+  // Use the ID from the contact person if this is a private investor.
+  if ($investor->type->value() === 'investor_private') {
+    return array($investor->field_shared_cont_pers->field_user_id_ctrl->nid->value());
+  }
+
+  // Fetch IDs from the owners if this is a company investor.
+  if ($investor->type->value() === 'investor_company') {
+    // Iterate through every owner and save the verification ID.
+    $verifications = array();
+    foreach ($investor->field_investor_comp_owner as $owner) {
+      $verifications[] = $owner->field_owner_head->value()->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'];
+    }
+
+    // Return the verification IDs.
+    return $verifications;
+  }
+}
+
+/**
+ * Gets status for the complementing questions
+ * @param  stdClass $control control node
+ * @return Control status
+ */
+function sedermera_verification_get_status_complementing(stdClass $control) {
+  $wrap = entity_metadata_wrapper('node', $control);
+
+  if ($wrap->field_ctrl_pen_ok->value()) {
+    return SEDERMERA_VERIFICATION_APPROVED;
+  }
+  else {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+}
+
+/**
+ * Get status for the contact person involved
+ * @param  integer $nid of the investor
+ * @return Control status
+ */
+function sedermera_verification_get_status_contact_person($nid) {
+  $result = db_query("SELECT field_user_id_ctrl_target_id AS nid FROM {field_data_field_transaction_investor} AS investor
+    INNER JOIN {field_data_field_transaction_person} AS person
+    ON (investor.entity_id = person.entity_id)
+    INNER JOIN {field_data_field_user_id_ctrl} AS ctrl
+    ON (ctrl.entity_id = person.field_transaction_person_target_id)
+    WHERE field_transaction_investor_target_id = :nid", array(':nid' => $nid))->fetchAssoc();
+
+  return sedermera_verification_get_status_single($result['nid']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * Hide control section when creating a person
+ */
+function sedermera_verification_form_person_node_form_alter(&$form, &$form_state, $form_id) {
+  if (arg(1) == 'add' && arg(2) == 'person') {
+    $form['field_user_id_ctrl']['#access'] = FALSE;
+    unset($form['#groups']['group_id_ctrl']);
+    unset($form['#fieldgroups']['group_id_ctrl']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * Sets description as label because of length.
+ */
+function sedermera_verification_form_ctrl_pen_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#description'];
+  $form['field_ctrl_fitting'][LANGUAGE_NONE]['0']['value']['#description'] = '';
+
+  $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#title'] = $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'];
+  $form['field_ctrl_source'][LANGUAGE_NONE]['0']['value']['#description'] = '';
+
+  $result = db_query("SELECT title FROM node
+    INNER JOIN field_data_field_transaction_ap_ap AS ap ON (node.nid = ap.field_transaction_ap_ap_target_id)
+    INNER JOIN field_data_field_transaction_ap_agree AS agree ON (agree.entity_id = ap.entity_id)
+    INNER JOIN field_data_field_transaction_agree_ctrl AS ctrl ON (agree.field_transaction_ap_agree_target_id = ctrl.entity_id)
+    WHERE ctrl.field_transaction_agree_ctrl_target_id = :nid", array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+  // Add markup for prefix
+  $form['prefix'] = array(
+    '#type' => 'markup',
+    '#markup' => '
+    <div class="verification-header">
+      <div class="verification-info">
+        <div class="ver-type">Penningtvätt</div>
+        <h2 class="ver-title">' . $result['title'] . '</h2>
+      </div>
+    </div>
+    ',
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * Add control type and investor name to control edit form
+ */
+function sedermera_verification_form_ctrl_node_form_alter(&$form, &$form_state, $form_id) {
+  // Retrieve info from database
+  $result = db_query("SELECT *
+    FROM {field_data_field_investor_shared_ctrl_ua} AS ua
+    INNER JOIN {field_data_field_investor_shared_ctrl_cred} AS cred ON (ua.entity_id = cred.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_ext} AS ext ON (ua.entity_id = ext.entity_id)
+    INNER JOIN {field_data_field_investor_shared_ctrl_ptv} AS ptv ON (ua.entity_id = ptv.entity_id)
+    WHERE field_investor_shared_ctrl_ua_target_id = :nid
+    OR field_investor_shared_ctrl_cred_target_id = :nid
+    OR field_investor_shared_ctrl_ext_target_id = :nid
+    OR field_investor_shared_ctrl_ptv_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+  // Determine what type of control it is
+  switch ($form['nid']['#value']) {
+    case $result['field_investor_shared_ctrl_ua_target_id']:
+      $type = 'Uppdragsavtal';
+      break;
+    case $result['field_investor_shared_ctrl_cred_target_id']:
+      $type = 'Kreditkontroll';
+      break;
+    case $result['field_investor_shared_ctrl_ext_target_id']:
+      $type = 'Externt register';
+      break;
+    case $result['field_investor_shared_ctrl_ptv_target_id']:
+      $type = 'PTV-blankett';
+      break;
+  }
+
+  if ($type == NULL) {
+    $result = db_query("SELECT *
+      FROM {field_data_field_transaction_ap_ctrl_eu} AS eu
+      WHERE field_transaction_ap_ctrl_eu_target_id = :nid",
+      array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+    // Determine what type of control it is
+    if ($form['nid']['#value'] === $result['field_transaction_ap_ctrl_eu_target_id']) {
+      $type = 'EU:s sanktionsförordningar';
+    }
+  }
+
+  if ($type == NULL) {
+    $result = db_query("SELECT *
+      FROM {field_data_field_user_id_ctrl} AS eu
+      WHERE field_user_id_ctrl_target_id = :nid",
+      array(':nid' => $form['nid']['#value']))->fetchAssoc();
+
+    // Determine what type of control it is
+    if ($form['nid']['#value'] === $result['field_user_id_ctrl_target_id']) {
+      $type = 'Id kontroll';
+    }
+  }
+
+  // Load AP to get AP name
+  if ($result['bundle'] === 'transaction_ap') {
+    $t_ap = node_load($result['entity_id']);
+    $node_ap = node_load($t_ap->field_transaction_ap_ap[LANGUAGE_NONE][0]['target_id']);
+  }
+  else {
+    $node_ap = node_load($result['entity_id']);
+  }
+
+  // Get status for the control
+  $status = sedermera_verification_get_status_single($form['nid']['#value']);
+
+  // Set variables based on the control
+  switch ($status) {
+    case SEDERMERA_VERIFICATION_NOT_APPROVED:
+      $class = 'not-approved';
+      $text = 'ej godkänd';
+      break;
+    case SEDERMERA_VERIFICATION_EXPIRING:
+      $class = 'expiring';
+      $text = 'utgående';
+      break;
+    case SEDERMERA_VERIFICATION_APPROVED:
+      $class = 'approved';
+      $text = 'godkänd';
+      break;
+  }
+
+  // Add class to the form
+  $form['#attributes']['class'][] = $class;
+
+  // Add markup for prefix
+  $form['prefix'] = array(
+    '#type' => 'markup',
+    '#markup' => '
+    <div class="verification-header">
+      <div class="verification-status">
+        Kontrollen är <span class="ctrl-verification ' . $class . '">' . $text . '</span>
+      </div>
+      <div class="verification-info">
+        <div class="ver-type">' . $type . '</div>
+        <h2 class="ver-title">' . $node_ap->title . '</h2>
+      </div>
+    </div>
+    ',
+  );
+
+  // Set the default control date to today if a date hasn't been set.
+  if (empty($form['field_ctrl_date'][LANGUAGE_NONE][0]['#default_value'])) {
+    $form['field_ctrl_date'][LANGUAGE_NONE][0]['#default_value']['value'] = date('c');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function sedermera_verification_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // Hide the title field since it's automatically generated for some node
+  // types. This will only hide the field when it's displayed in a regular form.
+  // See sedermera_verification_field_attach_form() for logics when inside an
+  // Inline Entity form.
+  if (in_array($form['#node']->type, array('ctrl', 'ctrl_pen'))) {
+    $form['title']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_field_attach_form().
+ */
+function sedermera_verification_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
+  // Hide the title field for certain node types. This will be executed when the
+  // form is built inside an Inline Entity form.
+  if ($form['#entity_type'] == 'node' && in_array($form['#bundle'], array('ctrl', 'ctrl_pen'))) {
+    $form['title']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Get the status for a single verification.
+ *
+ * @param int $id
+ *   The verification ID.
+ *
+ * @return int
+ *   One of the following constants:
+ *   - SEDERMERA_VERIFICATION_NOT_APPROVED
+ *   - SEDERMERA_VERIFICATION_EXPIRING
+ *   - SEDERMERA_VERIFICATION_APPROVED
+ *
+ * @see sedermera_verification_get_status_multiple()
+ */
+function sedermera_verification_get_status_single($id) {
+  $wrapper = entity_metadata_wrapper('node', $id);
+
+  if ($wrapper->type->value() === 'ctrl_pen') {
+    return sedermera_verification_get_status_complementing(node_load($id));
+  }
+
+  // Fetch the date.
+  $date = $wrapper->field_ctrl_date->value();
+
+  // Exit early if there's no date set.
+  if (!$date) {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+
+  // Perform different comparation depending on the date type.
+  switch ($wrapper->field_ctrl_app->value()) {
+    case 'approved_to':
+      // The date is always set to 00:00 of the specified day since the user
+      // isn't allowed to select the time. We need to adjust the timestamp so
+      // that it points to 23:59 instead, since the specified date is the last
+      // valid date.
+      $date += (60 * 60 * 23) + (60 * 59) + 59;
+
+      if ($date < REQUEST_TIME) {
+        // The date has passed.
+        return SEDERMERA_VERIFICATION_NOT_APPROVED;
+      }
+
+      if ($date - REQUEST_TIME <= (60 * 60 * 24 * 30)) {
+        // The date is within the next 30 days.
+        return SEDERMERA_VERIFICATION_EXPIRING;
+      }
+
+      // Everything seems to be in order.
+      return SEDERMERA_VERIFICATION_APPROVED;
+      break;
+
+    case 'approved_until_further_notice':
+      // The verification is valid from the specified date. Simply verify that
+      // the date is in the past.
+      return $date <= REQUEST_TIME ? SEDERMERA_VERIFICATION_APPROVED : SEDERMERA_VERIFICATION_NOT_APPROVED;
+      break;
+
+    default:
+      // The date type hasn't been set. Assume that it's not approved.
+      return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+}
+
+/**
+ * Get the status for multiple verifications.
+ *
+ * @param array $ids
+ *   The verification IDs.
+ *
+ * @return int
+ *   The "lowest" status for all of the verifications. E.g. if two verification
+ *   IDs are passed to the function, and one of them is approved and the other
+ *   is expiring, expiring will be returned.
+ *
+ * @see sedermera_verification_get_status_single()
+ */
+function sedermera_verification_get_status_multiple(array $ids) {
+  $statuses = array();
+
+  // Bail out early if no ids exists
+  if (empty($ids)) {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+
+  // Fetch the status for each id.
+  foreach ($ids as $id) {
+    $status = sedermera_verification_get_status_single($id);
+
+    // Bail out early if the status is not approved, since there's no need to
+    // check the other verifications in that case.
+    if ($status === SEDERMERA_VERIFICATION_NOT_APPROVED) {
+      return $status;
+    }
+
+    // Save the status for comparation.
+    $statuses[] = $status;
+  }
+
+  // Return the lowest status. It's safe to use min() since the status constants
+  // are defined incrementally.
+  return min($statuses);
+}
+
+/**
+ * Get the status for an entire node.
+ *
+ * @param array $nid
+ *   The node ID.
+ *
+ * @return int
+ *   The "lowest" status for all of the verifications among the fields which
+ *   refers to a verification node.
+ *
+ * @see sedermera_verification_get_status_multiple()
+ */
+function sedermera_verification_get_status_node($nid) {
+  // Load the node.
+  $node = entity_metadata_wrapper('node', $nid);
+
+  // Store the verification IDs.
+  $verifications = array();
+
+  // Iterate through every property in order to find entityreference fields
+  // which points to verification nodes.
+  foreach ($node->getPropertyInfo() as $property_name => $property_info) {
+    if (!$property_info['field']) {
+      // This is not a field.
+      continue;
+    }
+
+    // Load the field info.
+    $field = field_info_field($property_name);
+    if ($field['type'] != 'entityreference' || !$field['settings']['handler_settings']['target_bundles'] || !in_array('ctrl', $field['settings']['handler_settings']['target_bundles'])) {
+      // The field isn't a reference field which points to the verification
+      // bundle.
+      continue;
+    }
+
+    $values = $node->$property_name->value();
+    if (!is_array($values)) {
+      // Single value field.
+      $verifications[] = $values->nid;
+    }
+    else {
+      // Multiple value field, add each nid.
+      foreach ($values as $value) {
+        if (isset($value->nid)) {
+          $verifications[] = $value->nid;
+        }
+      }
+    }
+  }
+
+  // Return the verification status based on our findings.
+  return sedermera_verification_get_status_multiple($verifications);
+}
+
+/**
+ * Get the status for the owners id of a investor.
+ *
+ * @param array $nid
+ *   The node ID.
+ *
+ * @return int
+ *   The "lowest" status for all of the verifications among the fields which
+ *   refers to a verification node.
+ *
+ * @see sedermera_verification_get_status_multiple()
+ */
+function sedermera_verification_get_status_owner_node($nid) {
+  // Load the node.
+  $node = entity_metadata_wrapper('node', $nid);
+
+  if ($node->type->value() !== 'investor_company' && $node->type->value() !== 'investor_private') {
+    return SEDERMERA_VERIFICATION_NOT_APPROVED;
+  }
+
+  // If private investor
+  if ($node->type->value() === 'investor_private') {
+    // Load the owner
+    $owner = $node->field_shared_cont_pers->value();
+    $owner_wrap = entity_metadata_wrapper('node', $owner);
+
+    // Load control of the owner
+    $ctrl = $owner_wrap->field_user_id_ctrl->value();
+
+    // Return the verification status based on our findings.
+    return sedermera_verification_get_status_single($ctrl->nid);
+  }
+
+  // If company investor
+  if ($node->type->value() === 'investor_company') {
+    // Store the verification IDs.
+    $verifications = array();
+
+    // Iterate through every property in order to find entityreference fields
+    // which points to verification nodes.
+    foreach ($node->field_investor_comp_owner as $owner) {
+
+      // Get control nid of the owner
+      $ctrl_nid = $owner->field_owner_head->value()->field_user_id_ctrl[LANGUAGE_NONE][0]['target_id'];
+
+      // Add control nid to array
+      $verifications[] = $ctrl_nid;
+    }
+
+    // Return the verification status based on our findings.
+    return sedermera_verification_get_status_multiple($verifications);
+  }
+}

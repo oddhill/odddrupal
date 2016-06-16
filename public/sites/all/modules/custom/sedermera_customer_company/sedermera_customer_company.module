@@ -1,0 +1,1113 @@
+<?php
+
+/**
+ * @file sedermera_sign_and_offer.module
+ * Main module file for the Sedermera Sign and Offer module.
+ */
+
+// Constants for the different verification statuses.
+define('SEDERMERA_CUSTOMER_COMPANY_CONTROL_NOT_APPROVED', 0);
+define('SEDERMERA_CUSTOMER_COMPANY_CONTROL_APPROVED', 1);
+define('SEDERMERA_CUSTOMER_COMPANY_CONTROL_CONFLICT', 2);
+define('SEDERMERA_CUSTOMER_COMPANY_CONTROL_CONFLICT_NOT_APPROVED', 3);
+define('SEDERMERA_CUSTOMER_COMPANY_CONTROL_NOT_DONE', 4);
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_customer_company_menu() {
+  $items['customer-approval/add/%'] = array(
+    'page callback' => 'sedermera_customer_company_add_customer_approval',
+    'page arguments' => array(2),
+    'access arguments' => array('create customer_approval content'),
+  );
+  $items['customer-approval/sign/%'] = array(
+    'page callback' => 'sedermera_customer_company_sign_customer_approval',
+    'page arguments' => array(2),
+    'access arguments' => array('edit any customer_approval content'),
+  );
+  $items['customer-approval/sign/admin/%'] = array(
+    'page callback' => 'sedermera_customer_company_sign_customer_approval_admin',
+    'page arguments' => array(3),
+    'access arguments' => array('edit any customer_approval content'),
+  );
+  $items['node/%/reload'] = array(
+    'page callback' => 'sedermera_customer_company_reload_proposal',
+    'page arguments' => array(1),
+    'access arguments' => array('view any customer_approval content'),
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+  return $items;
+}
+
+/**
+ * Page callback for creating customer approval.
+ *
+ * @param int $nid
+ *   Node ID for the proposal node which we should create the customer approval
+ *   for.
+ */
+function sedermera_customer_company_add_customer_approval($nid) {
+  global $user;
+  $offer = node_load($nid);
+
+  // Create the new customer approval object.
+  $customer_approval = entity_create('node', array('type' =>'customer_approval', 'title' => $offer->title . ' Kundgodkännade'));
+
+  // Create the corresponding control nodes.
+  $credit_risk = entity_create('node', array('type' =>'credit_risk', 'title' => $offer->title . ' Kredit & Motpartsrisk'));
+  $customer_history = entity_create('node', array('type' =>'customer_history', 'title' => $offer->title . ' Kundens historik'));
+  $conflict = entity_create('node', array('type' =>'conflict', 'title' => $offer->title . ' Intressekonflikter'));
+  $money_launder = entity_create('node', array('type' =>'money_launder', 'title' => $offer->title . ' Penningtvätt'));
+  $suitability_assessment = entity_create('node', array('type' =>'suitability_assessment', 'title' => $offer->title . ' Passandebedömning'));
+  $final_approval = entity_create('node', array('type' =>'final_approval', 'title' => $offer->title . ' Slutgiltigt omdöme'));
+
+  // Save the control nodes.
+  entity_save('node', $credit_risk);
+  entity_save('node', $customer_history);
+  entity_save('node', $conflict);
+  entity_save('node', $money_launder);
+  entity_save('node', $suitability_assessment);
+  entity_save('node', $final_approval);
+
+  // Connect the control nodes to the customer approval.
+  $customer_approval->field_cust_app_credit_risk = array(
+    LANGUAGE_NONE => array(
+      array('target_id' => $credit_risk->nid),
+    )
+  );
+  $customer_approval->field_cust_app_cust_history = array(
+    LANGUAGE_NONE => array(
+      array('target_id' => $customer_history->nid),
+    ),
+  );
+  $customer_approval->field_cust_app_conflict = array(
+    LANGUAGE_NONE => array(
+      array('target_id' => $conflict->nid),
+    ),
+  );
+  $customer_approval->field_cust_app_money_launder = array(
+    LANGUAGE_NONE => array(
+      array('target_id' => $money_launder->nid),
+    ),
+  );
+  $customer_approval->field_cust_app_suitability = array(
+    LANGUAGE_NONE => array(
+      array('target_id' => $suitability_assessment->nid),
+    ),
+  );
+  $customer_approval->field_cust_app_final_app = array(
+    LANGUAGE_NONE => array(
+      array('target_id' => $final_approval->nid),
+    ),
+  );
+
+  // Save the customer approval.
+  entity_save('node', $customer_approval);
+
+  // Connect the offer to the customer approval, and save the offer.
+  $offer->field_proposal_cust_approval[LANGUAGE_NONE][0]['target_id'] = $customer_approval->nid;
+  node_save($offer);
+
+  // Return to the offer node, since the customer approval will be displayed
+  // beneath that node.
+  drupal_goto('node/' . $offer->nid);
+}
+
+/**
+ * Page callback for signing a customer approval as an editor or administrator.
+ *
+ * @param int $nid
+ *   Node ID for the customer approval.
+ */
+function sedermera_customer_company_sign_customer_approval($nid) {
+  global $user;
+  $customer_approval = node_load($nid);
+
+  // Set the signed flag, the current user and time.
+  $customer_approval->field_cust_app_signed[LANGUAGE_NONE][0]['value'] = TRUE;
+  $customer_approval->field_cust_app_signed_by[LANGUAGE_NONE][0]['target_id'] = $user->uid;
+  $customer_approval->field_cust_app_signed_time[LANGUAGE_NONE][0]['value'] = REQUEST_TIME;
+
+  // Save the customer approval.
+  node_save($customer_approval);
+
+  // Fetch the proposal that relates to this customer approval in order to
+  // redirect the user back to the proposal node.
+  $query = new EntityFieldQuery();
+  $query->fieldCondition('field_proposal_cust_approval', 'target_id', $nid);
+  $result = $query->execute();
+  drupal_goto('node/' . current($result['node'])->nid);
+}
+
+/**
+ * Page callback for signing a customer approval as an administrator.
+ *
+ * @param int $nid
+ *   Node ID for the customer approval.
+ */
+function sedermera_customer_company_sign_customer_approval_admin($nid) {
+  global $user;
+  $customer_approval = node_load($nid);
+
+  // Set the signed flag, the current user and time.
+  $customer_approval->field_cust_app_signed_admin[LANGUAGE_NONE][0]['value'] = TRUE;
+  $customer_approval->field_cust_app_signed_by_admin[LANGUAGE_NONE][0]['target_id'] = $user->uid;
+  $customer_approval->field_cust_app_signed_time_admin[LANGUAGE_NONE][0]['value'] = REQUEST_TIME;
+
+  // Save the customer approval.
+  node_save($customer_approval);
+
+  // Fetch the proposal that relates to this customer approval in order to
+  // redirect the user back to the proposal node.
+  $query = new EntityFieldQuery();
+  $query->fieldCondition('field_proposal_cust_approval', 'target_id', $nid);
+  $result = $query->execute();
+  drupal_goto('node/' . current($result['node'])->nid);
+}
+
+/**
+ * AJAX callback which reloads a node.
+ *
+ * @param int $nid
+ *   Node ID for the proposal.
+ *
+ * @return array
+ *   Array with AJAX commands.
+ */
+function sedermera_customer_company_reload_proposal($nid) {
+  // Load the node and build a renderable array.
+  $node = node_load($nid);
+  $render = node_view($node);
+
+  // Return commands which replaces the current node with the newly rendered
+  // one.
+  return array(
+    '#type' => 'ajax',
+    '#commands' => array(ajax_command_replace('.content-wrapper .node-barrier', render($render))),
+  );
+}
+
+/**
+ * Implements hook_node_view_alter().
+ */
+function sedermera_customer_company_node_view_alter(&$build) {
+  // Attach jQuery form and the AJAX framework to customer approvals since these
+  // nodes will open the verifications in editable modals.
+  if ($build['#bundle'] == 'customer_approval') {
+    $build['#attached']['library'][] = array('system', 'jquery.form');
+    $build['#attached']['library'][] = array('system', 'drupal.ajax');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_company_node_form_alter(&$form, &$form_state, $form_id) {
+  // Change the label for the default value on the customer responsible select
+  // list.
+  $form['field_comp_cust_resp'][LANGUAGE_NONE]['#options']['_none'] = '- Kundansvarig -';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_proposal_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Only alter the form if we're not user 1.
+  if ($user->uid != 1) {
+    // Disable access to the customer approval and company field since those
+    // will be handled automatically.
+    $form['field_proposal_cust_approval']['#access'] = FALSE;
+    $form['field_proposal_company']['#access'] = FALSE;
+
+    // Check if we're creating a new node.
+    if (!isset($form_state['node']->nid) || isset($form_state['node']->is_new)) {
+      // Set value for the company field if an ID exists in the query.
+      if (isset($_GET['nid'])) {
+        $form['field_proposal_company'][LANGUAGE_NONE]['#default_value'] = array($_GET['nid']);
+      }
+      // Otherwise we'll try to find a value from the form_state, since the form
+      // might be rebuilt during AJAX (e.g. file uploads).
+      elseif (isset($form_state['complete form']['field_proposal_company'][LANGUAGE_NONE]['#default_value'])) {
+        $form['field_proposal_company'][LANGUAGE_NONE]['#default_value'] = $form_state['complete form']['field_proposal_company'][LANGUAGE_NONE]['#default_value'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_customer_approval_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Only alter the form if we're not user 1.
+  if ($user->uid != 1) {
+    // Disable access to various fields since these are handled automatically.
+    $form['field_cust_app_signed']['#access'] = FALSE;
+    $form['field_cust_app_signed_admin']['#access'] = FALSE;
+    $form['title']['#access'] = FALSE;
+    $form['field_cust_app_credit_risk'][LANGUAGE_NONE]['form']['title']['#access'] = FALSE;
+    $form['field_cust_app_cust_history'][LANGUAGE_NONE]['form']['title']['#access'] = FALSE;
+    $form['field_cust_app_conflict'][LANGUAGE_NONE]['form']['title']['#access'] = FALSE;
+    $form['field_cust_app_money_launder'][LANGUAGE_NONE]['form']['title']['#access'] = FALSE;
+    $form['field_cust_app_suitability'][LANGUAGE_NONE]['form']['title']['#access'] = FALSE;
+    $form['field_cust_app_final_app'][LANGUAGE_NONE]['form']['title']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_credit_risk_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Add a help text as a prefix since it should be displayed before the fields.
+  $form['field_credit_risk_cred']['#prefix'] = '<span class="credit-risk-cred-prefix"><strong>Vid komplext koncernförhållande:</strong><p>Gör kreditkontroll och årsredovisning för övriga bolag/ägare nedan.</p></span>';
+
+  // Disable access to various fields if we're not user 1, since these are
+  // handled automatically.
+  if ($user->uid != 1) {
+    $form['field_shared_signed_app_ctrl']['#access'] = FALSE;
+    $form['title']['#access'] = FALSE;
+  }
+
+  // Add a custom submit button in order to sign and save the control.
+  sedmermera_customer_company_add_submit_callback($form);
+
+  // Fetch the title of the proposal.
+  $proposal_title = db_query("SELECT {n}.title
+    FROM {node} AS n
+    INNER JOIN {field_data_field_proposal_cust_approval} AS proposal ON {n}.nid = {proposal}.entity_id
+    INNER JOIN {field_data_field_cust_app_credit_risk} AS credit_risk ON {proposal}.field_proposal_cust_approval_target_id = {credit_risk}.entity_id
+    WHERE {credit_risk}.field_cust_app_credit_risk_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchField();
+
+  // Add the modal header.
+  sedermera_customer_company_add_modal_header($form, 'Kredit & Motpartsrisk', $proposal_title);
+
+  // Disable the remove button for referenced credit nodes.
+  foreach (element_children($form['field_credit_risk_cred'][LANGUAGE_NONE]) as $key) {
+    $item = &$form['field_credit_risk_cred'][LANGUAGE_NONE][$key];
+    if (isset($item['remove_button'])) {
+      $item['remove_button']['#access'] = FALSE;
+    }
+  }
+
+  // Disable the remove button for referenced annual nodes.
+  foreach (element_children($form['field_credit_risk_annual'][LANGUAGE_NONE]) as $key) {
+    $item = &$form['field_credit_risk_annual'][LANGUAGE_NONE][$key];
+    if (isset($item['remove_button'])) {
+      $item['remove_button']['#access'] = FALSE;
+    }
+  }
+
+  // Add javascript which will implement custom behaviors for the form.
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'sedermera_customer_company') . '/sedermera_customer_company_credit.js'
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_customer_history_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Disable access to various fields if we're not user 1, since these are
+  // handled automatically.
+  if ($user->uid != 1) {
+    $form['field_shared_signed_app_ctrl']['#access'] = FALSE;
+    $form['title']['#access'] = FALSE;
+  }
+
+  // Add a custom submit button in order to sign and save the control.
+  sedmermera_customer_company_add_submit_callback($form);
+
+  // Fetch the title of the proposal.
+  $proposal_title = db_query("SELECT {n}.title
+    FROM {node} AS n
+    INNER JOIN {field_data_field_proposal_cust_approval} AS proposal ON {n}.nid = {proposal}.entity_id
+    INNER JOIN {field_data_field_cust_app_cust_history} AS customer_history ON {proposal}.field_proposal_cust_approval_target_id = {customer_history}.entity_id
+    WHERE {customer_history}.field_cust_app_cust_history_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchField();
+
+  // Add the modal header.
+  sedermera_customer_company_add_modal_header($form, 'Kundens Historik', $proposal_title);
+
+  // Disable the remove button for referenced annual nodes.
+  foreach (element_children($form['field_customer_history_executive'][LANGUAGE_NONE]) as $key) {
+    $item = &$form['field_customer_history_executive'][LANGUAGE_NONE][$key];
+    if (isset($item['remove_button'])) {
+      $item['remove_button']['#access'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_conflict_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Disable access to various fields if we're not user 1, since these are
+  // handled automatically.
+  if ($user->uid != 1) {
+    $form['field_shared_signed_app_ctrl']['#access'] = FALSE;
+    $form['title']['#access'] = FALSE;
+  }
+
+  // Add a custom submit button in order to sign and save the control.
+  sedmermera_customer_company_add_submit_callback($form);
+
+  // Fetch the title of the proposal.
+  $proposal_title = db_query("SELECT {n}.title
+    FROM {node} AS n
+    INNER JOIN {field_data_field_proposal_cust_approval} AS proposal ON {n}.nid = {proposal}.entity_id
+    INNER JOIN {field_data_field_cust_app_conflict} AS conflict ON {proposal}.field_proposal_cust_approval_target_id = {conflict}.entity_id
+    WHERE {conflict}.field_cust_app_conflict_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchField();
+
+  // Add the modal header.
+  sedermera_customer_company_add_modal_header($form, 'Intressekonflikter', $proposal_title);
+
+  // Add javascript which will implement custom behaviors for the form.
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'sedermera_customer_company') . '/sedermera_customer_company_conflict.js'
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_money_launder_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Disable access to various fields if we're not user 1, since these are
+  // handled automatically.
+  if ($user->uid != 1) {
+    $form['field_shared_signed_app_ctrl']['#access'] = FALSE;
+    $form['title']['#access'] = FALSE;
+  }
+
+  // Add a custom submit button in order to sign and save the control.
+  sedmermera_customer_company_add_submit_callback($form);
+
+  // Fetch the title of the proposal.
+  $proposal_title = db_query("SELECT {n}.title
+    FROM {node} AS n
+    INNER JOIN {field_data_field_proposal_cust_approval} AS proposal ON {n}.nid = {proposal}.entity_id
+    INNER JOIN {field_data_field_cust_app_money_launder} AS money_lounder ON {proposal}.field_proposal_cust_approval_target_id = {money_lounder}.entity_id
+    WHERE {money_lounder}.field_cust_app_money_launder_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchField();
+
+  // Add the modal header.
+  sedermera_customer_company_add_modal_header($form, 'Penningtvätt', $proposal_title);
+
+  // Process each value for the field_money_launder_head field.
+  foreach (element_children($form['field_money_launder_head'][LANGUAGE_NONE]) as $key) {
+    $item = &$form['field_money_launder_head'][LANGUAGE_NONE][$key];
+
+    // Fetch the verification status for this person.
+    $status = sedermera_customer_company_get_id_verification_status($item['#entity']->field_launder_person[LANGUAGE_NONE][0]['target_id']);
+
+    // Add the status light as a prefix to the person, and disable the field
+    // since the person shouldn't be editable.
+    $item['field_launder_person'][LANGUAGE_NONE][0]['target_id']['#prefix'] = $status;
+    $item['field_launder_person'][LANGUAGE_NONE][0]['target_id']['#disabled'] = TRUE;
+
+    // Remove the remove button.
+    if (isset($item['remove_button'])) {
+      $item['remove_button']['#access'] = FALSE;
+    }
+  }
+
+  // Disable access to the add more button for the field_money_launder_head
+  // field.
+  $form['field_money_launder_head'][LANGUAGE_NONE]['add_more']['#access'] = FALSE;
+
+  // Disable the remove button for referenced annual nodes.
+  foreach (element_children($form['field_money_launder_regime'][LANGUAGE_NONE]) as $key) {
+    $item = &$form['field_money_launder_regime'][LANGUAGE_NONE][$key];
+    if (isset($item['remove_button'])) {
+      $item['remove_button']['#access'] = FALSE;
+    }
+  }
+
+  // Process each value for the field_money_launder_company field.
+  foreach (element_children($form['field_money_launder_company'][LANGUAGE_NONE]) as $key) {
+    $item = &$form['field_money_launder_company'][LANGUAGE_NONE][$key];
+
+    // Disable the company field for the first value since this must be the
+    // actual member company.
+    if ($key == 0) {
+      $item['field_company_name'][LANGUAGE_NONE][0]['value']['#disabled'] = TRUE;
+    }
+
+    // Disable the remove button.
+    if (isset($item['remove_button'])) {
+      $item['remove_button']['#access'] = FALSE;
+    }
+  }
+
+  // Add javascript which will implement custom behaviors for the form.
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'sedermera_customer_company') . '/sedermera_customer_company_money_lounder.js'
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_suitability_assessment_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Disable access to various fields if we're not user 1, since these are
+  // handled automatically.
+  if ($user->uid != 1) {
+    $form['field_shared_signed_app_ctrl']['#access'] = FALSE;
+    $form['title']['#access'] = FALSE;
+  }
+
+  // Add a custom submit button in order to sign and save the control.
+  sedmermera_customer_company_add_submit_callback($form);
+
+  // Fetch the title of the proposal.
+  $proposal_title = db_query("SELECT {n}.title
+    FROM {node} AS n
+    INNER JOIN {field_data_field_proposal_cust_approval} AS proposal ON {n}.nid = {proposal}.entity_id
+    INNER JOIN {field_data_field_cust_app_suitability} AS suitability ON {proposal}.field_proposal_cust_approval_target_id = {suitability}.entity_id
+    WHERE {suitability}.field_cust_app_suitability_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchField();
+
+  // Add the modal header.
+  sedermera_customer_company_add_modal_header($form, 'Passandebedömning', $proposal_title);
+
+  // Set the title of each question to the description, and remove the
+  // description. This is done because the field title is limited to 255
+  // characters, and that might not be enough if a question is longer than that.
+  foreach (element_children($form) as $key => $value) {
+    if (strpos($value, 'field_suitability_quest_') !== FALSE && strpos($value, 'note') === FALSE) {
+      $form[$value][LANGUAGE_NONE]['#title'] = $form[$value][LANGUAGE_NONE]['#description'];
+      $form[$value][LANGUAGE_NONE]['#description'] = '';
+    }
+  }
+
+  // Add javascript which will implement custom behaviors for the form.
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'sedermera_customer_company') . '/sedermera_customer_company_suitability.js'
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_customer_company_form_final_approval_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  // Disable access to various fields if we're not user 1, since these are
+  // handled automatically.
+  if ($user->uid != 1) {
+    $form['field_shared_signed_app_ctrl']['#access'] = FALSE;
+    $form['title']['#access'] = FALSE;
+  }
+
+  // Add a custom submit button in order to sign and save the control.
+  sedmermera_customer_company_add_submit_callback($form);
+
+  // Fetch the title of the proposal.
+  $proposal_title = db_query("SELECT {n}.title
+    FROM {node} AS n
+    INNER JOIN {field_data_field_proposal_cust_approval} AS proposal ON {n}.nid = {proposal}.entity_id
+    INNER JOIN {field_data_field_cust_app_final_app} AS final ON {proposal}.field_proposal_cust_approval_target_id = {final}.entity_id
+    WHERE {final}.field_cust_app_final_app_target_id = :nid",
+    array(':nid' => $form['nid']['#value']))->fetchField();
+
+  // Add the modal header.
+  sedermera_customer_company_add_modal_header($form, 'Slutgiltigt Omdöme', $proposal_title);
+}
+
+/**
+ * Add a submit button which calls a custom callback in order to sign the
+ * controls.
+ *
+ * @param array $form
+ *   The form array which we will add the button to.
+ */
+function sedmermera_customer_company_add_submit_callback(&$form) {
+  // Add the submit callback before the regular ones.
+  $callbacks = $form['actions']['submit']['#submit'];
+  array_unshift($callbacks, 'sedermera_customer_company_sign_control_submit');
+
+  // Add a submit button which calls the callbacks.
+  $form['actions']['sign_submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Spara och Godkänn',
+    '#submit' => $callbacks,
+  );
+}
+
+/**
+ * Custom submit handler to set signed.
+ */
+function sedermera_customer_company_sign_control_submit($form, &$form_state) {
+  $form_state['values']['field_shared_signed_app_ctrl'][LANGUAGE_NONE][0]['value'] = TRUE;
+}
+
+/**
+ * Adds a modal header to the provided element.
+ *
+ * This can only be used for control modals since it depends on a particular
+ * field in order to determine whether or not it's approved.
+ *
+ * @param array $build
+ *   The renderable array that we should add the header to.
+ * @param string $type
+ *   The type of control, will be used as title.
+ * @param string $proposal
+ *   Title of the proposal node, will be used as a prefix before the title.
+ */
+function sedermera_customer_company_add_modal_header(&$build, $type, $proposal) {
+  // Determine the state based whether or not the control is approved or not.
+  $state = $build['field_shared_signed_app_ctrl'][LANGUAGE_NONE]['#entity']->field_shared_signed_app_ctrl[LANGUAGE_NONE][0]['value'];
+
+  // Set variables based on the status of the control.
+  if ($state) {
+    $class = 'approved';
+    $text = 'godkänd';
+  }
+  else {
+    $class = 'not-approved';
+    $text = 'ej godkänd';
+  }
+
+  // Add class to the renderable array.
+  $build['#attributes']['class'][] = $class;
+
+  // Add the markup as a prefix.
+  $build['prefix'] = array(
+    '#type' => 'markup',
+    '#markup' => '
+    <div class="proposal-verification-header">
+      <div class="proposal-verification-status">
+        Kontrollen är <span class="ctrl-proposal ' . $class . '">' . $text . '</span>
+      </div>
+      <div class="proposal-verification-info">
+        <div class="proposal-title">' . $proposal . '</div>
+        <h2 class="proposal-verification-title">' . $type . '</h2>
+      </div>
+    </div>
+    ',
+  );
+}
+
+/**
+ * Fetch the verification status for a single contact person.
+ *
+ * This is used from the money lounder control in order to display the ID
+ * verification status of the real head persons.
+ *
+ * @param int $contact_person_nid
+ *   Node ID of the contact person.
+ *
+ * @return string
+ *   The markup to be used.
+ */
+function sedermera_customer_company_get_id_verification_status($contact_person_nid) {
+  // Early break if no referenced person.
+  if ($contact_person_nid == NULL) {
+    return;
+  }
+
+  // Load id control from person and fetch the verification status.
+  $person = entity_metadata_wrapper('node', $contact_person_nid);
+  $status = sedermera_verification_get_status_single($person->field_user_id_ctrl->nid->value());
+
+  // Set a different text and class depending on the status.
+  switch ($status) {
+    case SEDERMERA_VERIFICATION_NOT_APPROVED:
+      $text = 'Ej godkänd';
+      $class = 'not-approved';
+      break;
+
+    case SEDERMERA_VERIFICATION_EXPIRING:
+      $text = 'Utgående';
+      $class = 'expiring';
+      break;
+
+    case SEDERMERA_VERIFICATION_APPROVED:
+      $text = 'Godkänd';
+      $class = 'approved';
+      break;
+  }
+
+  // Return the markup.
+  return '<p class="verification ' . $class . '">' . $text . '</p>';
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function sedermera_customer_company_node_insert($node) {
+  // Create initial field collections when creating a new money launder
+  // verification.
+  if ($node->is_new) {
+    if ($node->type === 'money_launder') {
+      _sedermera_customer_company_post_insert_principal($node->nid);
+      _sedermera_customer_company_post_insert_company($node->nid);
+    }
+  }
+}
+
+/**
+ * Helper function to generate field collection on customer approval money
+ * launder control.
+ *
+ */
+function _sedermera_customer_company_post_insert_principal($nid) {
+  // Load the full money launder node.
+  $money_launder = node_load($nid);
+
+  // Get the proposal nid in order to find the company that is connected to the
+  // proposal. We'll base this on the current path since this function is always
+  // triggered from the same page callback.
+  $proposal_nid = arg(2);
+
+  // Get principal connected to the company.
+  $result = db_query("SELECT field_owner_head_target_id AS tid
+    FROM {field_data_field_owner_head} owner
+    INNER JOIN {field_data_field_comp_principal_persons} company ON owner.entity_id = company.field_comp_principal_persons_value
+    INNER JOIN {field_data_field_proposal_company{} proposal ON company.entity_id = proposal.field_proposal_company_target_id
+    WHERE proposal.entity_id = :nid",
+    array(':nid' => $proposal_nid))->fetchAll();
+
+  // For each principal generate a field collection.
+  foreach ($result as $key => $value) {
+    $collection = entity_create('field_collection_item', array('field_name' => 'field_money_launder_head'));
+    $collection->setHostEntity('node', $money_launder);
+    $collection->field_launder_person[LANGUAGE_NONE][0]['target_id'] = $value->tid;
+    $collection->save();
+  }
+}
+
+/**
+ * Helper function to generate field collection on customer approval money
+ * launder control.
+ */
+function _sedermera_customer_company_post_insert_company($nid) {
+  // Load the full money launder node.
+  $money_launder = node_load($nid);
+
+  // Get the proposal nid in order to find the company that is connected to the
+  // proposal. We'll base this on the current path since this function is always
+  // triggered from the same page callback.
+  $proposal_nid = arg(2);
+
+  // Get principal connected to the company.
+  $result = db_query("SELECT n.title AS title
+    FROM node AS n
+    INNER JOIN field_data_field_proposal_company AS comp ON n.nid = comp.field_proposal_company_target_id
+    WHERE comp.entity_id = :nid",
+    array(':nid' => $proposal_nid))->fetchAll();
+
+  // Generate a field collection for the company that we found.
+  foreach ($result as $key => $value) {
+    $collection = entity_create('field_collection_item', array('field_name' => 'field_money_launder_company'));
+    $collection->setHostEntity('node', $money_launder);
+    $collection->field_company_name[LANGUAGE_NONE][0]['value'] = $value->title;
+    $collection->save();
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function sedermera_customer_company_node_presave($node) {
+  // Verify that we're currently adding a new node before continuing.
+  if ($node->is_new) {
+    // Set titles for the verification nodes if we're currently creating a new
+    // customer approval.
+    if (arg(0) == 'customer-approval' && arg(1) == 'add') {
+      // Load the proposal node in order to get the title.
+      $proposal = node_load(arg(2));
+
+      // Set the node title depending on the node type.
+      switch ($node->type) {
+        case 'customer_approval':
+          $node->title = $proposal->title . ' Kundgodkännande';
+          break;
+
+        case 'credit_risk':
+          $node->title = $proposal->title . ' Kredit & Motpartsrisk';
+          break;
+
+        case 'customer_history':
+          $node->title = $proposal->title . ' Kundens historik';
+          break;
+
+        case 'conflict':
+          $node->title = $proposal->title . ' Intressekonflikter';
+          break;
+
+        case 'money_launder':
+          $node->title = $proposal->title . ' Penningtvätt';
+          break;
+
+        case 'suitability_assessment':
+          $node->title = $proposal->title . ' Passandebedömning';
+          break;
+
+        case 'final_approval':
+          $node->title = $proposal->title . ' Slutgiltigt omdöme';
+          break;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function sedermera_customer_company_field_formatter_info() {
+  return array(
+    'sedermera_customer_approval' => array(
+      'label' => 'Kundgodkännade',
+      'field types' => array('entityreference'),
+      'settings' => array(
+        'tooltip' => 'Customer approval function',
+      ),
+    ),
+    'sedermera_customer_shared_control' => array(
+      'label' => 'Godkänd kontroll',
+      'field types' => array('entityreference'),
+      'settings' => array('link' => FALSE, 'link_destination' => 'view'),
+    ),
+    'sedermera_customer_shared_control_conflict' => array(
+      'label' => 'Godkänd kontroll intressekonflikter',
+      'description' => t('Only use for conflict content type.'),
+      'field types' => array('entityreference'),
+      'settings' => array('link' => FALSE, 'link_destination' => 'view'),
+    ),
+    'sedermera_customer_approval_sign' => array(
+      'label' => 'Signera kundgodkännande',
+      'field types' => array('list_boolean'),
+    ),
+    'sedermera_customer_approval_sign_admin' => array(
+      'label' => 'Signera kundgodkännande admin',
+      'field types' => array('list_boolean'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function sedermera_customer_company_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  if ($display['type'] == 'sedermera_customer_shared_control' || $display['type'] == 'sedermera_customer_shared_control_conflict') {
+    // Build the summary based on the settings.
+    $summary = array();
+    if ($settings['link'] && $settings['link_destination'] == 'view') {
+      $summary[] = t('Link to view');
+    }
+    elseif ($settings['link'] && $settings['link_destination'] == 'edit') {
+      $summary[] = t('Link to edit form');
+    }
+    else {
+      $summary[] = t("Don't link");
+    }
+
+    // Return the summary.
+    return implode(', ', $summary);
+  }
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function sedermera_customer_company_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $element['link'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Link to the verification'),
+    '#description' => t('Links the status to either the view or edit form for the verification node.'),
+    '#default_value' => $settings['link'],
+    '#attributes' => array('class' => array('verification-link-option')),
+  );
+  $element['link_destination'] = array(
+    '#type' => 'radios',
+    '#title' => t('Destination'),
+    '#options' => array(
+      'view' => t('View'),
+      'edit' => t('Edit'),
+    ),
+    '#default_value' => $settings['link_destination'],
+    '#states' => array(
+      'visible' => array(
+        'input.verification-link-option' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
+  return $element;
+}
+
+/**
+ * Checks if all of the verifications for a customer approval has been signed.
+ *
+ * @param obj $node
+ *   The customer approval node object.
+ *
+ * @return bool
+ *   TRUE if all of the referred verifications has been signed, FALSE otherwise.
+ */
+function sedermera_customer_company_all_control_ok($node) {
+  // Load all of the verifications.
+  $credit_risk = entity_metadata_wrapper('node', $node->field_cust_app_credit_risk->value());
+  $cust_history = entity_metadata_wrapper('node', $node->field_cust_app_cust_history->value());
+  $conflict = entity_metadata_wrapper('node', $node->field_cust_app_conflict->value());
+  $money_launder = entity_metadata_wrapper('node', $node->field_cust_app_money_launder->value());
+  $suitability = entity_metadata_wrapper('node', $node->field_cust_app_suitability->value());
+  $final_app = entity_metadata_wrapper('node', $node->field_cust_app_final_app->value());
+
+  // Exit early if one of the verifications hasn't been signed.
+  if (!$credit_risk->field_shared_signed_app_ctrl->value()) {
+    return FALSE;
+  }
+  if (!$cust_history->field_shared_signed_app_ctrl->value()) {
+    return FALSE;
+  }
+  if (!$conflict->field_shared_signed_app_ctrl->value()) {
+    return FALSE;
+  }
+  if (!$money_launder->field_shared_signed_app_ctrl->value()) {
+    return FALSE;
+  }
+  if (!$suitability->field_shared_signed_app_ctrl->value()) {
+    return FALSE;
+  }
+  if (!$final_app->field_shared_signed_app_ctrl->value()) {
+    return FALSE;
+  }
+
+  // Everything is signed.
+  return TRUE;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function sedermera_customer_company_node_view($node, $view_mode, $langcode) {
+  // Check if this is a proposal in full view mode.
+  if ($node->type === 'proposal' && $view_mode === 'full') {
+    // Wrap the node in order to get the related customer approval.
+    $wrapper = entity_metadata_wrapper('node', $node);
+
+    // Add a link to create the customer approval if it doesn't exist and if the
+    // proposal requires a customer approval.
+    if (empty($node->field_proposal_cust_approval) && $wrapper->field_proposal_approval->value()) {
+      $node->content['link_add_approval'] = l('Skapa Kundgodkännade', 'customer-approval/add/' . $node->nid, array('attributes' => array('class' => array('customer-approval'))));
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function sedermera_customer_company_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  global $user;
+  $settings = $display['settings'];
+
+  // Signing of customer approval.
+  if ($display['type'] === 'sedermera_customer_approval_sign') {
+    // Initialize return variable.
+    $element = array();
+
+    // Wrap the node in order to access the values.
+    $customer_approval = entity_metadata_wrapper('node', $entity);
+
+    // Only print the markup if the customer approval hasn't been signed yet.
+    if (!$customer_approval->field_cust_app_signed->value()) {
+      if (sedermera_customer_company_all_control_ok($customer_approval)) {
+        // All of the controls has been signed, print the link.
+        $element[0]['#markup'] = '<span class="customer-approval-sign-button">' . l('Signera kontroll', 'customer-approval/sign/' . $customer_approval->nid->value(), array('attributes' => array('class' => array('customer-approval')))) . '</span>';
+      }
+      else {
+        // All of the controls hasn't been signed yet.
+        $element[0]['#markup'] = '<span class="customer-approval-sign-button">Alla kontroller ej godkända</span>';
+      }
+    }
+
+    return $element;
+  }
+
+  // Admin signing of customer approval.
+  if ($display['type'] === 'sedermera_customer_approval_sign_admin') {
+    // Initialize return variable.
+    $element = array();
+
+    // Load the role that should be allowed to sign using this link.
+    $role = user_role_load_by_name('Administratör');
+
+    // Only print the link if the current user has the appropriate role, or if
+    // the user is user 1.
+    if (($role && user_has_role($role->rid)) || $user->uid === '1') {
+      // Wrap the node in order to access the values.
+      $customer_approval = entity_metadata_wrapper('node', $entity);
+
+      // Only print the markup if the customer approval has been signed, but not
+      // signed by an administrator.
+      if ($customer_approval->field_cust_app_signed->value()) {
+        if (!$customer_approval->field_cust_app_signed_admin->value()) {
+          $element[0]['#markup'] = '<span class="customer-approval-sign-button">' . l('Slutsignera godkännande', 'customer-approval/sign/admin/' . $customer_approval->nid->value(), array('attributes' => array('class' => array('customer-approval')))) . '</span>';
+        }
+        else {
+          return $element;
+        }
+      }
+    }
+
+    return $element;
+  }
+
+  if ($display['type'] === 'sedermera_customer_shared_control' || $display['type'] === 'sedermera_customer_shared_control_conflict') {
+    // Initialize return variable.
+    $elements = array();
+
+    // Process the status for each field item.
+    foreach ($items as $delta => $item) {
+      // Get the status for this verification.
+      $verification = node_load($item['target_id']);
+      $status = $verification->field_shared_signed_app_ctrl[LANGUAGE_NONE][0]['value'];
+
+      // If saved but not signed.
+      if ($status == SEDERMERA_CUSTOMER_COMPANY_CONTROL_NOT_APPROVED && $verification->created != $verification->changed) {
+        $text = 'Utgående';
+        $class = 'expiring';
+      }
+      // Not saved and not signed.
+      elseif ($status == SEDERMERA_CUSTOMER_COMPANY_CONTROL_NOT_APPROVED) {
+        $text = 'Ej godkänd';
+        $class = 'not-approved';
+      }
+      // Saved and signed.
+      else {
+        $text = 'Godkänd';
+        $class = 'approved';
+      }
+
+      if ($settings['link']) {
+        // Set the path based on the configured destination.
+        switch ($settings['link_destination']) {
+          case 'view':
+            $path = "node/{$item['target_id']}";
+            break;
+
+          case 'edit':
+            $path = "node/{$item['target_id']}/edit";
+            break;
+        }
+
+        // Build the link.
+        $elements[$delta] = array(
+          '#theme' => 'link',
+          '#text' => $text,
+          '#path' => $path,
+          '#options' => array(
+            'attributes' => array('class' => array('verification', $settings['link_destination'], $class)),
+          ),
+        );
+      }
+      else {
+        // No link. Simply wrap the text within a span.
+        $elements[$delta] = array(
+          '#prefix' => '<span class="verification ' . $class . '">',
+          '#markup' => $text,
+          '#suffix' => '</span>',
+        );
+      }
+    }
+
+    // Status light for the conflict control. This will add the number of
+    // conflicts as a prefix to the link.
+    if ($display['type'] === 'sedermera_customer_shared_control_conflict') {
+      // Process each field item.
+      foreach ($items as $delta => $item) {
+        // Load the referred node.
+        $conflict = entity_metadata_wrapper('node', $item['target_id']);
+
+        // Only count the conflicts for the appropriate node type.
+        if ($conflict->type->value() === 'conflict') {
+          // Count the number of conflicts.
+          $count = 0;
+          foreach ($conflict->getPropertyInfo() as $property => $info) {
+            // Only check the value for field_conflict_N fields.
+            if (strpos($property, 'field_conflict_') === 0) {
+              // Increase the count by 1 if the field has been set, or 0 otherwise.
+              $count += $conflict->{$property}->value();
+            }
+          }
+
+          // Add a prefix to the link if we've got at least one conflict.
+          if ($count) {
+            $elements[$delta]['#prefix'] .= '<span class="conflict-count">' . $count . '</span>';
+          }
+        }
+      }
+    }
+
+    // Return the markup.
+    return $elements;
+  }
+
+  // Link for creating the customer approval.
+  if ($display['type'] === 'sedermera_customer_approval') {
+    // Initialize return variable.
+    $element = array();
+
+    // Load info into wrappers for easier access.
+    $wrapper_proposal = entity_metadata_wrapper('node', $entity);
+    $wrapper_approval = entity_metadata_wrapper('node', $wrapper_proposal->field_proposal_cust_approval->value());
+
+    // Verify that the proposal requires an approval.
+    if ($wrapper_proposal->field_proposal_approval->value()) {
+      if ($wrapper_proposal->field_proposal_cust_approval->value() === NULL) {
+        // No approval exists, render a link in order to create it.
+        $element[0]['#markup'] = l('Skapa', 'customer-approval/add/' . $wrapper_proposal->nid->value(), array('attributes' => array('class' => array('customer-approval'))));
+      }
+      elseif ($wrapper_approval->field_cust_app_signed_admin->value()) {
+        // Approval has been signed by an admin.
+        $element[0]['#markup'] = l('Godkänd', 'node/' . $wrapper_proposal->nid->value(), array('attributes' => array('class' => array('customer-approval'))));
+      }
+      elseif ($wrapper_approval->field_cust_app_signed->value()) {
+        // Approval has been signed by an editor.
+        $element[0]['#markup'] = l('Kontrollerad', 'node/' . $wrapper_proposal->nid->value(), array('attributes' => array('class' => array('customer-approval'))));
+      }
+      else {
+        // Approval has not been signed yet.
+        $element[0]['#markup'] = l('Pågående', 'node/' . $wrapper_proposal->nid->value(), array('attributes' => array('class' => array('customer-approval'))));
+      }
+    }
+    else {
+      // No approval required.
+      $element[0]['#markup'] = 'Behövs ej';
+    }
+
+    return $element;
+  }
+}

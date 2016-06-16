@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Aktiviteter feature.
+ */
+
+include_once 'f_activities.features.inc';

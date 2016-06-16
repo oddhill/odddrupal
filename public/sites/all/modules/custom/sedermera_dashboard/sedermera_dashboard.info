@@ -1,0 +1,4 @@
+name = Sedermera Dashboard
+description = Module which will handle the dashboard page.
+core = 7.x
+package = Sedermera

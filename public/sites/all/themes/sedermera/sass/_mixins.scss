@@ -1,0 +1,409 @@
+@mixin button($background: $dark-grey, $icon: default, $size: default) {
+  display: inline-block;
+  height: 34px;
+  @include font-size(1.2,1);
+  line-height: 34px;
+  border-radius: 34px;
+  color: $snow;
+  padding: 0 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 0 none;
+
+  &:hover {
+    background-color: shade($background,30%);
+  }
+
+  @if $icon == add {
+    @include svg-bg(add_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == flow {
+    @include svg-bg(flow_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == add-mini {
+    @include svg-bg(add_mini_light);
+    padding-left: 42px;
+  }
+
+  @if $icon == check-mini {
+    @include svg-bg(check_mini_light);
+    padding-left: 42px;
+  }
+
+  @if $icon == cross-mini {
+    @include svg-bg(cross_mini_light);
+    padding-left: 42px;
+  }
+
+  @if $icon == save {
+    @include svg-bg(save_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == compare {
+    @include svg-bg(compare_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == publish {
+    @include svg-bg(publish_small_light);
+    background-position: 22px 13px;
+    padding-left: 42px;
+  }
+
+  @if $icon == unpublish {
+    @include svg-bg(unpublish_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == send {
+    @include svg-bg(send_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == send-dark {
+    @include svg-bg(send_small_dark);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == upload {
+    @include svg-bg(upload);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == next {
+    @include svg-bg(next);
+    background-position: 100px 11px;
+    padding-right: 42px;
+  }
+
+  @if $icon == previous {
+    @include svg-bg(previous);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == delete {
+    @include svg-bg(delete_small_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == confirm {
+    @include svg-bg(confirm);
+    background-position: 20px 13px;
+    padding-left: 42px;
+  }
+
+  @if $icon == cancel {
+    @include svg-bg(cancel);
+    background-position: 20px 12px;
+    padding-left: 42px;
+  }
+
+  @if $icon == login {
+    @include svg-bg(login_small_dark);
+    color: $coffee;
+    background-position: 20px 11px;
+    padding-left: 42px;
+
+    &:hover {
+      background-color: tint($background,30%);
+      box-shadow: 0 0 3px shade($dark-grey,50%);
+    }
+  }
+
+  @if $icon == archive {
+    @include svg-bg(archive_light);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == arrow {
+    @include svg-bg(arrow-down);
+    background-position: 20px 11px;
+    padding-left: 42px;
+  }
+
+  @if $icon == arrow-right {
+    @include svg-bg(arrow-right);
+    background-position: 16px 11px;
+    padding-left: 42px;
+  }
+
+  background-color: $background;
+  @include transition (background-color 0.1s ease-in-out);
+
+  @if $size == small {
+    height: 24px;
+    line-height: 24px;
+    border-radius: 24px;
+    background-position: 10px 6px;
+    padding: 0 10px 0 26px;
+    margin-right: 8px;
+  }
+}
+
+// Status button - approved/unapproved/expiring/expired
+@mixin status-button($background: default, $icon: default) {
+  @include font-size(1.1);
+  border-radius: 28px;
+  border-bottom: 0 none;
+  display: inline-block;
+  font-weight: 700;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+  width: auto;
+
+  &:hover {
+    background-color: shade($background,10%);
+    border: 0 none;
+  }
+
+  @if $icon == preview {
+    @include svg-bg(magnifier);
+  }
+
+  background-color: $background;
+}
+
+@mixin throbber {
+  display: inline-block;
+  background: transparent;
+  width: 16px;
+  height: 16px;
+  border: 2px solid $mustard;
+  border-radius: 50%;
+  border-top-color: transparent;
+  @include animation(load 0.9s linear infinite);
+}
+
+@mixin verification($text: default) {
+  display: inline-block;
+  overflow: hidden;
+  border-bottom: 0px none;
+
+  &:hover {
+    border-bottom: 0px none;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.8);
+  }
+
+  @if $text == true {
+    @include font-size(1.6);
+    line-height: 20px;
+    color: $coffee;
+
+    &:before {
+      margin-right: 1rem;
+    }
+  }
+
+  @if $text == false {
+    font-size: 0px;
+    color: transparent;
+
+    &:before {
+      margin-right: 0;
+    }
+  }
+
+  &.approved {
+
+    &:before {
+      background: $pear;
+    }
+  }
+
+  &.expiring {
+
+    &:before {
+      background: $mustard;
+    }
+  }
+
+  &.not-approved {
+
+    &:before {
+      background: $wine;
+    }
+  }
+
+  &.id {
+    @include font-size(1.4);
+    line-height: 18px;
+    color: $coffee;
+    overflow: visible;
+    display: block;
+    padding: 10px;
+
+    &:before {
+      display: inline-block;
+      float: none;
+      position: relative;
+      top: 2px;
+      margin-right: 0.5rem;
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+@mixin node-section-detail {
+  @include span-columns(6 of 12);
+  @include pad(10px);
+  @include omega(2n);
+  border: 2px solid $light-grey;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  text-align: right;
+
+  span.label {
+    display: block;
+    float: left;
+    text-align: left;
+    margin-right: 1em;
+  }
+
+  .verification {
+    @include verification(false);
+    margin: -1px 0;
+  }
+}
+
+@mixin wysiwyg {
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    @include font-size($standard,1.3);
+    background: $snow;
+    color: $coffee;
+    font-family: $body-font;
+  }
+
+   h1 {
+     @include font-size(3.0);
+     font-weight: 500;
+    }
+
+  h2 {
+    @include font-size(2.4);
+    font-weight: 500;
+  }
+
+  h3 {
+    @include font-size(2.0);
+    font-weight: 500;
+  }
+
+  h4 {
+    @include font-size(1.7);
+    font-weight: 500;
+  }
+
+  h5 {
+    @include font-size($standard);
+    font-weight: 700;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  ul,
+  ol {
+    margin: 1.5em 1em;
+    padding-left: 1.5em;
+
+    li {
+      margin-bottom: 0.4em;
+    }
+  }
+
+  a {
+    @include transition (border-color 0.1s ease-in-out);
+    border-bottom: 1px solid $wool;
+    color: $night;
+    text-decoration: none;
+
+    &:hover {
+      border-bottom: 1px solid $night;
+    }
+  }
+
+  hr {
+    background-color: $light-grey;
+    border: 0;
+    color: $light-grey;
+    height: 2px;
+    margin: 25px 0;
+  }
+
+  table {
+    max-width: 100%;
+    margin: 10px 0 30px 0;
+    border: 0;
+    border-spacing: 0;
+
+    caption {
+      @include font-size(1.5);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+  }
+
+  td {
+    border: 1px solid $wool;
+    padding: 10px 0 10px 10px;
+  }
+
+  thead {
+    background: $light-grey;
+    border: 0;
+  }
+
+  th {
+    background: $light-grey;
+    border: 1px solid $wool;
+    font-weight: 500;
+    padding: 10px;
+  }
+}
+
+@mixin content-holder($mode: default) {
+  border-top: 1px solid $wool;
+
+  @if $mode == default {
+    padding: 40px;
+  }
+
+  @if $mode == edit {
+    padding: 0;
+  }
+}

@@ -1,0 +1,1765 @@
+<?php
+
+/**
+ * @file sedermera_offer.module
+ * Main module file for the Sedermera Offer module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_offer_menu() {
+  // $items['node/%/intressenter/%/teckna'] = array(
+  //   'type' => MENU_CALLBACK,
+  //   'page callback' => 'drupal_get_form',
+  //   'page arguments' => array('sedermera_offer_sign_confirm', 1, 3),
+  //   'access callback' => 'sedermera_offer_person_admin_access',
+  //   'access arguments' => array(1, 'eck administer offer offer entities'),
+  // );
+
+  $items['node/%/kontaktlista/lagg-till'] = array(
+    'title' => 'Lägg till kontaktperson',
+    'type' => MENU_CALLBACK,
+    'title callback' => 'sedermera_offer_person_add_title',
+    'title arguments' => array(1),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sedermera_offer_person_add', 1),
+    'access arguments' => array('create transaction content'),
+  );
+
+  $items['node/%/send-info/%'] = array(
+    'page callback' => 'transaction_transparency_info_send_mail',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+
+  $items['node/%/send-offer/%'] = array(
+    'page callback' => 'sedermera_offer_send_offer_mail',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'delivery callback' => 'ajax_deliver',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_node_presave
+ */
+function sedermera_offer_node_presave($node) {
+  if ($node->type == 'offer') {
+
+    // React if info logout checkbox has been checked else proceed as normal
+    if ($node->original->field_offer_logout_info[und][0]['value'] == 0 && $node->field_offer_logout_info[und][0]['value'] == 1) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+
+      // Build mail.
+      // Subject.
+      $params['subject'] = 'Insynsinformation';
+
+      // Get transactions connected to this offer
+      $result = db_query("SELECT entity_id FROM field_data_field_transaction_offer WHERE field_transaction_offer_target_id = :nid", array(':nid' => $node->nid))->fetchAll();
+
+      // Send mail to all persons connected to the offer.
+      foreach ($result as $target) {
+        $transaction = node_load($target->entity_id);
+        $person = node_load($transaction->field_transaction_person[LANGUAGE_NONE][0]['target_id']);
+
+        // Only send if they have recieved information.
+        if ($transaction->field_transaction_info[LANGUAGE_NONE][0]['value'] == 1) {
+          // Message.
+          $params['message'] = array(
+            theme('sedermera_offer_unsigned_mail', array(
+              'recipient' => $person->title,
+              'company' => $wrapper->field_offer_company->title->value(),
+            )),
+          );
+
+          $mail = $person->field_user_mail[LANGUAGE_NONE][0]['email'];
+          drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
+        }
+      }
+    }
+  }
+
+  if ($node->type === 'transaction') {
+    // React if interested has been checked else proceed as normal
+    if ($node->original->field_transaction_interested[und][0]['value'] == 0 && $node->field_transaction_interested[und][0]['value'] == 1) {
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of interested checkbox checked
+      $node->field_transaction_interested_day[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
+    }
+  }
+
+  if ($node->type === 'transaction_agreement') {
+    // React if to sign has been checked else proceed as normal
+    if ($node->original->field_transaction_agree_to_sign[und][0]['value'] == 0 && $node->field_transaction_agree_to_sign[und][0]['value'] == 1) {
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of interested checkbox checked
+      $node->field_transaction_agree_to_sign_[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
+    }
+
+    // React if sign has been checked else proceed as normal
+    if ($node->original->field_transaction_agree_sign[und][0]['value'] == 0 && $node->field_transaction_agree_sign[und][0]['value'] == 1) {
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of interested checkbox checked
+      $node->field_transaction_agree_sign_day[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
+
+      // Get nid for all nodes connected to the agreement
+      $result = db_query("SELECT
+        agree.entity_id AS T_AP,
+        investor.field_transaction_ap_ap_target_id AS AP,
+        trans.entity_id AS TRANS,
+        person.field_transaction_person_target_id AS PERSON,
+        offer.field_transaction_offer_target_id AS OFFER,
+        company.field_proposal_company_target_id AS COMP
+        FROM field_data_field_transaction_ap_agree AS agree
+        INNER JOIN field_data_field_transaction_ap_ap AS investor ON (agree.entity_id = investor.entity_id)
+        INNER JOIN field_data_field_transaction_investor AS trans ON (trans.field_transaction_investor_target_id = agree.entity_id)
+        INNER JOIN field_data_field_transaction_person AS person ON (person.entity_id = trans.entity_id)
+        INNER JOIN field_data_field_transaction_offer AS offer ON (offer.entity_id = trans.entity_id)
+        INNER JOIN field_data_field_offer_proposal AS pro ON (offer.field_transaction_offer_target_id = pro.entity_id)
+        INNER JOIN field_data_field_proposal_company AS company ON (pro.field_offer_proposal_target_id = company.entity_id)
+        WHERE agree.field_transaction_ap_agree_target_id = :nid", array(':nid' => $node->nid))->fetchAssoc();
+
+      // Load needed nodes
+      $agree_wrap = entity_metadata_wrapper('node', $node);
+
+      $transaction_ap = node_load($result['T_AP']);
+      $transaction_ap_wrap = entity_metadata_wrapper('node', $transaction_ap);
+
+      $ap = node_load($result['AP']);
+      $ap_wrap = entity_metadata_wrapper('node', $ap);
+
+      $transaction = node_load($result['TRANS']);
+
+      $person = node_load($result['PERSON']);
+      $person_wrap = entity_metadata_wrapper('node', $person);
+
+      $offer = node_load($result['OFFER']);
+
+      $company = node_load($result['COMP']);
+
+      // Gater the owners
+      $owners = array();
+      if ($ap_wrap->type->value() === 'investor_company') {
+        foreach ($ap_wrap->field_investor_comp_owner as $key => $owner) {
+          $owner_wrap = entity_metadata_wrapper('node', $owner->field_owner_head->value());
+          $owners[] = array('value' => $owner_wrap->field_user_id_ctrl->value()->vid);
+        }
+      }
+      else {
+        $owners[] = array('value' => $person_wrap->field_user_id_ctrl->value()->vid);
+      }
+
+      $sum = 0;
+
+      //Get the correct sum and type for the agreement
+      switch ($agree_wrap->field_transaction_agree_type_rea->value()) {
+        case 'fe_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_fe_sign->value();
+          break;
+        case 'fe_warrant':
+          $sum = $transaction_ap_wrap->field_transaction_ap_fe_warrant->value();
+          break;
+        case 'le_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_le_sign->value();
+          break;
+        case 'le_warrant':
+          $sum = $transaction_ap_wrap->field_transaction_ap_le_warrant->value();
+          break;
+        case 'pp_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_pp_sign->value();
+          break;
+        case 're_sign':
+          $sum = $transaction_ap_wrap->field_transaction_ap_re_sign->value();
+          break;
+        case 'bridging':
+          $sum = $transaction_ap_wrap->field_transaction_ap_bridging->value();
+          break;
+        case 'block':
+          $sum = $transaction_ap_wrap->field_transaction_ap_block->value();
+          break;
+      }
+
+      // Create transaction history
+      $transaction_history = entity_create('node', array(
+        'type' => 'transaction_history',
+        'title' => $offer->title . ' ' . $node->title,
+        'field_hist_investor_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['AP'])),
+          ),
+        ),
+        'field_hist_contact_person_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['PERSON'])),
+          ),
+        ),
+        'field_hist_offer_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['OFFER'])),
+          ),
+        ),
+        'field_hist_company_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['COMP'])),
+          ),
+        ),
+        'field_hist_agreement_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $node->nid),
+          ),
+        ),
+        'field_hist_transac_investor_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $transaction_ap->nid),
+          ),
+        ),
+        'field_hist_transaction_id' => array(
+          LANGUAGE_NONE => array(
+            array('value' => intval($result['TRANS'])),
+          ),
+        ),
+        'field_hist_sum' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $sum),
+          ),
+        ),
+        'field_hist_ctrl_vid_ua' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_ua->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_ptv' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_ptv->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_id_cont' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $person_wrap->field_user_id_ctrl->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_id_owners' => array(
+          LANGUAGE_NONE => $owners,
+        ),
+        'field_hist_ctrl_vid_exr' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_ext->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_eu' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $transaction_ap_wrap->field_transaction_ap_ctrl_eu->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_kre' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $ap_wrap->field_investor_shared_ctrl_cred->value()->vid),
+          ),
+        ),
+        'field_hist_ctrl_vid_pen' => array(
+          LANGUAGE_NONE => array(
+            array('value' => $agree_wrap->field_transaction_agree_ctrl->value()->vid),
+          ),
+        ),
+      ));
+      node_save($transaction_history);
+    }
+  }
+
+  if ($node->type === 'transaction_ap') {
+    // Wrap node
+    $node_wrap = entity_metadata_wrapper('node', $node);
+
+    // Set the title of the node to the same as the investor.
+    $node->title = $node_wrap->field_transaction_ap_ap->title->value();
+
+    // Create corresponding control nodes if this is a new node.
+    if ($node->is_new) {
+      global $user;
+
+      $eu_ctrl = new stdClass();
+      $eu_ctrl->title = $node->title . " EU:s sanktionsförordningar";
+      $eu_ctrl->type = "ctrl";
+      node_object_prepare($eu_ctrl);
+      $eu_ctrl->language = LANGUAGE_NONE;
+      $eu_ctrl->uid = $user->uid;
+      $eu_ctrl->status = 1;
+      $eu_ctrl->promote = 0;
+      $eu_ctrl->comment = 0;
+
+      $eu_ctrl = node_submit($eu_ctrl);
+      node_save($eu_ctrl);
+
+      $node->field_transaction_ap_ctrl_eu[LANGUAGE_NONE][0]['target_id'] = $eu_ctrl->nid;
+    }
+
+    // React if to control has been checked else proceed as normal
+    if ($node->original->field_transaction_ap_ctrl[und][0]['value'] == 0 && $node->field_transaction_ap_ctrl[und][0]['value'] == 1) {
+      // List of agreement nid
+      $nids = array();
+
+      // Create agreement node for each type
+      if ($node_wrap->field_transaction_ap_fe_sign->value()) {
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 'fe_sign');
+      }
+      if ($node_wrap->field_transaction_ap_fe_warrant->value()) {
+        $nids[] = create_agreement_node($node->title . ' Garantiåtagande', 'fe_warrant');
+      }
+      if ($node_wrap->field_transaction_ap_le_sign->value()) {
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 'le_sign');
+      }
+      if ($node_wrap->field_transaction_ap_le_warrant->value()) {
+        $nids[] = create_agreement_node($node->title . ' Garantiåtagande', 'le_warrant');
+      }
+      if ($node_wrap->field_transaction_ap_pp_sign->value()) {
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 'pp_sign');
+      }
+      if ($node_wrap->field_transaction_ap_re_sign->value()) {
+        $nids[] = create_agreement_node($node->title . ' Teckningsförbindelse', 're_sign');
+      }
+      if ($node_wrap->field_transaction_ap_bridging->value()) {
+        $nids[] = create_agreement_node($node->title . ' Brygglån', 'bridging');
+      }
+      if ($node_wrap->field_transaction_ap_block->value()) {
+        $nids[] = create_agreement_node($node->title . ' Blockpost', 'block');
+      }
+
+      // Link agreement nodes to investor transaction
+      foreach ($nids as $key => $nid) {
+        $node->field_transaction_ap_agree[LANGUAGE_NONE][$key]['target_id'] = $nid;
+      }
+
+      // Get current time as UNIX timestamp
+      $time = date('U');
+
+      // Save time of to control checkbox checked
+      $node->field_transaction_ap_ctrl_day[LANGUAGE_NONE][0]  = array(
+        'value' => $time,
+        'show_todate' => '',
+        'timezone' => 'Europe/Stockholm',
+        'offset' => 7200,
+        'offset2' => 7200,
+        'value2' => $time,
+        'timezone_db' => 'Europe/Stockholm',
+        'date_type' => 'datestamp',
+      );
+    }
+  }
+}
+
+/**
+ * Helper to create agreement nodes
+ * @param $title Title for the agreement
+ * @param $type  Type of the agreement
+ */
+function create_agreement_node($title, $type) {
+  global $user;
+
+  $ctrl_pen = new stdClass();
+  $ctrl_pen->title = $title . ' Penningtvätt';
+  $ctrl_pen->type = "ctrl_pen";
+  node_object_prepare($ctrl_pen); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+  $ctrl_pen->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+  $ctrl_pen->uid = $user->uid;
+  $ctrl_pen->status = 1; //(1 or 0): published or not
+  $ctrl_pen->promote = 0; //(1 or 0): promoted to front page
+  $ctrl_pen->comment = 0; // 0 = comments disabled, 1 = read only, 2 = read/write
+
+  $ctrl_pen = node_submit($ctrl_pen); // Prepare node for saving
+  node_save($ctrl_pen);
+
+  $node = new stdClass();
+  $node->title = $title;
+  $node->type = "transaction_agreement";
+  node_object_prepare($node); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+  $node->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+  $node->uid = $user->uid;
+  $node->status = 1; //(1 or 0): published or not
+  $node->promote = 0; //(1 or 0): promoted to front page
+  $node->comment = 0; // 0 = comments disabled, 1 = read only, 2 = read/write
+
+  // Set agreement type
+  $node->field_transaction_agree_type_rea[LANGUAGE_NONE][0]['value'] = $type;
+
+  // Connect control
+  $node->field_transaction_agree_ctrl[LANGUAGE_NONE][0]['target_id'] = $ctrl_pen->nid;
+
+  $node = node_submit($node); // Prepare node for saving
+  node_save($node);
+
+  return $node->nid;
+}
+
+/**
+ * AJAX callback for sending the transparency info via mail.
+ *
+ * @param int $transaction_nid
+ *   Node ID for the transaction.
+ *
+ * @return array
+ *   Array with AJAX commands.
+ */
+function transaction_transparency_info_send_mail($transaction_nid) {
+  $commands = array();
+
+  // Load relevant entities.
+  $transaction = entity_metadata_wrapper('node', $transaction_nid);
+  $person = $transaction->field_transaction_person;
+  $offer = $transaction->field_transaction_offer;
+  $proposal = $transaction->field_transaction_offer->field_offer_proposal;
+  $company = $proposal->field_proposal_company;
+
+  // Remove any existing messages.
+  $commands[] = ajax_command_remove('div.page-messages');
+
+  // Send the email only of the person has an email address.
+  if ($mail = $person->field_user_mail->value()) {
+    // Subject.
+    $params['subject'] = 'Insynsinformation';
+
+    // Message.
+    $params['message'] = array(
+      theme('sedermera_offer_signed_mail', array(
+        'recipient' => $person->title->value(),
+        'company' => $company->title->value(),
+      )),
+    );
+
+    // Send Mail
+    drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
+
+    // Mark offer as gotten transparency information
+    $transaction->field_transaction_info = TRUE;
+    $transaction->revision->set(1);
+    $transaction->save();
+
+    // Replace the old view with a new one.
+    $view = views_get_view('transactions');
+    $commands[] = ajax_command_replace('div.offer-contact-list', $view->preview('page', array($offer->nid->value())));
+
+    // Print a message.
+    drupal_set_message(format_string('Informationen skickades till %email.', array('%email' => $mail)));
+  }
+  else {
+    // The person doesn't have an email address. Print a message which lets the
+    // user edit the person right away.
+    $offer_path = 'node/' . $offer->nid->value() . '/kontaktlista';
+    $edit_url = url($person->edit_url->value(), array('query' => array('destination' => $offer_path)));
+    drupal_set_message(format_string('Det finns ingen e-postadress för %person. <a href="@edit_url">Vill du lägga till en?</a>', array('%person' => $person->title->value(), '@edit_url' => $edit_url)), 'error');
+  }
+
+  // Print the new message, and return the commands.
+  $commands[] = ajax_command_before('div.page-title', '<div class="page-messages">' . theme('status_messages') . '</div>');
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
+/**
+ * AJAX callback for sending the offer information via mail.
+ *
+ * @param int $transaction_nid
+ *   Node ID for the transaction.
+ *
+ * @return array
+ *   Array with AJAX commands.
+ */
+function sedermera_offer_send_offer_mail($transaction_nid) {
+  $commands = array();
+
+  // Load relevant entities.
+  $transaction = entity_metadata_wrapper('node', $transaction_nid);
+  $person = $transaction->field_transaction_person;
+  $offer = $transaction->field_transaction_offer;
+
+  // Remove any existing messages.
+  $commands[] = ajax_command_remove('div.page-messages');
+
+  // Send the email only of the person has an email address.
+  if ($mail = $person->field_user_mail->value()) {
+    // Use the offer title as the mail subject.
+    $params['subject'] = $offer->title->value();
+
+    // Use the rendered offer node as the message.
+    $offer_view = node_view($offer->value(), 'mail');
+    $params['message'] = array(render($offer_view));
+
+    // Send the mail.
+    drupal_mail('sedermera_offer', 'info', $mail, LANGUAGE_NONE, $params);
+
+    // Mark offer as gotten transparency information
+    $transaction->field_transaction_info_offer = TRUE;
+    $transaction->revision->set(1);
+    $transaction->save();
+
+    // Replace the old view with a new one.
+    $view = views_get_view('transactions');
+    $commands[] = ajax_command_replace('div.offer-contact-list', $view->preview('page', array($offer->nid->value())));
+
+    // Print a message.
+    drupal_set_message(format_string('Erbjudandet skickades till %email.', array('%email' => $mail)));
+  }
+  else {
+    // The person doesn't have an email address. Print a message which lets the
+    // user edit the person right away.
+    $offer_path = 'node/' . $offer->nid->value() . '/kontaktlista';
+    $edit_url = url($person->edit_url->value(), array('query' => array('destination' => $offer_path)));
+    drupal_set_message(format_string('Det finns ingen e-postadress för %person. <a href="@edit_url">Vill du lägga till en?</a>', array('%person' => $person->title->value(), '@edit_url' => $edit_url)), 'error');
+  }
+
+  // Print the new message, and return the commands.
+  $commands[] = ajax_command_before('div.page-title', '<div class="page-messages">' . theme('status_messages') . '</div>');
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
+/**
+ * Helper function to deside if a proposal is usable
+ */
+function check_proposal($nid) {
+  // Check if no approval needed
+  $result = db_query("SELECT field_proposal_approval_value AS value
+    FROM {field_data_field_proposal_approval}
+    WHERE entity_id = :nid",
+    array(':nid' => $nid))->fetchAssoc();
+
+  // No need for approval return TRUE
+  if (!$result['value']) {
+    return TRUE;
+  }
+
+  // Check if approval has been signed
+  $result = db_query("SELECT signed.field_cust_app_signed_admin_value AS value
+    FROM {field_data_field_cust_app_signed_admin} AS signed
+    INNER JOIN {field_data_field_proposal_cust_approval} AS app ON app.field_proposal_cust_approval_target_id = signed.entity_id
+    WHERE app.entity_id = :nid",
+    array(':nid' => $nid))->fetchAssoc();
+
+  // Approval has not benn signed return FALSE
+  if (!$result['value']) {
+    return FALSE;
+  }
+
+  // Check if approval is already in use
+  $result = db_query("SELECT entity_id AS value
+    FROM {field_data_field_offer_proposal}
+    WHERE field_offer_proposal_target_id = :nid",
+    array(':nid' => $nid))->fetchAssoc();
+
+  // Approval is already used return FALSE
+  if ($result['value']) {
+    return FALSE;
+  }
+
+  // If all checks are ok return TRUE
+  return TRUE;
+}
+
+/**
+ * Implements template_preprocess_views_view()..
+ */
+function sedermera_offer_preprocess_views_view(&$variables) {
+  // Add custom JS for AJAX behavior on the contact list view for offers.
+  if ($variables['view']->name == 'transactions' && $variables['view']->current_display == 'page') {
+    $variables['rows']['#attached'] = array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/js/sedermera_offer_send_mail.js',
+      ),
+      'library' => array(
+        array('system', 'drupal.ajax'),
+      ),
+    );
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function sedermera_offer_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'info':
+      $message['subject'] = $params['subject'];
+      $message['body'] = $params['message'];
+      break;
+  }
+}
+
+/**
+ * Form function for the confirm page when signing an offer.
+ */
+function sedermera_offer_sign_confirm($form, &$form_state, $transaction_id, $offer_id) {
+  // Load the transaction node and offer entity.
+  $transaction = entity_metadata_wrapper('node', $transaction_id);
+  $offer = entity_metadata_wrapper('offer', $offer_id);
+
+  // Add the offer entity to the form.
+  $form['#offer'] = $offer;
+
+  // if (!$offer->field_offer_investor->field_shared_veri_appr->value()) {
+  //   // Create the text that we'll use for the confirmation form.
+  //   $text = format_string('OBS! Kontrollen för %investor är INTE godkänd.', array(
+  //     '%investor' => $offer->field_offer_investor->title->value(),
+  //   ));
+
+  //   // Return the confirmation form.
+  //   $confirm_form = confirm_form($form, $transaction->title->value(), "node/$transaction_id/intressenter", $text, 'Bekräfta ändå', 'Tillbaka');
+
+  //   unset($confirm_form['actions']['submit']);
+  //   return $confirm_form;
+  // }
+  // else {
+    // Create the text that we'll use for the confirmation form.
+    $text = format_string('Är du säker på att du vill teckna %investor för %transaction?', array(
+      '%investor' => $offer->field_offer_investor->title->value(),
+      '%transaction' => $transaction->title->value(),
+    ));
+
+    // Return the confirmation form.
+    return confirm_form($form, $transaction->title->value(), "node/$transaction_id/intressenter", $text);
+  // }
+}
+
+/**
+ * Submit callback for the confirmation form when signing a transaction.
+ */
+function sedermera_offer_sign_confirm_submit($form, &$form_state) {
+  // Get the offer that should get signed.
+  $offer = $form['#offer'];
+
+  // Set the boolean field to TRUE, set the timestamp, and save the entity.
+  $offer->field_offer_signed->set(TRUE);
+  $offer->field_offer_signed_date->set(REQUEST_TIME);
+  $offer->save();
+
+  // Display a message, and return to the overview page.
+  drupal_set_message(format_string('%investor har tecknats.', array('%investor' => $offer->field_offer_investor->title->value())));
+  $form_state['redirect'] = "node/{$offer->field_offer_cap_rais->nid->value()}/intressenter";
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function sedermera_offer_node_access($node, $op, $account) {
+  if ($node->type != 'capital_raising' || $op != 'update') {
+    // Bail out if the user isn't about to edit an existing capital raising.
+    return NODE_ACCESS_IGNORE;
+  }
+
+  return $node->status ? NODE_ACCESS_IGNORE : NODE_ACCESS_DENY;
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function sedermera_offer_entity_presave($entity, $type) {
+  if ($type != 'offer' || $entity->is_new) {
+    // Bail out if this isn't an existing offer entity.
+    return;
+  }
+
+  // Get the interested boolean and the unchanged value.
+  $interested = field_get_items('offer', $entity, 'field_offer_interested');
+  $interested_original = field_get_items('offer', $entity->original, 'field_offer_interested');
+
+  // Bail out if the value hasn't changed.
+  if ($interested[0]['value'] == $interested_original[0]['value']) {
+    return;
+  }
+
+  // Set the interested date to the current time if the offer has been marked
+  // as interested, or remove the previous value if it hasn't been marked as
+  // interested.
+  $entity->field_offer_interested_date = $interested[0]['value'] ? array(LANGUAGE_NONE => array(array('value' => REQUEST_TIME))) : array();
+}
+
+/**
+ * Title callback for the add investors page.
+ *
+ * @param int $offer_nid
+ *   The node id for the capital raising node.
+ *
+ * @return string
+ *   The title that will be used for the page.
+ */
+function sedermera_offer_person_add_title($offer_nid) {
+  // Load the node, and return the title.
+  $node = node_load($offer_nid);
+  return $node->title;
+}
+
+/**
+ * Access callback when modifying existing offers or when adding new investors
+ * to existing capital raisings.
+ *
+ * $param int $offer_nid
+ *   The node id for the capital raisong node.
+ * $param string $permission
+ *   The regular permission that will be checked if the capital raising isn't
+ *   archived.
+ */
+function sedermera_offer_person_admin_access($offer_nid, $permission) {
+  // Load the capital raising node.
+  $node = node_load($offer_nid);
+
+  // Allow access if the node isn't archived and the user has the specified
+  // permission.
+  return $node->status && user_access($permission);
+}
+
+/**
+ * Form function for the add investors page.
+ *
+ * @param int $capital_raising_nid
+ *   The node id for the capital raising node.
+ */
+function sedermera_offer_person_add($form, &$form_state, $offer_nid) {
+  // Add the capital raising nid to the internal values.
+  $form['offer_nid'] = array(
+    '#type' => 'value',
+    '#value' => $offer_nid,
+  );
+
+  // Add the offer display from the investors view as a prefix to the form. The
+  // view is needed in order to filter among the investors. The view can't be
+  // embedded as a subform within the node form, since this will break the AJAX
+  // functionality. The reason is unknown, but that's just the way it is...
+  $form['#prefix'] = views_embed_view('person', 'offer_embed');
+
+  // Get the exiting investors for this capital raising.
+  $existing_investors = sedermera_offer_get_investors_for_offer($offer_nid);
+
+  // Get the investors from the database, and remove the ones that are already
+  // added.
+  $investors = db_query('SELECT nid, title FROM node WHERE type = :person', array(':person' => 'person'))->fetchAllKeyed();
+  $available_investors = array_diff_key($investors, array_flip($existing_investors));
+
+  // Add checkboxes for every available investor. This will get its values from
+  // the embedded view. See the attached javascript for more information about
+  // what's going on.
+  $form['person'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $available_investors,
+    '#default_value' => isset($form_state['values']['investors']) ? $form_state['values']['investors'] : array(),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
+      ),
+    ),
+    '#prefix' => '<div style="display: none;">',
+    '#suffix' => '</div>',
+  );
+
+  // Add the submit and cancel buttons.
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Lägg till valda investerare',
+  );
+  $form['actions']['cancel'] = array(
+    '#markup' => l('Avbryt', implode('/' , array_slice(arg(), 0, 3)),  array('attributes' => array('class' => array('cancel-button')))),
+    '#weight' => '1000',
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for the add investor form.
+ */
+function sedermera_offer_person_add_submit($form, &$form_state) {
+  foreach (array_filter($form_state['values']['person']) as $person_nid) {
+    create_transaction_node($person_nid, $form_state['values']['offer_nid']);
+  }
+
+  // Display a message, and redirect to the "Erbjudande" view.
+  drupal_set_message('De valda investerarna har lagts till.');
+  $form_state['redirect'] = "node/{$form_state['values']['offer_nid']}/kontaktlista";
+}
+
+function create_transaction_node($person_nid, $offer_nid) {
+  global $user;
+
+  $new_node = new stdClass();
+  $new_node->title = "Transaktion " . get_title($person_nid) . " " . get_title($offer_nid);
+  $new_node->type = "transaction";
+  node_object_prepare($new_node); // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+  $new_node->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+  $new_node->uid = $user->uid;
+  $new_node->status = 1; //(1 or 0): published or not
+  $new_node->promote = 0; //(1 or 0): promoted to front page
+  $new_node->comment = 0; // 0 = comments disabled, 1 = read only, 2 = read/write
+
+  // Entity reference fields
+  $new_node->field_transaction_offer[$new_node->language][] = array(
+    'target_id' => $offer_nid,
+    'target_type' => 'node',
+  );
+  $new_node->field_transaction_person[$new_node->language][] = array(
+    'target_id' => $person_nid,
+    'target_type' => 'node',
+  );
+
+  $new_node = node_submit($new_node); // Prepare node for saving
+  node_save($new_node);
+}
+
+/**
+ * Helper function to get the title from a node
+ * @param  $nid nid of the node to get the title for
+ * @return node title as string
+ */
+function get_title($nid) {
+  $result = db_query("SELECT title FROM node WHERE nid = :nid", array(':nid' => $nid))->fetchAll();
+  return $result[0]->title;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function sedermera_offer_theme() {
+  $path = drupal_get_path('module', 'sedermera_offer') . '/theme';
+
+  return array(
+    'sedermera_offer_block_remaining' => array(
+      'template' => 'sedermera-offer-block-remaining',
+      'variables' => array(
+        'guaranteed' => NULL,
+        'committed' => NULL,
+        'total' => array('max' => '?', 'percentage' => 0, 'amount' => 0),
+      ),
+    ),
+    'sedermera_offer_signed_mail' => array(
+      'template' => 'sedermera-offer-signed-mail',
+      'variables' => array('recipient' => '', 'company' => ''),
+      'path' => $path,
+      'file' => 'theme.inc',
+    ),
+    'sedermera_offer_unsigned_mail' => array(
+      'template' => 'sedermera-offer-unsigned-mail',
+      'variables' => array('recipient' => '', 'company' => ''),
+      'path' => $path,
+      'file' => 'theme.inc',
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function sedermera_offer_block_info() {
+  $blocks['stock_remaining'] = array(
+    'info' => 'Units för transaktion',
+    'cache' => DRUPAL_NO_CACHE
+  );
+  $blocks['other'] = array(
+    'info' => 'Övrigt',
+    'cache' => DRUPAL_NO_CACHE
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sedermera_offer_block_view($delta = '') {
+  switch ($delta) {
+    case  'stock_remaining':
+      // Load the node based on the second argument.
+      $node = node_load(arg(1));
+
+      // Bail out if this isn't a capital raising node.
+      if (!$node || $node->type != 'capital_raising') {
+        return;
+      }
+
+      // Create the block structure, and attach the CSS and JS that's required for
+      // the progress bar.
+      $block = array(
+        'subject' => 'Upptecknat',
+        'content' => array(
+          '#theme' => 'sedermera_offer_block_remaining',
+          '#attached' => array(
+            'css' => array(
+              drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/css/bootstrap-progressbar-3.3.0.css',
+            ),
+            'js' => array(
+              drupal_get_path('module', 'sedermera_offer') . '/bower_components/bootstrap-progressbar/bootstrap-progressbar.js',
+              drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_block.js',
+            ),
+          ),
+        ),
+      );
+
+      // Get the maximum total, guaranteed and commitment values.
+      $guaranteed_max = sedermera_offer_capital_raising_get_signed_guaranteed_max($node);
+      $commitment_max = sedermera_offer_capital_raising_get_signed_commitment_max($node);
+      $total_max = sedermera_offer_capital_raising_get_signed_total_max($node);
+
+      // Get the current total value and calculate the percentage.
+      $total_current = sedermera_offer_capital_raising_get_signed_total($node);
+      $total_percentage = round($total_max ? ($total_current / $total_max) * 100 : 0);
+
+      // Add the values to the variables.
+      $block['content']['#total']['current'] = preg_replace('/\,0$/u', '', number_format($total_current, 1, ',', ' '));
+      $block['content']['#total']['percentage'] = $total_percentage;
+      $block['content']['#total']['max'] = $total_max ? preg_replace('/\,0$/u', '', number_format($total_max, 1, ',', ' ')) : '?';
+
+      // Add the variables for the guaranteed values, if a guaranteed goal has been
+      // set.
+      if ($guaranteed_max) {
+        // Get the current amount and calculate the percentage.
+        $guaranteed_current = sedermera_offer_capital_raising_get_signed_guaranteed($node);
+        $guaranteed_percentage = round($guaranteed_max ? ($guaranteed_current / $guaranteed_max) * 100 : 0);
+
+        // Add the values to the variables.
+        $block['content']['#guaranteed']['current'] = preg_replace('/\,0$/u', '', number_format($guaranteed_current, 1, ',', ' '));
+        $block['content']['#guaranteed']['percentage'] = $guaranteed_percentage;
+        $block['content']['#guaranteed']['max'] = preg_replace('/\,0$/u', '', number_format($guaranteed_max, 1, ',', ' '));
+      }
+
+      // Add the variables for the committed values, if a commited goal has been
+      // set.
+      if ($commitment_max) {
+        // Get the current amount and calculate the percentage.
+        $committed_current = sedermera_offer_capital_raising_get_signed_commitment($node);
+        $committed_percentage = round($commitment_max ? ($committed_current / $commitment_max) * 100 : 0);
+
+        // Add the values to the variables.
+        $block['content']['#committed']['current'] = preg_replace('/\,0$/u', '', number_format($committed_current, 1, ',', ' '));
+        $block['content']['#committed']['percentage'] = $committed_percentage;
+        $block['content']['#committed']['max'] = preg_replace('/\,0$/u', '', number_format($commitment_max, 1, ',', ' '));
+      }
+
+      // Return the block.
+      return $block;
+      break;
+    case 'other';
+      // Load the node based on the second argument.
+      $node = node_load(arg(1));
+
+      // Bail out if this isn't a capital raising node.
+      if (!$node || $node->type != 'capital_raising') {
+        return;
+      }
+
+      if (!empty($node->field_cap_rais_goal_oth)) {
+        $block = array(
+          'subject' => 'Övrigt',
+          'content' => array(
+            '#theme' => 'sedermera_offer_block_other',
+            '#markup' => '<div class="empty-container"><p>Det finns inga dokument</p></div>',
+          ),
+        );
+
+        // Change the content of the block to the actual end date.
+        $block['content'] = array(
+          array(
+            '#prefix' => '<div class="other">',
+            '#markup' => check_plain($node->field_cap_rais_goal_oth[LANGUAGE_NONE][0]['value']),
+            '#suffix' => '</div>',
+          ),
+        );
+
+        return $block;
+      }
+      break;
+    }
+}
+
+/**
+ * Get the total amount that's available for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return int
+ *   Returns the total amount.
+ */
+function sedermera_offer_capital_raising_get_signed_total_max($node) {
+  // Wrap the node in order to get its values.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Return the total amount.
+  return $wrapper->field_cap_rais_goal_tot->value();
+}
+
+/**
+ * Get the commitment amount that's available for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return int
+ *   Returns the max commitment amount.
+ */
+function sedermera_offer_capital_raising_get_signed_commitment_max($node) {
+  // Wrap the node in order to get its values.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Get the total max amount.
+  $total = sedermera_offer_capital_raising_get_signed_total_max($node);
+
+  // Get the commitment percentage.
+  $commitment = $wrapper->field_cap_rais_goal_com->value();
+
+  // Return the amount based on the percentage if both the max and commitment
+  // values has been provided, or 0 otherwise.
+  return ($total && $commitment) ? ($total * ($commitment / 100)) : 0;
+}
+
+/**
+ * Get the guaranteed amount that's available for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return int
+ *   Returns the max guaranteed amount.
+ */
+function sedermera_offer_capital_raising_get_signed_guaranteed_max($node) {
+  // Wrap the node in order to get its values.
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // Get the total max amount.
+  $total = sedermera_offer_capital_raising_get_signed_total_max($node);
+
+  // Get the guaranteed percentage.
+  $guaranteed = $wrapper->field_cap_rais_goal_guar->value();
+
+  // Return the amount based on the percentage if both the max and guaranteed
+  // values has been provided, or 0 otherwise.
+  return ($total && $guaranteed) ? ($total * ($guaranteed / 100)) : 0;
+}
+
+/**
+ * Get the total amount that's signed for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return int
+ *   Returns the total amount.
+ */
+function sedermera_offer_capital_raising_get_signed_total($node) {
+  // Get the currently guaranteed and committed amount, and returm the sum.
+  $committed = sedermera_offer_capital_raising_get_signed_commitment($node);
+  $guaranteed = sedermera_offer_capital_raising_get_signed_guaranteed($node);
+  return $committed + $guaranteed;
+}
+
+/**
+ * Get the commited signed amount for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return float
+ *   The currently commited amount.
+ */
+function sedermera_offer_capital_raising_get_signed_commitment($node) {
+  // The initial return value.
+  $signed = 0;
+
+  // Create and execute a query that fetches the offers that are signed and
+  // connected to this capital raising.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'offer')
+    ->fieldCondition('field_offer_cap_rais', 'target_id', $node->nid)
+    ->fieldCondition('field_offer_interested', 'value', 1);
+  $result = $query->execute();
+
+  // Increment the signed value with each offer.
+  if (!empty($result['offer'])) {
+    foreach ($result['offer'] as $row) {
+      $signed += entity_metadata_wrapper('offer', $row->id)->field_offer_amount->value();
+    }
+  }
+
+  // Return the total amount.
+  return $signed;
+}
+
+/**
+ * Get the guaranteed signed amount for a capital raising.
+ *
+ * @param obj $node
+ *   The capital raising node object.
+ *
+ * @return float
+ *   The currently guaranteed amount.
+ */
+function sedermera_offer_capital_raising_get_signed_guaranteed($node) {
+  // The initial return value.
+  $signed = 0;
+
+  // Create and execute a query that fetches the offers that are signed and
+  // connected to this capital raising.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'offer')
+    ->fieldCondition('field_offer_cap_rais', 'target_id', $node->nid)
+    ->fieldCondition('field_offer_interested', 'value', 1);
+  $result = $query->execute();
+
+  // Increment the signed value with each offer.
+  if (!empty($result['offer'])) {
+    foreach ($result['offer'] as $row) {
+      $signed += entity_metadata_wrapper('offer', $row->id)->field_offer_amount_guar->value();
+    }
+  }
+
+  // Return the total amount.
+  return $signed;
+}
+
+/**
+ * Implements hook_msnf_info_steps_alter().
+ */
+function sedermera_offer_msnf_info_steps_alter(&$steps_cached, $entity_type, $bundle, $form, $form_state = array()) {
+  // Disable every step when editing an existing capital raising node.
+  if ($entity_type == 'node' && $bundle == 'offer' && !empty($form['node']->nid)) {
+    $steps_cached = array();
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function sedermera_offer_form_offer_node_form_alter(&$form, &$form_state, $form_id) {
+  $old_nid = (!empty($form['field_offer_proposal'][LANGUAGE_NONE]['#default_value'])) ? $form['field_offer_proposal'][LANGUAGE_NONE]['#default_value'][0] : -1;
+
+  foreach ($form['field_offer_proposal'][LANGUAGE_NONE]['#options'] as $nid => $value) {
+    if (!check_proposal($nid) && $old_nid != $nid) {
+      unset($form['field_offer_proposal'][LANGUAGE_NONE]['#options'][$nid]);
+    }
+  }
+
+  $form['field_offer_proposal'][LANGUAGE_NONE]['#options']['_none'] = '- Välj offert -';
+
+  $fe = ($form['#node']->field_offer_type_fe[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $le = ($form['#node']->field_offer_type_le[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $pp = ($form['#node']->field_offer_type_pp[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $re = ($form['#node']->field_offer_type_re[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $bl = ($form['#node']->field_offer_type_bl[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+  $bp = ($form['#node']->field_offer_type_bp[LANGUAGE_NONE][0]['value']) ? TRUE : FALSE;
+
+  if (!$fe) {
+    unset($form['#fieldgroups']['group_offer_type_fe']);
+  }
+  if (!$le) {
+    unset($form['#fieldgroups']['group_offer_type_le']);
+  }
+  if (!$pp) {
+    unset($form['#fieldgroups']['group_offer_type_pp']);
+  }
+  if (!$re) {
+    unset($form['#fieldgroups']['group_offer_type_re']);
+  }
+  if (!$bl) {
+    unset($form['#fieldgroups']['group_offer_type_bl']);
+  }
+  if (!$bp) {
+    unset($form['#fieldgroups']['group_offer_type_bp']);
+  }
+
+  if ($form['#node']->field_offer_logout_info[LANGUAGE_NONE][0]['value'] == 1) {
+    $form['field_offer_logout_info']['#access'] = FALSE;
+  }
+
+  if ($form['#node']->nid) {
+    // Don't alter the form when editing an existing node, bail out.
+    return;
+  }
+
+  // Hide logout on create offer
+  $form['field_offer_logout_info']['#access'] = FALSE;
+
+  if ($form_state['storage']['step'] == 'step_offer_2') {
+    unset($form['#step_children']['group_offer_step_1']);
+    unset($form['#fieldgroups']['group_offer_step_1']);
+  }
+
+  // Add the offer display from the person view as a prefix to the form. The
+  // view is needed in order to filter among the person. The view can't be
+  // embedded as a subform within the node form, since this will break the AJAX
+  // functionality. The reason is unknown, but that's just the way it is...
+  if ($form_state['storage']['step'] == 'step_offer_3') {
+    $form['#prefix'] = views_embed_view('person', 'offer_embed');
+    unset($form['#step_children']['group_offer_step_1']);
+    unset($form['#fieldgroups']['group_offer_step_1']);
+  }
+
+  // Get the available person from the database.
+  $available_persons = db_query('SELECT nid, title FROM node WHERE type = :person', array(':person' => 'person'))->fetchAllKeyed();
+
+  // Get the selected person, based on the form values, and sort them
+  // alphabetically.
+  $selected_persons = isset($form_state['values']['person']) ? array_intersect_key($available_persons, array_filter($form_state['values']['person'])) : array();
+  asort($selected_persons);
+
+  // Add checkboxes for every available investor. This will be added to the
+  // third step, and will get its values from the embedded view. See the
+  // attached javascript for more information about what's going on.
+  $form['person'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $available_persons,
+    '#default_value' => array_keys($selected_persons),
+    '#attached' => array(
+      'js' => array(
+        drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_workflow.js'
+      ),
+    ),
+    '#prefix' => '<div style="display: none;">',
+    '#suffix' => '</div>',
+  );
+  $form['#step_children']['person'] =  'step_offer_3';
+
+  // Add elements that are required for the third step.
+  if ($form_state['storage']['step'] == 'step_offer_4') {
+    unset($form['#step_children']['group_offer_step_1']);
+    unset($form['#fieldgroups']['group_offer_step_1']);
+
+    // Build the node object based of the form values. This will be used to
+    // generate the preview.
+    $node = node_form_submit_build_node($form, $form_state);
+
+    // Add the rendered node as a preview to the left fieldset. This fieldset will
+    // be added to the third step.
+    $form['preview_node'] = node_view($node);
+    $form['preview_node']['#prefix'] = '<div id="preview-wrapper"><div id="preview-transaction" class="column">';
+    $form['preview_node']['#suffix'] = '</div>';
+    $form['#step_children']['preview_node'] =  'step_offer_4';
+
+    // Add a wrapper for all the elements in the right column.
+    $form['right'] = array(
+      '#prefix' => '<div id="preview-person" class="column">',
+      '#suffix' => '</div></div>',
+    );
+    $form['#step_children']['right'] =  'step_offer_4';
+
+    // Add checkboxes for every selected investor, which will be added to the
+    // third step. This will be used as the confirmation page, where the user will
+    // be able to deselect some of the person before creating the transaction.
+    if (count($selected_persons) > 0) {
+      // If there are selected persons, display them as checkbox items
+      $form['right']['selected_persons'] = array(
+        '#type' => 'checkboxes',
+        '#options' => $selected_persons,
+        '#default_value' => array_keys($selected_persons),
+        '#prefix' => '<h3>Kontaktlista</h3>',
+      );
+    }
+    else {
+      // If not, display empty text
+      $form['right']['selected_persons'] = array(
+        '#type' => 'markup',
+        '#markup' => '<div class="no-contacts">Inga kontaktpersoner är valda</div>',
+        '#prefix' => '<h3>Kontaktlista</h3>',
+      );
+    }
+  }
+
+  // Add javascript that are used in every step for the form.
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer.js'
+    ),
+  );
+
+  // Change the text of the submit button.
+  $form['actions']['submit']['#value'] = 'Skapa erbjudande';
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function sedermera_offer_node_insert($node) {
+  if ($node->type != 'offer' || empty($node->selected_persons)) {
+    return;
+  }
+
+  // Create offer entities for each investor.
+  foreach (array_filter($node->selected_persons) as $person_nid) {
+    create_transaction_node($person_nid, $node->nid);
+  }
+}
+
+/**
+ * Implements hook_views_bulk_operations_form_alter().
+ */
+function sedermera_offer_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) {
+  // Remove the action selection and submit button for the VBO form for the
+  // investors embeded offer display.
+  if ($vbo->view->name == 'person' && $vbo->view->current_display == 'offer_embed') {
+    $form['select']['#access'] = FALSE;
+    $form['actions']['#access'] = FALSE;
+
+    // Disable existing investors when using this form for adding investors to
+    // an existing capital raising.
+    if (($nid = arg(1)) && is_numeric($nid)) {
+      // Get the existing investors for this capital raising.
+      $existing_investors = sedermera_offer_get_investors_for_offer($nid);
+
+      // Find the checkboxes that points to the existing investors.
+      foreach (element_children($form['views_bulk_operations']) as $key) {
+        $element = &$form['views_bulk_operations'][$key];
+
+        // Disable and check this checkbox if it points to an existing investor.
+        if (in_array($element['#return_value'], $existing_investors)) {
+          $element['#attributes']['disabled'] = 'disabled';
+          $element['#attributes']['checked'] = 'checked';
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_offer_form_views_form_offers_page_alter(&$form, &$form_state) {
+
+  // Alter the form when selecting recipients.
+  if ($form_state['step'] == 'views_form_views_form') {
+    sedermera_offer_form_editablefields_form_alter($form, $form_state);
+
+    // Disable access to the entire form when there's no result, since it
+    // doesn't make any sense to print the form when there's nothing that can be
+    // selected.
+    if (!$form_state['build_info']['args'][0]->result) {
+      $form['#access'] = FALSE;
+    }
+
+    if (!$form['views_send']) {
+      // There are no checkboxes available, probably because the user doesn't
+      // have permission. Disable the action buttons.
+      $form['actions']['#access'] = FALSE;
+    }
+    else {
+      // Remove the send checkbox for investors that doesn't have an email
+      // address.
+      foreach ($form_state['build_info']['args'][0]->result as $key => $row) {
+        if (empty($row->field_field_shared_email)) {
+          $form['views_send'][$key]['#access'] = FALSE;
+        }
+        else {
+          // Set a variable which indicates that the send button should be
+          // enabled.
+          $enable_send = TRUE;
+        }
+      }
+
+      if (isset($enable_send) && $enable_send) {
+        // Show and enable the submit button when any of the rows has been
+        // checked.
+        $form['actions']['submit']['#states'] = array(
+          'visible' => array(
+            'td.views-field-views-send input' => array('checked' => TRUE),
+          ),
+          'enabled' => array(
+            'td.views-field-views-send input' => array('checked' => TRUE),
+          ),
+        );
+      }
+      else {
+        // There are no email address available, disable the button.
+        $form['actions']['#access'] = FALSE;
+      }
+    }
+  }
+
+  // Alter the form when configuring the email.
+  if ($form_state['step'] == 'views_send_config_form') {
+    // Add a step counter as a prefix to the form.
+    $process = array(
+      '#prefix' => '<div class="process-steps">',
+      '#theme' => 'item_list',
+      '#items' => array(
+        array('data' => '1', 'class' => array('first', 'active')),
+        array('data' => '2', 'class' => array('last')),
+      ),
+      '#suffix' => '</div>',
+    );
+    $form['#prefix'] = render($process);
+
+    // Alter the fieldset for the sender details.
+    $form['from']['#title'] = 'Avsändare';
+    $form['from']['#collapsible'] = FALSE;
+
+    // Make the name field required and set its default value to the name of the
+    // current user.
+    $form['from']['views_send_from_name']['#required'] = TRUE;
+    $form['from']['views_send_from_name']['#default_value'] = isset($form_state['configuration']['views_send_from_name']) ? $form_state['configuration']['views_send_from_name'] : format_username($GLOBALS['user']);
+
+    // Set the default from email to the email of the current user.
+    $form['from']['views_send_from_mail']['#default_value'] = isset($form_state['configuration']['views_send_from_mail']) ? $form_state['configuration']['views_send_from_mail'] : $GLOBALS['user']->mail;
+
+    // Remove the description for the name and email fields.
+    unset($form['from']['views_send_from_name']['#description']);
+    unset($form['from']['views_send_from_mail']['#description']);
+
+    // Hardcode the values for the recipient email and name fields.
+    $form['to']['views_send_to_name']['#type'] = 'value';
+    $form['to']['views_send_to_name']['#value'] = 'eck_investor_field_data_field_offer_investor_title_pos_4';
+    $form['to']['views_send_to_mail']['#type'] = 'value';
+    $form['to']['views_send_to_mail']['#value'] = 'field_shared_email_pos_0';
+
+    // Load the capital raising node in order to set the values for the email.
+    $capital_raising_node = node_load(arg(1));
+    $capital_raising_render = node_view($capital_raising_node, 'mail');
+
+    // Set the subject to the node of the title, and the message to the fully
+    // rendered node.
+    $form['mail']['views_send_subject']['#value'] = $capital_raising_node->title;
+    $form['mail']['views_send_message']['#value'] = render($capital_raising_render);
+
+    // Fix the format for the message. This needs to be changed in two places
+    // since the Views Send module handles it this way...
+    $form['mail']['views_send_message']['#format'] = 'full_html';
+    $form['format'] = array(
+      '#type' => 'value',
+      '#value' => 'full_html',
+    );
+
+    // Disable access to fieldsets that shouldn't alterable by the user.
+    $form['to']['#access'] = FALSE;
+    $form['mail']['#access'] = FALSE;
+    $form['additional']['#access'] = FALSE;
+
+    // Always send the email directly via batch.
+    $form['views_send_direct']['#type'] = 'value';
+    $form['views_send_direct']['#value'] = TRUE;
+
+    // Never remember the values for the next time.
+    $form['views_send_remember']['#type'] = 'value';
+    $form['views_send_remember']['#value'] = FALSE;
+
+    // Alter the title and default value for the carbon copy checkbox.
+    $form['views_send_carbon_copy']['#title'] = 'Skicka en kopia till avsändaren';
+    $form['views_send_carbon_copy']['#default_value'] = isset($form_state['configuration']['views_send_carbon_copy']) ? $form_state['configuration']['views_send_carbon_copy'] : TRUE;
+
+    // Add a previous button which will redirect the user back to the view.
+    $form['actions']['previous'] = array(
+      '#type' => 'submit',
+      '#value' => 'Tillbaka',
+      '#attributes' => array(
+        '#id' => 'edit-previous',
+      ),
+      '#weight' => -10,
+      '#submit' => array('sedermera_offer_views_send_form_back'),
+    );
+
+    // Change the text and id attribute for the next button, and remove the
+    // cancel link since the back button will take care of that.
+    $form['actions']['submit']['#value'] = 'Nästa steg';
+    $form['actions']['submit']['#attributes']['id'] = 'edit-next';
+    unset($form['actions']['submit']['#suffix']);
+  }
+
+  // Alter the form when confirming the email.
+  if ($form_state['step'] == 'views_send_confirm_form') {
+    // Add a step counter as a prefix to the form.
+    $process = array(
+      '#prefix' => '<div class="process-steps">',
+      '#theme' => 'item_list',
+      '#items' => array(
+        array('data' => '1', 'class' => array('first')),
+        array('data' => '2', 'class' => array('last', 'active')),
+      ),
+      '#suffix' => '</div>',
+    );
+    $form['#prefix'] = render($process);
+
+    // Build a list of the recipients in order to create a HTML list instead of
+    // the regular text. Most if the code in order to build the array with names
+    // and email addresses has been taken from views_send_confirm_form().
+    $recipients = array();
+    $to_name_field = $form_state['configuration']['views_send_tokens'][$form_state['configuration']['views_send_to_name']];
+    $to_mail_field = $form_state['configuration']['views_send_tokens'][$form_state['configuration']['views_send_to_mail']];
+
+    foreach ($form_state['selection'] as $row_id) {
+      list($to_name) = _views_send_get_raw_field_from_views_row($form_state['build_info']['args'][0], $row_id, $to_name_field);
+      $mail_addresses = _views_send_get_raw_field_from_views_row($form_state['build_info']['args'][0], $row_id, $to_mail_field);
+      foreach ($mail_addresses as $mail_address) {
+        $recipients[] = check_plain(trim($to_name) . ' <' .  $mail_address . '>');
+      }
+    }
+
+    // Append a counter to the list if there are more than one recipients.
+    if (count($recipients) > 1) {
+      $item = array(
+        'data' => format_string('@count investerare', array('@count' => count($recipients))),
+        'class' => array('recipients-counter'),
+      );
+      array_unshift($recipients, $item);
+    }
+
+    // Create the list.
+    $recipients_list = array(
+      '#prefix' => '<div class="views-send-preview-value">',
+      '#theme' => 'item_list',
+      '#items' => $recipients,
+      '#suffix' => '</div>',
+      '#attached' => array(
+        'js' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_mail.js',
+        )
+      ),
+    );
+    $form['to']['#markup'] = render($recipients_list);
+
+    // Add a preview link which opens the message in a magnific popup.
+    $preview_link = array(
+      '#prefix' => '<div class="views-send-preview-value">',
+      '#markup' => '<a href="#message-preview" id="message-preview-link">Visa förhandsgranskning</a>',
+      '#suffix' => '</div>',
+      '#attached' => array(
+        'js' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/bower_components/magnific-popup/dist/jquery.magnific-popup.js',
+          drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_mail.js',
+        ),
+        'css' => array(
+          drupal_get_path('module', 'sedermera_offer') . '/bower_components/magnific-popup/dist/magnific-popup.css',
+        ),
+      ),
+    );
+    $form['message']['#markup'] = render($preview_link);
+    $form['message']['#suffix'] = '<div id="message-preview" class="mfp-hide">' . check_markup($form_state['configuration']['views_send_message']['value'], $form_state['configuration']['views_send_message']['format']) . '</div>';
+
+    // Disable access to the header information since this isn't relevant.
+    $form['headers']['#access'] = FALSE;
+
+    // Add a previous button which will redirect the user back to the view.
+    $form['actions']['previous'] = array(
+      '#type' => 'submit',
+      '#value' => 'Tillbaka',
+      '#attributes' => array(
+        '#id' => 'edit-previous',
+      ),
+      '#weight' => -10,
+      '#submit' => array('sedermera_offer_views_send_form_back'),
+    );
+
+    // Remove the cancel link since the back button will take care of that.
+    unset($form['actions']['submit']['#suffix']);
+  }
+}
+
+/**
+ * Submit callback for the "back" button on the Views send form.
+ */
+function sedermera_offer_views_send_form_back($form, &$form_state) {
+  // Send the user to another step, based on which step that was submitted.
+  switch ($form_state['step']) {
+    case 'views_send_config_form':
+      // The user submitted the config form. Set an empty step since this means
+      // that the user should return to the view.
+      $form_state['step'] = '';
+      break;
+
+    case 'views_send_confirm_form':
+      // The user submitted the confirm step. Go back to the config step.
+      $form_state['step'] = 'views_send_config_form';
+      $form_state['rebuild'] = TRUE;
+      break;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_offer_form_views_form_offers_interest_alter(&$form, &$form_state) {
+  sedermera_offer_form_editablefields_form_alter($form, $form_state);
+
+  // Remove access to the Save button since the editable fields are saved via
+  // AJAX.
+  $form['actions']['#access'] = FALSE;
+}
+
+/**
+ * Helper function which alters various editablefields forms.
+ */
+function sedermera_offer_form_editablefields_form_alter(&$form, &$form_state) {
+  // Attach custom javascript which will improve the submit functionality.
+  $form['output']['#attached']['js'][] = drupal_get_path('module', 'sedermera_offer') . '/sedermera_offer_editablefields.js';
+}
+
+/**
+ * Get every investor that are connected to a offer
+ *
+ * @param int $offer_nid.
+ *   The node ID for the offer node.
+ *
+ * @return array
+ *   An array with the ID's for every investor entity.
+ */
+function sedermera_offer_get_investors_for_offer($offer_nid) {
+  $result = db_query("SELECT field_transaction_person_target_id
+    FROM field_data_field_transaction_person AS p
+    INNER JOIN field_data_field_transaction_offer AS o
+    ON (p.entity_id = o.entity_id)
+    WHERE o.field_transaction_offer_target_id = :offer_nid", array(':offer_nid' => $offer_nid))->fetchCol();
+
+  return $result;
+}
+
+/**
+ * Implements hook_field_access().
+ */
+function sedermera_offer_field_access($op, $field, $entity_type, $entity, $account) {
+  if ($entity_type != 'offer' || $op != 'edit' || !$entity) {
+    // This is not an offer that is being edited, bail out.
+    return;
+  }
+
+  // Wrap the offer in order to access the existing field values.
+  $wrapper = entity_metadata_wrapper('offer', $entity);
+
+  // Never allow offers to be edited if the capital raising is archived.
+  if (!$wrapper->field_offer_cap_rais->status->value()) {
+    return FALSE;
+  }
+}
+
+function sedermera_offer_views_pre_render(&$view) {
+  if ($view->name == 'transactions' && $view->current_display == 'page') {
+    if (empty($view->result)) {
+      return;
+    }
+
+    $node = node_load($view->args[0]);
+
+    $transaction_fe_sign = 0;
+    $transaction_fe_warrant = 0;
+    $transaction_le_sign = 0;
+    $transaction_le_warrant = 0;
+    $transaction_pp_sign = 0;
+    $transaction_re_sign = 0;
+    $transaction_bl_sum = 0;
+    $transaction_bp_sum = 0;
+    $total_sum = 0;
+
+    foreach ($view->result as $r => $value) {
+      $fe_sign_row = 0;
+      $fe_warrant_row = 0;
+      $le_sign_row = 0;
+      $le_warrant_row = 0;
+      $pp_sign_row = 0;
+      $re_sign_row = 0;
+      $bl_sum_row = 0;
+      $bp_sum_row = 0;
+
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_fe_sign) && !empty($node->field_offer_type_fe_sign)) {
+        $fe_sign_row = $value->_field_data['nid']['entity']->field_transaction_fe_sign[LANGUAGE_NONE][0]['value'];
+        $transaction_fe_sign += $fe_sign_row;
+      }
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_fe_warant) && !empty($node->field_offer_type_fe_warrant)) {
+        $fe_warrant_row = $value->_field_data['nid']['entity']->field_transaction_fe_warant[LANGUAGE_NONE][0]['value'];
+        $transaction_fe_warrant += $fe_warrant_row;
+      }
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_le_sign) && !empty($node->field_offer_type_le_sign)) {
+        $le_sign_row = $value->_field_data['nid']['entity']->field_transaction_le_sign[LANGUAGE_NONE][0]['value'];
+        $transaction_le_sign += $le_sign_row;
+      }
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_le_warrant) && !empty($node->field_offer_type_le_warrant)) {
+        $le_warrant_row = $value->_field_data['nid']['entity']->field_transaction_le_warrant[LANGUAGE_NONE][0]['value'];
+        $transaction_le_warrant += $le_warrant_row;
+      }
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_pp_sign) && !empty($node->field_offer_type_pp_sign)) {
+        $pp_sign_row = $value->_field_data['nid']['entity']->field_transaction_pp_sign[LANGUAGE_NONE][0]['value'];
+        $transaction_pp_sign += $pp_sign_row;
+      }
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_re_sign) && !empty($node->field_offer_type_re_sign)) {
+        $re_sign_row = $value->_field_data['nid']['entity']->field_transaction_re_sign[LANGUAGE_NONE][0]['value'];
+        $transaction_re_sign += $re_sign_row;
+      }
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_bridging) && !empty($node->field_offer_type_bl_sum)) {
+        $bl_sum_row = $value->_field_data['nid']['entity']->field_transaction_bridging[LANGUAGE_NONE][0]['value'];
+        $transaction_bl_sum += $bl_sum_row;
+      }
+      if (!empty($value->_field_data['nid']['entity']->field_transaction_block) && !empty($node->field_offer_type_bp_sum)) {
+        $bp_sum_row = $value->_field_data['nid']['entity']->field_transaction_block[LANGUAGE_NONE][0]['value'];
+        $transaction_bp_sum += $bp_sum_row;
+      }
+
+      $row = $fe_sign_row + $fe_warrant_row + $le_sign_row + $le_warrant_row + $pp_sign_row + $re_sign_row + $bl_sum_row + $bp_sum_row;
+      $total_sum += $row;
+      $value->field_field_transaction_sum['0']['rendered']['#markup'] = number_format($row, 2, ',', ' ')  . " :-";
+    }
+
+    $view->res = array(
+      'title' => 'Totalt',
+      'field_transaction_fe_sign' => number_format($transaction_fe_sign, 2, ',', ' ') . " :-",
+      'field_transaction_fe_warant' => number_format($transaction_fe_warrant, 2, ',', ' ') . " :-",
+      'field_transaction_le_sign' => number_format($transaction_le_sign, 2, ',', ' ') . " :-",
+      'field_transaction_le_warrant' => number_format($transaction_le_warrant, 2, ',', ' ') . " :-",
+      'field_transaction_pp_sign' => number_format($transaction_pp_sign, 2, ',', ' ') . " :-",
+      'field_transaction_re_sign' => number_format($transaction_re_sign, 2, ',', ' ') . " :-",
+      'field_transaction_bridging' => number_format($transaction_bl_sum, 2, ',', ' ') . " :-",
+      'field_transaction_block' => number_format($transaction_bp_sum, 2, ',', ' ') . " :-",
+      'field_transaction_sum' => number_format($total_sum, 2, ',', ' ') . " :-",
+      'note' => '',
+      'contact' => '',
+      'contact_by' => '',
+      'no_interest' => '',
+      'info' => '',
+      'offer' => '',
+      'interest' => '',
+    );
+    $view->disable = array(
+      'field_transaction_fe_sign' => empty($node->field_offer_type_fe_sign),
+      'field_transaction_fe_warant' => empty($node->field_offer_type_fe_warrant),
+      'field_transaction_le_sign' => empty($node->field_offer_type_le_sign),
+      'field_transaction_le_warrant' => empty($node->field_offer_type_le_warrant),
+      'field_transaction_pp_sign' => empty($node->field_offer_type_pp_sign),
+      'field_transaction_re_sign' => empty($node->field_offer_type_re_sign),
+      'field_transaction_bridging' => empty($node->field_offer_type_bl_sum),
+      'field_transaction_block' => empty($node->field_offer_type_bp_sum),
+    );
+  }
+}

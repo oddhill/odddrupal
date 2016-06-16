@@ -1,0 +1,14 @@
+@include keyframes(rotate) {
+  from {
+    @include transform(rotate(0deg));
+  }
+  to {
+    @include transform(rotate(-180deg));
+  }
+}
+
+@include keyframes(load) {
+  100% {
+    @include transform(rotate(360deg));
+  }
+}

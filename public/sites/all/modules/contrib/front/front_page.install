@@ -1,0 +1,201 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the front page module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function front_page_install() {
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function front_page_uninstall() {
+  variable_del('front_page_enable');
+  variable_del('front_page_breadcrumb');
+  variable_del('front_page_breadcrumb_redirect');
+  variable_del('special_notice_time');
+  variable_del('special_notice_text');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function front_page_schema() {
+  $schema['front_page'] = array(
+    'description' => 'Stores Front Page settings.',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Primary key',
+      ),
+      'role' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Unique role name.',
+      ),
+      'mode' => array(
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The mode the front page will operate in for the selected role.',
+      ),
+      'data' => array(
+        'type' => 'text',
+        'not null' => TRUE,
+        'size' => 'big',
+        'description' => 'Contains the data for the selected mode. This could be a path or html to display.',
+      ),
+      'filter_format' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The filter format to apply to the data.',
+      ),
+      'weight' => array(
+        'type' => 'int',
+        'default' => 0,
+        'description' => 'The weight of the front page setting.',
+      )
+    ),
+    'primary key' => array('id'),
+    'indexes' => array(
+      'weight' => array('weight'),
+    ),
+    'export' => array(
+      'key' => 'role',
+      'key name' => 'Role name',
+      'primary key' => 'id',
+      'identifier' => 'front_page_preset', // Exports will be as $myobj
+      'default hook' => 'default_front_page_presets',  // Function hook name.
+      'api' => array(
+        'owner' => 'front_page',
+        'api' => 'default_front_page_presets',  // Base name for api include files.
+        'minimum_version' => 2,
+        'current_version' => 2,
+      ),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Update 7200 - Add table if not already added, transfer data into the table and correct special notice times.
+ */
+function front_page_update_7200() {
+  if (!db_table_exists('front_page')) {
+    $schema = drupal_get_schema_unprocessed('front_page');
+    _drupal_schema_initialize($schema, 'front_page', FALSE);
+    if (isset($schema['front_page'])) {
+      db_create_table('front_page', $schema['front_page']);
+    }
+
+    // need to add front page data from variables table to new table.
+    $formats = filter_formats();
+    $formats = drupal_map_assoc(array_keys($formats));
+    $default_format = array_shift($formats);
+    $php_format = isset($formats['php_code']) ? 'php_code' : $default_format;
+
+    $roles = user_roles();
+    foreach ($roles as $rid => $role_name) {
+      $mode = variable_get('front_' . $rid . '_type', '');
+      if (!empty($mode)) {
+        switch ($mode) {
+          case 'themed':
+          case 'full':
+            $data = variable_get('front_' . $rid . '_text', '');
+            $format = $default_format;
+            if (variable_get('front_' . $rid . '_php', 0)) {
+              $format = $php_format;
+            }
+            break;
+          case 'redirect':
+          case 'alias':
+            $data = variable_get('front_' . $rid . '_redirect', '');
+            $format = '';
+            break;
+          default:
+            $mode = '';
+            $format = '';
+            $data = '';
+            break;
+        }
+        $weight = $rid * -1;
+        db_merge('front_page')
+            ->key(array('rid' => $rid))
+            ->fields(array(
+              'mode' => $mode,
+              'data' => $data,
+              'filter_format' => $format,
+              'weight' => $weight,
+            ))
+            ->execute();
+        variable_del('front_' . $rid . '_type');
+        variable_del('front_' . $rid . '_text');
+        variable_del('front_' . $rid . '_php');
+        variable_del('front_' . $rid . '_redirect');
+      }
+    }
+  }
+
+  if (variable_get('site_frontpage', 'node') == 'front_page') {
+    variable_set('site_frontpage', 'node');
+  }
+}
+
+function front_page_update_7201() {
+  variable_del('special_notice_time');
+  variable_del('special_notice_text');
+
+  variable_del('front_page_breadcrumb');
+  $path = variable_get('front_page_breadcrumb_redirect', '');
+  variable_set('front_page_home_link_path', $path);
+  variable_del('front_page_breadcrumb_redirect');
+}
+
+/**
+ * Use role names in stead of rids.
+ */
+function front_page_update_7202() {
+  db_change_field('front_page', 'rid', 'rid', array(
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+  ));
+  db_drop_primary_key('front_page');
+  db_add_field('front_page', 'id', array(
+    'type' => 'serial',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+    'description' => 'Primary key',
+  ), array('indexes' => array('temp_index' => array('id'))));
+  db_add_field('front_page', 'role', array(
+    'type' => 'varchar',
+    'length' => 64,
+    'not null' => TRUE,
+    'default' => '',
+    'description' => 'Unique role name.',
+  ));
+  $roles = db_select('role', 'r')
+    ->fields('r', array('rid', 'name'))
+    ->execute()
+    ->fetchAllKeyed();
+  foreach ($roles as $rid => $name) {
+    db_update('front_page')->fields(array('role' => $name))->condition('rid', $rid)->execute();
+  }
+  db_drop_field('front_page', 'rid');
+  db_add_primary_key('front_page', array('id'));
+  db_drop_index('front_page', 'temp_index');
+}

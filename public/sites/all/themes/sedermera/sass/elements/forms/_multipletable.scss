@@ -1,0 +1,62 @@
+table.field-multiple-table {
+  margin-bottom: 20px;
+  border: 1px solid $wool;
+  border-collapse: separate;
+
+  thead {
+    text-align: left;
+    font-weight: 700;
+
+    th {
+      padding: 10px;
+      border-bottom: 1px solid $wool;
+
+      label {
+        @include font-size(1.4,1);
+        font-weight: 700;
+        margin: 0;
+        color: $coffee;
+        padding: 0;
+        border: 0px none;
+      }
+    }
+  }
+
+  tbody {
+
+    tr {
+      background: $snow;
+
+      td {
+        border-bottom: 1px solid $wool;
+
+        &.field-multiple-drag {
+          padding: 10px 0 10px 10px;
+        }
+      }
+
+      &:last-child {
+
+        td {
+          border-bottom: 0px none;
+        }
+      }
+    }
+  }
+
+  .form-type-textarea {
+    margin: -10px;
+
+    .form-textarea {
+      border: 0px none;
+      margin: 0;
+      padding: 10px;
+      display: block;
+      width: 100%;
+
+      &:focus {
+        box-shadow: 0 0 0 transparent;
+      }
+    }
+  }
+}

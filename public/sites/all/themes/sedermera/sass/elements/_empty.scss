@@ -1,0 +1,17 @@
+// Empty filter message
+.view-empty {
+  padding: 40px;
+  @include font-size(1.6);
+  text-align: center;
+  font-weight: 500;
+
+  &:before {
+    display: block;
+    content: '';
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    @include svg-bg(empty);
+    background-size: 80px 80px;
+  }
+}

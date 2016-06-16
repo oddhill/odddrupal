@@ -1,0 +1,490 @@
+<?php
+
+/**
+ * @file sedermera_core.install
+ * Install and update instructions for the Sedermera Core module.
+ */
+
+/**
+ * Delete every old alias.
+ */
+function sedermera_core_update_7001() {
+  // Delete all aliases.
+  foreach (db_select('url_alias')->fields('url_alias', array('pid'))->execute() as $row) {
+    path_delete($row->pid);
+  }
+}
+
+/**
+ * Create aliases for forms.
+ */
+function sedermera_core_update_7002() {
+  $path = array(
+    'source' => 'node/add/company',
+    'alias' => 'kundbolag/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/capital-raising',
+    'alias' => 'transaktioner/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'admin/structure/entity-type/investor/company/add',
+    'alias' => 'investerare/skapa/bolag',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'admin/structure/entity-type/investor/person/add',
+    'alias' => 'investerare/skapa/privatperson',
+  );
+  path_save($path);
+}
+
+/**
+ * Delete unused fields
+ */
+function sedermera_core_update_7003() {
+  field_delete_field('field_shared_veri_upp');
+  field_delete_field('field_shared_veri_ptv');
+  field_delete_field('field_shared_veri_id');
+  field_delete_field('field_shared_veri_id_real');
+  field_delete_field('field_shared_veri_address');
+  field_delete_field('field_shared_veri_eu');
+  field_delete_field('field_shared_veri_credit');
+  field_delete_field('field_shared_veri_register');
+  field_delete_field('field_shared_veri_komp');
+  field_delete_field('field_shared_veri_ovr');
+
+  field_purge_batch(100);
+}
+
+/**
+ * Generate alias for create content
+ */
+function sedermera_core_update_7004() {
+  $path = array(
+    'source' => 'node/add/person',
+    'alias' => 'kontaktpersoner/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-privat',
+    'alias' => 'avtalsparter/skapa/bolag',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-bolag',
+    'alias' => 'avtalsparter/skapa/privatperson',
+  );
+  path_save($path);
+}
+
+/**
+ * Generate alias for create content
+ */
+function sedermera_core_update_7005() {
+  $path = array(
+    'source' => 'node/add/erbjudande',
+    'alias' => 'erbjudande/skapa',
+  );
+  path_save($path);
+}
+
+/**
+ * Generate alias for create content
+ */
+function sedermera_core_update_7006() {
+  $path = array(
+    'source' => 'node/add/erbjudande',
+    'alias' => 'erbjudanden/skapa',
+  );
+  path_save($path);
+}
+
+/**
+ * Update alias for create content
+ */
+function sedermera_core_update_7007() {
+  $path = array(
+    'source' => 'node/add/investor-private',
+    'alias' => 'avtalsparter/skapa/bolag',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-company',
+    'alias' => 'avtalsparter/skapa/privatperson',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/offer',
+    'alias' => 'erbjudanden/skapa',
+  );
+  path_save($path);
+}
+
+/**
+ * Update weight of the module in order to run after VBO.
+ */
+function sedermera_core_update_7008() {
+  db_query("UPDATE {system} SET weight = 10 WHERE name = 'sedermera_core'");
+}
+
+/**
+ * Update url alias
+ */
+function sedermera_core_update_7009() {
+  db_query("TRUNCATE TABLE {url_alias}");
+
+  $path = array(
+    'source' => 'node/add/person',
+    'alias' => 'kontaktpersoner/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-private',
+    'alias' => 'avtalsparter/skapa/privatperson',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/investor-company',
+    'alias' => 'avtalsparter/skapa/bolag',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/company',
+    'alias' => 'kundbolag/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/offer',
+    'alias' => 'erbjudanden/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/document',
+    'alias' => 'regelverk/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/manual',
+    'alias' => 'manualer/skapa',
+  );
+  path_save($path);
+
+  $path = array(
+    'source' => 'node/add/template',
+    'alias' => 'mallar/skapa',
+  );
+  path_save($path);
+
+  $nids = entity_load('node');
+  foreach ($nids as $key => $node) {
+    pathauto_node_update_alias($node, 'bulkupdate');
+  }
+}
+
+/**
+ * Disable and uninstall Views_PHP
+ */
+function sedermera_core_update_7010() {
+  if (module_exists('views_php')) {
+    module_disable(array('views_php'));
+    drupal_uninstall_modules(array('views_php'));
+  }
+}
+
+/**
+ * Delete the contact details field.
+ */
+function sedermera_core_update_7011() {
+  field_delete_field('field_user_details');
+
+  field_purge_batch(100);
+}
+
+/**
+ * Delete the complementing control nodes and the field.
+ */
+function sedermera_core_update_7012() {
+  $nids = db_query('SELECT field_transaction_ap_ctrl_comp_target_id FROM {field_data_field_transaction_ap_ctrl_comp}')->fetchCol();
+  node_delete_multiple($nids);
+
+  field_delete_field('field_transaction_ap_ctrl_comp');
+  field_delete_field('field_hist_ctrl_vid_kom');
+  field_purge_batch(100);
+}
+
+/**
+ * Delete old field no longer needed
+ */
+function sedermera_core_update_7013() {
+  field_delete_field('field_offer_company');
+
+  field_purge_batch(500);
+}
+
+/**
+ * Enable syslog instead of Logentries.
+ */
+function sedermera_core_update_7014() {
+  if (module_exists('logentries')) {
+    module_disable(array('logentries'));
+    drupal_uninstall_modules(array('logentries'));
+
+    module_enable(array('syslog'));
+  }
+}
+
+/**
+ * Enable login_security if production environment
+ */
+function sedermera_core_update_7015() {
+  $environment = variable_get('tadaa_environment');
+
+  if($environment == 'production') {
+    module_enable(array('login_security'));
+  }
+  else {
+    module_disable(array('login_security'));
+  }
+}
+
+/**
+ * Update all investor company to follow the new owner scheme
+ */
+function sedermera_core_update_7016() {
+  $results = db_query("SELECT nid
+    FROM node
+    WHERE type = 'investor_company'")->fetchAllKeyed();
+
+  foreach ($results as $key => $value) {
+    $node = node_load($key);
+
+    if (!empty($node->field_investor_comp_owners[LANGUAGE_NONE])) {
+      foreach ($node->field_investor_comp_owners[LANGUAGE_NONE] as $key => $value) {
+        $collection = entity_create('field_collection_item', array('field_name' => 'field_investor_comp_owner'));
+        $collection->setHostEntity('node', $node);
+        $collection->field_owner_head[LANGUAGE_NONE][0]['target_id'] = $value['target_id'];
+        $collection->save();
+      }
+    }
+  }
+}
+
+/**
+ * Delete old field no longer needed
+ */
+function sedermera_core_update_7017() {
+  field_delete_field('field_investor_comp_owners');
+
+  field_purge_batch(500);
+}
+
+/**
+ * Update all customer companies to follow the new owner scheme
+ */
+function sedermera_core_update_7018() {
+  $results = db_query("SELECT nid
+    FROM node
+    WHERE type = 'company'")->fetchAllKeyed();
+
+  foreach ($results as $key => $value) {
+    $node = node_load($key);
+
+    if (!empty($node->field_comp_principal_person[LANGUAGE_NONE])) {
+      foreach ($node->field_comp_principal_person[LANGUAGE_NONE] as $key => $value) {
+        $collection = entity_create('field_collection_item', array('field_name' => 'field_comp_principal_persons'));
+        $collection->setHostEntity('node', $node);
+        $collection->field_owner_head[LANGUAGE_NONE][0]['target_id'] = $value['target_id'];
+        $collection->save();
+      }
+    }
+  }
+}
+
+/**
+ * Delete old field no longer needed
+ */
+function sedermera_core_update_7019() {
+  field_delete_field('field_comp_principal_person');
+
+  field_purge_batch(500);
+}
+
+/**
+ * Change field type of various amount fields to decimal instead of int.
+ */
+function sedermera_core_update_7020() {
+  // The content type and fields that are going to be changed.
+  $fields = array(
+    'transaction_history' => array(
+      'field_hist_sum',
+    ),
+    'transaction_ap' => array(
+      'field_transaction_ap_fe_sign',
+      'field_transaction_ap_fe_warrant',
+      'field_transaction_ap_le_sign',
+      'field_transaction_ap_le_warrant',
+      'field_transaction_ap_pp_sign',
+      'field_transaction_ap_re_sign',
+      'field_transaction_ap_bridging',
+      'field_transaction_ap_block',
+      'field_transaction_ap_sum',
+    ),
+    'transaction' => array(
+      'field_transaction_fe_sign',
+      'field_transaction_fe_warant',
+      'field_transaction_le_sign',
+      'field_transaction_le_warrant',
+      'field_transaction_pp_sign',
+      'field_transaction_re_sign',
+      'field_transaction_bridging',
+      'field_transaction_block',
+      'field_transaction_sum',
+    )
+  );
+
+  // Update each field. The following code has been taken from
+  // http://drupal.stackexchange.com/questions/79378/changing-a-field-type-from-integer-to-decimal.
+  foreach ($fields as $content_type => $fields) {
+    foreach ($fields as $field) {
+      // Update the storage tables
+      $tables = array('field_data', 'field_revision');
+      foreach ($tables as $table) {
+        $tablename = $table . '_' . $field;
+        $fieldname = $field . '_value';
+        db_change_field($tablename, $fieldname, $fieldname, array(
+          'type' => 'numeric',
+          'precision' => 13,
+          'scale' => 2,
+          'not null' => FALSE,
+        ));
+      }
+
+      // Fetch the current field configuration
+      $field_config = db_query("SELECT data FROM {field_config} WHERE field_name = :field_name", array(
+        ':field_name' => $field,
+      ))->fetchObject();
+      $data = unserialize($field_config->data);
+
+      // Update the settings entry
+      $data['settings'] = array(
+        'precision' => 13,
+        'scale' => 2,
+        'decimal_separator' => ',',
+      );
+
+      // Store the new field config, update the field type at the same time
+      db_update('field_config')
+        ->fields(array(
+          'data' => serialize($data),
+          'type' => 'number_decimal',
+        ))
+        ->condition('field_name', $field)
+        ->execute();
+
+      // Fetch the field instance data
+      $field_config_instance = db_query("SELECT data FROM {field_config_instance}
+        WHERE field_name = :field_name
+        AND entity_type = 'node'
+        AND bundle = :bundle", array(
+          ':field_name' => $field,
+          ':bundle' => $content_type,
+        ))
+        ->fetchObject();
+      $data = unserialize($field_config_instance->data);
+
+      // Update it with the new display type
+      $data['display']['default']['type'] = 'number_decimal';
+
+      // Store it back to the database
+      db_update('field_config_instance')
+        ->fields(array('data' => serialize($data)))
+        ->condition('field_name', $field)
+        ->condition('entity_type', 'node')
+        ->condition('bundle', $content_type)
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Change owner amount field from float to decimal.
+ */
+function sedermera_core_update_7021() {
+  $field = 'field_owner_amount';
+  $bundles = array('field_investor_comp_owner', 'field_comp_principal_persons');
+
+  // Update the storage tables
+  $tables = array('field_data', 'field_revision');
+  foreach ($tables as $table) {
+    $tablename = $table . '_' . $field;
+    $fieldname = $field . '_value';
+    db_change_field($tablename, $fieldname, $fieldname, array(
+      'type' => 'numeric',
+      'precision' => 10,
+      'scale' => 2,
+      'not null' => FALSE,
+    ));
+  }
+
+  // Fetch the current field configuration
+  $field_config = db_query("SELECT data FROM {field_config} WHERE field_name = :field_name", array(
+    ':field_name' => $field,
+  ))->fetchObject();
+  $data = unserialize($field_config->data);
+
+  // Update the settings entry
+  $data['settings'] = array(
+    'precision' => 10,
+    'scale' => 2,
+    'decimal_separator' => ',',
+  );
+
+  // Store the new field config, update the field type at the same time
+  db_update('field_config')
+    ->fields(array(
+      'data' => serialize($data),
+      'type' => 'number_decimal',
+    ))
+    ->condition('field_name', $field)
+    ->execute();
+
+  foreach ($bundles as $bundle) {
+    // Fetch the field instance data
+    $field_config_instance = db_query("SELECT data FROM {field_config_instance}
+      WHERE field_name = :field_name
+      AND entity_type = 'field_collection'
+      AND bundle = :bundle", array(
+        ':field_name' => $field,
+        ':bundle' => $bundle,
+      ))
+      ->fetchObject();
+    $data = unserialize($field_config_instance->data);
+
+    // Update it with the new display type
+    $data['display']['default']['type'] = 'number_decimal';
+
+    // Store it back to the database
+    db_update('field_config_instance')
+      ->fields(array('data' => serialize($data)))
+      ->condition('field_name', $field)
+      ->condition('entity_type', 'field_collection')
+      ->condition('bundle', $bundle)
+      ->execute();
+  }
+}

@@ -1,0 +1,4 @@
+name = Sedermera Document View
+description = Views for documents, signed by user.
+core = 7.x
+package = Sedermera

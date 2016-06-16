@@ -1,0 +1,4 @@
+name = Sedermera Core
+description = Alterations and functionality that are global to the site.
+core = 7.x
+package = Sedermera

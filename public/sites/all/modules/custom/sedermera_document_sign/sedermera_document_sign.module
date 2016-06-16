@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file sedermera_document_sign.module
+ * Main module file for the Sedermera Document Sign module.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function sedermera_document_sign_form_document_node_form_alter(&$form, &$form_state) {
+  // Hide user signed list
+  $form['field_document_user_read']['#access'] = 0;
+
+  // Move the Revision tab:
+  $form['#group_children']['revision_information'] = 'group_doc_2';
+  $form['revision_information']['#group'] = 'group_doc_2';
+  $form['revision_information']['#weight'] = 500;
+
+  // Set required on node revision
+  $form['revision_information']['log']['#required'] = '1';
+
+  // And very importantly, hide the original containing group of these now moved tabs
+  // (otherwise path alias will render twice, for some reason)
+  $form['additional_settings']['#access'] = false;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_document_sign_menu() {
+  $items['node/%/sign'] = array(
+    'page callback' => 'sedermera_document_sign_doc',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Adds the current user to document signed list.
+ * @param $nid Node id of the node to add current user.
+ */
+function sedermera_document_sign_doc($nid) {
+  $node = node_load($nid);
+  $user = $GLOBALS['user'];
+  // If correct node type add the user to document signed list.
+  if ($node->type == 'document') {
+    // Get original author for this revision
+    $nid = $node->nid;
+    $vid = $node->vid;
+    $rid = $node->revision_uid;
+    // Add user as has read the document and save node
+    $node->field_document_user_read[LANGUAGE_NONE][]['target_id'] = $user->uid;
+    node_save($node);
+    // Restore original author after node save
+    db_query("UPDATE node_revision SET uid=$rid WHERE nid=$nid AND vid=$vid");
+  }
+  drupal_goto('/node/' . $nid);
+}
+
+/**
+ * Implements hook_revision_publish().
+ */
+function sedermera_document_sign_revision_publish($node) {
+  // TODO Notification to user of new revision of document. Use list form node.
+  // And notification to unsigned users that there is a new document to read.
+
+  // Get original author for this revision
+  $nid = $node->nid;
+  $vid = $node->vid;
+  $rid = $node->revision_uid;
+  // Clear user read document and save node
+  $node->field_document_user_read = array();
+  node_save($node);
+  // Restore original author after node save
+  db_query("UPDATE node_revision SET uid=$rid WHERE nid=$nid AND vid=$vid");
+}

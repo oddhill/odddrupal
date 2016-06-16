@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file sedermera_parent_paths.module
+ * Main module file for the Sedermera Parent Paths module.
+ */
+
+/**
+ * Implements hook_menu_alter().
+ */
+function sedermera_parent_paths_menu_alter(&$items) {
+  // Define the paths that should act as redirect paths.
+  $paths = array(
+    'kontaktpersoner' => 'kontaktpersoner/lista',
+    'kundbolag' => 'kundbolag/lista',
+    'transaktioner' => 'transaktioner/lista',
+    'regelverk' => 'regelverk/lista',
+    'manualer' => 'manualer/lista',
+    'avtalsparter' => 'avtalsparter/lista',
+    'erbjudanden' => 'erbjudanden/lista',
+    'mallar' => 'mallar/lista',
+  );
+
+  // Register each path based on its redirect path. We'll change the type in
+  // order to avoid duplicate menu entries etc.
+  foreach ($paths as $path => $redirect) {
+    $items[$path] = $items[$redirect];
+    $items[$path]['type'] = MENU_CALLBACK;
+    $items[$path]['page callback'] = 'sedermera_parent_paths_redirect';
+    $items[$path]['page arguments'] = array($redirect);
+  }
+}
+
+/**
+ * Page callback which redirects the user.
+ *
+ * @param string $path
+ *   The path where the user should be redirected to.
+ */
+function sedermera_parent_paths_redirect($path) {
+  drupal_goto($path);
+}

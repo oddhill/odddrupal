@@ -1,0 +1,4 @@
+name = Sedermera Revision Info
+description = Helper module to extract comparisons info of revisions.
+core = 7.x
+package = Sedermera

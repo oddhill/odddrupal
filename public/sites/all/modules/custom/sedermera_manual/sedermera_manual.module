@@ -1,0 +1,273 @@
+<?php
+/**
+ * @file sedermera_manual.module
+ * Main module file for the Sedermera Manual module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function sedermera_manual_menu() {
+  $items['manualer/lista'] = array(
+    'title' => 'Alla manualer',
+    'page callback' => 'view_manual',
+    'access arguments' => array('view any manual content'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_manualer:manualer',
+    'weight' => 0,
+  );
+
+  $items['manualer/administrera'] = array(
+    'title' => 'Administrera manualer',
+    'page callback' => 'manual_admin',
+    'access arguments' => array('document admin'),
+    'menu_name' => 'main-menu',
+    'parent_identifier' => 'main-menu_manualer:manualer',
+    'weight' => 0,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for the document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function view_manual() {
+  // Get list of manuals
+  $manuals = getManuals();
+
+  // Check if there is manuals
+  if (!empty($manuals)) {
+    $appendix = array();
+
+    // Appendix list (manuals that are appendix to other manuals)
+    foreach ($manuals as $doc) {
+      if (!empty($doc->field_manual_appendix)) {
+        $appendix[] = $doc;
+      }
+    }
+
+    $manuals = orderManuals(getManuals());
+
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+      array('data' => 'Bilaga', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($manuals as $doc) {
+      if (empty($doc->field_manual_appendix)) {
+        generateManualsRows($rows, '', $doc, $appendix, 'document');
+      }
+    }
+
+    // Create table.
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateManualsTable($header, $rows),
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga manualer</div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Page callback for the admin document listing.
+ *
+ * @return array
+ *   A renderable array for the page.
+ */
+function manual_admin() {
+  // Get list of manuals
+  $manuals = getAdminManuals();
+
+  if (!empty($manuals)) {
+    // Create the header for the table. Add rows
+    $header = array(
+      array('data' => 'Titel', 'class' => array('table-head')),
+      array('data' => 'Datum', 'class' => array('table-head')),
+      array('data' => 'Administrera', 'class' => array('table-head')),
+    );
+    $rows = array();
+    foreach ($manuals as $doc) {
+      generateMenualsAdminRows($rows, '', $doc, 'document');
+    }
+    // Create table.
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper">',
+      'table' => generateManualsTable($header, $rows),
+      '#suffix' => '</div>',
+    );
+  }
+  else {
+    $block = array(
+      '#prefix' => '<div class="document-listing-wrapper"><div class="view-empty">Det finns inga manualer</div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $block;
+}
+
+/**
+ * Get documents
+ * @return entity loaded documents
+ */
+function getManuals() {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'manual')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->propertyOrderBy('title', 'ASC');
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $manual_nids = array_keys($result['node']);
+    return entity_load('node', $manual_nids);
+  }
+}
+
+/**
+ * Order documents according to draggableviews order
+ * @return ordered document list.
+ */
+function orderManuals($manuals) {
+  $orderedManuals = array();
+  $result = db_query("SELECT entity_id
+    FROM draggableviews_structure
+    WHERE view_display = 'manual'
+    ORDER BY weight ASC")->fetchAll();
+
+  if (empty($result)) {
+    return $manuals;
+  }
+
+  foreach ($result as $value) {
+    $orderedManuals[] = $manuals[$value->entity_id];
+    unset($manuals[$value->entity_id]);
+  }
+
+  foreach ($manuals as $value) {
+    $orderedManuals[] = $value;
+  }
+
+  return $orderedManuals;
+}
+
+/**
+ * Get documents
+ * @return entity loaded documents
+ */
+function getAdminManuals() {
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'manual')
+    ->propertyOrderBy('title', 'ASC');
+
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $manual_nids = array_keys($result['node']);
+    return entity_load('node', $manual_nids);
+  }
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $prefix Current level of tabbing
+ * @param  $doc    The document to look at
+ * @param  $appendix List of the document appendix
+ */
+function generateManualsRows(&$rows, $prefix, $manual, $appendix, $rowClass) {
+  global $user;
+
+  $app = getManualAppendix($manual, $appendix);
+  $pre = (!empty($app) && $prefix == '') ? '<span class="show-appendix"></span> ' : '';
+
+  $rows[] = array(
+    array(
+      'data' => $prefix . l($manual->title, 'node/' . $manual->nid),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => $pre,
+      'class' => $rowClass,
+    ),
+  );
+
+  $docAppendix = getManualAppendix($manual, $appendix);
+  foreach ($docAppendix as $app) {
+    generateManualsRows($rows, $prefix . '- ', $app, $appendix, 'appendix');
+  }
+}
+
+/**
+ * Helper function for recursive function
+ * @param  $doc      Document to check if got appendix
+ * @param  $appendix List of appendix
+ * @return Array of appednix if any else empty array
+ */
+function getManualAppendix($manual, $appendix) {
+  $ret = array();
+  foreach ($appendix as $app) {
+    if (!empty($app->field_document_appendix)) {
+      foreach ($app->field_document_appendix['und'] as $x) {
+        if ($x['target_id'] == $manual->nid) {
+          $ret[] = $app;
+        }
+      }
+    }
+  }
+  return $ret;
+}
+
+/**
+ * Helper function to generate rows recursiv
+ * @param  &$rows  Rows array
+ * @param  $prefix Current level of tabbing
+ * @param  $doc    The document to look at
+ */
+function generateMenualsAdminRows(&$rows, $prefix, $manual, $rowClass) {
+  $rows[] = array(
+    array(
+      'data' => $prefix . $manual->title,
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => format_date($manual->revision_timestamp, 'long', '', 'Europe/Stockholm'),
+      'class' => $rowClass,
+    ),
+    array(
+      'data' => l('Redigera', 'node/' . $manual->nid . '/edit/'),
+      'class' => $rowClass,
+    ),
+  );
+}
+
+/**
+ * Helper function for table generation to reduce code redundency
+ * @param  $header  Table header
+ * @param  $rows    Table rows
+ * @return Renderable table array
+ */
+function generateManualsTable($header, $rows) {
+  return array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#prefix' => '<div class="table-wrapper">',
+    '#suffix' => '</div>',
+  );
+}

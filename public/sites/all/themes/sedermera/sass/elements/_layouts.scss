@@ -1,0 +1,189 @@
+.site-wrapper {
+
+  @include media($big) {
+
+    .sub-menu-active & {
+      margin-top: 60px;
+    }
+  }
+}
+
+// Main content wrapper
+.main-content {
+  @include font-size($standard,1.3);
+
+  // Disable select
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
+
+  .logged-in & {
+    margin-left: 280px;
+
+    @include media($big) {
+      margin-left: 82px;
+    }
+  }
+}
+
+// Page head
+.page-head {
+  @include clearfix;
+  background: $light-grey;
+  padding: 40px;
+}
+
+// Node barrier
+.node-barrier {
+  padding: 0 40px;
+}
+
+// Node section
+.node-section {
+  @include row();
+  padding-bottom: 30px;
+  border-bottom: 2px solid $light-grey;
+  margin-bottom: 30px;
+}
+
+// Content wrapper
+.content-wrapper {
+  margin: 0;
+  background: $snow;
+
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+    clear: both;
+  }
+
+  .not-logged-in & {
+    background: transparent;
+  }
+
+  // Sidebar second main wrapper
+  .content-sidebar {
+    background: $wool;
+    padding-bottom: 30px;
+    width: 23%;
+
+    // Dashboard page
+    .page-oversikt & {
+      padding-bottom: 30px;
+      width: 25%;
+    }
+
+    // Sidebar second content wrapper
+    .sidebar-second-content {
+      padding: 0 10px 10px 10px;
+    }
+  }
+}
+
+// Left content column (when sidebar second second exists)
+.content-column {
+  background-color: #fff;
+  overflow: hidden;
+  width: 77%;
+}
+
+// Page action links wrapper
+.page-actions {
+  float: right;
+  margin-top: 7px;
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline;
+    margin-left: 20px;
+
+    a {
+      @include button($dark-grey, add);
+    }
+  }
+}
+
+// CSS3 Flexible Box
+// Defines the element as a flex container and its children as flex items.
+// The flex value makes the flex container a block-level element.
+// The inline-flex value makes the flex container an atomic inline-level element.
+.flex-box {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.page-investor-company-edit,
+.page-investor-person-edit,
+.page-investor-lead-edit {
+
+  #eck-entity-form-edit-investor-company,
+  #eck-entity-form-edit-investor-person,
+  #eck-entity-form-edit-investor-lead {
+    background: $snow;
+    padding: 50px 40px 20px 40px;
+
+    > div {
+      display: -ms-flexbox;
+      -ms-flex-direction: column;
+      -ms-flex-wrap: wrap;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+// Background color
+.bg {
+  background: $snow;
+}
+
+// Padding
+.padding {
+  padding: 50px 40px 40px 40px;
+}
+
+.node.view-mode-full {
+   @include outer-container;
+   max-width: 960px;
+   margin-top: 40px;
+   padding-bottom: 60px;
+}
+
+// Pop up message on log in
+#popup-message-window {
+  border: 5px solid $coffee;
+  padding: 20px;
+}
+
+// Pop up message title
+.popup-message-title {
+  @include font-size(2.6);
+  border-bottom: 2px solid $light-grey !important;
+  padding-bottom: 20px !important;
+}
+
+// Columns
+.columns {
+  @include row;
+
+  .col {
+    @include span-columns(6 of 12);
+  }
+
+  &.three-col {
+
+    .col {
+      @include span-columns(4 of 12);
+    }
+  }
+}

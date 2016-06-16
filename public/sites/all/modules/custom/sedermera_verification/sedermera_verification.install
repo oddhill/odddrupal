@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file sedermera_verification.install
+ * Install and update instructions for the Sedermera Verification module.
+ */
+
+/**
+ * Resave every investor entity in order to fill the expire field.
+ */
+function sedermera_verification_update_7001() {
+  foreach (entity_load('investor') as $investor) {
+    entity_save('investor', $investor);
+  }
+}

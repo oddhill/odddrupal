@@ -1,0 +1,47 @@
+// Transaction E-mail preview (Magnific Popup)
+.mfp-content {
+  background: $snow;
+  margin: 0 auto;
+  width: 600px;
+
+  #message-preview {
+    background: $snow;
+    margin: 0 auto;
+    width: 600px;
+
+    h2 {
+      @include font-size(3.2);
+      border: 0;
+      font-weight: 700;
+      padding-bottom: 0;
+      padding-top: 10px;
+
+      .field-title {
+        border-bottom: 0px solid $light-grey;
+      }
+    }
+
+    table {
+      width: auto;
+
+      td {
+        height: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+// Makes magnific pop up width 650px
+.mfp-inline-holder .mfp-content,
+.mfp-ajax-holder .mfp-content {
+  padding-bottom: 45px;
+  padding-top: 40px;
+  width: 660px;
+}
+
+.html-mail-fields {
+  p {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,90 @@
+.field-group-htabs-wrapper {
+  background: $snow;
+  padding: 40px;
+
+  .horizontal-tabs {
+    border: 0px none;
+    width: 50%;
+    margin: 0 auto;
+    min-width: 700px;
+
+    fieldset.horizontal-tabs-pane {
+      padding: 0;
+      margin: 0;
+
+      > .fieldset-wrapper {
+        padding-top: 0;
+      }
+    }
+  }
+
+  ul.horizontal-tabs-list {
+    display: block;
+    overflow: visible;
+    height: 41px;
+    position: relative;
+    padding: 0;
+    background: transparent;
+    border-right: 0px none;
+    border-bottom: 1px solid $wool;
+
+    li {
+      background: transparent;
+      border-right: 0px;
+
+      a {
+        border: 0px none;
+        padding: 0 19px;
+        line-height: 40px;
+        color: $grey;
+
+        &:hover {
+          background: transparent;
+          color: $coffee;
+        }
+
+        strong {
+          font-weight: 400;
+        }
+
+        .form-required {
+          color: $wine;
+        }
+      }
+
+      &.selected {
+        background: tint($light-grey,60%);
+        border-top: 1px solid $wool;
+        border-right: 1px solid $wool;
+        border-left: 1px solid $wool;
+        margin-bottom: -1px;
+
+        a,
+        a:hover {
+          padding: 0 19px;
+
+          strong {
+            font-weight: 700;
+          }
+        }
+
+        &:hover {
+          background: tint($light-grey,60%);
+        }
+      }
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+
+  .horizontal-tabs-panes {
+    background: tint($light-grey,60%);
+    padding: 40px;
+    border-left: 1px solid $wool;
+    border-right: 1px solid $wool;
+    border-bottom: 1px solid $wool;
+    position: relative;
+  }
+}

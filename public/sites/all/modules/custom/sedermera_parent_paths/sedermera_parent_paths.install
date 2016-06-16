@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file sedermera_parent_paths.install
+ * Install and update instructions for the Sedermera Parent Paths module.
+ */
+
+/**
+ * Set the weight of the module.
+ */
+function sedermera_parent_paths_install() {
+  db_query("UPDATE {system} SET weight = 50 WHERE name = 'sedermera_parent_paths'");
+}

@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * @file sedermera_log.module
+ * Main module file for the Sedermera Log module.
+ */
+
+/**
+ * Implements hook_init().
+ */
+function sedermera_log_init() {
+  // Exit early if the request was made from a CLI, e.g. Drush.
+  if (drupal_is_cli()) {
+    return;
+  }
+
+  // Get the requested path.
+  $path = request_path();
+
+  // Log the requested path and indicate if it was requested via AJAX or not.
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    sedermera_log_watchdog('Path "@path" loaded via AJAX.', array('@path' => $path));
+  }
+  else {
+    sedermera_log_watchdog('Path "@path" loaded.', array('@path' => $path));
+  }
+}
+
+/**
+ * Implements hook_entity_insert()
+ */
+function sedermera_log_entity_insert($entity, $type) {
+  // Fetch information about the entity.
+  list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
+
+  // Log the event.
+  sedermera_log_watchdog('Created new @type with bundle @bundle, ID @id: "@label".', array(
+    '@type' => $type,
+    '@bundle' => $bundle,
+    '@id' => $id,
+    '@label' => entity_label($type, $entity),
+  ));
+}
+
+/**
+ * Implements hook_entity_update()
+ */
+function sedermera_log_entity_update($entity, $type) {
+  // Fetch information about the entity.
+  list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
+
+  // Log the event.
+  sedermera_log_watchdog('Updated @type with bundle @bundle, ID @id: "@label".', array(
+    '@type' => $type,
+    '@bundle' => $bundle,
+    '@id' => $id,
+    '@label' => entity_label($type, $entity),
+  ));
+}
+
+/**
+ * Implements hook_entity_delete()
+ */
+function sedermera_log_entity_delete($entity, $type) {
+  // Fetch information about the entity.
+  list($id, $vid, $bundle) = entity_extract_ids($type, $entity);
+
+  // Log the event.
+  sedermera_log_watchdog('Deleted @type with bundle @bundle, ID @id: "@label".', array(
+    '@type' => $type,
+    '@bundle' => $bundle,
+    '@id' => $id,
+    '@label' => entity_label($type, $entity),
+  ));
+}
+
+/**
+ * The function used for logging.
+ *
+ * This is a wrapper around watchdog() which adds information about the current
+ * user to the message. The function could be used by any other module, were
+ * suitable.
+ *
+ * @see watchdog()
+ *
+ * @param string @message
+ *   The message.
+ * @param array $variables
+ *   Variables to replace in the message.
+ * @param int $severity
+ *   Severity of the log message. See watchdog() for more information.
+ */
+function sedermera_log_watchdog($message, $variables = array(), $severity = WATCHDOG_NOTICE) {
+  global $user;
+
+  // Add information to the message.
+  $message .= ' Current user: @user with session @session.';
+  $variables['@user'] = $user->mail;
+  $variables['@session'] = $user->sid;
+
+  // Send to watchdog.
+  watchdog('sedermera', $message, $variables, $severity);
+}

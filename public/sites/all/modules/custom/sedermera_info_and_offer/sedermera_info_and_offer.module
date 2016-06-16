@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file sedermera_sign_and_offer.module
+ * Main module file for the Sedermera Sign and Offer module.
+ */
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function sedermera_info_and_offer_field_formatter_info() {
+  return array(
+    'sedermera_inside_info' => array(
+      'label' => 'Skicka mejl',
+      'field types' => array('list_boolean'),
+      'settings' => array(
+        'tooltip' => 'Functionality for sending info mail',
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function sedermera_info_and_offer_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $element = array();
+
+  $element['send_mail'] = array(
+    '#type'           => 'select',                // Use a select box widget
+    '#title'          => 'Typ',                   // Widget label
+    '#description'    => 'Välj utskickstyp',      // Helper text
+    '#default_value'  => $settings['send_mail'],  // Get the value if it's already been set
+    '#options'        => array(
+      'info'  => 'Insynsinfo',
+      'offer' => 'Erbjudande',
+    ),
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function sedermera_info_and_offer_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $summary = 'Test';
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function sedermera_info_and_offer_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  // Initialize the var
+  $element = array();
+
+  // Load info into wrappers for easier access
+  $wrapper_tr = entity_metadata_wrapper('node', $entity);
+  $wrapper_of = entity_metadata_wrapper('node', $wrapper_tr->field_transaction_offer->value());
+
+  // If Insynsinfo
+  if ($display['settings']['send_mail'] === 'info') {
+    // Uninterested
+    if ($wrapper_tr->field_transaction_no_info->value()) {
+      $element[0]['#markup'] = 'Ingen info';
+    }
+    // Information has been logged out
+    else if ($wrapper_of->field_offer_logout_info->value()) {
+      $element[0]['#markup'] = 'Utloggad';
+    }
+    // Information has been sent, enable to be sent again
+    else if ($wrapper_tr->field_transaction_info->value()) {
+      $element[0]['#markup'] = l('Skicka igen', "node/{$wrapper_of->nid->value()}/send-info/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+    }
+    // Send information
+    else {
+      $element[0]['#markup'] = l('Skicka', "node/{$wrapper_of->nid->value()}/send-info/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+    }
+  }
+  // If Erbjudande
+  else if ($display['settings']['send_mail'] === 'offer') {
+    // Uninterested
+    if ($wrapper_tr->field_transaction_no_info->value()) {
+      $element[0]['#markup'] = 'Ingen info';
+    }
+    // Offer has been sent, enable to be sent again
+    else if ($wrapper_tr->field_transaction_info_offer->value()) {
+      $element[0]['#markup'] = l('Skicka igen', "node/{$wrapper_of->nid->value()}/send-offer/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+    }
+    // Send offer
+    else {
+      $element[0]['#markup'] = l('Skicka', "node/{$wrapper_of->nid->value()}/send-offer/$entity->nid", array('attributes' => array('class' => array('send-mail'))));
+    }
+  }
+
+  return $element;
+}

@@ -1,0 +1,134 @@
+// Document - Revision Operations menu buttons
+.tabs {
+
+  &.secondary {
+    width: 50%;
+    min-width: 960px;
+    @include font-size(1.4);
+    text-align: center;
+    background: $snow;
+    border: 0;
+    margin: 40px auto 0;
+    height: auto;
+
+    .page-node-revisions-view & {
+      margin: 40px auto 55px;
+    }
+
+    li {
+      display: inline-block;
+      float: none;
+      @include font-size(1.3);
+      background: $stone;
+      border-radius: 34px;
+      margin: 0 5px;
+
+      a {
+        border-right: 0;
+        border-bottom: 0 none;
+        color: $coffee;
+        display: inline-block;
+        font-weight: 500;
+        height: 25px;
+        line-height: 25px;
+
+        &:hover {
+          background-color: shade($stone,5%);
+          border-bottom: 0 none;
+          border-radius: 34px;
+          height: 25px;
+        }
+      }
+
+      // Active tab
+      &.active {
+
+        a {
+          background: $honey;
+          border-bottom: 0 none;
+          border-left: 0 none;
+          border-radius: 34px;
+          border-top: 0;
+          font-weight: 700;
+          height: 25px;
+          line-height: 25px;
+          margin-top: 0;
+
+          &:hover {
+            background-color: shade($honey,5%);
+            border-bottom: 0 none;
+          }
+        }
+      }
+
+      &.edit {
+
+        a {
+          background: none;
+          border: 0;
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+}
+
+// Revision summary
+#revisioning-revisions-summary {
+  padding: 0 20px 60px 20px;
+}
+
+// Revisioning buttons wrapper
+.revisioning-ux-buttons {
+  margin-top: 30px;
+}
+
+// Compare button
+input[value="Compare"],
+input[value="Jämför"]{
+
+ &#edit-submit {
+  @include button($dark-grey, compare);
+ }
+}
+
+// Don't display revisioning-ux-buttons
+.revisioning-ux-buttons {
+  display: none;
+}
+
+// Publish button
+#revisioning-ux-publish {
+
+  #edit-submit {
+    @include button($dark-grey, publish);
+  }
+}
+
+// Unpublish button
+#revisioning-ux-unpublish {
+
+  #edit-submit,
+  #edit-submit--2 {
+    @include button($dark-grey, unpublish);
+  }
+}
+
+// Delete all button
+#revisioning-ux-delete-all {
+  @include button($dark-grey, delete);
+
+  input {
+    background: $dark-grey;
+    padding: 0;
+    text-transform: uppercase;
+
+    &:hover {
+     background-color: shade($dark-grey,30%);
+    }
+  }
+
+  .form .submit-wrapper.form-submit {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,170 @@
+.tabledrag-changed-warning {
+  background: $mustard;
+  border-radius: 2px;
+  color: $snow;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  display: block;
+}
+
+.tabledrag-toggle-weight-wrapper,
+span.warning.tabledrag-changed {
+  display: none;
+}
+
+table.tabledrag-processed {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid $wool;
+
+  thead {
+    text-align: left;
+    font-weight: 700;
+
+    th {
+      padding: 10px;
+    }
+  }
+
+  tbody {
+
+    tr {
+      border-bottom: 1px solid $wool;
+      background: $snow;
+
+      &:last-child {
+        border-bottom: 0px none;
+      }
+
+      .page-node-add-document & {
+        border: 0;
+      }
+
+      &.draggable {
+        @include transition(background 0.2s ease-in-out);
+      }
+
+      &.drag {
+        background: tint($honey,60%);
+
+        a.tabledrag-handle {
+          cursor: -webkit-grabbing;
+          cursor: -moz-grabbing;
+
+          &:hover {
+
+            .handle {
+              @include svg-bg(drag_dark_grey);
+            }
+          }
+        }
+      }
+
+      &.drag-previous {
+        background: tint($honey,80%);
+      }
+
+      td {
+        padding: 10px;
+        position: relative;
+
+        .file-widget {
+          overflow: hidden;
+
+          .file-widget-data {
+            position: relative;
+
+            .file {
+              display: block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
+              img {
+                display: block;
+                float: left;
+                margin-right: 5px;
+              }
+            }
+
+            .file-size {
+              display: none;
+            }
+          }
+        }
+
+        .form-item {
+          margin-bottom: 0px;
+
+          .form-text {
+            padding: 5px;
+            // margin-top: 15px;
+            width: 100%;
+
+            .page-node-add-document & {
+              margin-top: 0;
+            }
+          }
+        }
+
+        .submit-wrapper {
+          margin: 0;
+          height: 24px;
+          position: relative;
+
+          .form-submit {
+            @include button($dark-grey,delete,small);
+            margin: 0;
+          }
+
+          .ajax-progress {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 100%;
+            margin: 0 8px 0 0;
+            border-radius: 24px;
+            cursor: pointer;
+            background: shade($dark-grey,30%);
+            height: 100%;
+            text-align: center;
+            padding-top: 4px;
+
+            .throbber {
+              @include throbber;
+              margin: 0 auto;
+              float: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  a.tabledrag-handle {
+    display: block;
+    background: none;
+    width: 19px;
+    height: 19px;
+    border: 0px none;
+    margin: 0;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+
+    .handle {
+      margin: 3px;
+      width: 13px;
+      height: 13px;
+      padding: 0;
+      @include svg-bg(drag_grey);
+    }
+
+    &:hover {
+
+      .handle {
+        @include svg-bg(drag_dark_grey);
+      }
+    }
+  }
+}

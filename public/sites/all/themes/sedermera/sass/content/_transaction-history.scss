@@ -1,0 +1,18 @@
+.node.node-transaction-history {
+
+  &.view-mode-full {
+    @include outer-container;
+
+    .col {
+
+      .field {
+
+        .label {
+          display: inline-block;
+          width: 40%;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

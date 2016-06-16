@@ -1,0 +1,134 @@
+.offer-interested-list {
+  padding: 40px;
+}
+
+#interested-table {
+
+  table {
+
+    .field-transaction-ap-ctrl {
+      display: inline-block;
+
+      .ajax-progress {
+        padding: 3px 2px;
+        left: -3px;
+        top: -1px;
+        height: auto;
+
+        .message {
+          display: none;
+        }
+      }
+    }
+
+    .collapsible-head {
+      padding: 0;
+      width: 40px;
+      position: relative;
+
+      span.icon {
+        margin-top: -1px;
+        position: absolute;
+        left: 10px;
+        top: 9px;
+      }
+    }
+
+    span.icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+      @include svg-bg(transaction-collapse);
+    }
+
+    .ctrl {
+      width: 50px;
+      text-align: center;
+
+      .verification {
+        padding-top: 4px;
+      }
+    }
+
+    .to-check-ctrl {
+      cursor: pointer;
+    }
+
+    .field-transaction-ap-no-inter {
+      display: inline-block;
+    }
+
+    tr {
+
+      &.hidden {
+        display: none;
+      }
+
+      td.collapsible,
+      td.collapsible-row {
+        position: relative;
+
+        span.icon {
+          margin-top: -1px;
+          position: absolute;
+          left: 10px;
+          top: 12px;
+        }
+      }
+
+      &.even {
+        background: $snow;
+      }
+
+      &.contact-person-row {
+
+        span.icon {
+          background-position: 0 -40px;
+          cursor: pointer;
+        }
+
+        &.collapsed {
+
+          span.icon {
+            background-position: 0 -20px;
+          }
+        }
+      }
+
+      &.investor-row {
+        background: tint($light-grey,60%);
+
+        .ajax-progress {
+          background: tint($light-grey,60%);
+        }
+
+        span.icon {
+          background-position: 0 -60px;
+        }
+
+        &.last-investor {
+          border-bottom: 0px none;
+        }
+      }
+
+      &.summation-row {
+        background: $aluminium;
+        border-top: 1px solid $wool;
+        border-bottom: 1px solid $wool;
+
+        td {
+          height: 30px;
+          padding: 0 10px;
+        }
+      }
+
+      &.summation-row.last-row {
+        border-bottom: 0px none;
+      }
+
+      &.total-row {
+        background: tint($aluminium,30%);
+      }
+    }
+  }
+}
