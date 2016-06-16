@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url("http://fonts.googleapis.com/css?family=Inconsolata:400,700|Roboto:400,300,500,700,400italic,500italic,700italic,300italic");
-@import url("http://gregfranko.com/jquery.selectBoxIt.js/css/jquery.selectBoxIt.css");
+@import url("../assets/selectBoxIt/src/stylesheets/jquery.selectBoxIt.css");
 h1 {
   font-size: 40px;
   font-size: 4rem;
