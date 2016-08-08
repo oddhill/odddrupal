@@ -1274,7 +1274,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
   // Only build the rest of the form if there are any modules available to
   // uninstall.
   if (!empty($disabled_modules)) {
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     uasort($disabled_modules, 'system_sort_modules_by_info_name');
     $form['uninstall'] = array('#tree' => TRUE);
     foreach ($disabled_modules as $module) {
@@ -1291,7 +1291,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
       // we can allow this module to be uninstalled. (The installation profile
       // is excluded from this list.)
       foreach (array_keys($module->required_by) as $dependent) {
-        if (!in_array($dependent, $profiles) && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
+        if ($dependent != $profile && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
           $dependent_name = isset($all_modules[$dependent]->info['name']) ? $all_modules[$dependent]->info['name'] : $dependent;
           $form['modules'][$module->name]['#required_by'][] = $dependent_name;
           $form['uninstall'][$module->name]['#disabled'] = TRUE;
@@ -1856,7 +1856,7 @@ function system_image_toolkit_settings() {
   if (count($toolkits_available) == 0) {
     variable_del('image_toolkit');
     $form['image_toolkit_help'] = array(
-      '#markup' => t("No image toolkits were detected. Drupal includes support for <a href='!gd-link'>PHP's built-in image processing functions</a> but they were not detected on this system. You should consult your system administrator to have them enabled, or try using a third party toolkit.", array('gd-link' => url('http://php.net/gd'))),
+      '#markup' => t("No image toolkits were detected. Drupal includes support for <a href='!gd-link'>PHP's built-in image processing functions</a> but they were not detected on this system. You should consult your system administrator to have them enabled, or try using a third party toolkit.", array('!gd-link' => url('http://php.net/gd'))),
     );
     return $form;
   }

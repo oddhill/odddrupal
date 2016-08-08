@@ -854,6 +854,13 @@ class DrupalWebTestCase extends DrupalTestCase {
   protected $cookieFile = NULL;
 
   /**
+   * The cookies of the page currently loaded in the internal browser.
+   *
+   * @var array
+   */
+  protected $cookies = array();
+
+  /**
    * Additional cURL options.
    *
    * DrupalWebTestCase itself never sets this but always obeys what is set.
@@ -942,7 +949,6 @@ class DrupalWebTestCase extends DrupalTestCase {
   protected function drupalCreateNode($settings = array()) {
     // Populate defaults array.
     $settings += array(
-      'body'      => array(LANGUAGE_NONE => array(array())),
       'title'     => $this->randomName(8),
       'comment'   => 2,
       'changed'   => REQUEST_TIME,
@@ -955,6 +961,12 @@ class DrupalWebTestCase extends DrupalTestCase {
       'type'      => 'page',
       'revisions' => NULL,
       'language'  => LANGUAGE_NONE,
+    );
+
+    // Add the body after the language is defined so that it may be set
+    // properly.
+    $settings += array(
+      'body' => array($settings['language'] => array(array())),
     );
 
     // Use the original node's created time for existing nodes.
@@ -1483,16 +1495,10 @@ class DrupalWebTestCase extends DrupalTestCase {
 
     // Include the testing profile.
     variable_set('install_profile', $this->profile);
+    $profile_details = install_profile_info($this->profile, 'en');
 
     // Install the modules specified by the testing profile.
-    $profiles = drupal_get_profiles();
-    $profile_dependencies = array();
-
-    foreach ($profiles as $profile) {
-      $info = install_profile_info($profile);
-      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-    }
-    module_enable($profile_dependencies);
+    module_enable($profile_details['dependencies'], FALSE);
 
     // Install modules needed for this test. This could have been passed in as
     // either a single array argument or a variable number of string arguments.
@@ -1699,8 +1705,10 @@ class DrupalWebTestCase extends DrupalTestCase {
       $GLOBALS['conf']['language_default'] = $this->originalLanguageDefault;
     }
 
-    // Close the CURL handler.
+    // Close the CURL handler and reset the cookies array so test classes
+    // containing multiple tests are not polluted.
     $this->curlClose();
+    $this->cookies = array();
   }
 
   /**
@@ -2766,7 +2774,7 @@ class DrupalWebTestCase extends DrupalTestCase {
         $path = substr($path, $length);
       }
       // Ensure that we have an absolute path.
-      if ($path[0] !== '/') {
+      if (empty($path) || $path[0] !== '/') {
         $path = '/' . $path;
       }
       // Finally, prepend the $base_url.

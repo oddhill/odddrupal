@@ -232,22 +232,6 @@ function drupal_get_profile() {
   return $profile;
 }
 
-/**
- * Returns a list of related install profiles in decending order of their
- * dependencies.
- */
-function drupal_get_profiles() {
-  global $install_state;
-
-  if (isset($install_state['parameters']['profile'])) {
-    $profiles = install_get_base_profiles();
-  }
-  else {
-    $profiles = variable_get('install_profiles', array('standard'));
-  }
-
-  return $profiles;
-}
 
 /**
  * Sets the breadcrumb trail for the current page.
@@ -776,7 +760,8 @@ function drupal_access_denied() {
  *   - headers: An array containing request headers to send as name/value pairs.
  *   - method: A string containing the request method. Defaults to 'GET'.
  *   - data: A string containing the request body, formatted as
- *     'param=value&param=value&...'. Defaults to NULL.
+ *     'param=value&param=value&...'; to generate this, use http_build_query().
+ *     Defaults to NULL.
  *   - max_redirects: An integer representing how many times a redirect
  *     may be followed. Defaults to 3.
  *   - timeout: A float representing the maximum number of seconds the function
@@ -801,6 +786,8 @@ function drupal_access_denied() {
  *     HTTP header names are case-insensitive (RFC 2616, section 4.2), so for
  *     easy access the array keys are returned in lower case.
  *   - data: A string containing the response body that was received.
+ *
+ * @see http_build_query()
  */
 function drupal_http_request($url, array $options = array()) {
   // Allow an alternate HTTP client library to replace Drupal's default
@@ -1783,9 +1770,15 @@ function format_rss_item($title, $link, $description, $args = array()) {
  *     - 'key': element name
  *     - 'value': element contents
  *     - 'attributes': associative array of element attributes
+ *     - 'encoded': TRUE if 'value' is already encoded
  *
  * In both cases, 'value' can be a simple string, or it can be another array
  * with the same format as $array itself for nesting.
+ *
+ * If 'encoded' is TRUE it is up to the caller to ensure that 'value' is either
+ * entity-encoded or CDATA-escaped. Using this option is not recommended when
+ * working with untrusted user input, since failing to escape the data
+ * correctly has security implications.
  */
 function format_xml_elements($array) {
   $output = '';
@@ -1798,7 +1791,7 @@ function format_xml_elements($array) {
         }
 
         if (isset($value['value']) && $value['value'] != '') {
-          $output .= '>' . (is_array($value['value']) ? format_xml_elements($value['value']) : check_plain($value['value'])) . '</' . $value['key'] . ">\n";
+          $output .= '>' . (is_array($value['value']) ? format_xml_elements($value['value']) : (!empty($value['encoded']) ? $value['value'] : check_plain($value['value']))) . '</' . $value['key'] . ">\n";
         }
         else {
           $output .= " />\n";
@@ -2660,6 +2653,15 @@ function drupal_deliver_html_page($page_callback_result) {
   global $language;
   drupal_add_http_header('Content-Language', $language->language);
 
+  // By default, do not allow the site to be rendered in an iframe on another
+  // domain, but provide a variable to override this. If the code running for
+  // this page request already set the X-Frame-Options header earlier, don't
+  // overwrite it here.
+  $frame_options = variable_get('x_frame_options', 'SAMEORIGIN');
+  if ($frame_options && is_null(drupal_get_http_header('X-Frame-Options'))) {
+    drupal_add_http_header('X-Frame-Options', $frame_options);
+  }
+
   // Menu status constants are integers; page content is a string or array.
   if (is_int($page_callback_result)) {
     // @todo: Break these up into separate functions?
@@ -2774,6 +2776,7 @@ function drupal_page_footer() {
   _registry_check_code(REGISTRY_WRITE_LOOKUP_CACHE);
   drupal_cache_system_paths();
   module_implements_write_cache();
+  drupal_file_scan_write_cache();
   system_run_automated_cron();
 }
 
@@ -3041,6 +3044,13 @@ function drupal_add_html_head_link($attributes, $header = FALSE) {
  */
 function drupal_add_css($data = NULL, $options = NULL) {
   $css = &drupal_static(__FUNCTION__, array());
+  $count = &drupal_static(__FUNCTION__ . '_count', 0);
+
+  // If the $css variable has been reset with drupal_static_reset(), there is
+  // no longer any CSS being tracked, so set the counter back to 0 also.
+  if (count($css) === 0) {
+    $count = 0;
+  }
 
   // Construct the options, taking the defaults into consideration.
   if (isset($options)) {
@@ -3076,7 +3086,8 @@ function drupal_add_css($data = NULL, $options = NULL) {
     }
 
     // Always add a tiny value to the weight, to conserve the insertion order.
-    $options['weight'] += count($css) / 1000;
+    $options['weight'] += $count / 1000;
+    $count++;
 
     // Add the data to the CSS array depending on the type.
     switch ($options['type']) {
@@ -5515,7 +5526,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
   }
   // In case both profile directories contain the same extension, the actual
   // profile always has precedence.
-  $profiles = array_merge($profiles, drupal_get_profiles());
+  $profiles[] = $profile;
   foreach ($profiles as $profile) {
     if (file_exists("profiles/$profile/$directory")) {
       $searchdir[] = "profiles/$profile/$directory";
@@ -5529,23 +5540,12 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
     $searchdir[] = "$config/$directory";
   }
 
-  /* By default, do not check for files in common special-purpose directories.
-   * The folders here are front-end related and they have been added to avoid
-   * issues with Drupal recursive scanning. In this case, we added node_modules
-   * and bower_components. This also improves performance on frontend builds.
-   */
-  $ignore_directories = array(
-    'node_modules',
-    'bower_components',
-  );
-  $no_mask = '/^(\..*)|' . implode('|', $ignore_directories) .  '$/';
-
   // Get current list of items.
   if (!function_exists('file_scan_directory')) {
     require_once DRUPAL_ROOT . '/includes/file.inc';
   }
   foreach ($searchdir as $dir) {
-    $files_to_add = file_scan_directory($dir, $mask, array('key' => $key, 'min_depth' => $min_depth, 'nomask' => $no_mask));
+    $files_to_add = file_scan_directory($dir, $mask, array('key' => $key, 'min_depth' => $min_depth));
 
     // Duplicate files found in later search directories take precedence over
     // earlier ones, so we want them to overwrite keys in our resulting
