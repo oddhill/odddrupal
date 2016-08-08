@@ -13,5 +13,12 @@ $databases['default']['default'] = array(
   'host' => '127.0.0.1',
 );
 
+// Enable MySQL storage of multi-byte UTF-8 characters, such as emojis and asian
+// symbols. Uncomment the rows below if you wish to enable this, but please note
+// that the server requirements must've been met.
+// @see https://www.drupal.org/node/2754539
+//$databases['default']['default']['charset'] = 'utf8mb4';
+//$databases['default']['default']['collation'] = 'utf8mb4_general_ci';
+
 // The base URL for where the site is accessible.
 $base_url = 'http://www.example.com';
