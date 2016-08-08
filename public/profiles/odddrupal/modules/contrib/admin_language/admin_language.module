@@ -5,7 +5,9 @@
  * administrator.
  */
 
-define('ADMIN_LANGUAGE_DEFAULT_PAGES', "admin_menu/*\nfile/ajax/*\nsystem/ajax");
+
+
+define('ADMIN_LANGUAGE_DEFAULT_PAGES', "admin\nadmin/*\nadmin_menu/*\nnode/add/*\nnode/*/edit\nnode/*/devel\nnode/*/translate\nfile/ajax/*\nmedia/ajax/*\nsystem/ajax");
 define('ADMIN_LANGUAGE_BLACKLIST', 0);
 define('ADMIN_LANGUAGE_WHITELIST', 1);
 
@@ -67,6 +69,53 @@ function admin_language_menu_link_alter(&$item) {
 }
 
 /**
+  * Implements hook_menu_local_tasks_alter().
+  */
+function admin_language_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  if (variable_get('admin_language_translate_local_tasks', 0)) {
+    global $language;
+    global $user;
+
+    $admin_language = admin_language_retrieve();
+
+    if ($admin_language->language != $language->language) {
+      // Switch the site's language to the admin language.
+      $site_language = $language;
+      $language = $admin_language;
+
+      // Retrieve the English versions of the local tasks so they can be re-translated
+      // into the admin language.
+      $result = db_select('menu_router', NULL, array('fetch' => PDO::FETCH_ASSOC))
+      ->fields('menu_router')
+      ->condition('tab_root', $router_item['tab_root'])
+      ->condition('context', MENU_CONTEXT_INLINE, '<>')
+      ->orderBy('weight')
+      ->orderBy('title')
+      ->execute();
+
+      $map = $router_item['original_map'];
+      $children = array();
+      $translated_tasks = array();
+      $root_path = $router_item['path'];
+
+      foreach ($result as $item) {
+        foreach ($data['tabs'] as &$tab_row) {
+          foreach ($tab_row['output'] as &$tab) {
+          if ($item['path'] == $tab['#link']['path']) {
+              _menu_translate($item, $map, TRUE);
+              $tab['#link'] = $item;
+            }
+          }
+        }
+      }
+
+      // Switch the language back.
+      $language = $site_language;
+    }
+  }
+}
+
+/**
  * Implements hook_translated_menu_link_alter().
  */
 function admin_language_translated_menu_link_alter(&$item, $map) {
@@ -82,6 +131,10 @@ function admin_language_translated_menu_link_alter(&$item, $map) {
       _menu_item_localize($item, $map, TRUE);
       if ('user/logout' == $item['link_path']) {
         $item['title'] = t('Log out');
+      }
+
+      if ($item['title_callback'] == 't' && !empty($item['title_arguments'])) {
+        $item['title'] = t($item['title'], menu_unserialize($item['title_arguments'], $map));
       }
 
       // ...and restore the previous language
@@ -140,11 +193,14 @@ function admin_language_form_alter(&$form, $form_state, $form_id) {
   }
 
   if ('user_profile_form' == $form_id) {
-    if ('account' == $form['#user_category'] && user_access('display admin pages in another language')) {
+
+    $language_hide_user = variable_get('admin_language_hide_user', 0);
+
+    if (!$language_hide_user && 'account' == $form['#user_category'] && user_access('display admin pages in another language')) {
       _admin_language_user_form_add_language_select($form);
     }
 
-    if (variable_get('admin_language_hide_user', 0) && !user_access('administer site configuration')) {
+    if ($language_hide_user && !user_access('administer site configuration')) {
       $form['#after_build'][] = '_admin_language_user_form_remove_admin_language';
     }
   }
@@ -373,7 +429,7 @@ function admin_language_settings() {
 
   );
   $patterns = path_get_admin_paths();
-  // Refresh the stored core admin paths. See admin_language_path_cron() for
+  // Refresh the stored core admin paths. See admin_language_cron() for
   // documentation why this is necessary.
   variable_set('admin_language_path_is_admin_paths', $patterns);
   $form['admin_language']['core_admin_paths']['list']['admin'] = array(
@@ -431,6 +487,14 @@ function admin_language_settings() {
     );
   }
 
+  $form['admin_language_force_cli'] = array(
+    '#type' => 'radios',
+    '#title' => t('Use administration language in cli mode'),
+    '#description' => t('Select this option if you want to force using the administration language on all cli requests.'),
+    '#options' => array(t('Disabled'), t('Enabled')),
+    '#default_value' => variable_get('admin_language_force_cli', 0),
+  );
+
   if (module_exists('toolbar')) {
     $form['admin_language_translate_toolbar'] = array(
       '#type' => 'radios',
@@ -440,6 +504,14 @@ function admin_language_settings() {
       '#default_value' => variable_get('admin_language_translate_toolbar', 0),
     );
   }
+
+  $form['admin_language_translate_local_tasks'] = array(
+    '#type' => 'radios',
+    '#title' => t('Translate local tasks'),
+    '#description' => t('Select this option if you would like to translate local task links, such as "View" and "Edit" tabs.'),
+    '#options' => array(t('Disabled'), t('Enabled')),
+    '#default_value' => variable_get('admin_language_translate_local_tasks', 0),
+  );
 
   return system_settings_form($form);
 }
@@ -545,6 +617,56 @@ function admin_language_preferred($account) {
 }
 
 /**
+  * Retrieves the admin language object for the supplied or current user.
+  *
+  * @param object $account
+  *   A user account to look up the admin language for. If FALSE, the current
+  *   user will be used.
+  *
+  * @return object
+  *   A language object, which will be the account's admin language, the
+  *   default admin language, or the site's current language, if the user
+  *   does not have access to use the admin language.
+  */
+function admin_language_retrieve($account = FALSE) {
+  if (! $account) {
+    global $user;
+    $account = $user;
+  }
+
+  if (user_access('display admin pages in another language', $account)) {
+    global $_admin_language;
+
+    // If admin_language is not set on the user, the account may have not have
+    // been loaded with a user_load() call, so try to retrieve it manually
+    if (! isset($account->admin_language)) {
+      $result = db_query('SELECT language FROM {admin_language} WHERE uid = :uid', array(
+        ':uid' => $account->uid
+      ));
+
+      if ($user_admin_language = $result->fetchField()) {
+        $account->admin_language = $user_admin_language;
+      }
+    }
+
+    $language_list = language_list();
+
+    if (isset($account->admin_language) && isset($language_list[$account->admin_language])) {
+      return $language_list[$account->admin_language];
+    }
+    else {
+      return $_admin_language;
+    }
+  }
+  // Account does not have access to admin language, return default language
+  // object.
+  else {
+    global $language;
+    return $language;
+  }
+}
+
+/**
  * Implements hook_language_init().
  *
  * The module doesn't provide its own language negotiation provider to ensure it
@@ -553,18 +675,26 @@ function admin_language_preferred($account) {
  * accordingly.
  */
 function admin_language_language_init() {
+  // This function should not be executed when an ajax call is made.
+  // Ensure that this does not happen by checking if the current path contains
+  // string 'ajax'.
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    return;
+  }
+
+  global $language, $_admin_language;
+
   // We need the user module to check the access.
   drupal_load('module', 'user');
-  if (user_access('display admin pages in another language') && drupal_multilingual()) {
-    global $_admin_language;
-
+  $is_cli = drupal_is_cli() && variable_get('admin_language_force_cli', 0);
+  if ((user_access('display admin pages in another language') && drupal_multilingual()) || $is_cli) {
     $languages = language_list('enabled');
     $languages = $languages[1];
 
     $admin_language = variable_get('admin_language_default', 'en');
     $_admin_language = $languages[$admin_language];
 
-    if (_admin_language_switch_language()) {
+    if (_admin_language_switch_language() || $is_cli) {
       global $user;
 
       // user_load() can't be used here because it needs a higher bootstrap
@@ -591,10 +721,11 @@ function admin_language_language_init() {
             }
         }
       }
-
-      global $language;
       $language = $languages[$admin_language];
     }
+  }
+  else {
+    $_admin_language = $language;
   }
 }
 
@@ -620,7 +751,23 @@ function _admin_language_switch_language() {
       'admin' => '',
       'non_admin' => '',
     ));
-    $switch = _admin_language_match_path($_GET['q'], $patterns['admin']) && !_admin_language_match_path($_GET['q'], $patterns['non_admin']);
+    $switch = FALSE;
+    if (_admin_language_match_path($_GET['q'], $patterns['admin'])) {
+      $switch  = TRUE;
+    }
+    // Provide integration for views paths that are updated via AJAX.
+    // Can't use module_exists() because it is too early in the bootstrap.
+    if (!$switch && $_GET['q'] == 'views/ajax' && isset($_REQUEST['view_path'])) {
+      if (_admin_language_match_path($_REQUEST['view_path'], $patterns['admin'])) {
+        $switch = TRUE;
+      }
+      elseif (_admin_language_match_path($_REQUEST['view_path'], $patterns['non_admin'])) {
+        $switch = FALSE;
+      }
+    }
+    if (!$switch && _admin_language_match_path($_GET['q'], $patterns['non_admin'])) {
+      $switch = FALSE;
+    }
   }
 
   if ($pages) {
@@ -636,6 +783,9 @@ function _admin_language_switch_language() {
     $switch = TRUE;
     $switch = ($visibility xor $switch);
   }
+
+  // Be sure that your module is initialized on early bootstrap phase to alter this variable.
+  drupal_alter('admin_language_switch', $switch);
 
   return $switch;
 }
@@ -765,7 +915,7 @@ function _admin_language_match_path($path, $patterns) {
 /**
  * Implements hook_cron().
  */
-function admin_language_path_cron() {
+function admin_language_cron() {
   // Update the stored core admin paths.
   // The paths are stored in a variable because path_get_admin_paths() and / or
   // path_is_admin() need a higher bootstrap level than the hook the module uses
@@ -777,7 +927,7 @@ function admin_language_path_cron() {
  * Implements hook_modules_disabled().
  */
 function admin_language_modules_disabled() {
-  // See admin_language_path_cron() for documentation why this is necessary.
+  // See admin_language_cron() for documentation why this is necessary.
   variable_set('admin_language_path_is_admin_paths', path_get_admin_paths());
 }
 
@@ -785,6 +935,6 @@ function admin_language_modules_disabled() {
  * Implements hook_modules_enabled().
  */
 function admin_language_modules_enabled() {
-  // See admin_language_path_cron() for documentation why this is necessary.
+  // See admin_language__cron() for documentation why this is necessary.
   variable_set('admin_language_path_is_admin_paths', path_get_admin_paths());
 }

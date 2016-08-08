@@ -73,7 +73,7 @@ Administration menu
 
 The latest version of the module supports the Administration menu module. By
 changing a setting you can use the current administration language to display
-the administratione menu (e.g. having the content displayed in Danish and the
+the administration menu (e.g. having the content displayed in Danish and the
 administration menu displayed in English).
 
 Administration menu Toolbar style
