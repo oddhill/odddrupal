@@ -22,3 +22,6 @@ $databases['default']['default'] = array(
 
 // The base URL for where the site is accessible.
 $base_url = 'http://www.example.com';
+
+// Enable or disable theme debug information.
+$conf['theme_debug'] = FALSE
