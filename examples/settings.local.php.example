@@ -1,7 +1,12 @@
 <?php
+
 /**
  * @file
- * This file contains local configuration for this server.
+ * Local configuration for this server only.
+ *
+ * Copy this file to public/sites/default and use it to store any configuration
+ * that shouldn't get tracked by Git. It will be loaded automatically by
+ * settings.php.
  */
 
 // Database settings.
@@ -24,4 +29,4 @@ $databases['default']['default'] = array(
 $base_url = 'http://www.example.com';
 
 // Enable or disable theme debug information.
-$conf['theme_debug'] = FALSE
+$conf['theme_debug'] = FALSE;

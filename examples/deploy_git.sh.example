@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# This is an example deployment scripts which basically:
+# - Adds the server as a Git remote
+# - Pushes the triggering commit to that remote
+#
+# You should be able to modify the variables in the beginning of this script,
+# but please read through the entire script in order to understand what is going
+# on. And do feel free to adjust in any way that that makes sense for your
+# project.
+
+# Setup the remote git URL.
+GIT_REMOTE_URL=git@example.com:example.git
+
+# Add the git remote, and push the current commit to the master branch. Exit
+# early if any of the command fails.
+git remote add deployment $GIT_REMOTE_URL || { echo "Failed to add git remote"; exit 1; }
+git push deployment $CIRCLE_SHA1:refs/heads/master || { echo "Failed to push to git remote"; exit 1; }
+
+# The section below is used to execute commands on the server. Uncomment the
+# section if you wish to enable this, and put the necessary commands between the
+# EOF lines.
+#
+#echo "Logging in to the remote server"
+#ssh root@example.com /bin/bash << EOF
+#  # Change to the root of the repository.
+#  cd /mnt/persist/www/docroot
+#EOF
