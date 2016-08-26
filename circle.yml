@@ -1,0 +1,25 @@
+##
+# Configuration file for CircleCi.
+#
+# Learn more at: https://circleci.com/docs/configuration/
+##
+
+test:
+  override:
+    - echo "Testing hasn't been implemented yet"
+
+deployment:
+  testing:
+    branch: develop
+    commands:
+      - scripts/deploy/testing.sh
+
+  staging:
+    branch: master
+    commands:
+      - scripts/deploy/staging.sh
+
+  production:
+    tag: /^\d+\.\d+\.\d+$/
+    commands:
+      - scripts/deploy/production.sh
