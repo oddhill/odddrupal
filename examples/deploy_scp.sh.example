@@ -25,8 +25,9 @@ DOCROOT=example
 FILES_PATH=sites/all/files
 SETTINGS_FILE=sites/default/settings.local.php
 
-# Name of the user that is running the web server.
+# The user that is running the web server.
 WWW_USER=www-data
+WWW_GROUP=www-data
 
 # File name of the build that is created.
 BUILD_NAME=build.tar.gz
@@ -83,8 +84,8 @@ ssh $SSH_URL /bin/bash << EOF
   find $NEW_FILE_DIR -type f -print0 | xargs -0 chmod 660
 
   # Change group ownership to the user that is running the web server.
-  echo "Changing group ownership of $NEW_DOCROOT to $WWW_USER"
-  chgrp -R $WWW_USER $NEW_DOCROOT
+  echo "Changing group ownership of $NEW_DOCROOT to $WWW_USER:$WWW_GROUP"
+  chown -R $WWW_USER:$WWW_GROUP $NEW_DOCROOT
 
   # Replace the current docroot with the new one, if the current directory
   # exists.
