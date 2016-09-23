@@ -29,72 +29,92 @@ SETTINGS_FILE=sites/default/settings.local.php
 WWW_USER=www-data
 WWW_GROUP=www-data
 
+# This will most likely never have to be changed.
+TEMP_PATH=/tmp
+
 # File name of the build that is created.
-BUILD_NAME=build.tar.gz
+# We add timestamp to avoid overwriting another concurrent build.
+BUILD_NAME=build.$(date +%s.%N).tar.gz
 
 # Expand some variables into full paths.
 CURRENT_DOCROOT=$BASE_PATH/$DOCROOT
-NEW_DOCROOT=$BASE_PATH/$DOCROOT-temp-deployment
+TEMP_BUILD=$TEMP_PATH/$DOCROOT-temp-deployment
 CURRENT_FILE_DIR=$CURRENT_DOCROOT/$FILES_PATH
-NEW_FILE_DIR=$NEW_DOCROOT/$FILES_PATH
+NEW_FILE_DIR=$TEMP_BUILD/$FILES_PATH
 CURRENT_SETTINGS_FILE=$CURRENT_DOCROOT/$SETTINGS_FILE
-NEW_SETTINGS_FILE=$NEW_DOCROOT/$SETTINGS_FILE
+NEW_SETTINGS_FILE=$TEMP_BUILD/$SETTINGS_FILE
 
 # Remove any Drush alias files.
 rm -v public/sites/default/aliases.*
 
 # Create a tarball and save it as an artifact.
 echo "Creating tarball..."
-tar czf $BUILD_NAME -C public/ .
-mv -v $BUILD_NAME $CIRCLE_ARTIFACTS
+if [ -d public ]; then
+  tar czf $CIRCLE_ARTIFACTS/$BUILD_NAME -C public/ .
+else
+  tar czf $CIRCLE_ARTIFACTS/$BUILD_NAME .
+fi
 
 # Copy the tarball to the remote server.
-echo "Uploading tarball to $BASE_PATH"
-scp $CIRCLE_ARTIFACTS/$BUILD_NAME $SSH_URL:$BASE_PATH
+echo "Uploading tarball to ${SSH_URL}:${TEMP_PATH}"
+scp $CIRCLE_ARTIFACTS/$BUILD_NAME $SSH_URL:$TEMP_PATH
 
 # Log in to the server and prepare the site.
 ssh $SSH_URL /bin/bash << EOF
-  # Create the new docroot and extract the build to that folder.
-  mkdir -v $NEW_DOCROOT
-  echo "Extracting tarball to $NEW_DOCROOT..."
-  tar xzof $BASE_PATH/$BUILD_NAME -C $NEW_DOCROOT
+  echo "Creating temporary directory $TEMP_BUILD"
+  mkdir -v $TEMP_BUILD
 
-  # Copy files and settings from the current docroot to the new one, if the
-  # current directory exists, which won't be the case if this is a fresh deploy.
-  if [ -d "$CURRENT_DOCROOT" ]; then
-    echo "Copying files from $CURRENT_FILE_DIR to $NEW_FILE_DIR"
-    cp -r $CURRENT_FILE_DIR/* $NEW_FILE_DIR/
-    cp -v $CURRENT_SETTINGS_FILE $NEW_SETTINGS_FILE
-    cp -v $CURRENT_DOCROOT/.htaccess $NEW_DOCROOT/.htaccess
+  echo "Testing integrity of archive..."
+  gunzip -c $TEMP_PATH/$BUILD_NAME | tar t > /dev/null
+
+  # Check error status of the above command, then (if ok) extract archive.
+  if [ $? -ne 0 ] && tar xzof $TEMP_PATH/$BUILD_NAME -C $TEMP_BUILD; then
+    echo "Tarball extracted to $TEMP_BUILD..."
+
+    # Copy files and settings from the current docroot to the new one, if the
+    # current directory exists, which won't be the case if this is a fresh deploy.
+    if [ -d "$CURRENT_FILE_DIR" ]; then
+      # Create NEW_FILE_DIR and parent directories in case it does not exist.
+      mkdir -p $NEW_FILE_DIR
+
+      echo "Copying files from $CURRENT_FILE_DIR to $NEW_FILE_DIR"
+      cp -r $CURRENT_FILE_DIR/* $NEW_FILE_DIR/
+
+      echo "Copying settings files"
+      cp -v $CURRENT_SETTINGS_FILE $NEW_SETTINGS_FILE
+      cp -v $CURRENT_DOCROOT/.htaccess $TEMP_BUILD/.htaccess
+    fi
+
+    # Make sure that the entire directory isn't writable by anyone except the
+    # owner. Directories will get 750 since these should be executable, and files
+    # will get 640.
+    echo "Making $TEMP_BUILD writable for the owner only"
+    find $TEMP_BUILD -type d -print0 | xargs -0 chmod 750
+    find $TEMP_BUILD -type f -print0 | xargs -0 chmod 640
+
+    # Make sure that the files directory is writable.
+    echo "Making $NEW_FILE_DIR writable by the owner and group"
+    chmod 770 $NEW_FILE_DIR
+    find $NEW_FILE_DIR -type d -print0 | xargs -0 chmod 770
+    find $NEW_FILE_DIR -type f -print0 | xargs -0 chmod 660
+
+    # Change ownership to the user that is running the web server.
+    echo "Changing ownership of $TEMP_BUILD to $WWW_USER:$WWW_GROUP"
+    chown -R $WWW_USER:$WWW_GROUP $TEMP_BUILD
+
+    # Replace the current docroot with the new one, if the current directory
+    # exists.
+    if [ -d "$CURRENT_DOCROOT" ]; then
+      echo "Replacing the old docroot contents with the new files"
+      rm -r $CURRENT_DOCROOT && mv -v $TEMP_BUILD $CURRENT_DOCROOT
+    else
+      echo "$CURRENT_DOCROOT did not exist. You will need to setup $CURRENT_SETTINGS_FILE and .htaccess manually."
+      mv -v $TEMP_BUILD $CURRENT_DOCROOT
+    fi
+
+    # Remove the build.
+    rm -v $TEMP_PATH/$BUILD_NAME
   else
-    echo "$CURRENT_DOCROOT doesn't exist. You will need to setup $CURRENT_SETTINGS_FILE and .htaccess manually."
+    echo "The tarball was found to be corrupted, please try to re-deploy."
   fi
-
-  # Make sure that the entire directory isn't writable by anyone except the
-  # owner. Directories will get 750 since these should be executable, and files
-  # will get 640.
-  echo "Making $NEW_DOCROOT writable for the owner only"
-  find $NEW_DOCROOT -type d -print0 | xargs -0 chmod 750
-  find $NEW_DOCROOT -type f -print0 | xargs -0 chmod 640
-
-  # Make sure that the files directory is writable.
-  echo "Making $NEW_FILE_DIR writable by the owner and group"
-  chmod 770 $NEW_FILE_DIR
-  find $NEW_FILE_DIR -type d -print0 | xargs -0 chmod 770
-  find $NEW_FILE_DIR -type f -print0 | xargs -0 chmod 660
-
-  # Change group ownership to the user that is running the web server.
-  echo "Changing group ownership of $NEW_DOCROOT to $WWW_USER:$WWW_GROUP"
-  chown -R $WWW_USER:$WWW_GROUP $NEW_DOCROOT
-
-  # Replace the current docroot with the new one, if the current directory
-  # exists.
-  if [ -d "$CURRENT_FILE_DIR" ]; then
-    rm -r $CURRENT_DOCROOT && mv -v $NEW_DOCROOT $CURRENT_DOCROOT
-  else
-    mv -v $NEW_DOCROOT $CURRENT_DOCROOT
-  fi
-
-  # Remove the build.
-  rm -v $BASE_PATH/$BUILD_NAME
 EOF
