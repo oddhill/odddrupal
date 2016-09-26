@@ -21,9 +21,13 @@ SSH_URL=root@example.com
 BASE_PATH=/mnt/persist/www
 DOCROOT=example
 
-# Path to the files directory and settings file.
-FILES_PATH=sites/all/files
-SETTINGS_FILE=sites/default/settings.local.php
+# Files relative to DOCROOT that we want to save. One per line.
+KEEP_FILES=(
+  .htaccess
+  sites/all/files
+  sites/default/files
+  sites/default/settings.local.php
+ )
 
 # The user that is running the web server.
 WWW_USER=www-data
@@ -36,16 +40,18 @@ TEMP_PATH=/tmp
 # We add timestamp to avoid overwriting another concurrent build.
 BUILD_NAME=build.$(date +%s.%N).tar.gz
 
+# Where to initialize the new version.
+TEMP_BUILD=${TEMP_PATH}/${DOCROOT}
+
 # Expand some variables into full paths.
-CURRENT_DOCROOT=$BASE_PATH/$DOCROOT
-TEMP_BUILD=$TEMP_PATH/$DOCROOT-temp-deployment
-CURRENT_FILE_DIR=$CURRENT_DOCROOT/$FILES_PATH
-NEW_FILE_DIR=$TEMP_BUILD/$FILES_PATH
-CURRENT_SETTINGS_FILE=$CURRENT_DOCROOT/$SETTINGS_FILE
-NEW_SETTINGS_FILE=$TEMP_BUILD/$SETTINGS_FILE
+CURRENT_DOCROOT=${BASE_PATH}/${DOCROOT}
 
 # Remove any Drush alias files.
-rm -v public/sites/default/aliases.*
+rm public/sites/default/aliases.*
+rm sites/default/aliases.*
+
+# Expand array variable to string so it can be used in heredoc below.
+KEEP_FILES=${KEEP_FILES[@]}
 
 # Create a tarball and save it as an artifact.
 echo "Creating tarball..."
@@ -55,35 +61,41 @@ else
   tar czf $CIRCLE_ARTIFACTS/$BUILD_NAME .
 fi
 
-# Copy the tarball to the remote server.
-echo "Uploading tarball to ${SSH_URL}:${TEMP_PATH}"
-scp $CIRCLE_ARTIFACTS/$BUILD_NAME $SSH_URL:$TEMP_PATH
-
-# Log in to the server and prepare the site.
-ssh $SSH_URL /bin/bash << EOF
-  echo "Creating temporary directory $TEMP_BUILD"
-  mkdir -v $TEMP_BUILD
+# Create the installation script to be run on the remote server.
+# This has to be done because there's like no possibility to
+# defer variable expansion in a heredoc.
+# Single $ will be expanded directly, escaped $ (\$) will be
+# interpreted when script is run (last line in this file).
+echo "Creating install script..."
+cat << EOF > install.sh
+  mkdir $TEMP_BUILD
 
   echo "Testing integrity of archive..."
   gunzip -c $TEMP_PATH/$BUILD_NAME | tar t > /dev/null
 
   # Check error status of the above command, then (if ok) extract archive.
-  if [ $? -ne 0 ] && tar xzof $TEMP_PATH/$BUILD_NAME -C $TEMP_BUILD; then
-    echo "Tarball extracted to $TEMP_BUILD..."
+  if [ $? -eq 0 ]; then
+    echo "Extract tarball to $TEMP_BUILD..."
+    tar xzof $TEMP_PATH/$BUILD_NAME -C $TEMP_BUILD
 
     # Copy files and settings from the current docroot to the new one, if the
     # current directory exists, which won't be the case if this is a fresh deploy.
-    if [ -d "$CURRENT_FILE_DIR" ]; then
-      # Create NEW_FILE_DIR and parent directories in case it does not exist.
-      mkdir -p $NEW_FILE_DIR
+    for KEEP_FILE in $KEEP_FILES; do
+      OLD_FILE=$CURRENT_DOCROOT/\$KEEP_FILE
+      NEW_FILE=$TEMP_BUILD/\$KEEP_FILE
+      if [ -e \$OLD_FILE ]; then
+        echo "Copying \$OLD_FILE to \$NEW_FILE..."
+        if [ -d \$OLD_FILE ]; then
+          cp -ra \$OLD_FILE \$NEW_FILE
+        else
+          cp -a \$OLD_FILE \$NEW_FILE
+        fi
+      fi
+    done
 
-      echo "Copying files from $CURRENT_FILE_DIR to $NEW_FILE_DIR"
-      cp -r $CURRENT_FILE_DIR/* $NEW_FILE_DIR/
-
-      echo "Copying settings files"
-      cp -v $CURRENT_SETTINGS_FILE $NEW_SETTINGS_FILE
-      cp -v $CURRENT_DOCROOT/.htaccess $TEMP_BUILD/.htaccess
-    fi
+    # Change ownership to the user that is running the web server.
+    echo "Changing ownership of $TEMP_BUILD to $WWW_USER:$WWW_GROUP"
+    chown -R $WWW_USER:$WWW_GROUP $TEMP_BUILD
 
     # Make sure that the entire directory isn't writable by anyone except the
     # owner. Directories will get 750 since these should be executable, and files
@@ -92,29 +104,41 @@ ssh $SSH_URL /bin/bash << EOF
     find $TEMP_BUILD -type d -print0 | xargs -0 chmod 750
     find $TEMP_BUILD -type f -print0 | xargs -0 chmod 640
 
-    # Make sure that the files directory is writable.
-    echo "Making $NEW_FILE_DIR writable by the owner and group"
-    chmod 770 $NEW_FILE_DIR
-    find $NEW_FILE_DIR -type d -print0 | xargs -0 chmod 770
-    find $NEW_FILE_DIR -type f -print0 | xargs -0 chmod 660
-
-    # Change ownership to the user that is running the web server.
-    echo "Changing ownership of $TEMP_BUILD to $WWW_USER:$WWW_GROUP"
-    chown -R $WWW_USER:$WWW_GROUP $TEMP_BUILD
+    echo "Making files directory writable by the owner and group"
+    for TARGET in all default; do
+      DIRECTORY=$TEMP_BUILD/sites/\$TARGET/files
+      echo Setting permissions on \$DIRECTORY
+      if [ "\$DIRECTORY" != "" -a -d "\$DIRECTORY" ]; then
+        chmod -v 770 \$DIRECTORY
+        find \$DIRECTORY -type d -exec chmod 770 {} \;
+        find \$DIRECTORY -type f -exec chmod 660 {} \;
+      fi
+    done
 
     # Replace the current docroot with the new one, if the current directory
     # exists.
     if [ -d "$CURRENT_DOCROOT" ]; then
       echo "Replacing the old docroot contents with the new files"
-      rm -r $CURRENT_DOCROOT && mv -v $TEMP_BUILD $CURRENT_DOCROOT
+      rm -r $CURRENT_DOCROOT && mv $TEMP_BUILD $CURRENT_DOCROOT
     else
       echo "$CURRENT_DOCROOT did not exist. You will need to setup $CURRENT_SETTINGS_FILE and .htaccess manually."
-      mv -v $TEMP_BUILD $CURRENT_DOCROOT
+      mv $TEMP_BUILD $CURRENT_DOCROOT
     fi
-
-    # Remove the build.
-    rm -v $TEMP_PATH/$BUILD_NAME
   else
     echo "The tarball was found to be corrupted, please try to re-deploy."
   fi
+
+  # Remove the tarball.
+  rm -v $TEMP_PATH/$BUILD_NAME
 EOF
+
+# Copy the tarball to the remote server.
+echo "Uploading tarball to ${SSH_URL}:${TEMP_PATH}"
+scp $CIRCLE_ARTIFACTS/$BUILD_NAME $SSH_URL:$TEMP_PATH
+
+echo "Generated the following install script:"
+cat install.sh
+echo
+
+echo "Running install script on remote host... Let's pray it works!"
+ssh $SSH_URL 'bash -s' < install.sh
