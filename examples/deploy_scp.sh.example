@@ -47,8 +47,7 @@ TEMP_BUILD=${TEMP_PATH}/${DOCROOT}
 CURRENT_DOCROOT=${BASE_PATH}/${DOCROOT}
 
 # Remove any Drush alias files.
-rm public/sites/default/aliases.*
-rm sites/default/aliases.*
+rm public/sites/default/aliases.* sites/default/aliases.* 2> /dev/null
 
 # Expand array variable to string so it can be used in heredoc below.
 KEEP_FILES=${KEEP_FILES[@]}
