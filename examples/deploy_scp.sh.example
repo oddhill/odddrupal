@@ -27,7 +27,7 @@ KEEP_FILES=(
   sites/all/files
   sites/default/files
   sites/default/settings.local.php
- )
+)
 
 # The user that is running the web server.
 WWW_USER=www-data
@@ -134,10 +134,9 @@ EOF
 # Copy the tarball to the remote server.
 echo "Uploading tarball to ${SSH_URL}:${TEMP_PATH}"
 scp $CIRCLE_ARTIFACTS/$BUILD_NAME $SSH_URL:$TEMP_PATH
-
+echo
 echo "Generated the following install script:"
 cat install.sh
 echo
-
 echo "Running install script on remote host... Let's pray it works!"
 ssh $SSH_URL 'bash -s' < install.sh
