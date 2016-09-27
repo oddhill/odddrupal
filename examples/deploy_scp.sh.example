@@ -73,7 +73,7 @@ cat << EOF > install.sh
   gunzip -c $TEMP_PATH/$BUILD_NAME | tar t > /dev/null
 
   # Check error status of the above command, then (if ok) extract archive.
-  if [ $? -eq 0 ]; then
+  if [ \$? -eq 0 ]; then
     echo "Extract tarball to $TEMP_BUILD..."
     tar xzof $TEMP_PATH/$BUILD_NAME -C $TEMP_BUILD
 
