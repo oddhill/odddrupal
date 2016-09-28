@@ -29,8 +29,8 @@ KEEP_FILES=(
   sites/default/settings.local.php
 )
 
-# The user that is running the web server.
-WWW_USER=www-data
+# The user and group that should own the files.
+WWW_USER=root
 WWW_GROUP=www-data
 
 # This will most likely never have to be changed.
@@ -83,12 +83,18 @@ cat << EOF > install.sh
       OLD_FILE=$CURRENT_DOCROOT/\$KEEP_FILE
       NEW_FILE=$TEMP_BUILD/\$KEEP_FILE
       if [ -e \$OLD_FILE ]; then
-        echo "Copying \$OLD_FILE to \$NEW_FILE..."
         if [ -d \$OLD_FILE ]; then
-          cp -ra \$OLD_FILE \$NEW_FILE
+          echo "Copying everything in \$OLD_FILE/ to \$NEW_FILE/..."
+          if [ ! -e \$NEW_FILE ]; then
+            mkdir -p \$NEW_FILE
+          fi
+          cp -ra \$OLD_FILE/. \$NEW_FILE/
         else
+          echo "Copying \$OLD_FILE to \$NEW_FILE..."
           cp -a \$OLD_FILE \$NEW_FILE
         fi
+      else
+        echo "\$OLD_FILE doesn't exist. You may need to create it manually."
       fi
     done
 
@@ -120,7 +126,7 @@ cat << EOF > install.sh
       echo "Replacing the old docroot contents with the new files"
       rm -r $CURRENT_DOCROOT && mv $TEMP_BUILD $CURRENT_DOCROOT
     else
-      echo "$CURRENT_DOCROOT did not exist. You will need to setup $CURRENT_SETTINGS_FILE and .htaccess manually."
+      echo "Moving $TEMP_BUILD to $CURRENT_DOCROOT"
       mv $TEMP_BUILD $CURRENT_DOCROOT
     fi
   else
