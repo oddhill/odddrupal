@@ -22,9 +22,20 @@ The module has a few hooks in place that allow developers to create new display 
 
 * **all**: `ContextListReactionDisplay`
 * **block**: `ContextListReactionDisplay_block`
+* **region**: `ContextListReactionDisplay_region`
 
 ### Creating New Plugins
 
 Plugins are PHP classes that live in `context_list.plugins.inc`. You can extend the existing classes to create new displays and support new modules.
 
 Each plugin has a `display()` method that is used to change the settings and condition/reaction into the output on the context list. After your new class is created, you need to implement `hook_context_list_register_condition_display` or `hook_context_list_register_reaction_display` to register your class(es). There is only one display class per reaction/condition.
+
+## Hooks
+
+There are a few hooks:
+
+* hook_context_list_register_condition_display: registers a condition display plugin
+* hook_context_list_register_reaction_display: registers a reaction display plugin
+* hook_context_list_reaction_block_name_alter: alters the block name
+* hook_context_list_reaction_blocks_alter: alters the blocks available to a reaction plugin
+* hook_context_list_reaction_theme_name_alter: alters the theme name

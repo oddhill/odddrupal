@@ -1,16 +1,20 @@
 <?php
+/**
+ * @file
+ * Context list module
+ */
 
 /**
  * Implements hook_menu().
  */
 function context_list_menu() {
-	$items = array();
+  $items = array();
   $items['admin/structure/context/contexts_list'] = array(
     'title' => 'List of contexts',
     'type' => MENU_LOCAL_TASK,
     'page callback' => 'context_list_contexts',
     'access arguments' => array('access administration pages'),
-    'weight' => 10
+    'weight' => 10,
   );
   return $items;
 }
@@ -35,9 +39,9 @@ function context_list_contexts() {
     array_push(
       $rows,
       array(
-        l($context_name, 'admin/structure/context/list/' . $context_name .'/edit') . '<div class="description">'. $context->description .'</div>',
+        l($context_name, 'admin/structure/context/list/' . $context_name . '/edit') . '<div class="description">' . $context->description . '</div>',
         context_list_conditions($context->conditions),
-        context_list_reactions($context->reactions)
+        context_list_reactions($context->reactions),
       )
     );
   }
@@ -54,8 +58,12 @@ function context_list_contexts() {
 
 /**
  * Create the list of conditions
- * @param  array $conditions The context's conditions
- * @return string            The HTML output
+ *
+ * @param array $conditions
+ *   The context's conditions
+ *
+ * @return string
+ *   The HTML output
  */
 function context_list_conditions($conditions) {
   module_load_include('inc', 'context_list', 'context_list.plugins');
@@ -74,20 +82,24 @@ function context_list_conditions($conditions) {
       $display_class = $context_list_condition_displays[$condition];
     }
 
-    $display = new $display_class;
+    $display = new $display_class();
     $display->condition = $condition;
     $display->settings = $settings;
 
     array_push($condition_description, $display->display());
   }
 
-  return '<ol>' . implode("\n", array_map('context_list_create_list_items', $condition_description)) .'</ol>';
+  return '<ol>' . implode("\n", array_map('context_list_create_list_items', $condition_description)) . '</ol>';
 }
 
 /**
  * Return an array of strings as an array of list items
- * @param  string $item The item
+ *
+ * @param string $item
+ *   The item
+ *
  * @return string
+ *   List items
  */
 function context_list_create_list_items($item) {
   return '<li>' . $item . '</li>';
@@ -95,8 +107,12 @@ function context_list_create_list_items($item) {
 
 /**
  * Create the list of reactions for a context
- * @param  array $reactions The array of reactions for a context
- * @return string           The HTML output
+ *
+ * @param array $reactions
+ *   The array of reactions for a context
+ *
+ * @return string
+ *   The HTML output
  */
 function context_list_reactions($reactions) {
   module_load_include('inc', 'context_list', 'context_list.plugins');
@@ -119,7 +135,7 @@ function context_list_reactions($reactions) {
     if (class_exists('ContextListReactionDisplay_' . $reaction)) {
       $display_class = 'ContextListReactionDisplay_' . $reaction;
     }
-    $display = new $display_class;
+    $display = new $display_class();
     $display->reaction = $reaction;
     $display->settings = $settings;
 
