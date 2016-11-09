@@ -1069,3 +1069,26 @@ function odddrupal_update_7164() {
     variable_set('security_review_base_url_method', 'include');
   }
 }
+
+/**
+ * Remove xhprof from the Tadaa configuration.
+ */
+function odddrupal_update_7165() {
+  $modules = variable_get('tadaa_development_modules', array());
+  if (isset($modules['xhprof'])) {
+    unset($modules['xhprof']);
+    variable_set('tadaa_development_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_staging_modules', array());
+  if (isset($modules['xhprof'])) {
+    unset($modules['xhprof']);
+    variable_set('tadaa_staging_modules', $modules);
+  }
+
+  $modules = variable_get('tadaa_production_modules', array());
+  if (isset($modules['xhprof'])) {
+    unset($modules['xhprof']);
+    variable_set('tadaa_production_modules', $modules);
+  }
+}
