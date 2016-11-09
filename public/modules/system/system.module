@@ -2368,18 +2368,15 @@ function _system_rebuild_module_data() {
   // Find modules
   $modules = drupal_system_listing('/^' . DRUPAL_PHP_FUNCTION_PATTERN . '\.module$/', 'modules', 'name', 0);
 
-  // Include the active install profile(s) in modules that are loaded.
-  $profile_weight = 1000;
-  $profiles = drupal_get_profiles();
-  foreach ($profiles as $profile) {
-    $modules[$profile] = new stdClass();
-    $modules[$profile]->name = $profile;
-    $modules[$profile]->uri = 'profiles/' . $profile . '/' . $profile . '.profile';
-    $modules[$profile]->filename = $profile . '.profile';
+  // Include the installation profile in modules that are loaded.
+  $profile = drupal_get_profile();
+  $modules[$profile] = new stdClass();
+  $modules[$profile]->name = $profile;
+  $modules[$profile]->uri = 'profiles/' . $profile . '/' . $profile . '.profile';
+  $modules[$profile]->filename = $profile . '.profile';
 
-    // Install profile hooks are always executed last.
-    $modules[$profile]->weight = $profile_weight++;
-  }
+  // Installation profile hooks are always executed last.
+  $modules[$profile]->weight = 1000;
 
   // Set defaults for module info.
   $defaults = array(
@@ -2429,7 +2426,7 @@ function _system_rebuild_module_data() {
 
     // Installation profiles are hidden by default, unless explicitly specified
     // otherwise in the .info file.
-    if (in_array($key, $profiles) && !isset($modules[$key]->info['hidden'])) {
+    if ($key == $profile && !isset($modules[$key]->info['hidden'])) {
       $modules[$key]->info['hidden'] = TRUE;
     }
 
@@ -2439,15 +2436,13 @@ function _system_rebuild_module_data() {
     drupal_alter('system_info', $modules[$key]->info, $modules[$key], $type);
   }
 
-  foreach ($profiles as $profile) {
-    if (isset($modules[$profile])) {
-      // The installation profile is required, if it's a valid module.
-      $modules[$profile]->info['required'] = TRUE;
-      // Add a default distribution name if the profile did not provide one.
-      // This matches the default value used in install_profile_info().
-      if (!isset($modules[$profile]->info['distribution_name'])) {
-        $modules[$profile]->info['distribution_name'] = 'Drupal';
-      }
+  if (isset($modules[$profile])) {
+    // The installation profile is required, if it's a valid module.
+    $modules[$profile]->info['required'] = TRUE;
+    // Add a default distribution name if the profile did not provide one. This
+    // matches the default value used in install_profile_info().
+    if (!isset($modules[$profile]->info['distribution_name'])) {
+      $modules[$profile]->info['distribution_name'] = 'Drupal';
     }
   }
 
@@ -2710,10 +2705,17 @@ function system_find_base_themes($themes, $key, $used_keys = array()) {
  * @param $show
  *   Possible values: REGIONS_ALL or REGIONS_VISIBLE. Visible excludes hidden
  *   regions.
- * @return
- *   An array of regions in the form $region['name'] = 'description'.
+ * @param bool $labels
+ *   (optional) Boolean to specify whether the human readable machine names
+ *   should be returned or not. Defaults to TRUE, but calling code can set
+ *   this to FALSE for better performance, if it only needs machine names.
+ *
+ * @return array
+ *   An associative array of regions in the form $region['name'] = 'description'
+ *   if $labels is set to TRUE, or $region['name'] = 'name', if $labels is set
+ *   to FALSE.
  */
-function system_region_list($theme_key, $show = REGIONS_ALL) {
+function system_region_list($theme_key, $show = REGIONS_ALL, $labels = TRUE) {
   $themes = list_themes();
   if (!isset($themes[$theme_key])) {
     return array();
@@ -2724,10 +2726,14 @@ function system_region_list($theme_key, $show = REGIONS_ALL) {
   // If requested, suppress hidden regions. See block_admin_display_form().
   foreach ($info['regions'] as $name => $label) {
     if ($show == REGIONS_ALL || !isset($info['regions_hidden']) || !in_array($name, $info['regions_hidden'])) {
-      $list[$name] = t($label);
+      if ($labels) {
+        $list[$name] = t($label);
+      }
+      else {
+        $list[$name] = $name;
+      }
     }
   }
-
   return $list;
 }
 
@@ -2748,12 +2754,13 @@ function system_system_info_alter(&$info, $file, $type) {
  *
  * @param $theme
  *   The name of a theme.
+ *
  * @return
  *   A string that is the region name.
  */
 function system_default_region($theme) {
-  $regions = array_keys(system_region_list($theme, REGIONS_VISIBLE));
-  return isset($regions[0]) ? $regions[0] : '';
+  $regions = system_region_list($theme, REGIONS_VISIBLE, FALSE);
+  return $regions ? reset($regions) : '';
 }
 
 /**
@@ -3359,7 +3366,8 @@ function system_goto_action($entity, $context) {
  */
 function system_block_ip_action() {
   $ip = ip_address();
-  db_insert('blocked_ips')
+  db_merge('blocked_ips')
+    ->key(array('ip' => $ip))
     ->fields(array('ip' => $ip))
     ->execute();
   watchdog('action', 'Banned IP address %ip', array('%ip' => $ip));
@@ -3521,8 +3529,7 @@ function system_retrieve_file($url, $destination = NULL, $managed = FALSE, $repl
 function system_page_alter(&$page) {
   // Find all non-empty page regions, and add a theme wrapper function that
   // allows them to be consistently themed.
-  $regions = system_region_list($GLOBALS['theme']);
-  foreach (array_keys($regions) as $region) {
+  foreach (system_region_list($GLOBALS['theme'], REGIONS_ALL, FALSE) as $region) {
     if (!empty($page[$region])) {
       $page[$region]['#theme_wrappers'][] = 'region';
       $page[$region]['#region'] = $region;
