@@ -12,17 +12,29 @@ test:
 
 deployment:
   testing:
-    # Deploy to testing when pushing develop.
     branch: develop
     commands:
-      - deploy/testing.sh
+      - chmod -R 777 sites/*/files
+      - rsync -az --force --delete --exclude-from=.rsyncignore -e 'ssh' ./public/ $SERVER_USER@$SERVER_NAME:$SERVER_PATH:
+          environment:
+            SERVER_USER: root
+            SERVER_NAME: example.com
+            SERVER_PATH: /mnt/persist/www/example
   staging:
-    # Deploy to staging when pushing a release branch.
     branch: /^release/.*/
     commands:
-      - deploy/staging.sh
+      - chmod -R 777 sites/*/files
+      - rsync -az --force --delete --exclude-from=.rsyncignore -e 'ssh' ./public/ $SERVER_USER@$SERVER_NAME:$SERVER_PATH:
+          environment:
+            SERVER_USER: root
+            SERVER_NAME: example.com
+            SERVER_PATH: /mnt/persist/www/example
   production:
-    # Deploy to production when pushing master.
     branch: master
     commands:
-      - deploy/production.sh
+      - chmod -R 777 sites/*/files
+      - rsync -az --force --delete --exclude-from=.rsyncignore -e 'ssh' ./public/ $SERVER_USER@$SERVER_NAME:$SERVER_PATH:
+          environment:
+            SERVER_USER: root
+            SERVER_NAME: example.com
+            SERVER_PATH: /mnt/persist/www/example

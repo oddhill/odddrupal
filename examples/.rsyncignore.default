@@ -1,0 +1,4 @@
+/.htaccess
+/sites/*/settings.local.php
+/sites/*/files/*
+/sites/*/tmp/*
