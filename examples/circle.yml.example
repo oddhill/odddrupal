@@ -14,7 +14,7 @@ deployment:
   testing:
     branch: develop
     commands:
-      - chmod -R 777 sites/*/files
+      - chmod -R 777 public/sites/*/files
       - rsync -az --force --delete --exclude-from=.rsyncignore -e 'ssh' ./public/ $SERVER_USER@$SERVER_NAME:$SERVER_PATH:
           environment:
             SERVER_USER: root
@@ -23,7 +23,7 @@ deployment:
   staging:
     branch: /^release/.*/
     commands:
-      - chmod -R 777 sites/*/files
+      - chmod -R 777 public/sites/*/files
       - rsync -az --force --delete --exclude-from=.rsyncignore -e 'ssh' ./public/ $SERVER_USER@$SERVER_NAME:$SERVER_PATH:
           environment:
             SERVER_USER: root
@@ -32,7 +32,7 @@ deployment:
   production:
     branch: master
     commands:
-      - chmod -R 777 sites/*/files
+      - chmod -R 777 public/sites/*/files
       - rsync -az --force --delete --exclude-from=.rsyncignore -e 'ssh' ./public/ $SERVER_USER@$SERVER_NAME:$SERVER_PATH:
           environment:
             SERVER_USER: root
