@@ -4,9 +4,9 @@ core = 7.x
 
 configure = admin/config/development/performance
 
-; Information added by Drupal.org packaging script on 2017-01-26
-version = "7.x-1.28"
+; Information added by Drupal.org packaging script on 2017-04-18
+version = "7.x-1.29"
 core = "7.x"
 project = "speedy"
-datestamp = "1485463103"
+datestamp = "1492536845"
 
