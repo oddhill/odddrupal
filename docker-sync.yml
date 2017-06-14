@@ -1,0 +1,10 @@
+version: '2'
+
+syncs:
+  odddrupal-docker-sync:
+    src: './public'
+    sync_strategy: 'native_osx'
+    sync_userid: '82'
+    sync_excludes: [
+      'node_modules'
+    ]

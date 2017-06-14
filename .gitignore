@@ -11,5 +11,6 @@
 
 # Exlude various other files
 .DS_Store
+.docker-sync
 .sass-cache
 /public/cache
