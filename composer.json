@@ -1,0 +1,10 @@
+{
+    "name": "oddhill/odddrupal",
+    "description": "Starter for Drupal 7 based sites.",
+    "type": "project",
+    "license": "MIT",
+    "require": {},
+    "require-dev": {
+        "drush/drush": "^8.0"
+    }
+}

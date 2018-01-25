@@ -14,3 +14,6 @@
 .docker-sync
 .sass-cache
 /public/cache
+
+# Ignore vendor dependencies.
+/vendor/
