@@ -28,7 +28,7 @@ services:
       PHP_XDEBUG: 1
       PHP_XDEBUG_DEFAULT_ENABLE: 1
     volumes:
-      - odddrupal-docker-sync:/var/www/html:nocopy
+      - ./:/var/www/html:cached
 
   # Nginx container.
   nginx:
@@ -42,15 +42,10 @@ services:
       NGINX_BACKEND_HOST: php
       NGINX_SERVER_ROOT: /var/www/html
     volumes:
-      - odddrupal-docker-sync:/var/www/html:nocopy
+      - ./:/var/www/html:cached
     ports:
       - 8000:80
 
   # Mailhog container.
   mailhog:
     image: mailhog/mailhog
-
-# Docker-sync for mac users.
-volumes:
-  odddrupal-docker-sync:
-    external: true
