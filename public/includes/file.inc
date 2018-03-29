@@ -2130,18 +2130,9 @@ function file_download_access($uri) {
  *   'filename', and 'name' members corresponding to the matching files.
  */
 function file_scan_directory($dir, $mask, $options = array(), $depth = 0) {
-  // By default, do not check for files in common special-purpose directories.
-  // The folders here are front-end related and they have been added to avoid
-  // issues with Drupal recursive scanning. In this case, we added node_modules
-  // and bower_components. This also improves performance on frontend builds.
-  $ignore_directories = array(
-    'node_modules',
-    'bower_components',
-  );
-  $no_mask = '/^(\..*)|' . implode('|', $ignore_directories) .  '$/';
   // Merge in defaults.
   $options += array(
-    'nomask' => $no_mask,
+    'nomask' => '/(\.\.?|CVS)$/',
     'callback' => 0,
     'recurse' => TRUE,
     'key' => 'uri',
