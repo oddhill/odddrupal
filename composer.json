@@ -6,5 +6,10 @@
     "require": {},
     "require-dev": {
         "drush/drush": "^8.0"
+    },
+    "extra": {
+        "installer-paths": {
+            "public": ["type:drupal-core"]
+        }
     }
 }
