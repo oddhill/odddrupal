@@ -572,9 +572,10 @@ function system_theme_settings($form, &$form_state, $key = '') {
     // Process the theme and all its base themes.
     foreach ($theme_keys as $theme) {
       // Include the theme-settings.php file.
-      $filename = DRUPAL_ROOT . '/' . str_replace("/$theme.info", '', $themes[$theme]->filename) . '/theme-settings.php';
-      if (file_exists($filename)) {
-        require_once $filename;
+      $theme_settings_path = drupal_get_path('theme', $theme) . '/theme-settings.php';
+      if (file_exists(DRUPAL_ROOT . '/' . $theme_settings_path)) {
+        require_once DRUPAL_ROOT . '/' . $theme_settings_path;
+        $form_state['build_info']['files'][] = $theme_settings_path;
       }
 
       // Call theme-specific settings.
@@ -1274,7 +1275,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
   // Only build the rest of the form if there are any modules available to
   // uninstall.
   if (!empty($disabled_modules)) {
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     uasort($disabled_modules, 'system_sort_modules_by_info_name');
     $form['uninstall'] = array('#tree' => TRUE);
     foreach ($disabled_modules as $module) {
@@ -1291,7 +1292,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
       // we can allow this module to be uninstalled. (The installation profile
       // is excluded from this list.)
       foreach (array_keys($module->required_by) as $dependent) {
-        if (!in_array($dependent, $profiles) && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
+        if ($dependent != $profile && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
           $dependent_name = isset($all_modules[$dependent]->info['name']) ? $all_modules[$dependent]->info['name'] : $dependent;
           $form['modules'][$module->name]['#required_by'][] = $dependent_name;
           $form['uninstall'][$module->name]['#disabled'] = TRUE;
@@ -1812,7 +1813,7 @@ function system_file_system_settings() {
     '#title' => t('Private file system path'),
     '#default_value' => variable_get('file_private_path', ''),
     '#maxlength' => 255,
-    '#description' => t('An existing local file system path for storing private files. It should be writable by Drupal and not accessible over the web. See the online handbook for <a href="@handbook">more information about securing private files</a>.', array('@handbook' => 'http://drupal.org/documentation/modules/file')),
+    '#description' => t('An existing local file system path for storing private files. It should be writable by Drupal and not accessible over the web. See the online handbook for <a href="@handbook">more information about securing private files</a>.', array('@handbook' => 'https://www.drupal.org/docs/7/core/modules/file/overview')),
     '#after_build' => array('system_check_directory'),
   );
 
@@ -2565,9 +2566,21 @@ function theme_system_admin_index($variables) {
 /**
  * Returns HTML for the status report.
  *
+ * This theme function is dependent on install.inc being loaded, because
+ * that's where the constants are defined.
+ *
  * @param $variables
  *   An associative array containing:
- *   - requirements: An array of requirements.
+ *   - requirements: An array of requirements/status items. Each requirement
+ *     is an associative array containing the following elements:
+ *     - title: The name of the requirement.
+ *     - value: (optional) The current value (version, time, level, etc).
+ *     - description: (optional) The description of the requirement.
+ *     - severity: (optional) The requirement's result/severity level, one of:
+ *       - REQUIREMENT_INFO: Status information.
+ *       - REQUIREMENT_OK: The requirement is satisfied.
+ *       - REQUIREMENT_WARNING: The requirement failed with a warning.
+ *       - REQUIREMENT_ERROR: The requirement failed with an error.
  *
  * @ingroup themeable
  */
