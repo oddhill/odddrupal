@@ -543,7 +543,7 @@ function module_disable($module_list, $disable_dependents = TRUE) {
     // Create an associative array with weights as values.
     $module_list = array_flip(array_values($module_list));
 
-    $profile = drupal_get_profile();
+    $profiles = drupal_get_profiles();
     // The array is iterated over manually (instead of using a foreach) because
     // modules may be added to the list within the loop and we need to process
     // them.
@@ -559,7 +559,7 @@ function module_disable($module_list, $disable_dependents = TRUE) {
       // Add dependent modules to the list, with a placeholder weight.
       // The new modules will be processed as the while loop continues.
       foreach ($module_data[$module]->required_by as $dependent => $dependent_data) {
-        if (!isset($module_list[$dependent]) && $dependent != $profile) {
+        if (!isset($module_list[$dependent]) && !in_array($dependent, $profiles)) {
           $module_list[$dependent] = 0;
         }
       }
@@ -987,7 +987,7 @@ function drupal_required_modules() {
   $required = array();
 
   // An installation profile is required and one must always be loaded.
-  $required[] = drupal_get_profile();
+  $required = array_merge($required, drupal_get_profiles());
 
   foreach ($files as $name => $file) {
     $info = drupal_parse_info_file($file->uri);
