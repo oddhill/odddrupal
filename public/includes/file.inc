@@ -1534,7 +1534,7 @@ function file_save_upload($form_field_name, $validators = array(), $destination 
   // rename filename.php.foo and filename.php to filename.php.foo.txt and
   // filename.php.txt, respectively). Don't rename if 'allow_insecure_uploads'
   // evaluates to TRUE.
-  if (!variable_get('allow_insecure_uploads', 0) && preg_match('/\.(php|pl|py|cgi|asp|js)(\.|$)/i', $file->filename) && (substr($file->filename, -4) != '.txt')) {
+  if (!variable_get('allow_insecure_uploads', 0) && preg_match('/\.(php|phar|pl|py|cgi|asp|js)(\.|$)/i', $file->filename) && (substr($file->filename, -4) != '.txt')) {
     $file->filemime = 'text/plain';
     // The destination filename will also later be used to create the URI.
     $file->filename .= '.txt';
@@ -2130,18 +2130,9 @@ function file_download_access($uri) {
  *   'filename', and 'name' members corresponding to the matching files.
  */
 function file_scan_directory($dir, $mask, $options = array(), $depth = 0) {
-  // By default, do not check for files in common special-purpose directories.
-  // The folders here are front-end related and they have been added to avoid
-  // issues with Drupal recursive scanning. In this case, we added node_modules
-  // and bower_components. This also improves performance on frontend builds.
-  $ignore_directories = array(
-    'node_modules',
-    'bower_components',
-  );
-  $no_mask = '/^(\..*)|' . implode('|', $ignore_directories) .  '$/';
   // Merge in defaults.
   $options += array(
-    'nomask' => $no_mask,
+    'nomask' => '/(\.\.?|CVS)$/',
     'callback' => 0,
     'recurse' => TRUE,
     'key' => 'uri',
