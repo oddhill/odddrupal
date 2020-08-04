@@ -443,11 +443,11 @@ function system_requirements($phase) {
 
   // Display an error if a newly introduced dependency in a module is not resolved.
   if ($phase == 'update') {
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     $files = system_rebuild_module_data();
     foreach ($files as $module => $file) {
       // Ignore disabled modules and installation profiles.
-      if (!$file->status || in_array($module, $profiles)) {
+      if (!$file->status || $module == $profile) {
         continue;
       }
       // Check the module's PHP version.
@@ -3297,6 +3297,13 @@ function system_update_7082() {
  */
 function system_update_7083() {
   // Empty update to force a rebuild of hook_library() and JS aggregates.
+}
+
+/**
+ * Rebuild JavaScript aggregates to include 'ajax.js' fix for Chrome 83.
+ */
+function system_update_7084() {
+  // Empty update to force a rebuild of JS aggregates.
 }
 
 /**
