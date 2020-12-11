@@ -20,3 +20,5 @@ public/sites/*/files
 
 # Ignore local environment settings
 .env
+/public/sites/*/settings.local.php
+/.gitattributes
