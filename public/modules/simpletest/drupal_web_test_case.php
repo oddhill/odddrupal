@@ -1520,16 +1520,10 @@ class DrupalWebTestCase extends DrupalTestCase {
 
     // Include the testing profile.
     variable_set('install_profile', $this->profile);
+    $profile_details = install_profile_info($this->profile, 'en');
 
     // Install the modules specified by the testing profile.
-    $profiles = drupal_get_profiles();
-    $profile_dependencies = array();
-
-    foreach ($profiles as $profile) {
-      $info = install_profile_info($profile);
-      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-    }
-    module_enable($profile_dependencies);
+    module_enable($profile_details['dependencies'], FALSE);
 
     // Install modules needed for this test. This could have been passed in as
     // either a single array argument or a variable number of string arguments.
@@ -1683,15 +1677,12 @@ class DrupalWebTestCase extends DrupalTestCase {
     file_unmanaged_delete_recursive($this->originalFileDirectory . '/simpletest/' . substr($this->databasePrefix, 10));
 
     // Remove all prefixed tables.
-    $tables = db_find_tables($this->databasePrefix . '%');
-    $connection_info = Database::getConnectionInfo('default');
-    $tables = db_find_tables($connection_info['default']['prefix']['default'] . '%');
+    $tables = db_find_tables_d8('%');
     if (empty($tables)) {
       $this->fail('Failed to find test tables to drop.');
     }
-    $prefix_length = strlen($connection_info['default']['prefix']['default']);
     foreach ($tables as $table) {
-      if (db_drop_table(substr($table, $prefix_length))) {
+      if (db_drop_table($table)) {
         unset($tables[$table]);
       }
     }
