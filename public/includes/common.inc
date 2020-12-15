@@ -232,22 +232,6 @@ function drupal_get_profile() {
   return $profile;
 }
 
-/**
- * Returns a list of related install profiles in decending order of their
- * dependencies.
- */
-function drupal_get_profiles() {
-  global $install_state;
-
-  if (isset($install_state['parameters']['profile'])) {
-    $profiles = install_get_base_profiles();
-  }
-  else {
-    $profiles = variable_get('install_profiles', array('standard'));
-  }
-
-  return $profiles;
-}
 
 /**
  * Sets the breadcrumb trail for the current page.
@@ -5632,7 +5616,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
   }
   // In case both profile directories contain the same extension, the actual
   // profile always has precedence.
-  $profiles = array_merge($profiles, drupal_get_profiles());
+  $profiles[] = $profile;
   foreach ($profiles as $profile) {
     if (file_exists("profiles/$profile/$directory")) {
       $searchdir[] = "profiles/$profile/$directory";
@@ -6669,30 +6653,41 @@ function element_children(&$elements, $sort = FALSE) {
   $sort = isset($elements['#sorted']) ? !$elements['#sorted'] : $sort;
 
   // Filter out properties from the element, leaving only children.
-  $children = array();
+  $count = count($elements);
+  $child_weights = array();
+  $i = 0;
   $sortable = FALSE;
   foreach ($elements as $key => $value) {
     if (is_int($key) || $key === '' || $key[0] !== '#') {
-      $children[$key] = $value;
       if (is_array($value) && isset($value['#weight'])) {
+        $weight = $value['#weight'];
         $sortable = TRUE;
       }
+      else {
+        $weight = 0;
+      }
+      // Support weights with up to three digit precision and conserve the
+      // insertion order.
+      $child_weights[$key] = floor($weight * 1000) + $i / $count;
     }
+    $i++;
   }
+
   // Sort the children if necessary.
   if ($sort && $sortable) {
-    uasort($children, 'element_sort');
+    asort($child_weights);
     // Put the sorted children back into $elements in the correct order, to
     // preserve sorting if the same element is passed through
     // element_children() twice.
-    foreach ($children as $key => $child) {
+    foreach ($child_weights as $key => $weight) {
+      $value = $elements[$key];
       unset($elements[$key]);
-      $elements[$key] = $child;
+      $elements[$key] = $value;
     }
     $elements['#sorted'] = TRUE;
   }
 
-  return array_keys($children);
+  return array_keys($child_weights);
 }
 
 /**
