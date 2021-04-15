@@ -232,22 +232,6 @@ function drupal_get_profile() {
   return $profile;
 }
 
-/**
- * Returns a list of related install profiles in decending order of their
- * dependencies.
- */
-function drupal_get_profiles() {
-  global $install_state;
-
-  if (isset($install_state['parameters']['profile'])) {
-    $profiles = install_get_base_profiles();
-  }
-  else {
-    $profiles = variable_get('install_profiles', array('standard'));
-  }
-
-  return $profiles;
-}
 
 /**
  * Sets the breadcrumb trail for the current page.
@@ -1575,7 +1559,7 @@ function _filter_xss_split($m, $store = FALSE) {
     return '&lt;';
   }
 
-  if (!preg_match('%^<\s*(/\s*)?([a-zA-Z0-9\-]+)([^>]*)>?|(<!--.*?-->)$%', $string, $matches)) {
+  if (!preg_match('%^<\s*(/\s*)?([a-zA-Z0-9\-]+)\s*([^>]*)>?|(<!--.*?-->)$%', $string, $matches)) {
     // Seriously malformed.
     return '';
   }
@@ -2345,6 +2329,7 @@ function url($path = NULL, array $options = array()) {
   }
   elseif (!empty($path) && !$options['alias']) {
     $language = isset($options['language']) && isset($options['language']->language) ? $options['language']->language : '';
+    require_once DRUPAL_ROOT . '/' . variable_get('path_inc', 'includes/path.inc');
     $alias = drupal_get_path_alias($original_path, $language);
     if ($alias != $original_path) {
       // Strip leading slashes from internal path aliases to prevent them
@@ -5182,6 +5167,8 @@ function drupal_build_js_cache($files) {
         $contents .= file_get_contents($path) . ";\n";
       }
     }
+    // Remove JS source and source mapping urls or these may cause 404 errors.
+    $contents = preg_replace('/\/\/(#|@)\s(sourceURL|sourceMappingURL)=\s*(\S*?)\s*$/m', '', $contents);
     // Prefix filename to prevent blocking by firewalls which reject files
     // starting with "ad*".
     $filename = 'js_' . drupal_hash_base64($contents) . '.js';
@@ -5632,7 +5619,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
   }
   // In case both profile directories contain the same extension, the actual
   // profile always has precedence.
-  $profiles = array_merge($profiles, drupal_get_profiles());
+  $profiles[] = $profile;
   foreach ($profiles as $profile) {
     if (file_exists("profiles/$profile/$directory")) {
       $searchdir[] = "profiles/$profile/$directory";
