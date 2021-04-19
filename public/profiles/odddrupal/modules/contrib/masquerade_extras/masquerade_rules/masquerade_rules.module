@@ -1,0 +1,36 @@
+<?php
+/**
+ * @file
+ *  This file is required for Drupal to recognize the module.
+ */
+
+
+/**
+ * Implements hook_entity_property_info_alter.
+ */
+function masquerade_rules_entity_property_info_alter(&$info) {
+  // Adding masquerading user. provides token and rules properties.
+  $info['user']['properties']['masquerading'] = array(
+    'label' => t('Masquerading user'),
+    'description' => t('Masquerade user.'),
+    'getter callback' => '_masquerade_rules_get_masquerading_user',
+    'type' => 'user',
+  );
+}
+
+/**
+ * Internal - Returns user's masquerading user object.
+ */
+function _masquerade_rules_get_masquerading_user($account, array $options, $name, $entity_type) {
+  // Anonymous users wont have a UID, but we store it as 0.
+  $uid = isset($account->uid) ? $account->uid : 0;
+  $query = db_select('masquerade', 'm')
+    ->addTag('masquerade_rules_is_being_masqueraded')
+    ->fields('m', array('uid_from'))
+    ->condition('uid_as', $uid, '=')
+    ->range(0,1)
+    ->execute();
+  $result = $query->fetchCol();
+
+  return !empty($result) ? $result[0] : '';
+}
