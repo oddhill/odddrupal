@@ -1,7 +1,7 @@
 name = Odd Drupal
 description = Base profile that should be used for every site if there's no specific installation profile available.
 core = 7.x
-version = 7.x-3.00
+version = 7.x-3.01
 
 ; Core modules
 dependencies[] = block
