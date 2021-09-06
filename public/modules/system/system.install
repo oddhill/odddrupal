@@ -443,11 +443,11 @@ function system_requirements($phase) {
 
   // Display an error if a newly introduced dependency in a module is not resolved.
   if ($phase == 'update') {
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     $files = system_rebuild_module_data();
     foreach ($files as $module => $file) {
       // Ignore disabled modules and installation profiles.
-      if (!$file->status || in_array($module, $profiles)) {
+      if (!$file->status || $module == $profile) {
         continue;
       }
       // Check the module's PHP version.
@@ -516,6 +516,37 @@ function system_requirements($phase) {
         'value' => $t('Fails'),
         'severity' => REQUIREMENT_ERROR,
         'description' => $t('Your system or network configuration does not allow Drupal to access web pages, resulting in reduced functionality. This could be due to your webserver configuration or PHP settings, and should be resolved in order to download information about available updates, fetch aggregator feeds, sign in via OpenID, or use other network-dependent services. If you are certain that Drupal can access web pages but you are still seeing this message, you may add <code>$conf[\'drupal_http_request_fails\'] = FALSE;</code> to the bottom of your settings.php file.'),
+      );
+    }
+  }
+
+  // Warning for httpoxy on IIS with affected PHP versions.
+  // @see https://www.drupal.org/node/2783079
+  if (strpos($software, 'Microsoft-IIS') !== FALSE && (version_compare(PHP_VERSION, '5.5.38', '<')
+    || (version_compare(PHP_VERSION, '5.6.0', '>=') && version_compare(PHP_VERSION, '5.6.24', '<'))
+    || (version_compare(PHP_VERSION, '7.0.0', '>=') && version_compare(PHP_VERSION, '7.0.9', '<'))
+    )) {
+    $dom = new \DOMDocument('1.0', 'UTF-8');
+    $webconfig = file_get_contents('web.config');
+    // If you are here the web.config file must - of course - be well formed.
+    // But the PHP DOM component will throw warnings on some XML compliant
+    // stuff, so silently parse the configuration file.
+    @$dom->loadHTML($webconfig);
+    $httpoxy_rewrite = FALSE;
+    foreach ($dom->getElementsByTagName('rule') as $rule) {
+      foreach ($rule->attributes as $attr) {
+        if (@$attr->name == 'name' && @$attr->nodeValue == 'Erase HTTP_PROXY') {
+          $httpoxy_rewrite = TRUE;
+          break 2;
+        }
+      }
+    }
+    if (!$httpoxy_rewrite) {
+      $requirements['iis_httpoxy_protection'] = array(
+        'title' => t('IIS httpoxy protection'),
+        'value' => t('Your PHP runtime version is affected by the httpoxy vulnerability.'),
+        'description' => t('Either update your PHP runtime version or uncomment the "Erase HTTP_PROXY" rule in your web.config file and add HTTP_PROXY to the allowed headers list. See more details in the <a href="@link">security advisory</a>.', array('@link' => 'https://www.drupal.org/SA-CORE-2016-003')),
+        'severity' => REQUIREMENT_ERROR,
       );
     }
   }
