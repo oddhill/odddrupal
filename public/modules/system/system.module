@@ -1328,6 +1328,7 @@ function system_library() {
     'version' => '1.8.7',
     'js' => array(
       'misc/ui/jquery.ui.datepicker.min.js' => array(),
+      'misc/ui/jquery.ui.datepicker-1.13.0-backport.js' => array(),
     ),
     'css' => array(
       'misc/ui/jquery.ui.datepicker.css' => array(),
@@ -1341,7 +1342,8 @@ function system_library() {
     'website' => 'http://jqueryui.com/demos/dialog/',
     'version' => '1.8.7',
     'js' => array(
-      'misc/ui/jquery.ui.dialog.min.js' => array(),
+      'misc/ui/jquery.ui.dialog.min.js' =>  array(),
+      'misc/ui/jquery.ui.dialog-1.13.0-backport.js' => array(),
     ),
     'css' => array(
       'misc/ui/jquery.ui.dialog.css' => array(),
@@ -1397,6 +1399,7 @@ function system_library() {
     'version' => '1.8.7',
     'js' => array(
       'misc/ui/jquery.ui.position.min.js' => array(),
+      'misc/ui/jquery.ui.position-1.13.0-backport.js' => array(),
     ),
   );
   $libraries['ui.progressbar'] = array(
@@ -2376,18 +2379,15 @@ function _system_rebuild_module_data() {
   // Find modules
   $modules = drupal_system_listing('/^' . DRUPAL_PHP_FUNCTION_PATTERN . '\.module$/', 'modules', 'name', 0);
 
-  // Include the active install profile(s) in modules that are loaded.
-  $profile_weight = 1000;
-  $profiles = drupal_get_profiles();
-  foreach ($profiles as $profile) {
-    $modules[$profile] = new stdClass();
-    $modules[$profile]->name = $profile;
-    $modules[$profile]->uri = 'profiles/' . $profile . '/' . $profile . '.profile';
-    $modules[$profile]->filename = $profile . '.profile';
+  // Include the installation profile in modules that are loaded.
+  $profile = drupal_get_profile();
+  $modules[$profile] = new stdClass();
+  $modules[$profile]->name = $profile;
+  $modules[$profile]->uri = 'profiles/' . $profile . '/' . $profile . '.profile';
+  $modules[$profile]->filename = $profile . '.profile';
 
-    // Install profile hooks are always executed last.
-    $modules[$profile]->weight = $profile_weight++;
-  }
+  // Installation profile hooks are always executed last.
+  $modules[$profile]->weight = 1000;
 
   // Set defaults for module info.
   $defaults = array(
@@ -2437,7 +2437,7 @@ function _system_rebuild_module_data() {
 
     // Installation profiles are hidden by default, unless explicitly specified
     // otherwise in the .info file.
-    if (in_array($key, $profiles) && !isset($modules[$key]->info['hidden'])) {
+    if ($key == $profile && !isset($modules[$key]->info['hidden'])) {
       $modules[$key]->info['hidden'] = TRUE;
     }
 
@@ -2447,15 +2447,13 @@ function _system_rebuild_module_data() {
     drupal_alter('system_info', $modules[$key]->info, $modules[$key], $type);
   }
 
-  foreach ($profiles as $profile) {
-    if (isset($modules[$profile])) {
-      // The installation profile is required, if it's a valid module.
-      $modules[$profile]->info['required'] = TRUE;
-      // Add a default distribution name if the profile did not provide one.
-      // This matches the default value used in install_profile_info().
-      if (!isset($modules[$profile]->info['distribution_name'])) {
-        $modules[$profile]->info['distribution_name'] = 'Drupal';
-      }
+  if (isset($modules[$profile])) {
+    // The installation profile is required, if it's a valid module.
+    $modules[$profile]->info['required'] = TRUE;
+    // Add a default distribution name if the profile did not provide one. This
+    // matches the default value used in install_profile_info().
+    if (!isset($modules[$profile]->info['distribution_name'])) {
+      $modules[$profile]->info['distribution_name'] = 'Drupal';
     }
   }
 
