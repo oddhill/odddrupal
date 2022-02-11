@@ -1,0 +1,13 @@
+diff --git a/modules/user/user.pages.inc b/modules/user/user.pages.inc
+index 1266bbfb59..4ab7eca07d 100644
+--- a/modules/user/user.pages.inc
++++ b/modules/user/user.pages.inc
+@@ -121,7 +121,7 @@ function user_pass_submit($form, &$form_state) {
+   if (isset($form_state['values']['account'])) {
+     $account = $form_state['values']['account'];
+     // Mail one time login URL and instructions using current language.
+-    $mail = _user_mail_notify('password_reset', $account, $language);
++    $mail = _user_mail_notify('password_reset', $account);
+     if (!empty($mail)) {
+       watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
+     }

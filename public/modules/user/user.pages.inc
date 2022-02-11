@@ -107,9 +107,6 @@ function user_pass_validate($form, &$form_state) {
     flood_register_event('pass_reset_user', $user_pass_reset_user_window, $identifier);
     form_set_value(array('#parents' => array('account')), $account, $form_state);
   }
-  else {
-    form_set_error('name', t('Sorry, %name is not recognized as a user name or an e-mail address.', array('%name' => $name)));
-  }
 }
 
 /**
@@ -118,13 +115,23 @@ function user_pass_validate($form, &$form_state) {
  * @see user_pass_validate()
  */
 function user_pass_submit($form, &$form_state) {
-  $account = $form_state['values']['account'];
-  $mail = _user_mail_notify('password_reset', $account);
-  if (!empty($mail)) {
-    watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
-    drupal_set_message(t('Further instructions have been sent to your e-mail address.'));
+  global $language;
+
+  $name = $form_state['values']['name'];
+  if (isset($form_state['values']['account'])) {
+    $account = $form_state['values']['account'];
+    // Mail one time login URL and instructions using current language.
+    $mail = _user_mail_notify('password_reset', $account);
+    if (!empty($mail)) {
+      watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
+    }
+  }
+  else {
+    watchdog('user', 'Password reset form was submitted with an unknown or inactive account: %name.', array('%name' => $name));
   }
 
+  $password_reset_text = variable_get('user_password_reset_text', t('If %identifier is a valid account, an email will be sent with instructions to reset your password.'));
+  drupal_set_message(format_string($password_reset_text, array('%identifier' => $name)));
   $form_state['redirect'] = 'user';
   return;
 }

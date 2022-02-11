@@ -371,29 +371,6 @@ index 4c2b3fbeeb..96758de9cb 100644
  
    foreach ($files as $name => $file) {
      $info = drupal_parse_info_file($file->uri);
-diff --git a/modules/simpletest/drupal_web_test_case.php b/modules/simpletest/drupal_web_test_case.php
-index a0872c234a..52aabbaa4e 100644
---- a/modules/simpletest/drupal_web_test_case.php
-+++ b/modules/simpletest/drupal_web_test_case.php
-@@ -1520,10 +1520,16 @@ class DrupalWebTestCase extends DrupalTestCase {
- 
-     // Include the testing profile.
-     variable_set('install_profile', $this->profile);
--    $profile_details = install_profile_info($this->profile, 'en');
- 
-     // Install the modules specified by the testing profile.
--    module_enable($profile_details['dependencies'], FALSE);
-+    $profiles = drupal_get_profiles();
-+    $profile_dependencies = array();
-+
-+    foreach ($profiles as $profile) {
-+      $info = install_profile_info($profile);
-+      $profile_dependencies = array_unique(array_merge($profile_dependencies, $info['dependencies']));
-+    }
-+    module_enable($profile_dependencies);
- 
-     // Install modules needed for this test. This could have been passed in as
-     // either a single array argument or a variable number of string arguments.
 diff --git a/modules/system/system.admin.inc b/modules/system/system.admin.inc
 index b7e6fc9e70..f9244e7b7a 100644
 --- a/modules/system/system.admin.inc
