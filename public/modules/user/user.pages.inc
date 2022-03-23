@@ -121,7 +121,7 @@ function user_pass_submit($form, &$form_state) {
   if (isset($form_state['values']['account'])) {
     $account = $form_state['values']['account'];
     // Mail one time login URL and instructions using current language.
-    $mail = _user_mail_notify('password_reset', $account);
+    $mail = _user_mail_notify('password_reset', $account, $language);
     if (!empty($mail)) {
       watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
     }
