@@ -232,22 +232,6 @@ function drupal_get_profile() {
   return $profile;
 }
 
-/**
- * Returns a list of related install profiles in decending order of their
- * dependencies.
- */
-function drupal_get_profiles() {
-  global $install_state;
-
-  if (isset($install_state['parameters']['profile'])) {
-    $profiles = install_get_base_profiles();
-  }
-  else {
-    $profiles = variable_get('install_profiles', array('standard'));
-  }
-
-  return $profiles;
-}
 
 /**
  * Sets the breadcrumb trail for the current page.
@@ -1516,7 +1500,7 @@ function filter_xss($string, $allowed_tags = array('a', 'em', 'strong', 'cite', 
   // Store the text format.
   _filter_xss_split($allowed_tags, TRUE);
   // Remove NULL characters (ignored by some browsers).
-  $string = str_replace(chr(0), '', $string);
+  $string = str_replace(chr(0), '', (string) $string);
   // Remove Netscape 4 JS entities.
   $string = preg_replace('%&\s*\{[^}]*(\}\s*;?|$)%', '', $string);
 
@@ -2712,6 +2696,7 @@ function drupal_deliver_html_page($page_callback_result) {
   if ($frame_options && is_null(drupal_get_http_header('X-Frame-Options'))) {
     drupal_add_http_header('X-Frame-Options', $frame_options);
   }
+  drupal_add_http_header('X-Content-Type-Options', 'nosniff');
 
   if (variable_get('block_interest_cohort', TRUE)) {
     $permissions_policy = drupal_get_http_header('Permissions-Policy');
@@ -5658,7 +5643,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
   }
   // In case both profile directories contain the same extension, the actual
   // profile always has precedence.
-  $profiles = array_merge($profiles, drupal_get_profiles());
+  $profiles[] = $profile;
   foreach ($profiles as $profile) {
     if (file_exists("profiles/$profile/$directory")) {
       $searchdir[] = "profiles/$profile/$directory";
@@ -8050,8 +8035,14 @@ function entity_extract_ids($entity_type, $entity) {
   $info = entity_get_info($entity_type);
 
   // Objects being created might not have id/vid yet.
-  $id = isset($entity->{$info['entity keys']['id']}) ? $entity->{$info['entity keys']['id']} : NULL;
-  $vid = ($info['entity keys']['revision'] && isset($entity->{$info['entity keys']['revision']})) ? $entity->{$info['entity keys']['revision']} : NULL;
+  if (!empty($info)) {
+    $id = isset($entity->{$info['entity keys']['id']}) ? $entity->{$info['entity keys']['id']} : NULL;
+    $vid = ($info['entity keys']['revision'] && isset($entity->{$info['entity keys']['revision']})) ? $entity->{$info['entity keys']['revision']} : NULL;
+  }
+  else {
+    $id = NULL;
+    $vid = NULL;
+  }
 
   if (!empty($info['entity keys']['bundle'])) {
     // Explicitly fail for malformed entities missing the bundle property.
