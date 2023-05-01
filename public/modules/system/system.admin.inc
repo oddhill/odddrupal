@@ -1283,7 +1283,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
   // Only build the rest of the form if there are any modules available to
   // uninstall.
   if (!empty($disabled_modules)) {
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     uasort($disabled_modules, 'system_sort_modules_by_info_name');
     $form['uninstall'] = array('#tree' => TRUE);
     foreach ($disabled_modules as $module) {
@@ -1300,7 +1300,7 @@ function system_modules_uninstall($form, $form_state = NULL) {
       // we can allow this module to be uninstalled. (The installation profile
       // is excluded from this list.)
       foreach (array_keys($module->required_by) as $dependent) {
-        if (!in_array($dependent, $profiles) && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
+        if ($dependent != $profile && drupal_get_installed_schema_version($dependent) != SCHEMA_UNINSTALLED) {
           $dependent_name = isset($all_modules[$dependent]->info['name']) ? $all_modules[$dependent]->info['name'] : $dependent;
           $form['modules'][$module->name]['#required_by'][] = $dependent_name;
           $form['uninstall'][$module->name]['#disabled'] = TRUE;
@@ -2385,7 +2385,7 @@ function system_run_cron() {
  * Menu callback: return information about PHP.
  */
 function system_php() {
-  phpinfo();
+  phpinfo(~ (INFO_VARIABLES | INFO_ENVIRONMENT));
   drupal_exit();
 }
 
@@ -2398,6 +2398,7 @@ function system_batch_page() {
 
   if ($output === FALSE) {
     drupal_access_denied();
+    drupal_exit();
   }
   elseif (isset($output)) {
     // Force a page without blocks or messages to

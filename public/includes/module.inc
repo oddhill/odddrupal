@@ -142,9 +142,10 @@ function system_list($type) {
     foreach ($bootstrap_list as $module) {
       drupal_get_filename('module', $module->name, $module->filename);
     }
-    // We only return the module names here since module_list() doesn't need
-    // the filename itself.
-    $lists['bootstrap'] = array_keys($bootstrap_list);
+    // Only return module names here since module_list() doesn't need the
+    // filename itself. Don't use drupal_map_assoc() as that requires common.inc.
+    $list = array_keys($bootstrap_list);
+    $lists['bootstrap'] = (!empty($list) ? array_combine($list, $list) : array());
   }
   // Otherwise build the list for enabled modules and themes.
   elseif (!isset($lists['module_enabled'])) {
@@ -543,7 +544,7 @@ function module_disable($module_list, $disable_dependents = TRUE) {
     // Create an associative array with weights as values.
     $module_list = array_flip(array_values($module_list));
 
-    $profiles = drupal_get_profiles();
+    $profile = drupal_get_profile();
     // The array is iterated over manually (instead of using a foreach) because
     // modules may be added to the list within the loop and we need to process
     // them.
@@ -559,7 +560,7 @@ function module_disable($module_list, $disable_dependents = TRUE) {
       // Add dependent modules to the list, with a placeholder weight.
       // The new modules will be processed as the while loop continues.
       foreach ($module_data[$module]->required_by as $dependent => $dependent_data) {
-        if (!isset($module_list[$dependent]) && !in_array($dependent, $profiles)) {
+        if (!isset($module_list[$dependent]) && $dependent != $profile) {
           $module_list[$dependent] = 0;
         }
       }
@@ -987,7 +988,7 @@ function drupal_required_modules() {
   $required = array();
 
   // An installation profile is required and one must always be loaded.
-  $required = array_merge($required, drupal_get_profiles());
+  $required[] = drupal_get_profile();
 
   foreach ($files as $name => $file) {
     $info = drupal_parse_info_file($file->uri);
